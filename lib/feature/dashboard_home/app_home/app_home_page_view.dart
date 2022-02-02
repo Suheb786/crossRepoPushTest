@@ -65,20 +65,29 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   context, RoutePaths.CardTransaction);
                             }
                           } else if (currentStep == 0) {
-                            Navigator.pushNamed(
-                                context, RoutePaths.AccountTransaction);
+                            if (showTimeLine!) {
+                              print("dragged here");
+                              model.updateShowTimeLineStream(!showTimeLine);
+                              return;
+                            } else {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.AccountTransaction);
+                            }
                           } else if (currentStep == 2) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           } else if (currentStep == 3) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           }
                         } else {
-                          if (currentStep == 1 ||
-                              currentStep == 2 ||
-                              currentStep == 3) {
-                            if (!showTimeLine!) {
-                              model.updateShowTimeLineStream(!showTimeLine);
-                            }
+                          // if (currentStep == 1 ||
+                          //     currentStep == 2 ||
+                          //     currentStep == 3) {
+                          //   if (!showTimeLine!) {
+                          //     model.updateShowTimeLineStream(!showTimeLine);
+                          //   }
+                          // }
+                          if (!showTimeLine!) {
+                            model.updateShowTimeLineStream(!showTimeLine);
                           }
                         }
                       },
@@ -346,56 +355,50 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
-                                                    (currentStep == 1
+                                                     (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .length >
+                                                                0
                                                             ? (cardData
                                                                         .data!
                                                                         .dashboardDataContent!
                                                                         .creditCard!
-                                                                        .length >
-                                                                    0
-                                                                ? (cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .first
-                                                                            .isCreditDelivered !=
-                                                                        null &&
-                                                                    cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .creditCard!
                                                                         .first
-                                                                        .isCreditDelivered!)
-                                                                : false)
-                                                            : (cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .debitCard!
-                                                                    .isNotEmpty &&
-                                                                cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .debitCard!
-                                                                        .first
-                                                                        .isDebitDelivered !=
+                                                                        .isCreditDelivered !=
                                                                     null &&
                                                                 cardData
                                                                     .data!
                                                                     .dashboardDataContent!
-                                                                    .debitCard!
+                                                                    .creditCard!
                                                                     .first
-                                                                    .isDebitDelivered!))
+                                                                    .isCreditDelivered!)
+                                                            : false)
+                                                        // : (cardData
+                                                        //         .data!
+                                                        //         .dashboardDataContent!
+                                                        //         .debitCard!
+                                                        //         .isNotEmpty &&
+                                                        //     cardData
+                                                        //             .data!
+                                                        //             .dashboardDataContent!
+                                                        //             .debitCard!
+                                                        //             .first
+                                                        //             .isDebitDelivered !=
+                                                        //         null &&
+                                                        //     cardData
+                                                        //         .data!
+                                                        //         .dashboardDataContent!
+                                                        //         .debitCard!
+                                                        //         .first
+                                                        //         .isDebitDelivered!)
                                                         ? Column(
                                                             children: [
                                                               Text(
-                                                                currentStep == 1
-                                                                    ? S
-                                                                        .of(
-                                                                            context)
-                                                                        .creditCardDelivered
-                                                                    : S
-                                                                        .of(context)
-                                                                        .debitCardDeliveredDate,
+                                                                S
+                                                                    .of(context)
+                                                                    .creditCardDelivered,
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -411,33 +414,32 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     .only(
                                                                         top: 5),
                                                                 child: Text(
-                                                                  currentStep ==
-                                                                          1
-                                                                      ? (cardData.data!.dashboardDataContent!.creditCard!.length > 0
-                                                                              ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
-                                                                                  null
-                                                                              : false)
-                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                              .data!
-                                                                              .dashboardDataContent!
-                                                                              .creditCard!
-                                                                              .first
-                                                                              .creditDeliveredDatetime!
-                                                                              .toString())
-                                                                          : '-'
-                                                                      : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
-                                                                              cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
-                                                                                  null &&
-                                                                              cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
-                                                                                  .toString()
-                                                                                  .isNotEmpty)
-                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                              .data!
-                                                                              .dashboardDataContent!
-                                                                              .debitCard![0]
-                                                                              .debitDeliveredDatetime!
-                                                                              .toString())
-                                                                          : '-',
+                                                                  (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                              0
+                                                                          ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
+                                                                              null
+                                                                          : false)
+                                                                      ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .creditDeliveredDatetime!
+                                                                          .toString())
+                                                                      : '-',
+                                                                  // : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
+                                                                  //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
+                                                                  //             null &&
+                                                                  //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
+                                                                  //             .toString()
+                                                                  //             .isNotEmpty)
+                                                                  //     ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                  //         .data!
+                                                                  //         .dashboardDataContent!
+                                                                  //         .debitCard![0]
+                                                                  //         .debitDeliveredDatetime!
+                                                                  //         .toString())
+                                                                  //     : '-',
                                                                   style: TextStyle(
                                                                       fontSize:
                                                                           12,
@@ -458,7 +460,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               Text(
                                                                 S
                                                                     .of(context)
-                                                                    .cardDelivered,
+                                                                    .creditCardDelivered,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -473,35 +478,48 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 child: InkWell(
                                                                   onTap:
                                                                       () async {
-                                                                    if (currentStep ==
-                                                                        1) {
-                                                                      var result = await Navigator.push(
-                                                                          context,
-                                                                          MaterialPageRoute(
-                                                                              builder: (context) => CreditCardDeliveredPage(
-                                                                                    creditCard: cardData.data!.dashboardDataContent!.creditCard!,
-                                                                                  )));
-                                                                      if (result !=
-                                                                          null) {
-                                                                        print(
-                                                                            '$result');
-                                                                        model
-                                                                            .getDashboardData();
-                                                                      }
-                                                                    } else {
-                                                                      var result = await Navigator.push(
-                                                                          context,
-                                                                          MaterialPageRoute(
-                                                                              builder: (context) => DebitCardDeliveredPage(
-                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                                  )));
-                                                                      if (result !=
-                                                                          null) {
-                                                                        print(
-                                                                            '$result');
-                                                                        model
-                                                                            .getDashboardData();
-                                                                      }
+                                                                    // if (currentStep ==
+                                                                    //     1) {
+                                                                    //   var result = await Navigator.push(
+                                                                    //       context,
+                                                                    //       MaterialPageRoute(
+                                                                    //           builder: (context) => CreditCardDeliveredPage(
+                                                                    //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                    //               )));
+                                                                    //   if (result !=
+                                                                    //       null) {
+                                                                    //     print(
+                                                                    //         '$result');
+                                                                    //     model
+                                                                    //         .getDashboardData();
+                                                                    //   }
+                                                                    // } else {
+                                                                    //   var result = await Navigator.push(
+                                                                    //       context,
+                                                                    //       MaterialPageRoute(
+                                                                    //           builder: (context) => DebitCardDeliveredPage(
+                                                                    //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                    //               )));
+                                                                    //   if (result !=
+                                                                    //       null) {
+                                                                    //     print(
+                                                                    //         '$result');
+                                                                    //     model
+                                                                    //         .getDashboardData();
+                                                                    //   }
+                                                                    // }
+                                                                    var result = await Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (context) => CreditCardDeliveredPage(
+                                                                                  creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                                )));
+                                                                    if (result !=
+                                                                        null) {
+                                                                      print(
+                                                                          '$result');
+                                                                      model
+                                                                          .getDashboardData();
                                                                     }
                                                                   },
                                                                   child:
@@ -542,6 +560,192 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           left: 170),
+                                                      child: (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .debitCard!
+                                                                  .isNotEmpty &&
+                                                              cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .debitCard!
+                                                                      .first
+                                                                      .isDebitDelivered !=
+                                                                  null &&
+                                                              cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .debitCard!
+                                                                  .first
+                                                                  .isDebitDelivered!)
+                                                          ? Column(
+                                                              children: [
+                                                                Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .debitCardDelivered,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontSize:
+                                                                          12),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 5),
+                                                                  child: Text(
+                                                                    // (cardData.data!.dashboardDataContent!.creditCard!.length > 0
+                                                                    //     ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
+                                                                    //     null
+                                                                    //     : false)
+                                                                    //     ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                    //     .data!
+                                                                    //     .dashboardDataContent!
+                                                                    //     .creditCard!
+                                                                    //     .first
+                                                                    //     .creditDeliveredDatetime!
+                                                                    //     .toString())
+                                                                    //     : '-',
+                                                                    //:
+                                                                    (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
+                                                                            cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
+                                                                                null &&
+                                                                            cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
+                                                                                .toString()
+                                                                                .isNotEmpty)
+                                                                        ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .debitCard![0]
+                                                                            .debitDeliveredDatetime!
+                                                                            .toString())
+                                                                        : '-',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        color: Theme.of(context)
+                                                                            .inputDecorationTheme
+                                                                            .hintStyle!
+                                                                            .color,
+                                                                        fontWeight:
+                                                                            FontWeight.w600),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )
+                                                          : Column(
+                                                              children: [
+                                                                Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .debitCardDelivered,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontSize:
+                                                                          12),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 5),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      // if (currentStep ==
+                                                                      //     1) {
+                                                                      //   var result = await Navigator.push(
+                                                                      //       context,
+                                                                      //       MaterialPageRoute(
+                                                                      //           builder: (context) => CreditCardDeliveredPage(
+                                                                      //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                      //               )));
+                                                                      //   if (result !=
+                                                                      //       null) {
+                                                                      //     print(
+                                                                      //         '$result');
+                                                                      //     model
+                                                                      //         .getDashboardData();
+                                                                      //   }
+                                                                      // } else {
+                                                                      //   var result = await Navigator.push(
+                                                                      //       context,
+                                                                      //       MaterialPageRoute(
+                                                                      //           builder: (context) => DebitCardDeliveredPage(
+                                                                      //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                      //               )));
+                                                                      //   if (result !=
+                                                                      //       null) {
+                                                                      //     print(
+                                                                      //         '$result');
+                                                                      //     model
+                                                                      //         .getDashboardData();
+                                                                      //   }
+                                                                      // }
+                                                                      var result = await Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => DebitCardDeliveredPage(
+                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                                  )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              11,
+                                                                          vertical:
+                                                                              2),
+                                                                      decoration: BoxDecoration(
+                                                                          color: Theme.of(context)
+                                                                              .accentColor,
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              14),
+                                                                          border:
+                                                                              Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                      child:
+                                                                          Text(
+                                                                        S
+                                                                            .of(context)
+                                                                            .confirm,
+                                                                        style: TextStyle(
+                                                                            color: Theme.of(context)
+                                                                                .accentTextTheme
+                                                                                .bodyText1!
+                                                                                .color,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.w600),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 180),
                                                       child: Column(
                                                         children: [
                                                           Text(
@@ -624,7 +828,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vividYellow,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
@@ -637,7 +841,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vivid_red,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
@@ -656,7 +860,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vividYellow,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
@@ -669,7 +873,77 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vividYellow,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      Stack(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 0.0),
+                                                            child: Image.asset(
+                                                                AssetUtils
+                                                                    .progress2),
+                                                          ),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            right: -10,
+                                                            child: Container(
+                                                              height: 20,
+                                                              width: 20,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColor
+                                                                      .vividYellow,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            top: 0,
+                                                            left: -10,
+                                                            child: Container(
+                                                              height: 20,
+                                                              width: 20,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColor
+                                                                      .vividYellow,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Stack(
+                                                        children: [
+                                                          Image.asset(AssetUtils
+                                                              .progress1),
+                                                          Positioned(
+                                                            bottom: 0,
+                                                            left: -10,
+                                                            child: Container(
+                                                              height: 20,
+                                                              width: 20,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColor
+                                                                      .vividYellow,
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                            ),
+                                                          ),
+                                                          Positioned(
+                                                            top: 0,
+                                                            right: -10,
+                                                            child: Container(
+                                                              height: 20,
+                                                              width: 20,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColor
+                                                                      .vividYellow,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
@@ -694,20 +968,20 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vividYellow,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
                                                           ),
                                                           Positioned(
                                                             bottom: 0,
-                                                            right: 0,
+                                                            right: 5,
                                                             child: Container(
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
                                                                   color: AppColor
-                                                                      .darkGrey,
+                                                                      .vividYellow,
                                                                   shape: BoxShape
                                                                       .circle),
                                                             ),
@@ -726,12 +1000,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     Column(
                                                       children: [
                                                         Text(
-                                                          currentStep != 1
-                                                              ? S
-                                                                  .of(context)
-                                                                  .debitCardActivated
-                                                              : S
-                                                                  .of(context)
+                                                          S
+                                                              .of(context)
                                                                   .creditCardActivated,
                                                           style: TextStyle(
                                                               fontWeight:
@@ -744,35 +1014,45 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               EdgeInsets.only(
                                                                   top: 4),
                                                           child: Text(
-                                                            currentStep != 1
-                                                                ? cardData
+                                                            // currentStep != 1 ?
+                                                            // cardData
+                                                            //                 .data!
+                                                            //                 .dashboardDataContent!
+                                                            //                 .debitCard!
+                                                            //                 .first
+                                                            //                 .debitCardActivated !=
+                                                            //             null
+                                                            //         ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                            //             .data!
+                                                            //             .dashboardDataContent!
+                                                            //             .debitCard!
+                                                            //             .first
+                                                            //             .debitCardActivated!
+                                                            //             .toString())
+                                                            //         : '-'
+                                                            //     :
+                                                            (cardData
                                                                             .data!
                                                                             .dashboardDataContent!
-                                                                            .debitCard!
+                                                                            .creditCard!
+                                                                            .length >
+                                                                        0
+                                                                    ? cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
                                                                             .first
-                                                                            .debitCardActivated !=
+                                                                            .creditCardActivatedDate !=
                                                                         null
-                                                                    ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .debitCard!
-                                                                        .first
-                                                                        .debitCardActivated!
-                                                                        .toString())
-                                                                    : '-'
-                                                                : (cardData.data!.dashboardDataContent!.creditCard!.length >
-                                                                            0
-                                                                        ? cardData.data!.dashboardDataContent!.creditCard!.first.creditCardActivatedDate !=
-                                                                            null
-                                                                        : false)
-                                                                    ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .creditCard!
-                                                                        .first
-                                                                        .creditCardActivatedDate!
-                                                                        .toString())
-                                                                    : '-',
+                                                                    : false)
+                                                                ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .first
+                                                                    .creditCardActivatedDate!
+                                                                    .toString())
+                                                                : '-',
                                                             style: TextStyle(
                                                                 color: Theme.of(
                                                                         context)
@@ -792,7 +1072,71 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Text(
                                                             S
                                                                 .of(context)
+                                                                .debitCardActivated,
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 12),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 4),
+                                                            child: Text(
+                                                              // currentStep != 1 ?
+                                                              cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .debitCard!
+                                                                          .first
+                                                                          .debitCardActivated !=
+                                                                      null
+                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .debitCard!
+                                                                      .first
+                                                                      .debitCardActivated!
+                                                                      .toString())
+                                                                  : '-',
+                                                              //     :
+                                                              // (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                              //     0
+                                                              //     ? cardData.data!.dashboardDataContent!.creditCard!.first.creditCardActivatedDate !=
+                                                              //     null
+                                                              //     : false)
+                                                              //     ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                              //     .data!
+                                                              //     .dashboardDataContent!
+                                                              //     .creditCard!
+                                                              //     .first
+                                                              //     .creditCardActivatedDate!
+                                                              //     .toString())
+                                                              //     : '-',
+                                                              style: TextStyle(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .inputDecorationTheme
+                                                                      .hintStyle!
+                                                                      .color,
+                                                                  fontSize: 12),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 180),
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                            S
+                                                                .of(context)
                                                                 .blinkBorn,
+                                                            textAlign: TextAlign
+                                                                .center,
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight

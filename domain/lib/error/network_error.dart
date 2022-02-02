@@ -341,6 +341,10 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_GET_STATUS);
 
+          case "err-329":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.USER_NOT_ELIGIBLE);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

@@ -78,150 +78,147 @@ class PaymentToNewRecipientPageView
                     direction: Direction.vertical,
                     offset: 0.5,
                     child: StepTextHelper.paymentToNewRecipientStepTextHelper(
-                        currentStep,
-                        Column(
-                          children: [
-                            Text(
-                              S.of(context).sending,
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontSize: 20),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 6),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  AppStreamBuilder<bool>(
-                                      stream: model.editAmountStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isEdit) {
-                                        return isEdit!
-                                            ? Container(
-                                                height: 28,
-                                                width: 100,
-                                                child: TextFormField(
-                                                  autofocus: true,
-                                                  onChanged: (value) {
-                                                    if (value != ".") {
-                                                      ProviderScope.containerOf(
-                                                                  context)
-                                                              .read(
-                                                                  sendMoneyViewModelProvider)
-                                                              .currentPinValue =
-                                                          model
-                                                              .editAmountController
-                                                              .text;
-                                                      print(
-                                                          "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
-                                                    }
-                                                  },
-                                                  onFieldSubmitted: (value) {
-                                                    model.updateEditAmount(
-                                                        false);
-                                                  },
-                                                  style: TextStyle(
-                                                      fontSize: 28,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      color: Theme.of(context)
-                                                          .accentColor),
-                                                  cursorColor: Theme.of(context)
-                                                      .accentColor,
-                                                  controller: model
-                                                      .editAmountController,
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  decoration: InputDecoration(
-                                                    border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                            bottom: 10),
-                                                  ),
-                                                ),
-                                              )
-                                            : Text(
-                                                double.parse(ProviderScope
-                                                            .containerOf(
+                      currentStep,
+                      Column(
+                        children: [
+                          Text(
+                            S.of(context).sending,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 20),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 6),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AppStreamBuilder<bool>(
+                                    stream: model.editAmountStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isEdit) {
+                                      return isEdit!
+                                          ? Container(
+                                              height: 28,
+                                              width: 100,
+                                              child: TextFormField(
+                                                autofocus: true,
+                                                onChanged: (value) {
+                                                  if (value != ".") {
+                                                    ProviderScope.containerOf(
                                                                 context)
-                                                        .read(
-                                                            sendMoneyViewModelProvider)
-                                                        .currentPinValue)
-                                                    .toStringAsFixed(3),
+                                                            .read(
+                                                                sendMoneyViewModelProvider)
+                                                            .currentPinValue =
+                                                        model
+                                                            .editAmountController
+                                                            .text;
+                                                    print(
+                                                        "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
+                                                  }
+                                                },
+                                                onFieldSubmitted: (value) {
+                                                  model.updateEditAmount(false);
+                                                },
                                                 style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .accentColor,
                                                     fontSize: 28,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              );
-                                      }),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8),
-                                    child: Text(
-                                      "JOD",
-                                      style: TextStyle(
-                                          color: AppColor.very_light_red,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Theme.of(context)
+                                                        .accentColor),
+                                                cursorColor: Theme.of(context)
+                                                    .accentColor,
+                                                controller:
+                                                    model.editAmountController,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  contentPadding:
+                                                      EdgeInsets.only(
+                                                          bottom: 10),
+                                                ),
+                                              ),
+                                            )
+                                          : Text(
+                                              double.parse(ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          sendMoneyViewModelProvider)
+                                                      .currentPinValue)
+                                                  .toStringAsFixed(3),
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontSize: 28,
+                                                  fontWeight: FontWeight.w700),
+                                            );
+                                    }),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 8),
+                                  child: Text(
+                                    "JOD",
+                                    style: TextStyle(
+                                        color: AppColor.very_light_red,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 3),
-                              child: AppStreamBuilder<bool>(
-                                  stream: model.editAmountStream,
-                                  initialData: false,
-                                  dataBuilder: (context, value) {
-                                    return InkWell(
-                                      onTap: () {
-                                        if (!value!) {
-                                          model.editAmountController
-                                              .text = ProviderScope.containerOf(
-                                                  context)
-                                              .read(sendMoneyViewModelProvider)
-                                              .currentPinValue;
-                                          model.updateEditAmount(true);
-                                        }
-                                      },
-                                      child: Text(
-                                        S.of(context).tapToEdit,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12,
-                                            color: AppColor.very_light_red),
-                                      ),
-                                    );
-                                  }),
-                            )
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              S.of(context).sendMoney,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 3),
+                            child: AppStreamBuilder<bool>(
+                                stream: model.editAmountStream,
+                                initialData: false,
+                                dataBuilder: (context, value) {
+                                  return InkWell(
+                                    onTap: () {
+                                      if (!value!) {
+                                        model.editAmountController.text =
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    sendMoneyViewModelProvider)
+                                                .currentPinValue;
+                                        model.updateEditAmount(true);
+                                      }
+                                    },
+                                    child: Text(
+                                      S.of(context).tapToEdit,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                          color: AppColor.very_light_red),
+                                    ),
+                                  );
+                                }),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            S.of(context).sendMoney,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 8),
+                            child: Text(
+                              S.of(context).enterCode +
+                                  "\n+${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode}" +
+                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 10),
+                                  fontSize: 20,
+                                  color: Theme.of(context).accentColor),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 8),
-                              child: Text(
-                                S.of(context).enterCode +
-                                    "\n+${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode}" +
-                                    " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!.substring(2)}",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                    color: Theme.of(context).accentColor),
-                              ),
-                            )
-                          ],
-                        )),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(

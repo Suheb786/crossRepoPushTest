@@ -1,4 +1,5 @@
 import 'package:domain/model/bank_smart/get_account_details_response.dart';
+import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -45,6 +46,38 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            Visibility(
+                              visible: model.arguments.isDocumentUploaded,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child:
+                                    AppStreamBuilder<Resource<LogoutResponse>>(
+                                  stream: model.logoutStream,
+                                  initialData: Resource.none(),
+                                  onData: (response) {
+                                    if (response.status == Status.SUCCESS) {
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context,
+                                          RoutePaths.OnBoarding,
+                                          ModalRoute.withName(
+                                              RoutePaths.Splash));
+                                    }
+                                  },
+                                  dataBuilder: (context, data) {
+                                    return Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 43, right: 30),
+                                      child: InkWell(
+                                        onTap: () {
+                                          model.logOutUser();
+                                        },
+                                        child: AppSvg.asset(AssetUtils.logout),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding: EdgeInsets.only(top: 92),
                               child: Stack(
@@ -72,9 +105,11 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                             ),
                             AccountReadyHeader(
                                 title: S.of(context).accountReadyMsg,
-                                subTitle: S
-                                    .of(context)
-                                    .yourFreeVirtualDebitCardHasBeenIssued),
+                                subTitle: model.arguments.isDocumentUploaded
+                                    ? S.of(context).uploadDocWithinTendays
+                                    : S
+                                        .of(context)
+                                        .yourFreeVirtualDebitCardHasBeenIssued),
                             SizedBox(
                               height: 40,
                             ),
