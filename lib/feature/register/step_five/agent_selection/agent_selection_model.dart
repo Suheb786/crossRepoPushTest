@@ -77,4 +77,6 @@ class AgentSelectionViewModel extends BasePageViewModel {
     _checkGenderStatusRequest.close();
     super.dispose();
   }
+
+  void checkUserStatus() {}
 }
