@@ -15,6 +15,8 @@ class User {
   String? privatePEM;
   String? publicPEM;
   bool? isBiometricEnabled;
+  String? cifNumber;
+  String? accountNumber;
 
   User(
       {this.token,
@@ -31,6 +33,8 @@ class User {
       this.isExisting,
       this.publicPEM,
       this.privatePEM,
+      this.cifNumber,
+      this.accountNumber,
       this.newDevice: false,
       this.isBiometricEnabled: false});
 

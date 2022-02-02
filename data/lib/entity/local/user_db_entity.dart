@@ -13,6 +13,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
   String? firstName;
   String? lastName;
   String? mobile;
+  String? mobileCode;
   bool? isCurrent;
   String? token;
   String? refreshToken;
@@ -21,20 +22,26 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
   String? privatePEM;
   String? publicPEM;
   bool? isBiometricEnabled;
+  String? cifNumber;
+  String? accountNumber;
 
-  UserDBEntity({this.id,
-    this.token,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.mobile,
-    this.isCurrent,
-    this.refreshToken,
-    this.tokenType,
-    this.expiresIn,
-    this.isBiometricEnabled,
-    this.privatePEM,
-    this.publicPEM});
+  UserDBEntity(
+      {this.id,
+      this.token,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.mobile,
+      this.mobileCode,
+      this.isCurrent,
+      this.refreshToken,
+      this.tokenType,
+      this.expiresIn,
+      this.isBiometricEnabled,
+      this.privatePEM,
+      this.cifNumber,
+      this.accountNumber,
+      this.publicPEM});
 
   @override
   transform() {
@@ -45,13 +52,16 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
         lastName: lastName,
         email: email,
         mobile: mobile,
+        mobileCode: mobileCode,
         isCurrent: isCurrent,
         expiredIn: expiresIn,
         tokenType: tokenType,
         refreshToken: refreshToken,
         publicPEM: publicPEM,
         privatePEM: privatePEM,
-        isBiometricEnabled: isBiometricEnabled);
+        isBiometricEnabled: isBiometricEnabled,
+        cifNumber: cifNumber,
+        accountNumber: accountNumber);
   }
 
   @override
@@ -61,6 +71,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.mobile = data.mobile;
+    this.mobileCode = data.mobileCode;
     this.email = data.email;
     this.isCurrent = data.isCurrent;
     this.expiresIn = data.expiredIn;
@@ -69,7 +80,8 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
     this.privatePEM = data.privatePEM;
     this.publicPEM = data.publicPEM;
     this.isBiometricEnabled = data.isBiometricEnabled;
-
+    this.cifNumber = data.cifNumber;
+    this.accountNumber = data.accountNumber;
     return this;
   }
 }

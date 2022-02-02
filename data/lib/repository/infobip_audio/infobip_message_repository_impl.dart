@@ -44,11 +44,17 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
         (l) => Left(
             NetworkError(httpError: 1502, cause: Exception(), message: '')),
         (user) async {
+      print("USER CIF NUMBER " + user.cifNumber.toString());
+      print("MOBILE NUMBER " +
+          user.mobileCode.toString() +
+          user.mobile.toString());
       var saveUserResult = await _infobipMessageDs.saveUser(UserData(
           firstName: user.firstName!,
           lastName: user.lastName!,
+          externalUserId: user.cifNumber,
           emails: [user.email.toString()],
-          phones: [user.mobile.toString()]));
+          customAttributes: {"accountNumber": user.accountNumber.toString()},
+          phones: [user.mobileCode.toString() + user.mobile.toString()]));
       if (!saveUserResult) {
         return Left(
             NetworkError(httpError: 1501, cause: Exception(), message: ''));
