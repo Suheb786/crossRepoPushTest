@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,11 @@ class SetCreditLimitPageView
                     Navigator.pushReplacementNamed(
                         context, RoutePaths.CreditCardActivationStatus);
                   } else if (data.status == Status.ERROR) {
+                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                      Navigator.pushReplacementNamed(
+                          context, RoutePaths.CreditCardApplicationFailure);
+                    }
+
                     model.showToastWithError(data.appError!);
                   }
                 },

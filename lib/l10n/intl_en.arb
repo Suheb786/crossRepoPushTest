@@ -315,8 +315,8 @@
   "whereDoYouCurrentlyLive": "Where do you \ncurrently live?",
   "accountOpeningDescription": "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!",
   "notifyMeExC": "Notify me",
-  "backToCardSettings":"Back to Card Settings",
-  "backToLogin":"Back to Login",
+  "backToCardSettings": "Back to Card Settings",
+  "backToLogin": "Back to Login",
   "notifyMe": "NOTIFY ME",
   "pleaseEnterLatestEmail": "Please enter your latest email. You’ll hear from us, soon!",
   "thankYouForInterestWillSendUpdate": "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.",
@@ -848,5 +848,7 @@
   "congratulations": "Congratulations!",
   "newDeviceRegisteredSuccessfully": "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard.",
   "supplementaryDebitcardSuccessDesc": "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.",
-  "invalidIncomeSourceValue": "Additional Income should be greater than 0"
+  "invalidIncomeSourceValue": "Additional Income should be greater than 0",
+  "invalidExpectedMonthlyIncomeSourceValue": "Monthly Income should be greater than 0",
+  "userNotEligible": "User is not eligible."
 }

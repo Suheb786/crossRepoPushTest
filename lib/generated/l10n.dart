@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8306,6 +8305,26 @@ class S {
     return Intl.message(
       'Additional Income should be greater than 0',
       name: 'invalidIncomeSourceValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Income should be greater than 0`
+  String get invalidExpectedMonthlyIncomeSourceValue {
+    return Intl.message(
+      'Monthly Income should be greater than 0',
+      name: 'invalidExpectedMonthlyIncomeSourceValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User is not eligible.`
+  String get userNotEligible {
+    return Intl.message(
+      'User is not eligible.',
+      name: 'userNotEligible',
       desc: '',
       args: [],
     );

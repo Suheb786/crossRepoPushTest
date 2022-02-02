@@ -408,6 +408,10 @@ class ErrorParser {
         return localisedHelper.selectAdditionalIncome;
       case ErrorType.ERROR_WHILE_GET_STATUS:
         return localisedHelper.errorWhileGetStatus;
+      case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION_VALUE:
+        return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
+      case ErrorType.USER_NOT_ELIGIBLE:
+        return localisedHelper.userNotEligible;
 
       default:
         return "";

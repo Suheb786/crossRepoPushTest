@@ -764,6 +764,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidExpectedAnnualTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected annual transaction"),
+        "invalidExpectedMonthlyIncomeSourceValue":
+            MessageLookupByLibrary.simpleMessage(
+                "Monthly Income should be greater than 0"),
         "invalidExpectedMonthlyTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected monthly transaction"),
@@ -1417,6 +1420,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "U.S. Tax Payer\nIdentification Number "),
         "userAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "User Already Exist. Try Using Different Email"),
+        "userNotEligible":
+            MessageLookupByLibrary.simpleMessage("User is not eligible."),
         "userNotRegister":
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
