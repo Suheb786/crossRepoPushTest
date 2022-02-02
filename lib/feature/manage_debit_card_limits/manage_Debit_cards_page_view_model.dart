@@ -111,8 +111,6 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
     _debitCardLimitRequest.safeAdd(DebitCardLimitUseCaseParams());
   }
 
-  validateAllFields() {}
-
   void updateCardLimits(
       {required num atmWithdrawalValue,
       required num merchantPayment,

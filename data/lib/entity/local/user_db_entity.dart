@@ -13,6 +13,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
   String? firstName;
   String? lastName;
   String? mobile;
+  String? mobileCode;
   bool? isCurrent;
   String? token;
   String? refreshToken;
@@ -31,6 +32,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
       this.lastName,
       this.email,
       this.mobile,
+      this.mobileCode,
       this.isCurrent,
       this.refreshToken,
       this.tokenType,
@@ -50,6 +52,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
         lastName: lastName,
         email: email,
         mobile: mobile,
+        mobileCode: mobileCode,
         isCurrent: isCurrent,
         expiredIn: expiresIn,
         tokenType: tokenType,
@@ -68,6 +71,7 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.mobile = data.mobile;
+    this.mobileCode = data.mobileCode;
     this.email = data.email;
     this.isCurrent = data.isCurrent;
     this.expiresIn = data.expiredIn;

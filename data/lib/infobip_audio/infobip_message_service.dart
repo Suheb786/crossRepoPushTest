@@ -24,8 +24,13 @@ class InfobipMessageService {
             logging: true),
       ),
     );
-
-    saveUser(userData: UserData(firstName: 'GUEST', lastName: 'USER'));
+    var installation = await InfobipMobilemessaging.fetchInstallation();
+    var externalUserId = installation.pushRegistrationId.toString();
+    saveUser(
+        userData: UserData(
+            firstName: 'GUEST',
+            lastName: 'USER',
+            externalUserId: externalUserId));
 
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
       print("Callback. TOKEN_RECEIVED event:" + token);
@@ -108,8 +113,6 @@ class InfobipMessageService {
   }
 
   Future<bool> saveUser({required UserData userData}) async {
-    // var installation = await InfobipMobilemessaging.fetchInstallation();
-    // userData.externalUserId = installation.pushRegistrationId.toString();
     print("USER EXTERNAL ID " + userData.externalUserId!);
     UserData user = UserData(
       firstName: userData.firstName,

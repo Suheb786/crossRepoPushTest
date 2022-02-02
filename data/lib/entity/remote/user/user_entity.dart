@@ -89,7 +89,7 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
         lastName: this.lastName ?? "",
         mobile: this.mobileNumber ?? "",
         mobileCode: (this.mobileCode != null && this.mobileCode!.isNotEmpty)
-            ? this.mobileCode!.replaceAll('00', '')
+            ? this.mobileCode
             : '',
         isExisting: this.existing ?? false,
         cifNumber: this.cif ?? "",
