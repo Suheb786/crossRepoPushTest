@@ -778,6 +778,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdentificationNumber":
             MessageLookupByLibrary.simpleMessage("Enter identification number"),
+        "invalidIncomeSourceValue": MessageLookupByLibrary.simpleMessage(
+            "Additional Income should be greater than 0"),
         "invalidIncomeType":
             MessageLookupByLibrary.simpleMessage("Enter income type"),
         "invalidIssuingDate":

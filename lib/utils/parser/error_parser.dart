@@ -16,6 +16,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_BENEFICIARY:
         return localisedHelper.invalidBeneficiary;
+      case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME_VALUE:
+        return localisedHelper.invalidIncomeSourceValue;
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:

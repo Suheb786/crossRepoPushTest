@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8295,6 +8296,16 @@ class S {
     return Intl.message(
       'Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.',
       name: 'supplementaryDebitcardSuccessDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Income should be greater than 0`
+  String get invalidIncomeSourceValue {
+    return Intl.message(
+      'Additional Income should be greater than 0',
+      name: 'invalidIncomeSourceValue',
       desc: '',
       args: [],
     );
