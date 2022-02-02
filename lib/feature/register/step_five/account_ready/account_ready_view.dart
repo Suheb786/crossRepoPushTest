@@ -105,9 +105,11 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                             ),
                             AccountReadyHeader(
                                 title: S.of(context).accountReadyMsg,
-                                subTitle: S
-                                    .of(context)
-                                    .yourFreeVirtualDebitCardHasBeenIssued),
+                                subTitle: model.arguments.isDocumentUploaded
+                                    ? S.of(context).uploadDocWithinTendays
+                                    : S
+                                        .of(context)
+                                        .yourFreeVirtualDebitCardHasBeenIssued),
                             SizedBox(
                               height: 40,
                             ),

@@ -8329,6 +8329,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.`
+  String get uploadDocWithinTendays {
+    return Intl.message(
+      'You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.',
+      name: 'uploadDocWithinTendays',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

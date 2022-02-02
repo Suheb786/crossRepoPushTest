@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -1399,6 +1398,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),
+        "uploadDocWithinTendays": MessageLookupByLibrary.simpleMessage(
+            "You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued."),
         "uploadDocument":
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "uploadDocumentDesc1": MessageLookupByLibrary.simpleMessage(
