@@ -217,6 +217,21 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                           .accentColor
                                                           .withOpacity(0.4))),
                                             ),
+                                            const SizedBox(width: 10),
+                                            InkWell(
+                                              onTap: () {
+                                                ProviderScope.containerOf(
+                                                        context)
+                                                    .read(
+                                                        appHomeViewModelProvider)
+                                                    .balenceUpdate();
+                                              },
+                                              child: Container(
+                                                  height: 14,
+                                                  width: 14,
+                                                  child: Image.asset(
+                                                      AssetUtils.refresh)),
+                                            ),
                                           ],
                                         ),
                                       ),

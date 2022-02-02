@@ -186,6 +186,21 @@ class ReplacementVisaCardPageView
                         ),
                       ),
                       Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            S.of(context).backToDashboard,
+                            style: TextStyle(
+                              color: AppColor.brightBlue,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Center(
                         child: Padding(
                           padding: EdgeInsets.only(top: 16.0),
                           child: AnimatedButton(

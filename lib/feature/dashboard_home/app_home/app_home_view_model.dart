@@ -30,6 +30,7 @@ class AppHomeViewModel extends BasePageViewModel {
       _pageControllerSubject.stream;
 
   bool showBody = true;
+  bool isShowBalenceUpdatedToast = false;
 
   CardType cardType = CardType.DEBIT;
 
@@ -76,6 +77,7 @@ class AppHomeViewModel extends BasePageViewModel {
       _getDashboardDataResponse.stream;
 
   AppHomeViewModel(this._getDashboardDataUseCase) {
+    isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -87,6 +89,9 @@ class AppHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          if (isShowBalenceUpdatedToast) {
+            showSuccessToast("Your account balance is successfully updated.");
+          }
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
         }
@@ -173,6 +178,11 @@ class AppHomeViewModel extends BasePageViewModel {
   }
 
   void getDashboardData() {
+    _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
+  }
+
+  void balenceUpdate() {
+    isShowBalenceUpdatedToast = true;
     _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
   }
 
