@@ -96,21 +96,21 @@ PODS:
     - Flutter
   - infobip_mobilemessaging (0.0.1):
     - Flutter
-    - MobileMessaging/Core (= 9.2.11)
-    - MobileMessaging/Geofencing (= 9.2.11)
-    - MobileMessaging/InAppChat (= 9.2.11)
+    - MobileMessaging/Core (= 9.2.10)
+    - MobileMessaging/Geofencing (= 9.2.10)
+    - MobileMessaging/InAppChat (= 9.2.10)
   - infobip_plugin (0.0.1):
     - AFNetworking
     - Flutter
     - InfobipRTC
-  - InfobipRTC (1.4.27):
+  - InfobipRTC (1.4.29):
     - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
-  - MobileMessaging/Core (9.2.11)
-  - MobileMessaging/Geofencing (9.2.11):
+  - MobileMessaging/Core (9.2.10)
+  - MobileMessaging/Geofencing (9.2.10):
     - MobileMessaging/Core
-  - MobileMessaging/InAppChat (9.2.11):
+  - MobileMessaging/InAppChat (9.2.10):
     - MobileMessaging/Core
   - package_info (0.0.1):
     - Flutter
@@ -123,17 +123,17 @@ PODS:
   - PPBlinkID (5.14.0)
   - r_get_ip (0.0.1):
     - Flutter
-  - SDWebImage (5.12.3):
-    - SDWebImage/Core (= 5.12.3)
-  - SDWebImage/Core (5.12.3)
+  - SDWebImage (5.12.0):
+    - SDWebImage/Core (= 5.12.0)
+  - SDWebImage/Core (5.12.0)
   - share_plus (0.0.1):
     - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - SwiftyGif (5.4.2)
+  - SwiftyGif (5.4.0)
   - Toast (4.0.0)
-  - TOCropViewController (2.6.1)
+  - TOCropViewController (2.6.0)
   - url_launcher (0.0.1):
     - Flutter
 
@@ -263,25 +263,25 @@ SPEC CHECKSUMS:
   IBGoogleWebRTC: 5814fcf577b2c7eca22385af7a74c79f648f2aac
   image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
-  infobip_mobilemessaging: eb1cab90dcea9199c25769e4653b957416e179c3
+  infobip_mobilemessaging: 06b68ef87a13f44c8e28eb98a1681108e56500a0
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
-  InfobipRTC: db1de3be81d0f33f659278499470e87184076e17
+  InfobipRTC: f2ecaac941868c44269b2441a06ab6db6ad17b56
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
-  MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
+  MobileMessaging: f130ec2523facbb49c9c1b04c62b0a2e3b2b655d
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
-  SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
+  SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  SwiftyGif: dec758a9dd3d278e5a855dbf279bf062c923c387
+  SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1
