@@ -42,6 +42,10 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   final bool? existing;
   @JsonKey(name: "newDevice")
   final bool? newDevice;
+  @JsonKey(name: "cif")
+  final String? cif;
+  @JsonKey(name: "accountNumber")
+  final String? accountNumber;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);
@@ -64,6 +68,8 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
       this.existing,
       this.nameOnCard,
       this.mobileCode,
+      this.cif,
+      this.accountNumber,
       this.newDevice: false});
 
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
@@ -83,9 +89,11 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
         lastName: this.lastName ?? "",
         mobile: this.mobileNumber ?? "",
         mobileCode: (this.mobileCode != null && this.mobileCode!.isNotEmpty)
-            ? this.mobileCode!.replaceAll('00', '')
+            ? this.mobileCode
             : '',
         isExisting: this.existing ?? false,
+        cifNumber: this.cif ?? "",
+        accountNumber: this.accountNumber ?? "",
         newDevice: this.newDevice ?? false);
   }
 }
