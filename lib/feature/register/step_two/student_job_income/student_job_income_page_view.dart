@@ -114,6 +114,17 @@ class StudentJobIncomePageView
                                                               error: ErrorInfo(
                                                                   message:
                                                                       '')));
+                                                        } else if (!(num.parse(value
+                                                                .totalIncome!) >
+                                                            0)) {
+                                                          model.showToastWithError(AppError(
+                                                              type: ErrorType
+                                                                  .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                              cause:
+                                                                  Exception(),
+                                                              error: ErrorInfo(
+                                                                  message:
+                                                                      '')));
                                                         } else {
                                                           Navigator.pop(
                                                               context);
@@ -152,6 +163,15 @@ class StudentJobIncomePageView
                                                           cause: Exception(),
                                                           error: ErrorInfo(
                                                               message: '')));
+                                                } else if (!(num.parse(
+                                                        value.totalIncome!) >
+                                                    0)) {
+                                                  model.showToastWithError(AppError(
+                                                      type: ErrorType
+                                                          .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                      cause: Exception(),
+                                                      error: ErrorInfo(
+                                                          message: '')));
                                                 } else {
                                                   Navigator.pop(context);
                                                   model.addAdditionalIncomeList(

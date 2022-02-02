@@ -16,6 +16,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_BENEFICIARY:
         return localisedHelper.invalidBeneficiary;
+      case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME_VALUE:
+        return localisedHelper.invalidIncomeSourceValue;
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
@@ -406,6 +408,10 @@ class ErrorParser {
         return localisedHelper.selectAdditionalIncome;
       case ErrorType.ERROR_WHILE_GET_STATUS:
         return localisedHelper.errorWhileGetStatus;
+      case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION_VALUE:
+        return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
+      case ErrorType.USER_NOT_ELIGIBLE:
+        return localisedHelper.userNotEligible;
 
       default:
         return "";

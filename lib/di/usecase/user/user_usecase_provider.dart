@@ -31,6 +31,7 @@ import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
+import 'package:domain/usecase/user/user_data_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -184,6 +185,13 @@ final generateKeyPairUseCaseProvider =
 final enableBiometricUseCaseProvider =
     Provider.autoDispose<EnableBiometricUseCase>(
   (ref) => EnableBiometricUseCase(
+    ref.read(userRepoProvider),
+  ),
+);
+
+///[UserDataUseCase] provider
+final userDataUseCaseProvider = Provider.autoDispose<UserDataUseCase>(
+  (ref) => UserDataUseCase(
     ref.read(userRepoProvider),
   ),
 );
