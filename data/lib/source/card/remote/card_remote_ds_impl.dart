@@ -358,7 +358,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
             issuer: scannedDocumentInformation.issuingPlaceISo3,
             middleName: scannedDocumentInformation.middleName,
             mrtDraw: scannedDocumentInformation.mrtDraw,
-            nationality: scannedDocumentInformation.nationality,
+            nationality: scannedDocumentInformation.issuer,
             optionalData1: scannedDocumentInformation.optionalData1,
             optionalData2: scannedDocumentInformation.optionalData2,
             personFaceImage: scannedDocumentInformation.personFaceImage,

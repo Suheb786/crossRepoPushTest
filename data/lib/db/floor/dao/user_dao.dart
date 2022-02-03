@@ -56,10 +56,14 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
         print('updated user prk if--->${user.privatePEM}');
         userEntity.isCurrent = true;
         userEntity.mobile = user.mobile;
+        userEntity.mobileCode = user.mobileCode ?? userEntity.mobileCode;
         userEntity.privatePEM = user.privatePEM ?? userEntity.privatePEM;
         userEntity.publicPEM = user.publicPEM ?? userEntity.publicPEM;
         userEntity.isBiometricEnabled =
             user.isBiometricEnabled ?? userEntity.isBiometricEnabled;
+        userEntity.cifNumber = user.cifNumber ?? userEntity.cifNumber;
+        userEntity.accountNumber =
+            user.accountNumber ?? userEntity.accountNumber;
         var index = await updateUser(userEntity);
         UserDBEntity? userEntity1 = await getUserByEmail(userEntity.email!);
         print('updated user in if--->${userEntity1!.email}');
@@ -67,7 +71,7 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
         print('updated user in if--->${userEntity1.isCurrent}');
         print('updated user in if--->${userEntity1.privatePEM}');
         print('updated user in if--->${userEntity1.publicPEM}');
-        //int index = await insertData(user);
+        // int index = await insertData(user);
         return index > 0;
       } else {
         var allUsers = await getAllUsers();

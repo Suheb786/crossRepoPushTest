@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class DebitCardReplacementSuccessPageView
-    extends BasePageViewWidget<DebitCardReplacementSuccessPageViewModel> {
-  DebitCardReplacementSuccessPageView(ProviderBase model) : super(model);
+class SupplementaryDebitCardSuccessPageView
+    extends BasePageViewWidget<SupplementaryDebitCardSuccessPageViewModel> {
+  SupplementaryDebitCardSuccessPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(
-      BuildContext context, DebitCardReplacementSuccessPageViewModel model) {
+      BuildContext context, SupplementaryDebitCardSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
           ProviderScope.containerOf(context)
               .read(appHomeViewModelProvider)
               .getDashboardData();
@@ -83,7 +83,7 @@ class DebitCardReplacementSuccessPageView
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
-                              S.of(context).yourCardReadyDesc,
+                              S.of(context).supplementaryDebitcardSuccessDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -102,10 +102,8 @@ class DebitCardReplacementSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
-                    borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).primaryColorDark,
+                    borderColor: Theme.of(context).primaryColorDark,
                   ),
                   SizedBox(
                     height: 5,
@@ -118,10 +116,7 @@ class DebitCardReplacementSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color,
+                          color: Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
                         ),

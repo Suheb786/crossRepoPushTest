@@ -62,12 +62,13 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                       child: GestureDetector(
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
-                            Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFiveViewModelProvider)
-                                  .registrationStepFivePageController
-                                  .move(4, animation: false);
-                            });
+                            ///don't allow user to go document page it will depend on customer status
+                            // Future.delayed(Duration(milliseconds: 500), () {
+                            //   ProviderScope.containerOf(context)
+                            //       .read(registerStepFiveViewModelProvider)
+                            //       .registrationStepFivePageController
+                            //       .move(4, animation: false);
+                            // });
                           } else {
                             Future.delayed(Duration(milliseconds: 500), () {
                               ProviderScope.containerOf(context)

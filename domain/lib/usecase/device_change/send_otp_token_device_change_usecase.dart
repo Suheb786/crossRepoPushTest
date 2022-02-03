@@ -14,7 +14,7 @@ class SendOtpTokeDeviceChangeOtpUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, bool>> execute(
       {required SendOtpTokeDeviceChangeOtpUseCaseParams params}) {
-    return _repository.resendOtpDeviceChange();
+    return _repository.sendOtpToken();
   }
 }
 

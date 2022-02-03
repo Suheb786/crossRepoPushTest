@@ -11,9 +11,12 @@ class User {
   String? tokenType;
   int? expiredIn;
   bool? isExisting;
+  bool? newDevice;
   String? privatePEM;
   String? publicPEM;
   bool? isBiometricEnabled;
+  String? cifNumber;
+  String? accountNumber;
 
   User(
       {this.token,
@@ -30,6 +33,9 @@ class User {
       this.isExisting,
       this.publicPEM,
       this.privatePEM,
+      this.cifNumber,
+      this.accountNumber,
+      this.newDevice: false,
       this.isBiometricEnabled: false});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";

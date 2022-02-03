@@ -135,7 +135,7 @@ class ReplacementVisaCardPageView
                                                                   .cardNumber
                                                                   .isNotEmpty)
                                                           ? StringUtils
-                                                              .getFormattedCreditCardNumber(
+                                                              .getLastFourDigitOfCardNo(
                                                                   data.data!
                                                                       .cardNumber)
                                                           : "XXXX",

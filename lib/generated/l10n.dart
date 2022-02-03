@@ -8239,6 +8239,106 @@ class S {
       args: [],
     );
   }
+
+  /// `New device detected`
+  String get newDeviceDetected {
+    return Intl.message(
+      'New device detected',
+      name: 'newDeviceDetected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You’re attempting to log in from a new device. Would you like to switch access to this device?\t`
+  String get newDeviceDetectedDesc {
+    return Intl.message(
+      'You’re attempting to log in from a new device. Would you like to switch access to this device?\t',
+      name: 'newDeviceDetectedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SWITCH DEVICE`
+  String get switchDevice {
+    return Intl.message(
+      'SWITCH DEVICE',
+      name: 'switchDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations!`
+  String get congratulations {
+    return Intl.message(
+      'Congratulations!',
+      name: 'congratulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard.`
+  String get newDeviceRegisteredSuccessfully {
+    return Intl.message(
+      'Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard.',
+      name: 'newDeviceRegisteredSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.`
+  String get supplementaryDebitcardSuccessDesc {
+    return Intl.message(
+      'Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.',
+      name: 'supplementaryDebitcardSuccessDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Income should be greater than 0`
+  String get invalidIncomeSourceValue {
+    return Intl.message(
+      'Additional Income should be greater than 0',
+      name: 'invalidIncomeSourceValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Income should be greater than 0`
+  String get invalidExpectedMonthlyIncomeSourceValue {
+    return Intl.message(
+      'Monthly Income should be greater than 0',
+      name: 'invalidExpectedMonthlyIncomeSourceValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User is not eligible.`
+  String get userNotEligible {
+    return Intl.message(
+      'User is not eligible.',
+      name: 'userNotEligible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.`
+  String get uploadDocWithinTendays {
+    return Intl.message(
+      'You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.',
+      name: 'uploadDocWithinTendays',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

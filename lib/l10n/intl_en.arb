@@ -315,8 +315,8 @@
   "whereDoYouCurrentlyLive": "Where do you \ncurrently live?",
   "accountOpeningDescription": "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!",
   "notifyMeExC": "Notify me",
-  "backToCardSettings":"Back to Card Settings",
-  "backToLogin":"Back to Login",
+  "backToCardSettings": "Back to Card Settings",
+  "backToLogin": "Back to Login",
   "notifyMe": "NOTIFY ME",
   "pleaseEnterLatestEmail": "Please enter your latest email. You’ll hear from us, soon!",
   "thankYouForInterestWillSendUpdate": "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.",
@@ -841,5 +841,15 @@
   "passwordUpdate": "Password is successfully updated",
   "invalidAnnualIncomeValue": "Annual Income should be greater than 0",
   "selectAdditionalIncome": "Select Additional Income",
-  "errorWhileGetStatus": "Error While Get Status"
+  "errorWhileGetStatus": "Error While Get Status",
+  "newDeviceDetected": "New device detected",
+  "newDeviceDetectedDesc": "You’re attempting to log in from a new device. Would you like to switch access to this device?\t",
+  "switchDevice": "SWITCH DEVICE",
+  "congratulations": "Congratulations!",
+  "newDeviceRegisteredSuccessfully": "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard.",
+  "supplementaryDebitcardSuccessDesc": "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.",
+  "invalidIncomeSourceValue": "Additional Income should be greater than 0",
+  "invalidExpectedMonthlyIncomeSourceValue": "Monthly Income should be greater than 0",
+  "userNotEligible": "User is not eligible.",
+  "uploadDocWithinTendays": "You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued."
 }

@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SetCreditLimitPageView
     extends BasePageViewWidget<SetCreditLimitViewModel> {
@@ -36,6 +39,11 @@ class SetCreditLimitPageView
                     Navigator.pushReplacementNamed(
                         context, RoutePaths.CreditCardActivationStatus);
                   } else if (data.status == Status.ERROR) {
+                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                      Navigator.pushReplacementNamed(
+                          context, RoutePaths.CreditCardApplicationFailure);
+                    }
+
                     model.showToastWithError(data.appError!);
                   }
                 },
@@ -43,8 +51,8 @@ class SetCreditLimitPageView
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        model.setCreditLimit(
-                            loanValue!.data!.getLoanValuesContent!.loanValueId!);
+                        model.setCreditLimit(loanValue!
+                            .data!.getLoanValuesContent!.loanValueId!);
                       }
                     },
                     child: Card(
@@ -61,8 +69,8 @@ class SetCreditLimitPageView
                           Theme.of(context).primaryColorDark.withOpacity(0.32),
                       child: SingleChildScrollView(
                         child: Container(
-                          decoration:
-                              BoxDecoration(color: Theme.of(context).accentColor),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).accentColor),
                           padding: EdgeInsets.only(top: 38),
                           child: AppStreamBuilder<SliderLimitValues>(
                               stream: model.sliderValueStream,
@@ -81,7 +89,8 @@ class SetCreditLimitPageView
                                       height: 8,
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         AppStreamBuilder<double>(
                                             stream: model.valueStream,
@@ -92,7 +101,8 @@ class SetCreditLimitPageView
                                                 value!.toInt().toString(),
                                                 style: TextStyle(
                                                     fontSize: 24,
-                                                    fontWeight: FontWeight.w700),
+                                                    fontWeight:
+                                                        FontWeight.w700),
                                               );
                                             }),
                                         Padding(
@@ -118,8 +128,8 @@ class SetCreditLimitPageView
                                         height: 48,
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                            color:
-                                                Theme.of(context).backgroundColor,
+                                            color: Theme.of(context)
+                                                .backgroundColor,
                                             borderRadius:
                                                 BorderRadius.circular(100)),
                                         // child: Draggable(
@@ -154,20 +164,32 @@ class SetCreditLimitPageView
                                             initialData:
                                                 sliderLimitValues.minValue!,
                                             dataBuilder: (context, val) {
-                                              return SliderTheme(
-                                                data: SliderThemeData(
-                                                    trackHeight: 0,
-                                                    thumbShape:
-                                                        RoundSliderThumbShape(
-                                                            enabledThumbRadius:
-                                                                20)),
-                                                child: Slider(
-                                                  min:
-                                                      sliderLimitValues.minValue!,
-                                                  max:
-                                                      sliderLimitValues.maxValue!,
-                                                  divisions: sliderLimitValues
-                                                      .divisions!,
+                                              return SfTheme(
+                                                data: SfThemeData(
+                                                    sliderThemeData:
+                                                        SfSliderThemeData(
+                                                            activeTrackColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            activeTrackHeight:
+                                                                0,
+                                                            thumbRadius: 20,
+                                                            inactiveTrackColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            thumbColor: Theme
+                                                                    .of(context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color)),
+                                                child: SfSlider(
+                                                  min: sliderLimitValues
+                                                      .minValue!,
+                                                  max: sliderLimitValues
+                                                      .maxValue!,
+                                                  stepSize: sliderLimitValues
+                                                      .divisions!
+                                                      .toDouble(),
                                                   value: val!,
                                                   onChanged: (value) {
                                                     print("got value : $value");
@@ -182,8 +204,8 @@ class SetCreditLimitPageView
                                       height: 8,
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 24.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 24.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -209,8 +231,8 @@ class SetCreditLimitPageView
                                       height: 24,
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 24.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 24.0),
                                       child: AppTextField(
                                         labelText:
                                             S.of(context).minimumSettlement,
@@ -222,8 +244,9 @@ class SetCreditLimitPageView
                                         onPressed: () {
                                           RelationshipWithCardHolderDialog.show(
                                               context,
-                                              title:
-                                                  S.of(context).minimumSettlement,
+                                              title: S
+                                                  .of(context)
+                                                  .minimumSettlement,
                                               relationSHipWithCardHolder:
                                                   model.percentageList,
                                               onSelected: (value) {
@@ -238,7 +261,8 @@ class SetCreditLimitPageView
                                           return Container(
                                               height: 16,
                                               width: 16,
-                                              padding: EdgeInsets.only(right: 8),
+                                              padding:
+                                                  EdgeInsets.only(right: 8),
                                               child: AppSvg.asset(
                                                   AssetUtils.downArrow,
                                                   color: AppColor.dark_gray_1));
@@ -249,8 +273,8 @@ class SetCreditLimitPageView
                                       height: 15,
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 24.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 24.0),
                                       child: AppTextField(
                                         key: model.nickNameKey,
                                         labelText: S.of(context).nickName,

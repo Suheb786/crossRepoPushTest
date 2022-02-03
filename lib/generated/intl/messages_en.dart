@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -291,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Review and confirm\nyour details"),
+        "congratulations":
+            MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
@@ -763,6 +764,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidExpectedAnnualTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected annual transaction"),
+        "invalidExpectedMonthlyIncomeSourceValue":
+            MessageLookupByLibrary.simpleMessage(
+                "Monthly Income should be greater than 0"),
         "invalidExpectedMonthlyTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected monthly transaction"),
@@ -777,6 +781,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdentificationNumber":
             MessageLookupByLibrary.simpleMessage("Enter identification number"),
+        "invalidIncomeSourceValue": MessageLookupByLibrary.simpleMessage(
+            "Additional Income should be greater than 0"),
         "invalidIncomeType":
             MessageLookupByLibrary.simpleMessage("Enter income type"),
         "invalidIssuingDate":
@@ -953,6 +959,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "newDeviceDetected":
+            MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
+            "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
+        "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
@@ -1274,6 +1286,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
+        "supplementaryDebitcardSuccessDesc": MessageLookupByLibrary.simpleMessage(
+            "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately."),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(
@@ -1298,6 +1312,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
             "Swipe up to view transactions"),
+        "switchDevice": MessageLookupByLibrary.simpleMessage("SWITCH DEVICE"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditPhoto":
@@ -1383,6 +1398,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),
+        "uploadDocWithinTendays": MessageLookupByLibrary.simpleMessage(
+            "You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued."),
         "uploadDocument":
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "uploadDocumentDesc1": MessageLookupByLibrary.simpleMessage(
@@ -1405,6 +1422,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "U.S. Tax Payer\nIdentification Number "),
         "userAlreadyExists": MessageLookupByLibrary.simpleMessage(
             "User Already Exist. Try Using Different Email"),
+        "userNotEligible":
+            MessageLookupByLibrary.simpleMessage("User is not eligible."),
         "userNotRegister":
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
