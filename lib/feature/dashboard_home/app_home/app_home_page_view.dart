@@ -355,7 +355,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
-                                                     (cardData
+                                                    (cardData
                                                                     .data!
                                                                     .dashboardDataContent!
                                                                     .creditCard!
@@ -1002,7 +1002,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                         Text(
                                                           S
                                                               .of(context)
-                                                                  .creditCardActivated,
+                                                              .creditCardActivated,
                                                           style: TextStyle(
                                                               fontWeight:
                                                                   FontWeight

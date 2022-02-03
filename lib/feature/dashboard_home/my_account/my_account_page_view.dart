@@ -23,37 +23,38 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Center(
-        child: AspectRatio(
-            aspectRatio: 0.62,
-            child: Stack(
-              children: [
-                GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      ProviderScope.containerOf(context)
-                          .read(appHomeViewModelProvider)
-                          .pageController
-                          .next();
-                    }
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 2,
-                      color: Theme.of(context).primaryColorDark,
-                      margin: EdgeInsets.zero,
-                      shadowColor:
-                          Theme.of(context).primaryColorDark.withOpacity(0.32),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(AssetUtils.zigzagRed),
-                                alignment: Alignment.topRight)),
-                        child: SingleChildScrollView(
-                          child: Padding(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            GestureDetector(
+              onHorizontalDragEnd: (details) {
+                if (details.primaryVelocity!.isNegative) {
+                  ProviderScope.containerOf(context)
+                      .read(appHomeViewModelProvider)
+                      .pageController
+                      .next();
+                }
+              },
+              child: AspectRatio(
+                aspectRatio: 0.62,
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 14),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    elevation: 2,
+                    color: Theme.of(context).primaryColorDark,
+                    margin: EdgeInsets.zero,
+                    shadowColor:
+                        Theme.of(context).primaryColorDark.withOpacity(0.32),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(AssetUtils.zigzagRed),
+                              alignment: Alignment.topRight)),
+                      child: SingleChildScrollView(
+                        child: Padding(
                             padding: EdgeInsets.only(left: 27.0, bottom: 29),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -340,7 +341,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 10.0),
+                                  padding: EdgeInsets.only(top: 15.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -394,22 +395,22 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 ),
                                 const SizedBox(height: 40),
                               ],
-                            ),
-                          ),
-                        ),
+                            )),
                       ),
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: LottieBuilder.asset(
-                    'assets/animation/Swipe_Up.json',
-                    height: 71.0,
-                  ),
-                ),
-              ],
-            )),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: LottieBuilder.asset(
+                'assets/animation/Swipe_Up.json',
+                height: 71.0,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
