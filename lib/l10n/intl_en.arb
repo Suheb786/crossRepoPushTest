@@ -855,6 +855,7 @@
   "myCreditCard": "My Credit Card",
   "minDue": "Min. Due",
   "totalDue": "Total Due",
-  "paidTo": "Paid to"
+  "paidTo": "Paid to",
+  "accountNumber": "Account No."
 
 }

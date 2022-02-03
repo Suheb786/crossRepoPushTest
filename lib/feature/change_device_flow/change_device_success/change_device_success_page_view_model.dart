@@ -28,6 +28,7 @@ class ChangeDeviceSuccessPageViewModel extends BasePageViewModel {
               createCall: () => _kycStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _kycStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

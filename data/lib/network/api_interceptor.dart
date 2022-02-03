@@ -95,20 +95,19 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (response.statusCode == 200) {
-      if (response.data != null) {
-        if (((response.data as Map<String, dynamic>)['response']['token']
-                    as String?)
-                ?.isNotEmpty ??
-            false) {
-          authToken = (response.data as Map<String, dynamic>)['response']
-                  ['token'] ??
-              '';
-        }
+    // if (response.statusCode == 200) {
+    // }
+    if (response.data != null) {
+      if (((response.data as Map<String, dynamic>)['response']['token']
+                  as String?)
+              ?.isNotEmpty ??
+          false) {
+        authToken =
+            (response.data as Map<String, dynamic>)['response']['token'] ?? '';
       }
-
-      super.onResponse(response, handler);
     }
+
+    super.onResponse(response, handler);
   }
 
   Map<String, dynamic> _encryptRequest(Map<String, dynamic> data) {

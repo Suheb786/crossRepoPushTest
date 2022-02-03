@@ -135,7 +135,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               child: Column(
                                 children: [
                                   AccountDetails(
-                                      title: S.of(context).refTitle,
+                                      title: S.of(context).accountNumber,
                                       value: response
                                           .data!
                                           .getAccountDetailsContent!
