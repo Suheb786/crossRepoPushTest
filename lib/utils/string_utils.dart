@@ -52,4 +52,15 @@ class StringUtils {
       return currentNo;
     }
   }
+
+  ///get min due date
+  static String getMinDueDate() {
+    DateTime currentDate = DateTime.now();
+
+    String month = currentDate.month < 10
+        ? '0${currentDate.month}'
+        : currentDate.month.toString();
+    String minDueDate = '28/${month}';
+    return minDueDate;
+  }
 }

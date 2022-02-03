@@ -308,55 +308,50 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     fontSize: 10),
                                               ),
                                               Text(
-                                                cardData
-                                                    .creditCard!
-                                                    .first
-                                                    .expiryDate ??
-                                                    '-',
-                                                style: TextStyle(
-                                                    color: Theme
-                                                        .of(
-                                                        context)
-                                                        .accentColor,
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    fontSize: 10),
+                                                StringUtils.getMinDueDate(),
+                                                    style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .accentColor,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 10),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            )
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(context,
+                                                RoutePaths.CreditCardPayBack);
+                                          },
+                                          child: Container(
+                                            height: 36,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 8, horizontal: 25),
+                                              child: Text(
+                                                S.of(context).payBack,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         )
                                       ],
-                                    ),
-                                    Container(
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: Theme
-                                            .of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color,
-                                        borderRadius:
-                                        BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 8,
-                                            horizontal: 25),
-                                        child: Text(
-                                          S
-                                              .of(context)
-                                              .payBack,
-                                          style: TextStyle(
-                                            color: Theme
-                                                .of(context)
-                                                .accentColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
                                 ),
                               ),
                               Padding(
