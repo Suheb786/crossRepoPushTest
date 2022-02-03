@@ -176,6 +176,7 @@ class AssetUtils {
   static const String creditCard = drawable + "credit_card.png";
   static const String ellipseYellow = drawable + "ellipse_yellow.png";
   static const String debitCard = drawable + "debit_card.png";
+  static const String refresh = drawable + "refresh.png";
   static const String requestedOffer = drawable + "requested_offer.png";
   static const String sentOffer = drawable + "sent_offer.png";
   static const String placeholder = drawable + "placeholder.png";
@@ -187,6 +188,7 @@ class AssetUtils {
   static const String statementPicture = drawable + "statement_picture.png";
   static const String zigzagWhite = drawable + "zigzag_white.png";
   static const String zigzagDebit = drawable + "zig_zag_debit.png";
+  static const String credit = drawable + "credit.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

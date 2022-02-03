@@ -30,10 +30,31 @@ class AppHomeViewModel extends BasePageViewModel {
       _pageControllerSubject.stream;
 
   bool showBody = true;
+  bool isShowBalenceUpdatedToast = false;
 
   CardType cardType = CardType.DEBIT;
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
+
+  /// Sent money popup request
+  PublishSubject<bool> _sentMoneyPopUpResponse = PublishSubject();
+
+  /// Sent money popup response
+  PublishSubject<bool> _sentMoneyRequest = PublishSubject();
+
+  /// Sent money popup stream
+  Stream<bool> get getSentMoneyPopUpDataStream =>
+      _sentMoneyPopUpResponse.stream;
+
+  /// Sent money popup request
+  PublishSubject<bool> _requestMoneyPopUpResponse = PublishSubject();
+
+  /// Sent money popup response
+  PublishSubject<bool> _requestMoneyRequest = PublishSubject();
+
+  /// Sent money popup stream
+  Stream<bool> get getRequestMoneyPopUpDataStream =>
+      _requestMoneyPopUpResponse.stream;
 
   ///dashboard card data response
   BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
@@ -56,6 +77,7 @@ class AppHomeViewModel extends BasePageViewModel {
       _getDashboardDataResponse.stream;
 
   AppHomeViewModel(this._getDashboardDataUseCase) {
+    isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getDashboardDataUseCase.execute(params: value))
@@ -67,10 +89,21 @@ class AppHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          if (isShowBalenceUpdatedToast) {
+            showSuccessToast("Your account balance is successfully updated.");
+          }
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
         }
       });
+    });
+
+    _sentMoneyRequest.listen((value) {
+      _sentMoneyPopUpResponse.safeAdd(value);
+    });
+
+    _requestMoneyRequest.listen((value) {
+      _requestMoneyPopUpResponse.safeAdd(value);
     });
 
     getDashboardData();
@@ -146,6 +179,19 @@ class AppHomeViewModel extends BasePageViewModel {
 
   void getDashboardData() {
     _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
+  }
+
+  void balenceUpdate() {
+    isShowBalenceUpdatedToast = true;
+    _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
+  }
+
+  void triggerSentMoneyPopup() {
+    _sentMoneyRequest.safeAdd(true);
+  }
+
+  void triggerRequestMoneyPopup() {
+    _requestMoneyRequest.safeAdd(true);
   }
 
   @override

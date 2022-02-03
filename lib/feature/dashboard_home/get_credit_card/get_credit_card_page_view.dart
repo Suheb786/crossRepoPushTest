@@ -308,55 +308,50 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     fontSize: 10),
                                               ),
                                               Text(
-                                                cardData
-                                                    .creditCard!
-                                                    .first
-                                                    .expiryDate ??
-                                                    '-',
-                                                style: TextStyle(
-                                                    color: Theme
-                                                        .of(
-                                                        context)
-                                                        .accentColor,
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    fontSize: 10),
+                                                StringUtils.getMinDueDate(),
+                                                    style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .accentColor,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 10),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            )
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(context,
+                                                RoutePaths.CreditCardPayBack);
+                                          },
+                                          child: Container(
+                                            height: 36,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 8, horizontal: 25),
+                                              child: Text(
+                                                S.of(context).payBack,
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         )
                                       ],
-                                    ),
-                                    Container(
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: Theme
-                                            .of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color,
-                                        borderRadius:
-                                        BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 8,
-                                            horizontal: 25),
-                                        child: Text(
-                                          S
-                                              .of(context)
-                                              .payBack,
-                                          style: TextStyle(
-                                            color: Theme
-                                                .of(context)
-                                                .accentColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
                                 ),
                               ),
                               Padding(
@@ -591,13 +586,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             .first.cardNumber)
                                         : '-',
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color:
-                                      Theme
-                                          .of(context)
-                                          .accentColor,
-                                      fontSize: 16,
-                                    ),
+                                      fontWeight: FontWeight.w700,
+                                          color: Theme.of(context).accentColor,
+                                          fontSize: 14,
+                                        ),
                                   ),
                                   SizedBox(
                                     width: 8,
@@ -622,18 +614,15 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 8),
-                              child: Text(
-                                S
-                                    .of(context)
-                                    .cardNumber,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor
-                                        .withOpacity(0.6),
-                                    fontSize: 10),
+                              padding: EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    S.of(context).cardNumber,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .accentColor
+                                            .withOpacity(0.6),
+                                        fontSize: 10),
                               ),
                             ),
                             Visibility(
@@ -694,27 +683,22 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             .expiryDate ??
                                             '-',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16,
-                                          color: Theme
-                                              .of(context)
-                                              .accentColor,
-                                        ),
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 12,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                            ),
                                       ),
                                       Padding(
-                                        padding:
-                                        EdgeInsets.only(top: 8),
-                                        child: Text(
-                                          S
-                                              .of(context)
-                                              .expiryDate,
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Theme
-                                                  .of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
-                                              fontWeight:
+                                        padding: EdgeInsets.only(top: 4),
+                                            child: Text(
+                                              S.of(context).expiryDate,
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Theme.of(context)
+                                                      .accentColor
+                                                      .withOpacity(0.6),
+                                                  fontWeight:
                                               FontWeight.w600),
                                         ),
                                       )
@@ -735,27 +719,22 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                   .first.cvv)
                                               : '-',
                                           style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: Theme
-                                                .of(context)
-                                                .accentColor,
-                                            fontSize: 16,
-                                          ),
+                                            fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                                fontSize: 12,
+                                              ),
                                         ),
                                         Padding(
-                                          padding:
-                                          EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            S
-                                                .of(context)
-                                                .cvv,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                color: Theme
-                                                    .of(context)
-                                                    .accentColor
-                                                    .withOpacity(0.6),
-                                                fontWeight:
+                                          padding: EdgeInsets.only(top: 4),
+                                              child: Text(
+                                                S.of(context).cvv,
+                                                style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Theme.of(context)
+                                                        .accentColor
+                                                        .withOpacity(0.6),
+                                                    fontWeight:
                                                 FontWeight.w600),
                                           ),
                                         )

@@ -36,6 +36,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    listenPopUps(model, context);
     return Padding(
       padding: EdgeInsets.only(top: 85),
       child: AppStreamBuilder<int>(
@@ -354,211 +355,226 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
-                                                     (cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .length >
-                                                                0
-                                                            ? (cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .creditCard!
-                                                                        .first
-                                                                        .isCreditDelivered !=
-                                                                    null &&
-                                                                cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .first
-                                                                    .isCreditDelivered!)
-                                                            : false)
-                                                        // : (cardData
-                                                        //         .data!
-                                                        //         .dashboardDataContent!
-                                                        //         .debitCard!
-                                                        //         .isNotEmpty &&
-                                                        //     cardData
-                                                        //             .data!
-                                                        //             .dashboardDataContent!
-                                                        //             .debitCard!
-                                                        //             .first
-                                                        //             .isDebitDelivered !=
-                                                        //         null &&
-                                                        //     cardData
-                                                        //         .data!
-                                                        //         .dashboardDataContent!
-                                                        //         .debitCard!
-                                                        //         .first
-                                                        //         .isDebitDelivered!)
-                                                        ? Column(
-                                                            children: [
-                                                              Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .creditCardDelivered,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        12),
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        top: 5),
-                                                                child: Text(
-                                                                  (cardData.data!.dashboardDataContent!.creditCard!.length >
-                                                                              0
-                                                                          ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
-                                                                              null
-                                                                          : false)
-                                                                      ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                    Visibility(
+                                                      visible: cardData
+                                                              .data!
+                                                              .dashboardDataContent!
+                                                              .creditCard!
+                                                              .length >
+                                                          0,
+                                                      child: (cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .creditCard!
+                                                                      .length >
+                                                                  0
+                                                              ? (cardData
                                                                           .data!
                                                                           .dashboardDataContent!
                                                                           .creditCard!
                                                                           .first
-                                                                          .creditDeliveredDatetime!
-                                                                          .toString())
-                                                                      : '-',
-                                                                  // : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
-                                                                  //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
-                                                                  //             null &&
-                                                                  //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
-                                                                  //             .toString()
-                                                                  //             .isNotEmpty)
-                                                                  //     ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                  //         .data!
-                                                                  //         .dashboardDataContent!
-                                                                  //         .debitCard![0]
-                                                                  //         .debitDeliveredDatetime!
-                                                                  //         .toString())
-                                                                  //     : '-',
+                                                                          .isCreditDelivered !=
+                                                                      null &&
+                                                                  cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .creditCard!
+                                                                      .first
+                                                                      .isCreditDelivered!)
+                                                              : false)
+                                                          // : (cardData
+                                                          //         .data!
+                                                          //         .dashboardDataContent!
+                                                          //         .debitCard!
+                                                          //         .isNotEmpty &&
+                                                          //     cardData
+                                                          //             .data!
+                                                          //             .dashboardDataContent!
+                                                          //             .debitCard!
+                                                          //             .first
+                                                          //             .isDebitDelivered !=
+                                                          //         null &&
+                                                          //     cardData
+                                                          //         .data!
+                                                          //         .dashboardDataContent!
+                                                          //         .debitCard!
+                                                          //         .first
+                                                          //         .isDebitDelivered!)
+                                                          ? Column(
+                                                              children: [
+                                                                Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .creditCardDelivered,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
                                                                   style: TextStyle(
-                                                                      fontSize:
-                                                                          12,
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .inputDecorationTheme
-                                                                          .hintStyle!
-                                                                          .color,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w600),
+                                                                              .w600,
+                                                                      fontSize:
+                                                                          12),
                                                                 ),
-                                                              )
-                                                            ],
-                                                          )
-                                                        : Column(
-                                                            children: [
-                                                              Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .creditCardDelivered,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        12),
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        top: 5),
-                                                                child: InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    // if (currentStep ==
-                                                                    //     1) {
-                                                                    //   var result = await Navigator.push(
-                                                                    //       context,
-                                                                    //       MaterialPageRoute(
-                                                                    //           builder: (context) => CreditCardDeliveredPage(
-                                                                    //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
-                                                                    //               )));
-                                                                    //   if (result !=
-                                                                    //       null) {
-                                                                    //     print(
-                                                                    //         '$result');
-                                                                    //     model
-                                                                    //         .getDashboardData();
-                                                                    //   }
-                                                                    // } else {
-                                                                    //   var result = await Navigator.push(
-                                                                    //       context,
-                                                                    //       MaterialPageRoute(
-                                                                    //           builder: (context) => DebitCardDeliveredPage(
-                                                                    //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                    //               )));
-                                                                    //   if (result !=
-                                                                    //       null) {
-                                                                    //     print(
-                                                                    //         '$result');
-                                                                    //     model
-                                                                    //         .getDashboardData();
-                                                                    //   }
-                                                                    // }
-                                                                    var result = await Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (context) => CreditCardDeliveredPage(
-                                                                                  creditCard: cardData.data!.dashboardDataContent!.creditCard!,
-                                                                                )));
-                                                                    if (result !=
-                                                                        null) {
-                                                                      print(
-                                                                          '$result');
-                                                                      model
-                                                                          .getDashboardData();
-                                                                    }
-                                                                  },
-                                                                  child:
-                                                                      Container(
-                                                                    padding: EdgeInsets.symmetric(
-                                                                        horizontal:
-                                                                            11,
-                                                                        vertical:
-                                                                            2),
-                                                                    decoration: BoxDecoration(
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 5),
+                                                                  child: Text(
+                                                                    (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                                0
+                                                                            ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
+                                                                                null
+                                                                            : false)
+                                                                        ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .first
+                                                                            .creditDeliveredDatetime!
+                                                                            .toString())
+                                                                        : '-',
+                                                                    // : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
+                                                                    //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
+                                                                    //             null &&
+                                                                    //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
+                                                                    //             .toString()
+                                                                    //             .isNotEmpty)
+                                                                    //     ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                    //         .data!
+                                                                    //         .dashboardDataContent!
+                                                                    //         .debitCard![0]
+                                                                    //         .debitDeliveredDatetime!
+                                                                    //         .toString())
+                                                                    //     : '-',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
                                                                         color: Theme.of(context)
-                                                                            .accentColor,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14),
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                                                    child: Text(
-                                                                      S
-                                                                          .of(context)
-                                                                          .confirm,
-                                                                      style: TextStyle(
+                                                                            .inputDecorationTheme
+                                                                            .hintStyle!
+                                                                            .color,
+                                                                        fontWeight:
+                                                                            FontWeight.w600),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )
+                                                          : Column(
+                                                              children: [
+                                                                Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .creditCardDelivered,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      fontSize:
+                                                                          12),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 5),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      // if (currentStep ==
+                                                                      //     1) {
+                                                                      //   var result = await Navigator.push(
+                                                                      //       context,
+                                                                      //       MaterialPageRoute(
+                                                                      //           builder: (context) => CreditCardDeliveredPage(
+                                                                      //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                      //               )));
+                                                                      //   if (result !=
+                                                                      //       null) {
+                                                                      //     print(
+                                                                      //         '$result');
+                                                                      //     model
+                                                                      //         .getDashboardData();
+                                                                      //   }
+                                                                      // } else {
+                                                                      //   var result = await Navigator.push(
+                                                                      //       context,
+                                                                      //       MaterialPageRoute(
+                                                                      //           builder: (context) => DebitCardDeliveredPage(
+                                                                      //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                      //               )));
+                                                                      //   if (result !=
+                                                                      //       null) {
+                                                                      //     print(
+                                                                      //         '$result');
+                                                                      //     model
+                                                                      //         .getDashboardData();
+                                                                      //   }
+                                                                      // }
+                                                                      var result = await Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => CreditCardDeliveredPage(
+                                                                                    creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                                  )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              11,
+                                                                          vertical:
+                                                                              2),
+                                                                      decoration: BoxDecoration(
                                                                           color: Theme.of(context)
-                                                                              .accentTextTheme
-                                                                              .bodyText1!
-                                                                              .color,
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontWeight:
-                                                                              FontWeight.w600),
+                                                                              .accentColor,
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              14),
+                                                                          border:
+                                                                              Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                      child:
+                                                                          Text(
+                                                                        S
+                                                                            .of(context)
+                                                                            .confirm,
+                                                                        style: TextStyle(
+                                                                            color: Theme.of(context)
+                                                                                .accentTextTheme
+                                                                                .bodyText1!
+                                                                                .color,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.w600),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                    ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: 170),
+                                                          left: cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .creditCard!
+                                                                      .length >
+                                                                  0
+                                                              ? 170
+                                                              : 0),
                                                       child: (cardData
                                                                   .data!
                                                                   .dashboardDataContent!
@@ -809,12 +825,107 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       // Image.asset(AssetUtils.progress1),
                                                       // Image.asset(AssetUtils.progress2a),
                                                       // Image.asset(AssetUtils.progress1),
+                                                      Visibility(
+                                                        visible: cardData
+                                                                .data!
+                                                                .dashboardDataContent!
+                                                                .creditCard!
+                                                                .length >
+                                                            0,
+                                                        child: Stack(
+                                                          children: [
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          15.0),
+                                                              child: Image.asset(
+                                                                  AssetUtils
+                                                                      .progress2),
+                                                            ),
+                                                            Positioned(
+                                                              bottom: 0,
+                                                              right: -10,
+                                                              child: Container(
+                                                                height: 20,
+                                                                width: 20,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColor
+                                                                        .vividYellow,
+                                                                    shape: BoxShape
+                                                                        .circle),
+                                                              ),
+                                                            ),
+                                                            Positioned(
+                                                              top: 0,
+                                                              left: 0,
+                                                              child: Container(
+                                                                height: 20,
+                                                                width: 20,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColor
+                                                                        .vivid_red,
+                                                                    shape: BoxShape
+                                                                        .circle),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Visibility(
+                                                        visible: cardData
+                                                                .data!
+                                                                .dashboardDataContent!
+                                                                .creditCard!
+                                                                .length >
+                                                            0,
+                                                        child: Stack(
+                                                          children: [
+                                                            Image.asset(
+                                                                AssetUtils
+                                                                    .progress1),
+                                                            Positioned(
+                                                              bottom: 0,
+                                                              left: -10,
+                                                              child: Container(
+                                                                height: 20,
+                                                                width: 20,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColor
+                                                                        .vividYellow,
+                                                                    shape: BoxShape
+                                                                        .circle),
+                                                              ),
+                                                            ),
+                                                            Positioned(
+                                                              top: 0,
+                                                              right: -10,
+                                                              child: Container(
+                                                                height: 20,
+                                                                width: 20,
+                                                                decoration: BoxDecoration(
+                                                                    color: AppColor
+                                                                        .vividYellow,
+                                                                    shape: BoxShape
+                                                                        .circle),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
                                                       Stack(
                                                         children: [
                                                           Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 15.0),
+                                                            padding: EdgeInsets.only(
+                                                                right: 0.0,
+                                                                left: cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .length >
+                                                                        0
+                                                                    ? 0
+                                                                    : 10),
                                                             child: Image.asset(
                                                                 AssetUtils
                                                                     .progress2),
@@ -834,77 +945,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           ),
                                                           Positioned(
                                                             top: 0,
-                                                            left: 0,
-                                                            child: Container(
-                                                              height: 20,
-                                                              width: 20,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vivid_red,
-                                                                  shape: BoxShape
-                                                                      .circle),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Stack(
-                                                        children: [
-                                                          Image.asset(AssetUtils
-                                                              .progress1),
-                                                          Positioned(
-                                                            bottom: 0,
-                                                            left: -10,
-                                                            child: Container(
-                                                              height: 20,
-                                                              width: 20,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
-                                                            ),
-                                                          ),
-                                                          Positioned(
-                                                            top: 0,
-                                                            right: -10,
-                                                            child: Container(
-                                                              height: 20,
-                                                              width: 20,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                      Stack(
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 0.0),
-                                                            child: Image.asset(
-                                                                AssetUtils
-                                                                    .progress2),
-                                                          ),
-                                                          Positioned(
-                                                            bottom: 0,
-                                                            right: -10,
-                                                            child: Container(
-                                                              height: 20,
-                                                              width: 20,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
-                                                            ),
-                                                          ),
-                                                          Positioned(
-                                                            top: 0,
-                                                            left: -10,
+                                                            left: cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .creditCard!
+                                                                        .length >
+                                                                    0
+                                                                ? -10
+                                                                : 0,
                                                             child: Container(
                                                               height: 20,
                                                               width: 20,
@@ -996,76 +1044,88 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     top: 19, left: 160),
                                                 child: Row(
                                                   children: [
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          S
-                                                              .of(context)
-                                                                  .creditCardActivated,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 12),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 4),
-                                                          child: Text(
-                                                            // currentStep != 1 ?
-                                                            // cardData
-                                                            //                 .data!
-                                                            //                 .dashboardDataContent!
-                                                            //                 .debitCard!
-                                                            //                 .first
-                                                            //                 .debitCardActivated !=
-                                                            //             null
-                                                            //         ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                            //             .data!
-                                                            //             .dashboardDataContent!
-                                                            //             .debitCard!
-                                                            //             .first
-                                                            //             .debitCardActivated!
-                                                            //             .toString())
-                                                            //         : '-'
-                                                            //     :
-                                                            (cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .length >
-                                                                        0
-                                                                    ? cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .first
-                                                                            .creditCardActivatedDate !=
-                                                                        null
-                                                                    : false)
-                                                                ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .first
-                                                                    .creditCardActivatedDate!
-                                                                    .toString())
-                                                                : '-',
+                                                    Visibility(
+                                                      visible: cardData
+                                                              .data!
+                                                              .dashboardDataContent!
+                                                              .creditCard!
+                                                              .length >
+                                                          0,
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                            S
+                                                                .of(context)
+                                                                .creditCardActivated,
                                                             style: TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .inputDecorationTheme
-                                                                    .hintStyle!
-                                                                    .color,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
                                                                 fontSize: 12),
                                                           ),
-                                                        )
-                                                      ],
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 4),
+                                                            child: Text(
+                                                              // currentStep != 1 ?
+                                                              // cardData
+                                                              //                 .data!
+                                                              //                 .dashboardDataContent!
+                                                              //                 .debitCard!
+                                                              //                 .first
+                                                              //                 .debitCardActivated !=
+                                                              //             null
+                                                              //         ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                              //             .data!
+                                                              //             .dashboardDataContent!
+                                                              //             .debitCard!
+                                                              //             .first
+                                                              //             .debitCardActivated!
+                                                              //             .toString())
+                                                              //         : '-'
+                                                              //     :
+                                                              (cardData.data!.dashboardDataContent!.creditCard!
+                                                                              .length >
+                                                                          0
+                                                                      ? cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .creditCard!
+                                                                              .first
+                                                                              .creditCardActivatedDate !=
+                                                                          null
+                                                                      : false)
+                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .creditCard!
+                                                                      .first
+                                                                      .creditCardActivatedDate!
+                                                                      .toString())
+                                                                  : '-',
+                                                              style: TextStyle(
+                                                                  color: Theme.of(
+                                                                          context)
+                                                                      .inputDecorationTheme
+                                                                      .hintStyle!
+                                                                      .color,
+                                                                  fontSize: 12),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: 180),
+                                                          left: cardData
+                                                                      .data!
+                                                                      .dashboardDataContent!
+                                                                      .creditCard!
+                                                                      .length >
+                                                                  0
+                                                              ? 180
+                                                              : 0),
                                                       child: Column(
                                                         children: [
                                                           Text(
@@ -1084,13 +1144,21 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     top: 4),
                                                             child: Text(
                                                               // currentStep != 1 ?
-                                                              cardData
+                                                              (cardData.data!.dashboardDataContent!
+                                                                              .debitCard !=
+                                                                          null &&
+                                                                      cardData
                                                                           .data!
                                                                           .dashboardDataContent!
                                                                           .debitCard!
-                                                                          .first
-                                                                          .debitCardActivated !=
-                                                                      null
+                                                                          .isNotEmpty &&
+                                                                      cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .debitCard!
+                                                                              .first
+                                                                              .debitCardActivated !=
+                                                                          null)
                                                                   ? TimeUtils.getFormattedDateForTransaction(cardData
                                                                       .data!
                                                                       .dashboardDataContent!
@@ -1183,62 +1251,66 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           height: 93,
                                           width: 280,
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              // color: Theme.of(context)
+                                              //     .primaryColor,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      AssetUtils.credit),
+                                                  fit: BoxFit.cover),
                                               borderRadius:
                                                   BorderRadius.circular(16)),
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 31,
-                                                right: 26,
-                                                bottom: 31,
-                                                left: 19),
-                                            child: Row(
-                                              children: [
-                                                Image.asset(
-                                                  AssetUtils.blink,
-                                                  width: 50,
-                                                ),
-                                                Expanded(child: Container()),
-                                                InkWell(
-                                                  onTap: () {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        RoutePaths
-                                                            .BlinkCreditCard);
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20)),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 8,
-                                                              horizontal: 15),
-                                                      child: Text(
-                                                        S
-                                                            .of(context)
-                                                            .getCardNow,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 14,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .accentColor),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                          // child: Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //       top: 31,
+                                          //       right: 26,
+                                          //       bottom: 31,
+                                          //       left: 19),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Image.asset(
+                                          //         AssetUtils.blink,
+                                          //         width: 50,
+                                          //       ),
+                                          //       Expanded(child: Container()),
+                                          //       InkWell(
+                                          //         onTap: () {
+                                          //           Navigator.pushNamed(
+                                          //               context,
+                                          //               RoutePaths
+                                          //                   .BlinkCreditCard);
+                                          //         },
+                                          //         child: Container(
+                                          //           decoration: BoxDecoration(
+                                          //               color: Theme.of(context)
+                                          //                   .accentTextTheme
+                                          //                   .bodyText1!
+                                          //                   .color,
+                                          //               borderRadius:
+                                          //               BorderRadius
+                                          //                   .circular(20)),
+                                          //           child: Padding(
+                                          //             padding:
+                                          //             EdgeInsets.symmetric(
+                                          //                 vertical: 8,
+                                          //                 horizontal: 15),
+                                          //             child: Text(
+                                          //               S
+                                          //                   .of(context)
+                                          //                   .getCardNow,
+                                          //               style: TextStyle(
+                                          //                   fontWeight:
+                                          //                   FontWeight.w600,
+                                          //                   fontSize: 14,
+                                          //                   color: Theme.of(
+                                          //                       context)
+                                          //                       .accentColor),
+                                          //             ),
+                                          //           ),
+                                          //         ),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
                                         ),
                                       ),
                                       Expanded(
@@ -1300,4 +1372,63 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
       ),
     );
   }
+
+  void listenPopUps(AppHomeViewModel model, BuildContext context) {
+    model.getSentMoneyPopUpDataStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => popUpWidget(context, AssetUtils.sentOffer));
+      }
+    });
+
+    model.getRequestMoneyPopUpDataStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) =>
+                popUpWidget(context, AssetUtils.requestedOffer));
+      }
+    });
+  }
+
+  Widget popUpWidget(BuildContext context, String image) {
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+            Container(
+              height: 530,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Image.asset(
+                image,
+                fit: BoxFit.fill,
+              ),
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                  height: 55,
+                  width: 55,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColor.white,
+                  ),
+                  child: Icon(
+                    Icons.close,
+                    color: AppColor.brightBlue,
+                  )),
+            )
+          ],
+        ));
+  }
 }
+

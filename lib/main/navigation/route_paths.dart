@@ -89,4 +89,6 @@ class RoutePaths {
   static const String ChangeDeviceSuccess = "/changeDeviceSuccess";
   static const String SupplementaryDebitCardSuccess =
       "/supplementaryDebitCardSuccess";
+  static const String CreditCardPayBack = "/creditCardPayBack";
+  static const String CreditCardPayBackSuccess = "/creditCardPayBackSuccess";
 }

@@ -919,6 +919,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "merchantPayments":
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
+        "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "minimumSettlement":
             MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
@@ -942,6 +943,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
+        "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
         "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
@@ -1016,6 +1018,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your OTP code is expired, please request for a new OTP code"),
         "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
             "Otp Limit Exceeds, Please Try again Later"),
+        "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
@@ -1370,6 +1373,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),
+        "totalDue": MessageLookupByLibrary.simpleMessage("Total Due"),
         "totalUsedAmount":
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
