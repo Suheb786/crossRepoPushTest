@@ -53,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNotFound":
             MessageLookupByLibrary.simpleMessage("Account Not Found"),
+        "accountNumber": MessageLookupByLibrary.simpleMessage("Account No."),
         "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
             "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
