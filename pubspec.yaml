@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -78,6 +78,8 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   share_plus: any
   auto_size_text: ^3.0.0
+  agora_rtc_engine: ^4.0.7
+  permission_handler: ^8.1.6
   geolocator: 7.7.0
   package_info: ^2.0.2
   infobip_mobilemessaging: ^0.5.2
@@ -89,6 +91,7 @@ dependencies:
 #  firebase_messaging: ^11.2.5
 #  firebase_core: ^1.11.0
 #  firebase_crashlytics: ^2.4.5
+
 
 
 dev_dependencies:
