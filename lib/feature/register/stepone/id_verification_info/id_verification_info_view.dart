@@ -7,6 +7,7 @@ import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
@@ -136,6 +137,15 @@ class IdVerificationInfoView
                                     onData: (scannedData) {
                                       if (scannedData.status ==
                                           Status.SUCCESS) {
+                                        var event = {
+                                          "definitionId": "UserInfoFromId",
+                                          "properties": {
+                                            "name": scannedData.data!.firstName
+                                                .toString(),
+                                          }
+                                        };
+                                        InfobipMobilemessaging
+                                            .submitEventImmediately(event);
                                         // model.getAhwalResponse(
                                         //     scannedData.data!.idNumber!);
                                         if (scannedData.data!.issuer == 'JOR') {

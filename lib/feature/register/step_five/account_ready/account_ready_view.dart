@@ -2,6 +2,7 @@ import 'package:domain/model/bank_smart/get_account_details_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -36,6 +37,17 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
           child: AppStreamBuilder<Resource<GetAccountDetailsResponse>>(
             stream: model.getAccountDetailsStream,
             initialData: Resource.none(),
+            onData: (data) {
+              var event = {
+                "definitionId": "UserAccountDetails",
+                "properties": {
+                  "accountNumber": data
+                      .data!.getAccountDetailsContent!.data!.accountNumber
+                      .toString(),
+                }
+              };
+              InfobipMobilemessaging.submitEventImmediately(event);
+            },
             dataBuilder: (context, response) {
               switch (response!.status) {
                 case Status.SUCCESS:
