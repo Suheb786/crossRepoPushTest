@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8335,6 +8336,46 @@ class S {
     return Intl.message(
       'You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.',
       name: 'uploadDocWithinTendays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Credit Card`
+  String get myCreditCard {
+    return Intl.message(
+      'My Credit Card',
+      name: 'myCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Due`
+  String get minDue {
+    return Intl.message(
+      'Min. Due',
+      name: 'minDue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Due`
+  String get totalDue {
+    return Intl.message(
+      'Total Due',
+      name: 'totalDue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid to`
+  String get paidTo {
+    return Intl.message(
+      'Paid to',
+      name: 'paidTo',
       desc: '',
       args: [],
     );

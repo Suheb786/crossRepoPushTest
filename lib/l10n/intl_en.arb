@@ -851,5 +851,10 @@
   "invalidIncomeSourceValue": "Additional Income should be greater than 0",
   "invalidExpectedMonthlyIncomeSourceValue": "Monthly Income should be greater than 0",
   "userNotEligible": "User is not eligible.",
-  "uploadDocWithinTendays": "You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued."
+  "uploadDocWithinTendays": "You have opened your Blink account! Please upload the required documents within 10 days and get your\ndebit card issued.",
+  "myCreditCard": "My Credit Card",
+  "minDue": "Min. Due",
+  "totalDue": "Total Due",
+  "paidTo": "Paid to"
+
 }
