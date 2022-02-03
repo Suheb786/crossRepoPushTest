@@ -32,9 +32,9 @@ class App extends ConsumerWidget {
                       minWidth: 360,
                       defaultScale: true,
                       breakpoints: [
-                        ResponsiveBreakpoint.resize(640, name: MOBILE),
-                        ResponsiveBreakpoint.autoScale(1100, name: TABLET),
-                        ResponsiveBreakpoint.autoScale(1400, name: TABLET),
+                        ResponsiveBreakpoint.resize(360, name: MOBILE),
+                        ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                        ResponsiveBreakpoint.autoScale(1000, name: TABLET),
                         ResponsiveBreakpoint.resize(1200, name: DESKTOP),
                         ResponsiveBreakpoint.autoScale(2460, name: "4K"),
                       ],

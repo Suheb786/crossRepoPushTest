@@ -191,21 +191,28 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                             padding:
                                                                 const EdgeInsets
                                                                         .only(
-                                                                    top: 8.0,
-                                                                    bottom: 16),
-                                                            child: Center(
-                                                              child: Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .swipeDownToCancelVoiceCall,
-                                                                style: TextStyle(
+                                                                    bottom: 26),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                              child: Center(
+                                                                child: Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .backToDashboard,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: AppColor
+                                                                        .brightBlue,
                                                                     fontSize:
-                                                                        10,
+                                                                        14,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w400,
-                                                                    color: AppColor
-                                                                        .dark_gray_1),
+                                                                            .w500,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
