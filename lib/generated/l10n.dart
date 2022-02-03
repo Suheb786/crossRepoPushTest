@@ -8379,6 +8379,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Account No.`
+  String get accountNumber {
+    return Intl.message(
+      'Account No.',
+      name: 'accountNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
