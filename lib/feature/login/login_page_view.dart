@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
@@ -7,7 +6,6 @@ import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
@@ -197,7 +195,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                 }, onSelected:
                                                                         () {
                                                                   model
-                                                                      .sendOtpTokenEmail();
+                                                                      .sendOtpTokenMobile();
                                                                 });
                                                               } else {
                                                                 ProviderScope

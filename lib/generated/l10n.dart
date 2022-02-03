@@ -8339,6 +8339,46 @@ class S {
       args: [],
     );
   }
+
+  /// `My Credit Card`
+  String get myCreditCard {
+    return Intl.message(
+      'My Credit Card',
+      name: 'myCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Due`
+  String get minDue {
+    return Intl.message(
+      'Min. Due',
+      name: 'minDue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Due`
+  String get totalDue {
+    return Intl.message(
+      'Total Due',
+      name: 'totalDue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid to`
+  String get paidTo {
+    return Intl.message(
+      'Paid to',
+      name: 'paidTo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -142,6 +142,7 @@ class AssetUtils {
   static const String wifi = svg + "wifi.svg";
   static const String blinkLogo = svg + "blink_logo.svg";
   static const String moneyIn = svg + "money_in.svg";
+  static const String receiver = svg + "receiver.svg";
   static const String capture = svg + "capture.svg";
 
   /// DRAWABLES
@@ -187,6 +188,7 @@ class AssetUtils {
   static const String statementPicture = drawable + "statement_picture.png";
   static const String zigzagWhite = drawable + "zigzag_white.png";
   static const String zigzagDebit = drawable + "zig_zag_debit.png";
+  static const String credit = drawable + "credit.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

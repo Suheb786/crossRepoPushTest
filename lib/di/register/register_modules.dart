@@ -377,7 +377,9 @@ final fatcaUSW8TaxPayerDetailsPageViewModelProvider =
 final scheduleVideoCallPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ScheduleVideoCallPageViewModel>(
   (ref) => ScheduleVideoCallPageViewModel(
-      ref.read(scheduleVideoCallUseCaseProvider)),
+    ref.read(scheduleVideoCallUseCaseProvider),
+    ref.read(getCallTimeSlotsUseCaseProvider),
+  ),
 );
 
 ///get home address dialog view model provider
@@ -388,13 +390,18 @@ final homeAddressDialogViwModelProvider =
 ///video call info view model provider
 final videoCallInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(
-  (ref) => VideoCallInfoViewModel(ref.read(videoCallInfoUseCaseProvider)),
+  (ref) => VideoCallInfoViewModel(ref.read(checkExistingCallUseCaseProvider)),
 );
 
 ///agent selection view model provider
 final agentSelectionViewModelProvider =
     ChangeNotifierProvider.autoDispose<AgentSelectionViewModel>(
-  (ref) => AgentSelectionViewModel(ref.read(agentSelectionUseCaseProvider)),
+  (ref) => AgentSelectionViewModel(
+      ref.read(checkGenderStatusUsecaseProvider),
+      ref.read(requestCallUsecaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
 );
 
 ///student income page

@@ -22,6 +22,8 @@ import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_fo
 import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
+import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
+import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -81,6 +83,7 @@ import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_c
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
+import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -347,6 +350,12 @@ class AppRouter {
                 sendValue: settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
+      case RoutePaths.VideoKyc:
+        return CupertinoPageRoute(
+            builder: (context) => VideoKycPage(
+                credentials: settings.arguments as VideKycCredentials),
+            settings: RouteSettings(name: RoutePaths.VideoKyc));
+
       case RoutePaths.DebitCardSettings:
         return CustomRoute.createRoute(DebitCardSettingsPage());
 
@@ -492,6 +501,16 @@ class AppRouter {
             builder: (context) => SupplementaryDebitCardSuccessPage(),
             settings:
                 RouteSettings(name: RoutePaths.SupplementaryDebitCardSuccess));
+
+      case RoutePaths.CreditCardPayBack:
+        return CustomRoute.createRoute(
+          CreditCardPayBackPage(),
+        );
+
+      case RoutePaths.CreditCardPayBackSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardPayBackSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.CreditCardPayBackSuccess));
 
       default:
         return CupertinoPageRoute(
