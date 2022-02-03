@@ -22,7 +22,8 @@ final getAccountDetailsUseCaseProvider =
 
 ///[CreateAccountUseCase] provider
 final createAccountUseCaseProvider = Provider.autoDispose<CreateAccountUseCase>(
-    (ref) => CreateAccountUseCase(ref.read(bankSmartRepositoryProvider)));
+    (ref) => CreateAccountUseCase(
+        ref.read(bankSmartRepositoryProvider), ref.read(userRepoProvider)));
 
 ///[RemoveDebitLockUseCase] provider
 final removeDebitLockUseCaseProvider =

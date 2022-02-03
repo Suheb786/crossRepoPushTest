@@ -44,7 +44,9 @@ class SettingsDialogView extends StatelessWidget {
                   return AppStreamBuilder<User>(
                       initialData: User(),
                       stream: data!.data!,
-                      onData: (data) {},
+                      onData: (data) {
+                        print("got data: ${data.profileName}");
+                      },
                       dataBuilder: (context, user) {
                         return AppStreamBuilder<Resource<ProfileInfoResponse>>(
                             stream: model.getProfileInfoStream,

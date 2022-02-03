@@ -39,14 +39,17 @@ class ActivityHomePageState
         items: [
           TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
           TabItem(
-            icon: Container(
-              height: 80,
-              width: 80,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorDark,
-                  shape: BoxShape.circle),
-              child: Center(
-                child: AppSvg.asset(AssetUtils.logoWhite),
+            icon: InkWell(
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColorDark,
+                    shape: BoxShape.circle),
+                child: Center(
+                  child: AppSvg.asset(AssetUtils.logoWhite),
+                ),
               ),
             ),
           ),

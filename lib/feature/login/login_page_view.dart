@@ -197,7 +197,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                 }, onSelected:
                                                                         () {
                                                                   model
-                                                                      .sendOtpTokenEmail();
+                                                                      .sendOtpTokenMobile();
                                                                 });
                                                               } else {
                                                                 ProviderScope
