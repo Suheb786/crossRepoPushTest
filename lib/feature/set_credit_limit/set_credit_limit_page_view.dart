@@ -283,7 +283,29 @@ class SetCreditLimitPageView
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 126,
+                                      height: 16,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            S.of(context).backToCardSettings,
+                                            style: TextStyle(
+                                              color: AppColor.brightBlue,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
                                     ),
                                     AnimatedButton(
                                       buttonText: S.of(context).swipeToProceed,
@@ -296,7 +318,7 @@ class SetCreditLimitPageView
                                           .bodyText1!
                                           .color,
                                     ),
-                                    SizedBox(height: 28)
+                                    SizedBox(height: 28),
                                   ],
                                 );
                               }),

@@ -477,15 +477,21 @@ class RequestFromNewRecipientPageView
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 20, bottom: 16),
-                                      child: Text(
-                                        S.of(context).swipeDownToCancel,
-                                        style: TextStyle(
-                                            color: AppColor.dark_gray_1,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 20, bottom: 16),
+                                        child: Text(
+                                          S.of(context).backToPayments,
+                                          style: TextStyle(
+                                            color: AppColor.brightBlue,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
                                       ),
                                     )
                                   ],

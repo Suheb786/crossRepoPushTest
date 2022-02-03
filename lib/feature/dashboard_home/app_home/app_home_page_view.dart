@@ -36,6 +36,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    listenPopUps(model, context);
     return Padding(
       padding: EdgeInsets.only(top: 85),
       child: AppStreamBuilder<int>(
@@ -1370,6 +1371,64 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         },
       ),
     );
+  }
+
+  void listenPopUps(AppHomeViewModel model, BuildContext context) {
+    model.getSentMoneyPopUpDataStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => popUpWidget(context, AssetUtils.sentOffer));
+      }
+    });
+
+    model.getRequestMoneyPopUpDataStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) =>
+                popUpWidget(context, AssetUtils.requestedOffer));
+      }
+    });
+  }
+
+  Widget popUpWidget(BuildContext context, String image) {
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+            Container(
+              height: 530,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Image.asset(
+                image,
+                fit: BoxFit.fill,
+              ),
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                  height: 55,
+                  width: 55,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColor.white,
+                  ),
+                  child: Icon(
+                    Icons.close,
+                    color: AppColor.brightBlue,
+                  )),
+            )
+          ],
+        ));
   }
 }
 
