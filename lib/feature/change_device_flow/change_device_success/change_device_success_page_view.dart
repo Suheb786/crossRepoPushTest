@@ -58,8 +58,8 @@ class ChangeDeviceSuccessPageView
         },
         dataBuilder: (context, kycResponse) {
           return GestureDetector(
-            onHorizontalDragUpdate: (details) {
-              if (details.primaryDelta!.isNegative) {
+            onHorizontalDragEnd: (details) {
+              if (details.primaryVelocity!.isNegative) {
                 model.checkKycStatus();
               }
             },
