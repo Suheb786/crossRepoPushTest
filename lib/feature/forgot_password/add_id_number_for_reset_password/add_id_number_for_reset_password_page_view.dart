@@ -141,23 +141,6 @@ class AddIDNumberForResetPasswordPageView
                                   ],
                                 ),
                               ),
-                              Expanded(child: Container()),
-                              Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    S.of(context).backToLogin,
-                                    style: TextStyle(
-                                      color: AppColor.brightBlue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 20),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 16.0),
                                 child: AppStreamBuilder<bool>(
@@ -172,6 +155,21 @@ class AddIDNumberForResetPasswordPageView
                                         ),
                                       );
                                     }),
+                              ),
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    S.of(context).backToLogin,
+                                    style: TextStyle(
+                                      color: AppColor.brightBlue,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           )),
