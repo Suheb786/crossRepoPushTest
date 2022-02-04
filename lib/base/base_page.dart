@@ -164,11 +164,17 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   void _onBaseModelReady(VM model) {
     _viewModel = model;
     model.error.listen((event) {
-      if (mounted)
-        showTopError(ErrorParser.getLocalisedStringError(
-          error: event,
-          localisedHelper: S.of(context),
-        ));
+      if (mounted) {
+        if (event.type == ErrorType.UNAUTHORIZED_USER) {
+          ///TODO:logout
+
+        } else {
+          showTopError(ErrorParser.getLocalisedStringError(
+            error: event,
+            localisedHelper: S.of(context),
+          ));
+        }
+      }
     });
     model.toast.listen((message) {
       showShortToast(message);

@@ -95,6 +95,10 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    if (err.response!.statusCode == 401) {
+      authToken = '';
+      return super.onError(err, handler);
+    }
     if (err.response!.data != null) {
       if (((err.response!.data as Map<String, dynamic>)['response']['token']
                   as String?)
@@ -110,8 +114,15 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (response.statusCode == 401) {
+      authToken = '';
+      return super.onResponse(response, handler);
+    }
+    if (response.realUri.path.contains('logout')) {
+      authToken = '';
+      return super.onResponse(response, handler);
+    }
     if (response.statusCode == 200) {
-      print('status code:--->${response.statusCode}');
       if (response.data != null) {
         if (((response.data as Map<String, dynamic>)['response']['token']
                     as String?)
