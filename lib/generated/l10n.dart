@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8395,6 +8396,16 @@ class S {
     return Intl.message(
       'No due Amount',
       name: 'noDueAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Balance is less than pay balance.`
+  String get invalidAccountBalance {
+    return Intl.message(
+      'Account Balance is less than pay balance.',
+      name: 'invalidAccountBalance',
       desc: '',
       args: [],
     );

@@ -16,10 +16,13 @@ abstract class AccountSettingsRemoteDs {
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
       {required String otp});
 
-  Future<HttpResponse<ResponseEntity>> changeMobile({required String mobile});
+  Future<HttpResponse<ResponseEntity>> changeMobile(
+      {required String mobile, required String mobileCode});
 
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      {required String otp});
+      {required String otp,
+      required String mobileNo,
+      required String mobileCode});
 
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
       {required String oldPassword,

@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_ba
 
 class CreditCardPayBackSuccessPage
     extends BasePage<CreditCardPayBackSuccessViewModel> {
+  final CreditCardPayBackSuccessArguments _creditCardPayBackSuccessArguments;
+
+  CreditCardPayBackSuccessPage(this._creditCardPayBackSuccessArguments);
+
   @override
   CreditCardPayBackSuccessPageState createState() =>
       CreditCardPayBackSuccessPageState();
@@ -16,7 +20,8 @@ class CreditCardPayBackSuccessPageState extends BaseStatefulPage<
     CreditCardPayBackSuccessViewModel, CreditCardPayBackSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return creditCardPayBackSuccessViewModelProvider;
+    return creditCardPayBackSuccessViewModelProvider.call(
+        widget._creditCardPayBackSuccessArguments);
   }
 
   @override
@@ -29,4 +34,12 @@ class CreditCardPayBackSuccessPageState extends BaseStatefulPage<
       BuildContext context, CreditCardPayBackSuccessViewModel model) {
     return CreditCardPayBackSuccessPageView(provideBase());
   }
+}
+
+class CreditCardPayBackSuccessArguments {
+  final String payBackAmount;
+  final String accountHolderName;
+
+  CreditCardPayBackSuccessArguments(
+      {this.payBackAmount: "", this.accountHolderName: ""});
 }

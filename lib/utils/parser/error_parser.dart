@@ -414,6 +414,8 @@ class ErrorParser {
         return localisedHelper.userNotEligible;
       case ErrorType.NO_DUE_AMOUNT:
         return localisedHelper.noDueAmount;
+      case ErrorType.INVALID_ACCOUNT_BALANCE:
+        return localisedHelper.invalidAccountBalance;
 
       default:
         return "";

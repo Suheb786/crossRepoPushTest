@@ -294,6 +294,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             Navigator.pushNamed(context,
                                                 RoutePaths.CreditCardPayBack,
                                                 arguments: CreditCardPayBackArguments(
+                                                    accountHolderName: cardData
+                                                        .creditCard!
+                                                        .first
+                                                        .name!,
                                                     secureCode: cardData
                                                         .creditCard!
                                                         .first

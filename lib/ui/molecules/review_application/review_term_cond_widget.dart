@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -65,25 +66,23 @@ class ReviewTCWidget extends StatelessWidget {
                   color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
-                  WidgetSpan(
-                    child: InkWell(
-                      onTap: () {
-                        onTermsAndConditionTap?.call();
-                      },
-                      child: Text(
-                        subTitle!,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          fontFamily: 'Montserrat',
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!,
-                        ),
-                      ),
-                    ),
-                  )
+                  TextSpan(
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () => onTermsAndConditionTap?.call(),
+                      children: [
+                        TextSpan(
+                          text: subTitle,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            fontFamily: 'Montserrat',
+                            color: Theme.of(context)
+                                .accentTextTheme
+                                .bodyText1!
+                                .color!,
+                          ),
+                        )
+                      ]),
                 ])),
           ),
         ],

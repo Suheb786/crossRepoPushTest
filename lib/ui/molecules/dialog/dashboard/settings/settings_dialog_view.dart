@@ -44,9 +44,7 @@ class SettingsDialogView extends StatelessWidget {
                   return AppStreamBuilder<User>(
                       initialData: User(),
                       stream: data!.data!,
-                      onData: (data) {
-                        print("got data: ${data.profileName}");
-                      },
+                      onData: (data) {},
                       dataBuilder: (context, user) {
                         return AppStreamBuilder<Resource<ProfileInfoResponse>>(
                             stream: model.getProfileInfoStream,
@@ -260,6 +258,7 @@ class SettingsDialogView extends StatelessWidget {
                                                   ? Center(
                                                       child: Container(
                                                         child: Text(
+                                                          ///TODO: change received from api
                                                           user!.profileName,
                                                           style: TextStyle(
                                                               fontWeight:

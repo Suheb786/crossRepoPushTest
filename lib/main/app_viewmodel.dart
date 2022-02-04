@@ -21,6 +21,8 @@ class AppViewModel extends BaseViewModel {
   ThemeData _themeData = ThemeData();
   AppTheme _appTheme = AppTheme.light;
 
+  // static Timer? tokenTimer;
+
   AppTheme get appTheme => _appTheme;
 
   ThemeData get themeData {
@@ -294,6 +296,13 @@ class AppViewModel extends BaseViewModel {
       sendPort.send('Send');
     });
   }
+
+  // void stopRefreshToken() {
+  //   if (tokenTimer != null && tokenTimer!.isActive) {
+  //     tokenTimer!.cancel();
+  //     _isolate!.kill();
+  //   }
+  // }
 
   void _callGetToken() {
     _getTokenRequest.add(GetTokenUseCaseParams());

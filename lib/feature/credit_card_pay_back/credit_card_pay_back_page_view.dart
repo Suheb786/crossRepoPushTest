@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page_view_model.dart';
+import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -36,7 +37,11 @@ class CreditCardPayBackPageView
             onData: (data) {
               if (data.status == Status.SUCCESS) {
                 Navigator.pushNamed(
-                    context, RoutePaths.CreditCardPayBackSuccess);
+                    context, RoutePaths.CreditCardPayBackSuccess,
+                    arguments: CreditCardPayBackSuccessArguments(
+                        payBackAmount: model.currentPinValue,
+                        accountHolderName:
+                            model.payBackArguments.accountHolderName));
               }
             },
             dataBuilder: (context, snapshot) {
@@ -253,19 +258,31 @@ class CreditCardPayBackPageView
                             },
                             textColor: AppColor.black,
                             rightButtonFn: () {
-                              if (model.payBackArguments.minDuePayBackAmount ==
-                                      '0.0' ||
-                                  model.payBackArguments.totalMinDueAmount ==
-                                      '0.0') {
+                              // if (model.payBackArguments.minDuePayBackAmount ==
+                              //         '0.0' ||
+                              //     model.payBackArguments.totalMinDueAmount ==
+                              //         '0.0') {
+                              //   model.showToastWithError(AppError(
+                              //       cause: Exception(),
+                              //       error: ErrorInfo(message: ''),
+                              //       type: ErrorType.NO_DUE_AMOUNT));
+                              // } else
+                              // if (num.parse(model.currentPinValue) < 0) {
+                              //   model.showToastWithError(AppError(
+                              //       cause: Exception(),
+                              //       error: ErrorInfo(message: ''),
+                              //       type: ErrorType.ZERO_AMOUNT));
+                              // }
+                              // else {
+                              //   model.payBackCreditCard();
+                              // }
+                              if (num.parse(model.currentPinValue) >
+                                  num.parse(
+                                      model.payBackArguments.accountBalance)) {
                                 model.showToastWithError(AppError(
                                     cause: Exception(),
                                     error: ErrorInfo(message: ''),
-                                    type: ErrorType.NO_DUE_AMOUNT));
-                              } else if (num.parse(model.currentPinValue) < 0) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.ZERO_AMOUNT));
+                                    type: ErrorType.INVALID_ACCOUNT_BALANCE));
                               } else {
                                 model.payBackCreditCard();
                               }

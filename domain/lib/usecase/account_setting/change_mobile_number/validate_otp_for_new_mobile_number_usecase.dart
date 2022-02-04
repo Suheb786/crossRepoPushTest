@@ -21,12 +21,16 @@ class ValidateOtpForNewMobileNumberUseCase extends BaseUseCase<BaseError,
   Future<Either<BaseError, ProfileChangedSuccessResponse>> execute(
       {required ValidateOtpForNewMobileNumberUseCaseParams params}) async {
     return Future.value(
-      (await _accountSettingsRepository.verifyChangeMobile(otp: params.otp))
+      (await _accountSettingsRepository.verifyChangeMobile(
+              otp: params.otp,
+              mobileCode: params.mobileCode,
+              mobileNo: params.mobileNo))
           .fold((l) => Left(l), (response) async {
         return (await _userRepository.getCurrentUser()).fold((l) => Left(l),
             (currentUser) async {
           print('mobileno from ui:---${params.mobileNo}');
           currentUser.mobile = params.mobileNo;
+          currentUser.mobileCode = params.mobileCode;
           return (await _userRepository.saveUser(currentUser))
               .fold((l) => Left(l), (user) async {
             print('savedUser--->${user.mobile}');
@@ -41,9 +45,10 @@ class ValidateOtpForNewMobileNumberUseCase extends BaseUseCase<BaseError,
 class ValidateOtpForNewMobileNumberUseCaseParams extends Params {
   final String otp;
   final String mobileNo;
+  final String mobileCode;
 
   ValidateOtpForNewMobileNumberUseCaseParams(
-      {required this.otp, required this.mobileNo});
+      {required this.otp, required this.mobileNo, required this.mobileCode});
 
   @override
   Either<AppError, bool> verify() {

@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
+class
+LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
   final UserRepository _repository;
 
   LoginUseCase(this._repository);

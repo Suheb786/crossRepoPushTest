@@ -17,6 +17,7 @@ import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
+import 'package:data/entity/remote/card/get_credit_card_transaction_list_request_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
@@ -70,11 +71,11 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
       {String? cardId, String? cardDigit}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.confirmCreditCardDelivery(
-        ConfirmCreditCardDeliveryRequest(
+    return _apiService
+        .confirmCreditCardDelivery(ConfirmCreditCardDeliveryRequest(
             cardId: cardId,
-            accountId: '1',
-            cardDigit: cardDigit,
+            // accountId: '1',
+            // cardDigit: cardDigit,
             baseData: baseData.toJson(),
             getToken: true));
   }
@@ -83,18 +84,17 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-
-    ///TODO:change value to true (getToken)
     return _apiService.getDebitCardTransactions(GetDebitCardTransactionRequest(
-        baseData: baseData.toJson(), getToken: false, isDebit: true));
+        baseData: baseData.toJson(), getToken: true, isDebit: true));
   }
 
   @override
-  Future<HttpResponse<CardTransactionResponseEntity>>
-      getCreditCardTransactions() async {
+  Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
+      {required String cardId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardTransactions(
-        ConfirmCreditCardDeliveryRequest(baseData: baseData.toJson()));
+        GetCreditCardTransactionListRequestEntity(
+            baseData: baseData.toJson(), cardId: cardId));
   }
 
   @override

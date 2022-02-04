@@ -258,7 +258,8 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.DownloadTransaction));
 
       case RoutePaths.CardTransaction:
-        return CustomRoute.createRoute(CardTransactionPage());
+        return CustomRoute.createRoute(CardTransactionPage(
+            settings.arguments as GetCreditCardTransactionArguments));
 
       case RoutePaths.AccountTransaction:
         return CustomRoute.createRoute(AccountTransactionPage());
@@ -503,7 +504,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardPayBackSuccess:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardPayBackSuccessPage(),
+            builder: (context) => CreditCardPayBackSuccessPage(
+                settings.arguments as CreditCardPayBackSuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardPayBackSuccess));
 
       default:

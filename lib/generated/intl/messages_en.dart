@@ -723,6 +723,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "insufficient Balance (Err-89)"),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
             "You do not have sufficient balance to make payment."),
+        "invalidAccountBalance": MessageLookupByLibrary.simpleMessage(
+            "Account Balance is less than pay balance."),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),

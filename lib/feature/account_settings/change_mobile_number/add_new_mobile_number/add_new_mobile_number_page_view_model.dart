@@ -102,9 +102,11 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   void changeMobileNumber() {
-    mobileNumber = '+${countryData.phoneCode} ${mobileController.text}';
+    //mobileNumber = '+${countryData.phoneCode} ${mobileController.text}';
+    mobileNumber = mobileController.text;
     _addNewMobileRequest.safeAdd(AddNewMobileNumberUseCaseParams(
-        mobileNumber: '${countryData.phoneCode} ${mobileController.text}'));
+        mobileCode: '00${countryData.phoneCode}',
+        mobileNumber: mobileController.text));
   }
 
   void validate() {

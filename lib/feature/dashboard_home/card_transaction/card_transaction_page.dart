@@ -6,6 +6,10 @@ import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transactio
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 
 class CardTransactionPage extends BasePage<CardTransactionViewModel> {
+  final GetCreditCardTransactionArguments _creditCardTransactionArguments;
+
+  CardTransactionPage(this._creditCardTransactionArguments);
+
   @override
   DebitCardDeliveredPageState createState() => DebitCardDeliveredPageState();
 }
@@ -14,7 +18,8 @@ class DebitCardDeliveredPageState
     extends BaseStatefulPage<CardTransactionViewModel, CardTransactionPage> {
   @override
   ProviderBase provideBase() {
-    return cardTransactionViewModelProvider;
+    return cardTransactionViewModelProvider
+        .call(widget._creditCardTransactionArguments);
   }
 
   @override
@@ -23,7 +28,18 @@ class DebitCardDeliveredPageState
   }
 
   @override
+  void onModelReady(CardTransactionViewModel model) {
+    model.getTransactions(cardId: model.cardTransactionArguments.cardId!);
+  }
+
+  @override
   Widget buildView(BuildContext context, CardTransactionViewModel model) {
     return CardTransactionPageView(provideBase());
   }
+}
+
+class GetCreditCardTransactionArguments {
+  final String? cardId;
+
+  GetCreditCardTransactionArguments({this.cardId: ""});
 }

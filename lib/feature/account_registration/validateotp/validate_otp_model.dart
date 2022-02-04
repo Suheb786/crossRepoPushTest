@@ -133,7 +133,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   void changeMyNumber(String mobileNo, String countryCode) {
     _changeMyNumberRequest.safeAdd(ChangeMyNumberUseCaseParams(
-        mobileNumber: mobileNo, countryCode: countryCode));
+        mobileNumber: mobileNo, countryCode: '00$countryCode}'));
   }
 
   void validate(String value) {

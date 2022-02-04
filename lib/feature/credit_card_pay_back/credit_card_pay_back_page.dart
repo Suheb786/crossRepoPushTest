@@ -18,8 +18,8 @@ class CreditCardPayBackPageState extends BaseStatefulPage<
     CreditCardPayBackPageModel, CreditCardPayBackPage> {
   @override
   ProviderBase provideBase() {
-    return creditCardPayBackViewModelProvider.call(
-        widget._creditCardPayBackArguments);
+    return creditCardPayBackViewModelProvider
+        .call(widget._creditCardPayBackArguments);
   }
 
   @override
@@ -29,13 +29,15 @@ class CreditCardPayBackPageState extends BaseStatefulPage<
 }
 
 class CreditCardPayBackArguments {
+  final String accountHolderName;
   final String minDuePayBackAmount;
   final String totalMinDueAmount;
   final String secureCode;
   final String accountBalance;
 
   CreditCardPayBackArguments(
-      {required this.minDuePayBackAmount,
+      {required this.accountHolderName,
+      required this.minDuePayBackAmount,
       required this.totalMinDueAmount,
       required this.secureCode,
       required this.accountBalance});

@@ -94,16 +94,33 @@ class ApiInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // if (response.statusCode == 200) {
-    // }
-    if (response.data != null) {
-      if (((response.data as Map<String, dynamic>)['response']['token']
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    if (err.response!.data != null) {
+      if (((err.response!.data as Map<String, dynamic>)['response']['token']
                   as String?)
               ?.isNotEmpty ??
           false) {
-        authToken =
-            (response.data as Map<String, dynamic>)['response']['token'] ?? '';
+        authToken = (err.response!.data as Map<String, dynamic>)['response']
+                ['token'] ??
+            '';
+      }
+    }
+    super.onError(err, handler);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (response.statusCode == 200) {
+      print('status code:--->${response.statusCode}');
+      if (response.data != null) {
+        if (((response.data as Map<String, dynamic>)['response']['token']
+                    as String?)
+                ?.isNotEmpty ??
+            false) {
+          authToken = (response.data as Map<String, dynamic>)['response']
+                  ['token'] ??
+              '';
+        }
       }
     }
 

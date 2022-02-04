@@ -6,13 +6,18 @@ part 'change_mobile_request.g.dart';
 class ChangeMobileRequest {
   @JsonKey(name: "MobileNo")
   final String mobile;
+  @JsonKey(name: "MobileCode")
+  final String mobileCode;
   @JsonKey(name: "GetToken")
   final bool getToken;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
   ChangeMobileRequest(
-      {this.mobile: "", this.getToken: true, required this.baseData});
+      {this.mobile: "",
+      this.getToken: true,
+      required this.baseData,
+      this.mobileCode: ""});
 
   factory ChangeMobileRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangeMobileRequestFromJson(json);

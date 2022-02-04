@@ -915,11 +915,11 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      verifyChangeEmailRequest) async {
+      verifyChangeMobileRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(verifyChangeEmailRequest.toJson());
+    _data.addAll(verifyChangeMobileRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
@@ -1078,11 +1078,11 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      baseRequest) async {
+      getCreditCardTransactionListRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
+    _data.addAll(getCreditCardTransactionListRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CardTransactionResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)

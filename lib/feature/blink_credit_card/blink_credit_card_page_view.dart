@@ -1,4 +1,5 @@
 import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -8,7 +9,9 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -203,6 +206,11 @@ class BlinkCreditCardPageView
                                             children: [
                                           TextSpan(
                                               text: S.of(context).creditTc,
+                                              recognizer: new TapGestureRecognizer()
+                                                ..onTap = () => LaunchUrlUtils
+                                                    .launchDigitalService(
+                                                        AppConstantsUtils
+                                                            .CREDIT_CARD_TERMS_CONDITION_LINK_UAT),
                                               style: TextStyle(
                                                   color: Theme.of(context)
                                                       .accentTextTheme

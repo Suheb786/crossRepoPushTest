@@ -17,6 +17,7 @@ import 'package:share_plus/share_plus.dart';
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
   // MyAccountPageView(ProviderBase model) : super(model);
   final GetDashboardDataContent cardData;
+
   MyAccountPageView(ProviderBase model, this.cardData) : super(model);
 
   @override
