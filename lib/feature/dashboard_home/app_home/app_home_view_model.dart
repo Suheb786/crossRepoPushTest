@@ -91,6 +91,7 @@ class AppHomeViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           if (isShowBalenceUpdatedToast) {
             showSuccessToast("Your account balance is successfully updated.");
+            isShowBalenceUpdatedToast = false;
           }
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);

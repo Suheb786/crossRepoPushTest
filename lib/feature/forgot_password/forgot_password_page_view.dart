@@ -76,7 +76,7 @@ class ForgotPasswordPageView
                     Padding(
                       padding: EdgeInsets.only(
                           top: 8.0,
-                          bottom: currentStep == 1 ? 0 : 32,
+                          bottom: currentStep == 2 ? 0 : 32,
                           left: 24,
                           right: 24),
                       child: ShowUpAnimation(

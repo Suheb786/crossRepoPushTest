@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8375,6 +8376,16 @@ class S {
     return Intl.message(
       'Paid to',
       name: 'paidTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account No.`
+  String get accountNumber {
+    return Intl.message(
+      'Account No.',
+      name: 'accountNumber',
       desc: '',
       args: [],
     );

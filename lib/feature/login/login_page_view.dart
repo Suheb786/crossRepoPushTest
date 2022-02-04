@@ -20,6 +20,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -152,23 +153,23 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                             if (data.status ==
                                                                 Status
                                                                     .SUCCESS) {
-                                                              model.mobileCode =
+                                                              model.mobileNumber =
                                                                   data.data!
                                                                       .mobile!;
                                                               model.mobileCode =
                                                                   data.data!
                                                                       .mobileCode!;
-                                                              ProviderScope
-                                                                      .containerOf(
-                                                                          context)
-                                                                  .read(
-                                                                      appViewModel)
-                                                                  .getToken();
-                                                              model
-                                                                  .checkKycStatus();
+                                                              // ProviderScope
+                                                              //         .containerOf(
+                                                              //             context)
+                                                              //     .read(
+                                                              //         appViewModel)
+                                                              //     .getToken();
+                                                              // model
+                                                              //     .checkKycStatus();
 
                                                               ///new device flow check
-                                                              /*
+
                                                               if (data.data!
                                                                   .newDevice!) {
                                                                 InformationDialog.show(
@@ -209,8 +210,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                 model
                                                                     .checkKycStatus();
                                                               }
-
-                                                               */
 
                                                               // Future.delayed(Duration(milliseconds: 500),
                                                               //     () {
