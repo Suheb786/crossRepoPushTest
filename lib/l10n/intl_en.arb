@@ -856,6 +856,7 @@
   "minDue": "Min. Due",
   "totalDue": "Total Due",
   "paidTo": "Paid to",
-  "accountNumber": "Account No."
+  "accountNumber": "Account No.",
+  "noDueAmount": "No due Amount"
 
 }

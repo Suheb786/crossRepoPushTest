@@ -101,6 +101,7 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
@@ -681,4 +682,8 @@ abstract class ApiService {
       @Body()
           VerifyDeviceChangeOtpRequestEntity
               verifyDeviceChangeOtpRequestEntity);
+
+  @POST("/CardTracking/PayBackCreditCard")
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
+      @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
 }

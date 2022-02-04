@@ -6,6 +6,7 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
@@ -148,5 +149,16 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getPaymentActivity(PaymentActivityRequestEntity(
         baseData: baseData.toJson(), getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
+      {String? secureCode, String? payBackAmount}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.payBackCreditCard(PayBackCreditCardRequestEntity(
+        baseData: baseData.toJson(),
+        getToken: true,
+        payBackAmount: payBackAmount,
+        secureCode: secureCode));
   }
 }

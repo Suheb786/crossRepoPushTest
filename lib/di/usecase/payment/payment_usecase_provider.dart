@@ -6,6 +6,7 @@ import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
+import 'package:domain/usecase/payment/pay_back_credit_card_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/request_money_failure_usecase.dart';
@@ -127,4 +128,10 @@ final transferVerifyUseCaseProvider =
 ///[GetPurposeUseCase] provider
 final getPurposeUseCaseProvider = Provider.autoDispose<GetPurposeUseCase>(
   (ref) => GetPurposeUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[PayBackCreditCardUseCase] provider
+final payBackCreditCardUseCaseProvider =
+    Provider.autoDispose<PayBackCreditCardUseCase>(
+  (ref) => PayBackCreditCardUseCase(ref.read(paymentRepositoryProvider)),
 );

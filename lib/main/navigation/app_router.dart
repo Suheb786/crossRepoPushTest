@@ -497,7 +497,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardPayBack:
         return CustomRoute.createRoute(
-          CreditCardPayBackPage(),
+          CreditCardPayBackPage(
+              settings.arguments as CreditCardPayBackArguments),
         );
 
       case RoutePaths.CreditCardPayBackSuccess:

@@ -976,6 +976,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "noDueAmount": MessageLookupByLibrary.simpleMessage("No due Amount"),
         "noMatchingYearFound":
             MessageLookupByLibrary.simpleMessage("No matching year found!"),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(

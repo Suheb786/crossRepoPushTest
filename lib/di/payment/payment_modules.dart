@@ -5,6 +5,7 @@ import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
+import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view_model.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
@@ -129,9 +130,10 @@ final paymentToNewRecipientViewModelProvider =
 );
 
 /// credit card pay back
-final creditCardPayBackViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardPayBackPageModel>(
-  (ref) => CreditCardPayBackPageModel(),
+final creditCardPayBackViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardPayBackPageModel, CreditCardPayBackArguments>(
+  (ref, args) => CreditCardPayBackPageModel(
+      ref.read(payBackCreditCardUseCaseProvider), args),
 );
 
 /// credit card pay back success

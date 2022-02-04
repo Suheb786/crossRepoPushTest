@@ -412,6 +412,8 @@ class ErrorParser {
         return localisedHelper.invalidExpectedMonthlyIncomeSourceValue;
       case ErrorType.USER_NOT_ELIGIBLE:
         return localisedHelper.userNotEligible;
+      case ErrorType.NO_DUE_AMOUNT:
+        return localisedHelper.noDueAmount;
 
       default:
         return "";
