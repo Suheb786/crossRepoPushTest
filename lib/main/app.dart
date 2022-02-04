@@ -29,10 +29,10 @@ class App extends ConsumerWidget {
                 builder: (context, widget) => ResponsiveWrapper.builder(
                       ClampingScrollWrapper.builder(context, widget!),
                       maxWidth: 1400,
-                      minWidth: 390,
+                      minWidth: 360,
                       defaultScale: true,
                       breakpoints: [
-                        ResponsiveBreakpoint.autoScale(390, name: MOBILE),
+                        ResponsiveBreakpoint.resize(360, name: MOBILE),
                         ResponsiveBreakpoint.autoScale(800, name: TABLET),
                         ResponsiveBreakpoint.autoScale(1000, name: TABLET),
                         ResponsiveBreakpoint.resize(1200, name: DESKTOP),
