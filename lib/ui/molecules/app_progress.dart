@@ -14,7 +14,7 @@ class AppProgress {
           return WillPopScope(
             onWillPop: () async => false,
             child: Center(
-                child: Lottie.asset(AssetUtils.loaderAnimation,
+                child: Lottie.asset(AssetUtils.loaderAnimation1,
                     fit: BoxFit.cover,
                     alignment: Alignment.center,
                     width: 60,

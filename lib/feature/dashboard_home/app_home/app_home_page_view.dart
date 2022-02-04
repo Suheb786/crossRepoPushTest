@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
@@ -62,7 +63,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               return;
                             } else {
                               Navigator.pushNamed(
-                                  context, RoutePaths.CardTransaction);
+                                  context, RoutePaths.CardTransaction,
+                                  arguments: GetCreditCardTransactionArguments(
+                                      cardId: cardData!
+                                          .data!
+                                          .dashboardDataContent!
+                                          .creditCard!
+                                          .first
+                                          .cardId));
                             }
                           } else if (currentStep == 0) {
                             if (showTimeLine!) {

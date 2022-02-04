@@ -25,6 +25,7 @@ import 'package:data/entity/remote/accountsettings/profile_changed_success_respo
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
+import 'package:data/entity/remote/accountsettings/verify_change_mobile_request_entity.dart';
 import 'package:data/entity/remote/activity/activity_request_entity.dart';
 import 'package:data/entity/remote/activity/activity_response_entity.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
@@ -56,6 +57,7 @@ import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
+import 'package:data/entity/remote/card/get_credit_card_transaction_list_request_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
@@ -108,6 +110,7 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/pay_back_credit_card_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
@@ -406,7 +409,7 @@ abstract class ApiService {
 
   @POST("/auth/VerifyChangeMobile")
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
+      @Body() VerifyChangeMobileRequestEntity verifyChangeMobileRequestEntity);
 
   @POST("/beneficiary/GetBeneficiaries")
   Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
@@ -442,7 +445,9 @@ abstract class ApiService {
 
   @POST("/MoneyThor/GetCreditCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      @Body() ConfirmCreditCardDeliveryRequest baseRequest);
+      @Body()
+          GetCreditCardTransactionListRequestEntity
+              getCreditCardTransactionListRequestEntity);
 
   @POST("/BankSmart/GetAtms")
   Future<HttpResponse<AtmsResponseEntity>> getAtms(
@@ -707,4 +712,8 @@ abstract class ApiService {
       @Body()
           VerifyDeviceChangeOtpRequestEntity
               verifyDeviceChangeOtpRequestEntity);
+
+  @POST("/CardTracking/PayBackCreditCard")
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
+      @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
 }

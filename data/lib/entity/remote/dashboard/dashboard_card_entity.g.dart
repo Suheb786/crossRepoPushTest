@@ -25,6 +25,8 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
     creditLimit: json['creditlimit'] as String?,
     cardId: json['cardId'] as String?,
     primarySecondaryCard: json['primarysecondarycard'] as String?,
+    cardCode: json['cardCode'] as String?,
+    paymentDueAmount: json['paymentDueAmount'],
   );
 }
 
@@ -48,4 +50,6 @@ Map<String, dynamic> _$DashboardCardEntityToJson(
       'cardId': instance.cardId,
       'isSupCard': instance.isSupCard,
       'primarysecondarycard': instance.primarySecondaryCard,
+      'cardCode': instance.cardCode,
+      'paymentDueAmount': instance.paymentDueAmount,
     };

@@ -8389,6 +8389,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No due Amount`
+  String get noDueAmount {
+    return Intl.message(
+      'No due Amount',
+      name: 'noDueAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Balance is less than pay balance.`
+  String get invalidAccountBalance {
+    return Intl.message(
+      'Account Balance is less than pay balance.',
+      name: 'invalidAccountBalance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

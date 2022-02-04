@@ -16,7 +16,9 @@ class CreditCard {
       this.creditCardActivatedDate,
       this.isSupCard,
       this.primarySecondaryCard,
-      this.usedBalance});
+      this.usedBalance,
+      this.paymentDueAmount,
+      this.cardCode});
 
   String? name;
   String? cardNumber;
@@ -35,4 +37,6 @@ class CreditCard {
   bool? isApplied;
   String? cardId;
   bool? isSupCard;
+  String? cardCode;
+  dynamic paymentDueAmount;
 }

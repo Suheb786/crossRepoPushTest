@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,9 +20,9 @@ class CreditCardPayBackSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          // ProviderScope.containerOf(context)
-          //     .read(appHomeViewModelProvider)
-          //     .getDashboardData();
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .getDashboardData();
         }
       },
       child: Column(
@@ -55,7 +56,7 @@ class CreditCardPayBackSuccessPageView
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '48.09',
+                      model.creditCardPayBackSuccessArguments.payBackAmount,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
@@ -100,7 +101,7 @@ class CreditCardPayBackSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 4.0),
                 child: Text(
-                  'Zein Malhas',
+                  model.creditCardPayBackSuccessArguments.accountHolderName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.very_light_red,

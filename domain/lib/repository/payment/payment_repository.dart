@@ -51,4 +51,7 @@ abstract class PaymentRepository {
       String transferType, String detCustomerType, String type);
 
   Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity();
+
+  Future<Either<NetworkError, bool>> payBackCreditCard(
+      {String? secureCode, String? payBackAmount});
 }

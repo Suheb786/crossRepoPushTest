@@ -1,0 +1,13 @@
+import 'package:url_launcher/url_launcher.dart';
+
+class LaunchUrlUtils {
+  LaunchUrlUtils._();
+
+  static launchDigitalService(String digitalServiceUrl) async {
+    if (await canLaunch(digitalServiceUrl)) {
+      await launch(digitalServiceUrl);
+    } else {
+      throw 'Could not launch $digitalServiceUrl';
+    }
+  }
+}

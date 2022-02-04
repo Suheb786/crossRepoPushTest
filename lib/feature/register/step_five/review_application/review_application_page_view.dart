@@ -23,7 +23,9 @@ import 'package:neo_bank/ui/molecules/register/start_over_widget.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -846,10 +848,13 @@ class ReviewApplicationPageView
                                                                         .termsAndCondition,
                                                                     onTermsAndConditionTap:
                                                                         () {
-                                                                      Navigator.pushNamed(
-                                                                          context,
-                                                                          RoutePaths
-                                                                              .TermsAndCondition);
+                                                                      // Navigator.pushNamed(
+                                                                      //     context,
+                                                                      //     RoutePaths
+                                                                      //         .TermsAndCondition);
+                                                                      LaunchUrlUtils.launchDigitalService(
+                                                                          AppConstantsUtils
+                                                                              .ONBOARDING_DIGITAL_SERVICE_LINK_UAT);
                                                                     },
                                                                     onTap: () {
                                                                       model.updateDeclarationSelection(

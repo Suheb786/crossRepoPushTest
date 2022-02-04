@@ -856,6 +856,9 @@
   "minDue": "Min. Due",
   "totalDue": "Total Due",
   "paidTo": "Paid to",
+  "accountNumber": "Account No.",
+  "noDueAmount": "No due Amount",
+  "invalidAccountBalance": "Account Balance is less than pay balance.",
   "accountNumber": "Account No."
 
 }

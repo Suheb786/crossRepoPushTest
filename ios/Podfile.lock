@@ -14,6 +14,10 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - agora_rtc_engine (4.0.7):
+    - AgoraRtcEngine_iOS (= 3.5.0.3)
+    - Flutter
+  - AgoraRtcEngine_iOS (3.5.0.3)
   - Alamofire (4.9.1)
   - blinkid_flutter (5.14.0):
     - Flutter
@@ -134,10 +138,11 @@ PODS:
   - SwiftyGif (5.4.0)
   - Toast (4.0.0)
   - TOCropViewController (2.6.0)
-  - url_launcher (0.0.1):
+  - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -163,11 +168,12 @@ DEPENDENCIES:
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - AgoraRtcEngine_iOS
     - Alamofire
     - CryptoSwift
     - DKImagePickerController
@@ -185,6 +191,8 @@ SPEC REPOS:
     - TOCropViewController
 
 EXTERNAL SOURCES:
+  agora_rtc_engine:
+    :path: ".symlinks/plugins/agora_rtc_engine/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera:
@@ -235,11 +243,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/share_plus/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
+  AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
@@ -280,7 +290,7 @@ SPEC CHECKSUMS:
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
-  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

@@ -6,6 +6,7 @@ import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecas
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -16,6 +17,7 @@ import 'package:rxdart/rxdart.dart';
 class CardTransactionViewModel extends BasePageViewModel {
   final GetCreditYearsUseCase _creditYearsUseCase;
   final GetCreditCardTransactionsUseCase _cardTransactionsUseCase;
+  final GetCreditCardTransactionArguments cardTransactionArguments;
   TextEditingController searchController = TextEditingController();
 
   ///get transaction request
@@ -78,8 +80,8 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  CardTransactionViewModel(
-      this._cardTransactionsUseCase, this._creditYearsUseCase) {
+  CardTransactionViewModel(this._cardTransactionsUseCase,
+      this._creditYearsUseCase, this.cardTransactionArguments) {
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _cardTransactionsUseCase.execute(params: value))
@@ -110,8 +112,6 @@ class CardTransactionViewModel extends BasePageViewModel {
         }
       });
     });
-
-    getTransactions();
   }
 
   onSearchTextChanged(String text, [bool? isUpdated = false]) async {
@@ -220,8 +220,9 @@ class CardTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  void getTransactions() {
-    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams());
+  void getTransactions({required String cardId}) {
+    _getTransactionsRequest
+        .safeAdd(GetCreditCardTransactionsUseCaseParams(cardId: cardId));
   }
 
   @override

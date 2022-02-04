@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+2201031
+version: 1.0.0+2202041
 
 
 environment:
@@ -88,6 +88,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   draggable_widget: ^2.0.0
   syncfusion_flutter_sliders: ^19.4.43
+  url_launcher: ^6.0.18
 #  firebase_messaging: ^11.2.5
 #  firebase_core: ^1.11.0
 #  firebase_crashlytics: ^2.4.5

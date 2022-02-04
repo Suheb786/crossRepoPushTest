@@ -27,9 +27,10 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
 
   @override
   Future<Either<NetworkError, bool>> changeMobile(
-      {required String mobile}) async {
+      {required String mobile, required String mobileCode}) async {
     final result = await safeApiCall(
-      _accountSettingsRemoteDs.changeMobile(mobile: mobile),
+      _accountSettingsRemoteDs.changeMobile(
+          mobile: mobile, mobileCode: mobileCode),
     );
     return result!.fold(
       (l) => Left(l),
@@ -91,9 +92,13 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
 
   @override
   Future<Either<NetworkError, ProfileChangedSuccessResponse>>
-      verifyChangeMobile({required String otp}) async {
+      verifyChangeMobile(
+          {required String otp,
+          required String mobileNo,
+          required String mobileCode}) async {
     final result = await safeApiCall(
-      _accountSettingsRemoteDs.verifyChangeMobile(otp: otp),
+      _accountSettingsRemoteDs.verifyChangeMobile(
+          otp: otp, mobileCode: mobileCode, mobileNo: mobileNo),
     );
     return result!.fold(
       (l) => Left(l),

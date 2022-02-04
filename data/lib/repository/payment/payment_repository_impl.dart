@@ -150,4 +150,17 @@ class PaymentRepositoryImpl extends PaymentRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> payBackCreditCard(
+      {String? secureCode, String? payBackAmount}) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.payBackCreditCard(
+          secureCode: secureCode, payBackAmount: payBackAmount),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

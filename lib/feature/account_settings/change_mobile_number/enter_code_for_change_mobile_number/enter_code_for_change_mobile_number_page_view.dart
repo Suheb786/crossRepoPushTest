@@ -49,7 +49,11 @@ class EnterCodeForChangeMobileNumberPageView
                       model.validateOtp(
                           mobile: ProviderScope.containerOf(context)
                               .read(addNewMobileNumberViewModelProvider)
-                              .mobileNumber);
+                              .mobileNumber,
+                          mobileCode: ProviderScope.containerOf(context)
+                              .read(addNewMobileNumberViewModelProvider)
+                              .countryData
+                              .phoneCode!);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeMobileNumberViewModelProvider)

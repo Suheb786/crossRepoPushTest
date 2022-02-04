@@ -51,4 +51,7 @@ abstract class PaymentRemoteDs {
       String transferType, String detCustomerType, String type);
 
   Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity();
+
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
+      {String? secureCode, String? payBackAmount});
 }

@@ -16,14 +16,17 @@ class AddNewMobileNumberUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required AddNewMobileNumberUseCaseParams params}) {
-    return _accountSettingsRepository.changeMobile(mobile: params.mobileNumber);
+    return _accountSettingsRepository.changeMobile(
+        mobile: params.mobileNumber, mobileCode: params.mobileCode);
   }
 }
 
 class AddNewMobileNumberUseCaseParams extends Params {
   final String mobileNumber;
+  final String mobileCode;
 
-  AddNewMobileNumberUseCaseParams({required this.mobileNumber});
+  AddNewMobileNumberUseCaseParams(
+      {required this.mobileNumber, required this.mobileCode});
 
   @override
   Either<AppError, bool> verify() {

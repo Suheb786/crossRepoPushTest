@@ -56,6 +56,8 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
         print('updated user prk if--->${user.privatePEM}');
         userEntity.isCurrent = true;
         userEntity.mobile = user.mobile;
+        userEntity.firstName = user.firstName;
+        userEntity.lastName = user.lastName;
         userEntity.mobileCode = user.mobileCode ?? userEntity.mobileCode;
         userEntity.privatePEM = user.privatePEM ?? userEntity.privatePEM;
         userEntity.publicPEM = user.publicPEM ?? userEntity.publicPEM;

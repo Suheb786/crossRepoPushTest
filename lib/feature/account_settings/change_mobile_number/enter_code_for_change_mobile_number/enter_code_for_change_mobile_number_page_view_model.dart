@@ -58,9 +58,9 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
     });
   }
 
-  void validateOtp({required String mobile}) {
+  void validateOtp({required String mobile, required String mobileCode}) {
     _verifyOtpRequest.safeAdd(ValidateOtpForNewMobileNumberUseCaseParams(
-        otp: _otpSubject.value, mobileNo: mobile));
+        otp: _otpSubject.value, mobileNo: mobile, mobileCode: '00$mobileCode'));
   }
 
   void validate(String value) {

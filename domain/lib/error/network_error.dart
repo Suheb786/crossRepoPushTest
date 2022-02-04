@@ -41,6 +41,10 @@ class NetworkError extends BaseError {
         return AppError(
             cause: cause, error: error, type: ErrorType.NET_SERVER_MESSAGE);
 
+      case 401:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.UNAUTHORIZED_USER);
+
       case 1500:
         return AppError(
             cause: cause, error: error, type: ErrorType.CALL_HANGUP_ERROR);

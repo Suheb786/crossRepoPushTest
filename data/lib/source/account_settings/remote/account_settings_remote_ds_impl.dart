@@ -10,6 +10,7 @@ import 'package:data/entity/remote/accountsettings/profile_changed_success_respo
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
+import 'package:data/entity/remote/accountsettings/verify_change_mobile_request_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -33,10 +34,10 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
 
   @override
   Future<HttpResponse<ResponseEntity>> changeMobile(
-      {required String mobile}) async {
+      {required String mobile, required String mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeMobile(
-        ChangeMobileRequest(baseData: baseData.toJson(), mobile: mobile));
+    return _apiService.changeMobile(ChangeMobileRequest(
+        baseData: baseData.toJson(), mobile: mobile, mobileCode: mobileCode));
   }
 
   @override
@@ -81,11 +82,15 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
 
   @override
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      {required String otp}) async {
+      {required String otp,
+      required String mobileNo,
+      required String mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyChangeMobile(VerifyChangeEmailRequest(
+    return _apiService.verifyChangeMobile(VerifyChangeMobileRequestEntity(
         baseData: baseData.toJson(),
         otp: otp,
+        mobileCode: mobileCode,
+        mobileNo: mobileNo,
         uniqueId: DateTime.now().microsecondsSinceEpoch.toString()));
   }
 

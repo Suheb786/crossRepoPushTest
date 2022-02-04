@@ -24,8 +24,8 @@ abstract class CardRemoteDs {
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions();
 
-  Future<HttpResponse<CardTransactionResponseEntity>>
-      getCreditCardTransactions();
+  Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
+      {required String cardId});
 
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
       {required String cardId});

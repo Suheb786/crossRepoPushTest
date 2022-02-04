@@ -895,11 +895,11 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      verifyChangeEmailRequest) async {
+      verifyChangeMobileRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(verifyChangeEmailRequest.toJson());
+    _data.addAll(verifyChangeMobileRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ProfileChangedSuccessResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
@@ -1058,11 +1058,11 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      baseRequest) async {
+      getCreditCardTransactionListRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
+    _data.addAll(getCreditCardTransactionListRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CardTransactionResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
@@ -2124,6 +2124,24 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Auth/verifyDeviceChangeOtp',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
+      payBackCreditCardRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(payBackCreditCardRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/CardTracking/PayBackCreditCard',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);

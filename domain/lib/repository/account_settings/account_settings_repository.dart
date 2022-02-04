@@ -21,11 +21,15 @@ abstract class AccountSettingsRepository {
       {required String otp});
 
   ///change mobile
-  Future<Either<NetworkError, bool>> changeMobile({required String mobile});
+  Future<Either<NetworkError, bool>> changeMobile(
+      {required String mobile, required String mobileCode});
 
   ///verify chane mobile
   Future<Either<NetworkError, ProfileChangedSuccessResponse>>
-      verifyChangeMobile({required String otp});
+      verifyChangeMobile(
+          {required String otp,
+          required String mobileNo,
+          required String mobileCode});
 
   ///change password
   Future<Either<NetworkError, ProfileChangedSuccessResponse>> changePassword(
