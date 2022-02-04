@@ -135,7 +135,8 @@ class ApiInterceptor extends InterceptorsWrapper {
       }
     }
 
-    super.onResponse(response, handler);
+      super.onResponse(response, handler);
+    }
   }
 
   Map<String, dynamic> _encryptRequest(Map<String, dynamic> data) {

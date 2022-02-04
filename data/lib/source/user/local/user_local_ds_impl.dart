@@ -169,7 +169,8 @@ class UserLocalDSImpl extends UserLocalDS {
         }
       }
       return Right(BlinkIdCombinedRecognizerResult(Map()));
-    } on Exception {
+    } on Exception catch (e) {
+      print("I AM HERE ${e}");
       return Left(LocalError(
           cause: Exception(
               "Some error occurred while processing. Please try again later"),

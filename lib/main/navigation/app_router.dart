@@ -83,6 +83,7 @@ import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_c
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
+import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -349,6 +350,12 @@ class AppRouter {
             builder: (context) => PaymentToNewRecipientPage(
                 sendValue: settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
+
+      case RoutePaths.VideoKyc:
+        return CupertinoPageRoute(
+            builder: (context) => VideoKycPage(
+                credentials: settings.arguments as VideKycCredentials),
+            settings: RouteSettings(name: RoutePaths.VideoKyc));
 
       case RoutePaths.DebitCardSettings:
         return CustomRoute.createRoute(DebitCardSettingsPage());

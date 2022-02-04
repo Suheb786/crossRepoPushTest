@@ -1,6 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/constants/enum/calendar_enum.dart';
-import 'package:domain/model/account/save_customer_schedule_time_response.dart';
+import 'package:domain/model/account/available_time_slots.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +11,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_five/schedule_call_time_dialog/schedule_call_time_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -40,8 +39,7 @@ class ScheduleVideoCallPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<
-                    Resource<SaveCustomerScheduleTimeResponse>>(
+                child: AppStreamBuilder<Resource<bool>>(
                   stream: model.scheduleVideoCallStream,
                   initialData: Resource.none(),
                   onData: (data) {
@@ -109,6 +107,10 @@ class ScheduleVideoCallPageView
                                                   TimeUtils.getFormattedDOB(
                                                       date);
                                               model.isValid();
+                                              model.fetchAvailableTimeSlots(
+                                                  TimeUtils
+                                                      .getFormattedDateForCheckPassword(
+                                                          date));
                                             }, onCancelled: () {
                                               Navigator.pop(context);
                                             },
@@ -131,39 +133,48 @@ class ScheduleVideoCallPageView
                                         SizedBox(
                                           height: 16,
                                         ),
-                                        AppTextField(
-                                          labelText:
-                                              S.of(context).preferredTime,
-                                          hintText: S.of(context).pleaseSelect,
-                                          controller:
-                                              model.preferredTimeController,
-                                          readOnly: true,
-                                          key: model.preferredTimeKey,
-                                          onPressed: () {
-                                            YearMonthDialog.show(context,
-                                                title: S
-                                                    .of(context)
-                                                    .preferredTimeSmall,
-                                                calendarEnum: CalendarEnum.TIME,
-                                                onSelected: (time) {
-                                              Navigator.pop(context);
-                                              model.preferredTimeController
-                                                  .text = time;
-                                              model.isValid();
-                                            }, onDismissed: () {
-                                              Navigator.pop(context);
-                                            });
-                                          },
-                                          suffixIcon: (value, data) {
-                                            return Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding:
-                                                    EdgeInsets.only(right: 8),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow,
-                                                    color:
-                                                        AppColor.dark_gray_1));
+                                        AppStreamBuilder<
+                                            Resource<List<AvailableTimeSlots>>>(
+                                          stream: model.availableTimeSlots,
+                                          initialData: Resource.none(),
+                                          dataBuilder: (context, slots) {
+                                            return AppTextField(
+                                              labelText:
+                                                  S.of(context).preferredTime,
+                                              hintText:
+                                                  S.of(context).pleaseSelect,
+                                              controller:
+                                                  model.preferredTimeController,
+                                              readOnly: true,
+                                              key: model.preferredTimeKey,
+                                              onPressed: () {
+                                                ScheduleCallTimeDialog.show(
+                                                    context,
+                                                    title: S
+                                                        .of(context)
+                                                        .preferredTimeSmall,
+                                                    data: slots!.data ?? [],
+                                                    onSelected: (time) {
+                                                  Navigator.pop(context);
+                                                  model.preferredTimeController
+                                                      .text = time.slot ?? "";
+                                                  model.isValid();
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                });
+                                              },
+                                              suffixIcon: (value, data) {
+                                                return Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    padding: EdgeInsets.only(
+                                                        right: 8),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.downArrow,
+                                                        color: AppColor
+                                                            .dark_gray_1));
+                                              },
+                                            );
                                           },
                                         ),
                                         SizedBox(

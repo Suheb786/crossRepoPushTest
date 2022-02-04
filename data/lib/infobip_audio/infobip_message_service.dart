@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/user/user_entity.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
@@ -26,11 +27,13 @@ class InfobipMessageService {
     );
     var installation = await InfobipMobilemessaging.fetchInstallation();
     var externalUserId = installation.pushRegistrationId.toString();
-    saveUser(
+    await saveUser(
         userData: UserData(
             firstName: 'GUEST',
             lastName: 'USER',
             externalUserId: externalUserId));
+
+    // sendEventToInfobip();
 
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
       print("Callback. TOKEN_RECEIVED event:" + token);
@@ -112,6 +115,18 @@ class InfobipMessageService {
     return true;
   }
 
+  // Future<bool> sendEventToInfobip() async {
+  //   UserEntity userEntity =
+  //       UserEntity(emailId: "test@test.com", mobileNumber: "123456");
+  //   print("EVENT RECORDING START");
+  //   var event = {
+  //     "definitionId": "UserEvents",
+  //     "properties": {"emailId": "test@test.com", "mobileNumber": "123456"}
+  //   };
+  //   InfobipMobilemessaging.submitEventImmediately(event);
+  //   return true;
+  // }
+
   Future<bool> saveUser({required UserData userData}) async {
     print("USER EXTERNAL ID " + userData.externalUserId!);
     UserData user = UserData(
@@ -120,7 +135,7 @@ class InfobipMessageService {
       emails: userData.emails,
       phones: userData.phones,
       gender: Gender.Male,
-      customAttributes: userData.customAttributes,
+      // customAttributes: userData.customAttributes ?? {},
       externalUserId: userData.externalUserId,
     );
     var userIdentity = UserIdentity(

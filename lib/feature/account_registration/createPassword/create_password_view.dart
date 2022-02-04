@@ -3,6 +3,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
@@ -38,6 +39,11 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                 initialData: Resource.none(),
                 onData: (registerData) {
                   if (registerData.status == Status.SUCCESS) {
+                    var event = {
+                      "definitionId": "ChangePasswordEvent",
+                      "properties": {"completed": true}
+                    };
+                    InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context)
                         .read(appViewModel)
                         .getToken();

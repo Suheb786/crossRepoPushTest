@@ -2,21 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
-import 'package:domain/model/account/save_customer_schedule_time_response.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ScheduleVideoCallUseCase extends BaseUseCase<NetworkError,
-    ScheduleVideoCallUseCaseParams,
-    SaveCustomerScheduleTimeResponse> {
+class ScheduleVideoCallUseCase
+    extends BaseUseCase<NetworkError, ScheduleVideoCallUseCaseParams, bool> {
   final AccountRepository _accountRepository;
 
   ScheduleVideoCallUseCase(this._accountRepository);
 
   @override
-  Future<Either<NetworkError, SaveCustomerScheduleTimeResponse>> execute(
+  Future<Either<NetworkError, bool>> execute(
       {required ScheduleVideoCallUseCaseParams params}) {
     return _accountRepository.saveCustomerVideoCallScheduleTime(
         scheduleDate: params.preferredDate!,

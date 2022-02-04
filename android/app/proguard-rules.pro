@@ -6,4 +6,5 @@
 -keep class io.flutter.view.**  { *; }
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
-
+-keep class com.microblink.** { *; }
+-keep class androidx.appcompat.** { *; }

@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
   VideoCallInfoView(ProviderBase model) : super(model);
@@ -26,8 +27,22 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: GestureDetector(
-                onHorizontalDragUpdate: (details) {
+                onHorizontalDragUpdate: (details) async {
                   if (details.primaryDelta!.isNegative) {
+                    Map<Permission, PermissionStatus> statuses = await [
+                      Permission.camera,
+                      Permission.microphone,
+                      Permission.bluetooth
+                    ].request();
+
+                    if (statuses[Permission.camera] ==
+                            PermissionStatus.permanentlyDenied ||
+                        statuses[Permission.microphone] ==
+                            PermissionStatus.permanentlyDenied ||
+                        statuses[Permission.bluetooth] ==
+                            PermissionStatus.permanentlyDenied) {
+                      openAppSettings();
+                    }
                     Future.delayed(Duration(milliseconds: 500), () {
                       ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)

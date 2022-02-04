@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
@@ -44,6 +45,14 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 onData: (data) {
                   print("data.status ${data.status}");
                   if (data.status == Status.SUCCESS) {
+                    var event = {
+                      "definitionId": "UserEvents",
+                      "properties": {
+                        "emailId": model.emailController.text,
+                        "mobileNumber": model.mobileNumberController.text
+                      }
+                    };
+                    InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController

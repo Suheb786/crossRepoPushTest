@@ -73,6 +73,7 @@ class OtpForChangeDeviceConfirmationPageView
                 offset: 0.5,
                 child: Text(
                   '${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.isNotEmpty ? ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.replaceAll('00', '+') : '-'} ${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber}',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
                       fontSize: 20,

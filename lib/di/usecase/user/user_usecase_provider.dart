@@ -2,7 +2,6 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
-import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/change_my_number_usecase.dart';
@@ -33,7 +32,6 @@ import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/user_data_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
-import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -87,17 +85,6 @@ final homeAddressDialogUseCaseProvider =
 final productSelectorUseCaseProvider =
     Provider.autoDispose<ProductSelectorUseCase>(
   (ref) => ProductSelectorUseCase(),
-);
-
-///[VideoCallInfoUseCase] provider
-final videoCallInfoUseCaseProvider = Provider.autoDispose<VideoCallInfoUseCase>(
-  (ref) => VideoCallInfoUseCase(),
-);
-
-///[AgentSelectionUseCase] provider
-final agentSelectionUseCaseProvider =
-    Provider.autoDispose<AgentSelectionUseCase>(
-  (ref) => AgentSelectionUseCase(),
 );
 
 ///[StudentJobIncomeUseCase] provider
