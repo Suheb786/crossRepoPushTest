@@ -1431,4 +1431,3 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         ));
   }
 }
-

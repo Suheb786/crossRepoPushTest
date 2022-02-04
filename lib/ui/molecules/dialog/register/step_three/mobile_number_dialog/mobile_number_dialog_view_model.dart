@@ -64,6 +64,7 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
       }
       _getAllowedCountryCodeResponse
           .safeAdd(Resource.success(data: searchResult));
+      scrollController = FixedExtentScrollController(initialItem: 0);
       selectMobileNumber(0);
     } else {
       _getAllowedCountryCodeResponse
