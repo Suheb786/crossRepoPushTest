@@ -194,4 +194,5 @@ class AssetUtils {
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
+  static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 }

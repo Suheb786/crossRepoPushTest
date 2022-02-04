@@ -75,7 +75,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
         .confirmCreditCardDelivery(ConfirmCreditCardDeliveryRequest(
             cardId: cardId,
             // accountId: '1',
-            // cardDigit: cardDigit,
+            cardDigit: cardDigit,
             baseData: baseData.toJson(),
             getToken: true));
   }
