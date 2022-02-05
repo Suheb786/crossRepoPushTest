@@ -76,6 +76,8 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<Resource<GetDashboardDataResponse>> get getDashboardDataStream =>
       _getDashboardDataResponse.stream;
 
+  Size deviceSize = Size(0, 0);
+
   AppHomeViewModel(this._getDashboardDataUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
