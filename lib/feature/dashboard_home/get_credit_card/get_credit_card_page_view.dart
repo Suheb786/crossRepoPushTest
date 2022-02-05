@@ -14,6 +14,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
@@ -25,12 +26,15 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    bool isSmallDevices = model.deviceSize.height <
+            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+        model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return !(cardData.creditCard!.length > 0)
         ? Center(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: AspectRatio(
-                aspectRatio: 0.62,
+                aspectRatio: isSmallDevices ? 0.68 : 0.62,
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
@@ -57,7 +61,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                     child: Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(AssetUtils.zigzagBackground))),
+                        image: AssetImage(AssetUtils.zigzagBackground),
+                        scale: isSmallDevices ? 1.3 : 1,
+                      )),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,11 +78,13 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                 padding: const EdgeInsets.only(
                                     top: 23, right: 23, left: 23),
                                 child: Image.asset(AssetUtils.blink,
-                                    height: 33.64, width: 72),
+                                    height: isSmallDevices ? 26 : 33.64,
+                                    width: isSmallDevices ? 52 : 72),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 78),
+                              padding: EdgeInsets.only(
+                                  top: isSmallDevices ? 50 : 78),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: AppSvg.asset(AssetUtils.cardCircle),
@@ -84,21 +92,24 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             ),
                             Padding(
                                 padding: EdgeInsets.only(
-                                    top: 12, left: 10, right: 10),
+                                    top: 12, left: 23, right: 23),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
                                     S.of(context).blinkCreditCard,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: isSmallDevices ? 10 : 12,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).accentColor),
                                   ),
                                 )),
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: 88, bottom: 29, left: 24, right: 24),
+                                  top: isSmallDevices ? 50 : 88,
+                                  bottom: isSmallDevices ? 19 : 29,
+                                  left: 24,
+                                  right: 24),
                               child: Center(
                                 child: InkWell(
                                   onTap: () {
@@ -121,7 +132,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       child: Text(
                                         S.of(context).getCardNow,
                                         style: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: isSmallDevices ? 12 : 14,
                                             fontWeight: FontWeight.w600,
                                             color:
                                                 Theme.of(context).accentColor),
@@ -157,7 +168,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             : 0.0,
                         bottom: 15),
                     child: AspectRatio(
-                      aspectRatio: 0.62,
+                      aspectRatio: isSmallDevices ? 0.68 : 0.62,
                       child: GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (details.primaryVelocity!.isNegative) {
@@ -194,8 +205,15 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Image.asset(AssetUtils.blink,
-                                            height: 33.64, width: 72),
+                                        Text(
+                                          S.of(context).myCreditCard,
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize:
+                                                  isSmallDevices ? 12 : 14,
+                                              color: Colors.white),
+                                        ),
                                         InkWell(
                                           onTap: () {
                                             model.cardKey.currentState!
@@ -206,7 +224,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 14,
+                                                fontSize:
+                                                    isSmallDevices ? 12 : 14,
                                                 color: Theme.of(context)
                                                     .accentTextTheme
                                                     .bodyText1!
@@ -217,13 +236,34 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 61),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 23, vertical: 5),
+                                    child: Image.asset(AssetUtils.blink,
+                                        height: isSmallDevices ? 26 : 33.64,
+                                        width: isSmallDevices ? 52 : 72),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 23, vertical: 5),
+                                    child: Text(
+                                      cardData.creditCard!.first.name ?? "",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: isSmallDevices ? 12 : 14,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: isSmallDevices ? 30 : 61),
                                     child: Image.asset(
                                         AssetUtils.line_black_white),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 24, top: 53, right: 11),
+                                        left: 24,
+                                        top: isSmallDevices ? 30 : 53,
+                                        right: 11),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -243,7 +283,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                           .accentColor,
                                                       fontWeight:
                                                           FontWeight.w700,
-                                                      fontSize: 20),
+                                                      fontSize: isSmallDevices
+                                                          ? 14
+                                                          : 20),
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.only(
@@ -253,7 +295,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     style: TextStyle(
                                                         color:
                                                             AppColor.lightRed,
-                                                        fontSize: 14,
+                                                        fontSize: isSmallDevices
+                                                            ? 12
+                                                            : 14,
                                                         fontWeight:
                                                             FontWeight.w700),
                                                   ),
@@ -273,7 +317,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                             .veryLightRed,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        fontSize: 10),
+                                                        fontSize: isSmallDevices
+                                                            ? 8
+                                                            : 10),
                                                   ),
                                                   Text(
                                                     StringUtils.getMinDueDate(),
@@ -282,7 +328,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                             .accentColor,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        fontSize: 10),
+                                                        fontSize: isSmallDevices
+                                                            ? 8
+                                                            : 10),
                                                   ),
                                                 ],
                                               ),
@@ -332,7 +380,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 style: TextStyle(
                                                   color: Theme.of(context)
                                                       .accentColor,
-                                                  fontSize: 14,
+                                                  fontSize:
+                                                      isSmallDevices ? 12 : 14,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -362,11 +411,13 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                       .availableBalance
                                                       .toString(),
                                                   style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 20),
+                                                    color: Theme.of(context)
+                                                        .accentColor,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: isSmallDevices
+                                                        ? 14
+                                                        : 20,
+                                                  ),
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.only(
@@ -376,7 +427,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     style: TextStyle(
                                                         color:
                                                             AppColor.lightRed,
-                                                        fontSize: 14,
+                                                        fontSize: isSmallDevices
+                                                            ? 12
+                                                            : 14,
                                                         fontWeight:
                                                             FontWeight.w700),
                                                   ),
@@ -391,7 +444,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     color:
                                                         AppColor.veryLightRed,
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: 10),
+                                                    fontSize: isSmallDevices
+                                                        ? 8
+                                                        : 10),
                                               ),
                                             ),
                                           ],
@@ -407,8 +462,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             },
                                             child: AppSvg.asset(
                                                 AssetUtils.settingsRed,
-                                                color: Theme.of(context)
-                                                    .accentColor))
+                                                color: AppColor
+                                                    .light_acccent_blue))
                                       ],
                                     ),
                                   )
@@ -436,7 +491,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 12),
+                                fontSize: isSmallDevices ? 10 : 12),
                           ),
                         ),
                       ),
@@ -453,7 +508,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             S.of(context).swipeUpToViewTransaction,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 12,
+                                fontSize: isSmallDevices ? 10 : 12,
                                 color: AppColor.dark_gray_1),
                           ),
                         )
@@ -467,7 +522,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
               child: Padding(
                 padding: EdgeInsets.only(bottom: 15.0),
                 child: AspectRatio(
-                  aspectRatio: 0.62,
+                  aspectRatio: isSmallDevices ? 0.68 : 0.62,
                   child: GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
@@ -511,7 +566,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       cardData.creditCard!.first.name ?? '',
                                       style: TextStyle(
                                           color: Theme.of(context).accentColor,
-                                          fontSize: 12,
+                                          fontSize: isSmallDevices ? 10 : 12,
                                           fontWeight: FontWeight.w600),
                                     ),
                                     InkWell(
@@ -526,7 +581,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 .accentTextTheme
                                                 .bodyText1!
                                                 .color,
-                                            fontSize: 14,
+                                            fontSize: isSmallDevices ? 12 : 14,
                                             fontWeight: FontWeight.w600),
                                       ),
                                     )
@@ -547,7 +602,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           color: Theme.of(context).accentColor,
-                                          fontSize: 14,
+                                          fontSize: isSmallDevices ? 12 : 14,
                                         ),
                                       ),
                                       SizedBox(
@@ -564,7 +619,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                       msg:
                                                           'Card Number Copied'));
                                         },
-                                        child: AppSvg.asset(AssetUtils.copy),
+                                        child: AppSvg.asset(
+                                          AssetUtils.copy,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -578,7 +635,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         color: Theme.of(context)
                                             .accentColor
                                             .withOpacity(0.6),
-                                        fontSize: 10),
+                                        fontSize: isSmallDevices ? 8 : 10),
                                   ),
                                 ),
                                 Visibility(
@@ -633,7 +690,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 '-',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 12,
+                                              fontSize:
+                                                  isSmallDevices ? 10 : 12,
                                               color:
                                                   Theme.of(context).accentColor,
                                             ),
@@ -643,7 +701,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             child: Text(
                                               S.of(context).expiryDate,
                                               style: TextStyle(
-                                                  fontSize: 10,
+                                                  fontSize:
+                                                      isSmallDevices ? 8 : 10,
                                                   color: Theme.of(context)
                                                       .accentColor
                                                       .withOpacity(0.6),
@@ -668,7 +727,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 fontWeight: FontWeight.w700,
                                                 color: Theme.of(context)
                                                     .accentColor,
-                                                fontSize: 12,
+                                                fontSize:
+                                                    isSmallDevices ? 10 : 12,
                                               ),
                                             ),
                                             Padding(
@@ -676,7 +736,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               child: Text(
                                                 S.of(context).cvv,
                                                 style: TextStyle(
-                                                    fontSize: 10,
+                                                    fontSize:
+                                                        isSmallDevices ? 8 : 10,
                                                     color: Theme.of(context)
                                                         .accentColor
                                                         .withOpacity(0.6),
@@ -709,7 +770,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               '-',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 14,
+                                            fontSize: isSmallDevices ? 12 : 14,
                                             color:
                                                 Theme.of(context).accentColor,
                                           ),
@@ -721,7 +782,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           'JOD',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 10,
+                                            fontSize: isSmallDevices ? 8 : 10,
                                             color: Theme.of(context)
                                                 .accentColor
                                                 .withOpacity(0.6),
@@ -734,7 +795,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       child: Text(
                                         S.of(context).totalUsedAmount,
                                         style: TextStyle(
-                                            fontSize: 10,
+                                            fontSize: isSmallDevices ? 8 : 10,
                                             color: Theme.of(context)
                                                 .accentColor
                                                 .withOpacity(0.6),
@@ -759,7 +820,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               '-',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 14,
+                                            fontSize: isSmallDevices ? 12 : 14,
                                             color:
                                                 Theme.of(context).accentColor,
                                           ),
@@ -771,7 +832,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           'JOD',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 10,
+                                            fontSize: isSmallDevices ? 8 : 10,
                                             color: Theme.of(context)
                                                 .accentColor
                                                 .withOpacity(0.6),
@@ -780,8 +841,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       ],
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 4, bottom: 112),
+                                      padding: EdgeInsets.only(top: 4),
                                       child: Text(
                                         S.of(context).yourCardLimit,
                                         style: TextStyle(
