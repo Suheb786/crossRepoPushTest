@@ -324,7 +324,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              top: isSmallDevices ? 10 : 24),
+                                              top: isSmallDevices ? 10 : 40),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
