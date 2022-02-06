@@ -108,8 +108,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                               padding: EdgeInsets.only(
                                   top: isSmallDevices ? 50 : 88,
                                   bottom: isSmallDevices ? 19 : 29,
-                                  left: 24,
-                                  right: 24),
+                                  left: isSmallDevices ? 34 : 24,
+                                  right: isSmallDevices ? 34 : 24),
                               child: Center(
                                 child: InkWell(
                                   onTap: () {
@@ -200,7 +200,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        top: 23, right: 23, left: 23),
+                                        top: 23,
+                                        right: 23,
+                                        left: 23,
+                                        bottom: 5),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -374,7 +377,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             ),
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  vertical: 8, horizontal: 25),
+                                                  vertical: 8,
+                                                  horizontal:
+                                                      isSmallDevices ? 15 : 25),
                                               child: Text(
                                                 S.of(context).payBack,
                                                 style: TextStyle(
@@ -393,7 +398,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        top: 19, left: 24, right: 23),
+                                        top: 19,
+                                        left: 24,
+                                        right: 23,
+                                        bottom: 10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

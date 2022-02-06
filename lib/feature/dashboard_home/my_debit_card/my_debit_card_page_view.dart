@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
@@ -25,12 +26,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    bool isSmallDevices = model.deviceSize.height <
+            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+        model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return !(cardData.debitCard!.length > 0)
         ? Center(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: AspectRatio(
-                aspectRatio: 0.62,
+                aspectRatio: isSmallDevices ? 0.68 : 0.62,
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
@@ -68,10 +72,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               padding: const EdgeInsets.only(
                                   top: 23, right: 23, left: 23),
                               child: Image.asset(AssetUtils.blink,
-                                  height: 33.64, width: 72),
+                                  height: isSmallDevices ? 26 : 33.64,
+                                  width: isSmallDevices ? 52 : 72),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 78),
+                              padding: EdgeInsets.only(
+                                  top: isSmallDevices ? 50 : 78),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: AppSvg.asset(AssetUtils.cardCircle),
@@ -86,14 +92,17 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     S.of(context).toEnjoyCardLessPaymentDebit,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: isSmallDevices ? 10 : 12,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).accentColor),
                                   ),
                                 )),
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: 88, bottom: 29, left: 24, right: 24),
+                                  top: isSmallDevices ? 50 : 88,
+                                  bottom: 29,
+                                  left: isSmallDevices ? 34 : 24,
+                                  right: isSmallDevices ? 34 : 24),
                               child: Center(
                                 child: InkWell(
                                   onTap: () {
@@ -114,7 +123,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       child: Text(
                                         S.of(context).requestNewDebitcard,
                                         style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: isSmallDevices ? 10 : 12,
                                             fontWeight: FontWeight.w600,
                                             color:
                                                 Theme.of(context).accentColor),
@@ -155,7 +164,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               : 0.0,
                           bottom: 15),
                       child: AspectRatio(
-                        aspectRatio: 0.62,
+                        aspectRatio: isSmallDevices ? 0.68 : 0.62,
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (details.primaryVelocity!.isNegative) {
@@ -196,7 +205,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 return SingleChildScrollView(
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: 27.0, top: 30, bottom: 29),
+                                        left: 27.0,
+                                        top: 30,
+                                        bottom: isSmallDevices ? 10 : 29),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
@@ -214,7 +225,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               style: TextStyle(
                                                   color: Theme.of(context)
                                                       .primaryColorDark,
-                                                  fontSize: 12,
+                                                  fontSize:
+                                                      isSmallDevices ? 10 : 12,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             cardData.debitCard!.first
@@ -232,7 +244,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                               .bodyText1!
                                                               .color!
                                                               .withOpacity(0.5),
-                                                          fontSize: 14,
+                                                          fontSize:
+                                                              isSmallDevices
+                                                                  ? 12
+                                                                  : 14,
                                                           fontWeight:
                                                               FontWeight.w600),
                                                     ),
@@ -254,7 +269,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                                 .accentTextTheme
                                                                 .bodyText1!
                                                                 .color!,
-                                                            fontSize: 14,
+                                                            fontSize:
+                                                                isSmallDevices
+                                                                    ? 12
+                                                                    : 14,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
@@ -285,7 +303,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                           .accountTitle ??
                                                       '',
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: isSmallDevices
+                                                        ? 10
+                                                        : 12,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
@@ -294,7 +314,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           ],
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 70),
+                                          padding: EdgeInsets.only(
+                                              top: isSmallDevices ? 10 : 70),
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: AppSvg.asset(
@@ -302,7 +323,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 24),
+                                          padding: EdgeInsets.only(
+                                              top: isSmallDevices ? 10 : 24),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -316,7 +338,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                 },
                                                 child: Container(
                                                   height: 40,
-                                                  width: 104,
+                                                  width:
+                                                      isSmallDevices ? 95 : 104,
                                                   decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -331,7 +354,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w600,
-                                                          fontSize: 14,
+                                                          fontSize:
+                                                              isSmallDevices
+                                                                  ? 12
+                                                                  : 14,
                                                           color:
                                                               Theme.of(context)
                                                                   .accentColor),
@@ -391,7 +417,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                         top: 0,
                         child: Container(
                           height: 24,
-                          width: 125,
+                          width: isSmallDevices ? 100 : 125,
                           decoration: BoxDecoration(
                               color: AppColor.darkGrey,
                               borderRadius: BorderRadius.circular(100)),
@@ -401,7 +427,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               style: TextStyle(
                                   color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 12),
+                                  fontSize: isSmallDevices ? 10 : 12),
                             ),
                           ),
                         ),
@@ -413,7 +439,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
               back: Padding(
                 padding: EdgeInsets.only(bottom: 15),
                 child: AspectRatio(
-                  aspectRatio: 0.62,
+                  aspectRatio: isSmallDevices ? 0.68 : 0.62,
                   child: GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
@@ -480,7 +506,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           style: TextStyle(
                                               color: Theme.of(context)
                                                   .primaryColorDark,
-                                              fontSize: 12,
+                                              fontSize:
+                                                  isSmallDevices ? 10 : 12,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
@@ -499,14 +526,16 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                   .accentTextTheme
                                                   .bodyText1!
                                                   .color,
-                                              fontSize: 14,
+                                              fontSize:
+                                                  isSmallDevices ? 12 : 14,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
                                     ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 63),
+                                    padding: EdgeInsets.only(
+                                        top: isSmallDevices ? 50 : 63),
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -523,7 +552,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 14,
+                                            fontSize: isSmallDevices ? 12 : 14,
                                           ),
                                         ),
                                         Padding(
@@ -553,7 +582,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       S.of(context).cardNumber,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 10,
+                                          fontSize: isSmallDevices ? 8 : 10,
                                           color: AppColor.green),
                                     ),
                                   ),
@@ -573,7 +602,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                   '',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 12,
+                                                fontSize:
+                                                    isSmallDevices ? 10 : 12,
                                               ),
                                             ),
                                             Padding(
@@ -581,7 +611,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               child: Text(
                                                 S.of(context).expiryDate,
                                                 style: TextStyle(
-                                                    fontSize: 10,
+                                                    fontSize:
+                                                        isSmallDevices ? 8 : 10,
                                                     color: AppColor.green,
                                                     fontWeight:
                                                         FontWeight.w600),
@@ -601,7 +632,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                   '',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 12,
+                                                fontSize:
+                                                    isSmallDevices ? 10 : 12,
                                               ),
                                             ),
                                             Padding(
@@ -609,7 +641,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               child: Text(
                                                 S.of(context).cvv,
                                                 style: TextStyle(
-                                                    fontSize: 10,
+                                                    fontSize:
+                                                        isSmallDevices ? 8 : 10,
                                                     color: AppColor.green,
                                                     fontWeight:
                                                         FontWeight.w600),
@@ -641,7 +674,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         : '',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 14,
+                                      fontSize: isSmallDevices ? 12 : 14,
                                     ),
                                   ),
                                   Padding(
@@ -650,7 +683,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       S.of(context).linkedAccountNumber,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 10,
+                                          fontSize: isSmallDevices ? 8 : 10,
                                           color: AppColor.green),
                                     ),
                                   ),

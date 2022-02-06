@@ -10,6 +10,7 @@ class MyDebitCardViewModel extends BasePageViewModel {
 
   BehaviorSubject<bool> _isFlipCardClickedSubject =
   BehaviorSubject.seeded(false);
+  Size deviceSize = Size(0, 0);
 
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
