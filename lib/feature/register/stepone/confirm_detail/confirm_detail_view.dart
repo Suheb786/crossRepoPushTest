@@ -244,9 +244,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         Future.delayed(
                                             Duration(milliseconds: 200), () {
                                           CountryDialog.show(context,
-                                              title: S
-                                                  .of(context)
-                                                  .residentCountrySmall,
+                                              title: S.of(context).placeOfBirth,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {

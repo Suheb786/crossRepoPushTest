@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8405,6 +8406,16 @@ class S {
     return Intl.message(
       'Account Balance is less than pay balance.',
       name: 'invalidAccountBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Period`
+  String get transactionPeriod {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transactionPeriod',
       desc: '',
       args: [],
     );

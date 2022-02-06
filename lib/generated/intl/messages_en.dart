@@ -1381,6 +1381,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionPeriod":
+            MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactionPurpose":
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
