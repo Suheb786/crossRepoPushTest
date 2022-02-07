@@ -700,12 +700,9 @@ class DocumentUploadLaterPageView
       case CustomerStatusEnum.DOC_UPLOAD:
         break;
       case CustomerStatusEnum.VIDEO_CALL:
-        // Future.delayed(Duration(milliseconds: 500), () {
-        //   ProviderScope.containerOf(context)
-        //       .read(registerStepFiveViewModelProvider)
-        //       .registrationStepFivePageController
-        //       .move(0, animation: false);
-        // });
+        Future.delayed(Duration(microseconds: 100), () {
+          Navigator.pushReplacementNamed(context, RoutePaths.VideoCall);
+        });
         break;
       case CustomerStatusEnum.REMOVE_DEBIT_LOCK:
         model.removeDebitLock();
@@ -731,8 +728,9 @@ class DocumentUploadLaterPageView
         break;
 
       case CustomerStatusEnum.VIDEO_CALL:
-
-        ///Route to video call
+        Future.delayed(Duration(microseconds: 100), () {
+          Navigator.pushReplacementNamed(context, RoutePaths.VideoCall);
+        });
         break;
     }
   }

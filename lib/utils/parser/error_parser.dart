@@ -416,6 +416,8 @@ class ErrorParser {
         return localisedHelper.noDueAmount;
       case ErrorType.INVALID_ACCOUNT_BALANCE:
         return localisedHelper.invalidAccountBalance;
+      case ErrorType.INVALID_ACCOUNT_BALANCE:
+        return localisedHelper.invalidAccountBalance;
 
       default:
         return "";

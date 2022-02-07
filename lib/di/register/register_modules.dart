@@ -42,6 +42,10 @@ import 'package:neo_bank/feature/register/stepone/profile_details/profile_detail
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/upload_document_later/document_upload_later_page/document_upload_later_page_view_model.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page_view_model.dart';
+import 'package:neo_bank/feature/register/video_call/schdeule_video_call_later/schedule_video_call_later_page_view_model.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_agent_selection/video_call_agent_selection_page_view_model.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_information/video_call_information_page_view_model.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
@@ -483,4 +487,39 @@ final laterDocumentUploadViewModelProvider =
       ref.read(customerStatusUseCaseProvider),
       ref.read(getAccountUseCaseProvider),
       ref.read(createAccountUseCaseProvider)),
+);
+
+///video call information view model provider
+final videoCallInformationPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<VideoCallInformationPageViewModel>(
+  (ref) => VideoCallInformationPageViewModel(
+      ref.read(checkExistingCallUseCaseProvider)),
+);
+
+///video call agent selection view model provider
+final videoCallAgentSelectionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<VideoCallAgentSelectionPageViewModel>(
+  (ref) => VideoCallAgentSelectionPageViewModel(
+      ref.read(checkGenderStatusUsecaseProvider),
+      ref.read(requestCallUsecaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
+);
+
+///schedule video call later page view model provider
+final scheduleVideoCallLaterPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ScheduleVideoCallLaterPageViewModel>(
+  (ref) => ScheduleVideoCallLaterPageViewModel(
+      ref.read(scheduleVideoCallUseCaseProvider),
+      ref.read(getCallTimeSlotsUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
+);
+
+///video call view model
+final videoCallViewModelProvider =
+    ChangeNotifierProvider.autoDispose<VideoCallPageViewModel>(
+  (ref) => VideoCallPageViewModel(),
 );

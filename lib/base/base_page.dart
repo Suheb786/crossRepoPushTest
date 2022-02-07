@@ -8,6 +8,7 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/utils/extension/base_page_extensions.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
@@ -167,7 +168,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
       if (mounted) {
         if (event.type == ErrorType.UNAUTHORIZED_USER) {
           ///TODO:logout
-
+          print('Unauthorized');
+          showTopError(ErrorParser.getLocalisedStringError(
+            error: event,
+            localisedHelper: S.of(context),
+          ));
+          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+              ModalRoute.withName(RoutePaths.Splash));
         } else {
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,

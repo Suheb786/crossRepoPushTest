@@ -8409,6 +8409,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Session Timeout`
+  String get unauthorizedUser {
+    return Intl.message(
+      'Session Timeout',
+      name: 'unauthorizedUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

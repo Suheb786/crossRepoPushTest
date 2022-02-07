@@ -70,6 +70,7 @@ import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_pa
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -514,6 +515,11 @@ class AppRouter {
             builder: (context) => CreditCardPayBackSuccessPage(
                 settings.arguments as CreditCardPayBackSuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardPayBackSuccess));
+
+      case RoutePaths.VideoCall:
+        return CupertinoPageRoute(
+            builder: (context) => VideoCallPage(),
+            settings: RouteSettings(name: RoutePaths.VideoCall));
 
       default:
         return CupertinoPageRoute(
