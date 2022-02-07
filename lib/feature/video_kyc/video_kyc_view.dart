@@ -1,12 +1,16 @@
+
 import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:domain/constants/enum/video_kyc_status_enum.dart';
 import 'package:domain/model/account/video_kyc_status.dart';
+import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -54,64 +58,63 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
           Positioned(
             left: 0,
             right: 0,
-            bottom: 150,
-            child: InkWell(
-              onTap: () {
-                model.joinAgoraChannel();
-              },
-              child: Container(
-                width: 57,
-                height: 57,
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: AppColor.vivid_red,
-                  shape: BoxShape.circle,
-                ),
-                child: AppSvg.asset(AssetUtils.receiver),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
             bottom: 50,
-            child: AppStreamBuilder<Resource<VideoKycStatus>>(
-              stream: model.callStatusStream,
-              initialData: Resource.none(),
-              onData: (data) {
-                if (data.status == Status.SUCCESS) {
-                  switch (data.data!.status) {
-                    case VideoKycStatusEnum.APPROVED:
-                      Navigator.pop(context, true);
-                      break;
-                    case VideoKycStatusEnum.REJECTED:
-
-                      ///TODO:: LOGOUT USER
-                      break;
-                    default:
-                      model.getCallStatus();
-                      break;
+            child: AppStreamBuilder<Resource<LogoutResponse>>(
+                stream: model.logoutStream,
+                initialData: Resource.none(),
+                onData: (response) {
+                  if (response.status == Status.SUCCESS) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutePaths.OnBoarding,
+                        ModalRoute.withName(RoutePaths.Splash));
                   }
-                }
-              },
-              dataBuilder: (context, data) {
-                return InkWell(
-                  onTap: () {
-                    model.leaveAgoraChannel();
-                  },
-                  child: Container(
-                    width: 57,
-                    height: 57,
-                    padding: EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: AppColor.vivid_red,
-                      shape: BoxShape.circle,
-                    ),
-                    child: AppSvg.asset(AssetUtils.receiver),
-                  ),
-                );
-              },
-            ),
+                },
+                dataBuilder: (context, data) {
+                  return AppStreamBuilder<Resource<VideoKycStatus>>(
+                    stream: model.callStatusStream,
+                    initialData: Resource.none(),
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {
+                        switch (data.data!.status) {
+                          case VideoKycStatusEnum.APPROVED:
+                            Navigator.pop(context, true);
+                            break;
+                          case VideoKycStatusEnum.REJECTED:
+                            model.logOutUser();
+                            break;
+                          default:
+                            model.getCallStatus();
+                            break;
+                        }
+                      }
+                    },
+                    dataBuilder: (context, data) {
+                      return InkWell(
+                        onTap: () {
+                          model.isJoined
+                              ? model.leaveAgoraChannel()
+                              : model.joinAgoraChannel();
+                        },
+                        child: Container(
+                          width: 57,
+                          height: 57,
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: model.isJoined
+                                ? AppColor.vivid_red
+                                : AppColor.darkModerateLimeGreen,
+                            shape: BoxShape.circle,
+                          ),
+                          child: model.isJoined
+                              ? AppSvg.asset(AssetUtils.receiver)
+                              : AppSvg.asset(AssetUtils.voiceCall,
+                                  color: AppColor.white),
+                        ),
+                      );
+                    },
+                  );
+                }),
           )
         ],
       ),
