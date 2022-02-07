@@ -208,6 +208,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
+        "callScheduled":
+            MessageLookupByLibrary.simpleMessage("Call scheduled!"),
+        "callScheduledNote": MessageLookupByLibrary.simpleMessage(
+            "Your account will be processed after the video call is completed."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(

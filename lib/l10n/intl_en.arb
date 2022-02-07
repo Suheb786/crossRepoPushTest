@@ -859,6 +859,6 @@
   "accountNumber": "Account No.",
   "noDueAmount": "No due Amount",
   "invalidAccountBalance": "Account Balance is less than pay balance.",
-  "accountNumber": "Account No."
-
+  "callScheduled": "Call scheduled!",
+  "callScheduledNote": "Your account will be processed after the video call is completed."
 }
