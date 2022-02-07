@@ -62,88 +62,86 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(AssetUtils.zigzagBackground),
+                        fit: BoxFit.cover,
                         scale: isSmallDevices ? 1.3 : 1,
                       )),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                print("toggle button");
-                                BackdropToggleButton();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 23, right: 23, left: 23),
-                                child: Image.asset(AssetUtils.blink,
-                                    height: isSmallDevices ? 26 : 33.64,
-                                    width: isSmallDevices ? 52 : 72),
-                              ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              print("toggle button");
+                              BackdropToggleButton();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 23, right: 23, left: 23),
+                              child: Image.asset(AssetUtils.blink,
+                                  height: isSmallDevices ? 26 : 33.64,
+                                  width: isSmallDevices ? 52 : 72),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: isSmallDevices ? 50 : 78),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(top: isSmallDevices ? 50 : 78),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: AppSvg.asset(AssetUtils.cardCircle,
+                                  height: isSmallDevices ? 72 : 96),
+                            ),
+                          ),
+                          Padding(
+                              padding:
+                                  EdgeInsets.only(top: 12, left: 23, right: 23),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: AppSvg.asset(AssetUtils.cardCircle),
-                              ),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    top: 12, left: 23, right: 23),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    S.of(context).blinkCreditCard,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: isSmallDevices ? 10 : 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context).accentColor),
-                                  ),
-                                )),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: isSmallDevices ? 50 : 88,
-                                  bottom: isSmallDevices ? 19 : 29,
-                                  left: isSmallDevices ? 34 : 24,
-                                  right: isSmallDevices ? 34 : 24),
-                              child: Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    // model.updateIsGetCardNowClicked(
-                                    //     !isValid!);
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.BlinkCreditCard);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 17),
-                                    decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1
-                                            ?.color,
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                    child: Center(
-                                      child: Text(
-                                        S.of(context).getCardNow,
-                                        style: TextStyle(
-                                            fontSize: isSmallDevices ? 12 : 14,
-                                            fontWeight: FontWeight.w600,
-                                            color:
-                                                Theme.of(context).accentColor),
-                                      ),
+                                child: Text(
+                                  S.of(context).blinkCreditCard,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: isSmallDevices ? 10 : 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).accentColor),
+                                ),
+                              )),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: isSmallDevices ? 50 : 88,
+                                bottom: 30,
+                                left: isSmallDevices ? 34 : 24,
+                                right: isSmallDevices ? 34 : 24),
+                            child: Center(
+                              child: InkWell(
+                                onTap: () {
+                                  // model.updateIsGetCardNowClicked(
+                                  //     !isValid!);
+                                  Navigator.pushNamed(
+                                      context, RoutePaths.BlinkCreditCard);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 17),
+                                  decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1
+                                          ?.color,
+                                      borderRadius: BorderRadius.circular(100)),
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).getCardNow,
+                                      style: TextStyle(
+                                          fontSize: isSmallDevices ? 12 : 14,
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).accentColor),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -199,8 +197,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 23,
+                                    padding: EdgeInsets.only(
+                                        top: isSmallDevices ? 21 : 30.0,
                                         right: 23,
                                         left: 23,
                                         bottom: 5),
@@ -214,7 +212,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize:
-                                                  isSmallDevices ? 12 : 14,
+                                                  isSmallDevices ? 10 : 12,
                                               color: Colors.white),
                                         ),
                                         InkWell(
@@ -256,12 +254,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           color: Colors.white),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: isSmallDevices ? 30 : 61),
-                                    child: Image.asset(
-                                        AssetUtils.line_black_white),
-                                  ),
+                                  Spacer(),
+                                  Image.asset(AssetUtils.line_black_white),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         left: 24,
@@ -401,7 +395,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         top: 19,
                                         left: 24,
                                         right: 23,
-                                        bottom: 10),
+                                        bottom: 30),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

@@ -248,22 +248,22 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                                 .withOpacity(
                                                                     0.4))),
                                                   ),
-                                                  const SizedBox(width: 10),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      ProviderScope.containerOf(
-                                                              context)
-                                                          .read(
-                                                              appHomeViewModelProvider)
-                                                          .balenceUpdate();
-                                                    },
-                                                    child: Container(
-                                                        height: 14,
-                                                        width: 14,
-                                                        child: Image.asset(
-                                                            AssetUtils
-                                                                .refresh)),
-                                                  ),
+                                                  // const SizedBox(width: 10),
+                                                  // InkWell(
+                                                  //   onTap: () {
+                                                  //     ProviderScope.containerOf(
+                                                  //             context)
+                                                  //         .read(
+                                                  //             appHomeViewModelProvider)
+                                                  //         .balenceUpdate();
+                                                  //   },
+                                                  //   child: Container(
+                                                  //       height: 14,
+                                                  //       width: 14,
+                                                  //       child: Image.asset(
+                                                  //           AssetUtils
+                                                  //               .refresh)),
+                                                  // ),
                                                 ],
                                               ),
                                             ),
@@ -312,7 +312,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 padding:
                                                     EdgeInsets.only(left: 8),
                                                 child: AppSvg.asset(
-                                                    AssetUtils.copy),
+                                                  AssetUtils.copy,
+                                                ),
                                               ),
                                             )
                                           ],
@@ -440,7 +441,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(height: 40),
+                                      const SizedBox(height: 30),
                                     ],
                                   ),
                                 ),
