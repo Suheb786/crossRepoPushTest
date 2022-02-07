@@ -8411,21 +8411,21 @@ class S {
     );
   }
 
-  /// `Transaction Period`
-  String get transactionPeriod {
+  /// `Call scheduled!`
+  String get callScheduled {
     return Intl.message(
-      'Transaction Period',
-      name: 'transactionPeriod',
+      'Call scheduled!',
+      name: 'callScheduled',
       desc: '',
       args: [],
     );
   }
 
-  /// `Permanent residence`
-  String get permanentResidence {
+  /// `Your account will be processed after the video call is completed.`
+  String get callScheduledNote {
     return Intl.message(
-      'Permanent residence',
-      name: 'permanentResidence',
+      'Your account will be processed after the video call is completed.',
+      name: 'callScheduledNote',
       desc: '',
       args: [],
     );

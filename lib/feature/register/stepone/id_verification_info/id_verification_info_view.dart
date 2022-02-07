@@ -137,15 +137,15 @@ class IdVerificationInfoView
                                     onData: (scannedData) {
                                       if (scannedData.status ==
                                           Status.SUCCESS) {
-                                        var event = {
-                                          "definitionId": "UserInfoFromId",
-                                          "properties": {
-                                            "name": scannedData.data!.firstName
-                                                .toString(),
-                                          }
-                                        };
-                                        InfobipMobilemessaging
-                                            .submitEventImmediately(event);
+                                        // var event = {
+                                        //   "definitionId": "UserInfoFromId",
+                                        //   "properties": {
+                                        //     "name": scannedData.data!.firstName
+                                        //         .toString(),
+                                        //   }
+                                        // };
+                                        // InfobipMobilemessaging
+                                        //     .submitEventImmediately(event);
                                         // model.getAhwalResponse(
                                         //     scannedData.data!.idNumber!);
                                         if (scannedData.data!.issuer == 'JOR') {

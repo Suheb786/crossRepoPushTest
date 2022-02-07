@@ -30,6 +30,7 @@ class MyAccountPageState
 
   @override
   Widget buildView(BuildContext context, MyAccountViewModel model) {
+    model.deviceSize = MediaQuery.of(context).size;
     return MyAccountPageView(provideBase(), widget.cardData);
   }
 

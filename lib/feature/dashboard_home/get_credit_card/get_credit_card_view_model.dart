@@ -8,6 +8,7 @@ import 'package:rxdart/rxdart.dart';
 class GetCreditCardViewModel extends BasePageViewModel {
   GetCardUseCase _useCase;
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+  Size deviceSize = Size(0, 0);
 
   BehaviorSubject<bool> _isGetCardNowClickedSubject =
   BehaviorSubject.seeded(false);

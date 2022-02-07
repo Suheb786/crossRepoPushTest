@@ -68,6 +68,7 @@ import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
@@ -356,6 +357,12 @@ class AppRouter {
             builder: (context) => VideoKycPage(
                 credentials: settings.arguments as VideKycCredentials),
             settings: RouteSettings(name: RoutePaths.VideoKyc));
+
+      case RoutePaths.VideoKYCScheduled:
+        return CupertinoPageRoute(
+            builder: (context) => VideoCallScheduledPage(
+                settings.arguments as VideoCallScheduledArguments),
+            settings: RouteSettings(name: RoutePaths.VideoKYCScheduled));
 
       case RoutePaths.DebitCardSettings:
         return CustomRoute.createRoute(DebitCardSettingsPage());
