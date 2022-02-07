@@ -72,7 +72,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                       child: PaymentSwiper(
                                         pages: [
                                           NotificationPage(),
-                                          PaymentActivityPage()
+                                          PaymentActivityPage(),
+                                          Container()
                                         ],
                                         pageController: model.pageController,
                                         onIndexChanged: (index) {

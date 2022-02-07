@@ -127,8 +127,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               AppTextField(
-                                                labelText:
-                                                    S.of(context).country,
+                                                labelText: S
+                                                    .of(context)
+                                                    .residentCountrySmall,
                                                 hintText:
                                                     S.of(context).pleaseSelect,
                                                 readOnly: true,
@@ -366,7 +367,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         AppTextField(
                                                           labelText: S
                                                               .of(context)
-                                                              .country,
+                                                              .permanentResidence,
                                                           hintText: S
                                                               .of(context)
                                                               .pleaseSelect,
@@ -378,7 +379,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 context,
                                                                 title: S
                                                                     .of(context)
-                                                                    .residentCountrySmall,
+                                                                    .permanentResidence,
                                                                 onDismissed:
                                                                     () {
                                                               Navigator.pop(
