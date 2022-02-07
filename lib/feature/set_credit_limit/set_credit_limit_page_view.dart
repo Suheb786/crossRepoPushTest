@@ -30,6 +30,14 @@ class SetCreditLimitPageView
       child: AppStreamBuilder<Resource<GetLoanValuesResponse>>(
           stream: model.getLoanValueResponse,
           initialData: Resource.none(),
+          onData: (data) {
+            if (data.status == Status.ERROR) {
+              if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                Navigator.pushReplacementNamed(
+                    context, RoutePaths.CreditCardApplicationFailure);
+              }
+            }
+          },
           dataBuilder: (context, loanValue) {
             return AppStreamBuilder<Resource<ProcessLoanRequestResponse>>(
                 stream: model.setCreditLimitResponse,
