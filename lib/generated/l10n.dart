@@ -8411,11 +8411,21 @@ class S {
     );
   }
 
-  /// `Session Timeout`
-  String get unauthorizedUser {
+  /// `Transaction Period`
+  String get transactionPeriod {
     return Intl.message(
-      'Session Timeout',
-      name: 'unauthorizedUser',
+      'Transaction Period',
+      name: 'transactionPeriod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent residence`
+  String get permanentResidence {
+    return Intl.message(
+      'Permanent residence',
+      name: 'permanentResidence',
       desc: '',
       args: [],
     );

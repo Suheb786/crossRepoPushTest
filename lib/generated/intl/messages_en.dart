@@ -1410,8 +1410,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
-        "unauthorizedUser":
-            MessageLookupByLibrary.simpleMessage("Session Timeout"),
         "unblockCardPin":
             MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
