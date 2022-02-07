@@ -1,7 +1,9 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/account/available_time_slots.dart';
+import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/usecase/account/get_call_time_slots_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
+import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -14,6 +16,7 @@ import 'package:rxdart/rxdart.dart';
 class ScheduleVideoCallPageViewModel extends BasePageViewModel {
   final ScheduleVideoCallUseCase _scheduleVideoCallUseCase;
   final GetCallTimeSlotsUseCase _getAvailableTimeSlotsUseCase;
+  final CheckCustomerStatusUseCase _checkCustomerStatusUseCase;
 
   ///controllers and keys
   final TextEditingController preferredDateController = TextEditingController();
@@ -63,6 +66,18 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
   Stream<Resource<List<AvailableTimeSlots>>> get availableTimeSlots =>
       _getAvailableTimeSlotsResponse.stream;
 
+  ///User Status subject holder
+  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest =
+      PublishSubject();
+
+  ///User Status response holder
+  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
+      PublishSubject();
+
+  ///User Status stream
+  Stream<Resource<CustomerStatus>> get customerStatusStream =>
+      _checkCustomerStatusResponse.stream;
+
   bool isValid() {
     bool valid = false;
     if (preferredDateController.text.isNotEmpty &&
@@ -73,8 +88,8 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  ScheduleVideoCallPageViewModel(
-      this._scheduleVideoCallUseCase, this._getAvailableTimeSlotsUseCase) {
+  ScheduleVideoCallPageViewModel(this._scheduleVideoCallUseCase,
+      this._getAvailableTimeSlotsUseCase, this._checkCustomerStatusUseCase) {
     _scheduleVideoCallRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -103,6 +118,20 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _checkCustomerStatusRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkCustomerStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _checkCustomerStatusResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void getError(Resource<bool> event) {
@@ -123,6 +152,10 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
       preferredTime: preferredTimeController.text,
       preferredDate: selectedDate,
     ));
+  }
+
+  void getCustomerStatus() {
+    _checkCustomerStatusRequest.safeAdd(CheckCustomerStatusUseCaseParams());
   }
 
   String selectedDate = "";

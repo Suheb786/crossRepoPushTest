@@ -859,5 +859,7 @@
   "accountNumber": "Account No.",
   "noDueAmount": "No due Amount",
   "invalidAccountBalance": "Account Balance is less than pay balance.",
-  "unauthorizedUser": "Session Timeout"
+  "unauthorizedUser": "Session Timeout",
+  "callScheduled": "Call scheduled!",
+  "callScheduledNote": "Your account will be processed after the video call is completed."
 }

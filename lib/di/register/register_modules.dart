@@ -19,6 +19,8 @@ import 'package:neo_bank/feature/register/step_five/review_application/review_ap
 import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
@@ -383,6 +385,7 @@ final scheduleVideoCallPageViewModelProvider =
   (ref) => ScheduleVideoCallPageViewModel(
     ref.read(scheduleVideoCallUseCaseProvider),
     ref.read(getCallTimeSlotsUseCaseProvider),
+    ref.read(customerStatusUseCaseProvider),
   ),
 );
 
@@ -463,6 +466,12 @@ final fatcaOptionsDialogViwModelProvider =
 final accountHoldViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<AccountHoldViewModel, AccountHoldArguments>((ref, args) =>
         AccountHoldViewModel(ref.read(logoutUseCaseProvider), args));
+
+///video call scheduled model provider
+final videoCallScheduledViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<VideoCallScheduledViewModel, VideoCallScheduledArguments>(
+        (ref, args) =>
+            VideoCallScheduledViewModel(ref.read(logoutUseCaseProvider), args));
 
 ///changeMy number dialog view model provider
 final changeMyNumberDialogViewModelProvider =
