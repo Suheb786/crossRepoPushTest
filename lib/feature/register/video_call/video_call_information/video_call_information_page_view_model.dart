@@ -6,7 +6,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
-class VideoCallInfoViewModel extends BasePageViewModel {
+class VideoCallInformationPageViewModel extends BasePageViewModel {
   final CheckExistingCallUseCase _checkExistingCallUseCase;
 
   PublishSubject<CheckExistingCallUseCaseParams> _checkExistingCallRequest =
@@ -17,7 +17,7 @@ class VideoCallInfoViewModel extends BasePageViewModel {
   Stream<Resource<CheckExistingCallStatus>> get checkExistingCall =>
       _checkExistingCallResponse.stream;
 
-  VideoCallInfoViewModel(this._checkExistingCallUseCase) {
+  VideoCallInformationPageViewModel(this._checkExistingCallUseCase) {
     _checkExistingCallRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -29,7 +29,7 @@ class VideoCallInfoViewModel extends BasePageViewModel {
       });
     });
 
-    //checkExistingScheduledCall();
+    checkExistingScheduledCall();
   }
 
   void checkExistingScheduledCall() {

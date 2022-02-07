@@ -69,15 +69,20 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               model.updateShowTimeLineStream(!showTimeLine);
                               return;
                             } else {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.CardTransaction,
-                                  arguments: GetCreditCardTransactionArguments(
-                                      cardId: cardData!
-                                          .data!
-                                          .dashboardDataContent!
-                                          .creditCard!
-                                          .first
-                                          .cardId));
+                              cardData!.data!.dashboardDataContent!.creditCard!
+                                          .length >
+                                      0
+                                  ? Navigator.pushNamed(
+                                      context, RoutePaths.CardTransaction,
+                                      arguments:
+                                          GetCreditCardTransactionArguments(
+                                              cardId: cardData
+                                                  .data!
+                                                  .dashboardDataContent!
+                                                  .creditCard!
+                                                  .first
+                                                  .cardId))
+                                  : () {};
                             }
                           } else if (currentStep == 0) {
                             if (showTimeLine!) {

@@ -1103,6 +1103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),
         "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
+        "preferredDateSmall":
+            MessageLookupByLibrary.simpleMessage("Preferred Date"),
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
@@ -1259,6 +1261,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Send money to your friends and family"),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
+        "sessionTimeout":
+            MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "setupAndPersonalizeYourNewCreditCard":
             MessageLookupByLibrary.simpleMessage(

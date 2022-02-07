@@ -8450,6 +8450,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Preferred Date`
+  String get preferredDateSmall {
+    return Intl.message(
+      'Preferred Date',
+      name: 'preferredDateSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session Timeout.`
+  String get sessionTimeout {
+    return Intl.message(
+      'Session Timeout.',
+      name: 'sessionTimeout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -862,5 +862,7 @@
   "transactionPeriod": "Transaction Period",
   "permanentResidence": "Permanent residence",
   "callScheduled": "Call scheduled!",
-  "callScheduledNote": "Your account will be processed after the video call is completed."
+  "callScheduledNote": "Your account will be processed after the video call is completed.",
+  "preferredDateSmall": "Preferred Date",
+  "sessionTimeout": "Session Timeout."
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_information/video_call_information_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -12,11 +12,12 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
-  VideoCallInfoView(ProviderBase model) : super(model);
+class VideoCallInformationPageView
+    extends BasePageViewWidget<VideoCallInformationPageViewModel> {
+  VideoCallInformationPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, VideoCallInfoViewModel model) {
+  Widget build(BuildContext context, VideoCallInformationPageViewModel model) {
     return AppKeyBoardHide(
       child: Column(
         children: [
@@ -47,8 +48,8 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                     }
                     Future.delayed(Duration(milliseconds: 500), () {
                       ProviderScope.containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
+                          .read(videoCallViewModelProvider)
+                          .videoCallPageController
                           .next();
                     });
                   }
@@ -107,10 +108,9 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                       Future.delayed(
                                           Duration(milliseconds: 500), () {
                                         ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepFiveViewModelProvider)
-                                            .registrationStepFivePageController
-                                            .move(3, animation: false);
+                                            .read(videoCallViewModelProvider)
+                                            .videoCallPageController
+                                            .move(2, animation: false);
                                       });
                                     },
                                     child: Text(S.of(context).scheduleLater,

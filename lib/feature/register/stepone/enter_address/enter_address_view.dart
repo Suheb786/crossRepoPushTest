@@ -129,7 +129,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               AppTextField(
                                                 labelText: S
                                                     .of(context)
-                                                    .residentCountrySmall,
+                                                    .residentCountry,
                                                 hintText:
                                                     S.of(context).pleaseSelect,
                                                 readOnly: true,
@@ -367,7 +367,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         AppTextField(
                                                           labelText: S
                                                               .of(context)
-                                                              .permanentResidence,
+                                                              .permanentResidence
+                                                              .toUpperCase(),
                                                           hintText: S
                                                               .of(context)
                                                               .pleaseSelect,

@@ -15,6 +15,7 @@ import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
+import 'package:data/entity/remote/account/video_call_status_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
@@ -678,7 +679,7 @@ abstract class ApiService {
               saveCustomerScheduleTimeRequestEntity);
 
   @POST("/video/GetCallStatus")
-  Future<HttpResponse<ResponseEntity>> getCallStatus(
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
       @Body() GetCallStatusRequest request);
 
   @POST("/DebitCard/RequestSuplementaryDebitCard")

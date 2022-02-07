@@ -18,7 +18,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AgentSelectionViewModel extends BasePageViewModel {
+class VideoCallAgentSelectionPageViewModel extends BasePageViewModel {
   final CheckGenderStatusUseCase _checkGenderStatusUseCase;
   final CheckCustomerStatusUseCase _checkCustomerStatusUseCase;
   final GetAccountUseCase _getAccountUseCase;
@@ -81,7 +81,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
   Stream<Resource<CreateAccountResponse>> get createAccountStream =>
       _createAccountResponse.stream;
 
-  AgentSelectionViewModel(
+  VideoCallAgentSelectionPageViewModel(
       this._checkGenderStatusUseCase,
       this._requestCallUseCase,
       this._checkCustomerStatusUseCase,
