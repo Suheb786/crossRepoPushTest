@@ -8411,6 +8411,26 @@ class S {
     );
   }
 
+  /// `Transaction Period`
+  String get transactionPeriod {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transactionPeriod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent residence`
+  String get permanentResidence {
+    return Intl.message(
+      'Permanent residence',
+      name: 'permanentResidence',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Call scheduled!`
   String get callScheduled {
     return Intl.message(
