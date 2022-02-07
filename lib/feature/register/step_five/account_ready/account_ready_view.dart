@@ -38,15 +38,15 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
             stream: model.getAccountDetailsStream,
             initialData: Resource.none(),
             onData: (data) {
-              var event = {
-                "definitionId": "UserAccountDetails",
-                "properties": {
-                  "accountNumber": data
-                      .data!.getAccountDetailsContent!.data!.accountNumber
-                      .toString(),
-                }
-              };
-              InfobipMobilemessaging.submitEventImmediately(event);
+              // var event = {
+              //   "definitionId": "UserAccountDetails",
+              //   "properties": {
+              //     "accountNumber": data
+              //         .data!.getAccountDetailsContent!.data!.accountNumber
+              //         .toString(),
+              //   }
+              // };
+              // InfobipMobilemessaging.submitEventImmediately(event);
             },
             dataBuilder: (context, response) {
               switch (response!.status) {

@@ -39,11 +39,11 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                 initialData: Resource.none(),
                 onData: (registerData) {
                   if (registerData.status == Status.SUCCESS) {
-                    var event = {
-                      "definitionId": "ChangePasswordEvent",
-                      "properties": {"completed": true}
-                    };
-                    InfobipMobilemessaging.submitEventImmediately(event);
+                    // var event = {
+                    //   "definitionId": "ChangePasswordEvent",
+                    //   "properties": {"completed": true}
+                    // };
+                    // InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context)
                         .read(appViewModel)
                         .getToken();

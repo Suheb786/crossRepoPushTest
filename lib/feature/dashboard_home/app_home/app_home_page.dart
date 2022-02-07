@@ -75,6 +75,8 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
 
   @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
+    model.deviceSize = MediaQuery.of(context).size;
+
     return AppHomePageView(provideBase());
   }
 

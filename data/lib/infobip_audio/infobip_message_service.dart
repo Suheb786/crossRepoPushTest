@@ -133,15 +133,15 @@ class InfobipMessageService {
       firstName: userData.firstName,
       lastName: userData.lastName,
       emails: userData.emails,
-      phones: userData.phones,
+      // phones: userData.phones,
       gender: Gender.Male,
-      // customAttributes: userData.customAttributes ?? {},
+      customAttributes: userData.customAttributes ?? {},
       externalUserId: userData.externalUserId,
     );
     var userIdentity = UserIdentity(
       externalUserId: userData.externalUserId,
       emails: userData.emails,
-      phones: userData.phones,
+      // phones: userData.phones,
     );
     InfobipMobilemessaging.saveUser(user);
     InfobipMobilemessaging.personalize(PersonalizeContext(

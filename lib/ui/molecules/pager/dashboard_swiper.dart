@@ -21,9 +21,9 @@ class DashboardSwiper extends StatelessWidget {
       customLayoutOption: CustomLayoutOption(
               startIndex: -1, stateCount: currentStep == 2 ? 2 : 3)
           .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
-        Offset(-(MediaQuery.of(context).size.width - 60), -5.0),
+        Offset(-(MediaQuery.of(context).size.width - 50), -5.0),
         Offset(0.0, 0.0),
-        Offset(MediaQuery.of(context).size.width - 60, -5.0)
+        Offset(MediaQuery.of(context).size.width - 50, -5.0)
       ]),
       loop: false,
       controller: pageController,
