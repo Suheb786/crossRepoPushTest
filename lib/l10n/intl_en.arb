@@ -859,5 +859,6 @@
   "accountNumber": "Account No.",
   "noDueAmount": "No due Amount",
   "invalidAccountBalance": "Account Balance is less than pay balance.",
-  "transactionPeriod": "Transaction Period"
+  "transactionPeriod": "Transaction Period",
+  "permanentResidence": "Permanent residence"
 }

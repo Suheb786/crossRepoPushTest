@@ -8420,6 +8420,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Permanent residence`
+  String get permanentResidence {
+    return Intl.message(
+      'Permanent residence',
+      name: 'permanentResidence',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

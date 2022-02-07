@@ -17,8 +17,7 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   final TextEditingController countrySearchController = TextEditingController();
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   CountryData? selectedCountry = CountryData();
 
@@ -66,7 +65,17 @@ class CountryDialogViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           _searchCountryResponse.safeAdd(
               Resource.success(data: event.data!.content!.countryData));
-          selectCountry(0);
+          int? index;
+          event.data!.content!.countryData!.forEach((element) {
+            print("here");
+            if (element.countryName!.toUpperCase() == "JORDAN") {
+              print("got it");
+              index = event.data!.content!.countryData!.indexOf(element);
+            }
+          });
+          scrollController =
+              FixedExtentScrollController(initialItem: index ?? 0);
+          selectCountry(index ?? 0);
           isDataAvailable = true;
         }
       });
@@ -86,7 +95,8 @@ class CountryDialogViewModel extends BasePageViewModel {
         element.isSelected = false;
       });
       countryList.elementAt(index).isSelected = true;
-      selectedCountry = countryList.firstWhere((element) => element.isSelected);
+      // selectedCountry = countryList.firstWhere((element) => element.isSelected);
+      selectedCountry = countryList.elementAt(index);
       _searchCountryResponse.safeAdd(Resource.success(data: countryList));
     }
   }
