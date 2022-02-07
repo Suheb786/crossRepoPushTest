@@ -23,6 +23,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
@@ -39,7 +40,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   Widget build(BuildContext context, model) {
     listenPopUps(model, context);
     return Padding(
-      padding: EdgeInsets.only(top: 85),
+      padding: EdgeInsets.only(
+          top: model.deviceSize.height <
+                      ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+                  model.deviceSize.height <
+                      ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
+              ? 48
+              : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
         initialData: 1,
