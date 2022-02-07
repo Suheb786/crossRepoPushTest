@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/constants/enum/customer_status_enum.dart';
 import 'package:domain/model/account/available_time_slots.dart';
 import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
@@ -9,8 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
-import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_page.dart';
 import 'package:neo_bank/feature/register/video_call/schdeule_video_call_later/schedule_video_call_later_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -73,6 +71,7 @@ class ScheduleVideoCallLaterPageView
                                     initialData: Resource.none(),
                                     stream: model.customerStatusStream,
                                     onData: (userStatus) {
+                                      /*
                                       if (userStatus.status == Status.SUCCESS) {
                                         switch (userStatus.data!.nextPage) {
                                           case CustomerStatusEnum.HOLD:
@@ -117,27 +116,45 @@ class ScheduleVideoCallLaterPageView
                                             break;
                                         }
                                       }
+
+                                       */
+                                      if (userStatus.status == Status.SUCCESS) {
+                                        Navigator.pushReplacementNamed(context,
+                                            RoutePaths.VideoKYCScheduled,
+                                            arguments:
+                                                VideoCallScheduledArguments(
+                                                    applicationId: userStatus
+                                                            .data!
+                                                            .applicationId ??
+                                                        "",
+                                                    date: model
+                                                        .preferredDateController
+                                                        .text,
+                                                    time: model
+                                                        .preferredTimeController
+                                                        .text));
+                                      }
                                     },
                                     dataBuilder: (context, userStatus) {
                                       return AppStreamBuilder<Resource<bool>>(
                                         stream: model.scheduleVideoCallStream,
                                         initialData: Resource.none(),
                                         onData: (data) {
-                                          // if (data.status == Status.SUCCESS) {
-                                          //   model.checkUserStatus();
-                                          // } else if (data.status ==
-                                          //     Status.ERROR) {
-                                          //   model.showToastWithError(
-                                          //       data.appError!);
-                                          // }
-
                                           if (data.status == Status.SUCCESS) {
-                                            ///TODO: navigate to schedule video call
+                                            model.checkUserStatus();
                                           } else if (data.status ==
                                               Status.ERROR) {
                                             model.showToastWithError(
                                                 data.appError!);
                                           }
+
+                                          // if (data.status == Status.SUCCESS) {
+                                          //   ///TODO: navigate to schedule video call
+                                          // } else if (data.status ==
+                                          //     Status.ERROR) {
+                                          //   model.showToastWithError(
+                                          //       data.appError!);
+                                          // }
                                         },
                                         dataBuilder: (context, response) {
                                           return GestureDetector(

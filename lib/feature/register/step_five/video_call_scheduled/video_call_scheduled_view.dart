@@ -95,11 +95,17 @@ class VideoCallScheduledView
                   AccountDetails(
                       title: S.of(context).refNo,
                       value: model.arguments.applicationId ?? "-"),
+                  SizedBox(
+                    height: 16,
+                  ),
                   AccountDetails(
-                      title: S.of(context).preferredDate,
+                      title: S.of(context).preferredDateSmall,
                       value: model.arguments.date ?? "-"),
+                  SizedBox(
+                    height: 16,
+                  ),
                   AccountDetails(
-                      title: S.of(context).preferredTime,
+                      title: S.of(context).preferredTimeSmall,
                       value: model.arguments.time ?? "-"),
                 ],
               ),

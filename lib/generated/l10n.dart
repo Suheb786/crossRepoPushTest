@@ -8419,6 +8419,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Call scheduled!`
+  String get callScheduled {
+    return Intl.message(
+      'Call scheduled!',
+      name: 'callScheduled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account will be processed after the video call is completed.`
+  String get callScheduledNote {
+    return Intl.message(
+      'Your account will be processed after the video call is completed.',
+      name: 'callScheduledNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Date`
+  String get preferredDateSmall {
+    return Intl.message(
+      'Preferred Date',
+      name: 'preferredDateSmall',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

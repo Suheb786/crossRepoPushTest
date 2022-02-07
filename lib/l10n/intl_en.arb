@@ -861,5 +861,6 @@
   "invalidAccountBalance": "Account Balance is less than pay balance.",
   "unauthorizedUser": "Session Timeout",
   "callScheduled": "Call scheduled!",
-  "callScheduledNote": "Your account will be processed after the video call is completed."
+  "callScheduledNote": "Your account will be processed after the video call is completed.",
+  "preferredDateSmall": "Preferred Date"
 }

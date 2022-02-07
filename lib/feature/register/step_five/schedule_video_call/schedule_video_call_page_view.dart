@@ -48,12 +48,12 @@ class ScheduleVideoCallPageView
                   onData: (customerStatus) {
                     if (customerStatus.status == Status.SUCCESS) {
                       Navigator.pushReplacementNamed(
-                          context, RoutePaths.AccountHold,
+                          context, RoutePaths.VideoKYCScheduled,
                           arguments: VideoCallScheduledArguments(
                               applicationId:
                                   customerStatus.data!.applicationId ?? "",
-                              date: model.preferredDateController.text ?? "",
-                              time: model.preferredTimeController.text ?? ""));
+                              date: model.preferredDateController.text,
+                              time: model.preferredTimeController.text));
                     }
                   },
                   dataBuilder: (context, customerStatus) {
