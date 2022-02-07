@@ -80,14 +80,13 @@ class DocumentUploadLaterPageView
                                         //             registerStepFiveViewModelProvider)
                                         //         .secondNextScreen =
                                         //     userStatus.data!.secondNextPage!;
-                                        // model.isNextSecondPage
-                                        //     ? getSecondNextPage(
-                                        //         userStatus.data!,
-                                        //         model,
-                                        //         context)
-                                        //     :
-                                        getNextPage(
-                                            userStatus.data!, model, context);
+                                        model.isNextSecondPage
+                                            ? getSecondNextPage(
+                                                userStatus.data!,
+                                                model,
+                                                context)
+                                            : getNextPage(userStatus.data!,
+                                                model, context);
                                       }
                                     },
                                     dataBuilder: (context, userStatus) {

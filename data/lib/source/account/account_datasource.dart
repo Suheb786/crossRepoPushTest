@@ -6,6 +6,7 @@ import 'package:data/entity/remote/account/check_videocall_status_response_entit
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
+import 'package:data/entity/remote/account/video_call_status_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -32,7 +33,8 @@ abstract class AccountRemoteDS {
   Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(
       String callDate);
 
-  Future<HttpResponse<ResponseEntity>> getCallStatus(String session);
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
+      String session);
 }
 
 abstract class AccountLocalDS {}

@@ -1,4 +1,3 @@
-
 import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:domain/constants/enum/video_kyc_status_enum.dart';
@@ -76,9 +75,14 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
+                        print('status---->${data.data!.status}');
                         switch (data.data!.status) {
                           case VideoKycStatusEnum.APPROVED:
+                            print('approved');
                             Navigator.pop(context, true);
+                            // Future.delayed(Duration(milliseconds: 500), () {
+                            //
+                            // });
                             break;
                           case VideoKycStatusEnum.REJECTED:
                             model.logOutUser();

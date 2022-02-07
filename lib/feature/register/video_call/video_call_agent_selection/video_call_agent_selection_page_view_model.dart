@@ -183,8 +183,8 @@ class VideoCallAgentSelectionPageViewModel extends BasePageViewModel {
     _requestCallResponse.close();
     _checkGenderStatusResponse.close();
     _checkGenderStatusRequest.close();
-    _checkCustomerStatusRequest.close();
-    _checkCustomerStatusResponse.close();
+    // _checkCustomerStatusRequest.close();
+    // _checkCustomerStatusResponse.close();
     _getAccountRequest.close();
     _getAccountResponse.close();
     _createAccountRequest.close();

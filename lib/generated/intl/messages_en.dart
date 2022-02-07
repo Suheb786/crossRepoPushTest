@@ -1259,6 +1259,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Send money to your friends and family"),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
+        "sessionTimeout":
+            MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "setupAndPersonalizeYourNewCreditCard":
             MessageLookupByLibrary.simpleMessage(

@@ -49,7 +49,7 @@ class VideoKycViewModel extends BasePageViewModel {
               createCall: () => _getCallStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _getCallStatusResponse.safeAdd(event);
       });
     });
@@ -124,7 +124,7 @@ class VideoKycViewModel extends BasePageViewModel {
 
   leaveAgoraChannel() async {
     await _engine.leaveChannel();
-    notifyListeners();
+    //notifyListeners();
     getCallStatus();
   }
 

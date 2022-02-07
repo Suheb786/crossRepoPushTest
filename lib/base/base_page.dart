@@ -167,14 +167,14 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
     model.error.listen((event) {
       if (mounted) {
         if (event.type == ErrorType.UNAUTHORIZED_USER) {
-          ///TODO:logout
-          print('Unauthorized');
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,
             localisedHelper: S.of(context),
           ));
-          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-              ModalRoute.withName(RoutePaths.Splash));
+          Future.delayed(Duration(milliseconds: 500), () {
+            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                ModalRoute.withName(RoutePaths.Splash));
+          });
         } else {
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,

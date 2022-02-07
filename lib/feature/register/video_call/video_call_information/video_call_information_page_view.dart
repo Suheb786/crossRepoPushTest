@@ -33,15 +33,17 @@ class VideoCallInformationPageView
                     Map<Permission, PermissionStatus> statuses = await [
                       Permission.camera,
                       Permission.microphone,
-                      Permission.bluetooth
+                      //Permission.bluetooth
                     ].request();
 
                     if (statuses[Permission.camera] ==
-                            PermissionStatus.permanentlyDenied ||
-                        statuses[Permission.microphone] ==
-                            PermissionStatus.permanentlyDenied ||
-                        statuses[Permission.bluetooth] ==
-                            PermissionStatus.permanentlyDenied) {
+                                PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.microphone] ==
+                                PermissionStatus.permanentlyDenied
+                        // ||
+                        // statuses[Permission.bluetooth] ==
+                        //     PermissionStatus.permanentlyDenied
+                        ) {
                       openAppSettings();
                     }
                     Future.delayed(Duration(milliseconds: 500), () {

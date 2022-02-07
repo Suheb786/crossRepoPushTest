@@ -862,5 +862,6 @@
   "unauthorizedUser": "Session Timeout",
   "callScheduled": "Call scheduled!",
   "callScheduledNote": "Your account will be processed after the video call is completed.",
-  "preferredDateSmall": "Preferred Date"
+  "preferredDateSmall": "Preferred Date",
+  "sessionTimeout": "Session Timeout."
 }
