@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8405,6 +8406,26 @@ class S {
     return Intl.message(
       'Account Balance is less than pay balance.',
       name: 'invalidAccountBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call scheduled!`
+  String get callScheduled {
+    return Intl.message(
+      'Call scheduled!',
+      name: 'callScheduled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account will be processed after the video call is completed.`
+  String get callScheduledNote {
+    return Intl.message(
+      'Your account will be processed after the video call is completed.',
+      name: 'callScheduledNote',
       desc: '',
       args: [],
     );
