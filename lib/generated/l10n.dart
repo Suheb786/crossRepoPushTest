@@ -4821,10 +4821,10 @@ class S {
     );
   }
 
-  /// `Oh no! The email or password entered is incorrect. Please try again.`
+  /// `You have entered an invalid username or password, please try again`
   String get invalidUserNamePassword {
     return Intl.message(
-      'Oh no! The email or password entered is incorrect. Please try again.',
+      'You have entered an invalid username or password, please try again',
       name: 'invalidUserNamePassword',
       desc: '',
       args: [],
@@ -4881,10 +4881,10 @@ class S {
     );
   }
 
-  /// `Email already exist`
+  /// `Email already Exist`
   String get emailAlreadyExist {
     return Intl.message(
-      'Email already exist',
+      'Email already Exist',
       name: 'emailAlreadyExist',
       desc: '',
       args: [],
@@ -4991,10 +4991,10 @@ class S {
     );
   }
 
-  /// `User Not Register`
+  /// `User is not Registered`
   String get userNotRegister {
     return Intl.message(
-      'User Not Register',
+      'User is not Registered',
       name: 'userNotRegister',
       desc: '',
       args: [],
@@ -5021,10 +5021,20 @@ class S {
     );
   }
 
-  /// `Your account is locked, please contact customer service on 7777-7777 to unlock`
+  /// `For Some Reason You lock, Please Contact Administrator`
+  String get youLocked {
+    return Intl.message(
+      'For Some Reason You lock, Please Contact Administrator',
+      name: 'youLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is locked, please contact customer service to unlock`
   String get accountLocked {
     return Intl.message(
-      'Your account is locked, please contact customer service on 7777-7777 to unlock',
+      'Your account is locked, please contact customer service to unlock',
       name: 'accountLocked',
       desc: '',
       args: [],
@@ -6051,10 +6061,10 @@ class S {
     );
   }
 
-  /// `Error While Get Account Details`
+  /// `Error while getting Account Details`
   String get errorGetAccountDetails {
     return Intl.message(
-      'Error While Get Account Details',
+      'Error while getting Account Details',
       name: 'errorGetAccountDetails',
       desc: '',
       args: [],
@@ -7761,10 +7771,10 @@ class S {
     );
   }
 
-  /// `Mobile Number Already Exist. Try Using Different Mobile Number`
+  /// `Mobile No already Exist`
   String get mobileAlreadyExists {
     return Intl.message(
-      'Mobile Number Already Exist. Try Using Different Mobile Number',
+      'Mobile No already Exist',
       name: 'mobileAlreadyExists',
       desc: '',
       args: [],
@@ -8466,6 +8476,1056 @@ class S {
     return Intl.message(
       'Session Timeout.',
       name: 'sessionTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model Send Is Not Correct`
+  String get errorModelNotCorrect {
+    return Intl.message(
+      'Model Send Is Not Correct',
+      name: 'errorModelNotCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unauthorize`
+  String get unauthorize {
+    return Intl.message(
+      'Unauthorize',
+      name: 'unauthorize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid UserName`
+  String get enterValidUserName {
+    return Intl.message(
+      'Please enter a valid UserName',
+      name: 'enterValidUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Account Id.`
+  String get invalidAccountID {
+    return Intl.message(
+      'Invalid Account Id.',
+      name: 'invalidAccountID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Getting Retail CIF`
+  String get errorWhileGettingRetailCIF {
+    return Intl.message(
+      'Error While Getting Retail CIF',
+      name: 'errorWhileGettingRetailCIF',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Product Id`
+  String get invalidProductId {
+    return Intl.message(
+      'Invalid Product Id',
+      name: 'invalidProductId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident Info Not Found`
+  String get residentInfoNotFound {
+    return Intl.message(
+      'Resident Info Not Found',
+      name: 'residentInfoNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Product Short Code.`
+  String get invalidProductShortCode {
+    return Intl.message(
+      'Invalid Product Short Code.',
+      name: 'invalidProductShortCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum no. of Accounts exceeds, Cannot Open New Account.`
+  String get maximumAccountOpeningExceed {
+    return Intl.message(
+      'Maximum no. of Accounts exceeds, Cannot Open New Account.',
+      name: 'maximumAccountOpeningExceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum age of User must be`
+  String get maximumAgeOfUser {
+    return Intl.message(
+      'Maximum age of User must be',
+      name: 'maximumAgeOfUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `for this Product, cannot proceed.`
+  String get forThisProductCannotProceed {
+    return Intl.message(
+      'for this Product, cannot proceed.',
+      name: 'forThisProductCannotProceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Resident Country is restricted for this Product, cannot proceed.`
+  String get residentCountryRestricted {
+    return Intl.message(
+      'Your Resident Country is restricted for this Product, cannot proceed.',
+      name: 'residentCountryRestricted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Nationality is restricted for this Product, cannot proceed.`
+  String get nationalityRestricted {
+    return Intl.message(
+      'Your Nationality is restricted for this Product, cannot proceed.',
+      name: 'nationalityRestricted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id no. marked as Blacklisted, cannot proceed.`
+  String get idNoBlacklisted {
+    return Intl.message(
+      'Id no. marked as Blacklisted, cannot proceed.',
+      name: 'idNoBlacklisted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while checking Id no. for Blacklist, cannot proceed.`
+  String get errorWhileCheckingIDNoBlacklisted {
+    return Intl.message(
+      'Error while checking Id no. for Blacklist, cannot proceed.',
+      name: 'errorWhileCheckingIDNoBlacklisted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're not allowed to open Account in this Product.`
+  String get notAllowedToOpenAccount {
+    return Intl.message(
+      'You\'re not allowed to open Account in this Product.',
+      name: 'notAllowedToOpenAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.`
+  String get idCardScanningError {
+    return Intl.message(
+      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.',
+      name: 'idCardScanningError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Issuer Country`
+  String get invalidIssuerCountry {
+    return Intl.message(
+      'Invalid Issuer Country',
+      name: 'invalidIssuerCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Document`
+  String get invalidDocument {
+    return Intl.message(
+      'Invalid Document',
+      name: 'invalidDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Id Card, cannot proceed.`
+  String get invalidIdCardCannotProceed {
+    return Intl.message(
+      'Invalid Id Card, cannot proceed.',
+      name: 'invalidIdCardCannotProceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business Rules not implemented against Company Id.`
+  String get businessRulesNotImplementedAgainstCompanyId {
+    return Intl.message(
+      'Business Rules not implemented against Company Id.',
+      name: 'businessRulesNotImplementedAgainstCompanyId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your ID is expired, please use a valid ID`
+  String get useValidId {
+    return Intl.message(
+      'Your ID is expired, please use a valid ID',
+      name: 'useValidId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guardian age must be greater than 18 years.`
+  String get guardianAgeMustBe {
+    return Intl.message(
+      'Guardian age must be greater than 18 years.',
+      name: 'guardianAgeMustBe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Status Not Found`
+  String get profileStatusNotFound {
+    return Intl.message(
+      'Profile Status Not Found',
+      name: 'profileStatusNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response # 1 is required.`
+  String get response1Required {
+    return Intl.message(
+      'Response # 1 is required.',
+      name: 'response1Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response # 2 is required.`
+  String get response2Required {
+    return Intl.message(
+      'Response # 2 is required.',
+      name: 'response2Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response # 3 is required.`
+  String get response3Required {
+    return Intl.message(
+      'Response # 3 is required.',
+      name: 'response3Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response # 4 is required.`
+  String get response4Required {
+    return Intl.message(
+      'Response # 4 is required.',
+      name: 'response4Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response # 5 is required.`
+  String get response5Required {
+    return Intl.message(
+      'Response # 5 is required.',
+      name: 'response5Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Residence Country Not Found`
+  String get residenceCountryNotFound {
+    return Intl.message(
+      'Residence Country Not Found',
+      name: 'residenceCountryNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Signature Found`
+  String get noSignatureFound {
+    return Intl.message(
+      'No Signature Found',
+      name: 'noSignatureFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fatca Details Not Found`
+  String get fatcaDetailNotFound {
+    return Intl.message(
+      'Fatca Details Not Found',
+      name: 'fatcaDetailNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Mobile Code`
+  String get invalidMobileCode {
+    return Intl.message(
+      'Invalid Mobile Code',
+      name: 'invalidMobileCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Liveliness Score`
+  String get invalidLivelinessSCore {
+    return Intl.message(
+      'Invalid Liveliness Score',
+      name: 'invalidLivelinessSCore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid FaceMatch Score`
+  String get invalidFaceMatchScore {
+    return Intl.message(
+      'Invalid FaceMatch Score',
+      name: 'invalidFaceMatchScore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finger Print Already Exist for this device`
+  String get fingerPrintAlreadyExistForDevice {
+    return Intl.message(
+      'Finger Print Already Exist for this device',
+      name: 'fingerPrintAlreadyExistForDevice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finger Print Not Found`
+  String get fingerPrintNotFound {
+    return Intl.message(
+      'Finger Print Not Found',
+      name: 'fingerPrintNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Job Details Not Found`
+  String get jobDetailsNotFound {
+    return Intl.message(
+      'Job Details Not Found',
+      name: 'jobDetailsNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Purpose Not Found`
+  String get accountPurposeNotFound {
+    return Intl.message(
+      'Account Purpose Not Found',
+      name: 'accountPurposeNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id Card Data Not Found`
+  String get idCardDataNotFound {
+    return Intl.message(
+      'Id Card Data Not Found',
+      name: 'idCardDataNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Preference Not Found`
+  String get customerPreferenceNotFound {
+    return Intl.message(
+      'Customer Preference Not Found',
+      name: 'customerPreferenceNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Minimum Age`
+  String get invalidMinimumAge {
+    return Intl.message(
+      'Invalid Minimum Age',
+      name: 'invalidMinimumAge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Maximum Age`
+  String get invalidMaximumAge {
+    return Intl.message(
+      'Invalid Maximum Age',
+      name: 'invalidMaximumAge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Account Limit`
+  String get invalidAccountLimit {
+    return Intl.message(
+      'Invalid Account Limit',
+      name: 'invalidAccountLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application is under review`
+  String get applicationUnderReview {
+    return Intl.message(
+      'Application is under review',
+      name: 'applicationUnderReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rimno is taken by other User`
+  String get rimNoTakenByOtherUser {
+    return Intl.message(
+      'Rimno is taken by other User',
+      name: 'rimNoTakenByOtherUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while creating Workspace`
+  String get errorCreatingWorkSpace {
+    return Intl.message(
+      'Error while creating Workspace',
+      name: 'errorCreatingWorkSpace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while creating Documents`
+  String get errorCreatingDocuments {
+    return Intl.message(
+      'Error while creating Documents',
+      name: 'errorCreatingDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating category CIF`
+  String get errorUpdatingCategoryCif {
+    return Intl.message(
+      'Error while updating category CIF',
+      name: 'errorUpdatingCategoryCif',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating category`
+  String get errorUpdatingCategory {
+    return Intl.message(
+      'Error while updating category',
+      name: 'errorUpdatingCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This Bank Is Not registered Bank`
+  String get notRegisteredBank {
+    return Intl.message(
+      'This Bank Is Not registered Bank',
+      name: 'notRegisteredBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Provided Country Is Not Allowed`
+  String get providedCountryNotAllowed {
+    return Intl.message(
+      'Provided Country Is Not Allowed',
+      name: 'providedCountryNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP`
+  String get invalidOtpNetwork {
+    return Intl.message(
+      'Invalid OTP',
+      name: 'invalidOtpNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtpCodeNetwork {
+    return Intl.message(
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtpCodeNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Request cancelled. OTP requested many time`
+  String get otpRequestedManyTime {
+    return Intl.message(
+      'Your Request cancelled. OTP requested many time',
+      name: 'otpRequestedManyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Otp is Expired`
+  String get otpExpiredNetwork {
+    return Intl.message(
+      'Otp is Expired',
+      name: 'otpExpiredNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are Not Allowed to Login Please Try Again`
+  String get notAllowedToLogin {
+    return Intl.message(
+      'You are Not Allowed to Login Please Try Again',
+      name: 'notAllowedToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IP Address Call Internal Server Error`
+  String get ipAddressCallInternalServerError {
+    return Intl.message(
+      'IP Address Call Internal Server Error',
+      name: 'ipAddressCallInternalServerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Application Is In Process`
+  String get applicationInProcess {
+    return Intl.message(
+      'Your Application Is In Process',
+      name: 'applicationInProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Account Found`
+  String get noAccountFound {
+    return Intl.message(
+      'No Account Found',
+      name: 'noAccountFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while updating Account`
+  String get errorUpdatingAccount {
+    return Intl.message(
+      'Error while updating Account',
+      name: 'errorUpdatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Signature`
+  String get invalidSignatureNetwork {
+    return Intl.message(
+      'Invalid Signature',
+      name: 'invalidSignatureNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Atm Data`
+  String get noATMData {
+    return Intl.message(
+      'No Atm Data',
+      name: 'noATMData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Verified`
+  String get notVerified {
+    return Intl.message(
+      'Not Verified',
+      name: 'notVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP Limit Exceed`
+  String get otpLimitExceedNetwork {
+    return Intl.message(
+      'OTP Limit Exceed',
+      name: 'otpLimitExceedNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Otp Request`
+  String get invalidOtpReq {
+    return Intl.message(
+      'Invalid Otp Request',
+      name: 'invalidOtpReq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image not found.`
+  String get imageNotFound {
+    return Intl.message(
+      'Image not found.',
+      name: 'imageNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Documents not found.`
+  String get documentsNotFound {
+    return Intl.message(
+      'Documents not found.',
+      name: 'documentsNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Email`
+  String get invalidEmailNetwork {
+    return Intl.message(
+      'Invalid Email',
+      name: 'invalidEmailNetwork',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Mobile No`
+  String get invalidMobileNo {
+    return Intl.message(
+      'Invalid Mobile No',
+      name: 'invalidMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Current Password`
+  String get invalidCurrentPass {
+    return Intl.message(
+      'Invalid Current Password',
+      name: 'invalidCurrentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Record Found in Request To Pay`
+  String get noRequestFoundRTP {
+    return Intl.message(
+      'No Record Found in Request To Pay',
+      name: 'noRequestFoundRTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iso Nationality Not Found`
+  String get isoNationalityNotFound {
+    return Intl.message(
+      'Iso Nationality Not Found',
+      name: 'isoNationalityNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Issue Card`
+  String get errorWhileIssueCard {
+    return Intl.message(
+      'Error while Issue Card',
+      name: 'errorWhileIssueCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting XCS Customer Card Details`
+  String get errorWhileGettingXCSCustomerDetails {
+    return Intl.message(
+      'Error while getting XCS Customer Card Details',
+      name: 'errorWhileGettingXCSCustomerDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Debit Card Record Found`
+  String get noDebitCardRecordFound {
+    return Intl.message(
+      'No Debit Card Record Found',
+      name: 'noDebitCardRecordFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting EURONET Customer Card Details`
+  String get errorEuronetCustomerCardDetails {
+    return Intl.message(
+      'Error while getting EURONET Customer Card Details',
+      name: 'errorEuronetCustomerCardDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while setting Pin EURONET`
+  String get errorSettingPinEuronet {
+    return Intl.message(
+      'Error while setting Pin EURONET',
+      name: 'errorSettingPinEuronet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Card Id`
+  String get invalidCardId {
+    return Intl.message(
+      'Invalid Card Id',
+      name: 'invalidCardId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Four Digit`
+  String get invalidFourDigit {
+    return Intl.message(
+      'Invalid Four Digit',
+      name: 'invalidFourDigit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ContactLess Error`
+  String get contactlessError {
+    return Intl.message(
+      'ContactLess Error',
+      name: 'contactlessError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Info Error`
+  String get cardInfoError {
+    return Intl.message(
+      'Card Info Error',
+      name: 'cardInfoError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Card Information (NI Handler)`
+  String get errorGettingCardInfo {
+    return Intl.message(
+      'Error while getting Card Information (NI Handler)',
+      name: 'errorGettingCardInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan account list not found`
+  String get loanAccountListNotFound {
+    return Intl.message(
+      'Loan account list not found',
+      name: 'loanAccountListNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in create credit card`
+  String get errorCreateCreditCard {
+    return Intl.message(
+      'Error in create credit card',
+      name: 'errorCreateCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `setting contactless to 0 has error`
+  String get settingContactLessError {
+    return Intl.message(
+      'setting contactless to 0 has error',
+      name: 'settingContactLessError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in Get Card information`
+  String get errorInGetCardInfoNet {
+    return Intl.message(
+      'Error in Get Card information',
+      name: 'errorInGetCardInfoNet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Updating Limits`
+  String get errorUpdatingLimits {
+    return Intl.message(
+      'Error while Updating Limits',
+      name: 'errorUpdatingLimits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Updating Card Status (RuleEngine)`
+  String get errorUpdatingCardStatusRuleEngine {
+    return Intl.message(
+      'Error while Updating Card Status (RuleEngine)',
+      name: 'errorUpdatingCardStatusRuleEngine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Debit Card Found`
+  String get noDebitCardFound {
+    return Intl.message(
+      'No Debit Card Found',
+      name: 'noDebitCardFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Updating Pin Status (RuleEngine)`
+  String get errorWhileUpdatingPinStatusRE {
+    return Intl.message(
+      'Error while Updating Pin Status (RuleEngine)',
+      name: 'errorWhileUpdatingPinStatusRE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while changing Card Status (NI Handler)`
+  String get errorWhileUpdatingCardStatusNI {
+    return Intl.message(
+      'Error while changing Card Status (NI Handler)',
+      name: 'errorWhileUpdatingCardStatusNI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Unblock Pin (NI Handler)`
+  String get errorWhileUnblockPinNI {
+    return Intl.message(
+      'Error while Unblock Pin (NI Handler)',
+      name: 'errorWhileUnblockPinNI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Account Details By Alias (A2A Handler)`
+  String get errorWhileGettingAccountDetailsA2A {
+    return Intl.message(
+      'Error while getting Account Details By Alias (A2A Handler)',
+      name: 'errorWhileGettingAccountDetailsA2A',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose Details Not Found`
+  String get purposeDetailsNotFound {
+    return Intl.message(
+      'Purpose Details Not Found',
+      name: 'purposeDetailsNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Customer By Account (A2A Handler)`
+  String get errorCustomerByAccountA2A {
+    return Intl.message(
+      'Error while getting Customer By Account (A2A Handler)',
+      name: 'errorCustomerByAccountA2A',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Request to Pay (A2A Handler)`
+  String get errorWhileRTPA2A {
+    return Intl.message(
+      'Error while Request to Pay (A2A Handler)',
+      name: 'errorWhileRTPA2A',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Account`
+  String get invalidAccount {
+    return Intl.message(
+      'Invalid Account',
+      name: 'invalidAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Account (Bank Smart)`
+  String get errorWhileGettingAccountBS {
+    return Intl.message(
+      'Error while getting Account (Bank Smart)',
+      name: 'errorWhileGettingAccountBS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Amount`
+  String get invalidAmount {
+    return Intl.message(
+      'Invalid Amount',
+      name: 'invalidAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Multi branch API (Bank Smart)`
+  String get errorMultibranchAPIBS {
+    return Intl.message(
+      'Error while getting Multi branch API (Bank Smart)',
+      name: 'errorMultibranchAPIBS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Types Not Found`
+  String get transferTypeNF {
+    return Intl.message(
+      'Transfer Types Not Found',
+      name: 'transferTypeNF',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transfer Types Not Found (RTP)`
+  String get transferTypeNFRTP {
+    return Intl.message(
+      'Transfer Types Not Found (RTP)',
+      name: 'transferTypeNFRTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Id No`
+  String get invalidIdNo {
+    return Intl.message(
+      'Invalid Id No',
+      name: 'invalidIdNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Expiry Date`
+  String get invalidExpiryDate {
+    return Intl.message(
+      'Invalid Expiry Date',
+      name: 'invalidExpiryDate',
       desc: '',
       args: [],
     );
