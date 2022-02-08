@@ -193,4 +193,6 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, bool>> changeMyNumber(
       String mobileNo, String mobileCode);
+
+  Future<Either<NetworkError, bool>> checkVersionUpdate();
 }
