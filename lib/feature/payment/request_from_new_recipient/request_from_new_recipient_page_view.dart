@@ -99,402 +99,426 @@ class RequestFromNewRecipientPageView
                                   .withOpacity(0.32),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    top: 32, left: 24, right: 24),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              S.of(context).requestedMoneyVia,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(top: 16.0),
-                                              child: Focus(
-                                                child: AppTextField(
-                                                  labelText: S
-                                                      .of(context)
-                                                      .ibanOrMobileRequest,
-                                                  hintText:
-                                                      S.of(context).pleaseEnter,
-                                                  controller: model
-                                                      .ibanOrMobileController,
-                                                ),
-                                                onFocusChange: (hasFocus) {
-                                                  if (!hasFocus) {
-                                                    model.getAccountByAlias(
-                                                        model
-                                                            .ibanOrMobileController
-                                                            .text,
-                                                        "JOD");
-                                                  }
-                                                },
-                                              ),
-                                            ),
-                                            AppStreamBuilder<String>(
-                                                stream: model
-                                                    .showAccountDetailStream,
-                                                initialData: "",
-                                                dataBuilder: (context, value) {
-                                                  if (!(value!.isEmpty)) {
-                                                    return Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 16),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .nameOfBeneficiary,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Text(
-                                                                value,
-                                                                maxLines: 2,
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ));
-                                                  } else {
-                                                    return Container();
-                                                  }
-                                                }),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 24),
-                                              child: Text(
-                                                S.of(context).selectPurpose,
+                                    bottom: MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom -
+                                                50 <=
+                                            0
+                                        ? 0
+                                        : MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            48),
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                      top: 32, left: 24, right: 24),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                S.of(context).requestedMoneyVia,
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w600),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 16),
-                                              child: AppTextField(
-                                                labelText:
-                                                    S.of(context).purpose,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                readOnly: true,
-                                                controller:
-                                                    model.purposeController,
-                                                onPressed: () {
-                                                  if (model.purposeList !=
-                                                          null &&
-                                                      model.purposeList
-                                                          .isNotEmpty) {
-                                                    PurposeDialog.show(context,
-                                                        purposeList:
-                                                            model.purposeList,
-                                                        onSelected: (value) {
-                                                      model
-                                                          .updatePurpose(value);
-                                                      model.updatePurposeDetailList(
-                                                          value
-                                                              .purposeDetails!);
-                                                      Navigator.pop(context);
-                                                    }, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    });
-                                                  }
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
-                                                },
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 16.0),
+                                                child: Focus(
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .ibanOrMobileRequest,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseEnter,
+                                                    controller: model
+                                                        .ibanOrMobileController,
+                                                  ),
+                                                  onFocusChange: (hasFocus) {
+                                                    if (!hasFocus) {
+                                                      model.getAccountByAlias(
+                                                          model
+                                                              .ibanOrMobileController
+                                                              .text,
+                                                          "JOD");
+                                                    }
+                                                  },
+                                                ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 16),
-                                              child: AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .purposeDetails,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                readOnly: true,
-                                                controller: model
-                                                    .purposeDetailController,
-                                                onPressed: () {
-                                                  if (model.purposeDetailList !=
-                                                          null &&
-                                                      model.purposeDetailList
-                                                          .isNotEmpty) {
-                                                    PurposeDetailDialog.show(
-                                                        context,
-                                                        purposeDetailList: model
-                                                            .purposeDetailList,
-                                                        onSelected: (value) {
-                                                      model.updatePurposeDetail(
-                                                          value);
-                                                      Navigator.pop(context);
-                                                    }, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    });
-                                                  }
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
-                                                },
+                                              AppStreamBuilder<String>(
+                                                  stream: model
+                                                      .showAccountDetailStream,
+                                                  initialData: "",
+                                                  dataBuilder:
+                                                      (context, value) {
+                                                    if (!(value!.isEmpty)) {
+                                                      return Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 16),
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Text(
+                                                                  S
+                                                                      .of(context)
+                                                                      .nameOfBeneficiary,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                child: Text(
+                                                                  value,
+                                                                  maxLines: 2,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ));
+                                                    } else {
+                                                      return Container();
+                                                    }
+                                                  }),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 24),
+                                                child: Text(
+                                                  S.of(context).selectPurpose,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 24),
-                                              child: ProfileRowItem(
-                                                title: S
-                                                    .of(context)
-                                                    .addRecipientToContact,
-                                                initialValue: false,
-                                                activeText: S.of(context).yes,
-                                                inactiveText: S.of(context).no,
-                                                providerBase:
-                                                    anyOtherNationalityViewModelProvider,
-                                                onToggle: (isActive) {
-                                                  model.addContact = isActive;
-                                                  return Visibility(
-                                                    visible: isActive,
-                                                    child: Container(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16),
-                                                      child: Row(
-                                                        children: [
-                                                          AppStreamBuilder<
-                                                              String>(
-                                                            stream: model
-                                                                .uploadProfilePhotoStream,
-                                                            initialData: '',
-                                                            onData: (data) {
-                                                              if (data !=
-                                                                      null &&
-                                                                  data.isNotEmpty) {
-                                                                model.selectedProfile =
-                                                                    data;
-                                                                // model.addImage(
-                                                                //     data);
-                                                                _cropImage(
-                                                                    data,
-                                                                    model,
-                                                                    context);
-                                                                // model.showSuccessToast(
-                                                                //     S.of(context).profilePhotoUpdated);
-                                                              }
-                                                            },
-                                                            dataBuilder:
-                                                                (context,
-                                                                    data) {
-                                                              return AppStreamBuilder<
-                                                                  String>(
-                                                                stream: model
-                                                                    .selectedImageValue,
-                                                                initialData: '',
-                                                                dataBuilder:
-                                                                    (context,
-                                                                        image) {
-                                                                  return InkWell(
-                                                                    onTap: () {
-                                                                      ChooseProfileWidget.show(
-                                                                          context,
-                                                                          onCameraTap:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model.uploadProfilePhoto(
-                                                                            DocumentTypeEnum.CAMERA);
-                                                                      }, onGalleryTap:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model.uploadProfilePhoto(
-                                                                            DocumentTypeEnum.PICK_IMAGE);
-                                                                      }, onRemoveTap:
-                                                                              () {
-                                                                        model
-                                                                            .removeImage();
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      }, onCancelled:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      },
-                                                                          title: S
-                                                                              .of(context)
-                                                                              .pleaseSelectYourAction);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          50,
-                                                                      width: 50,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                              shape: BoxShape.circle),
-                                                                      child:
-                                                                          ClipOval(
-                                                                        child: image!.isEmpty
-                                                                            ? AppSvg.asset(
-                                                                                AssetUtils.personCircle,
-                                                                                fit: BoxFit.fill,
-                                                                              )
-                                                                            : Image.file(
-                                                                                File(image),
-                                                                                fit: BoxFit.fill,
-                                                                              ),
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                          ),
-                                                          Expanded(
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      left: 14),
-                                                              child: AppStreamBuilder<
-                                                                      bool>(
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 16),
+                                                child: AppTextField(
+                                                  labelText:
+                                                      S.of(context).purpose,
+                                                  hintText:
+                                                      S.of(context).pleaseEnter,
+                                                  readOnly: true,
+                                                  controller:
+                                                      model.purposeController,
+                                                  onPressed: () {
+                                                    if (model.purposeList !=
+                                                            null &&
+                                                        model.purposeList
+                                                            .isNotEmpty) {
+                                                      PurposeDialog.show(
+                                                          context,
+                                                          purposeList:
+                                                              model.purposeList,
+                                                          onSelected: (value) {
+                                                        model.updatePurpose(
+                                                            value);
+                                                        model.updatePurposeDetailList(
+                                                            value
+                                                                .purposeDetails!);
+                                                        Navigator.pop(context);
+                                                      }, onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      });
+                                                    }
+                                                  },
+                                                  suffixIcon: (value, data) {
+                                                    return Container(
+                                                        height: 16,
+                                                        width: 16,
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 8),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils
+                                                                .downArrow,
+                                                            color: AppColor
+                                                                .dark_gray_1));
+                                                  },
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 16),
+                                                child: AppTextField(
+                                                  labelText: S
+                                                      .of(context)
+                                                      .purposeDetails,
+                                                  hintText:
+                                                      S.of(context).pleaseEnter,
+                                                  readOnly: true,
+                                                  controller: model
+                                                      .purposeDetailController,
+                                                  onPressed: () {
+                                                    if (model.purposeDetailList !=
+                                                            null &&
+                                                        model.purposeDetailList
+                                                            .isNotEmpty) {
+                                                      PurposeDetailDialog.show(
+                                                          context,
+                                                          purposeDetailList: model
+                                                              .purposeDetailList,
+                                                          onSelected: (value) {
+                                                        model
+                                                            .updatePurposeDetail(
+                                                                value);
+                                                        Navigator.pop(context);
+                                                      }, onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      });
+                                                    }
+                                                  },
+                                                  suffixIcon: (value, data) {
+                                                    return Container(
+                                                        height: 16,
+                                                        width: 16,
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 8),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils
+                                                                .downArrow,
+                                                            color: AppColor
+                                                                .dark_gray_1));
+                                                  },
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 24),
+                                                child: ProfileRowItem(
+                                                  title: S
+                                                      .of(context)
+                                                      .addRecipientToContact,
+                                                  initialValue: false,
+                                                  activeText: S.of(context).yes,
+                                                  inactiveText:
+                                                      S.of(context).no,
+                                                  providerBase:
+                                                      anyOtherNationalityViewModelProvider,
+                                                  onToggle: (isActive) {
+                                                    model.addContact = isActive;
+                                                    return Visibility(
+                                                      visible: isActive,
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16),
+                                                        child: Row(
+                                                          children: [
+                                                            AppStreamBuilder<
+                                                                String>(
+                                                              stream: model
+                                                                  .uploadProfilePhotoStream,
+                                                              initialData: '',
+                                                              onData: (data) {
+                                                                if (data !=
+                                                                        null &&
+                                                                    data.isNotEmpty) {
+                                                                  model.selectedProfile =
+                                                                      data;
+                                                                  // model.addImage(
+                                                                  //     data);
+                                                                  _cropImage(
+                                                                      data,
+                                                                      model,
+                                                                      context);
+                                                                  // model.showSuccessToast(
+                                                                  //     S.of(context).profilePhotoUpdated);
+                                                                }
+                                                              },
+                                                              dataBuilder:
+                                                                  (context,
+                                                                      data) {
+                                                                return AppStreamBuilder<
+                                                                    String>(
                                                                   stream: model
-                                                                      .addNickNameStream,
+                                                                      .selectedImageValue,
                                                                   initialData:
-                                                                      false,
+                                                                      '',
                                                                   dataBuilder:
                                                                       (context,
-                                                                          val) {
-                                                                    return val!
-                                                                        ? Container(
-                                                                            height:
-                                                                                28,
-                                                                            child:
-                                                                                TextField(
-                                                                              autofocus: true,
-                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                              cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                                                              controller: model.addNickNameController,
-                                                                              decoration: InputDecoration(
-                                                                                border: InputBorder.none,
-                                                                                contentPadding: EdgeInsets.only(bottom: 18),
-                                                                              ),
-                                                                              onSubmitted: (value) {
-                                                                                model.addNickNameVal = value;
-                                                                                model.updateNickName(false);
-                                                                              },
-                                                                            ),
-                                                                          )
-                                                                        : InkWell(
-                                                                            onTap:
-                                                                                () {
-                                                                              model.updateNickName(true);
-                                                                            },
-                                                                            child:
-                                                                                Text(
-                                                                              model.addNickNameVal!,
-                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                            ),
-                                                                          );
-                                                                  }),
+                                                                          image) {
+                                                                    return InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        ChooseProfileWidget.show(context, onCameraTap:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          model.uploadProfilePhoto(
+                                                                              DocumentTypeEnum.CAMERA);
+                                                                        }, onGalleryTap:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          model.uploadProfilePhoto(
+                                                                              DocumentTypeEnum.PICK_IMAGE);
+                                                                        }, onRemoveTap:
+                                                                            () {
+                                                                          model
+                                                                              .removeImage();
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        }, onCancelled:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        }, title: S.of(context).pleaseSelectYourAction);
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            50,
+                                                                        width:
+                                                                            50,
+                                                                        decoration:
+                                                                            BoxDecoration(shape: BoxShape.circle),
+                                                                        child:
+                                                                            ClipOval(
+                                                                          child: image!.isEmpty
+                                                                              ? AppSvg.asset(
+                                                                                  AssetUtils.personCircle,
+                                                                                  fit: BoxFit.fill,
+                                                                                )
+                                                                              : Image.file(
+                                                                                  File(image),
+                                                                                  fit: BoxFit.fill,
+                                                                                ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
                                                             ),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 16,
-                                              ),
-                                              child: Align(
-                                                alignment: Alignment.center,
-                                                child: AppStreamBuilder<bool>(
-                                                    stream:
-                                                        model.showButtonStream,
-                                                    initialData: true,
-                                                    dataBuilder:
-                                                        (context, isValid) {
-                                                      return Visibility(
-                                                        visible: isValid!,
-                                                        child: AnimatedButton(
-                                                          buttonText: S
-                                                              .of(context)
-                                                              .swipeToProceed,
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left:
+                                                                            14),
+                                                                child: AppStreamBuilder<
+                                                                        bool>(
+                                                                    stream: model
+                                                                        .addNickNameStream,
+                                                                    initialData:
+                                                                        false,
+                                                                    dataBuilder:
+                                                                        (context,
+                                                                            val) {
+                                                                      return val!
+                                                                          ? Container(
+                                                                              height: 28,
+                                                                              child: TextField(
+                                                                                autofocus: true,
+                                                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                                                controller: model.addNickNameController,
+                                                                                decoration: InputDecoration(
+                                                                                  border: InputBorder.none,
+                                                                                  contentPadding: EdgeInsets.only(bottom: 18),
+                                                                                ),
+                                                                                onSubmitted: (value) {
+                                                                                  model.addNickNameVal = value;
+                                                                                  model.updateNickName(false);
+                                                                                },
+                                                                              ),
+                                                                            )
+                                                                          : InkWell(
+                                                                              onTap: () {
+                                                                                model.updateNickName(true);
+                                                                              },
+                                                                              child: Text(
+                                                                                model.addNickNameVal!,
+                                                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                              ),
+                                                                            );
+                                                                    }),
+                                                              ),
+                                                            )
+                                                          ],
                                                         ),
-                                                      );
-                                                    }),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 20, bottom: 16),
-                                        child: Text(
-                                          S.of(context).backToPayments,
-                                          style: TextStyle(
-                                            color: AppColor.brightBlue,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 16,
+                                                ),
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: AppStreamBuilder<bool>(
+                                                      stream: model
+                                                          .showButtonStream,
+                                                      initialData: true,
+                                                      dataBuilder:
+                                                          (context, isValid) {
+                                                        return Visibility(
+                                                          visible: isValid!,
+                                                          child: AnimatedButton(
+                                                            buttonText: S
+                                                                .of(context)
+                                                                .swipeToProceed,
+                                                          ),
+                                                        );
+                                                      }),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 20, bottom: 16),
+                                          child: Text(
+                                            S.of(context).backToPayments,
+                                            style: TextStyle(
+                                              color: AppColor.brightBlue,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

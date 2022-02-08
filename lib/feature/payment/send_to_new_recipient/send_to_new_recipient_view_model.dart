@@ -31,6 +31,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   GetPurposeUseCase _getPurposeUseCase;
 
+  ScrollController scrollController = ScrollController();
+
   TextEditingController ibanOrMobileController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
@@ -296,6 +298,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     _sendToNewRecipientRequest.close();
     _sendToNewRecipientResponse.close();
     _getPurposeRequest.close();
+    _checkSendMoneyResponse.close();
+    _checkSendMoneyRequest.close();
     _getPurposeResponse.close();
     super.dispose();
   }
