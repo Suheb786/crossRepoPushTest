@@ -30,6 +30,7 @@ class MyDebitCardPageState
 
   @override
   Widget buildView(BuildContext context, MyDebitCardViewModel model) {
+    model.deviceSize = MediaQuery.of(context).size;
     return MyDebitCardPageView(provideBase(), widget.cardData);
   }
 

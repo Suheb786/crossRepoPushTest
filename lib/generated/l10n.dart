@@ -8410,6 +8410,26 @@ class S {
     );
   }
 
+  /// `Transaction Period`
+  String get transactionPeriod {
+    return Intl.message(
+      'Transaction Period',
+      name: 'transactionPeriod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent residence`
+  String get permanentResidence {
+    return Intl.message(
+      'Permanent residence',
+      name: 'permanentResidence',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Call scheduled!`
   String get callScheduled {
     return Intl.message(
@@ -8425,6 +8445,26 @@ class S {
     return Intl.message(
       'Your account will be processed after the video call is completed.',
       name: 'callScheduledNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Date`
+  String get preferredDateSmall {
+    return Intl.message(
+      'Preferred Date',
+      name: 'preferredDateSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session Timeout.`
+  String get sessionTimeout {
+    return Intl.message(
+      'Session Timeout.',
+      name: 'sessionTimeout',
       desc: '',
       args: [],
     );

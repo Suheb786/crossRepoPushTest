@@ -48,7 +48,7 @@ class ScheduleVideoCallPageView
                   onData: (customerStatus) {
                     if (customerStatus.status == Status.SUCCESS) {
                       Navigator.pushReplacementNamed(
-                          context, RoutePaths.AccountHold,
+                          context, RoutePaths.VideoKYCScheduled,
                           arguments: VideoCallScheduledArguments(
                               applicationId:
                                   customerStatus.data!.applicationId ?? "",

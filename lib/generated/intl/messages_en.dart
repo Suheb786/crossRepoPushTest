@@ -1053,6 +1053,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Permanent Country"),
         "permanentHomeAddress":
             MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
+        "permanentResidence":
+            MessageLookupByLibrary.simpleMessage("Permanent residence"),
         "permanentResidentAddressLine":
             MessageLookupByLibrary.simpleMessage("Permanent residence address"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
@@ -1102,6 +1104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),
         "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
+        "preferredDateSmall":
+            MessageLookupByLibrary.simpleMessage("Preferred Date"),
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
@@ -1258,6 +1262,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Send money to your friends and family"),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
+        "sessionTimeout":
+            MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "setupAndPersonalizeYourNewCreditCard":
             MessageLookupByLibrary.simpleMessage(
@@ -1386,6 +1392,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionPeriod":
+            MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactionPurpose":
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(

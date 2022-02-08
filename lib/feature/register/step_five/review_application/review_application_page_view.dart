@@ -117,6 +117,7 @@ class ReviewApplicationPageView
                                                 .registrationStepFivePageController
                                                 .move(4, animation: false);
                                           });
+
                                           break;
                                         case CustomerStatusEnum.VIDEO_CALL:
                                           Future.delayed(
@@ -126,6 +127,10 @@ class ReviewApplicationPageView
                                                     registerStepFiveViewModelProvider)
                                                 .registrationStepFivePageController
                                                 .next();
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    videoCallInfoViewModelProvider)
+                                                .checkExistingScheduledCall();
                                           });
                                           break;
                                         case CustomerStatusEnum
