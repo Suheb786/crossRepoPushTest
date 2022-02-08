@@ -41,6 +41,7 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   CountryData countryData = CountryData();
 
   String mobileNumber = '';
+  String mobileNumberWithCode = '';
 
   ///get allowed code country request holder
   PublishSubject<GetAllowedCodeCountryListUseCaseParams>
@@ -102,7 +103,7 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   void changeMobileNumber() {
-    //mobileNumber = '+${countryData.phoneCode} ${mobileController.text}';
+    mobileNumberWithCode = '+${countryData.phoneCode} ${mobileController.text}';
     mobileNumber = mobileController.text;
     _addNewMobileRequest.safeAdd(AddNewMobileNumberUseCaseParams(
         mobileCode: '00${countryData.phoneCode}',

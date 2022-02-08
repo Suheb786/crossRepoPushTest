@@ -303,8 +303,6 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(top: 5),
-
-                                              ///TODO: minDueDAte
                                               child: Row(
                                                 children: [
                                                   Text(
