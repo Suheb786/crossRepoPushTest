@@ -52,8 +52,8 @@ class ScheduleVideoCallPageView
                           arguments: VideoCallScheduledArguments(
                               applicationId:
                                   customerStatus.data!.applicationId ?? "",
-                              date: model.preferredDateController.text ?? "",
-                              time: model.preferredTimeController.text ?? ""));
+                              date: model.preferredDateController.text,
+                              time: model.preferredTimeController.text));
                     }
                   },
                   dataBuilder: (context, customerStatus) {
