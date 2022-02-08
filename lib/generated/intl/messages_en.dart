@@ -1026,76 +1026,76 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
-    "invalidTreatyClaimRate": MessageLookupByLibrary.simpleMessage(
-        "Enter treaty identified to claim rate"),
-    "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
-        "Please Enter transaction type"),
-    "invalidUser": MessageLookupByLibrary.simpleMessage("Invalid User."),
-    "invalidUserName": MessageLookupByLibrary.simpleMessage(
-        "Please enter a valid UserName"),
-    "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
-        "Oh no! The email or password entered is incorrect. Please try again."),
-    "iphoneLoginError": MessageLookupByLibrary.simpleMessage(
-        "An error has occurred during IPhone Login, please try again"),
-    "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
-        "Please enter if only the business name is different from the name above"),
-    "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
-    "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
-    "issuingYourCreditCard":
-    MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
-    "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
-    "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
-    "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
-        "Bear with us, just a few more questions about your income"),
-    "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
-    "joinedBlink":
-    MessageLookupByLibrary.simpleMessage("You joined \nblink"),
-    "kycStausError": MessageLookupByLibrary.simpleMessage(
-        "Error occurred while getting KYC Status"),
-    "legalDocumentNo":
-    MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
-    "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
-        "Next, let’s create\nyour new password"),
-    "letsCreateYourAccount":
-    MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
-    "letsCreateYourProfile":
-    MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
-    "letsSet4DigitPin":
-    MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
-    "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
-    "linkedAccountNumber":
-    MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
-    "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
-    "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
-        "Process Loan Step not done for this card"),
-    "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
-        "Error while Process loan Values"),
-    "loanValueRequestProcessingError": MessageLookupByLibrary.simpleMessage(
-        "Error while processing Loan Request (RuleEngine)"),
-    "loanValuesError": MessageLookupByLibrary.simpleMessage(
-        "Error while getting Loan Values"),
-    "loanValuesNotFound":
-    MessageLookupByLibrary.simpleMessage("Loan values not found"),
-    "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
-    "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
-        "Location services are disabled. Please allow access to NeoBank"),
-    "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
-        "YOur Token is Expired, Login is Not Allowed"),
-    "logout": MessageLookupByLibrary.simpleMessage("Log out"),
-    "logoutAndContinueLater":
-    MessageLookupByLibrary.simpleMessage("Log out and continue later"),
-    "logoutError":
-    MessageLookupByLibrary.simpleMessage("Error occurred while logout"),
-    "lookingFor":
-    MessageLookupByLibrary.simpleMessage("What are you looking for?"),
-    "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
-        "Looking for available agent.."),
-    "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
-        "Enjoy loyalty rewards with great multiplier"),
-    "mailingAddressDifferentFromResidence":
-    MessageLookupByLibrary.simpleMessage(
-        "Mailing address different from residence address?"),
-    "mailingAddressLine":
+        "invalidTreatyClaimRate": MessageLookupByLibrary.simpleMessage(
+            "Enter treaty identified to claim rate"),
+        "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
+            "Please Enter transaction type"),
+        "invalidUser": MessageLookupByLibrary.simpleMessage("Invalid User."),
+        "invalidUserName": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid UserName"),
+        "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
+            "Oh no! The email or password entered is incorrect. Please try again."),
+        "iphoneLoginError": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred during IPhone Login, please try again"),
+        "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
+            "Please enter if only the business name is different from the name above"),
+        "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
+        "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingYourCreditCard":
+            MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
+        "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
+        "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
+        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
+            "Bear with us, just a few more questions about your income"),
+        "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
+        "joinedBlink":
+            MessageLookupByLibrary.simpleMessage("You joined \nblink"),
+        "kycStausError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred while getting KYC Status"),
+        "legalDocumentNo":
+            MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
+            "Next, let’s create\nyour new password"),
+        "letsCreateYourAccount":
+            MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
+        "letsCreateYourProfile":
+            MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
+        "letsSet4DigitPin":
+            MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
+        "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
+        "linkedAccountNumber":
+            MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
+        "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
+        "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
+            "Process Loan Step not done for this card"),
+        "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
+            "Error while Process loan Values"),
+        "loanValueRequestProcessingError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing Loan Request (RuleEngine)"),
+        "loanValuesError": MessageLookupByLibrary.simpleMessage(
+            "Error while getting Loan Values"),
+        "loanValuesNotFound":
+            MessageLookupByLibrary.simpleMessage("Loan values not found"),
+        "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
+        "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
+            "Location services are disabled. Please allow access to NeoBank"),
+        "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "YOur Token is Expired, Login is Not Allowed"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log out"),
+        "logoutAndContinueLater":
+            MessageLookupByLibrary.simpleMessage("Log out and continue later"),
+        "logoutError":
+            MessageLookupByLibrary.simpleMessage("Error occurred while logout"),
+        "lookingFor":
+            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
+            "Looking for available agent.."),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
+            "Enjoy loyalty rewards with great multiplier"),
+        "mailingAddressDifferentFromResidence":
+            MessageLookupByLibrary.simpleMessage(
+                "Mailing address different from residence address?"),
+        "mailingAddressLine":
             MessageLookupByLibrary.simpleMessage("MAILING address Line"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
