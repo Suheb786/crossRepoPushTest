@@ -75,11 +75,11 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.DEVICE_NOT_FOUND);
 
-          case "ex-058":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_SAVING_ID_CARD);
+          // case "ex-058":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_SAVING_ID_CARD);
 
           case "ex-131":
             return AppError(
@@ -103,11 +103,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ID_CARD_NOT_ALLOWED);
 
-          case "ex-050":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_SAVING_STATUS);
+          // case "ex-050":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_SAVING_STATUS);
 
           case "err-349":
             return AppError(
@@ -115,11 +115,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_BENEFICIARY);
 
-          case "ex-055":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
+          // case "ex-055":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
 
           case "err-069":
             return AppError(
@@ -149,11 +149,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_CREATING_ACCOUNT);
 
-          case "ex-018":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_GET_ACCOUNT);
+          // case "ex-018":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_WHILE_GET_ACCOUNT);
 
           case "err-020":
             return AppError(
@@ -211,11 +211,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.WENT_WRONG_WHILE_LOGIN);
 
-          case "ex-019":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_GET_ACCOUNT_DETAILS);
+          // case "ex-019":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_GET_ACCOUNT_DETAILS);
 
           case "err-208":
             return AppError(
@@ -251,11 +251,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.REQUEST_NOT_COMPLETED);
 
-          case "ex-011":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
+          // case "ex-011":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
 
           case "err-005":
             return AppError(
@@ -271,11 +271,11 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
 
-          case "ex-048":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_GETTING_FATCA_CRS);
+          // case "ex-048":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_GETTING_FATCA_CRS);
 
           case "ex-163":
             return AppError(
@@ -289,11 +289,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.MOBILE_ALREADY_EXIST);
 
-          case "err-125":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS);
+          // case "err-125":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS);
 
           case "err-351":
             return AppError(
@@ -307,11 +307,11 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST);
 
-          case "ex-002":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP);
+          // case "ex-002":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP);
 
           case "err-022":
             return AppError(
@@ -339,15 +339,867 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD);
 
-          case "ex-071":
-            return AppError(
-                cause: cause,
-                error: error,
-                type: ErrorType.ERROR_WHILE_GET_STATUS);
+          // case "ex-071":
+          //   return AppError(
+          //       cause: cause,
+          //       error: error,
+          //       type: ErrorType.ERROR_WHILE_GET_STATUS);
 
           case "err-329":
             return AppError(
                 cause: cause, error: error, type: ErrorType.USER_NOT_ELIGIBLE);
+
+          case "err-329":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.USER_NOT_ELIGIBLE);
+
+          case "err-120":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.EXPIRY_DATE_ERROR);
+
+          case "err-121":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PASSWORD_MISMATCH_ERROR);
+
+          case "err-122":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SENDING_DEVICE_OTP_ERROR);
+
+          case "err-123":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.SELECT_FUTURE_DATE);
+
+          case "err-124":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_GENDER_VALUE);
+
+          case "err-125":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_SCHEDULE_TIME);
+
+          case "err-126":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.FIREBASE_CONNECTION_ISSUE);
+
+          case "err-127":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CALL_RECORD_NOT_FOUND);
+
+          case "err-128":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NI_HANDLER_ERROR);
+
+          case "err-129":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LOAN_VALUES_ERROR);
+
+          case "err-130":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_LOAN_VALUE_ID);
+
+          case "err-131":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_CREDIT_LIMIT);
+
+          case "err-132":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.LOAN_VALUE_PROCESS_ERROR);
+
+          case "err-133":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.LOAN_VALUE_REQUEST_PROCESSING_ERROR);
+
+          case "err-134":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_CUSTOMER_ID);
+
+          case "err-135":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_CREDIT_CARD_ID);
+
+          case "err-136":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.STEP_2_INCOMPLETE);
+
+          case "err-137":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LOAN_STEP_NOT_DONE);
+
+          case "err-138":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.LOAN_VALUES_NOT_FOUND);
+
+          case "err-139":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_IN_MESSAGE);
+
+          case "err-140":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CRIF_UPDATE_ERROR);
+
+          case "err-141":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ARMEX_API_ERROR);
+
+          case "err-142":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_PAYBACK_AMOUNT);
+
+          case "err-143":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREDIT_CARD_DATA_NOT_FOUND);
+
+          case "err-144":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ACCOUNT_CLAIM_NOT_FOUND);
+
+          case "err-145":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CARD_LOAN_ACC_NOT_FOUND);
+
+          case "err-146":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PAYMENT_CASHBACK_ERROR);
+
+          case "ex-001":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_ADDING_USERNAME);
+
+          case "ex-002":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REGISTRATION_PROCESS_ERROR);
+
+          case "ex-003":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.AHWAL_ERROR);
+
+          case "ex-004":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.KYC_STATUS_ERROR);
+
+          case "ex-005":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_ID_CARD_ERROR);
+
+          case "ex-006":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_COUNTRY_RESIDENCE_ERROR);
+
+          case "ex-007":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_PROFILE_STATUS_ERROR);
+
+          case "ex-008":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_JOB_DETAILS_ERROR);
+
+          case "ex-009":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ADD_ACCOUNT_PURPOSE_ERROR);
+
+          case "ex-010":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.FATCA_CRS_ERROR);
+
+          case "ex-011":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UPLOAD_FATCA_SIGNATURE_ERROR);
+
+          case "ex-012":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_FATCA_DETAILS_ERROR);
+
+          case "ex-013":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_W8_FORM_ERROR);
+
+          case "ex-014":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVING_W9_FORM_ERROR);
+
+          case "ex-015":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.SELFIE_CHECK_ERROR);
+
+          case "ex-016":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ENABLE_FINGERPRINT_ERROR);
+
+          case "ex-017":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DISABLE_FINGERPRINT_ERROR);
+
+          case "ex-018":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_COMBO_VALUES_ERROR);
+
+          case "ex-019":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_ADDITIONAL_DOCUMENTATION_ERROR);
+
+          case "ex-020":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVE_ADDITIONAL_DOCUMENTATION_ERROR);
+
+          case "ex-021":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_ACCOUNT_DETAILS_ERROR);
+
+          case "ex-022":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREATING_ACCOUNT_ERROR);
+
+          case "ex-023":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_VIDEO_CALL_STATUS_ERROR);
+
+          case "ex-024":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_OTHER_NATIONALITY_STATUS_ERROR);
+
+          case "ex-025":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UPLOAD_DOCUMENTS_ERROR);
+
+          case "ex-026":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LOGOUT_ERROR);
+
+          case "ex-027":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REGISTER_INTEREST_ERROR);
+
+          case "ex-028":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.VERIFY_OTP_ERROR);
+
+          case "ex-029":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.IPHONE_LOGIN_ERROR);
+
+          case "ex-030":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_DOCUMENT_STATUS_ERROR);
+
+          case "ex-031":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CHECK_AGENT_STATUS);
+
+          case "ex-032":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHANGE_CALL_STATUS_ERROR);
+
+          case "ex-033":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SAVE_CUSTOMER_TIME_STATUS_ERROR);
+
+          case "ex-034":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_ALLOWED_COUNTRIES_ERROR);
+
+          case "ex-035":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_COUNTRIES_ERROR);
+
+          case "ex-036":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REMOVE_DEBIT_LOCK_ERROR);
+
+          case "ex-037":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ENABLE_BIOMETRIC_ERROR);
+
+          case "ex-038":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.GET_CIPHER_ERROR);
+
+          case "ex-039":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GENERATE_KEY_PAIR_ERROR);
+
+          case "ex-040":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ANDROID_LOGIN_ERROR);
+
+          case "ex-041":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_CUSTOMER_STATUS_ERROR);
+
+          case "ex-042":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_BENEFICIARIES_ERROR);
+
+          case "ex-043":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.GET_ATM_ERROR);
+
+          case "ex-044":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CHECK_ISSUER);
+
+          case "ex-045":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.GET_STATES_ERROR);
+
+          case "ex-046":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.GET_CITIES_ERROR);
+
+          case "ex-047":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_CITIES_BY_COUNTRY_ERROR);
+
+          case "ex-048":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.GET_CONTACTS_ERROR);
+
+          case "ex-049":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ADD_BENEFICIARY_ERROR);
+
+          case "ex-050":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UPDATE_BENEFICIARY_ERROR);
+
+          case "ex-051":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DELETE_BENEFICIARY_ERROR);
+
+          case "ex-052":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_BENEFICIARY_OTP_ERROR);
+
+          case "ex-053":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UPLOAD_BENEFICIARY_ERROR);
+
+          case "ex-054":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_PROFILE_INFO_ERROR);
+
+          case "ex-055":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DELETE_PROFILE_IMAGE_ERROR);
+
+          case "ex-056":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.Get_CUSTOMER_DOCUMENT_ERROR);
+
+          case "ex-057":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.Get_CUSTOMER_DOCUMENT_ID_ERROR);
+
+          case "ex-058":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHANGE_PROFILE_IMAGE_ERROR);
+
+          case "ex-059":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CHANGE_EMAIL_ERROR);
+
+          case "ex-060":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_CHANGE_EMAIL_ERROR);
+
+          case "ex-061":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHANGE_MOBILE_NO_ERROR);
+
+          case "ex-062":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_CHANGE_MOBILE_NO_ERROR);
+
+          case "ex-063":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHANGE_PASSWORD_ERROR);
+
+          case "ex-064":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_OTP_PASSWORD_ERROR);
+
+          case "ex-065":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_TO_PAY_STATUS_ERROR);
+
+          case "ex-066":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CARD_ISSUANCE_ERROR);
+
+          case "ex-067":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.SET_CARD_PIN_ERROR);
+
+          case "ex-068":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CONFIRM_DELIVERY_ERROR);
+
+          case "ex-069":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_DASHBOARD_DATA_ERROR);
+
+          case "ex-070":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.MONEY_THOR_ERROR);
+
+          case "ex-071":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DEBIT_CARD_TRANSACTION_LIST_ERROR);
+
+          case "ex-072":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ACCOUNT_ACTIVITY_ERROR);
+
+          case "ex-073":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CONFIRM_CREDIT_CARD_DELIVERY_ERROR);
+
+          case "ex-074":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREDIT_DASHBOARD_DATA_ERROR);
+
+          case "ex-075":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREDIT_CARD_REQ_ERROR);
+
+          case "ex-076":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREDIT_CARD_TRANSACTION_LIST_ERROR);
+
+          case "ex-077":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_CREDIT_YEARS_ERROR);
+
+          case "ex-078":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREDIT_CARD_STATEMENT_ERROR);
+
+          case "ex-079":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_DEBIT_YEARS_ERROR);
+
+          case "ex-080":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DEBIT_CARD_STATEMENT_ERROR);
+
+          case "ex-081":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.UPDATE_LIMIT_ERROR);
+
+          case "ex-082":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.FREEZE_DEBIT_CARD_ERROR);
+
+          case "ex-083":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNFREEZE_DEBIT_CARD_ERROR);
+
+          case "ex-084":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CANCEL_DEBIT_CARD_ERROR);
+
+          case "ex-085":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_CHANGE_PIN_ERROR);
+
+          case "ex-086":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CHANGE_PIN_ERROR);
+
+          case "ex-087":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNBLOCK_DEBIT_CARD_PIN_ERROR);
+
+          case "ex-088":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_DEBIT_CARD_LIMIT_ERROR);
+
+          case "ex-089":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_SUPPLEMENTARY_DEBIT_CARD_ERROR);
+
+          case "ex-090":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.FREEZE_CREDIT_CARD_ERROR);
+
+          case "ex-091":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNFREEZE_CREDIT_CARD_ERROR);
+
+          case "ex-092":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNBLOCK_CREDIT_CARD_PIN_ERROR);
+
+          case "ex-093":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_ACCOUNT_BY_ALIAS_ERROR);
+
+          case "ex-094":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_TO_PAY_ERROR);
+
+          case "ex-095":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_SEND_MONEY_ERROR);
+
+          case "ex-096":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_TRANSFER_API_ERROR);
+
+          case "ex-097":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_TRANSFER_API_V2_ERROR);
+
+          case "ex-098":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_TRANSFER_PURPOSE_ERROR);
+
+          case "ex-099":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PAYMENT_ACTIVITY_API_ERROR);
+
+          case "ex-100":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_CREDENTIALS_FOR_FORGET_PASSWORD_ERROR);
+
+          case "ex-101":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.FORGET_PASSWORD_ERROR);
+
+          case "ex-102":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_FORGET_PASSWORD_ERROR);
+
+          case "ex-103":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SEND_OTP_TOKEN_ERROR);
+
+          case "ex-104":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VERIFY_DEIVICE_CHANGE_OTP_ERROR);
+
+          case "ex-105":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.RESEND_OTP_ERROR);
+
+          case "ex-106":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_EXISTING_CALL_ERROR);
+
+          case "ex-107":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.REQUEST_CALL_ERROR);
+
+          case "ex-108":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_GENDER_STATUS_ERROR);
+
+          case "ex-109":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_TIME_SLOTS_ERROR);
+
+          case "ex-110":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ADD_CALL_ERROR);
+
+          case "ex-111":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CHECK_CALL_STATUS);
+
+          case "ex-112":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_CARD_APPLICATION_ERROR);
+
+          case "ex-113":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_LOAN_VALUES_ERROR);
+
+          case "ex-114":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PROCESS_LOAN_VALUES_ERROR);
+
+          case "ex-115":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PAYBACK_CREDIT_CARD_ERROR);
+
+          case "err-vkey-1":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REGISTERING_USER_TO_VKEY_ERROR);
+
+          case "err-vkey-2":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NULL_ID);
+
+          case "err-vkey-3":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ASSIGN_TOKEN_ERROR);
+
+          case "err-vkey-4":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.TOKEN_SERIAL_APN_EMPTY);
+
+          case "err-vkey-5":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PIN_REQUIRED);
+
+          case "err-vkey-6":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_MESSAGE_ID);
+
+          case "err-vkey-7":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VKEY_TRANSACTION_FAILED);
+
+          case "err-vkey-8":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.VKEY_MESSAGE_ID_REQUIRED);
+
+          case "err-vkey-9":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LOGIN_NOT_ALLOWED);
+
+          case "err-0001":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ENTER_DETAILS);
+
+          case "err-0002":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.IMAGE_NULL);
+
+          case "err-0003":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PROOF_REQUIRED);
+
+          case "err-0004":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OTP_NULL);
 
           default:
             return AppError(
