@@ -1031,10 +1031,6 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_EXPIRY_DATE);
 
-          case "err-120":
-            return AppError(
-                cause: cause, error: error, type: ErrorType.EXPIRY_DATE_ERROR);
-
           case "err-121":
             return AppError(
                 cause: cause,
@@ -1878,7 +1874,6 @@ class NetworkError extends BaseError {
           case "err-0004":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OTP_NULL);
-
 
           default:
             return AppError(
