@@ -38,7 +38,11 @@ class BaseClassEntity {
       this.mobileModel,
       this.appVersion,
       this.vKeySessionId: ""}) {
-    this.platform = Platform.isAndroid ? "A" : "I";
+    this.platform = Platform.isAndroid
+        ? "A"
+        : Platform.isIOS
+            ? "I"
+            : "";
     this.channelType = "01";
   }
 

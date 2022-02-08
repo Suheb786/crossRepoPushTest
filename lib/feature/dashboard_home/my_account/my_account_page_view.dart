@@ -248,22 +248,24 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                                 .withOpacity(
                                                                     0.4))),
                                                   ),
-                                                  // const SizedBox(width: 10),
-                                                  // InkWell(
-                                                  //   onTap: () {
-                                                  //     ProviderScope.containerOf(
-                                                  //             context)
-                                                  //         .read(
-                                                  //             appHomeViewModelProvider)
-                                                  //         .balenceUpdate();
-                                                  //   },
-                                                  //   child: Container(
-                                                  //       height: 14,
-                                                  //       width: 14,
-                                                  //       child: Image.asset(
-                                                  //           AssetUtils
-                                                  //               .refresh)),
-                                                  // ),
+                                                  const SizedBox(width: 10),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      ProviderScope.containerOf(
+                                                              context)
+                                                          .read(
+                                                              appHomeViewModelProvider)
+                                                          .balenceUpdate();
+                                                    },
+                                                    child: Container(
+                                                        height: 14,
+                                                        width: 14,
+                                                        child: Image.asset(
+                                                          AssetUtils.refresh,
+                                                          color: AppColor
+                                                              .brightBlue,
+                                                        )),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -395,7 +397,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         .AddMoneyOptionSelector);
                                               },
                                               child: Container(
-                                                height: 35,
+                                                height: 40,
                                                 width: 105,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
@@ -413,7 +415,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                             FontWeight.w600,
                                                         fontSize: isSmallDevices
                                                             ? 10
-                                                            : 14,
+                                                            : 12,
                                                         color: Theme.of(context)
                                                             .accentColor),
                                                   ),
@@ -441,7 +443,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(height: 30),
+                                      SizedBox(
+                                          height: isSmallDevices ? 30 : 50),
                                     ],
                                   ),
                                 ),
