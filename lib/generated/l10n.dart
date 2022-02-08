@@ -8470,6 +8470,1556 @@ class S {
       args: [],
     );
   }
+
+  /// `Error while adding Username`
+  String get errorAddingUserName {
+    return Intl.message(
+      'Error while adding Username',
+      name: 'errorAddingUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred during Registration Process, please try again`
+  String get registrationProcessError {
+    return Intl.message(
+      'An error has occurred during Registration Process, please try again',
+      name: 'registrationProcessError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Akhwal`
+  String get ahwalError {
+    return Intl.message(
+      'Error occurred while checking Akhwal',
+      name: 'ahwalError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting KYC Status`
+  String get kycStausError {
+    return Intl.message(
+      'Error occurred while getting KYC Status',
+      name: 'kycStausError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving ID Card Details`
+  String get savingIdCardError {
+    return Intl.message(
+      'Error occurred while saving ID Card Details',
+      name: 'savingIdCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Country Residence Info`
+  String get savingCountryResidenceError {
+    return Intl.message(
+      'Error occurred while saving Country Residence Info',
+      name: 'savingCountryResidenceError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Profile status`
+  String get savingProfileStatusError {
+    return Intl.message(
+      'Error occurred while saving Profile status',
+      name: 'savingProfileStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Job Details`
+  String get savingJobDetailsError {
+    return Intl.message(
+      'Error occurred while saving Job Details',
+      name: 'savingJobDetailsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while adding Account Purpose`
+  String get addAccountPurposeError {
+    return Intl.message(
+      'Error occurred while adding Account Purpose',
+      name: 'addAccountPurposeError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Fatca-Crs`
+  String get fatcaCrsError {
+    return Intl.message(
+      'Error occurred while getting Fatca-Crs',
+      name: 'fatcaCrsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while uploading Fatca Signature`
+  String get uploadFatcaSignatureError {
+    return Intl.message(
+      'Error occurred while uploading Fatca Signature',
+      name: 'uploadFatcaSignatureError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Fatca Details`
+  String get savingFatcaDetailsError {
+    return Intl.message(
+      'Error occurred while saving Fatca Details',
+      name: 'savingFatcaDetailsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving W8 Form Details`
+  String get savingW8FormError {
+    return Intl.message(
+      'Error occurred while saving W8 Form Details',
+      name: 'savingW8FormError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving W9 Form Details`
+  String get savingW9FormError {
+    return Intl.message(
+      'Error occurred while saving W9 Form Details',
+      name: 'savingW9FormError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Selfee`
+  String get selfieCheckError {
+    return Intl.message(
+      'Error occurred while checking Selfee',
+      name: 'selfieCheckError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while enabling FingerPrint`
+  String get enableFingerPrintError {
+    return Intl.message(
+      'Error occurred while enabling FingerPrint',
+      name: 'enableFingerPrintError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while disabling FingerPrint`
+  String get disableFingerPrintError {
+    return Intl.message(
+      'Error occurred while disabling FingerPrint',
+      name: 'disableFingerPrintError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Combo Values`
+  String get getComboValuesError {
+    return Intl.message(
+      'Error occurred while getting Combo Values',
+      name: 'getComboValuesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Additional Documentation`
+  String get getAdditionalDocumentationError {
+    return Intl.message(
+      'Error occurred while getting Additional Documentation',
+      name: 'getAdditionalDocumentationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Additional Documentation`
+  String get saveAdditionalDocumentationError {
+    return Intl.message(
+      'Error occurred while saving Additional Documentation',
+      name: 'saveAdditionalDocumentationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Account Details`
+  String get getAccountDetailsError {
+    return Intl.message(
+      'Error occurred while getting Account Details',
+      name: 'getAccountDetailsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while creating Account`
+  String get creatingAccountError {
+    return Intl.message(
+      'Error occurred while creating Account',
+      name: 'creatingAccountError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Video Call Status`
+  String get checkVideoCallStatusError {
+    return Intl.message(
+      'Error occurred while checking Video Call Status',
+      name: 'checkVideoCallStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking other Nationality Status`
+  String get checkOtherNationalityStatusError {
+    return Intl.message(
+      'Error occurred while checking other Nationality Status',
+      name: 'checkOtherNationalityStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while uploading Documents`
+  String get uploadDocumentsError {
+    return Intl.message(
+      'Error occurred while uploading Documents',
+      name: 'uploadDocumentsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while logout`
+  String get logoutError {
+    return Intl.message(
+      'Error occurred while logout',
+      name: 'logoutError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while Register interest`
+  String get registerInterestError {
+    return Intl.message(
+      'Error occurred while Register interest',
+      name: 'registerInterestError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while verifying OTP`
+  String get verifyOtpError {
+    return Intl.message(
+      'Error occurred while verifying OTP',
+      name: 'verifyOtpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred during IPhone Login, please try again`
+  String get iphoneLoginError {
+    return Intl.message(
+      'An error has occurred during IPhone Login, please try again',
+      name: 'iphoneLoginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Document Status`
+  String get checkDocumentStatusError {
+    return Intl.message(
+      'Error occurred while checking Document Status',
+      name: 'checkDocumentStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Agent Status`
+  String get checkAgentStatusError {
+    return Intl.message(
+      'Error occurred while checking Agent Status',
+      name: 'checkAgentStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while changing Call Status`
+  String get changeCallStatusError {
+    return Intl.message(
+      'Error occurred while changing Call Status',
+      name: 'changeCallStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while saving Customer Schedule Time`
+  String get saveCustomerTimeStatusError {
+    return Intl.message(
+      'Error occurred while saving Customer Schedule Time',
+      name: 'saveCustomerTimeStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Allowed Countries`
+  String get getAllowedCountriesError {
+    return Intl.message(
+      'Error occurred while getting Allowed Countries',
+      name: 'getAllowedCountriesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Countries`
+  String get getCountriesError {
+    return Intl.message(
+      'Error occurred while getting Countries',
+      name: 'getCountriesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while removing Debit Lock`
+  String get removeDebitLockError {
+    return Intl.message(
+      'Error occurred while removing Debit Lock',
+      name: 'removeDebitLockError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while enabling Bio Metric`
+  String get enableBiometricError {
+    return Intl.message(
+      'Error occurred while enabling Bio Metric',
+      name: 'enableBiometricError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Cipher`
+  String get getCipherError {
+    return Intl.message(
+      'Error occurred while getting Cipher',
+      name: 'getCipherError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while generating Key Pair`
+  String get generateKeyPairError {
+    return Intl.message(
+      'Error occurred while generating Key Pair',
+      name: 'generateKeyPairError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred during Android Login, please try again`
+  String get androidLoginError {
+    return Intl.message(
+      'An error has occurred during Android Login, please try again',
+      name: 'androidLoginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Customer Status`
+  String get checkCustomerStatusError {
+    return Intl.message(
+      'Error occurred while checking Customer Status',
+      name: 'checkCustomerStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Beneficairies`
+  String get getBeneficiariesError {
+    return Intl.message(
+      'Error occurred while getting Beneficairies',
+      name: 'getBeneficiariesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Atms`
+  String get getAtmError {
+    return Intl.message(
+      'Error occurred while getting Atms',
+      name: 'getAtmError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while checking Issuer`
+  String get checkIssuer {
+    return Intl.message(
+      'Error occurred while checking Issuer',
+      name: 'checkIssuer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting States`
+  String get getStatesError {
+    return Intl.message(
+      'Error occurred while getting States',
+      name: 'getStatesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Cities`
+  String get getCitiesError {
+    return Intl.message(
+      'Error occurred while getting Cities',
+      name: 'getCitiesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Cities by Country`
+  String get getCitiesByCountryError {
+    return Intl.message(
+      'Error occurred while getting Cities by Country',
+      name: 'getCitiesByCountryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Contacts`
+  String get getContactsError {
+    return Intl.message(
+      'Error occurred while getting Contacts',
+      name: 'getContactsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while adding Beneficiary`
+  String get addBeneficiaryError {
+    return Intl.message(
+      'Error occurred while adding Beneficiary',
+      name: 'addBeneficiaryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while updating Beneficiary`
+  String get updateBeneficiaryError {
+    return Intl.message(
+      'Error occurred while updating Beneficiary',
+      name: 'updateBeneficiaryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while deleting Beneficiary`
+  String get deleteBeneficiaryError {
+    return Intl.message(
+      'Error occurred while deleting Beneficiary',
+      name: 'deleteBeneficiaryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while verifying Beneficiary OTP`
+  String get verifyBeneficiaryOtpError {
+    return Intl.message(
+      'Error occurred while verifying Beneficiary OTP',
+      name: 'verifyBeneficiaryOtpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while uploading Beneficiary Image`
+  String get uploadBeneficiaryError {
+    return Intl.message(
+      'Error occurred while uploading Beneficiary Image',
+      name: 'uploadBeneficiaryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Profile Info`
+  String get getProfileInfoError {
+    return Intl.message(
+      'Error occurred while getting Profile Info',
+      name: 'getProfileInfoError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while deleting Profile Image`
+  String get deleteProfileImageError {
+    return Intl.message(
+      'Error occurred while deleting Profile Image',
+      name: 'deleteProfileImageError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Customer Document`
+  String get getCustomerDocumentError {
+    return Intl.message(
+      'Error occurred while getting Customer Document',
+      name: 'getCustomerDocumentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while getting Customer Document Id`
+  String get getCustomerDocumentIdError {
+    return Intl.message(
+      'Error occurred while getting Customer Document Id',
+      name: 'getCustomerDocumentIdError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while changing Profile Image`
+  String get changeProfileImageError {
+    return Intl.message(
+      'Error occurred while changing Profile Image',
+      name: 'changeProfileImageError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while changing Email`
+  String get changeEmailError {
+    return Intl.message(
+      'Error occurred while changing Email',
+      name: 'changeEmailError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while verifying Change Email`
+  String get verifyChangeEmailError {
+    return Intl.message(
+      'Error occurred while verifying Change Email',
+      name: 'verifyChangeEmailError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while changing Mobile No`
+  String get changeMobileNoError {
+    return Intl.message(
+      'Error occurred while changing Mobile No',
+      name: 'changeMobileNoError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while verifying Change Mobile No`
+  String get verifyChangeMobileNoError {
+    return Intl.message(
+      'Error occurred while verifying Change Mobile No',
+      name: 'verifyChangeMobileNoError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while changing Password`
+  String get changePasswordError {
+    return Intl.message(
+      'Error occurred while changing Password',
+      name: 'changePasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while verifying OTP`
+  String get verifyOtpPasswordError {
+    return Intl.message(
+      'Error occurred while verifying OTP',
+      name: 'verifyOtpPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while updating Request to Pay Status`
+  String get requestToPayStatusError {
+    return Intl.message(
+      'Error occurred while updating Request to Pay Status',
+      name: 'requestToPayStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while Card Issuance`
+  String get cardIssuanceError {
+    return Intl.message(
+      'Error occurred while Card Issuance',
+      name: 'cardIssuanceError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while setting Card Pin`
+  String get setCardPintError {
+    return Intl.message(
+      'Error while setting Card Pin',
+      name: 'setCardPintError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while confirming Delivery`
+  String get confirmDeliveryError {
+    return Intl.message(
+      'Error while confirming Delivery',
+      name: 'confirmDeliveryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Dashboard Data`
+  String get getDashboardDataError {
+    return Intl.message(
+      'Error while getting Dashboard Data',
+      name: 'getDashboardDataError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting CustStatDateWise (MoneyThor)`
+  String get moneyThorError {
+    return Intl.message(
+      'Error while getting CustStatDateWise (MoneyThor)',
+      name: 'moneyThorError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Debit Card Transaction List`
+  String get debitCardTransactionListError {
+    return Intl.message(
+      'Error while getting Debit Card Transaction List',
+      name: 'debitCardTransactionListError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Account Activity`
+  String get accountActivityError {
+    return Intl.message(
+      'Error while Account Activity',
+      name: 'accountActivityError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception in Confirm credit card delievery`
+  String get confrimCreditCardDeliveryError {
+    return Intl.message(
+      'Exception in Confirm credit card delievery',
+      name: 'confrimCreditCardDeliveryError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Credit Dashboard Data`
+  String get creditDashboardDataError {
+    return Intl.message(
+      'Error while getting Credit Dashboard Data',
+      name: 'creditDashboardDataError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception Credit card req`
+  String get creditCardReqError {
+    return Intl.message(
+      'Exception Credit card req',
+      name: 'creditCardReqError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Credit Card Transactions List`
+  String get creditCardTransactionListError {
+    return Intl.message(
+      'Exception while getting Credit Card Transactions List',
+      name: 'creditCardTransactionListError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Credit Years`
+  String get getCreditYearsError {
+    return Intl.message(
+      'Exception while getting Credit Years',
+      name: 'getCreditYearsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Credit Card Statement`
+  String get creditCardStatementError {
+    return Intl.message(
+      'Exception while getting Credit Card Statement',
+      name: 'creditCardStatementError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Debit Years`
+  String get getDebitYearsError {
+    return Intl.message(
+      'Exception while getting Debit Years',
+      name: 'getDebitYearsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Debit Card Statement`
+  String get debitCardStatementError {
+    return Intl.message(
+      'Exception while getting Debit Card Statement',
+      name: 'debitCardStatementError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Updating Limits`
+  String get updateLimitError {
+    return Intl.message(
+      'Exception while Updating Limits',
+      name: 'updateLimitError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Freeze Debit Card`
+  String get freezeDebitCardError {
+    return Intl.message(
+      'Exception while Freeze Debit Card',
+      name: 'freezeDebitCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Unfreeze Debit Card`
+  String get unfreezeDebitCardError {
+    return Intl.message(
+      'Exception while Unfreeze Debit Card',
+      name: 'unfreezeDebitCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Cancel Debit Card`
+  String get cancelDebitCardError {
+    return Intl.message(
+      'Exception while Cancel Debit Card',
+      name: 'cancelDebitCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Verifying Change Pin`
+  String get verifyChangePinError {
+    return Intl.message(
+      'Exception while Verifying Change Pin',
+      name: 'verifyChangePinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Change Pin`
+  String get changePinError {
+    return Intl.message(
+      'Exception while Change Pin',
+      name: 'changePinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Unblock Debit Card Pin`
+  String get unblockDebitCardPinError {
+    return Intl.message(
+      'Exception while Unblock Debit Card Pin',
+      name: 'unblockDebitCardPinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Debit Card Limit`
+  String get getDebitCardLimitError {
+    return Intl.message(
+      'Exception while getting Debit Card Limit',
+      name: 'getDebitCardLimitError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Requesting Suplementary Debit Card`
+  String get requestSupplementaryDebitCardError {
+    return Intl.message(
+      'Exception while Requesting Suplementary Debit Card',
+      name: 'requestSupplementaryDebitCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Freeze Credit Card`
+  String get freezeCreditCardError {
+    return Intl.message(
+      'Exception while Freeze Credit Card',
+      name: 'freezeCreditCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Unfreeze Credit Card`
+  String get unfreezeCreditCardError {
+    return Intl.message(
+      'Exception while Unfreeze Credit Card',
+      name: 'unfreezeCreditCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Unblock Credit Card Pin`
+  String get unblockCreditCardPinError {
+    return Intl.message(
+      'Exception while Unblock Credit Card Pin',
+      name: 'unblockCreditCardPinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Account Details By Alias`
+  String get getAccountByAliasError {
+    return Intl.message(
+      'Exception while getting Account Details By Alias',
+      name: 'getAccountByAliasError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Request to Pay`
+  String get requestToPayError {
+    return Intl.message(
+      'Exception while Request to Pay',
+      name: 'requestToPayError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while checking Send Money`
+  String get checkSendMoneyError {
+    return Intl.message(
+      'Exception while checking Send Money',
+      name: 'checkSendMoneyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while verifying Transfer API`
+  String get verifyTransferApiError {
+    return Intl.message(
+      'Exception while verifying Transfer API',
+      name: 'verifyTransferApiError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing TransferAPIV2`
+  String get verifyTransferApiV2Error {
+    return Intl.message(
+      'Exception while executing TransferAPIV2',
+      name: 'verifyTransferApiV2Error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Transfer Purposes`
+  String get getTransferPurposeError {
+    return Intl.message(
+      'Exception while getting Transfer Purposes',
+      name: 'getTransferPurposeError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing PaymentActivityAPI`
+  String get paymentActivityApiError {
+    return Intl.message(
+      'Exception while executing PaymentActivityAPI',
+      name: 'paymentActivityApiError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while checking Credentials for Forget Password`
+  String get checkCredentialsForForgetPasswordError {
+    return Intl.message(
+      'Exception while checking Credentials for Forget Password',
+      name: 'checkCredentialsForForgetPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Forget Password`
+  String get forgetPasswordError {
+    return Intl.message(
+      'Exception while Forget Password',
+      name: 'forgetPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while verifying Forget Password`
+  String get verifyForgetPasswordError {
+    return Intl.message(
+      'Exception while verifying Forget Password',
+      name: 'verifyForgetPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while sending OTP Token`
+  String get sendOtpTokenError {
+    return Intl.message(
+      'Exception while sending OTP Token',
+      name: 'sendOtpTokenError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while verifying Device Change OTP`
+  String get verifyDeviceChangeOtpError {
+    return Intl.message(
+      'Exception while verifying Device Change OTP',
+      name: 'verifyDeviceChangeOtpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while resending OTP`
+  String get resendOtpError {
+    return Intl.message(
+      'Exception while resending OTP',
+      name: 'resendOtpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while checking exsiting call`
+  String get checkExistingCallError {
+    return Intl.message(
+      'Exception while checking exsiting call',
+      name: 'checkExistingCallError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while requesting call`
+  String get requestCallError {
+    return Intl.message(
+      'Exception while requesting call',
+      name: 'requestCallError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting gender status`
+  String get getGenderStatusError {
+    return Intl.message(
+      'Exception while getting gender status',
+      name: 'getGenderStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting time slots`
+  String get getTimeSlotsError {
+    return Intl.message(
+      'Exception while getting time slots',
+      name: 'getTimeSlotsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while adding call`
+  String get addCallError {
+    return Intl.message(
+      'Exception while adding call',
+      name: 'addCallError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while checking call status`
+  String get checkCallStatusError {
+    return Intl.message(
+      'Exception while checking call status',
+      name: 'checkCallStatusError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Card Applications`
+  String get getCardApplicationError {
+    return Intl.message(
+      'Exception while getting Card Applications',
+      name: 'getCardApplicationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while getting Loan Values`
+  String get getLoanValuesError {
+    return Intl.message(
+      'Exception while getting Loan Values',
+      name: 'getLoanValuesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while Process loan Values`
+  String get processLoanValuesError {
+    return Intl.message(
+      'Exception while Process loan Values',
+      name: 'processLoanValuesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exception while executing PayBack Credit Card`
+  String get paybackCreditCardError {
+    return Intl.message(
+      'Exception while executing PayBack Credit Card',
+      name: 'paybackCreditCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Expiry Date`
+  String get expiryDateError {
+    return Intl.message(
+      'Invalid Expiry Date',
+      name: 'expiryDateError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password and Re-enter Password is not Same`
+  String get passwordMismatchError {
+    return Intl.message(
+      'New Password and Re-enter Password is not Same',
+      name: 'passwordMismatchError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Sending Device Change OTP`
+  String get sendingDeviceOtpError {
+    return Intl.message(
+      'Error While Sending Device Change OTP',
+      name: 'sendingDeviceOtpError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select future date`
+  String get selectFutureDate {
+    return Intl.message(
+      'Please select future date',
+      name: 'selectFutureDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Gender for virtual agent correct values are M|F`
+  String get invalidGenderValue {
+    return Intl.message(
+      'Invalid Gender for virtual agent correct values are M|F',
+      name: 'invalidGenderValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Schedule Time`
+  String get invalidScheduleTime {
+    return Intl.message(
+      'Invalid Schedule Time',
+      name: 'invalidScheduleTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to connect to server Firebasse Issue`
+  String get firebaseConnectionIssue {
+    return Intl.message(
+      'Unable to connect to server Firebasse Issue',
+      name: 'firebaseConnectionIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call Record Not Found`
+  String get callRecordNotFound {
+    return Intl.message(
+      'Call Record Not Found',
+      name: 'callRecordNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while calling CRIFAUEUPDATE (NI Handler)`
+  String get niHandlerError {
+    return Intl.message(
+      'Error while calling CRIFAUEUPDATE (NI Handler)',
+      name: 'niHandlerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Loan Values`
+  String get loanValuesError {
+    return Intl.message(
+      'Error while getting Loan Values',
+      name: 'loanValuesError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid LoanValue id`
+  String get inValidLoanValueId {
+    return Intl.message(
+      'Invalid LoanValue id',
+      name: 'inValidLoanValueId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid credit limit can not be greater than max limit`
+  String get inValidCreditLimit {
+    return Intl.message(
+      'Invalid credit limit can not be greater than max limit',
+      name: 'inValidCreditLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Process loan Values`
+  String get loanValueProcessError {
+    return Intl.message(
+      'Error while Process loan Values',
+      name: 'loanValueProcessError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing Loan Request (RuleEngine)`
+  String get loanValueRequestProcessingError {
+    return Intl.message(
+      'Error while processing Loan Request (RuleEngine)',
+      name: 'loanValueRequestProcessingError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Customer id`
+  String get invalidCustomerId {
+    return Intl.message(
+      'Invalid Customer id',
+      name: 'invalidCustomerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid credit card id`
+  String get invalidCreditCardId {
+    return Intl.message(
+      'Invalid credit card id',
+      name: 'invalidCreditCardId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step 2 is not done for this credit card`
+  String get step2Complete {
+    return Intl.message(
+      'Step 2 is not done for this credit card',
+      name: 'step2Complete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Process Loan Step not done for this card`
+  String get loanStepNotDone {
+    return Intl.message(
+      'Process Loan Step not done for this card',
+      name: 'loanStepNotDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan values not found`
+  String get loanValuesNotFound {
+    return Intl.message(
+      'Loan values not found',
+      name: 'loanValuesNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in manage so api`
+  String get errorInMessage {
+    return Intl.message(
+      'Error in manage so api',
+      name: 'errorInMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in crif update`
+  String get cridUpdateError {
+    return Intl.message(
+      'Error in crif update',
+      name: 'cridUpdateError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in aramex api`
+  String get armexApiError {
+    return Intl.message(
+      'Error in aramex api',
+      name: 'armexApiError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid PayBack Amount`
+  String get invalidPayBackAmount {
+    return Intl.message(
+      'Invalid PayBack Amount',
+      name: 'invalidPayBackAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card data not found`
+  String get creditCardDataNotFound {
+    return Intl.message(
+      'Credit card data not found',
+      name: 'creditCardDataNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Loan Account Claim not found`
+  String get accountClaimNotFound {
+    return Intl.message(
+      'Card Loan Account Claim not found',
+      name: 'accountClaimNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Loan Account not found`
+  String get cardLoanAccNotFound {
+    return Intl.message(
+      'Card Loan Account not found',
+      name: 'cardLoanAccNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Payment Cash Back (NI Handler)`
+  String get paymentCashbackError {
+    return Intl.message(
+      'Error while getting Payment Cash Back (NI Handler)',
+      name: 'paymentCashbackError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while registering user to vkey`
+  String get registeringUserToVKeyError {
+    return Intl.message(
+      'Error while registering user to vkey',
+      name: 'registeringUserToVKeyError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id is null from Vkey`
+  String get nullId {
+    return Intl.message(
+      'Id is null from Vkey',
+      name: 'nullId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while assigning token vkey`
+  String get assignTokenError {
+    return Intl.message(
+      'Error while assigning token vkey',
+      name: 'assignTokenError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TokenSerial / Apin is empty from Vkey`
+  String get tokenSerialApnEmpty {
+    return Intl.message(
+      'TokenSerial / Apin is empty from Vkey',
+      name: 'tokenSerialApnEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pin Required`
+  String get pinRequired {
+    return Intl.message(
+      'Pin Required',
+      name: 'pinRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid MessageId`
+  String get invalidMessageId {
+    return Intl.message(
+      'Invalid MessageId',
+      name: 'invalidMessageId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vkey transaction failed`
+  String get vKeyTransactionFailed {
+    return Intl.message(
+      'Vkey transaction failed',
+      name: 'vKeyTransactionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vkey Message Id is Required`
+  String get vKeyMessageIdRequired {
+    return Intl.message(
+      'Vkey Message Id is Required',
+      name: 'vKeyMessageIdRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YOur Token is Expired, Login is Not Allowed`
+  String get loginNotAllowed {
+    return Intl.message(
+      'YOur Token is Expired, Login is Not Allowed',
+      name: 'loginNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Mother Name or DOI or Place of Birth`
+  String get enterDetails {
+    return Intl.message(
+      'Enter Mother Name or DOI or Place of Birth',
+      name: 'enterDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image is null`
+  String get imageNull {
+    return Intl.message(
+      'Image is null',
+      name: 'imageNull',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proof of Income & Proof of Address is Required.`
+  String get proofRequired {
+    return Intl.message(
+      'Proof of Income & Proof of Address is Required.',
+      name: 'proofRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP is null`
+  String get otpNull {
+    return Intl.message(
+      'OTP is null',
+      name: 'otpNull',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
