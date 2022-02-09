@@ -95,7 +95,7 @@ class JobAndIncomePageView
                               children: [
                                 AppTextField(
                                   labelText: S.of(context).occupation,
-                                  hintText: S.of(context).pleaseSelect,
+                                  hintText: S.of(context).pleaseEnter,
                                   controller: model.occupationController,
                                   inputType: TextInputType.text,
                                   inputAction: TextInputAction.go,
