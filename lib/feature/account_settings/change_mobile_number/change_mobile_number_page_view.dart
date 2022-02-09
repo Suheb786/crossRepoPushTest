@@ -105,7 +105,7 @@ class ChangeMobileNumberPageView
                                 child: Text(
                                   ProviderScope.containerOf(context)
                                       .read(addNewMobileNumberViewModelProvider)
-                                      .mobileNumber,
+                                      .mobileNumberWithCode,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).accentColor,
