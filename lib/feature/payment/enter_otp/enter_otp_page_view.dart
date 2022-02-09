@@ -102,87 +102,99 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                         },
                         child: Card(
                           margin: EdgeInsets.zero,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 32, horizontal: 24),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SingleChildScrollView(
-                                    physics: ClampingScrollPhysics(),
-                                    child: Column(
-                                      children: [
-                                        AppOtpFields(
-                                          length: 6,
-                                          onChanged: (val) {
-                                            model.validate(val);
-                                          },
-                                        ),
-                                      ],
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            50 <=
+                                        0
+                                    ? 0
+                                    : MediaQuery.of(context).viewInsets.bottom -
+                                        48),
+                            child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 32, horizontal: 24),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SingleChildScrollView(
+                                      physics: ClampingScrollPhysics(),
+                                      child: Column(
+                                        children: [
+                                          AppOtpFields(
+                                            length: 6,
+                                            onChanged: (val) {
+                                              model.validate(val);
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Column(
-                                    children: [
-                                      CountdownTimer(
-                                        controller: model.countDownController,
-                                        onEnd: () {},
-                                        endTime: model.endTime,
-                                        textStyle: TextStyle(
-                                            fontSize: 16,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color!),
-                                        widgetBuilder:
-                                            (context, currentTimeRemaining) {
-                                          return currentTimeRemaining == null
-                                              ? TextButton(
-                                                  onPressed: () {
-                                                    model.updateTime();
-                                                  },
-                                                  child: Text(
-                                                    'Resend Code',
+                                    Column(
+                                      children: [
+                                        CountdownTimer(
+                                          controller: model.countDownController,
+                                          onEnd: () {},
+                                          endTime: model.endTime,
+                                          textStyle: TextStyle(
+                                              fontSize: 16,
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color!),
+                                          widgetBuilder:
+                                              (context, currentTimeRemaining) {
+                                            return currentTimeRemaining == null
+                                                ? TextButton(
+                                                    onPressed: () {
+                                                      model.updateTime();
+                                                    },
+                                                    child: Text(
+                                                      'Resend Code',
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color!),
+                                                    ))
+                                                : Text(
+                                                    S.of(context).resendIn(
+                                                        '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
                                                             .bodyText1!
                                                             .color!),
-                                                  ))
-                                              : Text(
-                                                  S.of(context).resendIn(
-                                                      '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color!),
+                                                  );
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 16.0),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: AnimatedButton(
+                                                    buttonHeight: 50,
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                  ),
                                                 );
-                                        },
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16.0),
-                                        child: AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return Visibility(
-                                                visible: isValid!,
-                                                child: AnimatedButton(
-                                                  buttonHeight: 50,
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                ),
-                                              );
-                                            }),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              )),
+                                              }),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
                       );
                     },

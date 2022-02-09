@@ -152,14 +152,15 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<GetCipherResponseEntity>> getCipher();
 
-  Future<HttpResponse<ResponseEntity>> androidLogin(
-      {required String cipher});
+  Future<HttpResponse<ResponseEntity>> androidLogin({required String cipher});
 
   Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
       {required String cipher});
 
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
       {String mobileNo, String mobileCode});
+
+  Future<HttpResponse<ResponseEntity>> checkVersionUpdate();
 }
 
 abstract class UserLocalDS {

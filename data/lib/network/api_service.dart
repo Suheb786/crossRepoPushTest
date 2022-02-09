@@ -15,6 +15,7 @@ import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
+import 'package:data/entity/remote/account/video_call_status_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
@@ -128,6 +129,7 @@ import 'package:data/entity/remote/user/change_my_number/change_my_number_reques
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/check_version_update_request.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
@@ -678,7 +680,7 @@ abstract class ApiService {
               saveCustomerScheduleTimeRequestEntity);
 
   @POST("/video/GetCallStatus")
-  Future<HttpResponse<ResponseEntity>> getCallStatus(
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
       @Body() GetCallStatusRequest request);
 
   @POST("/DebitCard/RequestSuplementaryDebitCard")
@@ -716,4 +718,8 @@ abstract class ApiService {
   @POST("/CardTracking/PayBackCreditCard")
   Future<HttpResponse<ResponseEntity>> payBackCreditCard(
       @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
+
+  @POST("/AppVersion/currentversionPEV1")
+  Future<HttpResponse<ResponseEntity>> checkVersionUpdate(
+      @Body() CheckVersionUpdateRequest request);
 }

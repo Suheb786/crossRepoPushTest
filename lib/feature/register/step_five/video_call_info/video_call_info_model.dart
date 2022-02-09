@@ -29,7 +29,7 @@ class VideoCallInfoViewModel extends BasePageViewModel {
       });
     });
 
-    checkExistingScheduledCall();
+    //checkExistingScheduledCall();
   }
 
   void checkExistingScheduledCall() {

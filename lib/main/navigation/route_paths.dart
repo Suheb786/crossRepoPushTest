@@ -78,6 +78,7 @@ class RoutePaths {
       "/creditCardApplicationFailure";
   static const String ApplyCreditCardHome = "/applyCreditCardHome";
   static const String AccountHold = "/accountHold";
+  static const String VideoKYCScheduled = "/videoKycScheduled";
   static const String ForgotPassword = "/forgotPassword";
   static const String CreditCardActivationStatus =
       "/creditCardActivationStatus";
@@ -91,4 +92,5 @@ class RoutePaths {
       "/supplementaryDebitCardSuccess";
   static const String CreditCardPayBack = "/creditCardPayBack";
   static const String CreditCardPayBackSuccess = "/creditCardPayBackSuccess";
+  static const String VideoCall = "/videoCall";
 }

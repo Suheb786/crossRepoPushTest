@@ -9,6 +9,7 @@ import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
+import 'package:domain/usecase/user/check_version_update_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
@@ -219,3 +220,8 @@ final iphoneLoginUseCaseProvider = Provider.autoDispose<IphoneLoginUseCase>(
 final changeMyNumberUseCaseProvider =
     Provider.autoDispose<ChangeMyNumberUseCase>(
         (ref) => ChangeMyNumberUseCase(ref.read(userRepoProvider)));
+
+///change my number usecase
+final checkVersionUpdateUseCaseProvider =
+    Provider.autoDispose<CheckVersionUpdateUseCase>(
+        (ref) => CheckVersionUpdateUseCase(ref.read(userRepoProvider)));

@@ -68,8 +68,10 @@ import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_call_scheduled_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
+import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -357,6 +359,12 @@ class AppRouter {
                 credentials: settings.arguments as VideKycCredentials),
             settings: RouteSettings(name: RoutePaths.VideoKyc));
 
+      case RoutePaths.VideoKYCScheduled:
+        return CupertinoPageRoute(
+            builder: (context) => VideoCallScheduledPage(
+                settings.arguments as VideoCallScheduledArguments),
+            settings: RouteSettings(name: RoutePaths.VideoKYCScheduled));
+
       case RoutePaths.DebitCardSettings:
         return CustomRoute.createRoute(DebitCardSettingsPage());
 
@@ -514,6 +522,11 @@ class AppRouter {
             builder: (context) => CreditCardPayBackSuccessPage(
                 settings.arguments as CreditCardPayBackSuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardPayBackSuccess));
+
+      case RoutePaths.VideoCall:
+        return CupertinoPageRoute(
+            builder: (context) => VideoCallPage(),
+            settings: RouteSettings(name: RoutePaths.VideoCall));
 
       default:
         return CupertinoPageRoute(

@@ -139,572 +139,620 @@ class SendToNewRecipientPageView
                                           .withOpacity(0.32),
                                       child: Padding(
                                         padding: EdgeInsets.only(
-                                            top: 32, left: 24, right: 24),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: SingleChildScrollView(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      S.of(context).sendMoneyTo,
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16.0),
-                                                      child: Focus(
-                                                        child: AppTextField(
-                                                          labelText: S
-                                                              .of(context)
-                                                              .ibanOrMobileOrAccount,
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseEnter,
-                                                          key: model
-                                                              .ibanOrMobileKey,
-                                                          controller: model
-                                                              .ibanOrMobileController,
-                                                          onPressed: () {},
-                                                        ),
-                                                        onFocusChange:
-                                                            (hasFocus) {
-                                                          if (!hasFocus) {
-                                                            model.checkSendMoney(
-                                                                amount: ProviderScope
-                                                                        .containerOf(
-                                                                            context)
-                                                                    .read(
-                                                                        sendMoneyViewModelProvider)
-                                                                    .currentPinValue,
-                                                                iban: model
-                                                                    .ibanOrMobileController
-                                                                    .text);
-                                                          }
-                                                        },
-                                                      ),
-                                                    ),
-                                                    AppStreamBuilder<bool>(
-                                                        stream: model
-                                                            .showNameVisibilityStream,
-                                                        initialData: false,
-                                                        dataBuilder: (context,
-                                                            visibility) {
-                                                          return Visibility(
-                                                            visible:
-                                                                visibility!,
-                                                            child: Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        top:
-                                                                            16),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        S
-                                                                            .of(context)
-                                                                            .nameOfBeneficiary,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w400,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        (model.transferResponse.name != null &&
-                                                                                model.transferResponse.name!.isNotEmpty)
-                                                                            ? model.transferResponse.name!
-                                                                            : '-',
-                                                                        maxLines:
-                                                                            2,
-                                                                        style:
-                                                                            TextStyle(
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                )),
-                                                          );
-                                                        }),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 24),
-                                                      child: Text(
+                                            bottom: MediaQuery.of(context)
+                                                            .viewInsets
+                                                            .bottom -
+                                                        50 <=
+                                                    0
+                                                ? 0
+                                                : MediaQuery.of(context)
+                                                        .viewInsets
+                                                        .bottom -
+                                                    48),
+                                        child: Container(
+                                          padding: EdgeInsets.only(
+                                              top: 32, left: 24, right: 24),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: SingleChildScrollView(
+                                                  controller:
+                                                      model.scrollController,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
                                                         S
                                                             .of(context)
-                                                            .selectPurpose,
+                                                            .sendMoneyTo,
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
                                                       ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .purpose,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseEnter,
-                                                        readOnly: true,
-                                                        key: model.purposeKey,
-                                                        controller: model
-                                                            .purposeController,
-                                                        onPressed: () {
-                                                          if (model.purposeList !=
-                                                                  null &&
-                                                              model.purposeList
-                                                                  .isNotEmpty) {
-                                                            PurposeDialog.show(
-                                                                context,
-                                                                purposeList: model
-                                                                    .purposeList,
-                                                                onSelected:
-                                                                    (value) {
-                                                              model
-                                                                  .updatePurpose(
-                                                                      value);
-                                                              model.updatePurposeDetaiList(
-                                                                  value
-                                                                      .purposeDetails!);
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }, onDismissed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            });
-                                                          }
-                                                        },
-                                                        suffixIcon:
-                                                            (value, data) {
-                                                          return Container(
-                                                              height: 16,
-                                                              width: 16,
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      right: 8),
-                                                              child: AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .downArrow,
-                                                                  color: AppColor
-                                                                      .dark_gray_1));
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .purposeDetails,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseEnter,
-                                                        readOnly: true,
-                                                        controller: model
-                                                            .purposeDetailController,
-                                                        key: model
-                                                            .purposeDetailKey,
-                                                        onPressed: () {
-                                                          if (model.purposeDetaiList !=
-                                                                  null &&
-                                                              model
-                                                                  .purposeDetaiList
-                                                                  .isNotEmpty) {
-                                                            PurposeDetailDialog.show(
-                                                                context,
-                                                                purposeDetailList:
-                                                                    model
-                                                                        .purposeDetaiList,
-                                                                onSelected:
-                                                                    (value) {
-                                                              model
-                                                                  .updatePurposeDetail(
-                                                                      value);
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }, onDismissed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            });
-                                                          }
-                                                        },
-                                                        suffixIcon:
-                                                            (value, data) {
-                                                          return Container(
-                                                              height: 16,
-                                                              width: 16,
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      right: 8),
-                                                              child: AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .downArrow,
-                                                                  color: AppColor
-                                                                      .dark_gray_1));
-                                                        },
-                                                      ),
-                                                    ),
-                                                    AppStreamBuilder<bool>(
-                                                        stream:
-                                                            model.switchValue,
-                                                        initialData: false,
-                                                        dataBuilder: (context,
-                                                            isActive) {
-                                                          return Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 24),
-                                                            child: Column(
-                                                              children: [
-                                                                AppSwitchLabelWidget(
-                                                                  label: S
-                                                                      .of(context)
-                                                                      .addRecipientToContact,
-                                                                  inActiveText: S
-                                                                      .of(context)
-                                                                      .no,
-                                                                  activeText: S
-                                                                      .of(context)
-                                                                      .yes,
-                                                                  onToggle:
-                                                                      (value) {
-                                                                    model.isFriend =
-                                                                        value;
-                                                                    model.updateSwitchValue(
-                                                                        value);
-                                                                  },
-                                                                  isActive:
-                                                                      isActive,
-                                                                ),
-                                                                Visibility(
-                                                                  visible:
-                                                                      isActive!,
-                                                                  child:
-                                                                      Container(
-                                                                    padding: EdgeInsets
-                                                                        .only(
-                                                                            top:
-                                                                                16),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        AppStreamBuilder<
-                                                                            String>(
-                                                                          stream:
-                                                                              model.uploadProfilePhotoStream,
-                                                                          initialData:
-                                                                              '',
-                                                                          onData:
-                                                                              (data) {
-                                                                            if (data != null &&
-                                                                                data.isNotEmpty) {
-                                                                              model.selectedProfile = data;
-                                                                              // model.addImage(
-                                                                              //     data);
-                                                                              _cropImage(data, model, context);
-                                                                              // model.showSuccessToast(
-                                                                              //     S.of(context).profilePhotoUpdated);
-                                                                            }
-                                                                          },
-                                                                          dataBuilder:
-                                                                              (context, data) {
-                                                                            return AppStreamBuilder<String>(
-                                                                              stream: model.selectedImageValue,
-                                                                              initialData: '',
-                                                                              dataBuilder: (context, image) {
-                                                                                return InkWell(
-                                                                                  onTap: () {
-                                                                                    ChooseProfileWidget.show(context, onCameraTap: () {
-                                                                                      Navigator.pop(context);
-                                                                                      model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                                                                    }, onGalleryTap: () {
-                                                                                      Navigator.pop(context);
-                                                                                      model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                                                                    }, onRemoveTap: () {
-                                                                                      model.removeImage();
-                                                                                      Navigator.pop(context);
-                                                                                    }, onCancelled: () {
-                                                                                      Navigator.pop(context);
-                                                                                    }, title: S.of(context).pleaseSelectYourAction);
-                                                                                  },
-                                                                                  child: Container(
-                                                                                    height: 50,
-                                                                                    width: 50,
-                                                                                    decoration: BoxDecoration(shape: BoxShape.circle),
-                                                                                    child: ClipOval(
-                                                                                      child: image!.isEmpty
-                                                                                          ? AppSvg.asset(
-                                                                                              AssetUtils.personCircle,
-                                                                                              fit: BoxFit.fill,
-                                                                                            )
-                                                                                          : Image.file(
-                                                                                              File(image),
-                                                                                              fit: BoxFit.fill,
-                                                                                            ),
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                        Expanded(
-                                                                          child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                EdgeInsets.only(left: 14),
-                                                                            child: AppStreamBuilder<bool>(
-                                                                                stream: model.addNickNameStream,
-                                                                                initialData: false,
-                                                                                dataBuilder: (context, val) {
-                                                                                  return val!
-                                                                                      ? Container(
-                                                                                          height: 28,
-                                                                                          child: TextField(
-                                                                                            autofocus: true,
-                                                                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                            cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                                                                            controller: model.addNickNameController,
-                                                                                            decoration: InputDecoration(
-                                                                                              border: InputBorder.none,
-                                                                                              contentPadding: EdgeInsets.only(bottom: 18),
-                                                                                            ),
-                                                                                            onSubmitted: (value) {
-                                                                                              model.addNickNameVal = value;
-                                                                                              model.updateNickName(false);
-                                                                                            },
-                                                                                          ),
-                                                                                        )
-                                                                                      : InkWell(
-                                                                                          onTap: () {
-                                                                                            model.updateNickName(true);
-                                                                                          },
-                                                                                          child: Text(
-                                                                                            model.addNickNameVal!,
-                                                                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                          ),
-                                                                                        );
-                                                                                }),
-                                                                          ),
-                                                                        )
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          );
-                                                        }),
-                                                    // Padding(
-                                                    //   padding: EdgeInsets.only(
-                                                    //       top: 24),
-                                                    //   child: ProfileRowItem(
-                                                    //     title: S
-                                                    //         .of(context)
-                                                    //         .addRecipientToContact,
-                                                    //     initialValue: false,
-                                                    //     activeText:
-                                                    //         S.of(context).yes,
-                                                    //     inactiveText:
-                                                    //         S.of(context).no,
-                                                    //     providerBase:
-                                                    //         anyOtherNationalityViewModelProvider,
-                                                    //     onToggle: (isActive) {
-                                                    //       print(
-                                                    //           'isActive--->$isActive}');
-                                                    //       model.isFriend =
-                                                    //           isActive;
-                                                    //       return Visibility(
-                                                    //         visible: isActive,
-                                                    //         child: Padding(
-                                                    //           padding: EdgeInsets
-                                                    //               .only(
-                                                    //                   top:
-                                                    //                       16.0),
-                                                    //           child: Container(
-                                                    //             padding: EdgeInsets
-                                                    //                 .only(
-                                                    //                     top:
-                                                    //                         16),
-                                                    //             child: Row(
-                                                    //               children: [
-                                                    //                 AppStreamBuilder<
-                                                    //                     String>(
-                                                    //                   stream: model
-                                                    //                       .uploadProfilePhotoStream,
-                                                    //                   initialData:
-                                                    //                       '',
-                                                    //                   onData:
-                                                    //                       (data) {
-                                                    //                     if (data !=
-                                                    //                             null &&
-                                                    //                         data.isNotEmpty) {
-                                                    //                       model.selectedProfile =
-                                                    //                           data;
-                                                    //                       // model.addImage(
-                                                    //                       //     data);
-                                                    //                       _cropImage(
-                                                    //                           data,
-                                                    //                           model,
-                                                    //                           context);
-                                                    //                       // model.showSuccessToast(
-                                                    //                       //     S.of(context).profilePhotoUpdated);
-                                                    //                     }
-                                                    //                   },
-                                                    //                   dataBuilder:
-                                                    //                       (context,
-                                                    //                           data) {
-                                                    //                     print(
-                                                    //                         "got data : ${data}");
-                                                    //                     return AppStreamBuilder<
-                                                    //                         String>(
-                                                    //                       stream:
-                                                    //                           model.selectedImageValue,
-                                                    //                       initialData:
-                                                    //                           '',
-                                                    //                       dataBuilder:
-                                                    //                           (context, image) {
-                                                    //                         return InkWell(
-                                                    //                           onTap: () {
-                                                    //                             ChooseProfileWidget.show(context, onCameraTap: () {
-                                                    //                               Navigator.pop(context);
-                                                    //                               model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                                    //                             }, onGalleryTap: () {
-                                                    //                               Navigator.pop(context);
-                                                    //                               model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                                    //                             }, onRemoveTap: () {
-                                                    //                               model.removeImage();
-                                                    //                               Navigator.pop(context);
-                                                    //                             }, onCancelled: () {
-                                                    //                               Navigator.pop(context);
-                                                    //                             }, title: S.of(context).pleaseSelectYourAction);
-                                                    //                           },
-                                                    //                           child: Container(
-                                                    //                             height: 50,
-                                                    //                             width: 50,
-                                                    //                             decoration: BoxDecoration(shape: BoxShape.circle),
-                                                    //                             child: ClipOval(
-                                                    //                               child: image!.isEmpty
-                                                    //                                   ? AppSvg.asset(
-                                                    //                                       AssetUtils.personCircle,
-                                                    //                                       fit: BoxFit.fill,
-                                                    //                                     )
-                                                    //                                   : Image.file(
-                                                    //                                       File(image),
-                                                    //                                       fit: BoxFit.fill,
-                                                    //                                     ),
-                                                    //                             ),
-                                                    //                           ),
-                                                    //                         );
-                                                    //                       },
-                                                    //                     );
-                                                    //                   },
-                                                    //                 ),
-                                                    //                 Expanded(
-                                                    //                   child:
-                                                    //                       Padding(
-                                                    //                     padding:
-                                                    //                         EdgeInsets.only(left: 14),
-                                                    //                     child:
-                                                    //                         Text(
-                                                    //                       (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty)
-                                                    //                           ? model.transferResponse.name!
-                                                    //                           : '-',
-                                                    //                       maxLines:
-                                                    //                           2,
-                                                    //                       style: TextStyle(
-                                                    //                           fontSize: 14,
-                                                    //                           fontWeight: FontWeight.w600,
-                                                    //                           color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                    //                     ),
-                                                    //                   ),
-                                                    //                 )
-                                                    //               ],
-                                                    //             ),
-                                                    //           ),
-                                                    //         ),
-                                                    //       );
-                                                    //     },
-                                                    //   ),
-                                                    // ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 16,
-                                                      ),
-                                                      child: Align(
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: AppStreamBuilder<
-                                                            bool>(
-                                                          stream: model
-                                                              .showButtonStream,
-                                                          initialData: true,
-                                                          dataBuilder: (context,
-                                                              isValid) {
-                                                            return Visibility(
-                                                              visible: isValid!,
-                                                              child:
-                                                                  AnimatedButton(
-                                                                buttonText: S
-                                                                    .of(context)
-                                                                    .swipeToProceed,
-                                                              ),
-                                                            );
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16.0),
+                                                        child: Focus(
+                                                          child: AppTextField(
+                                                            labelText: S
+                                                                .of(context)
+                                                                .ibanOrMobileOrAccount,
+                                                            hintText: S
+                                                                .of(context)
+                                                                .pleaseEnter,
+                                                            key: model
+                                                                .ibanOrMobileKey,
+                                                            controller: model
+                                                                .ibanOrMobileController,
+                                                            onPressed: () {},
+                                                          ),
+                                                          onFocusChange:
+                                                              (hasFocus) {
+                                                            if (!hasFocus) {
+                                                              model.checkSendMoney(
+                                                                  amount: ProviderScope
+                                                                          .containerOf(
+                                                                              context)
+                                                                      .read(
+                                                                          sendMoneyViewModelProvider)
+                                                                      .currentPinValue,
+                                                                  iban: model
+                                                                      .ibanOrMobileController
+                                                                      .text);
+                                                            }
                                                           },
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 20, bottom: 16),
-                                                child: Text(
-                                                  S.of(context).backToPayments,
-                                                  style: TextStyle(
-                                                    color: AppColor.brightBlue,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w500,
+                                                      AppStreamBuilder<bool>(
+                                                          stream: model
+                                                              .showNameVisibilityStream,
+                                                          initialData: false,
+                                                          dataBuilder: (context,
+                                                              visibility) {
+                                                            return Visibility(
+                                                              visible:
+                                                                  visibility!,
+                                                              child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 16),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child:
+                                                                            Text(
+                                                                          S.of(context).nameOfBeneficiary,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w400,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Text(
+                                                                          (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty)
+                                                                              ? model.transferResponse.name!
+                                                                              : '-',
+                                                                          maxLines:
+                                                                              2,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontSize:
+                                                                                12,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  )),
+                                                            );
+                                                          }),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 24),
+                                                        child: Text(
+                                                          S
+                                                              .of(context)
+                                                              .selectPurpose,
+                                                          style: TextStyle(
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16),
+                                                        child: AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .purpose,
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          readOnly: true,
+                                                          key: model.purposeKey,
+                                                          controller: model
+                                                              .purposeController,
+                                                          onPressed: () {
+                                                            if (model.purposeList !=
+                                                                    null &&
+                                                                model
+                                                                    .purposeList
+                                                                    .isNotEmpty) {
+                                                              PurposeDialog.show(
+                                                                  context,
+                                                                  purposeList: model
+                                                                      .purposeList,
+                                                                  onSelected:
+                                                                      (value) {
+                                                                model
+                                                                    .updatePurpose(
+                                                                        value);
+                                                                model.updatePurposeDetaiList(
+                                                                    value
+                                                                        .purposeDetails!);
+                                                                Navigator.pop(
+                                                                    context);
+                                                              }, onDismissed:
+                                                                      () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            }
+                                                          },
+                                                          suffixIcon:
+                                                              (value, data) {
+                                                            return Container(
+                                                                height: 16,
+                                                                width: 16,
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            8),
+                                                                child: AppSvg.asset(
+                                                                    AssetUtils
+                                                                        .downArrow,
+                                                                    color: AppColor
+                                                                        .dark_gray_1));
+                                                          },
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16),
+                                                        child: AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .purposeDetails,
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          readOnly: true,
+                                                          controller: model
+                                                              .purposeDetailController,
+                                                          key: model
+                                                              .purposeDetailKey,
+                                                          onPressed: () {
+                                                            if (model.purposeDetaiList !=
+                                                                    null &&
+                                                                model
+                                                                    .purposeDetaiList
+                                                                    .isNotEmpty) {
+                                                              PurposeDetailDialog.show(
+                                                                  context,
+                                                                  purposeDetailList:
+                                                                      model
+                                                                          .purposeDetaiList,
+                                                                  onSelected:
+                                                                      (value) {
+                                                                model
+                                                                    .updatePurposeDetail(
+                                                                        value);
+                                                                Navigator.pop(
+                                                                    context);
+                                                              }, onDismissed:
+                                                                      () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              });
+                                                            }
+                                                          },
+                                                          suffixIcon:
+                                                              (value, data) {
+                                                            return Container(
+                                                                height: 16,
+                                                                width: 16,
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            8),
+                                                                child: AppSvg.asset(
+                                                                    AssetUtils
+                                                                        .downArrow,
+                                                                    color: AppColor
+                                                                        .dark_gray_1));
+                                                          },
+                                                        ),
+                                                      ),
+                                                      AppStreamBuilder<bool>(
+                                                          stream:
+                                                              model.switchValue,
+                                                          initialData: false,
+                                                          dataBuilder: (context,
+                                                              isActive) {
+                                                            return Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: 24),
+                                                              child: Column(
+                                                                children: [
+                                                                  AppSwitchLabelWidget(
+                                                                    label: S
+                                                                        .of(context)
+                                                                        .addRecipientToContact,
+                                                                    inActiveText: S
+                                                                        .of(context)
+                                                                        .no,
+                                                                    activeText: S
+                                                                        .of(context)
+                                                                        .yes,
+                                                                    onToggle:
+                                                                        (value) {
+                                                                      model.isFriend =
+                                                                          value;
+                                                                      model.updateSwitchValue(
+                                                                          value);
+                                                                      if (value) {
+                                                                        print(
+                                                                            "hello world");
+                                                                        if (model
+                                                                            .scrollController
+                                                                            .hasClients) {
+                                                                          model
+                                                                              .scrollController
+                                                                              .animateTo(
+                                                                            model.scrollController.position.maxScrollExtent,
+                                                                            duration:
+                                                                                Duration(seconds: 1),
+                                                                            curve:
+                                                                                Curves.fastOutSlowIn,
+                                                                          );
+                                                                        }
+                                                                      }
+                                                                    },
+                                                                    isActive:
+                                                                        isActive,
+                                                                  ),
+                                                                  Visibility(
+                                                                    visible:
+                                                                        isActive!,
+                                                                    child:
+                                                                        Container(
+                                                                      padding: EdgeInsets
+                                                                          .only(
+                                                                              top: 16),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          AppStreamBuilder<
+                                                                              String>(
+                                                                            stream:
+                                                                                model.uploadProfilePhotoStream,
+                                                                            initialData:
+                                                                                '',
+                                                                            onData:
+                                                                                (data) {
+                                                                              if (data != null && data.isNotEmpty) {
+                                                                                model.selectedProfile = data;
+                                                                                // model.addImage(
+                                                                                //     data);
+                                                                                _cropImage(data, model, context);
+                                                                                // model.showSuccessToast(
+                                                                                //     S.of(context).profilePhotoUpdated);
+                                                                              }
+                                                                            },
+                                                                            dataBuilder:
+                                                                                (context, data) {
+                                                                              return AppStreamBuilder<String>(
+                                                                                stream: model.selectedImageValue,
+                                                                                initialData: '',
+                                                                                dataBuilder: (context, image) {
+                                                                                  return InkWell(
+                                                                                    onTap: () {
+                                                                                      ChooseProfileWidget.show(context, onCameraTap: () {
+                                                                                        Navigator.pop(context);
+                                                                                        model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                                                                      }, onGalleryTap: () {
+                                                                                        Navigator.pop(context);
+                                                                                        model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                                                                      }, onRemoveTap: () {
+                                                                                        model.removeImage();
+                                                                                        Navigator.pop(context);
+                                                                                      }, onCancelled: () {
+                                                                                        Navigator.pop(context);
+                                                                                      }, title: S.of(context).pleaseSelectYourAction);
+                                                                                    },
+                                                                                    child: Container(
+                                                                                      height: 50,
+                                                                                      width: 50,
+                                                                                      decoration: BoxDecoration(shape: BoxShape.circle),
+                                                                                      child: ClipOval(
+                                                                                        child: image!.isEmpty
+                                                                                            ? AppSvg.asset(
+                                                                                                AssetUtils.personCircle,
+                                                                                                fit: BoxFit.fill,
+                                                                                              )
+                                                                                            : Image.file(
+                                                                                                File(image),
+                                                                                                fit: BoxFit.fill,
+                                                                                              ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  );
+                                                                                },
+                                                                              );
+                                                                            },
+                                                                          ),
+                                                                          Expanded(
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsets.only(left: 14),
+                                                                              child: AppStreamBuilder<bool>(
+                                                                                  stream: model.addNickNameStream,
+                                                                                  initialData: false,
+                                                                                  dataBuilder: (context, val) {
+                                                                                    return val!
+                                                                                        ? Container(
+                                                                                            height: 28,
+                                                                                            child: TextField(
+                                                                                              autofocus: true,
+                                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                              cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                                                              controller: model.addNickNameController,
+                                                                                              decoration: InputDecoration(
+                                                                                                border: InputBorder.none,
+                                                                                                contentPadding: EdgeInsets.only(bottom: 18),
+                                                                                              ),
+                                                                                              onSubmitted: (value) {
+                                                                                                model.addNickNameVal = value;
+                                                                                                model.updateNickName(false);
+                                                                                              },
+                                                                                            ),
+                                                                                          )
+                                                                                        : InkWell(
+                                                                                            onTap: () {
+                                                                                              model.updateNickName(true);
+                                                                                            },
+                                                                                            child: Text(
+                                                                                              model.addNickNameVal!,
+                                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                            ),
+                                                                                          );
+                                                                                  }),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            );
+                                                          }),
+                                                      // Padding(
+                                                      //   padding: EdgeInsets.only(
+                                                      //       top: 24),
+                                                      //   child: ProfileRowItem(
+                                                      //     title: S
+                                                      //         .of(context)
+                                                      //         .addRecipientToContact,
+                                                      //     initialValue: false,
+                                                      //     activeText:
+                                                      //         S.of(context).yes,
+                                                      //     inactiveText:
+                                                      //         S.of(context).no,
+                                                      //     providerBase:
+                                                      //         anyOtherNationalityViewModelProvider,
+                                                      //     onToggle: (isActive) {
+                                                      //       print(
+                                                      //           'isActive--->$isActive}');
+                                                      //       model.isFriend =
+                                                      //           isActive;
+                                                      //       return Visibility(
+                                                      //         visible: isActive,
+                                                      //         child: Padding(
+                                                      //           padding: EdgeInsets
+                                                      //               .only(
+                                                      //                   top:
+                                                      //                       16.0),
+                                                      //           child: Container(
+                                                      //             padding: EdgeInsets
+                                                      //                 .only(
+                                                      //                     top:
+                                                      //                         16),
+                                                      //             child: Row(
+                                                      //               children: [
+                                                      //                 AppStreamBuilder<
+                                                      //                     String>(
+                                                      //                   stream: model
+                                                      //                       .uploadProfilePhotoStream,
+                                                      //                   initialData:
+                                                      //                       '',
+                                                      //                   onData:
+                                                      //                       (data) {
+                                                      //                     if (data !=
+                                                      //                             null &&
+                                                      //                         data.isNotEmpty) {
+                                                      //                       model.selectedProfile =
+                                                      //                           data;
+                                                      //                       // model.addImage(
+                                                      //                       //     data);
+                                                      //                       _cropImage(
+                                                      //                           data,
+                                                      //                           model,
+                                                      //                           context);
+                                                      //                       // model.showSuccessToast(
+                                                      //                       //     S.of(context).profilePhotoUpdated);
+                                                      //                     }
+                                                      //                   },
+                                                      //                   dataBuilder:
+                                                      //                       (context,
+                                                      //                           data) {
+                                                      //                     print(
+                                                      //                         "got data : ${data}");
+                                                      //                     return AppStreamBuilder<
+                                                      //                         String>(
+                                                      //                       stream:
+                                                      //                           model.selectedImageValue,
+                                                      //                       initialData:
+                                                      //                           '',
+                                                      //                       dataBuilder:
+                                                      //                           (context, image) {
+                                                      //                         return InkWell(
+                                                      //                           onTap: () {
+                                                      //                             ChooseProfileWidget.show(context, onCameraTap: () {
+                                                      //                               Navigator.pop(context);
+                                                      //                               model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                                      //                             }, onGalleryTap: () {
+                                                      //                               Navigator.pop(context);
+                                                      //                               model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                                      //                             }, onRemoveTap: () {
+                                                      //                               model.removeImage();
+                                                      //                               Navigator.pop(context);
+                                                      //                             }, onCancelled: () {
+                                                      //                               Navigator.pop(context);
+                                                      //                             }, title: S.of(context).pleaseSelectYourAction);
+                                                      //                           },
+                                                      //                           child: Container(
+                                                      //                             height: 50,
+                                                      //                             width: 50,
+                                                      //                             decoration: BoxDecoration(shape: BoxShape.circle),
+                                                      //                             child: ClipOval(
+                                                      //                               child: image!.isEmpty
+                                                      //                                   ? AppSvg.asset(
+                                                      //                                       AssetUtils.personCircle,
+                                                      //                                       fit: BoxFit.fill,
+                                                      //                                     )
+                                                      //                                   : Image.file(
+                                                      //                                       File(image),
+                                                      //                                       fit: BoxFit.fill,
+                                                      //                                     ),
+                                                      //                             ),
+                                                      //                           ),
+                                                      //                         );
+                                                      //                       },
+                                                      //                     );
+                                                      //                   },
+                                                      //                 ),
+                                                      //                 Expanded(
+                                                      //                   child:
+                                                      //                       Padding(
+                                                      //                     padding:
+                                                      //                         EdgeInsets.only(left: 14),
+                                                      //                     child:
+                                                      //                         Text(
+                                                      //                       (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty)
+                                                      //                           ? model.transferResponse.name!
+                                                      //                           : '-',
+                                                      //                       maxLines:
+                                                      //                           2,
+                                                      //                       style: TextStyle(
+                                                      //                           fontSize: 14,
+                                                      //                           fontWeight: FontWeight.w600,
+                                                      //                           color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                      //                     ),
+                                                      //                   ),
+                                                      //                 )
+                                                      //               ],
+                                                      //             ),
+                                                      //           ),
+                                                      //         ),
+                                                      //       );
+                                                      //     },
+                                                      //   ),
+                                                      // ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          top: 16,
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child:
+                                                              AppStreamBuilder<
+                                                                  bool>(
+                                                            stream: model
+                                                                .showButtonStream,
+                                                            initialData: true,
+                                                            dataBuilder:
+                                                                (context,
+                                                                    isValid) {
+                                                              return Visibility(
+                                                                visible:
+                                                                    isValid!,
+                                                                child:
+                                                                    AnimatedButton(
+                                                                  buttonText: S
+                                                                      .of(context)
+                                                                      .swipeToProceed,
+                                                                ),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ),
-                                            )
-                                          ],
+                                              InkWell(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 20, bottom: 16),
+                                                  child: Text(
+                                                    S
+                                                        .of(context)
+                                                        .backToPayments,
+                                                    style: TextStyle(
+                                                      color:
+                                                          AppColor.brightBlue,
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),

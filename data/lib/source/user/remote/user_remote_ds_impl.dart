@@ -10,6 +10,7 @@ import 'package:data/entity/remote/user/change_my_number/change_my_number_reques
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/check_version_update_request.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/account_purpose_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/country_residence_entity.dart';
@@ -497,6 +498,18 @@ class UserRemoteDSImpl extends UserRemoteDS {
       getToken: true,
       mobileNo: mobileNo,
       mobileCode: mobileCode,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> checkVersionUpdate() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkVersionUpdate(CheckVersionUpdateRequest(
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+      platform: baseData.platform,
+      parentVersion: baseData.appVersion?.split(" ")[0],
+      version: baseData.appVersion?.split(" ")[1],
       baseData: baseData.toJson(),
     ));
   }

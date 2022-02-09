@@ -49,7 +49,7 @@ class FilterTransactionDialogView extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 32.0),
                           child: Center(
                             child: Text(
-                              S.of(context).employmentStatusSmall,
+                              S.of(context).transactionPeriod,
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w600),
                             ),

@@ -17,8 +17,9 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   final TextEditingController countrySearchController = TextEditingController();
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  FixedExtentScrollController scrollController = FixedExtentScrollController();
+
+  CountryData? initialSelectedCountry = CountryData();
 
   CountryData? selectedCountry = CountryData();
 
@@ -66,7 +67,24 @@ class CountryDialogViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           _searchCountryResponse.safeAdd(
               Resource.success(data: event.data!.content!.countryData));
-          selectCountry(0);
+
+          selectedCountry = event.data!.content!.countryData!.firstWhere(
+              (element) => element.isoCode3 == 'JOR',
+              orElse: () => event.data!.content!.countryData!.first);
+          // int? index;
+          // event.data!.content!.countryData!.forEach((element) {
+          //   print("here");
+          //   if (element.countryName!.toUpperCase() == "JORDAN") {
+          //     print("got it");
+          //     index = event.data!.content!.countryData!.indexOf(element);
+          //   }
+          // });
+          initialSelectedCountry = selectedCountry;
+          scrollController = FixedExtentScrollController(
+              initialItem:
+                  event.data!.content!.countryData!.indexOf(selectedCountry!));
+          selectCountry(
+              event.data!.content!.countryData!.indexOf(selectedCountry!));
           isDataAvailable = true;
         }
       });
@@ -87,6 +105,7 @@ class CountryDialogViewModel extends BasePageViewModel {
       });
       countryList.elementAt(index).isSelected = true;
       selectedCountry = countryList.firstWhere((element) => element.isSelected);
+      //selectedCountry = countryList.elementAt(index);
       _searchCountryResponse.safeAdd(Resource.success(data: countryList));
     }
   }
@@ -105,10 +124,16 @@ class CountryDialogViewModel extends BasePageViewModel {
         }
       }
       _searchCountryResponse.safeAdd(Resource.success(data: searchResult));
+      scrollController = FixedExtentScrollController(initialItem: 0);
       selectCountry(0);
     } else {
       _searchCountryResponse.safeAdd(Resource.success(
           data: _getCountryListResponse.value.data!.content!.countryData));
+      scrollController = FixedExtentScrollController(
+          initialItem: _getCountryListResponse.value.data!.content!.countryData!
+              .indexOf(initialSelectedCountry!));
+      selectCountry(_getCountryListResponse.value.data!.content!.countryData!
+          .indexOf(initialSelectedCountry!));
     }
   }
 

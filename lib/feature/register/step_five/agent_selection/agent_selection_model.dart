@@ -113,7 +113,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _checkCustomerStatusResponse.add(event);
+        _checkCustomerStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -126,7 +126,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _getAccountResponse.add(event);
+        _getAccountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -140,7 +140,7 @@ class AgentSelectionViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _createAccountResponse.add(event);
+        _createAccountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -183,8 +183,8 @@ class AgentSelectionViewModel extends BasePageViewModel {
     _requestCallResponse.close();
     _checkGenderStatusResponse.close();
     _checkGenderStatusRequest.close();
-    _checkCustomerStatusRequest.close();
-    _checkCustomerStatusResponse.close();
+    // _checkCustomerStatusRequest.close();
+    // _checkCustomerStatusResponse.close();
     _getAccountRequest.close();
     _getAccountResponse.close();
     _createAccountRequest.close();

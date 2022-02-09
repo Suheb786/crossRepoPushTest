@@ -27,20 +27,22 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: GestureDetector(
-                onHorizontalDragUpdate: (details) async {
-                  if (details.primaryDelta!.isNegative) {
+                onHorizontalDragEnd: (details) async {
+                  if (details.primaryVelocity!.isNegative) {
                     Map<Permission, PermissionStatus> statuses = await [
                       Permission.camera,
                       Permission.microphone,
-                      Permission.bluetooth
+                      //Permission.bluetooth
                     ].request();
 
                     if (statuses[Permission.camera] ==
-                            PermissionStatus.permanentlyDenied ||
-                        statuses[Permission.microphone] ==
-                            PermissionStatus.permanentlyDenied ||
-                        statuses[Permission.bluetooth] ==
-                            PermissionStatus.permanentlyDenied) {
+                                PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.microphone] ==
+                                PermissionStatus.permanentlyDenied
+                        // ||
+                        // statuses[Permission.bluetooth] ==
+                        //     PermissionStatus.permanentlyDenied
+                        ) {
                       openAppSettings();
                     }
                     Future.delayed(Duration(milliseconds: 500), () {

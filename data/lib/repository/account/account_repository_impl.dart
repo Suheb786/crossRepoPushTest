@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/account/account_datasource.dart';
-import 'package:domain/constants/enum/video_kyc_status_enum.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/account/agent_gender_status.dart';
 import 'package:domain/model/account/available_time_slots.dart';
@@ -131,10 +130,6 @@ class AccountRepositoryImpl extends AccountRepository {
     final result = await safeApiCall(
       _accountRemoteDS.getCallStatus(session),
     );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(
-          VideoKycStatus(status: (r.data.content as String).fromStatusValue())),
-    );
+    return result!.fold((l) => Left(l), (r) => Right(r.data.transform()));
   }
 }

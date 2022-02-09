@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
@@ -12,6 +11,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -23,6 +23,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    bool isSmallDevices = model.deviceSize.height <
+            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+        model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return AppKeyBoardHide(
       child: Center(
         child: Stack(
@@ -38,12 +41,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 }
               },
               child: AspectRatio(
-                aspectRatio: model.deviceSize.height <
-                            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
-                        model.deviceSize.height <
-                            ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
-                    ? 0.68
-                    : 0.62,
+                aspectRatio: isSmallDevices ? 0.68 : 0.62,
                 child: Container(
                   margin: EdgeInsets.only(bottom: 14),
                   child: Card(
@@ -60,27 +58,14 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                         image: DecorationImage(
                           image: AssetImage(AssetUtils.zigzagRed),
                           alignment: Alignment.topRight,
-                          scale: model.deviceSize.height <
-                                      ScreenSizeBreakPoints
-                                          .SMALL_DEVICE_HEIGHT ||
-                                  model.deviceSize.height <
-                                      ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
-                              ? 1.3
-                              : 1,
+                          scale: isSmallDevices ? 1.3 : 1,
                         ),
                       ),
                       child: LayoutBuilder(builder: (context, constraints) {
                         return SingleChildScrollView(
                           child: Padding(
                               padding: EdgeInsets.only(
-                                  left: model.deviceSize.height <
-                                              ScreenSizeBreakPoints
-                                                  .SMALL_DEVICE_HEIGHT ||
-                                          model.deviceSize.height <
-                                              ScreenSizeBreakPoints
-                                                  .MEDIUM_DEVICE_HEIGHT
-                                      ? 20
-                                      : 27.0),
+                                  left: isSmallDevices ? 20 : 27.0),
                               child: ConstrainedBox(
                                 constraints: BoxConstraints(
                                     minWidth: constraints.maxWidth,
@@ -192,14 +177,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       // ),
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            top: model.deviceSize.height <
-                                                        ScreenSizeBreakPoints
-                                                            .SMALL_DEVICE_HEIGHT ||
-                                                    model.deviceSize.height <
-                                                        ScreenSizeBreakPoints
-                                                            .MEDIUM_DEVICE_HEIGHT
-                                                ? 21
-                                                : 30.0),
+                                            top: isSmallDevices ? 21 : 30.0),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -208,30 +186,14 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               S.of(context).myAccount,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .SMALL_DEVICE_HEIGHT ||
-                                                          model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .MEDIUM_DEVICE_HEIGHT
-                                                      ? 10
-                                                      : 12,
+                                                  fontSize:
+                                                      isSmallDevices ? 10 : 12,
                                                   color: Theme.of(context)
                                                       .accentColor),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                top: model.deviceSize.height <
-                                                            ScreenSizeBreakPoints
-                                                                .SMALL_DEVICE_HEIGHT ||
-                                                        model.deviceSize
-                                                                .height <
-                                                            ScreenSizeBreakPoints
-                                                                .MEDIUM_DEVICE_HEIGHT
-                                                    ? 40
-                                                    : 66,
+                                                top: isSmallDevices ? 40 : 66,
                                               ),
                                               child: Text(
                                                 cardData.account!
@@ -243,14 +205,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     : '',
                                                 maxLines: 3,
                                                 style: TextStyle(
-                                                    fontSize: model.deviceSize
-                                                                    .height <
-                                                                ScreenSizeBreakPoints
-                                                                    .SMALL_DEVICE_HEIGHT ||
-                                                            model.deviceSize
-                                                                    .height <
-                                                                ScreenSizeBreakPoints
-                                                                    .MEDIUM_DEVICE_HEIGHT
+                                                    fontSize: isSmallDevices
                                                         ? 10
                                                         : 16,
                                                     fontWeight: FontWeight.w600,
@@ -270,16 +225,10 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       cardData.account!
                                                           .availableBalance!,
                                                       style: TextStyle(
-                                                          fontSize: model.deviceSize
-                                                                          .height <
-                                                                      ScreenSizeBreakPoints
-                                                                          .SMALL_DEVICE_HEIGHT ||
-                                                                  model.deviceSize
-                                                                          .height <
-                                                                      ScreenSizeBreakPoints
-                                                                          .MEDIUM_DEVICE_HEIGHT
-                                                              ? 12
-                                                              : 20,
+                                                          fontSize:
+                                                              isSmallDevices
+                                                                  ? 12
+                                                                  : 20,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           color: Theme.of(
@@ -312,8 +261,10 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         height: 14,
                                                         width: 14,
                                                         child: Image.asset(
-                                                            AssetUtils
-                                                                .refresh)),
+                                                          AssetUtils.refresh,
+                                                          color: AppColor
+                                                              .brightBlue,
+                                                        )),
                                                   ),
                                                 ],
                                               ),
@@ -324,16 +275,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 S.of(context).availableBalance,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: model.deviceSize
-                                                                    .height <
-                                                                ScreenSizeBreakPoints
-                                                                    .SMALL_DEVICE_HEIGHT ||
-                                                            model.deviceSize
-                                                                    .height <
-                                                                ScreenSizeBreakPoints
-                                                                    .MEDIUM_DEVICE_HEIGHT
-                                                        ? 8
-                                                        : 10,
+                                                    fontSize:
+                                                        isSmallDevices ? 8 : 10,
                                                     color: Theme.of(context)
                                                         .accentColor
                                                         .withOpacity(0.4)),
@@ -350,16 +293,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               cardData.account!.accountNo ?? '',
                                               maxLines: 2,
                                               style: TextStyle(
-                                                  fontSize: model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .SMALL_DEVICE_HEIGHT ||
-                                                          model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .MEDIUM_DEVICE_HEIGHT
-                                                      ? 10
-                                                      : 12,
+                                                  fontSize:
+                                                      isSmallDevices ? 10 : 12,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context)
                                                       .accentColor),
@@ -379,7 +314,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 padding:
                                                     EdgeInsets.only(left: 8),
                                                 child: AppSvg.asset(
-                                                    AssetUtils.copy),
+                                                  AssetUtils.copy,
+                                                ),
                                               ),
                                             )
                                           ],
@@ -393,15 +329,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               color: Theme.of(context)
                                                   .accentColor
                                                   .withOpacity(0.4),
-                                              fontSize: model.deviceSize
-                                                              .height <
-                                                          ScreenSizeBreakPoints
-                                                              .SMALL_DEVICE_HEIGHT ||
-                                                      model.deviceSize.height <
-                                                          ScreenSizeBreakPoints
-                                                              .MEDIUM_DEVICE_HEIGHT
-                                                  ? 8
-                                                  : 10,
+                                              fontSize: isSmallDevices ? 8 : 10,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
@@ -418,16 +346,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                   color: Theme.of(context)
                                                       .accentColor,
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .SMALL_DEVICE_HEIGHT ||
-                                                          model.deviceSize
-                                                                  .height <
-                                                              ScreenSizeBreakPoints
-                                                                  .MEDIUM_DEVICE_HEIGHT
-                                                      ? 9
-                                                      : 12),
+                                                  fontSize:
+                                                      isSmallDevices ? 9 : 12),
                                             ),
                                             InkWell(
                                               onTap: () {
@@ -458,15 +378,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               color: Theme.of(context)
                                                   .accentColor
                                                   .withOpacity(0.4),
-                                              fontSize: model.deviceSize
-                                                              .height <
-                                                          ScreenSizeBreakPoints
-                                                              .SMALL_DEVICE_HEIGHT ||
-                                                      model.deviceSize.height <
-                                                          ScreenSizeBreakPoints
-                                                              .MEDIUM_DEVICE_HEIGHT
-                                                  ? 8
-                                                  : 10,
+                                              fontSize: isSmallDevices ? 8 : 10,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ),
@@ -485,7 +397,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         .AddMoneyOptionSelector);
                                               },
                                               child: Container(
-                                                height: 35,
+                                                height: 40,
                                                 width: 105,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
@@ -501,16 +413,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        fontSize: model.deviceSize
-                                                                        .height <
-                                                                    ScreenSizeBreakPoints
-                                                                        .SMALL_DEVICE_HEIGHT ||
-                                                                model.deviceSize
-                                                                        .height <
-                                                                    ScreenSizeBreakPoints
-                                                                        .MEDIUM_DEVICE_HEIGHT
+                                                        fontSize: isSmallDevices
                                                             ? 10
-                                                            : 14,
+                                                            : 12,
                                                         color: Theme.of(context)
                                                             .accentColor),
                                                   ),
@@ -538,7 +443,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(height: 40),
+                                      SizedBox(
+                                          height: isSmallDevices ? 30 : 50),
                                     ],
                                   ),
                                 ),
@@ -550,13 +456,24 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: LottieBuilder.asset(
-                'assets/animation/Swipe_Up.json',
-                height: 71.0,
+            Positioned(
+              bottom: 0,
+              child: Column(
+                children: [
+                  AppSvg.asset(AssetUtils.swipeUp),
+                  Padding(
+                    padding: EdgeInsets.only(top: 6),
+                    child: Text(
+                      S.of(context).swipeUpToViewTransaction,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: isSmallDevices ? 10 : 12,
+                          color: AppColor.dark_gray_1),
+                    ),
+                  )
+                ],
               ),
-            ),
+            )
           ],
         ),
       ),
