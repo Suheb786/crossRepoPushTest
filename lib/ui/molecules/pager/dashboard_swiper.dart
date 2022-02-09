@@ -1,5 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 
 class DashboardSwiper extends StatelessWidget {
   final List pages;
@@ -17,13 +19,21 @@ class DashboardSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSmallDevices = MediaQuery.of(context).size.height <
+            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+        MediaQuery.of(context).size.height <
+            ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return Swiper(
       customLayoutOption: CustomLayoutOption(
               startIndex: -1, stateCount: currentStep == 2 ? 2 : 3)
           .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
-        Offset(-(MediaQuery.of(context).size.width - 60), -5.0),
+        isSmallDevices
+            ? Offset(-(MediaQuery.of(context).size.width - 65), -5.0)
+            : Offset(-(MediaQuery.of(context).size.width - 55), -5.0),
         Offset(0.0, 0.0),
-        Offset(MediaQuery.of(context).size.width - 60, -5.0)
+        isSmallDevices
+            ? Offset(MediaQuery.of(context).size.width - 65, -5.0)
+            : Offset(MediaQuery.of(context).size.width - 55, -5.0)
       ]),
       loop: false,
       controller: pageController,
