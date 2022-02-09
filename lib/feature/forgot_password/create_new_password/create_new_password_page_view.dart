@@ -84,6 +84,7 @@ class CreateNewPasswordPageView
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     child: SingleChildScrollView(

@@ -163,6 +163,11 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          purposeList = [];
+          purposeDetailList = [];
+          purposeController.clear();
+          purposeDetailController.clear();
+          _showAccountDetailSubject.safeAdd("");
         } else if (event.status == Status.SUCCESS) {
           dbtrBic = event.data!.getAccountByAliasContent!.bic;
           dbtrName = event.data!.getAccountByAliasContent!.name;
