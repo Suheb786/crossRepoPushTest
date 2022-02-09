@@ -108,12 +108,12 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                 Navigator.pop(context);
                                               }, onSelected:
                                                       (country, mobileNo) {
-                                                Navigator.pop(context);
                                                 model.mobileNumberParams =
                                                     MobileNumberParams(
                                                         mobileNumber: mobileNo,
                                                         mobileCode:
                                                             country.phoneCode!);
+                                                Navigator.pop(context);
                                                 model.changeMyNumber(mobileNo,
                                                     country.phoneCode!);
                                               });
