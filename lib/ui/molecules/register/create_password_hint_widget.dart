@@ -14,15 +14,15 @@ class CreatePasswordHintWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
+          color: isValid!
+              ? Theme.of(context).primaryColorDark
+              : Theme.of(context).inputDecorationTheme.hintStyle!.color,
           borderRadius: BorderRadius.circular(100)),
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          isValid!
-              ? AppSvg.asset(AssetUtils.check_icon, width: 8, height: 8)
-              : Container(),
+          AppSvg.asset(AssetUtils.check_icon, width: 8, height: 8),
           SizedBox(
             width: 4,
           ),
