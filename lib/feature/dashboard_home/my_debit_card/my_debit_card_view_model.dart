@@ -9,10 +9,10 @@ class MyDebitCardViewModel extends BasePageViewModel {
   MyDebitCardUseCase _useCase;
 
   BehaviorSubject<bool> _isFlipCardClickedSubject =
-  BehaviorSubject.seeded(false);
+      BehaviorSubject.seeded(false);
   Size deviceSize = Size(0, 0);
 
-  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+  final GlobalKey<FlipCardState> cardKey = GlobalKey(debugLabel: 'flip-card');
 
   Stream<bool> get isGetCardNowClickedStream =>
       _isFlipCardClickedSubject.stream;
