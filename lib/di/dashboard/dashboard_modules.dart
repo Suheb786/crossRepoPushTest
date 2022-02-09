@@ -27,6 +27,8 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
+import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
+import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
@@ -181,4 +183,12 @@ final creditCardSettingsViewModelProvider =
       ref.read(freezeCreditCardUseCaseProvider),
       ref.read(unFreezeCreditCardUseCaseProvider),
       ref.read(cancelCreditCardUseCaseProvider)),
+);
+
+/// check rescheduled video call
+final checkRescheduledVideoCallViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<
+        CheckScheduledVideoCallPageViewModel, CheckVideoCallScheduledArguments>(
+  (ref, args) => CheckScheduledVideoCallPageViewModel(
+      ref.read(logoutUseCaseProvider), args),
 );

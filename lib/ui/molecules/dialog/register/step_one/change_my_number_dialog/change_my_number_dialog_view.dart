@@ -200,11 +200,14 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                   )));
         },
         onModelReady: (model) {
-          if (countryDataList.length > 0) {
-            model.countryData = countryDataList.firstWhere(
-                (element) => element.isoCode3 == 'JOR',
-                orElse: () => countryDataList.first);
-            model.setSelectedCountry(model.countryData);
+          if (!model.initialDataSet) {
+            if (countryDataList.length > 0) {
+              model.countryData = countryDataList.firstWhere(
+                  (element) => element.isoCode3 == 'JOR',
+                  orElse: () => countryDataList.first);
+              model.setSelectedCountry(model.countryData);
+              model.initialDataSet = true;
+            }
           }
           print('countryDatalength-->${countryDataList.length}');
 

@@ -13,6 +13,8 @@ class ChangeMyNumberDialogViewModel extends BasePageViewModel {
 
   CountryData countryData = CountryData();
 
+  bool initialDataSet = false;
+
   ///selected country response holder
   BehaviorSubject<CountryData> _selectedCountryResponse =
       BehaviorSubject.seeded(CountryData());
