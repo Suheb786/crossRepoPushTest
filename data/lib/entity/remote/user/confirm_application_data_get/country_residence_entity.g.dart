@@ -22,6 +22,9 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(
         ? null
         : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
+    residentCountryName: json['residantCountryName'] as String?,
+    perResidentCountryName: json['perCountryName'] as String?,
+    perResidentCityName: json['perCityName'] as String?,
   );
 }
 
@@ -39,4 +42,7 @@ Map<String, dynamic> _$CountryResidenceEntityToJson(
       'perCity': instance.perCity,
       'createdOn': instance.createdOn?.toIso8601String(),
       'isActive': instance.isActive,
+      'residantCountryName': instance.residentCountryName,
+      'perCountryName': instance.perResidentCountryName,
+      'perCityName': instance.perResidentCityName,
     };
