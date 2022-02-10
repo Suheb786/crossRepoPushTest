@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,10 @@ class PaymentHomeViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<GetBeneficiaryListResponse>>
       _getBeneficiaryResponse = BehaviorSubject();
 
+  List<Beneficiary> smBeneficiaries = [];
+
+  List<Beneficiary> rtpBeneficiaries = [];
+
   Stream<Resource<GetBeneficiaryListResponse>> get beneficiaryResponse =>
       _getBeneficiaryResponse.stream;
 
@@ -56,6 +61,20 @@ class PaymentHomeViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          smBeneficiaries = [];
+          rtpBeneficiaries = [];
+          event.data!.beneficiaryList!.forEach((element) {
+            if (element.beneType == "SM") {
+              smBeneficiaries.add(element);
+            }
+          });
+          print("got smBeneficiaries: ${smBeneficiaries.length}");
+          event.data!.beneficiaryList!.forEach((element) {
+            if (element.beneType == "RTP") {
+              rtpBeneficiaries.add(element);
+            }
+          });
         }
       });
     });

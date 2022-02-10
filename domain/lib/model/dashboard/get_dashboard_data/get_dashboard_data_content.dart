@@ -8,8 +8,8 @@ class GetDashboardDataContent {
       this.creditCard,
       this.debitCard,
       this.youJoinedBlink,
-      this.mobileNumber,
-      this.mobileCode,
+      this.mobileNumber: "",
+      this.mobileCode: "",
       this.blinkWasBorn});
 
   final Account? account;
