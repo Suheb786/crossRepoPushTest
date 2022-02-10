@@ -94,7 +94,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   context, RoutePaths.AccountTransaction);
                             }
                           } else if (currentStep == 2) {
-                            model.updateShowTimeLineStream(!showTimeLine!);
+                            print("swipped here");
+                            if (showTimeLine!) {
+                              model.updateShowTimeLineStream(!showTimeLine);
+                            }
                           } else if (currentStep == 3) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           }
@@ -103,11 +106,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           //     currentStep == 2 ||
                           //     currentStep == 3) {
                           //   if (!showTimeLine!) {
+                          //     print("swipped there");
                           //     model.updateShowTimeLineStream(!showTimeLine);
                           //   }
                           // }
-                          if (!showTimeLine!) {
-                            model.updateShowTimeLineStream(!showTimeLine);
+                          if (details.primaryVelocity! > 0.5) {
+                            if (!showTimeLine!) {
+                              model.updateShowTimeLineStream(!showTimeLine);
+                            }
                           }
                         }
                       },

@@ -18,11 +18,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
 
   PaymentHomePageView(ProviderBase model, this.navigationType) : super(model);
 
-  final List pages = [
-    AddSendMoneyContactPage(),
-    AddRequestMoneyContactPage(),
-    Container()
-  ];
+  // final List pages = [
+  // ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -35,7 +32,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           print("current step : $currentStep");
           return GestureDetector(
             onHorizontalDragEnd: (details) {
-              if (currentStep == pages.length - 1) {}
+              if (currentStep == 2) {}
             },
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
@@ -76,7 +73,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 alignment: Alignment.center,
                                 children: [
                                   PaymentSwiper(
-                                    pages: pages,
+                                    pages: [
+                                      AddSendMoneyContactPage(
+                                          beneficiaries: model.smBeneficiaries),
+                                      AddRequestMoneyContactPage(
+                                          beneficiaries:
+                                              model.rtpBeneficiaries),
+                                      Container()
+                                    ],
                                     pageController: model.pageController,
                                     onIndexChanged: (index) {
                                       model.updatePage(index);
@@ -90,12 +94,12 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           ),
                           SmoothPageIndicator(
                             controller: model.controller,
-                            count: pages.length - 1,
+                            count: 2,
                             effect: ScrollingDotsEffect(
                               activeStrokeWidth: 2.6,
                               activeDotScale: 1.3,
                               activeDotColor:
-                              Theme.of(context).primaryColorDark,
+                                  Theme.of(context).primaryColorDark,
                               dotColor: Theme.of(context)
                                   .primaryColorDark
                                   .withOpacity(0.6),
