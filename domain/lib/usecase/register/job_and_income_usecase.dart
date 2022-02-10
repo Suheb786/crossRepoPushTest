@@ -22,7 +22,8 @@ class JobAndIncomeUseCase extends BaseUseCase<NetworkError,
     return _repository.saveJobInformation(
         occupation: params.occupation,
         businessType: params.businessType,
-        annualIncome: params.annualIncome,
+        annualIncome:
+            '${double.parse(params.annualIncome!).toStringAsFixed(3)}',
         employeeName: params.employerName,
         employerCountry: params.employerCountry,
         employerCity: params.employerCity,
