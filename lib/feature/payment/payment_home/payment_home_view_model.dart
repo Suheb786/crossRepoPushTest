@@ -68,8 +68,8 @@ class PaymentHomeViewModel extends BasePageViewModel {
             if (element.beneType == "SM") {
               smBeneficiaries.add(element);
             }
-            ;
           });
+          print("got smBeneficiaries: ${smBeneficiaries.length}");
           event.data!.beneficiaryList!.forEach((element) {
             if (element.beneType == "RTP") {
               rtpBeneficiaries.add(element);
