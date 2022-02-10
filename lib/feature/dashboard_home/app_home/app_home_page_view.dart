@@ -94,7 +94,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   context, RoutePaths.AccountTransaction);
                             }
                           } else if (currentStep == 2) {
-                            print("swipped here");
                             if (showTimeLine!) {
                               model.updateShowTimeLineStream(!showTimeLine);
                             }
