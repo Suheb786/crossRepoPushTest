@@ -11079,6 +11079,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Your video call is due now. Swipe to initiate the call when you’re ready.`
+  String get videoCallDueNow {
+    return Intl.message(
+      'Your video call is due now. Swipe to initiate the call when you’re ready.',
+      name: 'videoCallDueNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reschedule the call`
+  String get rescheduleTheCall {
+    return Intl.message(
+      'Reschedule the call',
+      name: 'rescheduleTheCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your video call is scheduled for the 15th of October at 10:00AM.`
+  String get videoCallScheduledDateTime {
+    return Intl.message(
+      'Your video call is scheduled for the 15th of October at 10:00AM.',
+      name: 'videoCallScheduledDateTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, you’ve missed your video call session. Please reschedule.`
+  String get missedVideoCall {
+    return Intl.message(
+      'Sorry, you’ve missed your video call session. Please reschedule.',
+      name: 'missedVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

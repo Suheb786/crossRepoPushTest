@@ -65,6 +65,7 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
+import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -527,6 +528,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => VideoCallPage(),
             settings: RouteSettings(name: RoutePaths.VideoCall));
+
+      case RoutePaths.CheckScheduledVideoCall:
+        return CupertinoPageRoute(
+            builder: (context) => CheckScheduledVideoCallPage(
+                settings.arguments as CheckVideoCallScheduledArguments),
+            settings: RouteSettings(name: RoutePaths.CheckScheduledVideoCall));
 
       default:
         return CupertinoPageRoute(

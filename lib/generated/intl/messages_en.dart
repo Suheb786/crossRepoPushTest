@@ -1281,6 +1281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
         "minimumSettlements":
             MessageLookupByLibrary.simpleMessage("MINIMUM PAY BACK"),
+        "missedVideoCall": MessageLookupByLibrary.simpleMessage(
+            "Sorry, you’ve missed your video call session. Please reschedule."),
         "mobileAlreadyExists":
             MessageLookupByLibrary.simpleMessage("Mobile No already Exist"),
         "mobileNoExist":
@@ -1627,6 +1629,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
+        "rescheduleTheCall":
+            MessageLookupByLibrary.simpleMessage("Reschedule the call"),
         "resendIn": m3,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Exception while resending OTP"),
@@ -1972,10 +1976,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "Exception while executing TransferAPIV2"),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
+        "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
+            "Your video call is due now. Swipe to initiate the call when you’re ready."),
         "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
             "Please get ready to meet our Engagement Team, we will now connect you."),
         "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
+        "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
+            "Your video call is scheduled for the 15th of October at 10:00AM."),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),

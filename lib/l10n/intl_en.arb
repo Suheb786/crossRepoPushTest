@@ -1125,5 +1125,9 @@
   "enterDetails": "Enter Mother Name or DOI or Place of Birth",
   "imageNull": "Image is null",
   "proofRequired": "Proof of Income & Proof of Address is Required.",
-  "otpNull": "OTP is null"
+  "otpNull": "OTP is null",
+  "videoCallDueNow": "Your video call is due now. Swipe to initiate the call when you’re ready.",
+  "rescheduleTheCall": "Reschedule the call",
+  "videoCallScheduledDateTime": "Your video call is scheduled for the 15th of October at 10:00AM.",
+  "missedVideoCall": "Sorry, you’ve missed your video call session. Please reschedule."
 }

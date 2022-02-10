@@ -93,4 +93,5 @@ class RoutePaths {
   static const String CreditCardPayBack = "/creditCardPayBack";
   static const String CreditCardPayBackSuccess = "/creditCardPayBackSuccess";
   static const String VideoCall = "/videoCall";
+  static const String CheckScheduledVideoCall = "/checkScheduledVideoCall";
 }
