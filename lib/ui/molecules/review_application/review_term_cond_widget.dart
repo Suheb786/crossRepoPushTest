@@ -67,22 +67,17 @@ class ReviewTCWidget extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                      recognizer: new TapGestureRecognizer()
-                        ..onTap = () => onTermsAndConditionTap?.call(),
-                      children: [
-                        TextSpan(
-                          text: subTitle,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                            fontFamily: 'Montserrat',
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!,
-                          ),
-                        )
-                      ]),
+                    text: subTitle,
+                    recognizer: new TapGestureRecognizer()
+                      ..onTap = () => onTermsAndConditionTap?.call(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                      fontFamily: 'Montserrat',
+                      color:
+                          Theme.of(context).accentTextTheme.bodyText1!.color!,
+                    ),
+                  ),
                 ])),
           ),
         ],

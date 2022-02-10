@@ -27,10 +27,7 @@ class OnBoardingPageView extends BasePageViewWidget<OnBoardingViewModel> {
             scrollDirection: Axis.vertical,
             controller: model.onBoardingPageController,
             physics: NeverScrollableScrollPhysics(),
-            children: [
-              LoginPage(),
-              RegisterSelectionPage(),
-            ]);
+            children: pages);
       },
     );
   }
