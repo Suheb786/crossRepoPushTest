@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/screen_size_utils.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final int initialPage;
@@ -46,7 +43,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 16 / 9,
+      aspectRatio: 16 / 8,
       child: PageView.builder(
           itemCount: widget.pages!.length,
           onPageChanged: (i) {
@@ -72,8 +69,9 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
         } else {
           value = (index * 0.018).clamp(-1, 1);
         }
-        return Transform.rotate(
-          angle: pi * value,
+        return Transform(
+          // angle: pi * value,
+          transform: Matrix4.skewX(-value * 1.5),
           child: widget.pages![index],
         );
       },

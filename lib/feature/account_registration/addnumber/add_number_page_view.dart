@@ -55,8 +55,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     InfobipMobilemessaging.submitEventImmediately(event);
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
-                        .pageController
-                        .next();
+                        .nextPage();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -69,8 +68,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                       } else {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)
-                            .pageController
-                            .previous();
+                            .previousPage();
                       }
                     },
                     child: Card(

@@ -152,33 +152,27 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                   alignment: Alignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
-                          top: !(cardData.debitCard!.first.isDebitDelivered !=
-                                      null &&
-                                  cardData.debitCard!.first.isDebitDelivered!)
-                              ? 8.0
-                              : 0.0,
-                          bottom: 15),
+                      padding: const EdgeInsets.all(15),
                       child: GestureDetector(
-                        onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .pageController
-                                .next();
-                            if (!model.cardKey.currentState!.isFront) {
-                              model.cardKey.currentState!.toggleCard();
-                            }
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(appHomeViewModelProvider)
-                                .pageController
-                                .previous();
-                            if (!model.cardKey.currentState!.isFront) {
-                              model.cardKey.currentState!.toggleCard();
-                            }
-                          }
-                        },
+                        // onHorizontalDragEnd: (details) {
+                        //   if (details.primaryVelocity!.isNegative) {
+                        //     ProviderScope.containerOf(context)
+                        //         .read(appHomeViewModelProvider)
+                        //         .pageController
+                        //         .next();
+                        //     if (!model.cardKey.currentState!.isFront) {
+                        //       model.cardKey.currentState!.toggleCard();
+                        //     }
+                        //   } else {
+                        //     ProviderScope.containerOf(context)
+                        //         .read(appHomeViewModelProvider)
+                        //         .pageController
+                        //         .previous();
+                        //     if (!model.cardKey.currentState!.isFront) {
+                        //       model.cardKey.currentState!.toggleCard();
+                        //     }
+                        //   }
+                        // },
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16)),
