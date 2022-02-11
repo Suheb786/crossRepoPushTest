@@ -16,6 +16,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog.dart';
@@ -204,31 +205,82 @@ class JobAndIncomePageView
                               );
                             },
                           ),
-                          AppTextField(
-                            labelText: S.of(context).mainAnnualIncome,
-                            hintText: '',
-                            controller: model.annualIncomeController,
-                            key: model.annualIncomeKey,
-                            inputType: TextInputType.number,
-                            inputAction: TextInputAction.done,
-                            prefixIcon: () {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, right: 8),
-                                child: Text(
-                                  S.of(context).JOD,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                ),
-                              );
-                            },
-                            onChanged: (value) {
-                              model.isValid();
+                          Focus(
+                            child: AppTextField(
+                              labelText: S.of(context).mainAnnualIncome,
+                              hintText: '',
+                              controller: model.annualIncomeController,
+                              key: model.annualIncomeKey,
+                              inputType: TextInputType.number,
+                              inputAction: TextInputAction.done,
+                              prefixIcon: () {
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 8.0, right: 8),
+                                  child: Text(
+                                    S.of(context).JOD,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyText1!
+                                            .color!),
+                                  ),
+                                );
+                              },
+                              onChanged: (value) {
+                                model.isValid();
+                              },
+                            ),
+                            onFocusChange: (hasFocus) {
+                              if (!hasFocus) {
+                                InformationDialog.show(context,
+                                    title: S.of(context).annualIncomeSmall,
+                                    onSelected: () {
+                                  Navigator.pop(context);
+                                },
+                                    descriptionWidget: Text.rich(TextSpan(
+                                        text: S
+                                            .of(context)
+                                            .areYouSureYouEnteredYour,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: Theme.of(context)
+                                                .inputDecorationTheme
+                                                .focusedBorder!
+                                                .borderSide
+                                                .color),
+                                        children: [
+                                          TextSpan(
+                                              text: S.of(context).annual,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14,
+                                                  color: Theme.of(context)
+                                                      .inputDecorationTheme
+                                                      .focusedBorder!
+                                                      .borderSide
+                                                      .color),
+                                              children: [
+                                                TextSpan(
+                                                  text: S
+                                                      .of(context)
+                                                      .makeSureItsAnnualNotMonthly,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .inputDecorationTheme
+                                                          .focusedBorder!
+                                                          .borderSide
+                                                          .color),
+                                                )
+                                              ])
+                                        ])));
+                              }
                             },
                           ),
                           SizedBox(

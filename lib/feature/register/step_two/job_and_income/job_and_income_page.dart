@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -28,17 +27,10 @@ class JobAndIncomePageState
   @override
   void onModelReady(JobAndIncomePageViewModel model) {
     print(
-        "This is enum :: ${ProviderScope
-            .containerOf(context)
-            .read(profileDetailsPageViewModelProvider)
-            .employeeStatusController
-            .text}");
-    model.employmentStatusEnum = ProviderScope
-        .containerOf(context)
-        .read(profileDetailsPageViewModelProvider)
-        .employeeStatusController
-        .text
-        .fromEmploymentValue();
+        "This is enum :: ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
+    model.employmentStatusEnum = ProviderScope.containerOf(context)
+        .read(registerStepTwoViewModelProvider)
+        .employmentStatusEnum;
   }
 
   @override

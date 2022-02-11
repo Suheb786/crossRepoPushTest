@@ -8,7 +8,7 @@ class InformationDialog {
   static show(BuildContext mContext,
       {Function? onDismissed,
       Function? onSelected,
-      required String image,
+      String? image,
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,

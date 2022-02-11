@@ -136,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Android Login, please try again"),
+        "annual": MessageLookupByLibrary.simpleMessage("ANNUAL "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
@@ -165,6 +166,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
+        "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than U.S. or Jordan?"),
         "areYouUSCitizen":
@@ -1254,6 +1257,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
+            "income? Make sure it’s not your monthly income to get your credit card right away."),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),

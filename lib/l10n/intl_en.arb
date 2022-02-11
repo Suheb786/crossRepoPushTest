@@ -1129,5 +1129,9 @@
   "videoCallDueNow": "Your video call is due now. Swipe to initiate the call when you’re ready.",
   "rescheduleTheCall": "Reschedule the call",
   "videoCallScheduledDateTime": "Your video call is scheduled for the 15th of October at 10:00AM.",
-  "missedVideoCall": "Sorry, you’ve missed your video call session. Please reschedule."
+  "missedVideoCall": "Sorry, you’ve missed your video call session. Please reschedule.",
+  "areYouSureYouEnteredYour": "Are you sure you entered your ",
+  "annual": "ANNUAL ",
+  "makeSureItsAnnualNotMonthly": "income? Make sure it’s not your monthly income to get your credit card right away."
+
 }
