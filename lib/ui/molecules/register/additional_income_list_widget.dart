@@ -42,22 +42,18 @@ class AdditionalIncomeListWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: Theme
-                          .of(context)
-                          .primaryColorDark),
+                      color: Theme.of(context).primaryColorDark),
                 ),
               ),
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  "JOD ${additionalIncomeInfo!.totalIncome!}",
+                  "JOD ${num.parse(additionalIncomeInfo!.totalIncome!).toStringAsFixed(3)}",
                   softWrap: true,
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: Theme
-                          .of(context)
-                          .primaryColorDark),
+                      color: Theme.of(context).primaryColorDark),
                 ),
               ),
             ],

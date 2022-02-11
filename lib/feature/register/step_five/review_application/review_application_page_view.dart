@@ -252,6 +252,9 @@ class ReviewApplicationPageView
                                                                     .residentCountrySmall,
                                                                 controller: model
                                                                     .residentCountryController,
+                                                                initialValue: model
+                                                                    .residentCountryController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -262,6 +265,9 @@ class ReviewApplicationPageView
                                                                     .buildingNameNo,
                                                                 controller: model
                                                                     .buildingNameOrNoController,
+                                                                initialValue: model
+                                                                    .buildingNameOrNoController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -272,6 +278,9 @@ class ReviewApplicationPageView
                                                                     .streetAddressSmall,
                                                                 controller: model
                                                                     .streetAddressController,
+                                                                initialValue: model
+                                                                    .streetAddressController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -285,6 +294,10 @@ class ReviewApplicationPageView
                                                                       .areaSmall,
                                                                   controller: model
                                                                       .districtController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .districtController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -296,6 +309,9 @@ class ReviewApplicationPageView
                                                                     .citySmall,
                                                                 controller: model
                                                                     .cityController,
+                                                                initialValue: model
+                                                                    .cityController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -329,6 +345,9 @@ class ReviewApplicationPageView
                                                                       title: S
                                                                           .of(context)
                                                                           .permanentCountry,
+                                                                      initialValue: model
+                                                                          .residentPermanentCountryController
+                                                                          .text,
                                                                       controller:
                                                                           model
                                                                               .residentPermanentCountryController,
@@ -340,6 +359,9 @@ class ReviewApplicationPageView
                                                                       controller:
                                                                           model
                                                                               .residentPermanentCityController,
+                                                                      initialValue: model
+                                                                          .residentPermanentCityController
+                                                                          .text,
                                                                       textInputType:
                                                                           TextInputType
                                                                               .text,
@@ -373,6 +395,10 @@ class ReviewApplicationPageView
                                                                       .spouseName,
                                                                   controller: model
                                                                       .spouseNameController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .spouseNameController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -390,6 +416,10 @@ class ReviewApplicationPageView
                                                                       .natureSpecialNeeds,
                                                                   controller: model
                                                                       .specialNeedsPersonController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .specialNeedsPersonController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -401,6 +431,9 @@ class ReviewApplicationPageView
                                                                     .employmentStatusSmall,
                                                                 controller: model
                                                                     .employmentStatusController,
+                                                                initialValue: model
+                                                                    .employmentStatusController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -431,6 +464,10 @@ class ReviewApplicationPageView
                                                                       .occupationBusinessType,
                                                                   controller: model
                                                                       .occupationController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .occupationController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -448,6 +485,12 @@ class ReviewApplicationPageView
                                                                       .annualIncomeSmall,
                                                                   controller: model
                                                                       .mainAnnualIncomeController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .mainAnnualIncomeController
+                                                                          .text,
+                                                                  isPrefix:
+                                                                      true,
                                                                   prefixWidget:
                                                                       Padding(
                                                                     padding: const EdgeInsets
@@ -489,6 +532,10 @@ class ReviewApplicationPageView
                                                                       .employerNameSmall,
                                                                   controller: model
                                                                       .employerNameController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .employerNameController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -506,6 +553,10 @@ class ReviewApplicationPageView
                                                                       .employerCountrySmall,
                                                                   controller: model
                                                                       .employerCountryController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .employerCountryController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -523,6 +574,10 @@ class ReviewApplicationPageView
                                                                       .employerCitySmall,
                                                                   controller: model
                                                                       .employerCityController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .employerCityController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .text,
@@ -540,37 +595,44 @@ class ReviewApplicationPageView
                                                                       .employerPhoneNo,
                                                                   controller: model
                                                                       .employerContactController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .employerContactController
+                                                                          .text,
                                                                   textInputType:
                                                                       TextInputType
                                                                           .phone,
                                                                 ),
                                                               ),
 
-                                                              ListView.builder(
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                          index) {
-                                                                    return getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo!.length >
-                                                                            0
-                                                                        ? AdditionalIncomeListWidget(
-                                                                            title:
-                                                                                S.of(context).otherIncome,
-                                                                            additionalIncomeInfo:
-                                                                                getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo![index],
-                                                                          )
-                                                                        : Container();
-                                                                  },
-                                                                  itemCount: getConfirmApplicationData
-                                                                      .data!
-                                                                      .getApplicationData!
-                                                                      .getConfirmApplicationDataContent!
-                                                                      .jobDetailInfo!
-                                                                      .additionalIncomeInfo!
-                                                                      .length,
-                                                                  shrinkWrap:
-                                                                      true,
-                                                                  physics:
-                                                                      NeverScrollableScrollPhysics()),
+                                                              getConfirmApplicationData
+                                                                          .data!
+                                                                          .getApplicationData!
+                                                                          .getConfirmApplicationDataContent!
+                                                                          .jobDetailInfo!
+                                                                          .additionalIncomeInfo!
+                                                                          .length >
+                                                                      0
+                                                                  ? ListView
+                                                                      .builder(
+                                                                          itemBuilder: (context, index) {
+                                                                            return AdditionalIncomeListWidget(
+                                                                              title: S.of(context).otherIncome,
+                                                                              additionalIncomeInfo: getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo![index],
+                                                                            );
+                                                                          },
+                                                                          itemCount: getConfirmApplicationData
+                                                                              .data!
+                                                                              .getApplicationData!
+                                                                              .getConfirmApplicationDataContent!
+                                                                              .jobDetailInfo!
+                                                                              .additionalIncomeInfo!
+                                                                              .length,
+                                                                          shrinkWrap:
+                                                                              true,
+                                                                          physics:
+                                                                              NeverScrollableScrollPhysics())
+                                                                  : Container(),
 
                                                               ///purpose of account opening
                                                               Padding(
@@ -591,6 +653,9 @@ class ReviewApplicationPageView
                                                                     .purposeOfAccount,
                                                                 controller: model
                                                                     .purposeOfAccountOpeningController,
+                                                                initialValue: model
+                                                                    .purposeOfAccountOpeningController
+                                                                    .text,
                                                                 textInputType:
                                                                     TextInputType
                                                                         .text,
@@ -649,6 +714,10 @@ class ReviewApplicationPageView
                                                                     .expectedMonthlyAmount,
                                                                 controller: model
                                                                     .expectedMonthlyTransactionsController,
+                                                                isPrefix: true,
+                                                                initialValue: model
+                                                                    .expectedMonthlyTransactionsController
+                                                                    .text,
                                                                 prefixWidget:
                                                                     Padding(
                                                                   padding: const EdgeInsets
@@ -687,6 +756,12 @@ class ReviewApplicationPageView
                                                                       .expectedAnnualAmount,
                                                                   controller: model
                                                                       .expectedAnnualTransactionsController,
+                                                                  initialValue:
+                                                                      model
+                                                                          .expectedAnnualTransactionsController
+                                                                          .text,
+                                                                  isPrefix:
+                                                                      true,
                                                                   prefixWidget:
                                                                       Padding(
                                                                     padding: const EdgeInsets

@@ -101,8 +101,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       _getConfirmApplicationDataRequest = PublishSubject();
 
   ///get confirm  Account data response holder
-  PublishSubject<Resource<GetConfirmApplicationDataResponse>>
-      _getConfirmApplicationDataResponse = PublishSubject();
+  BehaviorSubject<Resource<GetConfirmApplicationDataResponse>>
+      _getConfirmApplicationDataResponse = BehaviorSubject();
 
   ///get confirm  Account data stream
   Stream<Resource<GetConfirmApplicationDataResponse>>
