@@ -873,8 +873,8 @@ class ReviewApplicationPageView
                                                                         title: S
                                                                             .of(context)
                                                                             .relationshipWithPEP,
-                                                                        value: Validator.isNotEmptyNull(getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.fatcaCrsInfo!.relationshipWithPep)
-                                                                            ? getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.fatcaCrsInfo!.relationshipWithPep
+                                                                        value: Validator.isNotEmptyNull(getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.fatcaCrsInfo!.relationshipWithPEPName)
+                                                                            ? getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.fatcaCrsInfo!.relationshipWithPEPName
                                                                             : '',
                                                                       ),
                                                                       ReviewApplicationNonEditableItem(

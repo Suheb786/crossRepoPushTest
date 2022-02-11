@@ -27,12 +27,20 @@ class FatcaCrsEntity
   final bool? response4;
   @JsonKey(name: "response5")
   final bool? response5;
+  @JsonKey(name: "isActive")
+  final bool? isActive;
+  @JsonKey(name: "deactivatedDate")
+  final dynamic? deactivatedDate;
   @JsonKey(name: "relationshipWithPEP")
   final String? relationshipWithPep;
+  @JsonKey(name: "relationshipWithPEPName")
+  final String? relationshipWithPEPName;
   @JsonKey(name: "personName")
   final String? personName;
   @JsonKey(name: "personRole")
   final String? personRole;
+  @JsonKey(name: "signatureId")
+  final dynamic? signatureId;
   @JsonKey(name: "namePerIncomeTaxReturn")
   final dynamic? namePerIncomeTaxReturn;
   @JsonKey(name: "dob")
@@ -84,44 +92,49 @@ class FatcaCrsEntity
   @JsonKey(name: "taxResidenceCountry")
   final String? taxResidenceCountry;
 
-  FatcaCrsEntity({this.id,
-    this.userId,
-    this.companyId,
-    this.productId,
-    this.accountId,
-    this.response1,
-    this.response2,
-    this.response3,
-    this.response4,
-    this.response5,
-    this.relationshipWithPep,
-    this.personName,
-    this.personRole,
-    this.namePerIncomeTaxReturn,
-    this.dob,
-    this.citizenShipCountry,
-    this.permanentResidenceAddress,
-    this.country,
-    this.city,
-    this.state,
-    this.postCode,
-    this.differentMailingAddress,
-    this.taxPayer,
-    this.usTaxIdNo,
-    this.claimTaxTreatBenefits,
-    this.beneficialOwnerResident,
-    this.usTaxpayerIdNoOwner,
-    this.typeOfIncome,
-    this.explanation,
-    this.businessName,
-    this.usAddress,
-    this.accountNo,
-    this.exemptPayeeCode,
-    this.socialSecurityNo,
-    this.createBy,
-    this.createTime,
-    this.createTerminal,
-    this.taxResidenceCountry});
+  FatcaCrsEntity(
+      {this.id,
+      this.userId,
+      this.companyId,
+      this.productId,
+      this.accountId,
+      this.response1,
+      this.response2,
+      this.response3,
+      this.response4,
+      this.response5,
+      this.relationshipWithPep,
+      this.personName,
+      this.personRole,
+      this.namePerIncomeTaxReturn,
+      this.dob,
+      this.citizenShipCountry,
+      this.permanentResidenceAddress,
+      this.country,
+      this.city,
+      this.state,
+      this.postCode,
+      this.differentMailingAddress,
+      this.taxPayer,
+      this.usTaxIdNo,
+      this.claimTaxTreatBenefits,
+      this.beneficialOwnerResident,
+      this.usTaxpayerIdNoOwner,
+      this.typeOfIncome,
+      this.explanation,
+      this.businessName,
+      this.usAddress,
+      this.accountNo,
+      this.exemptPayeeCode,
+      this.socialSecurityNo,
+      this.createBy,
+      this.createTime,
+      this.createTerminal,
+      this.taxResidenceCountry,
+      this.deactivatedDate,
+      this.signatureId,
+      this.isActive: false,
+      this.relationshipWithPEPName: ""});
 
   factory FatcaCrsEntity.fromJson(Map<String, dynamic> json) =>
       _$FatcaCrsEntityFromJson(json);
@@ -168,7 +181,11 @@ class FatcaCrsEntity
         taxResidenceCountry: data.taxResidenceCountry,
         usAddress: data.usAddress,
         usTaxIdNo: data.usTaxIdNo,
-        usTaxpayerIdNoOwner: data.usTaxpayerIdNoOwner);
+        usTaxpayerIdNoOwner: data.usTaxpayerIdNoOwner,
+        signatureId: data.signatureId,
+        deactivatedDate: data.deactivatedDate,
+        isActive: data.isActive,
+        relationshipWithPEPName: this.relationshipWithPEPName);
   }
 
   @override
@@ -211,6 +228,10 @@ class FatcaCrsEntity
         taxResidenceCountry: this.taxResidenceCountry,
         usAddress: this.usAddress,
         usTaxIdNo: this.usTaxIdNo,
-        usTaxpayerIdNoOwner: this.usTaxpayerIdNoOwner);
+        usTaxpayerIdNoOwner: this.usTaxpayerIdNoOwner,
+        relationshipWithPEPName: this.relationshipWithPEPName,
+        isActive: this.isActive,
+        deactivatedDate: this.deactivatedDate,
+        signatureId: this.signatureId);
   }
 }
