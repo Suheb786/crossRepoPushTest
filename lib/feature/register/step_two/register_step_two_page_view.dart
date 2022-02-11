@@ -20,9 +20,13 @@ class RegisterStepTwoPageView
 
   @override
   Widget build(BuildContext context, model) {
+    model.employmentStatusEnum = ProviderScope.containerOf(context)
+        .read(profileDetailsPageViewModelProvider)
+        .employeeStatusController
+        .text
+        .fromEmploymentValue();
     List<Widget> pages = [];
-    switch (ProviderScope
-        .containerOf(context)
+    switch (ProviderScope.containerOf(context)
         .read(profileDetailsPageViewModelProvider)
         .employeeStatusController
         .text
@@ -53,19 +57,15 @@ class RegisterStepTwoPageView
           return Column(
             children: [
               Text(
-                S
-                    .of(context)
-                    .incomeDetails,
+                S.of(context).incomeDetails,
                 style: TextStyle(
-                    color: Theme
-                        .of(context)
-                        .accentColor,
+                    color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
               Padding(
                 padding:
-                EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
