@@ -30,18 +30,28 @@ class CountryResidenceEntity
   final DateTime? createdOn;
   @JsonKey(name: "isActive")
   final bool? isActive;
+  @JsonKey(name: "residantCountryName")
+  final String? residentCountryName;
+  @JsonKey(name: "perCountryName")
+  final String? perResidentCountryName;
+  @JsonKey(name: "perCityName")
+  final String? perResidentCityName;
 
-  CountryResidenceEntity({this.id,
-    this.userId,
-    this.residantCountry,
-    this.perCity,
-    this.city,
-    this.perResidantCountry,
-    this.area,
-    this.buildingName,
-    this.streetName,
-    this.createdOn,
-    this.isActive});
+  CountryResidenceEntity(
+      {this.id,
+      this.userId,
+      this.residantCountry,
+      this.perCity,
+      this.city,
+      this.perResidantCountry,
+      this.area,
+      this.buildingName,
+      this.streetName,
+      this.createdOn,
+      this.isActive,
+      this.residentCountryName: "",
+      this.perResidentCountryName: "",
+      this.perResidentCityName: ""});
 
   factory CountryResidenceEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryResidenceEntityFromJson(json);
@@ -77,6 +87,9 @@ class CountryResidenceEntity
         perResidantCountry: this.perResidantCountry,
         perCity: this.perCity,
         residantCountry: this.residantCountry,
-        userId: this.userId);
+        userId: this.userId,
+        residentCountryName: this.residentCountryName ?? '',
+        perResidentCityName: this.perResidentCityName ?? '',
+        perResidentCountryName: this.perResidentCountryName ?? '');
   }
 }

@@ -411,9 +411,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     ///address
     residentCountryController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent
-                .countryResidenceInfo!.residantCountry)
+                .countryResidenceInfo!.residentCountryName)
         ? getConfirmApplicationDataContent
-            .countryResidenceInfo!.residantCountry!
+            .countryResidenceInfo!.residentCountryName!
         : '';
     streetAddressController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent.countryResidenceInfo!.streetName)
@@ -435,13 +435,15 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     ///permanent address
     residentPermanentCountryController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent
-                .countryResidenceInfo!.perResidantCountry)
+                .countryResidenceInfo!.perResidentCountryName)
         ? getConfirmApplicationDataContent
-            .countryResidenceInfo!.perResidantCountry!
+            .countryResidenceInfo!.perResidentCountryName!
         : '';
     residentPermanentCityController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.perCity)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.perCity!
+            getConfirmApplicationDataContent
+                .countryResidenceInfo!.perResidentCityName)
+        ? getConfirmApplicationDataContent
+            .countryResidenceInfo!.perResidentCityName!
         : '';
 
     ///profile status
@@ -470,8 +472,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     mainAnnualIncomeController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent
                 .jobDetailInfo!.jobDetailContentInfo!.annualIncome)
-        ? getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.annualIncome!
+        ? '${num.parse(getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.annualIncome!).toStringAsFixed(3)}'
         : '';
     employerNameController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent
@@ -503,7 +504,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         getConfirmApplicationDataContent.accountPurposeInfo!.purpose!;
     expectedMonthlyTransactionsController.text =
         getConfirmApplicationDataContent.accountPurposeInfo!.monthlyTransaction!
-            .toString();
+            .toStringAsFixed(3);
     expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
         .accountPurposeInfo!.anualTransaction!
         .toString();
