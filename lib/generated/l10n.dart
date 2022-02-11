@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11115,6 +11116,36 @@ class S {
     return Intl.message(
       'Sorry, you’ve missed your video call session. Please reschedule.',
       name: 'missedVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you entered your `
+  String get areYouSureYouEnteredYour {
+    return Intl.message(
+      'Are you sure you entered your ',
+      name: 'areYouSureYouEnteredYour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ANNUAL `
+  String get annual {
+    return Intl.message(
+      'ANNUAL ',
+      name: 'annual',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `income? Make sure it’s not your monthly income to get your credit card right away.`
+  String get makeSureItsAnnualNotMonthly {
+    return Intl.message(
+      'income? Make sure it’s not your monthly income to get your credit card right away.',
+      name: 'makeSureItsAnnualNotMonthly',
       desc: '',
       args: [],
     );
