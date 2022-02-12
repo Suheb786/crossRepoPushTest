@@ -57,8 +57,8 @@ class ConfirmReplacementPinPageView
                     } else {
                       ProviderScope.containerOf(context)
                           .read(debitCardReplacementViewModelProvider)
-                          .swiperController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(

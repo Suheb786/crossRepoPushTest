@@ -57,8 +57,8 @@ class EnterCodeForChangeMobileNumberPageView
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeMobileNumberViewModelProvider)
-                          .swiperController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(

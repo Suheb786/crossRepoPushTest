@@ -32,8 +32,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
             if (data!.status == Status.SUCCESS) {
               ProviderScope.containerOf(context)
                   .read(cardDeliveryViewModelProvider)
-                  .swiperController
-                  .next(animation: true);
+                  .nextPage();
+              // .next(animation: true);
             }
           },
           child: Card(

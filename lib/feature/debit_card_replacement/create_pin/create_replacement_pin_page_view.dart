@@ -36,8 +36,8 @@ class CreateReplacementPinPageView
                 if (data.status == Status.SUCCESS) {
                   ProviderScope.containerOf(context)
                       .read(debitCardReplacementViewModelProvider)
-                      .swiperController
-                      .next(animation: true);
+                      .nextPage();
+                  // .next(animation: true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -50,8 +50,8 @@ class CreateReplacementPinPageView
                     } else {
                       ProviderScope.containerOf(context)
                           .read(debitCardReplacementViewModelProvider)
-                          .swiperController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(

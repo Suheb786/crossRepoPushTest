@@ -63,8 +63,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                       () {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFourViewModelProvider)
-                                        .registrationStepFourPageController
-                                        .next();
+                                        .nextPage();
+                                    // .next();
                                   });
                                 } else if (data.status == Status.ERROR) {
                                   model.showToastWithError(data.appError!);
@@ -82,8 +82,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         ProviderScope.containerOf(context)
                                             .read(
                                                 registerStepFourViewModelProvider)
-                                            .registrationStepFourPageController
-                                            .previous();
+                                            .previousPage();
+                                        // .previous();
                                       });
                                     }
                                   },

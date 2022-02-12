@@ -60,8 +60,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                         Future.delayed(Duration(milliseconds: 500), () {
                           ProviderScope.containerOf(context)
                               .read(registerStepOneViewModelProvider)
-                              .pageController
-                              .next();
+                              .nextPage();
+                          // .next();
                         });
                       } else {
                         model.showToastWithError(AppError(

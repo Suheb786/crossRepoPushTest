@@ -77,6 +77,7 @@ class UploadDocumentsLaterPageView
               Expanded(
                 child: AppSwiper(
                   key: ValueKey(currentStep),
+                  appSwiperController: model.appSwiperController,
                   pages: pages,
                   onIndexChanged: (index) {
                     model.updatePage(index);

@@ -70,6 +70,7 @@ class RegisterStepOnePageView
               Flexible(
                 child: AppSwiper(
                   key: ValueKey(currentStep),
+                  appSwiperController: model.appSwiperController,
                   pages: pages,
                   pageController: model.pageController,
                   onIndexChanged: (index) {

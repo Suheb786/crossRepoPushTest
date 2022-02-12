@@ -149,8 +149,8 @@ class VideoCallAgentSelectionPageView
                                             Duration(milliseconds: 500), () {
                                           ProviderScope.containerOf(context)
                                               .read(videoCallViewModelProvider)
-                                              .videoCallPageController
-                                              .previous();
+                                              .previousPage();
+                                          // .previous();
                                         });
                                       }
                                     },

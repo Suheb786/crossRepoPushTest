@@ -89,8 +89,8 @@ class OtpForChangeCardPinPageView
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(changeCardPinViewModelProvider)
-                                .swiperController
-                                .previous();
+                                .previousPage();
+                            // .previous();
                           }
                         },
                         child: Card(

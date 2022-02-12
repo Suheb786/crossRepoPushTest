@@ -50,8 +50,8 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                             Future.delayed(Duration(milliseconds: 500), () {
                               ProviderScope.containerOf(context)
                                   .read(supplementaryDebitCardViewModelProvider)
-                                  .swiperController
-                                  .next();
+                                  .nextPage();
+                              // .next();
                             });
                           } else {
                             model.showToastWithError(AppError(
@@ -69,8 +69,8 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(supplementaryDebitCardViewModelProvider)
-                                  .swiperController
-                                  .previous();
+                                  .previousPage();
+                              // .previous();
                             }
                           },
                           child: Card(

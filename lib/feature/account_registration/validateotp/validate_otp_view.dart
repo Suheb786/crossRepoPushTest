@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
@@ -63,13 +64,22 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     dataBuilder: (context, isOtpVerified) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateOtp();
-                          } else {
-                            // ProviderScope.containerOf(context)
-                            //     .read(accountRegistrationViewModelProvider)
-                            //     .pageController
-                            //     .previous();
+                          print(ProviderScope.containerOf(context)
+                              .read(accountRegistrationViewModelProvider)
+                              .appSwiperController
+                              .page);
+                          if (ProviderScope.containerOf(context)
+                                  .read(accountRegistrationViewModelProvider)
+                                  .appSwiperController
+                                  .page ==
+                              2.0) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateOtp();
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(accountRegistrationViewModelProvider)
+                                  .previousPage();
+                            }
                           }
                         },
                         child: Card(

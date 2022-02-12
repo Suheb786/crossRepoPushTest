@@ -33,8 +33,8 @@ class ReplacementVisaCardPageView
               if (data!.status == Status.SUCCESS) {
                 ProviderScope.containerOf(context)
                     .read(debitCardReplacementViewModelProvider)
-                    .swiperController
-                    .next(animation: true);
+                    .nextPage();
+                // .next(animation: true);
               }
             },
             child: Card(

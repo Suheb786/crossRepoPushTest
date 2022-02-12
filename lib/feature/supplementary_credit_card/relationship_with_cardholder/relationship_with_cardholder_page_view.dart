@@ -46,8 +46,8 @@ class RelationshipWithCardholderPageView
                               ProviderScope.containerOf(context)
                                   .read(
                                       supplementaryCreditCardViewModelProvider)
-                                  .swiperController
-                                  .next();
+                                  .nextPage();
+                              // .next();
                             });
                           } else if (data.status == Status.ERROR) {
                             if (data.appError!.type ==

@@ -83,6 +83,7 @@ class RegisterStepFourPageView
               Expanded(
                 child: AppSwiper(
                   pageController: model.registrationStepFourPageController,
+                  appSwiperController: model.appSwiperController,
                   pages: pages,
                   currentStep: currentStep,
                   onIndexChanged: (index) {

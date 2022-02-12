@@ -49,8 +49,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                       Future.delayed(Duration(milliseconds: 500), () {
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
-                            .registrationStepFourPageController
-                            .move(7, animation: false);
+                            .moveToPage(7);
+                        // .move(7, animation: false);
                       });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
@@ -65,8 +65,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                           Future.delayed(Duration(milliseconds: 500), () {
                             ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
-                                .registrationStepFourPageController
-                                .previous();
+                                .previousPage();
+                            // .previous();
                           });
                         }
                       },

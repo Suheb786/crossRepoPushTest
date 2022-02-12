@@ -51,8 +51,8 @@ class SendToNewRecipientPageView
                         if (data.status == Status.SUCCESS) {
                           ProviderScope.containerOf(context)
                               .read(paymentToNewRecipientViewModelProvider)
-                              .pageController
-                              .next();
+                              .nextPage();
+                          // .next();
                         }
                       },
                       dataBuilder: (context, transferVerified) {
@@ -81,8 +81,8 @@ class SendToNewRecipientPageView
                                       ProviderScope.containerOf(context)
                                           .read(
                                               paymentToNewRecipientViewModelProvider)
-                                          .pageController
-                                          .next();
+                                          .nextPage();
+                                      // .next();
                                     } else {
                                       model.verifyTransfer();
                                     }

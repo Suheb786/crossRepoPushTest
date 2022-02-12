@@ -45,8 +45,8 @@ class RelationshipWithCardholderDebitPageView
                             Future.delayed(Duration(milliseconds: 500), () {
                               ProviderScope.containerOf(context)
                                   .read(supplementaryDebitCardViewModelProvider)
-                                  .swiperController
-                                  .next();
+                                  .nextPage();
+                              // .next();
                             });
                           } else if (data.status == Status.ERROR) {
                             if (data.appError!.type ==

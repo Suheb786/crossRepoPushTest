@@ -64,6 +64,7 @@ class RegisterStepThreePageView
               Expanded(
                 child: AppSwiper(
                   key: ValueKey(currentStep),
+                  appSwiperController: model.appSwiperController,
                   pageController: model.registrationStepThreePageController,
                   pages: pages,
                   currentStep: currentStep,

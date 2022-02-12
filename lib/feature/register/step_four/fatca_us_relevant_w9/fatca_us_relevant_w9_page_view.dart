@@ -42,8 +42,8 @@ class FatcaUSRelevantW9PageView
                       Future.delayed(Duration(milliseconds: 500), () {
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
-                            .registrationStepFourPageController
-                            .next();
+                            .nextPage();
+                        // .next();
                       });
                       ProviderScope.containerOf(context)
                           .read(fatcaUSRelevantW9AddressPageViewModelProvider)
@@ -61,8 +61,8 @@ class FatcaUSRelevantW9PageView
                           Future.delayed(Duration(milliseconds: 500), () {
                             ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
-                                .registrationStepFourPageController
-                                .move(0,animation:false);
+                                .moveToPage(0);
+                            // .move(0,animation:false);
                           });
                         }
                       },

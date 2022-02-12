@@ -73,8 +73,8 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                       Future.delayed(Duration(milliseconds: 500), () {
                         ProviderScope.containerOf(context)
                             .read(registerStepFiveViewModelProvider)
-                            .registrationStepFivePageController
-                            .move(4, animation: false);
+                            .moveToPage(4);
+                        // .move(4, animation: false);
                       });
                       break;
                     case CustomerStatusEnum.VIDEO_CALL:
@@ -150,8 +150,8 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                           ProviderScope.containerOf(context)
                                               .read(
                                                   registerStepFiveViewModelProvider)
-                                              .registrationStepFivePageController
-                                              .previous();
+                                              .previousPage();
+                                          // .previous();
                                         });
                                       }
                                     },

@@ -54,8 +54,8 @@ class EnterCodeForChangeEmailAddressPageView
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeEmailAddressViewModelProvider)
-                          .swiperController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(

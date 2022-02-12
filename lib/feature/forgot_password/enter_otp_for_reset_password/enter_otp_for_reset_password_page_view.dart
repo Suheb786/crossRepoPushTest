@@ -50,8 +50,8 @@ class EnterOTPForResetPasswordPageView
                     } else {
                       ProviderScope.containerOf(context)
                           .read(forgotPasswordViewModelProvider)
-                          .pageController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(

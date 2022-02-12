@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:domain/model/fatca_crs/fatca_w8_data.dart';
 import 'package:domain/model/fatca_crs/fatca_w9_data.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
@@ -23,6 +24,23 @@ class RegisterStepFourViewModel extends BasePageViewModel {
   TaxPayerTypeEnum _taxPayerTypeEnum = TaxPayerTypeEnum.NONE;
 
   TaxPayerTypeEnum get taxPayerType => _taxPayerTypeEnum;
+
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
+
+  void nextPage() {
+    appSwiperController.nextPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
+
+  void moveToPage(int index) {
+    appSwiperController.animateToPage(index,
+        curve: Curves.linear, duration: Duration(seconds: 1));
+  }
+
+  void previousPage() {
+    appSwiperController.previousPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
 
   void setTaxPayerTypeEnum(TaxPayerTypeEnum taxPayerTypeEnum) {
     _taxPayerTypeEnum = taxPayerTypeEnum;

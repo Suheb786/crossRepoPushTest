@@ -8,16 +8,13 @@ import 'package:rxdart/rxdart.dart';
 class AccountRegistrationPageViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
 
-  PageController appSwiperController = PageController(viewportFraction: 0.8);
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   ///current page index request holder
   PublishSubject<int> _currentPageSubject = PublishSubject();
 
-  PublishSubject<bool> _swipeEnableSubject = PublishSubject();
-
   ///current page index stream
   Stream<int> get currentPageStream => _currentPageSubject.stream;
-  Stream<bool> get swipeEnableStream => _swipeEnableSubject.stream;
 
   void nextPage() {
     appSwiperController.nextPage(
@@ -31,11 +28,6 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
 
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
-    toggleSwipeEnable(false);
-  }
-
-  void toggleSwipeEnable(bool value) {
-    _swipeEnableSubject.safeAdd(value);
   }
 
   void navigateToPage(int index) {

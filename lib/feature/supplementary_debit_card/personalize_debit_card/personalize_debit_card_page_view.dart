@@ -68,8 +68,8 @@ class PersonalizeDebitCardPageView
                                       ProviderScope.containerOf(context)
                                           .read(
                                               supplementaryDebitCardViewModelProvider)
-                                          .swiperController
-                                          .previous();
+                                          .previousPage();
+                                      // .previous();
                                     }
                                   },
                                   child: Card(

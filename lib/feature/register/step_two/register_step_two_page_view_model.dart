@@ -17,6 +17,18 @@ class RegisterStepTwoViewModel extends BasePageViewModel {
   Stream<List<Widget>> get registrationStepTwoPage =>
       _registrationStepTwoPage.stream;
 
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
+
+  void nextPage() {
+    appSwiperController.nextPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
+
+  void previousPage() {
+    appSwiperController.previousPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }

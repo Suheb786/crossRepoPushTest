@@ -50,8 +50,8 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                               ProviderScope.containerOf(context)
                                   .read(
                                       supplementaryCreditCardViewModelProvider)
-                                  .swiperController
-                                  .next();
+                                  .nextPage();
+                              // .next();
                             });
                           } else {
                             model.showToastWithError(AppError(
@@ -70,8 +70,8 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                               ProviderScope.containerOf(context)
                                   .read(
                                       supplementaryCreditCardViewModelProvider)
-                                  .swiperController
-                                  .previous();
+                                  .previousPage();
+                              // .previous();
                             }
                           },
                           child: Card(

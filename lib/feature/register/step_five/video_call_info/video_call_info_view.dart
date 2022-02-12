@@ -48,8 +48,8 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                     Future.delayed(Duration(milliseconds: 500), () {
                       ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
-                          .next();
+                          .nextPage();
+                      // .next();
                     });
                   }
                 },
@@ -109,8 +109,8 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                         ProviderScope.containerOf(context)
                                             .read(
                                                 registerStepFiveViewModelProvider)
-                                            .registrationStepFivePageController
-                                            .move(3, animation: false);
+                                            .moveToPage(3);
+                                        // .move(3, animation: false);
                                       });
                                     },
                                     child: Text(S.of(context).scheduleLater,

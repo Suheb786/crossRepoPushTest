@@ -52,18 +52,17 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                               .currentPin,
                           context);
                     } else {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(cardDeliveryViewModelProvider)
-                          .swiperController
-                          .previous(animation: true);
+                          .previousPage();
+                      // .previous(animation: true);
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
                         padding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -72,10 +71,8 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width / 6.4,
+                                  fieldWidth:
+                                      MediaQuery.of(context).size.width / 6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);
@@ -94,9 +91,7 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                                       child: AnimatedButton(
                                         buttonHeight: 50,
                                         buttonText:
-                                        S
-                                            .of(context)
-                                            .swipeToProceed,
+                                            S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

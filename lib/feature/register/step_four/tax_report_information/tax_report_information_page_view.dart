@@ -64,8 +64,8 @@ class TaxReportInformationPageView
                           Future.delayed(Duration(milliseconds: 500), () {
                             ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
-                                .registrationStepFourPageController
-                                .move(0, animation: false);
+                                .moveToPage(0);
+                            // .move(0, animation: false);
                           });
                         }
                       },

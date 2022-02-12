@@ -44,8 +44,8 @@ class AddIDNumberForResetPasswordPageView
                   if (data.status == Status.SUCCESS) {
                     ProviderScope.containerOf(context)
                         .read(forgotPasswordViewModelProvider)
-                        .pageController
-                        .next();
+                        .nextPage();
+                    // .next();
                     print("successful");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);

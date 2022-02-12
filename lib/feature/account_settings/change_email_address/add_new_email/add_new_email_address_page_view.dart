@@ -34,11 +34,10 @@ class AddNewEmailAddressPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope
-                      .containerOf(context)
+                  ProviderScope.containerOf(context)
                       .read(changeEmailAddressViewModelProvider)
-                      .swiperController
-                      .next(animation: true);
+                      .nextPage();
+                  // .next(animation: true);
                   // ProviderScope?.containerOf(context)
                   //         .read(enterOtpForNewEmailAddressViewModelProvider)
                   //         .countDownController =
@@ -61,7 +60,7 @@ class AddNewEmailAddressPageView
                     margin: EdgeInsets.zero,
                     child: Container(
                         padding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -69,12 +68,8 @@ class AddNewEmailAddressPageView
                               child: SingleChildScrollView(
                                 physics: ClampingScrollPhysics(),
                                 child: AppTextField(
-                                  labelText: S
-                                      .of(context)
-                                      .emailAddress,
-                                  hintText: S
-                                      .of(context)
-                                      .pleaseEnter,
+                                  labelText: S.of(context).emailAddress,
+                                  hintText: S.of(context).pleaseEnter,
                                   inputType: TextInputType.text,
                                   controller: model.emailController,
                                   key: model.changeEmailKey,
@@ -93,9 +88,7 @@ class AddNewEmailAddressPageView
                                       child: AnimatedButton(
                                         buttonHeight: 50,
                                         buttonText:
-                                        S
-                                            .of(context)
-                                            .swipeToProceed,
+                                            S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

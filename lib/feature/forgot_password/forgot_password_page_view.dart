@@ -131,6 +131,7 @@ class ForgotPasswordPageView
                     Expanded(
                       child: AppSwiper(
                         pages: pages,
+                        appSwiperController: model.appSwiperController,
                         pageController: model.pageController,
                         onIndexChanged: (index) {
                           model.changeCurrentPage(index);

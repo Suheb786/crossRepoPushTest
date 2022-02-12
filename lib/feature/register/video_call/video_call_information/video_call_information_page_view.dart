@@ -70,8 +70,8 @@ class VideoCallInformationPageView
                           Future.delayed(Duration(milliseconds: 500), () {
                             ProviderScope.containerOf(context)
                                 .read(videoCallViewModelProvider)
-                                .videoCallPageController
-                                .next();
+                                .nextPage();
+                            // .next();
                           });
                         }
                       },
@@ -136,8 +136,8 @@ class VideoCallInformationPageView
                                               ProviderScope.containerOf(context)
                                                   .read(
                                                       videoCallViewModelProvider)
-                                                  .videoCallPageController
-                                                  .move(2, animation: false);
+                                                  .moveToPage(2);
+                                              // .move(2, animation: false);
                                             });
                                           },
                                           child: Text(

@@ -55,33 +55,33 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                       if (data.status == Status.SUCCESS) {
                         print('i am here');
                         model.transfer(
-                          nickName: ProviderScope.containerOf(context)
-                                  .read(sendToNewRecipientViewModelProvider)
-                                  .addNickNameController
-                                  .text
-                                  .isEmpty
-                              ? ""
-                              : ProviderScope.containerOf(context)
-                                  .read(sendToNewRecipientViewModelProvider)
-                                  .addNickNameController
-                                  .text,
-                          transferResponse: ProviderScope.containerOf(context)
-                              .read(sendToNewRecipientViewModelProvider)
-                              .transferResponse,
-                          memo: ProviderScope.containerOf(context)
-                              .read(sendToNewRecipientViewModelProvider)
-                              .purposeDetail!
-                              .strCode!,
-                          isFriend: ProviderScope.containerOf(context)
-                              .read(sendToNewRecipientViewModelProvider)
-                              .isFriend,
-                          beneficiaryImage: ProviderScope.containerOf(context)
-                              .read(sendToNewRecipientViewModelProvider)
-                              .selectedProfile,
-                          limit: ProviderScope.containerOf(context)
-                              .read(sendToNewRecipientViewModelProvider)
-                              .limit!,
-                          amount: ProviderScope.containerOf(context)
+                            nickName: ProviderScope.containerOf(context)
+                                    .read(sendToNewRecipientViewModelProvider)
+                                    .addNickNameController
+                                    .text
+                                    .isEmpty
+                                ? ""
+                                : ProviderScope.containerOf(context)
+                                    .read(sendToNewRecipientViewModelProvider)
+                                    .addNickNameController
+                                    .text,
+                            transferResponse: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .transferResponse,
+                            memo: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .purposeDetail!
+                                .strCode!,
+                            isFriend: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .isFriend,
+                            beneficiaryImage: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .selectedProfile,
+                            limit: ProviderScope.containerOf(context)
+                                .read(sendToNewRecipientViewModelProvider)
+                                .limit!,
+                            amount: ProviderScope.containerOf(context)
                                 .read(sendMoneyViewModelProvider)
                                 .currentPinValue);
                       } else if (data.status == Status.ERROR) {
@@ -96,8 +96,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(paymentToNewRecipientViewModelProvider)
-                                .pageController
-                                .previous(animation: true);
+                                .previousPage();
+                            // .previous(animation: true);
                           }
                         },
                         child: Card(

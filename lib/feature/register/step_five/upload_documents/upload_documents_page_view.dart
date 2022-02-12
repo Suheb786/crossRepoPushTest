@@ -134,9 +134,9 @@ class UploadDocumentsPageView
                                                               context)
                                                           .read(
                                                               registerStepFiveViewModelProvider)
-                                                          .registrationStepFivePageController
-                                                          .move(0,
-                                                              animation: false);
+                                                          .moveToPage(0);
+                                                      // .move(0,
+                                                      //     animation: false);
                                                     });
                                                   }
                                                 },
@@ -715,8 +715,8 @@ class UploadDocumentsPageView
         Future.delayed(Duration(milliseconds: 500), () {
           ProviderScope.containerOf(context)
               .read(registerStepFiveViewModelProvider)
-              .registrationStepFivePageController
-              .move(1, animation: false);
+              .moveToPage(1);
+          // .move(1, animation: false);
         });
         break;
       case CustomerStatusEnum.REMOVE_DEBIT_LOCK:
@@ -745,8 +745,8 @@ class UploadDocumentsPageView
         Future.delayed(Duration(milliseconds: 500), () {
           ProviderScope.containerOf(context)
               .read(registerStepFiveViewModelProvider)
-              .registrationStepFivePageController
-              .move(1, animation: false);
+              .moveToPage(1);
+          // .move(1, animation: false);
         });
         break;
     }

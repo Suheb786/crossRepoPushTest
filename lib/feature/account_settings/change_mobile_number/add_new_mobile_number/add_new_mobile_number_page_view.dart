@@ -42,8 +42,8 @@ class AddNewMobileNumberPageView
                 if (data.status == Status.SUCCESS) {
                   ProviderScope.containerOf(context)
                       .read(changeMobileNumberViewModelProvider)
-                      .swiperController
-                      .next(animation: true);
+                      .nextPage();
+                  // .next(animation: true);
                   // ProviderScope?.containerOf(context)
                   //         .read(enterOtpForNewMobileNumberViewModelProvider)
                   //         .countDownController =
