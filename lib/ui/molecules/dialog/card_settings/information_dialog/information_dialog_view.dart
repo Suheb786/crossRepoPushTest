@@ -9,7 +9,7 @@ class InformationDialogView extends StatelessWidget {
   final Function? onDismissed;
 
   final Function? onSelected;
-  final String image;
+  final String? image;
   final String title;
   final Widget descriptionWidget;
 
@@ -41,7 +41,9 @@ class InformationDialogView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 41),
-                    AppSvg.asset(image, height: 50, width: 50),
+                    image != null
+                        ? AppSvg.asset(image!, height: 50, width: 50)
+                        : Container(),
                     SizedBox(height: 25),
                     Text(
                       title,

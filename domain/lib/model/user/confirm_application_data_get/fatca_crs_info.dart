@@ -9,7 +9,11 @@ class FatcaCrsInfo {
   final bool? response3;
   final bool? response4;
   final bool? response5;
+  final bool? isActive;
+  final dynamic deactivatedDate;
+  final dynamic signatureId;
   final String? relationshipWithPep;
+  final String? relationshipWithPEPName;
   final String? personName;
   final String? personRole;
   final dynamic? namePerIncomeTaxReturn;
@@ -38,44 +42,47 @@ class FatcaCrsInfo {
   final String? createTerminal;
   final String? taxResidenceCountry;
 
-  FatcaCrsInfo({
-    this.id,
-    this.companyId,
-    this.productId,
-    this.accountId,
-    this.userId,
-    this.response1,
-    this.response2,
-    this.response3,
-    this.response4,
-    this.response5,
-    this.relationshipWithPep,
-    this.personName,
-    this.personRole,
-    this.namePerIncomeTaxReturn,
-    this.dob,
-    this.citizenShipCountry,
-    this.permanentResidenceAddress,
-    this.country,
-    this.city,
-    this.state,
-    this.postCode,
-    this.differentMailingAddress,
-    this.taxPayer,
-    this.usTaxIdNo,
-    this.claimTaxTreatBenefits,
-    this.beneficialOwnerResident,
-    this.usTaxpayerIdNoOwner,
-    this.typeOfIncome,
-    this.explanation,
-    this.businessName,
-    this.usAddress,
-    this.accountNo,
-    this.exemptPayeeCode,
-    this.socialSecurityNo,
-    this.createBy,
-    this.createTime,
-    this.createTerminal,
-    this.taxResidenceCountry,
-  });
+  FatcaCrsInfo(
+      {this.id,
+      this.companyId,
+      this.productId,
+      this.accountId,
+      this.userId,
+      this.response1,
+      this.response2,
+      this.response3,
+      this.response4,
+      this.response5,
+      this.relationshipWithPep,
+      this.relationshipWithPEPName,
+      this.personName,
+      this.personRole,
+      this.namePerIncomeTaxReturn,
+      this.dob,
+      this.citizenShipCountry,
+      this.permanentResidenceAddress,
+      this.country,
+      this.city,
+      this.state,
+      this.postCode,
+      this.differentMailingAddress,
+      this.taxPayer,
+      this.usTaxIdNo,
+      this.claimTaxTreatBenefits,
+      this.beneficialOwnerResident,
+      this.usTaxpayerIdNoOwner,
+      this.typeOfIncome,
+      this.explanation,
+      this.businessName,
+      this.usAddress,
+      this.accountNo,
+      this.exemptPayeeCode,
+      this.socialSecurityNo,
+      this.createBy,
+      this.createTime,
+      this.createTerminal,
+      this.taxResidenceCountry,
+      this.isActive: false,
+      this.signatureId,
+      this.deactivatedDate});
 }

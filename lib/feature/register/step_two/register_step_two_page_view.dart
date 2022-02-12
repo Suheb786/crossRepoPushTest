@@ -20,6 +20,11 @@ class RegisterStepTwoPageView
 
   @override
   Widget build(BuildContext context, model) {
+    model.employmentStatusEnum = ProviderScope.containerOf(context)
+        .read(profileDetailsPageViewModelProvider)
+        .employeeStatusController
+        .text
+        .fromEmploymentValue();
     List<Widget> pages = [];
     switch (ProviderScope.containerOf(context)
         .read(profileDetailsPageViewModelProvider)

@@ -192,6 +192,7 @@ class AppTextFieldState extends State<AppTextField> {
                         ]),
                       ),
                       TextFormField(
+                        autocorrect: false,
                         focusNode: _focusNode,
                         maxLength: widget.maxLength,
                         textAlign: widget.textAlign,

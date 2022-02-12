@@ -29,7 +29,7 @@ class OnBoardingViewModel extends BasePageViewModel {
         _checkVersionUpdateResponse.safeAdd(event);
       });
     });
-    checkVersionUpdate();
+    //checkVersionUpdate();
   }
 
   void checkVersionUpdate() {

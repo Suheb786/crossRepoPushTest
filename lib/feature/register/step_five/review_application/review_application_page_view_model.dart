@@ -101,8 +101,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       _getConfirmApplicationDataRequest = PublishSubject();
 
   ///get confirm  Account data response holder
-  PublishSubject<Resource<GetConfirmApplicationDataResponse>>
-      _getConfirmApplicationDataResponse = PublishSubject();
+  BehaviorSubject<Resource<GetConfirmApplicationDataResponse>>
+      _getConfirmApplicationDataResponse = BehaviorSubject();
 
   ///get confirm  Account data stream
   Stream<Resource<GetConfirmApplicationDataResponse>>
@@ -258,18 +258,24 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   void validateReviewDetails() {
     _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
         declarationSelected: _declarationSelected.value,
-        countryResidenceInfo: CountryResidenceInfo(
-            userId: countryResidenceInfo.userId,
-            residantCountry: residentCountryController.text,
-            buildingName: buildingNameOrNoController.text,
-            streetName: streetAddressController.text,
-            area: districtController.text,
-            city: cityController.text,
-            perResidantCountry: residentPermanentCountryController.text,
-            perCity: residentPermanentCityController.text,
-            isActive: countryResidenceInfo.isActive,
-            createdOn: countryResidenceInfo.createdOn,
-            id: countryResidenceInfo.id),
+        countryResidenceInfo: countryResidenceInfo,
+        // countryResidenceInfo: CountryResidenceInfo(
+        //     userId: countryResidenceInfo.userId,
+        //     residantCountry: countryResidenceInfo.residantCountry,
+        //     cityId: countryResidenceInfo.cityId,
+        //     stateId: countryResidenceInfo.stateId,
+        //     buildingName: buildingNameOrNoController.text,
+        //     streetName: streetAddressController.text,
+        //     area: districtController.text,
+        //     city: cityController.text,
+        //     perResidantCountry: countryResidenceInfo.perResidantCountry,
+        //     perCity: countryResidenceInfo.perCity,
+        //     residentCountryName: residentCountryController.text,
+        //     perResidentCountryName: residentPermanentCountryController.text,
+        //     perResidentCityName: residentPermanentCityController.text,
+        //     isActive: countryResidenceInfo.isActive,
+        //     createdOn: countryResidenceInfo.createdOn,
+        //     id: countryResidenceInfo.id),
         profileStatusInfo: ProfileStatusInfo(
             id: profileStatusInfo.id,
             createdOn: profileStatusInfo.createdOn,

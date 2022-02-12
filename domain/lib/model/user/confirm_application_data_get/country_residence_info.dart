@@ -2,6 +2,8 @@ class CountryResidenceInfo {
   final int? id;
   final String? userId;
   final String? residantCountry;
+  final String? cityId;
+  final String? stateId;
   final String? buildingName;
   final String? streetName;
   final String? area;
@@ -18,6 +20,8 @@ class CountryResidenceInfo {
       {this.id,
       this.userId,
       this.residantCountry,
+      this.cityId,
+      this.stateId,
       this.streetName,
       this.buildingName,
       this.perResidantCountry,

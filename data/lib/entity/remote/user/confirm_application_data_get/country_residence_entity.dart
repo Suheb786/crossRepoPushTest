@@ -14,6 +14,10 @@ class CountryResidenceEntity
   final String? userId;
   @JsonKey(name: "residantCountry")
   final String? residantCountry;
+  @JsonKey(name: "cityID")
+  final String? cityID;
+  @JsonKey(name: "stateID")
+  final String? stateID;
   @JsonKey(name: "buildingName")
   final String? buildingName;
   @JsonKey(name: "streetName")
@@ -41,6 +45,8 @@ class CountryResidenceEntity
       {this.id,
       this.userId,
       this.residantCountry,
+      this.cityID,
+      this.stateID,
       this.perCity,
       this.city,
       this.perResidantCountry,
@@ -62,6 +68,8 @@ class CountryResidenceEntity
   CountryResidenceEntity restore(CountryResidenceInfo response) {
     return CountryResidenceEntity(
         id: response.id,
+        cityID: response.cityId,
+        stateID: response.stateId,
         buildingName: response.buildingName,
         streetName: response.streetName,
         createdOn: response.createdOn,
@@ -71,13 +79,18 @@ class CountryResidenceEntity
         perCity: response.perCity,
         area: response.area,
         residantCountry: response.residantCountry,
-        userId: response.userId);
+        userId: response.userId,
+        residentCountryName: response.residentCountryName,
+        perResidentCountryName: response.perResidentCountryName,
+        perResidentCityName: response.perResidentCityName);
   }
 
   @override
   CountryResidenceInfo transform() {
     return CountryResidenceInfo(
         id: this.id,
+        cityId: this.cityID,
+        stateId: this.stateID,
         buildingName: this.buildingName,
         streetName: this.streetName,
         createdOn: this.createdOn,

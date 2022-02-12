@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -36,6 +37,8 @@ class RegisterStepTwoViewModel extends BasePageViewModel {
   void updatePages(List<Widget> pages) {
     _registrationStepTwoPage.safeAdd(pages);
   }
+
+  EmploymentStatusEnum employmentStatusEnum = EmploymentStatusEnum.NONE;
 
   @override
   void dispose() {

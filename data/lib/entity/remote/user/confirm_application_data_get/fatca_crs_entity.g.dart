@@ -48,6 +48,10 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) {
         : DateTime.parse(json['createTime'] as String),
     createTerminal: json['createTerminal'] as String?,
     taxResidenceCountry: json['taxResidenceCountry'] as String?,
+    deactivatedDate: json['deactivatedDate'],
+    signatureId: json['signatureId'],
+    isActive: json['isActive'] as bool?,
+    relationshipWithPEPName: json['relationshipWithPEPName'] as String?,
   );
 }
 
@@ -63,9 +67,13 @@ Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) =>
       'response3': instance.response3,
       'response4': instance.response4,
       'response5': instance.response5,
+      'isActive': instance.isActive,
+      'deactivatedDate': instance.deactivatedDate,
       'relationshipWithPEP': instance.relationshipWithPep,
+      'relationshipWithPEPName': instance.relationshipWithPEPName,
       'personName': instance.personName,
       'personRole': instance.personRole,
+      'signatureId': instance.signatureId,
       'namePerIncomeTaxReturn': instance.namePerIncomeTaxReturn,
       'dob': instance.dob,
       'citizenShipCountry': instance.citizenShipCountry,
