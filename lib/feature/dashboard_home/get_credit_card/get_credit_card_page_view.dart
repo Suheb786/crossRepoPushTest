@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -155,13 +154,6 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                 alignment: Alignment.center,
                 children: [
                   Padding(
-                    // padding: EdgeInsets.only(
-                    //     top: !(cardData.creditCard!.first.isCreditDelivered !=
-                    //                 null &&
-                    //             cardData.creditCard!.first.isCreditDelivered!)
-                    //         ? 8.0
-                    //         : 0.0,
-                    //     bottom: 15),
                     padding: EdgeInsets.all(15),
                     child: GestureDetector(
                       // onHorizontalDragEnd: (details) {
@@ -501,338 +493,322 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                 ],
               ),
             ),
-            back: Center(
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 15.0),
-                child: GestureDetector(
-                  // onHorizontalDragEnd: (details) {
-                  //   if (details.primaryVelocity!.isNegative) {
-                  //     ProviderScope.containerOf(context)
-                  //         .read(appHomeViewModelProvider)
-                  //         .pageController
-                  //         .next();
-                  //   } else {
-                  //     ProviderScope.containerOf(context)
-                  //         .read(appHomeViewModelProvider)
-                  //         .pageController
-                  //         .previous();
-                  //   }
-                  // },
-                  child: Container(
-                    key: ValueKey(false),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 2,
-                      color: Theme.of(context).primaryColor,
-                      margin: EdgeInsets.zero,
-                      shadowColor:
-                          Theme.of(context).primaryColorDark.withOpacity(0.32),
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 29.0, top: 38, right: 25),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
+            back: Padding(
+              padding: EdgeInsets.all(15.0),
+              child: GestureDetector(
+                // onHorizontalDragEnd: (details) {
+                //   if (details.primaryVelocity!.isNegative) {
+                //     ProviderScope.containerOf(context)
+                //         .read(appHomeViewModelProvider)
+                //         .pageController
+                //         .next();
+                //   } else {
+                //     ProviderScope.containerOf(context)
+                //         .read(appHomeViewModelProvider)
+                //         .pageController
+                //         .previous();
+                //   }
+                // },
+                child: Container(
+                  key: ValueKey(false),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    elevation: 2,
+                    color: Theme.of(context).primaryColor,
+                    margin: EdgeInsets.zero,
+                    shadowColor:
+                        Theme.of(context).primaryColorDark.withOpacity(0.32),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 29.0, top: 38, right: 25, bottom: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    cardData.creditCard!.first.name ?? '',
-                                    style: TextStyle(
-                                        color: Theme.of(context).accentColor,
-                                        fontSize: isSmallDevices ? 10 : 12,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      model.cardKey.currentState!.toggleCard();
-                                    },
-                                    child: Text(
-                                      S.of(context).flipBack,
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color,
-                                          fontSize: isSmallDevices ? 12 : 14,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  )
-                                ],
+                              Text(
+                                cardData.creditCard!.first.name ?? '',
+                                style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: isSmallDevices ? 10 : 12,
+                                    fontWeight: FontWeight.w600),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 63),
-                                child: Row(
+                              InkWell(
+                                onTap: () {
+                                  model.cardKey.currentState!.toggleCard();
+                                },
+                                child: Text(
+                                  S.of(context).flipBack,
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color,
+                                      fontSize: isSmallDevices ? 12 : 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 63),
+                            child: Row(
+                              children: [
+                                Text(
+                                  cardData.creditCard!.first.cardNumber!
+                                          .isNotEmpty
+                                      ? StringUtils
+                                          .getFormattedCreditCardNumber(cardData
+                                              .creditCard!.first.cardNumber)
+                                      : '-',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: isSmallDevices ? 12 : 14,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Clipboard.setData(ClipboardData(
+                                            text: cardData.creditCard!.first
+                                                    .cardNumber ??
+                                                ''))
+                                        .then((value) => Fluttertoast.showToast(
+                                            msg: 'Card Number Copied'));
+                                  },
+                                  child: AppSvg.asset(
+                                    AssetUtils.copy,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 4),
+                            child: Text(
+                              S.of(context).cardNumber,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context)
+                                      .accentColor
+                                      .withOpacity(0.6),
+                                  fontSize: isSmallDevices ? 8 : 10),
+                            ),
+                          ),
+                          Visibility(
+                            visible: false,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 19),
+                              child: Divider(
+                                height: 1,
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: false,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 21),
+                              child: Text(
+                                "140591314151414",
+                                style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: false,
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(S.of(context).linkedAccountNumber,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 10,
+                                    color: Theme.of(context)
+                                        .accentColor
+                                        .withOpacity(0.6),
+                                  )),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 24, bottom: 24),
+                            child: Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      cardData.creditCard!.first.cardNumber!
-                                              .isNotEmpty
-                                          ? StringUtils
-                                              .getFormattedCreditCardNumber(
-                                                  cardData.creditCard!.first
-                                                      .cardNumber)
-                                          : '-',
+                                      cardData.creditCard!.first.expiryDate ??
+                                          '-',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w700,
+                                        fontSize: isSmallDevices ? 10 : 12,
                                         color: Theme.of(context).accentColor,
-                                        fontSize: isSmallDevices ? 12 : 14,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Clipboard.setData(ClipboardData(
-                                                text: cardData.creditCard!.first
-                                                        .cardNumber ??
-                                                    ''))
-                                            .then((value) =>
-                                                Fluttertoast.showToast(
-                                                    msg: 'Card Number Copied'));
-                                      },
-                                      child: AppSvg.asset(
-                                        AssetUtils.copy,
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 4),
+                                      child: Text(
+                                        S.of(context).expiryDate,
+                                        style: TextStyle(
+                                            fontSize: isSmallDevices ? 8 : 10,
+                                            color: Theme.of(context)
+                                                .accentColor
+                                                .withOpacity(0.6),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     )
                                   ],
                                 ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 59.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        cardData.creditCard!.first.cvv!
+                                                .isNotEmpty
+                                            ? StringUtils.getCvv(
+                                                cardData.creditCard!.first.cvv)
+                                            : '-',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          color: Theme.of(context).accentColor,
+                                          fontSize: isSmallDevices ? 10 : 12,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 4),
+                                        child: Text(
+                                          S.of(context).cvv,
+                                          style: TextStyle(
+                                              fontSize: isSmallDevices ? 8 : 10,
+                                              color: Theme.of(context)
+                                                  .accentColor
+                                                  .withOpacity(0.6),
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            height: 1,
+                          ),
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    cardData.creditCard!.first.usedBalance ??
+                                        '-',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: isSmallDevices ? 12 : 14,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    'JOD',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: isSmallDevices ? 8 : 10,
+                                      color: Theme.of(context)
+                                          .accentColor
+                                          .withOpacity(0.6),
+                                    ),
+                                  ),
+                                ],
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 4),
                                 child: Text(
-                                  S.of(context).cardNumber,
+                                  S.of(context).totalUsedAmount,
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: isSmallDevices ? 8 : 10,
                                       color: Theme.of(context)
                                           .accentColor
                                           .withOpacity(0.6),
-                                      fontSize: isSmallDevices ? 8 : 10),
+                                      fontWeight: FontWeight.w600),
                                 ),
-                              ),
-                              Visibility(
-                                visible: false,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 19),
-                                  child: Divider(
-                                    height: 1,
-                                  ),
-                                ),
-                              ),
-                              Visibility(
-                                visible: false,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 21),
-                                  child: Text(
-                                    "140591314151414",
-                                    style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Visibility(
-                                visible: false,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 8),
-                                  child: Text(S.of(context).linkedAccountNumber,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 10,
-                                        color: Theme.of(context)
-                                            .accentColor
-                                            .withOpacity(0.6),
-                                      )),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 24, bottom: 24),
-                                child: Row(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          cardData.creditCard!.first
-                                                  .expiryDate ??
-                                              '-',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: isSmallDevices ? 10 : 12,
-                                            color:
-                                                Theme.of(context).accentColor,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 4),
-                                          child: Text(
-                                            S.of(context).expiryDate,
-                                            style: TextStyle(
-                                                fontSize:
-                                                    isSmallDevices ? 8 : 10,
-                                                color: Theme.of(context)
-                                                    .accentColor
-                                                    .withOpacity(0.6),
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 59.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            cardData.creditCard!.first.cvv!
-                                                    .isNotEmpty
-                                                ? StringUtils.getCvv(cardData
-                                                    .creditCard!.first.cvv)
-                                                : '-',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                              fontSize:
-                                                  isSmallDevices ? 10 : 12,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 4),
-                                            child: Text(
-                                              S.of(context).cvv,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      isSmallDevices ? 8 : 10,
-                                                  color: Theme.of(context)
-                                                      .accentColor
-                                                      .withOpacity(0.6),
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                height: 1,
-                              ),
-                              SizedBox(
-                                height: 24,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        cardData.creditCard!.first
-                                                .usedBalance ??
-                                            '-',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: isSmallDevices ? 12 : 14,
-                                          color: Theme.of(context).accentColor,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        'JOD',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: isSmallDevices ? 8 : 10,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 4),
-                                    child: Text(
-                                      S.of(context).totalUsedAmount,
-                                      style: TextStyle(
-                                          fontSize: isSmallDevices ? 8 : 10,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                height: 24,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        cardData.creditCard!.first
-                                                .creditLimit ??
-                                            '-',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: isSmallDevices ? 12 : 14,
-                                          color: Theme.of(context).accentColor,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(
-                                        'JOD',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: isSmallDevices ? 8 : 10,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 4),
-                                    child: Text(
-                                      S.of(context).yourCardLimit,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  )
-                                ],
-                              ),
+                              )
                             ],
                           ),
-                        ),
+                          SizedBox(
+                            height: 24,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    cardData.creditCard!.first.creditLimit ??
+                                        '-',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: isSmallDevices ? 12 : 14,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 4,
+                                  ),
+                                  Text(
+                                    'JOD',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: isSmallDevices ? 8 : 10,
+                                      color: Theme.of(context)
+                                          .accentColor
+                                          .withOpacity(0.6),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 4),
+                                child: Text(
+                                  S.of(context).yourCardLimit,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: Theme.of(context)
+                                          .accentColor
+                                          .withOpacity(0.6),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
               ),
-            ));
+            ),
+          );
   }
 }

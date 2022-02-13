@@ -46,7 +46,7 @@ class _AppSwiperState extends State<AppSwiper> {
       animation: widget.appSwiperController!,
       builder: (context, child) {
         double value = 0.0;
-        if (widget.appSwiperController!.position.haveDimensions) {
+        if (widget.appSwiperController!.positions.last.haveDimensions) {
           value = index.toDouble() - (widget.appSwiperController!.page ?? 0);
           value = (value * 0.01).clamp(-1, 1);
         } else {
