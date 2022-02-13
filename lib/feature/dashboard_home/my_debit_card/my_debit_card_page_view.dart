@@ -408,7 +408,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 ),
               ),
               back: Padding(
-                padding: EdgeInsets.only(bottom: 15),
+                padding: EdgeInsets.all(15),
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
@@ -451,7 +451,6 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               left: 29.0, top: 38, right: 25, bottom: 30),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -650,3 +649,4 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
           );
   }
 }
+

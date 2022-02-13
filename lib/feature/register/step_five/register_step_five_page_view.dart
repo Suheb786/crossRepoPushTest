@@ -72,7 +72,7 @@ class RegisterStepFivePageView
               ),
               Expanded(
                 child: AppSwiper(
-                  key: ValueKey(currentStep),
+                  // key: ValueKey(currentStep),
                   pages: pages,
                   appSwiperController: model.appSwiperController,
                   onIndexChanged: (index) {
@@ -105,3 +105,4 @@ class RegisterStepFivePageView
     }
   }
 }
+
