@@ -216,21 +216,26 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               color: Colors.white),
                                         ),
                                         InkWell(
+                                          splashFactory: NoSplash.splashFactory,
                                           onTap: () {
                                             model.cardKey.currentState!
                                                 .toggleCard();
                                           },
-                                          child: Text(
-                                            S.of(context).flipCard,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize:
-                                                    isSmallDevices ? 12 : 14,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color),
+                                          child: Container(
+                                            height: 50,
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              S.of(context).flipCard,
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize:
+                                                      isSmallDevices ? 12 : 14,
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color),
+                                            ),
                                           ),
                                         )
                                       ],
@@ -570,19 +575,25 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           fontWeight: FontWeight.w600),
                                     ),
                                     InkWell(
+                                      splashFactory: NoSplash.splashFactory,
                                       onTap: () {
                                         model.cardKey.currentState!
                                             .toggleCard();
                                       },
-                                      child: Text(
-                                        S.of(context).flipBack,
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color,
-                                            fontSize: isSmallDevices ? 12 : 14,
-                                            fontWeight: FontWeight.w600),
+                                      child: Container(
+                                        height: 50,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          S.of(context).flipBack,
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color,
+                                              fontSize:
+                                                  isSmallDevices ? 12 : 14,
+                                              fontWeight: FontWeight.w600),
+                                        ),
                                       ),
                                     )
                                   ],
