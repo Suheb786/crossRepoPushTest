@@ -248,27 +248,34 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                   ),
                                                 )
                                               : InkWell(
+                                                  splashFactory:
+                                                      NoSplash.splashFactory,
                                                   onTap: () {
                                                     model.cardKey.currentState!
                                                         .toggleCard();
                                                   },
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 23.0),
-                                                    child: Text(
-                                                      S.of(context).flipCard,
-                                                      style: TextStyle(
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!,
-                                                          fontSize:
-                                                              isSmallDevices
-                                                                  ? 12
-                                                                  : 14,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                  child: Container(
+                                                    height: 50,
+                                                    alignment: Alignment.center,
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: 23.0),
+                                                      child: Text(
+                                                        S.of(context).flipCard,
+                                                        style: TextStyle(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color!,
+                                                            fontSize:
+                                                                isSmallDevices
+                                                                    ? 12
+                                                                    : 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
                                                     ),
                                                   ),
                                                 )
@@ -503,20 +510,25 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         width: 8,
                                       ),
                                       InkWell(
+                                        splashFactory: NoSplash.splashFactory,
                                         onTap: () {
                                           model.cardKey.currentState!
                                               .toggleCard();
                                         },
-                                        child: Text(
-                                          S.of(context).flipBack,
-                                          style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color,
-                                              fontSize:
-                                                  isSmallDevices ? 12 : 14,
-                                              fontWeight: FontWeight.w600),
+                                        child: Container(
+                                          height: 50,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            S.of(context).flipBack,
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color,
+                                                fontSize:
+                                                    isSmallDevices ? 12 : 14,
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                         ),
                                       )
                                     ],
