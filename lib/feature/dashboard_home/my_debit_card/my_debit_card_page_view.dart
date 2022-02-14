@@ -649,4 +649,3 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
           );
   }
 }
-

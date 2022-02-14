@@ -35,7 +35,7 @@ class RequestPaymentFromNewRecipientPageView
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
               } else {
-                Navigator.pop(context);
+                // Navigator.pop(context);
               }
             },
             onTap: () {},

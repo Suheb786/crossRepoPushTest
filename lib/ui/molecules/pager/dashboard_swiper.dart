@@ -3,20 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DashboardSwiper extends StatefulWidget {
-  final int initialPage;
-  final double viewportFraction;
   final List? pages;
   final int? currentStep;
   final SwiperController? pageController;
   final Function(int)? onIndexChanged;
+  final PageController? appSwiperController;
+
   DashboardSwiper(
       {Key? key,
-      this.initialPage = 0,
-      this.viewportFraction = 0.8,
       this.pages,
       this.currentStep,
       this.pageController,
-      this.onIndexChanged})
+      this.onIndexChanged,
+      required this.appSwiperController})
       : super(key: key);
 
   @override
@@ -24,22 +23,6 @@ class DashboardSwiper extends StatefulWidget {
 }
 
 class _DashboardSwiperState extends State<DashboardSwiper> {
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(
-        initialPage: widget.initialPage,
-        viewportFraction: widget.viewportFraction);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -49,8 +32,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
           onPageChanged: (i) {
             widget.onIndexChanged!.call(i);
           },
-          // physics: CustomScrollPhysics(),
-          controller: _pageController,
+          controller: widget.appSwiperController,
           itemBuilder: (context, index) {
             return carouselView(index);
           }),
@@ -59,12 +41,12 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   Widget carouselView(int index) {
     return AnimatedBuilder(
-      animation: _pageController,
+      animation: widget.appSwiperController!,
       builder: (context, child) {
         double value = 0.0;
         (value * 0.018).clamp(-1, 1);
-        if (_pageController.position.haveDimensions) {
-          value = index.toDouble() - (_pageController.page ?? 0);
+        if (widget.appSwiperController!.position.haveDimensions) {
+          value = index.toDouble() - (widget.appSwiperController!.page ?? 0);
           value = (value * 0.018).clamp(-1, 1);
         } else {
           value = (index * 0.018).clamp(-1, 1);

@@ -14,6 +14,8 @@ import 'package:rxdart/rxdart.dart';
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
   final SwiperController pageController = SwiperController();
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
+
   PageController controller =
       PageController(viewportFraction: 0.8, keepPage: true, initialPage: 1);
   PublishSubject<int> _currentStep = PublishSubject();
@@ -110,6 +112,21 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+  }
+
+  void nextPage() {
+    appSwiperController.nextPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
+
+  void previousPage() {
+    appSwiperController.previousPage(
+        duration: Duration(seconds: 1), curve: Curves.linear);
+  }
+
+  void moveToPage(int index) {
+    appSwiperController.animateToPage(index,
+        duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   List<Widget> buildPageIndicator(int currentPage) {
