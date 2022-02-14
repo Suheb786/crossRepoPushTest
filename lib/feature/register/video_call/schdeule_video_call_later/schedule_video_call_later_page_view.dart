@@ -159,22 +159,31 @@ class ScheduleVideoCallLaterPageView
                                         dataBuilder: (context, response) {
                                           return GestureDetector(
                                             onHorizontalDragEnd: (details) {
-                                              if (details.primaryVelocity!
-                                                  .isNegative) {
-                                                model
-                                                    .validateScheduleVideoCallDetails();
-                                              } else {
-                                                Future.delayed(
-                                                    Duration(milliseconds: 500),
-                                                    () {
-                                                  ProviderScope.containerOf(
+                                              if (ProviderScope.containerOf(
                                                           context)
                                                       .read(
                                                           videoCallViewModelProvider)
-                                                      .moveToPage(0);
-                                                  // .move(0,
-                                                  //     animation: false);
-                                                });
+                                                      .appSwiperController
+                                                      .page ==
+                                                  2.0) {
+                                                if (details.primaryVelocity!
+                                                    .isNegative) {
+                                                  model
+                                                      .validateScheduleVideoCallDetails();
+                                                } else {
+                                                  Future.delayed(
+                                                      Duration(
+                                                          milliseconds: 500),
+                                                      () {
+                                                    ProviderScope.containerOf(
+                                                            context)
+                                                        .read(
+                                                            videoCallViewModelProvider)
+                                                        .moveToPage(0);
+                                                    // .move(0,
+                                                    //     animation: false);
+                                                  });
+                                                }
                                               }
                                             },
                                             child: Card(

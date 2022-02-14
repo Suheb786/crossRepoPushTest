@@ -43,19 +43,25 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      print(
-                          'currentPin--->${ProviderScope.containerOf(context).read(createPinViewModelProvider).currentPin}');
-                      model.validatePin(
-                          ProviderScope.containerOf(context)
-                              .read(createPinViewModelProvider)
-                              .currentPin,
-                          context);
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(cardDeliveryViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(cardDeliveryViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        2.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        print(
+                            'currentPin--->${ProviderScope.containerOf(context).read(createPinViewModelProvider).currentPin}');
+                        model.validatePin(
+                            ProviderScope.containerOf(context)
+                                .read(createPinViewModelProvider)
+                                .currentPin,
+                            context);
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(cardDeliveryViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(

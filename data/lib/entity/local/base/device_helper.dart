@@ -29,7 +29,8 @@ class DeviceInfoHelper {
     }
 
     return BaseClassEntity(
-      appVersion: info.version + ' ' + info.buildNumber,
+      appVersion: info.version,
+      //appVersion: info.version + ' ' + info.buildNumber,
       ip: externalIp,
       deviceID: Platform.isAndroid
           ? deviceData['androidId']

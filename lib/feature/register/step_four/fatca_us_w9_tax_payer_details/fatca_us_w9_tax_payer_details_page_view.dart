@@ -56,15 +56,21 @@ class FatcaUSW9TaxPayersDetailsPageView
                   dataBuilder: (context, response) {
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validateFatcaUSW9TaxPayersDetails();
-                        } else {
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                        if (ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
-                                .previousPage();
-                            // .previous();
-                          });
+                                .appSwiperController
+                                .page ==
+                            6.0) {
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validateFatcaUSW9TaxPayersDetails();
+                          } else {
+                            Future.delayed(Duration(milliseconds: 500), () {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .previousPage();
+                              // .previous();
+                            });
+                          }
                         }
                       },
                       child: Card(

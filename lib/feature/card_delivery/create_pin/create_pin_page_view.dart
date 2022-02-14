@@ -44,13 +44,19 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.validatePin();
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(cardDeliveryViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(cardDeliveryViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validatePin();
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(cardDeliveryViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(

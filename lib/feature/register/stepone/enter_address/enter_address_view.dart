@@ -96,6 +96,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               dataBuilder: (context, data) {
                                 return GestureDetector(
                                     onHorizontalDragEnd: (details) {
+                                      if (ProviderScope.containerOf(context)
+                                          .read(registerStepOneViewModelProvider)
+                                          .appSwiperController
+                                          .page ==
+                                          2.0) {
                                       if (details.primaryVelocity!.isNegative) {
                                         model.enterAddress();
                                       } else {
@@ -105,7 +110,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                         //     .pageController
                                         //     .previous();
                                       }
-                                    },
+                                    }},
                                     child: Card(
                                       child: Padding(
                                         padding: EdgeInsets.only(

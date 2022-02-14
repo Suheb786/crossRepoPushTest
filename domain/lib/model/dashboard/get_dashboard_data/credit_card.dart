@@ -8,7 +8,7 @@ class CreditCard {
       this.availableBalance,
       this.totalAmount,
       this.maxLimit,
-      this.cardId,
+      this.cardId: "",
       this.creditLimit,
       this.creditDeliveredDatetime,
       this.isCreditDelivered,

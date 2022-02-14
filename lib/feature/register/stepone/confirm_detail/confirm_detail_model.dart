@@ -73,6 +73,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   CountryData selectedIssuingPlace = CountryData();
 
+  bool firstLoad = true;
+
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
       PublishSubject();
@@ -224,6 +226,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
                   element.isoCode3 == scannedDocumentResult.issuingPlaceISo3);
 
           issuingPlaceController.text = countryData!.countryName!;
+          if (firstLoad) {
+            print('firstLoad');
+            notifyListeners();
+            firstLoad = false;
+          }
         }
       });
     });

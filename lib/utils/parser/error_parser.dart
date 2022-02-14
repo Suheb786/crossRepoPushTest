@@ -938,6 +938,8 @@ class ErrorParser {
         return localisedHelper.invalidIdNo;
       case ErrorType.INVALID_EXPIRY_DATE:
         return localisedHelper.invalidExpiryDate;
+      case ErrorType.EMPTY_CARD_NO:
+        return localisedHelper.emptyCardNo;
 
       default:
         return "";

@@ -11149,6 +11149,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Empty Card No`
+  String get emptyCardNo {
+    return Intl.message(
+      'Empty Card No',
+      name: 'emptyCardNo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

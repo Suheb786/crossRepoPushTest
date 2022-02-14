@@ -55,15 +55,21 @@ class FatcaUSRelevantW9PageView
                   dataBuilder: (context, response) {
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validateFatcaUSRelevantW9Details();
-                        } else {
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                        if (ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
-                                .moveToPage(0);
-                            // .move(0,animation:false);
-                          });
+                                .appSwiperController
+                                .page ==
+                            4.0) {
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validateFatcaUSRelevantW9Details();
+                          } else {
+                            Future.delayed(Duration(milliseconds: 500), () {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .moveToPage(0);
+                              // .move(0,animation:false);
+                            });
+                          }
                         }
                       },
                       child: Card(

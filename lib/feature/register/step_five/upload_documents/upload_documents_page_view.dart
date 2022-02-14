@@ -122,22 +122,31 @@ class UploadDocumentsPageView
                                             dataBuilder: (context, data) {
                                               return GestureDetector(
                                                 onHorizontalDragEnd: (details) {
-                                                  if (details.primaryVelocity!
-                                                      .isNegative) {
-                                                    model.validateDocuments();
-                                                  } else {
-                                                    Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 500),
-                                                        () {
-                                                      ProviderScope.containerOf(
+                                                  if (ProviderScope.containerOf(
                                                               context)
                                                           .read(
                                                               registerStepFiveViewModelProvider)
-                                                          .moveToPage(0);
-                                                      // .move(0,
-                                                      //     animation: false);
-                                                    });
+                                                          .appSwiperController
+                                                          .page ==
+                                                      4.0) {
+                                                    if (details.primaryVelocity!
+                                                        .isNegative) {
+                                                      model.validateDocuments();
+                                                    } else {
+                                                      Future.delayed(
+                                                          Duration(
+                                                              milliseconds:
+                                                                  500), () {
+                                                        ProviderScope
+                                                                .containerOf(
+                                                                    context)
+                                                            .read(
+                                                                registerStepFiveViewModelProvider)
+                                                            .moveToPage(0);
+                                                        // .move(0,
+                                                        //     animation: false);
+                                                      });
+                                                    }
                                                   }
                                                 },
                                                 child: Card(

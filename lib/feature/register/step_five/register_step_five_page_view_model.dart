@@ -22,8 +22,9 @@ class RegisterStepFiveViewModel extends BasePageViewModel {
   }
 
   void moveToPage(int index) {
-    appSwiperController.animateToPage(index,
-        curve: Curves.linear, duration: Duration(seconds: 1));
+    appSwiperController.jumpToPage(
+      index,
+    );
   }
 
   void previousPage() {

@@ -28,29 +28,35 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               curve: Curves.easeInOutSine,
               child: GestureDetector(
                 onHorizontalDragEnd: (details) async {
-                  if (details.primaryVelocity!.isNegative) {
-                    Map<Permission, PermissionStatus> statuses = await [
-                      Permission.camera,
-                      Permission.microphone,
-                      //Permission.bluetooth
-                    ].request();
-
-                    if (statuses[Permission.camera] ==
-                                PermissionStatus.permanentlyDenied ||
-                            statuses[Permission.microphone] ==
-                                PermissionStatus.permanentlyDenied
-                        // ||
-                        // statuses[Permission.bluetooth] ==
-                        //     PermissionStatus.permanentlyDenied
-                        ) {
-                      openAppSettings();
-                    }
-                    Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope.containerOf(context)
+                  if (ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
-                          .nextPage();
-                      // .next();
-                    });
+                          .appSwiperController
+                          .page ==
+                      1.0) {
+                    if (details.primaryVelocity!.isNegative) {
+                      Map<Permission, PermissionStatus> statuses = await [
+                        Permission.camera,
+                        Permission.microphone,
+                        //Permission.bluetooth
+                      ].request();
+
+                      if (statuses[Permission.camera] ==
+                                  PermissionStatus.permanentlyDenied ||
+                              statuses[Permission.microphone] ==
+                                  PermissionStatus.permanentlyDenied
+                          // ||
+                          // statuses[Permission.bluetooth] ==
+                          //     PermissionStatus.permanentlyDenied
+                          ) {
+                        openAppSettings();
+                      }
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFiveViewModelProvider)
+                            .nextPage();
+                        // .next();
+                      });
+                    }
                   }
                 },
                 child: Card(

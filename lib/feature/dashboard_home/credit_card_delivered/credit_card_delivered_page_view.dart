@@ -59,7 +59,7 @@ class CreditCardDeliveredPageView
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             model.confirmCreditCardDelivery(
-                                cardId: model.creditCard.first.cardId!,
+                                cardId: model.creditCard.first.cardId ?? '',
                                 cardDigit: model
                                         .creditCard.first.cardNumber!.isNotEmpty
                                     ? StringUtils.getLastFourDigitOfCardNo(
@@ -194,14 +194,17 @@ class CreditCardDeliveredPageView
                     ))
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 36),
-              child: Text(
-                S.of(context).deliveryIssue,
-                style: TextStyle(
-                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600),
+            Visibility(
+              visible: false,
+              child: Padding(
+                padding: EdgeInsets.only(top: 36),
+                child: Text(
+                  S.of(context).deliveryIssue,
+                  style: TextStyle(
+                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             )
           ],

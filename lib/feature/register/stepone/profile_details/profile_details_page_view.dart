@@ -64,13 +64,19 @@ class ProfileDetailsPageView
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.validateTextFields();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepOneViewModelProvider)
-                                  .previousPage();
-                              // .previous();
+                            if (ProviderScope.containerOf(context)
+                                    .read(registerStepOneViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                3.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.validateTextFields();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepOneViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              }
                             }
                           },
                           child: Card(

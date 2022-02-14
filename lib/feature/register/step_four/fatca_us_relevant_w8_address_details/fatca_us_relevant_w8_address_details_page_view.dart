@@ -73,18 +73,25 @@ class FatcaUSRelevantW8AddressDetailsPageView
                               dataBuilder: (context, response) {
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      model
-                                          .validateFatcaUSRelevantW8AddressDetails();
-                                    } else {
-                                      Future.delayed(
-                                          Duration(milliseconds: 500), () {
-                                        ProviderScope.containerOf(context)
+                                    if (ProviderScope.containerOf(context)
                                             .read(
                                                 registerStepFourViewModelProvider)
-                                            .previousPage();
-                                        // .previous();
-                                      });
+                                            .appSwiperController
+                                            .page ==
+                                        2.0) {
+                                      if (details.primaryVelocity!.isNegative) {
+                                        model
+                                            .validateFatcaUSRelevantW8AddressDetails();
+                                      } else {
+                                        Future.delayed(
+                                            Duration(milliseconds: 500), () {
+                                          ProviderScope.containerOf(context)
+                                              .read(
+                                                  registerStepFourViewModelProvider)
+                                              .previousPage();
+                                          // .previous();
+                                        });
+                                      }
                                     }
                                   },
                                   child: Card(
