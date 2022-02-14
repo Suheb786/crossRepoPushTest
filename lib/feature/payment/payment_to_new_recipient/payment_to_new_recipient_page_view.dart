@@ -226,6 +226,7 @@ class PaymentToNewRecipientPageView
                     padding: EdgeInsets.only(top: 22),
                     child: AppSwiper(
                       pages: pages,
+                      appSwiperController: model.appSwiperController,
                       pageController: model.pageController,
                       onIndexChanged: (index) {
                         // model.changeCurrentPage(index);

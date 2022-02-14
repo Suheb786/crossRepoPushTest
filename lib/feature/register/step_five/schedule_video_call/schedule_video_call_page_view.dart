@@ -76,8 +76,8 @@ class ScheduleVideoCallPageView
                               Future.delayed(Duration(milliseconds: 500), () {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepFiveViewModelProvider)
-                                    .registrationStepFivePageController
-                                    .move(1, animation: false);
+                                    .moveToPage(1);
+                                // .move(1, animation: false);
                               });
                             }
                           },

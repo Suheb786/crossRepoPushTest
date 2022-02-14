@@ -45,8 +45,8 @@ class EnterNewPinForCardPageView
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
                           .read(changeCardPinViewModelProvider)
-                          .swiperController
-                          .next();
+                          .nextPage();
+                      // .next();
                     }
                   },
                   dataBuilder: (context, snapshot) {

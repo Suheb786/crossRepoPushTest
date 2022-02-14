@@ -61,8 +61,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       () {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepOneViewModelProvider)
-                                        .pageController
-                                        .next();
+                                        .nextPage();
+                                    // .next();
                                   });
                                 } else if (data.status == Status.ERROR) {
                                   if (data.appError!.type ==

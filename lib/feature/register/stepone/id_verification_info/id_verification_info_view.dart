@@ -70,8 +70,8 @@ class IdVerificationInfoView
                                       () {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepOneViewModelProvider)
-                                        .pageController
-                                        .move(2, animation: false);
+                                        .moveToPage(2);
+                                    // .move(2, animation: false);
                                   });
                                 } else {
                                   model.showToastWithError(AppError(
@@ -84,8 +84,8 @@ class IdVerificationInfoView
                                 model.showToastWithError(saveData.appError!);
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
-                                    .pageController
-                                    .next();
+                                    .nextPage();
+                                // .next();
                                 Future.delayed(Duration(milliseconds: 500), () {
                                   ProviderScope.containerOf(context)
                                       .read(confirmDetailViewModelProvider)
@@ -109,8 +109,8 @@ class IdVerificationInfoView
                                       ProviderScope.containerOf(context)
                                           .read(
                                               registerStepOneViewModelProvider)
-                                          .pageController
-                                          .next();
+                                          .nextPage();
+                                      // .next();
                                       Future.delayed(
                                           Duration(milliseconds: 500), () {
                                         ProviderScope.containerOf(context)

@@ -69,8 +69,8 @@ class ProfileDetailsPageView
                             } else {
                               ProviderScope.containerOf(context)
                                   .read(registerStepOneViewModelProvider)
-                                  .pageController
-                                  .previous();
+                                  .previousPage();
+                              // .previous();
                             }
                           },
                           child: Card(

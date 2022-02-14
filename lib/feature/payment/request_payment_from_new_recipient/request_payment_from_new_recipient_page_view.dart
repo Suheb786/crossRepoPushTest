@@ -35,7 +35,7 @@ class RequestPaymentFromNewRecipientPageView
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
               } else {
-                Navigator.pop(context);
+                // Navigator.pop(context);
               }
             },
             onTap: () {},
@@ -208,6 +208,7 @@ class RequestPaymentFromNewRecipientPageView
                     padding: EdgeInsets.only(top: 22),
                     child: AppSwiper(
                       pages: pages,
+                      appSwiperController: model.appSwiperController,
                       pageController: model.pageController,
                       onIndexChanged: (index) {
                         // model.changeCurrentPage(index);

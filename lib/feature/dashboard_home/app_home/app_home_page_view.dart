@@ -63,6 +63,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       behavior: HitTestBehavior.translucent,
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
+                          print("SWIPE UP");
                           if (currentStep == 1) {
                             if (showTimeLine!) {
                               print("dragged here");
@@ -208,6 +209,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     MyDebitCardPage(
                                                         cardData: cardData),
                                                   ],
+                                                  appSwiperController:
+                                                      model.appSwiperController,
                                                   pageController:
                                                       model.pageController,
                                                   onIndexChanged: (index) {
@@ -291,8 +294,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             onTap: (i) {
                                               switch (i) {
                                                 case 0:
-                                                  // model.pageController.move(1,
-                                                  //     animation: false);
+                                                  model.moveToPage(0);
                                                   break;
                                                 case 1:
                                                   SettingsDialog.show(

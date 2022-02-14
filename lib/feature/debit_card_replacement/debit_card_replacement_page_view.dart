@@ -100,6 +100,7 @@ class DebitCardReplacementPageView
                     Expanded(
                       child: AppSwiper(
                         pages: pages,
+                        appSwiperController: model.appSwiperController,
                         pageController: model.swiperController,
                         onIndexChanged: (index) {
                           model.changeCurrentPage(index);

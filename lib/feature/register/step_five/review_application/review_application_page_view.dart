@@ -114,8 +114,8 @@ class ReviewApplicationPageView
                                             ProviderScope.containerOf(context)
                                                 .read(
                                                     registerStepFiveViewModelProvider)
-                                                .registrationStepFivePageController
-                                                .move(4, animation: false);
+                                                .moveToPage(4);
+                                            // .move(4, animation: false);
                                           });
 
                                           break;
@@ -125,8 +125,8 @@ class ReviewApplicationPageView
                                             ProviderScope.containerOf(context)
                                                 .read(
                                                     registerStepFiveViewModelProvider)
-                                                .registrationStepFivePageController
-                                                .next();
+                                                .nextPage();
+                                            // .next();
                                             ProviderScope.containerOf(context)
                                                 .read(
                                                     videoCallInfoViewModelProvider)

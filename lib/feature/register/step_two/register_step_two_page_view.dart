@@ -95,6 +95,7 @@ class RegisterStepTwoPageView
                     print("dataBuilder $data");
                     return AppSwiper(
                       pageController: model.registrationStepTwoPageController,
+                      appSwiperController: model.appSwiperController,
                       pages: data!,
                       currentStep: currentStep,
                       onIndexChanged: (index) {

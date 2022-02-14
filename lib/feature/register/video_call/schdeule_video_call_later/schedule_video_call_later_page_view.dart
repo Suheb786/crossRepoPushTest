@@ -171,9 +171,9 @@ class ScheduleVideoCallLaterPageView
                                                           context)
                                                       .read(
                                                           videoCallViewModelProvider)
-                                                      .videoCallPageController
-                                                      .move(0,
-                                                          animation: false);
+                                                      .moveToPage(0);
+                                                  // .move(0,
+                                                  //     animation: false);
                                                 });
                                               }
                                             },

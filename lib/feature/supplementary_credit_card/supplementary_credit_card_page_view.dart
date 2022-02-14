@@ -104,6 +104,7 @@ class SupplementaryCreditCardPageView
                     ),
                     Expanded(
                       child: AppSwiper(
+                        appSwiperController: model.appSwiperController,
                         pages: pages,
                         pageController: model.swiperController,
                         onIndexChanged: (index) {

@@ -42,7 +42,8 @@ class PersonalizeCreditCardPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context, RoutePaths.SupplementaryCreditCardReady);
+                            Navigator.pushNamed(context,
+                                RoutePaths.SupplementaryCreditCardReady);
                           } else if (data.status == Status.ERROR) {
                             if (data.appError!.type ==
                                 ErrorType.SELECT_MINIMUM_SETTLEMENT) {
@@ -65,8 +66,8 @@ class PersonalizeCreditCardPageView
                                 ProviderScope.containerOf(context)
                                     .read(
                                         supplementaryCreditCardViewModelProvider)
-                                    .swiperController
-                                    .previous();
+                                    .previousPage();
+                                // .previous();
                               }
                             },
                             child: Card(

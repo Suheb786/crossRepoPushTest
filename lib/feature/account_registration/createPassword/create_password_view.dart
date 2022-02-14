@@ -49,8 +49,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         .getToken();
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
-                        .pageController
-                        .next();
+                        .nextPage();
                   } else if (registerData.status == Status.ERROR) {
                     model.showToastWithError(registerData.appError!);
                   }
@@ -100,13 +99,18 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.createPassword();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(accountRegistrationViewModelProvider)
-                                  .pageController
-                                  .previous();
+                            if (ProviderScope.containerOf(context)
+                                    .read(accountRegistrationViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                1.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.createPassword();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(accountRegistrationViewModelProvider)
+                                    .previousPage();
+                              }
                             }
                           },
                           child: Card(

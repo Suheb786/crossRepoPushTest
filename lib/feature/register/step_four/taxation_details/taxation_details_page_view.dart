@@ -53,8 +53,8 @@ class TaxationDetailsPageView
                               Future.delayed(Duration(milliseconds: 500), () {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepFourViewModelProvider)
-                                    .registrationStepFourPageController
-                                    .next();
+                                    .nextPage();
+                                // .next();
                               });
                               break;
 
@@ -62,8 +62,8 @@ class TaxationDetailsPageView
                               Future.delayed(Duration(milliseconds: 500), () {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepFourViewModelProvider)
-                                    .registrationStepFourPageController
-                                    .move(4, animation: false);
+                                    .moveToPage(4);
+                                // .move(4, animation: false);
                               });
                               break;
                             case FatcaEnum.CONFIRMATION_SCREEN:

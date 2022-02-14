@@ -96,8 +96,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(paymentToNewRecipientViewModelProvider)
-                                .pageController
-                                .previous(animation: true);
+                                .previousPage();
+                            // .previous(animation: true);
                           }
                         },
                         child: Card(

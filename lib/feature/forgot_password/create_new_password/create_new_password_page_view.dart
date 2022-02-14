@@ -45,8 +45,8 @@ class CreateNewPasswordPageView
                             .data!.forgetPasswordContent!.mobileNumber;
                         ProviderScope.containerOf(context)
                             .read(forgotPasswordViewModelProvider)
-                            .pageController
-                            .next();
+                            .nextPage();
+                        // .next();
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
                             ErrorType.PASSWORD_MISMATCH) {

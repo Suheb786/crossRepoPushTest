@@ -62,6 +62,7 @@ class ApplyCreditCardHomePageView
                     child: AppSwiper(
                       pages: pages,
                       pageController: model.pageController,
+                      appSwiperController: model.appSwiperController,
                       onIndexChanged: (index) {
                         // model.changeCurrentPage(index);
                         model.updatePage(index);
