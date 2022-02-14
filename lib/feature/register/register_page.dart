@@ -116,9 +116,7 @@ class RegisterPageState
           Future.delayed(Duration(microseconds: 100), () {
             Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
                 arguments: AccountHoldArguments(
-
-                    ///TODO: add application id
-                    applicationId: ''));
+                    applicationId: widget.arguments.applicationId));
           });
           break;
 
@@ -160,6 +158,7 @@ class RegisterPageState
 
 class RegisterPageParams {
   final CheckKYCData? kycData;
+  final String? applicationId;
 
-  RegisterPageParams({this.kycData});
+  RegisterPageParams({this.kycData, this.applicationId: ""});
 }

@@ -157,6 +157,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                               model.mobileCode =
                                                                   data.data!
                                                                       .mobileCode!;
+                                                              model.applicationId =
+                                                                  data.data!
+                                                                      .applicationId!;
                                                               // ProviderScope
                                                               //         .containerOf(
                                                               //             context)
@@ -272,6 +275,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                               .Registration,
                                                                           arguments:
                                                                               RegisterPageParams(
+                                                                            applicationId:
+                                                                                loginData!.data!.applicationId,
                                                                             kycData:
                                                                                 kycData,
                                                                           ));

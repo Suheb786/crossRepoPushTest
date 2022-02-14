@@ -139,6 +139,7 @@ class LoginViewModel extends BasePageViewModel {
 
   String mobileNumber = '';
   String mobileCode = '';
+  String applicationId = '';
 
   LoginViewModel(
       this._loginUseCase,

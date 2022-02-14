@@ -17,6 +17,7 @@ class User {
   bool? isBiometricEnabled;
   String? cifNumber;
   String? accountNumber;
+  String? applicationId;
 
   User(
       {this.token,
@@ -36,7 +37,8 @@ class User {
       this.cifNumber,
       this.accountNumber,
       this.newDevice: false,
-      this.isBiometricEnabled: false});
+      this.isBiometricEnabled: false,
+      this.applicationId: ""});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 }

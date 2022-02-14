@@ -48,8 +48,10 @@ class ChangeDeviceSuccessPageView
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(
-                      kycData: kycData,
-                    ));
+                        kycData: kycData,
+                        applicationId: ProviderScope.containerOf(context)
+                            .read(loginViewModelProvider)
+                            .applicationId));
               }
             } else {
               Navigator.pushReplacementNamed(context, RoutePaths.AppHome);

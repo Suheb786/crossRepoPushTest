@@ -6,6 +6,8 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
+  @JsonKey(name: "applicationId")
+  final String? applicationId;
   @JsonKey(name: "languageCode")
   final String? languageCode;
   @JsonKey(name: "fullName")
@@ -51,7 +53,8 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
       _$UserEntityFromJson(json);
 
   UserEntity(
-      {this.languageCode,
+      {this.applicationId,
+      this.languageCode,
       this.fullName,
       this.emailId,
       this.mobileStatus,
@@ -94,6 +97,7 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
         isExisting: this.existing ?? false,
         cifNumber: this.cif ?? "",
         accountNumber: this.accountNumber ?? "",
+        applicationId: this.applicationId,
         newDevice: this.newDevice ?? false);
   }
 }
