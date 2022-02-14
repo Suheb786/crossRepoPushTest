@@ -29,6 +29,8 @@ class CardDeliveryPageViewModel extends BasePageViewModel {
     _currentPageSubject.safeAdd(index);
   }
 
+  String? cardNumber = '';
+
   @override
   void dispose() {
     _currentPageSubject.close();

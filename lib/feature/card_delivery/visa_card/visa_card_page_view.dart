@@ -26,6 +26,13 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
     return AppStreamBuilder<Resource<CardIssuanceDetails>>(
       stream: model.cardIssuanceStream,
       initialData: Resource.none(),
+      onData: (data) {
+        if (data.status == Status.SUCCESS) {
+          ProviderScope.containerOf(context)
+              .read(cardDeliveryViewModelProvider)
+              .cardNumber = data.data!.cardNumber;
+        }
+      },
       dataBuilder: (context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {

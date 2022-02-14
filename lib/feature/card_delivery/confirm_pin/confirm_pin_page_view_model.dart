@@ -52,7 +52,7 @@ class ConfirmPinPageViewModel extends BasePageViewModel {
         currentPin: _pinSubject.value,
         previousPin: previousPin,
         cardNumber: ProviderScope.containerOf(context)
-            .read(visaCardViewModelProvider)
+            .read(cardDeliveryViewModelProvider)
             .cardNumber));
   }
 
