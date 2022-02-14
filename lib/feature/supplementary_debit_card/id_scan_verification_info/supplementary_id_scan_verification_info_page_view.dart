@@ -64,13 +64,21 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                       dataBuilder: (context, scannedData) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.scanDocument();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(supplementaryDebitCardViewModelProvider)
-                                  .previousPage();
-                              // .previous();
+                            if (ProviderScope.containerOf(context)
+                                    .read(
+                                        supplementaryDebitCardViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                1.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.scanDocument();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(
+                                        supplementaryDebitCardViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              }
                             }
                           },
                           child: Card(

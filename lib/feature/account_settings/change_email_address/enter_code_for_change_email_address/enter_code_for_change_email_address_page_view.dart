@@ -45,17 +45,23 @@ class EnterCodeForChangeEmailAddressPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp(
-                          email: ProviderScope.containerOf(context)
-                              .read(addNewEmailAddressViewModelProvider)
-                              .emailController
-                              .text);
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(changeEmailAddressViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(changeEmailAddressViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validateOtp(
+                            email: ProviderScope.containerOf(context)
+                                .read(addNewEmailAddressViewModelProvider)
+                                .emailController
+                                .text);
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(changeEmailAddressViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(

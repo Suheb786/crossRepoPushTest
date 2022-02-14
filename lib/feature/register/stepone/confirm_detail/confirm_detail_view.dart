@@ -121,8 +121,14 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                       dataBuilder: (context, scannedData) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.confirmDetail();
+                            if (ProviderScope.containerOf(context)
+                                    .read(registerStepOneViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                1.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.confirmDetail();
+                              }
                             }
                           },
                           child: Card(

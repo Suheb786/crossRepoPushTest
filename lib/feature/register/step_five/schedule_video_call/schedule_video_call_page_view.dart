@@ -70,15 +70,21 @@ class ScheduleVideoCallPageView
                       dataBuilder: (context, response) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.validateScheduleVideoCallDetails();
-                            } else {
-                              Future.delayed(Duration(milliseconds: 500), () {
-                                ProviderScope.containerOf(context)
+                            if (ProviderScope.containerOf(context)
                                     .read(registerStepFiveViewModelProvider)
-                                    .moveToPage(1);
-                                // .move(1, animation: false);
-                              });
+                                    .appSwiperController
+                                    .page ==
+                                3.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.validateScheduleVideoCallDetails();
+                              } else {
+                                Future.delayed(Duration(milliseconds: 500), () {
+                                  ProviderScope.containerOf(context)
+                                      .read(registerStepFiveViewModelProvider)
+                                      .moveToPage(1);
+                                  // .move(1, animation: false);
+                                });
+                              }
                             }
                           },
                           child: Card(

@@ -136,22 +136,29 @@ class VideoCallAgentSelectionPageView
                                   curve: Curves.easeInOutSine,
                                   child: GestureDetector(
                                     onHorizontalDragUpdate: (details) {
-                                      if (details.primaryDelta!.isNegative) {
-                                        ///don't allow user to go document page it will depend on customer status
-                                        // Future.delayed(Duration(milliseconds: 500), () {
-                                        //   ProviderScope.containerOf(context)
-                                        //       .read(registerStepFiveViewModelProvider)
-                                        //       .registrationStepFivePageController
-                                        //       .move(4, animation: false);
-                                        // });
-                                      } else {
-                                        Future.delayed(
-                                            Duration(milliseconds: 500), () {
-                                          ProviderScope.containerOf(context)
+                                      if (ProviderScope.containerOf(context)
                                               .read(videoCallViewModelProvider)
-                                              .previousPage();
-                                          // .previous();
-                                        });
+                                              .appSwiperController
+                                              .page ==
+                                          1.0) {
+                                        if (details.primaryDelta!.isNegative) {
+                                          ///don't allow user to go document page it will depend on customer status
+                                          // Future.delayed(Duration(milliseconds: 500), () {
+                                          //   ProviderScope.containerOf(context)
+                                          //       .read(registerStepFiveViewModelProvider)
+                                          //       .registrationStepFivePageController
+                                          //       .move(4, animation: false);
+                                          // });
+                                        } else {
+                                          Future.delayed(
+                                              Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    videoCallViewModelProvider)
+                                                .previousPage();
+                                            // .previous();
+                                          });
+                                        }
                                       }
                                     },
                                     child: Card(

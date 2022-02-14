@@ -96,14 +96,22 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               dataBuilder: (context, data) {
                                 return GestureDetector(
                                     onHorizontalDragEnd: (details) {
-                                      if (details.primaryVelocity!.isNegative) {
-                                        model.enterAddress();
-                                      } else {
-                                        // ProviderScope.containerOf(context)
-                                        //     .read(
-                                        //         registerStepOneViewModelProvider)
-                                        //     .pageController
-                                        //     .previous();
+                                      if (ProviderScope.containerOf(context)
+                                              .read(
+                                                  registerStepOneViewModelProvider)
+                                              .appSwiperController
+                                              .page ==
+                                          2.0) {
+                                        if (details
+                                            .primaryVelocity!.isNegative) {
+                                          model.enterAddress();
+                                        } else {
+                                          // ProviderScope.containerOf(context)
+                                          //     .read(
+                                          //         registerStepOneViewModelProvider)
+                                          //     .pageController
+                                          //     .previous();
+                                        }
                                       }
                                     },
                                     child: Card(

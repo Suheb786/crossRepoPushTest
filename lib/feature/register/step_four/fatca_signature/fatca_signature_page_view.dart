@@ -80,31 +80,38 @@ class FatcaSignaturePageView
                             dataBuilder: (context, data) {
                               return GestureDetector(
                                 onHorizontalDragEnd: (details) {
-                                  if (details.primaryVelocity!.isNegative) {
-                                    model.setFatcaResponse(context);
-                                  } else {
-                                    ///back navigation from signature screen
-                                    // ProviderScope.containerOf(context)
-                                    //             .read(
-                                    //                 registerStepFourViewModelProvider)
-                                    //             .taxPayerType ==
-                                    //         TaxPayerTypeEnum.W8
-                                    //     ? Future.delayed(
-                                    //         Duration(milliseconds: 500), () {
-                                    //         ProviderScope.containerOf(context)
-                                    //             .read(
-                                    //                 registerStepFourViewModelProvider)
-                                    //             .registrationStepFourPageController
-                                    //             .move(3, animation: false);
-                                    //       })
-                                    //     : Future.delayed(
-                                    //         Duration(milliseconds: 500), () {
-                                    //         ProviderScope.containerOf(context)
-                                    //             .read(
-                                    //                 registerStepFourViewModelProvider)
-                                    //             .registrationStepFourPageController
-                                    //             .move(6, animation: false);
-                                    //       });
+                                  if (ProviderScope.containerOf(context)
+                                          .read(
+                                              registerStepFourViewModelProvider)
+                                          .appSwiperController
+                                          .page ==
+                                      7.0) {
+                                    if (details.primaryVelocity!.isNegative) {
+                                      model.setFatcaResponse(context);
+                                    } else {
+                                      ///back navigation from signature screen
+                                      // ProviderScope.containerOf(context)
+                                      //             .read(
+                                      //                 registerStepFourViewModelProvider)
+                                      //             .taxPayerType ==
+                                      //         TaxPayerTypeEnum.W8
+                                      //     ? Future.delayed(
+                                      //         Duration(milliseconds: 500), () {
+                                      //         ProviderScope.containerOf(context)
+                                      //             .read(
+                                      //                 registerStepFourViewModelProvider)
+                                      //             .registrationStepFourPageController
+                                      //             .move(3, animation: false);
+                                      //       })
+                                      //     : Future.delayed(
+                                      //         Duration(milliseconds: 500), () {
+                                      //         ProviderScope.containerOf(context)
+                                      //             .read(
+                                      //                 registerStepFourViewModelProvider)
+                                      //             .registrationStepFourPageController
+                                      //             .move(6, animation: false);
+                                      //       });
+                                    }
                                   }
                                 },
                                 child: Card(
