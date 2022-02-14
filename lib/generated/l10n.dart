@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11155,6 +11156,26 @@ class S {
     return Intl.message(
       'Empty Card No',
       name: 'emptyCardNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update required`
+  String get updateRequired {
+    return Intl.message(
+      'Update required',
+      name: 'updateRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A newer version is available. Please update Blink to continue using the services.`
+  String get updateRequiredDesc {
+    return Intl.message(
+      'A newer version is available. Please update Blink to continue using the services.',
+      name: 'updateRequiredDesc',
       desc: '',
       args: [],
     );

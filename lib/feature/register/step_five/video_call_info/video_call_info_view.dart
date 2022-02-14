@@ -99,6 +99,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                   ),
                                   Text(
                                     S.of(context).videoCallInfoDescription,
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,

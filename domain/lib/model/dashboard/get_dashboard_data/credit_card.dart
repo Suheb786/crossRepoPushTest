@@ -18,7 +18,8 @@ class CreditCard {
       this.primarySecondaryCard,
       this.usedBalance,
       this.paymentDueAmount,
-      this.cardCode});
+      this.cardCode,
+      this.isCompleted: false});
 
   String? name;
   String? cardNumber;
@@ -35,6 +36,7 @@ class CreditCard {
   String? creditCardActivatedDate;
   String? creditDeliveredDatetime;
   bool? isApplied;
+  bool? isCompleted;
   String? cardId;
   bool? isSupCard;
   String? cardCode;

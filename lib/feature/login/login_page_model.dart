@@ -11,6 +11,7 @@ import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/check_version_update_usecase.dart';
 import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
@@ -34,6 +35,7 @@ class LoginViewModel extends BasePageViewModel {
   final SaveUserUseCase _saveUserUseCase;
   final SendOtpTokenEmailOtpUseCase _sendOtpTokenEmailOtpUseCase;
   final SendOtpTokeDeviceChangeOtpUseCase _sendOtpTokeDeviceChangeOtpUseCase;
+  final CheckVersionUpdateUseCase _checkVersionUpdateUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -141,6 +143,15 @@ class LoginViewModel extends BasePageViewModel {
   String mobileCode = '';
   String applicationId = '';
 
+  ///version update
+  PublishSubject<CheckVersionUpdateUseCaseParams> _checkVersionUpdateRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _checkVersionUpdateResponse = PublishSubject();
+
+  Stream<Resource<bool>> get checkVersionUpdateStream =>
+      _checkVersionUpdateResponse.stream;
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
@@ -151,7 +162,8 @@ class LoginViewModel extends BasePageViewModel {
       this._authenticateBioMetricUseCase,
       this._saveUserUseCase,
       this._sendOtpTokenEmailOtpUseCase,
-      this._sendOtpTokeDeviceChangeOtpUseCase) {
+      this._sendOtpTokeDeviceChangeOtpUseCase,
+      this._checkVersionUpdateUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -280,6 +292,17 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _checkVersionUpdateRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkVersionUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _checkVersionUpdateResponse.safeAdd(event);
+      });
+    });
+
     //getCipher();
     //getCurrentUserStream();
   }
@@ -342,6 +365,10 @@ class LoginViewModel extends BasePageViewModel {
 
   void saveUserData() {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
+  }
+
+  void checkVersionUpdate() {
+    _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams());
   }
 
   @override

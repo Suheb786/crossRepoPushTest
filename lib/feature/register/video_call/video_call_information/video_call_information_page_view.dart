@@ -125,6 +125,7 @@ class VideoCallInformationPageView
                                           S
                                               .of(context)
                                               .videoCallInfoDescription,
+                                          textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,

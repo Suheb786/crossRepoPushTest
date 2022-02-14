@@ -508,8 +508,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
     return _apiService.checkVersionUpdate(CheckVersionUpdateRequest(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       platform: baseData.platform,
-      parentVersion: baseData.appVersion?.split(" ")[0],
-      version: baseData.appVersion?.split(" ")[1],
+      parentVersion: '1.0',
+      //version: '1.0.0',
+      version: baseData.appVersion,
       baseData: baseData.toJson(),
     ));
   }

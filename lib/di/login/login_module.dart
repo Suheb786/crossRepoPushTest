@@ -8,15 +8,15 @@ import 'package:neo_bank/feature/login/login_page_model.dart';
 final loginViewModelProvider =
     ChangeNotifierProvider.autoDispose<LoginViewModel>(
   (ref) => LoginViewModel(
-    ref.read(loginUseCaseProvider),
-    ref.read(checkKycStatusUseCaseProvider),
-    ref.read(getCipherUseCaseProvider),
-    ref.read(androidLoginUseCaseProvider),
-    ref.read(iphoneLoginUseCaseProvider),
-    ref.read(checkBioMetricSupportUseCaseProvider),
-    ref.read(authenticateBioMetricUseCaseProvider),
-    ref.read(saveUserUseCaseProvider),
-    ref.read(sendOtpTokenEmailOtpUseCaseProvider),
-    ref.read(sendOtpTokenDeviceChangeUseCaseProvider),
-  ),
+      ref.read(loginUseCaseProvider),
+      ref.read(checkKycStatusUseCaseProvider),
+      ref.read(getCipherUseCaseProvider),
+      ref.read(androidLoginUseCaseProvider),
+      ref.read(iphoneLoginUseCaseProvider),
+      ref.read(checkBioMetricSupportUseCaseProvider),
+      ref.read(authenticateBioMetricUseCaseProvider),
+      ref.read(saveUserUseCaseProvider),
+      ref.read(sendOtpTokenEmailOtpUseCaseProvider),
+      ref.read(sendOtpTokenDeviceChangeUseCaseProvider),
+      ref.read(checkVersionUpdateUseCaseProvider)),
 );

@@ -1915,6 +1915,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error occurred while updating Beneficiary"),
         "updateLimitError": MessageLookupByLibrary.simpleMessage(
             "Exception while Updating Limits"),
+        "updateRequired":
+            MessageLookupByLibrary.simpleMessage("Update required"),
+        "updateRequiredDesc": MessageLookupByLibrary.simpleMessage(
+            "A newer version is available. Please update Blink to continue using the services."),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while uploading Beneficiary Image"),
