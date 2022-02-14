@@ -68,13 +68,19 @@ class CreateNewPasswordPageView
                     dataBuilder: (context, data) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.createPassword(context);
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(accountRegistrationViewModelProvider)
-                                .pageController
-                                .previous();
+                          if (ProviderScope.containerOf(context)
+                                  .read(accountRegistrationViewModelProvider)
+                                  .appSwiperController
+                                  .page ==
+                              1.0) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.createPassword(context);
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(accountRegistrationViewModelProvider)
+                                  .pageController
+                                  .previous();
+                            }
                           }
                         },
                         child: Card(

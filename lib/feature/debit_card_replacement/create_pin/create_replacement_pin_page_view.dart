@@ -45,13 +45,19 @@ class CreateReplacementPinPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.validatePin();
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(debitCardReplacementViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(debitCardReplacementViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validatePin();
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(debitCardReplacementViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(

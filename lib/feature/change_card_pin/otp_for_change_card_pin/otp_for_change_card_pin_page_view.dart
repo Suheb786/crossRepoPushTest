@@ -84,13 +84,19 @@ class OtpForChangeCardPinPageView
                     dataBuilder: (context, isOtpVerified) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateOtp();
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(changeCardPinViewModelProvider)
-                                .previousPage();
-                            // .previous();
+                          if (ProviderScope.containerOf(context)
+                                  .read(changeCardPinViewModelProvider)
+                                  .appSwiperController
+                                  .page ==
+                              1.0) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateOtp();
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(changeCardPinViewModelProvider)
+                                  .previousPage();
+                              // .previous();
+                            }
                           }
                         },
                         child: Card(

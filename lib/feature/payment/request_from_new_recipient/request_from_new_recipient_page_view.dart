@@ -291,6 +291,7 @@ class RequestFromNewRecipientPageView
                                                         model
                                                             .updatePurposeDetail(
                                                                 value);
+                                                        model.validateField();
                                                         Navigator.pop(context);
                                                       }, onDismissed: () {
                                                         Navigator.pop(context);
@@ -482,7 +483,7 @@ class RequestFromNewRecipientPageView
                                                   child: AppStreamBuilder<bool>(
                                                       stream: model
                                                           .showButtonStream,
-                                                      initialData: true,
+                                                      initialData: false,
                                                       dataBuilder:
                                                           (context, isValid) {
                                                         return Visibility(

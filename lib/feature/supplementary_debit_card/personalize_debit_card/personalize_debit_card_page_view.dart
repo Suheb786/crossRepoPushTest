@@ -62,14 +62,21 @@ class PersonalizeDebitCardPageView
                               dataBuilder: (context, data) {
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      model.personalizeDebitCard();
-                                    } else {
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                              supplementaryDebitCardViewModelProvider)
-                                          .previousPage();
-                                      // .previous();
+                                    if (ProviderScope.containerOf(context)
+                                            .read(
+                                                supplementaryDebitCardViewModelProvider)
+                                            .appSwiperController
+                                            .page ==
+                                        2.0) {
+                                      if (details.primaryVelocity!.isNegative) {
+                                        model.personalizeDebitCard();
+                                      } else {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                supplementaryDebitCardViewModelProvider)
+                                            .previousPage();
+                                        // .previous();
+                                      }
                                     }
                                   },
                                   child: Card(

@@ -45,20 +45,26 @@ class EnterCodeForChangeMobileNumberPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp(
-                          mobile: ProviderScope.containerOf(context)
-                              .read(addNewMobileNumberViewModelProvider)
-                              .mobileNumber,
-                          mobileCode: ProviderScope.containerOf(context)
-                              .read(addNewMobileNumberViewModelProvider)
-                              .countryData
-                              .phoneCode!);
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(changeMobileNumberViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(changeMobileNumberViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validateOtp(
+                            mobile: ProviderScope.containerOf(context)
+                                .read(addNewMobileNumberViewModelProvider)
+                                .mobileNumber,
+                            mobileCode: ProviderScope.containerOf(context)
+                                .read(addNewMobileNumberViewModelProvider)
+                                .countryData
+                                .phoneCode!);
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(changeMobileNumberViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(

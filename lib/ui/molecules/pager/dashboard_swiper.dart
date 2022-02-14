@@ -7,22 +7,33 @@ class DashboardSwiper extends StatefulWidget {
   final int? currentStep;
   final SwiperController? pageController;
   final Function(int)? onIndexChanged;
-  final PageController? appSwiperController;
+  // final PageController? appSwiperController;
 
-  DashboardSwiper(
-      {Key? key,
-      this.pages,
-      this.currentStep,
-      this.pageController,
-      this.onIndexChanged,
-      required this.appSwiperController})
-      : super(key: key);
+  DashboardSwiper({
+    Key? key,
+    this.pages,
+    this.currentStep,
+    this.pageController,
+    this.onIndexChanged,
+    // required this.appSwiperController
+  }) : super(key: key);
 
   @override
   _DashboardSwiperState createState() => _DashboardSwiperState();
 }
 
 class _DashboardSwiperState extends State<DashboardSwiper> {
+  late PageController _pageController;
+  @override
+  void initState() {
+    super.initState();
+
+    _pageController = PageController(
+      initialPage: widget.currentStep!,
+      viewportFraction: 0.8,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -32,7 +43,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
           onPageChanged: (i) {
             widget.onIndexChanged!.call(i);
           },
-          controller: widget.appSwiperController,
+          controller: _pageController,
           itemBuilder: (context, index) {
             return carouselView(index);
           }),
@@ -41,16 +52,15 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   Widget carouselView(int index) {
     return AnimatedBuilder(
-      animation: widget.appSwiperController!,
+      animation: _pageController,
       builder: (context, child) {
         double value = 0.0;
-        (value * 0.018).clamp(-1, 1);
-        if (widget.appSwiperController!.position.haveDimensions) {
-          value = index.toDouble() - (widget.appSwiperController!.page ?? 0);
-          value = (value * 0.018).clamp(-1, 1);
-        } else {
-          value = (index * 0.018).clamp(-1, 1);
-        }
+        // if (widget.appSwiperController!.position.haveDimensions) {
+        value = index.toDouble() - (widget.currentStep ?? 0);
+        value = (value * 0.018).clamp(-1, 1);
+        // } else {
+        //     value = (index * 0.018).clamp(-1, 1);
+        // }
         return Transform(
           // angle: pi * value,
           transform: Matrix4.skewX(-value * 1.5),

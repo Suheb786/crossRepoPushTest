@@ -49,7 +49,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 1,
+        initialData: 0,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<GetDashboardDataResponse>>(
               stream: model.getDashboardDataStream,
@@ -94,13 +94,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               Navigator.pushNamed(
                                   context, RoutePaths.AccountTransaction);
                             }
-                          } else if (currentStep == 2) {
+                          } else if (currentStep == 1) {
                             if (showTimeLine!) {
                               model.updateShowTimeLineStream(!showTimeLine);
                             }
-                          } else if (currentStep == 3) {
+                          } else if (currentStep == 2) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           }
+                          // model.updateAppSwipeControllerStream(currentStep!);
                         } else {
                           // if (currentStep == 1 ||
                           //     currentStep == 2 ||
@@ -209,11 +210,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     MyDebitCardPage(
                                                         cardData: cardData),
                                                   ],
-                                                  appSwiperController:
-                                                      model.appSwiperController,
+                                                  // appSwiperController:
+                                                  //     model.appSwiperController,
                                                   pageController:
                                                       model.pageController,
                                                   onIndexChanged: (index) {
+                                                    print(index);
                                                     // _currentPage = index;
                                                     model.updatePage(index);
                                                     model

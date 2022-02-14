@@ -60,14 +60,21 @@ class PersonalizeCreditCardPageView
                         dataBuilder: (context, data) {
                           return GestureDetector(
                             onHorizontalDragEnd: (details) {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.personalizeCreditCard();
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(
-                                        supplementaryCreditCardViewModelProvider)
-                                    .previousPage();
-                                // .previous();
+                              if (ProviderScope.containerOf(context)
+                                      .read(
+                                          supplementaryCreditCardViewModelProvider)
+                                      .appSwiperController
+                                      .page ==
+                                  2.0) {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.personalizeCreditCard();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(
+                                          supplementaryCreditCardViewModelProvider)
+                                      .previousPage();
+                                  // .previous();
+                                }
                               }
                             },
                             child: Card(

@@ -193,6 +193,14 @@ class AppHomeViewModel extends BasePageViewModel {
     _pageControllerSubject.safeAdd(controller);
   }
 
+  void updateAppSwipeControllerStream(int index) {
+    appSwiperController = PageController(
+      viewportFraction: 0.90,
+      initialPage: index,
+    );
+    _currentStep.safeAdd(index);
+  }
+
   void updateShowTimeLineStream(bool value) {
     _showTimeLineSubject.add(value);
   }

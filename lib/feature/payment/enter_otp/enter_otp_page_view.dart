@@ -91,13 +91,19 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     dataBuilder: (context, isOtpVerified) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            model.enterOtp();
-                          } else {
-                            ProviderScope.containerOf(context)
-                                .read(paymentToNewRecipientViewModelProvider)
-                                .previousPage();
-                            // .previous(animation: true);
+                          if (ProviderScope.containerOf(context)
+                                  .read(paymentToNewRecipientViewModelProvider)
+                                  .appSwiperController
+                                  .page ==
+                              1.0) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.enterOtp();
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(paymentToNewRecipientViewModelProvider)
+                                  .previousPage();
+                              // .previous(animation: true);
+                            }
                           }
                         },
                         child: Card(

@@ -1,4 +1,3 @@
-
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
@@ -45,34 +44,34 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   ScrollController scrollController = ScrollController();
 
   BehaviorSubject<String> _uploadProfilePhotoResponse =
-  BehaviorSubject.seeded("");
+      BehaviorSubject.seeded("");
 
   Stream<String> get uploadProfilePhotoStream =>
       _uploadProfilePhotoResponse.stream;
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-  BehaviorSubject.seeded('');
+      BehaviorSubject.seeded('');
 
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
   PublishSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest =
-  PublishSubject();
+      PublishSubject();
 
   final GlobalKey<AppTextFieldState> ibanOrMobileKey =
-  GlobalKey(debugLabel: "ibanOrMobileNo");
+      GlobalKey(debugLabel: "ibanOrMobileNo");
 
   final GlobalKey<AppTextFieldState> purposeKey =
-  GlobalKey(debugLabel: "purpose");
+      GlobalKey(debugLabel: "purpose");
 
   final GlobalKey<AppTextFieldState> purposeDetailKey =
-  GlobalKey(debugLabel: "purposeDetails");
+      GlobalKey(debugLabel: "purposeDetails");
 
   bool addContact = false;
 
@@ -85,32 +84,32 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   PurposeDetail? purposeDetail;
 
   PublishSubject<RequestFromNewRecipientUseCaseParams>
-  _requestFromNewRecipientRequest = PublishSubject();
+      _requestFromNewRecipientRequest = PublishSubject();
 
   PublishSubject<Resource<RequestToPayContentResponse>>
-  _requestFromNewRecipientResponse = PublishSubject();
+      _requestFromNewRecipientResponse = PublishSubject();
 
   PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-  PublishSubject();
+      PublishSubject();
 
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
       _getPurposeResponse.stream;
 
   BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
-  _getAccountByAliasResponse = BehaviorSubject();
+      _getAccountByAliasResponse = BehaviorSubject();
 
   Stream<Resource<GetAccountByAliasContentResponse>>
-  get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
+      get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
   PublishSubject<bool> _addNickNameSubject = PublishSubject();
 
   Stream<bool> get addNickNameStream => _addNickNameSubject.stream;
 
   Stream<Resource<RequestToPayContentResponse>>
-  get requestFromNewRecipientResponseStream =>
-      _requestFromNewRecipientResponse.stream;
+      get requestFromNewRecipientResponseStream =>
+          _requestFromNewRecipientResponse.stream;
 
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   PublishSubject<String> _showAccountDetailSubject = PublishSubject();
 
@@ -145,7 +144,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _uploadDocumentUseCase.execute(params: value))
+              createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);
@@ -154,8 +153,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
     _getAccountByAliasRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _getAccountByAliasUseCase.execute(params: value))
+              createCall: () =>
+                  _getAccountByAliasUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -192,7 +191,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
     _getPurposeRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getPurposeUseCase.execute(params: value))
+              createCall: () => _getPurposeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -229,9 +228,10 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     print("got the limit : $limit");
-      _requestFromNewRecipientRequest.safeAdd(
-          RequestFromNewRecipientUseCaseParams(
-              ibanOrMobile: ibanOrMobileController.text,
+
+    _requestFromNewRecipientRequest.safeAdd(
+        RequestFromNewRecipientUseCaseParams(
+            ibanOrMobile: ibanOrMobileController.text,
             purpose: purposeController.text,
             purposeDetail: purposeDetailController.text,
             amount: double.parse(ProviderScope.containerOf(context)
@@ -254,6 +254,16 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             dbtrSurname: dbtrSurname,
             addressCity: addressCity,
             addressCountry: addressCountry));
+  }
+
+  validateField() {
+    if (ibanOrMobileController.text.isNotEmpty &&
+        purposeController.text.isNotEmpty &&
+        purposeDetailController.text.isNotEmpty) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
   }
 
   void updatePurpose(Purpose value) {

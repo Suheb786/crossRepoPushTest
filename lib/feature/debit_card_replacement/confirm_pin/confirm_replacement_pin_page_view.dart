@@ -44,21 +44,27 @@ class ConfirmReplacementPinPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      print(
-                          'currentPin--->${ProviderScope.containerOf(context).read(createReplacementPinViewModelProvider).currentPin}');
-                      model.validatePin(
-                          ProviderScope.containerOf(context)
-                              .read(createReplacementPinViewModelProvider)
-                              .currentPin,
-                          ProviderScope.containerOf(context)
-                              .read(replacementVisaCardViewModelProvider)
-                              .cardNumber!);
-                    } else {
-                      ProviderScope.containerOf(context)
-                          .read(debitCardReplacementViewModelProvider)
-                          .previousPage();
-                      // .previous(animation: true);
+                    if (ProviderScope.containerOf(context)
+                            .read(debitCardReplacementViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        print(
+                            'currentPin--->${ProviderScope.containerOf(context).read(createReplacementPinViewModelProvider).currentPin}');
+                        model.validatePin(
+                            ProviderScope.containerOf(context)
+                                .read(createReplacementPinViewModelProvider)
+                                .currentPin,
+                            ProviderScope.containerOf(context)
+                                .read(replacementVisaCardViewModelProvider)
+                                .cardNumber!);
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(debitCardReplacementViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
+                      }
                     }
                   },
                   child: Card(
