@@ -69,7 +69,6 @@ class RegisterStepOnePageView
               ),
               Expanded(
                 child: AppSwiper(
-                  key: ValueKey(currentStep),
                   pages: pages,
                   appSwiperController: model.appSwiperController,
                   pageController: model.pageController,
@@ -86,4 +85,3 @@ class RegisterStepOnePageView
     );
   }
 }
-

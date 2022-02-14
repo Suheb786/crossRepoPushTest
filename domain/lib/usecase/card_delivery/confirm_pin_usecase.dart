@@ -48,7 +48,7 @@ class ConfirmPinUseCaseParams extends Params {
     } else if (this.cardNumber!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
-          type: ErrorType.NETWORK,
+          type: ErrorType.EMPTY_CARD_NO,
           cause: Exception()));
     }
     return Right(true);
