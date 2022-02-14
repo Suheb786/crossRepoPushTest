@@ -33,9 +33,13 @@ class RegisterViewModel extends BasePageViewModel {
   }
 
   void navigateToPage(int index) {
-    if (index != registrationStepsController.page!.toInt())
-      registrationStepsController.animateToPage(index,
-          duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+    print('navigate');
+    registrationStepsController.jumpToPage(
+      index,
+    );
+    // if (index != registrationStepsController.page!.toInt())
+    //   registrationStepsController.animateToPage(index,
+    //       duration: Duration(milliseconds: 300), curve: Curves.easeIn);
   }
 
   @override

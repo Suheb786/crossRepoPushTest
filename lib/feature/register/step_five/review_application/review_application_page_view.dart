@@ -161,9 +161,17 @@ class ReviewApplicationPageView
                                       dataBuilder: (context, reviewData) {
                                         return GestureDetector(
                                           onHorizontalDragEnd: (details) {
-                                            if (details
-                                                .primaryVelocity!.isNegative) {
-                                              model.validateReviewDetails();
+                                            if (ProviderScope.containerOf(
+                                                        context)
+                                                    .read(
+                                                        registerStepFiveViewModelProvider)
+                                                    .appSwiperController
+                                                    .page ==
+                                                0.0) {
+                                              if (details.primaryVelocity!
+                                                  .isNegative) {
+                                                model.validateReviewDetails();
+                                              }
                                             }
                                           },
                                           child: Card(

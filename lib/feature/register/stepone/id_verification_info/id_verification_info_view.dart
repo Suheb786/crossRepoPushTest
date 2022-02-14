@@ -161,9 +161,16 @@ class IdVerificationInfoView
                                     dataBuilder: (context, scannedData) {
                                       return GestureDetector(
                                         onHorizontalDragEnd: (details) {
-                                          if (details
-                                              .primaryVelocity!.isNegative) {
-                                            model.idVerificationInfo();
+                                          if (ProviderScope.containerOf(context)
+                                                  .read(
+                                                      registerStepOneViewModelProvider)
+                                                  .appSwiperController
+                                                  .page ==
+                                              0.0) {
+                                            if (details
+                                                .primaryVelocity!.isNegative) {
+                                              model.idVerificationInfo();
+                                            }
                                           }
                                         },
                                         child: Card(

@@ -36,11 +36,17 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
       dataBuilder: (context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
-            if (data!.status == Status.SUCCESS) {
-              ProviderScope.containerOf(context)
-                  .read(cardDeliveryViewModelProvider)
-                  .nextPage();
-              // .next(animation: true);
+            if (ProviderScope.containerOf(context)
+                    .read(cardDeliveryViewModelProvider)
+                    .appSwiperController
+                    .page ==
+                0.0) {
+              if (data!.status == Status.SUCCESS) {
+                ProviderScope.containerOf(context)
+                    .read(cardDeliveryViewModelProvider)
+                    .nextPage();
+                // .next(animation: true);
+              }
             }
           },
           child: Card(

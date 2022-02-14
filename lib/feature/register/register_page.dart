@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/register_page_view.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class RegisterPage extends BasePage<RegisterViewModel> {
@@ -42,10 +43,10 @@ class RegisterPageState
           Future.delayed(Duration(microseconds: 100), () {
             ProviderScope.containerOf(context)
                 .read(registerStepOneViewModelProvider)
-                .pageController
-                .move(2, animation: false);
+                .moveToPage(2);
           });
           break;
+
         case "ProfileStatus":
         case "JobDetails":
           Future.delayed(Duration(microseconds: 100), () {
@@ -54,8 +55,7 @@ class RegisterPageState
           Future.delayed(Duration(microseconds: 100), () {
             ProviderScope.containerOf(context)
                 .read(registerStepOneViewModelProvider)
-                .pageController
-                .move(3, animation: false);
+                .moveToPage(3);
           });
           break;
         case "AccountOpeningPurpose":
@@ -98,25 +98,28 @@ class RegisterPageState
           break;
 
         case "UploadDocument":
-          // print('iamhere');
-          // Future.delayed(Duration(microseconds: 100), () {
-          //   model.navigateToPage(4);
-          // });
-          // print('i am here 1');
-          // Future.delayed(Duration(microseconds: 100), () {
-          //   print('i am here 2');
-          //   ProviderScope.containerOf(context)
-          //       .read(registerStepFiveViewModelProvider)
-          //       .registrationStepFivePageController
-          //       .move(4, animation: false);
-          // });
-          // Navigator.pushReplacementNamed(
-          //     context, RoutePaths.UploadDocumentLater);
           Future.delayed(Duration(microseconds: 100), () {
             Navigator.pushReplacementNamed(
                 context, RoutePaths.UploadDocumentLater);
           });
 
+          break;
+
+        case "KycPortal":
+          Future.delayed(Duration(microseconds: 100), () {
+            Navigator.pushReplacementNamed(context, RoutePaths.VideoCall);
+          });
+
+          break;
+
+        case "AdminPortalReview":
+          Future.delayed(Duration(microseconds: 100), () {
+            Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
+                arguments: AccountHoldArguments(
+
+                    ///TODO: add application id
+                    applicationId: ''));
+          });
           break;
 
         case "AccountInfo":

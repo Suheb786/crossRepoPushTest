@@ -84,8 +84,14 @@ class TaxationDetailsPageView
                       dataBuilder: (context, response) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.setFatcaQuestionResponse();
+                            if (ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .appSwiperController
+                                    .page ==
+                                0.0) {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.setFatcaQuestionResponse();
+                              }
                             }
                           },
                           child: AppStreamBuilder<

@@ -32,9 +32,16 @@ class DebitCardSettingsPageView
       padding: EdgeInsets.only(top: 52),
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (!details.primaryVelocity!.isNegative) {
+          int sensitivity = 8;
+          if (details.primaryVelocity! > sensitivity) {
             Navigator.pop(context, model.willPop());
+            print('down');
+          } else if (details.primaryVelocity! < -sensitivity) {
+            print('up');
           }
+          // if (!details.primaryVelocity!.isNegative) {
+          //   Navigator.pop(context, model.willPop());
+          // }
         },
         child: Column(
           children: [
