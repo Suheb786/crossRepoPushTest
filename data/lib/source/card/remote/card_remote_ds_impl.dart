@@ -108,8 +108,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   @override
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getCreditYears(
-        ConfirmCreditCardDeliveryRequest(baseData: baseData.toJson()));
+    return _apiService.getCreditYears(BaseRequest(baseData: baseData.toJson()));
   }
 
   @override

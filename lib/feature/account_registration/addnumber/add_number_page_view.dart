@@ -63,12 +63,18 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 dataBuilder: (context, data) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
-                      if (details.primaryVelocity!.isNegative) {
-                        model.validateNumber();
-                      } else {
-                        ProviderScope.containerOf(context)
-                            .read(accountRegistrationViewModelProvider)
-                            .previousPage();
+                      if (ProviderScope.containerOf(context)
+                              .read(accountRegistrationViewModelProvider)
+                              .appSwiperController
+                              .page ==
+                          0.0) {
+                        if (details.primaryVelocity!.isNegative) {
+                          model.validateNumber();
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(accountRegistrationViewModelProvider)
+                              .previousPage();
+                        }
                       }
                     },
                     child: Card(

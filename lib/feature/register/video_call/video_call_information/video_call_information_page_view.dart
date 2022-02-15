@@ -72,7 +72,7 @@ class VideoCallInformationPageView
                                 ) {
                               openAppSettings();
                             }
-                            Future.delayed(Duration(milliseconds: 500), () {
+                            Future.delayed(Duration(milliseconds: 100), () {
                               ProviderScope.containerOf(context)
                                   .read(videoCallViewModelProvider)
                                   .nextPage();

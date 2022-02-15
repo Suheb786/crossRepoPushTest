@@ -1148,11 +1148,11 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
-      confirmCreditCardDeliveryRequest) async {
+      baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(confirmCreditCardDeliveryRequest.toJson());
+    _data.addAll(baseRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<DebitYearsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)

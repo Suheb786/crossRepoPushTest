@@ -469,8 +469,7 @@ abstract class ApiService {
 
   @POST("/CardTracking/GetCreditYears")
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
-      @Body()
-          ConfirmCreditCardDeliveryRequest confirmCreditCardDeliveryRequest);
+      @Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/GetDebitYears")
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
