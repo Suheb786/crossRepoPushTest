@@ -49,7 +49,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 1,
+        initialData: 0,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<GetDashboardDataResponse>>(
               stream: model.getDashboardDataStream,
@@ -210,8 +210,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     MyDebitCardPage(
                                                         cardData: cardData),
                                                   ],
-                                                  // appSwiperController:
-                                                  //     model.appSwiperController,
+                                                  appSwiperController:
+                                                      model.appSwiperController,
                                                   pageController:
                                                       model.pageController,
                                                   onIndexChanged: (index) {

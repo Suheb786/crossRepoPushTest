@@ -14,10 +14,10 @@ import 'package:rxdart/rxdart.dart';
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
   final SwiperController pageController = SwiperController();
-  PageController appSwiperController = PageController(viewportFraction: 0.90);
+  PageController appSwiperController = PageController(viewportFraction: 0.8);
 
   PageController controller =
-      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 1);
+      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;

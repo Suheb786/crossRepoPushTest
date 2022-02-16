@@ -13,7 +13,7 @@ class InfoBipAudioService {
     var result = await _infobipPlugin.init(
         applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
         appKey:
-            "d48f97a07a5828761b1b8abe2976a24a-f66e3aa6-ff53-4387-a45e-0f52bdc89a11",
+            "8435fe9bc0853a9cf2c01336cbf069f3-46b5b7fa-9678-49f3-9d8b-143a9799f564",
         baseUrl: "https://gyw5rw.api.infobip.com",
         callStatus: (String status) {
           print(status);
