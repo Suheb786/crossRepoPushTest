@@ -108,11 +108,14 @@ class DeviceInfoHelper {
 
   Future<bool> checkDeviceSecurity() async {
     try {
-      if (Platform.isAndroid) {
-        return await FlutterJailbreakDetection.developerMode;
-      } else if (Platform.isIOS) {
-        return await FlutterJailbreakDetection.jailbroken;
-      }
+      // if (Platform.isAndroid) {
+      //   return await FlutterJailbreakDetection.developerMode;
+      // } else if (Platform.isIOS) {
+      //   return await FlutterJailbreakDetection.jailbroken;
+      // }
+      print(
+          '-----JailBroken------${await FlutterJailbreakDetection.jailbroken}');
+      return await FlutterJailbreakDetection.jailbroken;
     } on PlatformException {
       return true;
     }

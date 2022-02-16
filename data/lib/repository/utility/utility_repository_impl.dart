@@ -12,7 +12,7 @@ class UtilityRepositoryImpl extends UtilityRepository {
   Future<Either<LocalError, bool>> checkDeviceCompatibility() async {
     bool compatible = await _dataSource.checkDeviceCompatibility();
 
-    if (compatible) {
+    if (!compatible) {
       return Right(true);
     } else {
       return Left(
