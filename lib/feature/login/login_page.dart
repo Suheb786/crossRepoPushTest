@@ -10,10 +10,25 @@ class LoginPage extends BasePage<LoginViewModel> {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
+class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
+    with WidgetsBindingObserver {
   @override
   ProviderBase provideBase() {
     return loginViewModelProvider;
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      getViewModel().checkVersionUpdate();
+    }
+    super.didChangeAppLifecycleState(state);
   }
 
   @override
@@ -23,7 +38,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
 
   @override
   void onModelReady(LoginViewModel model) {
-    model.getCipher();
+    model.checkVersionUpdate();
     super.onModelReady(model);
   }
 

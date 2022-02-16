@@ -35,7 +35,7 @@ class AccountRegistrationPageState extends BaseStatefulPage<
                   mobileCode: widget._arguments.mobileCode,
                   mobileNumber: widget._arguments.mobileNumber));
           Future.delayed(Duration(microseconds: 500), () {
-            model.navigateToPage(2);
+            model.moveToPage(2);
           });
           break;
 

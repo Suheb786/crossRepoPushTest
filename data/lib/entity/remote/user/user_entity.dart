@@ -97,7 +97,7 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
         isExisting: this.existing ?? false,
         cifNumber: this.cif ?? "",
         accountNumber: this.accountNumber ?? "",
-        applicationId: this.applicationId,
+        applicationId: this.applicationId ?? '',
         newDevice: this.newDevice ?? false);
   }
 }
