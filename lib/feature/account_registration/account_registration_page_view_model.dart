@@ -34,6 +34,12 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
     if (index != null) pageController.move(index, animation: false);
   }
 
+  void moveToPage(int index) {
+    appSwiperController.jumpToPage(
+      index,
+    );
+  }
+
   ///mobile number request holder
   BehaviorSubject<MobileNumberParams> _mobileNumberSubject = BehaviorSubject();
 

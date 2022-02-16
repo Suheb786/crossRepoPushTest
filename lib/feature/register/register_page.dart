@@ -97,6 +97,13 @@ class RegisterPageState
 
           break;
 
+        case "ConfirmApplication":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(4);
+          });
+
+          break;
+
         case "UploadDocument":
           Future.delayed(Duration(microseconds: 100), () {
             Navigator.pushReplacementNamed(

@@ -22,8 +22,10 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/in
 import 'package:neo_bank/ui/molecules/dialog/version_update/version_update_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -87,7 +89,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             .borderSide
                                             .color),
                                   ), onSelected: () {
-                                ///TODO:launch urls based on platform
+                                Navigator.pop(context);
+                                Platform.isAndroid
+                                    ? LaunchUrlUtils.launchDigitalService(
+                                        AppConstantsUtils.PLAY_STORE_URL)
+                                    : Platform.isIOS
+                                        ? LaunchUrlUtils.launchDigitalService(
+                                            AppConstantsUtils.APP_STORE_URL)
+                                        : "";
                               });
                             } else if (data.status == Status.SUCCESS) {
                               model.getCipher();
