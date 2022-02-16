@@ -341,64 +341,57 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.stretch,
                                                                           children: [
-                                                                            Focus(
-                                                                              child: AppTextField(
-                                                                                  textFieldBorderColor: AppColor.whiteGray,
-                                                                                  textFieldFocusBorderColor: Theme.of(context).primaryColorDark,
-                                                                                  labelText: S.of(context).emailAddress,
-                                                                                  hintText: S.of(context).pleaseEnter,
-                                                                                  key: model.emailKey,
-                                                                                  controller: model.emailController,
-                                                                                  inputType: TextInputType.emailAddress,
-                                                                                  inputAction: TextInputAction.next,
-                                                                                  onSaved: (value) {
-                                                                                    model.validateEmail();
-                                                                                  },
-                                                                                  suffixIcon: (_, __) {
-                                                                                    return AppStreamBuilder<Resource<bool>>(
-                                                                                        stream: model.checkBioMetricStream,
-                                                                                        initialData: Resource.none(),
-                                                                                        onData: (data) {
-                                                                                          if (data.status == Status.SUCCESS) {
-                                                                                            model.authenticateBioMetric(title: S.of(context).biometricLogin, localisedReason: Platform.isAndroid ? S.of(context).enableBiometricLoginDescriptionAndroid : S.of(context).enableBiometricLoginDescriptionIos);
-                                                                                          }
-                                                                                        },
-                                                                                        dataBuilder: (context, checkBioMetric) {
-                                                                                          return AppStreamBuilder<Resource<bool>>(
-                                                                                              stream: model.authenticateBioMetricStream,
-                                                                                              initialData: Resource.none(),
-                                                                                              onData: (data) {
-                                                                                                if (data.status == Status.SUCCESS) {
-                                                                                                  model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
-                                                                                                  //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
-                                                                                                }
-                                                                                              },
-                                                                                              dataBuilder: (context, authenticBiometric) {
-                                                                                                return AppStreamBuilder<bool>(
-                                                                                                    stream: model.fingerPrintShowStream,
-                                                                                                    initialData: false,
-                                                                                                    dataBuilder: (context, fingerPrintValue) {
-                                                                                                      return Visibility(
-                                                                                                        visible: fingerPrintValue!,
-                                                                                                        child: InkWell(
-                                                                                                          onTap: () {
-                                                                                                            model.checkBiometric();
-                                                                                                          },
-                                                                                                          child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                                        ),
-                                                                                                      );
-                                                                                                    });
-                                                                                              });
-                                                                                        });
-                                                                                  },
-                                                                                  suffixIconSize: 24,
-                                                                                  onChanged: (value) => model.validate()),
-                                                                              onFocusChange: (hasFocus) {
-                                                                                if (!hasFocus) {
-                                                                                  model.validate();
-                                                                                }
-                                                                              },
-                                                                            ),
+                                                                            AppTextField(
+                                                                                textFieldBorderColor: AppColor.whiteGray,
+                                                                                textFieldFocusBorderColor: Theme.of(context).primaryColorDark,
+                                                                                labelText: S.of(context).emailAddress,
+                                                                                hintText: S.of(context).pleaseEnter,
+                                                                                key: model.emailKey,
+                                                                                controller: model.emailController,
+                                                                                inputType: TextInputType.emailAddress,
+                                                                                inputAction: TextInputAction.next,
+                                                                                onSaved: (value) {
+                                                                                  model.validateEmail();
+                                                                                },
+                                                                                suffixIcon: (_, __) {
+                                                                                  return AppStreamBuilder<Resource<bool>>(
+                                                                                      stream: model.checkBioMetricStream,
+                                                                                      initialData: Resource.none(),
+                                                                                      onData: (data) {
+                                                                                        if (data.status == Status.SUCCESS) {
+                                                                                          model.authenticateBioMetric(title: S.of(context).biometricLogin, localisedReason: Platform.isAndroid ? S.of(context).enableBiometricLoginDescriptionAndroid : S.of(context).enableBiometricLoginDescriptionIos);
+                                                                                        }
+                                                                                      },
+                                                                                      dataBuilder: (context, checkBioMetric) {
+                                                                                        return AppStreamBuilder<Resource<bool>>(
+                                                                                            stream: model.authenticateBioMetricStream,
+                                                                                            initialData: Resource.none(),
+                                                                                            onData: (data) {
+                                                                                              if (data.status == Status.SUCCESS) {
+                                                                                                model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                              }
+                                                                                            },
+                                                                                            dataBuilder: (context, authenticBiometric) {
+                                                                                              return AppStreamBuilder<bool>(
+                                                                                                  stream: model.fingerPrintShowStream,
+                                                                                                  initialData: false,
+                                                                                                  dataBuilder: (context, fingerPrintValue) {
+                                                                                                    return Visibility(
+                                                                                                      visible: fingerPrintValue!,
+                                                                                                      child: InkWell(
+                                                                                                        onTap: () {
+                                                                                                          model.checkBiometric();
+                                                                                                        },
+                                                                                                        child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                                      ),
+                                                                                                    );
+                                                                                                  });
+                                                                                            });
+                                                                                      });
+                                                                                },
+                                                                                suffixIconSize: 24,
+                                                                                onChanged: (value) => model.validate()),
                                                                             Padding(
                                                                               padding: EdgeInsets.only(top: 16),
                                                                               child: AppTextField(
@@ -412,7 +405,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 onSaved: (value) {
                                                                                   model.validateEmail();
                                                                                 },
-                                                                                //onChanged: (value) => model.validate(),
+                                                                                onChanged: (value) => model.validate(),
                                                                                 obscureText: true,
                                                                               ),
                                                                             ),
