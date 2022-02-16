@@ -314,7 +314,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             Navigator.pushReplacementNamed(context,
                                                                                 RoutePaths.Registration,
                                                                                 arguments: RegisterPageParams(
-                                                                                  applicationId: loginData!.data!.applicationId,
+                                                                                  applicationId: model.applicationId,
                                                                                   kycData: kycData,
                                                                                 ));
                                                                           }
