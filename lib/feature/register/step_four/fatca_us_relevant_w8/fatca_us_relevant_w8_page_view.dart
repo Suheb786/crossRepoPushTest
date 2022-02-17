@@ -124,10 +124,12 @@ class FatcaUSRelevantW8PageView
                                           readOnly: true,
                                           onPressed: () {
                                             DatePicker.show(context,
+                                                initialDate: model.initialDate,
                                                 onSelected: (date) {
+                                              model.initialDate = date;
                                               model.dateOfBirthController.text =
                                                   TimeUtils.getFormattedDate(
-                                                      date);
+                                                      date.toString());
                                               model.isValid();
                                             }, onCancelled: () {
                                               Navigator.pop(context);

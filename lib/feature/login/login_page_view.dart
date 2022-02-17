@@ -43,6 +43,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
             Expanded(
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
+                  print('hasFocus--->${FocusScope.of(context).hasFocus}');
+                  // if (FocusScope.of(context).hasFocus) {
+                  //   FocusScope.of(context).unfocus();
+                  //   if (details.primaryVelocity!.isNegative) {
+                  //     model.validateEmail();
+                  //   }
+                  // }
                   if (details.primaryVelocity!.isNegative) {
                     model.validateEmail();
                   }
@@ -487,7 +494,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         color: AppColor.whiteGray),
                   ),
                   Container(
-                      padding: EdgeInsets.only(bottom: 25, top: 19),
+                      padding: Platform.isAndroid
+                          ? EdgeInsets.only(bottom: 28, top: 16)
+                          : EdgeInsets.only(bottom: 68, top: 16),
                       width: double.maxFinite,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(

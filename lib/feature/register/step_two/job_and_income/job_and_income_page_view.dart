@@ -68,6 +68,7 @@ class JobAndIncomePageView
                   "model.employmentStatusEnum ${model.employmentStatusEnum} /// ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
+                  FocusScope.of(context).unfocus();
                   if (details.primaryVelocity!.isNegative) {
                     model.validateJobAndIncomeDetails();
                   }

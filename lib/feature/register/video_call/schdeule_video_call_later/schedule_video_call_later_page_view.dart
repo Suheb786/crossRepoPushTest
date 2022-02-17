@@ -231,17 +231,22 @@ class ScheduleVideoCallLaterPageView
                                                                 onPressed: () {
                                                                   DatePicker.show(
                                                                       context,
+                                                                      initialDate:
+                                                                          model
+                                                                              .initialDate,
                                                                       onSelected:
                                                                           (date) {
                                                                     model.preferredDateController
                                                                             .text =
                                                                         TimeUtils.getFormattedDOB(
-                                                                            date);
+                                                                            date.toString());
+                                                                    model.initialDate =
+                                                                        date;
                                                                     model
                                                                         .isValid();
                                                                     model.fetchAvailableTimeSlots(
                                                                         TimeUtils.getFormattedDateForCheckPassword(
-                                                                            date));
+                                                                            date.toString()));
                                                                   }, onCancelled:
                                                                           () {
                                                                     Navigator.pop(

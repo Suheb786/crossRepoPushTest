@@ -9,26 +9,26 @@ class DatePicker {
 
   static Future show(
     BuildContext context, {
-    required Function(String)? onSelected,
+    required Function(DateTime)? onSelected,
     required Function()? onCancelled,
     required String? title,
+    required DateTime initialDate,
     DateTime? lastDate,
   }) async {
-    DateTime selectedDate = DateTime.now();
     return Platform.isAndroid
         ? showDatePicker(
                 context: context,
-                initialDate: selectedDate,
+                initialDate: initialDate,
                 firstDate: DateTime(1900),
                 lastDate: lastDate ?? DateTime(2100))
             .then((value) {
-            onSelected?.call(value.toString());
+            value != null ? onSelected?.call(value) : () {};
           })
         : DatePickerBottomSheet.show(context, onDateSelected: (date) {
             onSelected?.call(date);
             Navigator.pop(context);
           }, onCancel: () {
             onCancelled?.call();
-          }, title: title);
+          }, title: title, initialDate: initialDate);
   }
 }

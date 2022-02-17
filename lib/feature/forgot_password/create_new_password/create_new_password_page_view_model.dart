@@ -16,7 +16,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   final CreateNewPasswordUseCase _createPasswordUseCase;
 
   final TextEditingController createPasswordController =
-  TextEditingController();
+      TextEditingController();
 
   TextEditingController confirmPasswordController = TextEditingController();
 
@@ -45,7 +45,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   CreateNewPasswordPageViewModel(this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _createPasswordUseCase.execute(params: value))
+              createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

@@ -15,6 +15,10 @@ class ForgotPasswordPageViewModel extends BasePageViewModel {
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
+  String email = "";
+  String nationalId = "";
+  String expiryDate = "";
+
   void nextPage() {
     appSwiperController.nextPage(
         duration: Duration(seconds: 1), curve: Curves.linear);

@@ -69,7 +69,7 @@ class CreateNewPasswordPageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (ProviderScope.containerOf(context)
-                                  .read(accountRegistrationViewModelProvider)
+                                  .read(forgotPasswordViewModelProvider)
                                   .appSwiperController
                                   .page ==
                               1.0) {
@@ -250,10 +250,12 @@ class CreateNewPasswordPageView
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           if (isValid!) {
-                                            return AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed);
+                                            return Center(
+                                              child: AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed),
+                                            );
                                           } else {
                                             return Container();
                                           }

@@ -47,6 +47,8 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
   ///all field validate stream
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
+  DateTime initialDate = DateTime.now();
+
   bool isValid() {
     bool valid = false;
     if (nameAsPerTaxReturnController.text.isNotEmpty &&
