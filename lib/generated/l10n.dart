@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11175,6 +11176,36 @@ class S {
     return Intl.message(
       'A newer version is available. Please update Blink to continue using the services.',
       name: 'updateRequiredDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you enter your `
+  String get additionalIncomePopUpDesc1 {
+    return Intl.message(
+      'Make sure you enter your ',
+      name: 'additionalIncomePopUpDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YEARLY`
+  String get yearly {
+    return Intl.message(
+      'YEARLY',
+      name: 'yearly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` additional income instead of monthly income to get your credit card right away.`
+  String get additionalIncomePopUpDesc2 {
+    return Intl.message(
+      ' additional income instead of monthly income to get your credit card right away.',
+      name: 'additionalIncomePopUpDesc2',
       desc: '',
       args: [],
     );

@@ -9,6 +9,7 @@ class InformationDialog {
       {Function? onDismissed,
       Function? onSelected,
       String? image,
+      bool? isSwipeToCancel,
       required String title,
       required Widget descriptionWidget}) {
     AppDialog.show(mContext,
@@ -16,6 +17,7 @@ class InformationDialog {
         builder: (context) => InformationDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,
+            isSwipeToCancel: isSwipeToCancel,
             image: image,
             title: title,
             descriptionWidget: descriptionWidget));

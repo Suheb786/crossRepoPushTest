@@ -237,7 +237,7 @@ class JobAndIncomePageView
                               if (!hasFocus) {
                                 InformationDialog.show(context,
                                     title: S.of(context).annualIncomeSmall,
-                                    onSelected: () {
+                                    isSwipeToCancel: false, onSelected: () {
                                   Navigator.pop(context);
                                 },
                                     descriptionWidget: Text.rich(TextSpan(
@@ -459,41 +459,100 @@ class JobAndIncomePageView
                                               child: AddIncomeWidget(
                                                 label: S.of(context).addIncome,
                                                 onTap: () {
-                                                  AdditionalIncomeSourceDialog
-                                                      .show(context,
-                                                          onDismissed: () {
+                                                  InformationDialog.show(context,
+                                                      title: S
+                                                          .of(context)
+                                                          .additionalIncome,
+                                                      isSwipeToCancel: false,
+                                                      onSelected: () {
                                                     Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    if (value
-                                                        .totalIncome!.isEmpty) {
-                                                      model.showToastWithError(
-                                                          AppError(
-                                                              type: ErrorType
-                                                                  .EMPTY_INCOME,
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message:
-                                                                      '')));
-                                                    } else if (!(num.parse(value
-                                                            .totalIncome!) >
-                                                        0)) {
-                                                      model.showToastWithError(
-                                                          AppError(
-                                                              type: ErrorType
-                                                                  .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message:
-                                                                      '')));
-                                                    } else {
+                                                    AdditionalIncomeSourceDialog
+                                                        .show(context,
+                                                            onDismissed: () {
                                                       Navigator.pop(context);
-                                                      model
-                                                          .addAdditionalIncomeList(
-                                                              value);
-                                                    }
-                                                  });
+                                                    }, onSelected: (value) {
+                                                      if (value.totalIncome!
+                                                          .isEmpty) {
+                                                        model.showToastWithError(
+                                                            AppError(
+                                                                type: ErrorType
+                                                                    .EMPTY_INCOME,
+                                                                cause:
+                                                                    Exception(),
+                                                                error: ErrorInfo(
+                                                                    message:
+                                                                        '')));
+                                                      } else if (!(num.parse(value
+                                                              .totalIncome!) >
+                                                          0)) {
+                                                        model.showToastWithError(
+                                                            AppError(
+                                                                type: ErrorType
+                                                                    .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                                cause:
+                                                                    Exception(),
+                                                                error: ErrorInfo(
+                                                                    message:
+                                                                        '')));
+                                                      } else {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .addAdditionalIncomeList(
+                                                                value);
+                                                      }
+                                                    });
+                                                  },
+                                                      descriptionWidget: Text.rich(TextSpan(
+                                                          text: S
+                                                              .of(context)
+                                                              .additionalIncomePopUpDesc1,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 14,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .inputDecorationTheme
+                                                                  .focusedBorder!
+                                                                  .borderSide
+                                                                  .color),
+                                                          children: [
+                                                            TextSpan(
+                                                                text: S
+                                                                    .of(context)
+                                                                    .yearly,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .inputDecorationTheme
+                                                                        .focusedBorder!
+                                                                        .borderSide
+                                                                        .color),
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: S
+                                                                        .of(context)
+                                                                        .additionalIncomePopUpDesc2,
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w400,
+                                                                        fontSize:
+                                                                            14,
+                                                                        color: Theme.of(context)
+                                                                            .inputDecorationTheme
+                                                                            .focusedBorder!
+                                                                            .borderSide
+                                                                            .color),
+                                                                  )
+                                                                ])
+                                                          ])));
                                                 },
                                               ),
                                             );
