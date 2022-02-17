@@ -298,7 +298,7 @@ class LoginViewModel extends BasePageViewModel {
                   _checkVersionUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _checkVersionUpdateResponse.safeAdd(event);
       });
     });

@@ -283,11 +283,11 @@ class NetworkError extends BaseError {
           //       error: error,
           //       type: ErrorType.ERROR_WHILE_GETTING_DASHBOARD);
           //
-          // case "Err-SN1":
-          //   return AppError(
-          //       cause: cause,
-          //       error: error,
-          //       type: ErrorType.MOBILE_ALREADY_EXIST);
+          case "Err-SN1":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.MOBILE_ALREADY_EXIST);
           //
           // case "err-125":
           //   return AppError(
@@ -1170,6 +1170,10 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.PAYMENT_CASHBACK_ERROR);
+
+          case "err-164":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
 
           case "ex-001":
             return AppError(
