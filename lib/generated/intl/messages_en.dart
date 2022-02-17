@@ -409,6 +409,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit card data not found"),
         "creditCardDelivered":
             MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
+        "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
+            "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
         "creditCardReqError":
             MessageLookupByLibrary.simpleMessage("Exception Credit card req"),
         "creditCardSettings":
@@ -1663,6 +1665,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Response # 4 is required."),
         "response5Required":
             MessageLookupByLibrary.simpleMessage("Response # 5 is required."),
+        "resumeCreditCardProcess": MessageLookupByLibrary.simpleMessage(
+            "Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card."),
         "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
             "Please accept the above terms and conditions"),
         "reviewApplication":

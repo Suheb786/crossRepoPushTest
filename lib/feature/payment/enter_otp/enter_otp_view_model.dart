@@ -2,6 +2,8 @@ import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
+import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -15,6 +17,8 @@ class EnterOtpViewModel extends BasePageViewModel {
   final TransferUseCase _transferUseCase;
   TextEditingController otpController = TextEditingController();
   EnterOtpUseCase _useCase;
+
+  final TransferVerifyUseCase _transferVerifyUseCase;
 
   PublishSubject<EnterOtpUseCaseParams> _enterOtpRequest = PublishSubject();
 
@@ -33,9 +37,19 @@ class EnterOtpViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
+  ///resend otp
+  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
+
+  ///transfer verify response stream
+  Stream<Resource<bool>> get transferVerifyStream =>
+      _transferVerifyResponse.stream;
+
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     // notifyListeners();
+    verifyTransfer();
   }
 
   ///transfer request
@@ -49,7 +63,27 @@ class EnterOtpViewModel extends BasePageViewModel {
   Stream<Resource<TransferSuccessResponse>> get transferStream =>
       _transferResponse.stream;
 
-  EnterOtpViewModel(this._useCase, this._transferUseCase) {
+  PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest =
+      PublishSubject();
+
+  EnterOtpViewModel(
+      this._useCase, this._transferUseCase, this._transferVerifyUseCase) {
+    _transferVerifyRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _transferVerifyUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _transferVerifyResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
+        }
+      });
+    });
+
     _enterOtpRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
@@ -112,6 +146,10 @@ class EnterOtpViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void verifyTransfer() {
+    _transferVerifyRequest.safeAdd(TransferVerifyUseCaseParams());
   }
 
   @override

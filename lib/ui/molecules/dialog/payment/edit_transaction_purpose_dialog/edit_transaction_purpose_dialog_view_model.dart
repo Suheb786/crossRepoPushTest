@@ -47,10 +47,8 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   EditTransactionPurposeDialogViewModel(this._getPurposeUseCase, this.values) {
     beneficiary = values![0];
     type = values![1];
-    purposeController.text =
-        beneficiary!.purpose != null ? beneficiary!.purpose! : "";
-    purposeDetailController.text =
-        beneficiary!.purposeDetails != null ? beneficiary!.purposeDetails! : "";
+    purposeController.text = values![2];
+    purposeDetailController.text = values![3];
     _getPurposeRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getPurposeUseCase.execute(params: value))
@@ -72,11 +70,12 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   }
 
   void getPurpose() {
+    print("beneficiary iban: ${beneficiary!.accountNo}");
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: beneficiary!.iban!,
+        toAccount: beneficiary!.accountNo!,
         transferType: type == TransactionType.RTP ? "RTP" : "TransferI",
-        type: "",
-        detCustomerType: ""));
+        type: beneficiary!.purposeType ?? "",
+        detCustomerType: beneficiary!.detCustomerType ?? ""));
   }
 
   void updatePurposeDetail(PurposeDetail value) {

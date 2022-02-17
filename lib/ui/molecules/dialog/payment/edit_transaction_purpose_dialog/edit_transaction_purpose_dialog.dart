@@ -13,6 +13,8 @@ class EditTransactionPurposeDialog {
       {Function? onDismissed,
       Function(Purpose, PurposeDetail)? onSelected,
       Beneficiary? beneficiary,
+      String? purpose,
+      String? purposeDetail,
       TransactionType? type}) {
     AppDialog.show(mContext,
         isDismissible: true,
@@ -20,6 +22,8 @@ class EditTransactionPurposeDialog {
             onDismissed: onDismissed,
             onSelected: onSelected,
             beneficiary: beneficiary,
+            purpose: purpose,
+            purposeDetail: purposeDetail,
             type: type));
   }
 }

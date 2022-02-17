@@ -168,7 +168,7 @@ class SendAmountToContactPageView
                                 );
                               }),
                           Visibility(
-                            visible: false,
+                            visible: true,
                             child: InkWell(
                               onTap: () {
                                 EditTransactionPurposeDialog.show(context,
@@ -180,6 +180,12 @@ class SendAmountToContactPageView
                                   model.updatePurposeDetail(value2);
                                   Navigator.pop(context);
                                 },
+                                    purposeDetail: model.purposeDetail == null
+                                        ? model.beneficiary.purposeDetails!
+                                        : model.purposeDetail!.labelEn,
+                                    purpose: model.purpose == null
+                                        ? model.beneficiary.purposeParentDetails
+                                        : model.purpose!.labelEn,
                                     beneficiary: model.beneficiary,
                                     type: TransactionType.SM);
                               },

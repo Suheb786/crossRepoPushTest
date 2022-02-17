@@ -23,13 +23,20 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
   final Function(Purpose, PurposeDetail)? onSelected;
   final Beneficiary? beneficiary;
   final TransactionType? type;
+  final String? purpose;
+  final String? purposeDetail;
 
   const EditTransactionPurposeDialogView(
-      {this.onDismissed, this.onSelected, this.beneficiary, this.type});
+      {this.onDismissed,
+      this.onSelected,
+      this.beneficiary,
+      this.type,
+      this.purposeDetail: "",
+      this.purpose});
 
   ProviderBase providerBase() {
     return editTransactionPurposeDialogViewModelProvider
-        .call([beneficiary!, type!]);
+        .call([beneficiary!, type!, purpose!, purposeDetail!]);
   }
 
   @override
@@ -152,8 +159,13 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         padding: EdgeInsets.only(top: 147),
                         child: InkWell(
                           onTap: () {
-                            onSelected!
-                                .call(model.purpose!, model.purposeDetail!);
+                            if (model.purpose != null &&
+                                model.purposeDetail != null) {
+                              onSelected!
+                                  .call(model.purpose!, model.purposeDetail!);
+                            } else {
+                              Navigator.pop(context);
+                            }
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
