@@ -132,54 +132,68 @@ class AddMoneyOptionSelectorPageView
                         ],
                       ),
                     ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 26, vertical: 32),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: BorderRadius.circular(16),
-                          image: DecorationImage(
-                              image: AssetImage(
-                            AssetUtils.swigglePng,
-                          ))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Image.asset(
-                            AssetUtils.blink,
-                            height: 28,
-                            width: 60,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.BlinkCreditCard);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 14, vertical: 8),
-                              height: 36,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).getMyCreditCard,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
+                    // Container(
+                    //   padding:
+                    //       EdgeInsets.symmetric(horizontal: 26, vertical: 32),
+                    //   decoration: BoxDecoration(
+                    //       color: Theme.of(context).primaryColor,
+                    //       borderRadius: BorderRadius.circular(16),
+                    //       image: DecorationImage(
+                    //           image: AssetImage(
+                    //         AssetUtils.swigglePng,
+                    //       ))),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Image.asset(
+                    //         AssetUtils.blink,
+                    //         height: 28,
+                    //         width: 60,
+                    //       ),
+                    //       InkWell(
+                    //         onTap: () {
+                    //           Navigator.pushNamed(
+                    //               context, RoutePaths.BlinkCreditCard);
+                    //         },
+                    //         child: Container(
+                    //           padding: EdgeInsets.symmetric(
+                    //               horizontal: 14, vertical: 8),
+                    //           height: 36,
+                    //           decoration: BoxDecoration(
+                    //               color: Theme.of(context)
+                    //                   .accentTextTheme
+                    //                   .bodyText1!
+                    //                   .color,
+                    //               borderRadius: BorderRadius.circular(100)),
+                    //           child: Center(
+                    //             child: Text(
+                    //               S.of(context).getMyCreditCard,
+                    //               textAlign: TextAlign.center,
+                    //               style: TextStyle(
+                    //                   fontSize: 12,
+                    //                   fontWeight: FontWeight.w600,
+                    //                   color: Theme.of(context).accentColor),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 0),
+                      child: Container(
+                        height: 120,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            // color: Theme.of(context)
+                            //     .primaryColor,
+                            image: DecorationImage(
+                                image: AssetImage(AssetUtils.newOutfit),
+                                fit: BoxFit.contain),
+                            borderRadius: BorderRadius.circular(16)),
                       ),
-                    )
+                    ),
                   ],
                 ),
               )
