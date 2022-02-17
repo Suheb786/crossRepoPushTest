@@ -84,22 +84,26 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                         currentStep: currentStep,
                                       ),
                                     ),
-                                    Positioned(
-                                      bottom: 0,
-                                      child: Column(
-                                        children: [
-                                          AppSvg.asset(AssetUtils.swipeUp),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 2),
-                                            child: Text(
-                                              "Swipe to view more",
-                                              style: TextStyle(
-                                                  color: AppColor.dark_gray_2,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          )
-                                        ],
+                                    Visibility(
+                                      visible: currentStep == 1,
+                                      child: Positioned(
+                                        bottom: 0,
+                                        child: Column(
+                                          children: [
+                                            AppSvg.asset(AssetUtils.swipeUp),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 2),
+                                              child: Text(
+                                                "Swipe to view more",
+                                                style: TextStyle(
+                                                    color: AppColor.dark_gray_2,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     )
                                   ],
