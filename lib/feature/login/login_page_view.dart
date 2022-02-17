@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
@@ -75,29 +76,32 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           stream: model.checkVersionUpdateStream,
                           onData: (data) {
                             if (data.status == Status.ERROR) {
-                              VersionUpdateDialog.show(context,
-                                  image: AssetUtils.alert,
-                                  title: S.of(context).updateRequired,
-                                  descriptionWidget: Text(
-                                    S.of(context).updateRequiredDesc,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        height: 1.7,
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .focusedBorder!
-                                            .borderSide
-                                            .color),
-                                  ), onSelected: () {
-                                Navigator.pop(context);
-                                Platform.isAndroid
-                                    ? LaunchUrlUtils.launchDigitalService(
-                                        AppConstantsUtils.PLAY_STORE_URL)
-                                    : Platform.isIOS
-                                        ? LaunchUrlUtils.launchDigitalService(
-                                            AppConstantsUtils.APP_STORE_URL)
-                                        : "";
-                              });
+                              if (data.appError!.type ==
+                                  ErrorType.FORCE_UPDATE) {
+                                VersionUpdateDialog.show(context,
+                                    image: AssetUtils.alert,
+                                    title: S.of(context).updateRequired,
+                                    descriptionWidget: Text(
+                                      S.of(context).updateRequiredDesc,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          height: 1.7,
+                                          color: Theme.of(context)
+                                              .inputDecorationTheme
+                                              .focusedBorder!
+                                              .borderSide
+                                              .color),
+                                    ), onSelected: () {
+                                  Navigator.pop(context);
+                                  Platform.isAndroid
+                                      ? LaunchUrlUtils.launchDigitalService(
+                                          AppConstantsUtils.PLAY_STORE_URL)
+                                      : Platform.isIOS
+                                          ? LaunchUrlUtils.launchDigitalService(
+                                              AppConstantsUtils.APP_STORE_URL)
+                                          : "";
+                                });
+                              }
                             } else if (data.status == Status.SUCCESS) {
                               model.getCipher();
                             }
@@ -310,7 +314,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             Navigator.pushReplacementNamed(context,
                                                                                 RoutePaths.Registration,
                                                                                 arguments: RegisterPageParams(
-                                                                                  applicationId: loginData!.data!.applicationId,
+                                                                                  applicationId: model.applicationId,
                                                                                   kycData: kycData,
                                                                                 ));
                                                                           }
