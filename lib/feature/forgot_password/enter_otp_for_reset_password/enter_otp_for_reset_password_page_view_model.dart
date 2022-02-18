@@ -54,8 +54,8 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   EnterOTPForResetPasswordPageViewModel(this._enterOtpForResetPasswordUsecase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _enterOtpForResetPasswordUsecase.execute(params: value))
+              createCall: () =>
+                  _enterOtpForResetPasswordUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -71,17 +71,14 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
     _verifyOtpRequest.safeAdd(EnterOtpForResetPasswordUseCaseParams(
         otp: _otpSubject.value,
         email: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .emailController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .email,
         idExpiry: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .idExpiryDateController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .expiryDate,
         idNo: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .nationalIdController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .nationalId,
         password: ProviderScope.containerOf(context)
             .read(createNewPasswordViewModelProvider)
             .createPasswordController

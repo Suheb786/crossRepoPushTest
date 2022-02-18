@@ -12,6 +12,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
@@ -57,6 +58,7 @@ class StudentJobIncomePageView
                     dataBuilder: (context, jonResponse) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
+                          FocusScope.of(context).unfocus();
                           if (details.primaryVelocity!.isNegative) {
                             model.jobIncomeDetails();
                           }
@@ -149,35 +151,95 @@ class StudentJobIncomePageView
                                           return AddIncomeWidget(
                                             label: S.of(context).addIncome,
                                             onTap: () {
-                                              AdditionalIncomeSourceDialog.show(
-                                                  context, onDismissed: () {
+                                              InformationDialog.show(context,
+                                                  title: S
+                                                      .of(context)
+                                                      .additionalIncome,
+                                                  isSwipeToCancel: false,
+                                                  onSelected: () {
                                                 Navigator.pop(context);
-                                              }, onSelected: (value) {
-                                                if (value
-                                                    .totalIncome!.isEmpty) {
-                                                  model.showToastWithError(
-                                                      AppError(
-                                                          type:
-                                                              ErrorType
-                                                                  .EMPTY_INCOME,
-                                                          cause: Exception(),
-                                                          error: ErrorInfo(
-                                                              message: '')));
-                                                } else if (!(num.parse(
-                                                        value.totalIncome!) >
-                                                    0)) {
-                                                  model.showToastWithError(AppError(
-                                                      type: ErrorType
-                                                          .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                      cause: Exception(),
-                                                      error: ErrorInfo(
-                                                          message: '')));
-                                                } else {
+                                                AdditionalIncomeSourceDialog
+                                                    .show(context,
+                                                        onDismissed: () {
                                                   Navigator.pop(context);
-                                                  model.addAdditionalIncomeList(
-                                                      value);
-                                                }
-                                              });
+                                                }, onSelected: (value) {
+                                                  if (value
+                                                      .totalIncome!.isEmpty) {
+                                                    model.showToastWithError(
+                                                        AppError(
+                                                            type: ErrorType
+                                                                .EMPTY_INCOME,
+                                                            cause: Exception(),
+                                                            error: ErrorInfo(
+                                                                message: '')));
+                                                  } else if (!(num.parse(
+                                                          value.totalIncome!) >
+                                                      0)) {
+                                                    model.showToastWithError(
+                                                        AppError(
+                                                            type: ErrorType
+                                                                .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                            cause: Exception(),
+                                                            error: ErrorInfo(
+                                                                message: '')));
+                                                  } else {
+                                                    Navigator.pop(context);
+                                                    model
+                                                        .addAdditionalIncomeList(
+                                                            value);
+                                                  }
+                                                });
+                                              },
+                                                  descriptionWidget: Text.rich(TextSpan(
+                                                      text: S
+                                                          .of(context)
+                                                          .additionalIncomePopUpDesc1,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 14,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .inputDecorationTheme
+                                                              .focusedBorder!
+                                                              .borderSide
+                                                              .color),
+                                                      children: [
+                                                        TextSpan(
+                                                            text: S
+                                                                .of(context)
+                                                                .yearly,
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 14,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .inputDecorationTheme
+                                                                    .focusedBorder!
+                                                                    .borderSide
+                                                                    .color),
+                                                            children: [
+                                                              TextSpan(
+                                                                text: S
+                                                                    .of(context)
+                                                                    .additionalIncomePopUpDesc2,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    fontSize:
+                                                                        14,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .inputDecorationTheme
+                                                                        .focusedBorder!
+                                                                        .borderSide
+                                                                        .color),
+                                                              )
+                                                            ])
+                                                      ])));
                                             },
                                           );
                                         }

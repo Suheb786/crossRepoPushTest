@@ -61,6 +61,7 @@ class FatcaUSRelevantW8PageView
                                 .appSwiperController
                                 .page ==
                             1.0) {
+                          FocusScope.of(context).unfocus();
                           if (details.primaryVelocity!.isNegative) {
                             model.validateFatcaUSRelevantW8Details();
                           } else {
@@ -124,10 +125,12 @@ class FatcaUSRelevantW8PageView
                                           readOnly: true,
                                           onPressed: () {
                                             DatePicker.show(context,
+                                                initialDate: model.initialDate,
                                                 onSelected: (date) {
+                                              model.initialDate = date;
                                               model.dateOfBirthController.text =
                                                   TimeUtils.getFormattedDate(
-                                                      date);
+                                                      date.toString());
                                               model.isValid();
                                             }, onCancelled: () {
                                               Navigator.pop(context);

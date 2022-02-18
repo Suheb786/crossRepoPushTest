@@ -4,7 +4,6 @@ import 'package:domain/model/forget_password/forget_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/create_new_password/create_new_password_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -69,17 +68,17 @@ class CreateNewPasswordPageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (ProviderScope.containerOf(context)
-                                  .read(accountRegistrationViewModelProvider)
+                                  .read(forgotPasswordViewModelProvider)
                                   .appSwiperController
                                   .page ==
                               1.0) {
+                            FocusScope.of(context).unfocus();
                             if (details.primaryVelocity!.isNegative) {
                               model.createPassword(context);
                             } else {
                               ProviderScope.containerOf(context)
-                                  .read(accountRegistrationViewModelProvider)
-                                  .pageController
-                                  .previous();
+                                  .read(forgotPasswordViewModelProvider)
+                                  .previousPage();
                             }
                           }
                         },
@@ -250,10 +249,12 @@ class CreateNewPasswordPageView
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           if (isValid!) {
-                                            return AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed);
+                                            return Center(
+                                              child: AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed),
+                                            );
                                           } else {
                                             return Container();
                                           }
