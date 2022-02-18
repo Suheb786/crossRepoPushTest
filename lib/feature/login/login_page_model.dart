@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
@@ -12,7 +13,9 @@ import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_version_update_usecase.dart';
+import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:domain/usecase/user/get_cipher_usecase.dart';
+import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
@@ -36,6 +39,8 @@ class LoginViewModel extends BasePageViewModel {
   final SendOtpTokenEmailOtpUseCase _sendOtpTokenEmailOtpUseCase;
   final SendOtpTokeDeviceChangeOtpUseCase _sendOtpTokeDeviceChangeOtpUseCase;
   final CheckVersionUpdateUseCase _checkVersionUpdateUseCase;
+  final GetCurrentUserUseCase _getCurrentUserUseCase;
+  final GenerateKeyPairUseCase _generateKeyPairUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -152,6 +157,29 @@ class LoginViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get checkVersionUpdateStream =>
       _checkVersionUpdateResponse.stream;
 
+  /// current user request holder subject
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject =
+      PublishSubject();
+
+  /// current user response holder subject
+  final PublishSubject<Resource<User>> _currentUserResponseSubject =
+      PublishSubject();
+
+  /// current user response holder stream
+  Stream<Resource<User>> get currentUser => _currentUserResponseSubject.stream;
+
+  /// generate key pair request
+  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
+      PublishSubject();
+
+  /// generate key pair response
+  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
+      PublishSubject();
+
+  /// generate key pair response stream
+  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
+      _generateKeyPairResponse.stream;
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
@@ -163,7 +191,9 @@ class LoginViewModel extends BasePageViewModel {
       this._saveUserUseCase,
       this._sendOtpTokenEmailOtpUseCase,
       this._sendOtpTokeDeviceChangeOtpUseCase,
-      this._checkVersionUpdateUseCase) {
+      this._checkVersionUpdateUseCase,
+      this._getCurrentUserUseCase,
+      this._generateKeyPairUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -303,8 +333,16 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _currentUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _getCurrentUserUseCase.execute(params: value);
+      }).asFlow().listen((event) async {
+        await Future.delayed(Duration(seconds: 4));
+        _currentUserResponseSubject.add(event);
+      });
+    });
+
     //getCipher();
-    //getCurrentUserStream();
   }
 
   void checkBiometric() {
@@ -369,6 +407,11 @@ class LoginViewModel extends BasePageViewModel {
 
   void checkVersionUpdate() {
     _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams());
+  }
+
+  ///get current user
+  void getCurrentUser() {
+    _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
   }
 
   @override

@@ -166,6 +166,8 @@ class ScheduleVideoCallLaterPageView
                                                       .appSwiperController
                                                       .page ==
                                                   2.0) {
+                                                FocusScope.of(context)
+                                                    .unfocus();
                                                 if (details.primaryVelocity!
                                                     .isNegative) {
                                                   model

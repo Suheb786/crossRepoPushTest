@@ -49,6 +49,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                             .appSwiperController
                             .page ==
                         1.0) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         model.validatePin();
                       } else {

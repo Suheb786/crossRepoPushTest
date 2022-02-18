@@ -60,6 +60,7 @@ class FatcaUSRelevantW9PageView
                                 .appSwiperController
                                 .page ==
                             4.0) {
+                          FocusScope.of(context).unfocus();
                           if (details.primaryVelocity!.isNegative) {
                             model.validateFatcaUSRelevantW9Details();
                           } else {

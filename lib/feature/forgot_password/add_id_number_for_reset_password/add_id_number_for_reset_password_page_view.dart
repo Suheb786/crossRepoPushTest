@@ -63,6 +63,7 @@ class AddIDNumberForResetPasswordPageView
                 dataBuilder: (context, data) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         model.addIdNumberForResetPassword();
                       }

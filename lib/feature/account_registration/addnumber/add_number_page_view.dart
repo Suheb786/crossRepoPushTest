@@ -68,6 +68,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               .appSwiperController
                               .page ==
                           0.0) {
+                        FocusScope.of(context).unfocus();
                         if (details.primaryVelocity!.isNegative) {
                           model.validateNumber();
                         } else {

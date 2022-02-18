@@ -58,6 +58,7 @@ class StudentJobIncomePageView
                     dataBuilder: (context, jonResponse) {
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
+                          FocusScope.of(context).unfocus();
                           if (details.primaryVelocity!.isNegative) {
                             model.jobIncomeDetails();
                           }

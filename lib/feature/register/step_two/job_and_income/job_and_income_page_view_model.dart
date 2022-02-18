@@ -204,7 +204,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       });
     });
 
-    //getComboValues();
+    getComboValues();
   }
 
   void getError(Resource<SaveJobDetailsResponse> event) {

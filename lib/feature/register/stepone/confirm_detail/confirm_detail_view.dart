@@ -126,6 +126,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     .appSwiperController
                                     .page ==
                                 1.0) {
+                              FocusScope.of(context).unfocus();
                               if (details.primaryVelocity!.isNegative) {
                                 model.confirmDetail();
                               }

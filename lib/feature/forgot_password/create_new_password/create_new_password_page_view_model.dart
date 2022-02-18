@@ -81,17 +81,14 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
         hasSymbol: hasSymbol,
         containsDigit: containsDigit,
         email: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .emailController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .email,
         idNo: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .nationalIdController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .nationalId,
         idExpiry: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .idExpiryDateController
-            .text));
+            .read(forgotPasswordViewModelProvider)
+            .expiryDate));
   }
 
   void validateAllFields() {

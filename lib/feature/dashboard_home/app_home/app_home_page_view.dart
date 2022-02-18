@@ -386,11 +386,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   children: [
                                                     Visibility(
                                                       visible: cardData
-                                                              .data!
-                                                              .dashboardDataContent!
-                                                              .creditCard!
-                                                              .length >
-                                                          0,
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .length >
+                                                              0 &&
+                                                          (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .first
+                                                                  .isCompleted ??
+                                                              false),
                                                       child: (cardData
                                                                       .data!
                                                                       .dashboardDataContent!

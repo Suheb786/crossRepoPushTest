@@ -43,13 +43,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
             Expanded(
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
-                  print('hasFocus--->${FocusScope.of(context).hasFocus}');
-                  // if (FocusScope.of(context).hasFocus) {
-                  //   FocusScope.of(context).unfocus();
-                  //   if (details.primaryVelocity!.isNegative) {
-                  //     model.validateEmail();
-                  //   }
-                  // }
+                  FocusScope.of(context).unfocus();
                   if (details.primaryVelocity!.isNegative) {
                     model.validateEmail();
                   }
@@ -376,23 +370,39 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                             onData: (data) {
                                                                                               if (data.status == Status.SUCCESS) {
                                                                                                 model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                // model.getCurrentUser();
                                                                                                 //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                               }
                                                                                             },
                                                                                             dataBuilder: (context, authenticBiometric) {
-                                                                                              return AppStreamBuilder<bool>(
-                                                                                                  stream: model.fingerPrintShowStream,
-                                                                                                  initialData: false,
-                                                                                                  dataBuilder: (context, fingerPrintValue) {
-                                                                                                    return Visibility(
-                                                                                                      visible: fingerPrintValue!,
-                                                                                                      child: InkWell(
-                                                                                                        onTap: () {
-                                                                                                          model.checkBiometric();
-                                                                                                        },
-                                                                                                        child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                                      ),
-                                                                                                    );
+                                                                                              return AppStreamBuilder<Resource<User>>(
+                                                                                                  stream: model.currentUser,
+                                                                                                  initialData: Resource.none(),
+                                                                                                  onData: (data) {
+                                                                                                    if (data.status == Status.SUCCESS) {
+                                                                                                      model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                    } else if (data.status == Status.ERROR) {
+                                                                                                      if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
+                                                                                                        ///TODO :  generate key pair
+                                                                                                      }
+                                                                                                    }
+                                                                                                  },
+                                                                                                  dataBuilder: (context, progress) {
+                                                                                                    return AppStreamBuilder<bool>(
+                                                                                                        stream: model.fingerPrintShowStream,
+                                                                                                        initialData: false,
+                                                                                                        dataBuilder: (context, fingerPrintValue) {
+                                                                                                          return Visibility(
+                                                                                                            visible: fingerPrintValue!,
+                                                                                                            child: InkWell(
+                                                                                                              onTap: () {
+                                                                                                                FocusScope.of(context).unfocus();
+                                                                                                                model.checkBiometric();
+                                                                                                              },
+                                                                                                              child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                                            ),
+                                                                                                          );
+                                                                                                        });
                                                                                                   });
                                                                                             });
                                                                                       });
