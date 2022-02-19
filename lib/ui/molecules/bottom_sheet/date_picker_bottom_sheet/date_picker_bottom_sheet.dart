@@ -9,13 +9,15 @@ class DatePickerBottomSheet {
   static show(
     BuildContext context, {
     String? title,
-    Function(String)? onDateSelected,
+    Function(DateTime)? onDateSelected,
     Function()? onCancel,
+    required DateTime initialDate,
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return DatePickerBottomSheetView(
           onDateSelected: (_) => onDateSelected?.call(_),
           title: title,
+          initialDate: initialDate,
           onCancel: () => onCancel?.call());
     });
   }

@@ -58,6 +58,7 @@ class AddNewMobileNumberPageView
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
+                    FocusScope.of(context).unfocus();
                     if (details.primaryVelocity!.isNegative) {
                       model.changeMobileNumber();
                     }

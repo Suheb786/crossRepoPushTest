@@ -96,6 +96,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                   .appSwiperController
                                   .page ==
                               1.0) {
+                            FocusScope.of(context).unfocus();
                             if (details.primaryVelocity!.isNegative) {
                               model.enterOtp();
                             } else {

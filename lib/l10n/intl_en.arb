@@ -1135,5 +1135,8 @@
   "makeSureItsAnnualNotMonthly": "income? Make sure it’s not your monthly income to get your credit card right away.",
   "emptyCardNo": "Empty Card No",
   "updateRequired": "Update required",
-  "updateRequiredDesc": "A newer version is available. Please update Blink to continue using the services."
+  "updateRequiredDesc": "A newer version is available. Please update Blink to continue using the services.",
+  "additionalIncomePopUpDesc1": "Make sure you enter your ",
+  "yearly": "YEARLY",
+  "additionalIncomePopUpDesc2": " additional income instead of monthly income to get your credit card right away."
 }

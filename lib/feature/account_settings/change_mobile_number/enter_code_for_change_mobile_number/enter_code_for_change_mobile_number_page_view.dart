@@ -50,6 +50,7 @@ class EnterCodeForChangeMobileNumberPageView
                             .appSwiperController
                             .page ==
                         1.0) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         model.validateOtp(
                             mobile: ProviderScope.containerOf(context)

@@ -3,7 +3,6 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
@@ -104,6 +103,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                     .appSwiperController
                                     .page ==
                                 1.0) {
+                              FocusScope.of(context).unfocus();
                               if (details.primaryVelocity!.isNegative) {
                                 model.createPassword();
                               } else {

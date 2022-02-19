@@ -119,6 +119,5 @@ class DeviceInfoHelper {
     } on PlatformException {
       return true;
     }
-    return true;
   }
 }

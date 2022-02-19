@@ -18,5 +18,7 @@ final loginViewModelProvider =
       ref.read(saveUserUseCaseProvider),
       ref.read(sendOtpTokenEmailOtpUseCaseProvider),
       ref.read(sendOtpTokenDeviceChangeUseCaseProvider),
-      ref.read(checkVersionUpdateUseCaseProvider)),
+      ref.read(checkVersionUpdateUseCaseProvider),
+      ref.read(currentUserUseCaseProvider),ref.read(
+      generateKeyPairUseCaseProvider)),
 );

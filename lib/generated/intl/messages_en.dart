@@ -108,6 +108,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalIncome":
             MessageLookupByLibrary.simpleMessage("Additional Income"),
         "additionalIncomeList": m0,
+        "additionalIncomePopUpDesc1":
+            MessageLookupByLibrary.simpleMessage("Make sure you enter your "),
+        "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
+            " additional income instead of monthly income to get your credit card right away."),
         "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage(
             "Additional Nationality Passport"),
         "additionalNationalityPassportDesc": MessageLookupByLibrary.simpleMessage(
@@ -2042,6 +2046,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
         "whichTaxPayerAreYouSmall":
             MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
+        "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "For Some Reason You lock, Please Contact Administrator"),

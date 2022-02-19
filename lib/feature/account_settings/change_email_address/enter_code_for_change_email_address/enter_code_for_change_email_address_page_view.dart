@@ -50,6 +50,7 @@ class EnterCodeForChangeEmailAddressPageView
                             .appSwiperController
                             .page ==
                         1.0) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         model.validateOtp(
                             email: ProviderScope.containerOf(context)

@@ -106,12 +106,14 @@ class SendToNewRecipientPageView
                                 dataBuilder: (context, data) {
                                   return GestureDetector(
                                     onVerticalDragEnd: (details) {
+                                      FocusScope.of(context).unfocus();
                                       if (details.primaryVelocity!.isNegative) {
                                       } else {
                                         Navigator.pop(context);
                                       }
                                     },
                                     onHorizontalDragEnd: (details) {
+                                      FocusScope.of(context).unfocus();
                                       if (details.primaryVelocity!.isNegative) {
                                         model.sendToNewRecipient(context);
                                       } else {

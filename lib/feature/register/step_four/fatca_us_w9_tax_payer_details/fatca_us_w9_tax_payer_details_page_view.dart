@@ -61,6 +61,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                 .appSwiperController
                                 .page ==
                             6.0) {
+                          FocusScope.of(context).unfocus();
                           if (details.primaryVelocity!.isNegative) {
                             model.validateFatcaUSW9TaxPayersDetails();
                           } else {

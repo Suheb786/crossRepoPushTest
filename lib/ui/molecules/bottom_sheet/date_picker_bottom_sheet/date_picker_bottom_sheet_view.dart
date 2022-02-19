@@ -4,12 +4,16 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class DatePickerBottomSheetView extends StatefulWidget {
-  final Function(String)? onDateSelected;
+  final Function(DateTime)? onDateSelected;
   final Function()? onCancel;
   final String? title;
+  final DateTime initialDate;
 
   const DatePickerBottomSheetView(
-      {this.onDateSelected, this.title, this.onCancel});
+      {this.onDateSelected,
+      this.title,
+      this.onCancel,
+      required this.initialDate});
 
   @override
   _DatePickerBottomSheetViewState createState() =>
@@ -40,7 +44,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
         Container(
           height: MediaQuery.of(context).copyWith().size.height / 3.5,
           child: CupertinoDatePicker(
-            initialDateTime: DateTime.now(),
+            initialDateTime: widget.initialDate,
             mode: CupertinoDatePickerMode.date,
             onDateTimeChanged: (DateTime newdate) {
               selectedDateTime = newdate;
@@ -54,7 +58,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
                   fontSize: 17,
                   color: AppColor.pure_blue)),
           onPressed: () {
-            widget.onDateSelected?.call(selectedDateTime.toString());
+            widget.onDateSelected?.call(selectedDateTime);
           },
         ),
       ],
