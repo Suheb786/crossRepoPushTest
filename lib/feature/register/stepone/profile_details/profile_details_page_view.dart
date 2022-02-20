@@ -69,6 +69,7 @@ class ProfileDetailsPageView
                                     .appSwiperController
                                     .page ==
                                 3.0) {
+                              FocusScope.of(context).unfocus();
                               if (details.primaryVelocity!.isNegative) {
                                 model.validateTextFields();
                               } else {

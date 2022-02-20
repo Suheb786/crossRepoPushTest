@@ -48,6 +48,7 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                             .appSwiperController
                             .page ==
                         2.0) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         print(
                             'currentPin--->${ProviderScope.containerOf(context).read(createPinViewModelProvider).currentPin}');

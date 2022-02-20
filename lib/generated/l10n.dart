@@ -11181,21 +11181,31 @@ class S {
     );
   }
 
-  /// `Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.`
-  String get creditCardIssuanceFailure {
+  /// `Make sure you enter your `
+  String get additionalIncomePopUpDesc1 {
     return Intl.message(
-      'Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.',
-      name: 'creditCardIssuanceFailure',
+      'Make sure you enter your ',
+      name: 'additionalIncomePopUpDesc1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.`
-  String get resumeCreditCardProcess {
+  /// `YEARLY`
+  String get yearly {
     return Intl.message(
-      'Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.',
-      name: 'resumeCreditCardProcess',
+      'YEARLY',
+      name: 'yearly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` additional income instead of monthly income to get your credit card right away.`
+  String get additionalIncomePopUpDesc2 {
+    return Intl.message(
+      ' additional income instead of monthly income to get your credit card right away.',
+      name: 'additionalIncomePopUpDesc2',
       desc: '',
       args: [],
     );

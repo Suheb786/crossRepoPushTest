@@ -126,6 +126,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     .appSwiperController
                                     .page ==
                                 1.0) {
+                              FocusScope.of(context).unfocus();
                               if (details.primaryVelocity!.isNegative) {
                                 model.confirmDetail();
                               }
@@ -208,11 +209,13 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                           child: InkWell(
                                               onTap: () {
                                                 DatePicker.show(context,
+                                                    initialDate: DateTime.now(),
                                                     onSelected: (date) {
-                                                  model.selectedDobDate = date;
+                                                  model.selectedDobDate =
+                                                      date.toString();
                                                   model.dobController.text =
                                                       TimeUtils.getFormattedDOB(
-                                                          date);
+                                                          date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
@@ -358,13 +361,14 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                           child: InkWell(
                                               onTap: () {
                                                 DatePicker.show(context,
+                                                    initialDate: DateTime.now(),
                                                     onSelected: (date) {
                                                   model.selectedIssuingDate =
-                                                      date;
+                                                      date.toString();
                                                   model.issuingDateController
                                                           .text =
                                                       TimeUtils.getFormattedDOB(
-                                                          date);
+                                                          date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
@@ -409,14 +413,15 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                           child: InkWell(
                                               onTap: () {
                                                 DatePicker.show(context,
+                                                    initialDate: DateTime.now(),
                                                     lastDate: DateTime.now(),
                                                     onSelected: (date) {
                                                   model.selectedExpiryDate =
-                                                      date;
+                                                      date.toString();
                                                   model.expiryDateController
                                                           .text =
                                                       TimeUtils.getFormattedDOB(
-                                                          date);
+                                                          date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);

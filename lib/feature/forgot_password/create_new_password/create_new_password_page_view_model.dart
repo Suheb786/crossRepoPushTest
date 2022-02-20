@@ -16,7 +16,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   final CreateNewPasswordUseCase _createPasswordUseCase;
 
   final TextEditingController createPasswordController =
-  TextEditingController();
+      TextEditingController();
 
   TextEditingController confirmPasswordController = TextEditingController();
 
@@ -45,7 +45,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   CreateNewPasswordPageViewModel(this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _createPasswordUseCase.execute(params: value))
+              createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -81,17 +81,14 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
         hasSymbol: hasSymbol,
         containsDigit: containsDigit,
         email: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .emailController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .email,
         idNo: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .nationalIdController
-            .text,
+            .read(forgotPasswordViewModelProvider)
+            .nationalId,
         idExpiry: ProviderScope.containerOf(context)
-            .read(addIdNumberForResetPasswordViewModelProvider)
-            .idExpiryDateController
-            .text));
+            .read(forgotPasswordViewModelProvider)
+            .expiryDate));
   }
 
   void validateAllFields() {

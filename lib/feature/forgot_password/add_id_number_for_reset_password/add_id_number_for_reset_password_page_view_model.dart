@@ -38,6 +38,8 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   String selectedExpiryDate = DateTime.now().toLocal().toString();
 
+  DateTime initialDate = DateTime.now();
+
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 

@@ -72,6 +72,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                   .appSwiperController
                                   .page ==
                               2.0) {
+                            FocusScope.of(context).unfocus();
                             if (details.primaryVelocity!.isNegative) {
                               model.validateOtp();
                             } else {

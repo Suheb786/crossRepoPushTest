@@ -44,6 +44,15 @@ class AddIDNumberForResetPasswordPageView
                   if (data.status == Status.SUCCESS) {
                     ProviderScope.containerOf(context)
                         .read(forgotPasswordViewModelProvider)
+                        .nationalId = model.nationalIdController.text;
+                    ProviderScope.containerOf(context)
+                        .read(forgotPasswordViewModelProvider)
+                        .email = model.emailController.text;
+                    ProviderScope.containerOf(context)
+                        .read(forgotPasswordViewModelProvider)
+                        .expiryDate = model.idExpiryDateController.text;
+                    ProviderScope.containerOf(context)
+                        .read(forgotPasswordViewModelProvider)
                         .nextPage();
                     // .next();
                     print("successful");
@@ -54,6 +63,7 @@ class AddIDNumberForResetPasswordPageView
                 dataBuilder: (context, data) {
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
+                      FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         model.addIdNumberForResetPassword();
                       }
@@ -112,13 +122,17 @@ class AddIDNumberForResetPasswordPageView
                                         return InkWell(
                                             onTap: () {
                                               DatePicker.show(context,
+                                                  initialDate:
+                                                      model.initialDate,
                                                   onSelected: (date) {
-                                                model.selectedExpiryDate = date;
+                                                model.selectedExpiryDate =
+                                                    date.toString();
+                                                model.initialDate = date;
                                                 model.idExpiryDateController
                                                         .text =
                                                     TimeUtils
                                                         .getFormattedDateForCheckPassword(
-                                                            date);
+                                                            date.toString());
                                                 model.validate();
                                               }, onCancelled: () {
                                                 Navigator.pop(context);

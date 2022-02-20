@@ -79,6 +79,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                             .appSwiperController
                                             .page ==
                                         5.0) {
+                                      FocusScope.of(context).unfocus();
                                       if (details.primaryVelocity!.isNegative) {
                                         model
                                             .validateFatcaUSRelevantW9AddressDetails();

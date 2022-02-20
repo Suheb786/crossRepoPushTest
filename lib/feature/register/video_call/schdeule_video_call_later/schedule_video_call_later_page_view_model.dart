@@ -45,6 +45,8 @@ class ScheduleVideoCallLaterPageViewModel extends BasePageViewModel {
     preferredTimeController.text = value;
   }
 
+  DateTime initialDate = DateTime.now();
+
   ///schedule Video call request subject holder
   PublishSubject<ScheduleVideoCallUseCaseParams> _scheduleVideoCallRequest =
       PublishSubject();

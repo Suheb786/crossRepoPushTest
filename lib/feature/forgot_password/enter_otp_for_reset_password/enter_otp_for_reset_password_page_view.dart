@@ -49,20 +49,14 @@ class EnterOTPForResetPasswordPageView
                             .read(forgotPasswordViewModelProvider)
                             .appSwiperController
                             .page ==
-                        3.0) {
-                      if (ProviderScope.containerOf(context)
-                              .read(forgotPasswordViewModelProvider)
-                              .appSwiperController
-                              .page ==
-                          2.0) {
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validateOtp(context);
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(forgotPasswordViewModelProvider)
-                              .previousPage();
-                          // .previous(animation: true);
-                        }
+                        2.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validateOtp(context);
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(forgotPasswordViewModelProvider)
+                            .previousPage();
+                        // .previous(animation: true);
                       }
                     }
                   },
