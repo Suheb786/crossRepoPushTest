@@ -65,8 +65,13 @@ class CountryDialogViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          event.data!.content!.countryData!.sort((a, b) {
+            return a.countryName!
+                .toLowerCase()
+                .compareTo(b.countryName!.toLowerCase());
+          });
           _searchCountryResponse.safeAdd(
-              Resource.success(data: event.data!.content!.countryData));
+              Resource.success(data: event.data!.content!.countryData!));
 
           selectedCountry = event.data!.content!.countryData!.firstWhere(
               (element) => element.isoCode3 == 'JOR',
@@ -82,7 +87,7 @@ class CountryDialogViewModel extends BasePageViewModel {
           initialSelectedCountry = selectedCountry;
           scrollController = FixedExtentScrollController(
               initialItem:
-                  event.data!.content!.countryData!.indexOf(selectedCountry!));
+              event.data!.content!.countryData!.indexOf(selectedCountry!));
           selectCountry(
               event.data!.content!.countryData!.indexOf(selectedCountry!));
           isDataAvailable = true;

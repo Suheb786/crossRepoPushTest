@@ -369,7 +369,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                             initialData: Resource.none(),
                                                                                             onData: (data) {
                                                                                               if (data.status == Status.SUCCESS) {
-                                                                                                model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                if (data.data!) {
+                                                                                                  model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                }
                                                                                                 // model.getCurrentUser();
                                                                                                 //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                               }

@@ -1380,7 +1380,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    currentStep == 1
+                                                    currentStep == 1 ||
+                                                            currentStep == 0
                                                         ? Image.asset(
                                                             AssetUtils.blink,
                                                             height: 34,

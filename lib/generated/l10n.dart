@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11176,6 +11175,26 @@ class S {
     return Intl.message(
       'A newer version is available. Please update Blink to continue using the services.',
       name: 'updateRequiredDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.`
+  String get creditCardIssuanceFailure {
+    return Intl.message(
+      'Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.',
+      name: 'creditCardIssuanceFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.`
+  String get resumeCreditCardProcess {
+    return Intl.message(
+      'Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.',
+      name: 'resumeCreditCardProcess',
       desc: '',
       args: [],
     );
