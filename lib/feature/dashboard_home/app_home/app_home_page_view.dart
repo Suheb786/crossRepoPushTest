@@ -1350,12 +1350,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                               width: 281,
                                               height: 100,
                                               decoration: BoxDecoration(
-                                                  color: currentStep == 1 ||
-                                                          currentStep == 3
+                                                  color: currentStep == 1
                                                       ? Theme.of(context)
                                                           .primaryColor
-                                                      : Theme.of(context)
-                                                          .canvasColor,
+                                                      : currentStep == 2
+                                                          ? Theme.of(context)
+                                                              .canvasColor
+                                                          : Theme.of(context)
+                                                              .primaryColorDark,
                                                   borderRadius:
                                                       BorderRadius.only(
                                                           topLeft:
