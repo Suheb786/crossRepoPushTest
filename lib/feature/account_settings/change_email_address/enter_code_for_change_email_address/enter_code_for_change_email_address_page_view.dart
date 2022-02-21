@@ -103,7 +103,13 @@ class EnterCodeForChangeEmailAddressPageView
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime();
+                                              model.resendOtp(
+                                                  email: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewEmailAddressViewModelProvider)
+                                                      .emailController
+                                                      .text);
                                             },
                                             child: Text(
                                               'Resend Code',

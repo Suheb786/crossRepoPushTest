@@ -387,7 +387,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                       model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                                     } else if (data.status == Status.ERROR) {
                                                                                                       if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                        ///TODO :  generate key pair
+                                                                                                        model.generateKeyPair();
                                                                                                       }
                                                                                                     }
                                                                                                   },

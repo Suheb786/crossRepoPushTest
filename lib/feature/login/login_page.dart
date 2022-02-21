@@ -38,6 +38,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
 
   @override
   void onModelReady(LoginViewModel model) {
+    ///TODO:call getCurrent User if empty set clear as true else false
     model.checkVersionUpdate();
     super.onModelReady(model);
   }

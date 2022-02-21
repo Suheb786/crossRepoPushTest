@@ -106,7 +106,18 @@ class EnterCodeForChangeMobileNumberPageView
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime();
+                                              model.changeOtp(
+                                                  mobileNo: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewMobileNumberViewModelProvider)
+                                                      .mobileNumber,
+                                                  mobileCode: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewMobileNumberViewModelProvider)
+                                                      .countryData
+                                                      .phoneCode!);
                                             },
                                             child: Text(
                                               'Resend Code',

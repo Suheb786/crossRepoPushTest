@@ -503,13 +503,15 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> checkVersionUpdate() async {
+  Future<HttpResponse<ResponseEntity>> checkVersionUpdate(
+      {String? clear}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkVersionUpdate(CheckVersionUpdateRequest(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       platform: baseData.platform,
       parentVersion: '1.0',
       //version: '1.0.0',
+      clear: clear,
       version: baseData.appVersion,
       baseData: baseData.toJson(),
     ));

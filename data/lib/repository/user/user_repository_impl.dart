@@ -649,9 +649,9 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> checkVersionUpdate() async {
+  Future<Either<NetworkError, bool>> checkVersionUpdate({String? clear}) async {
     final result = await safeApiCall(
-      _remoteDS.checkVersionUpdate(),
+      _remoteDS.checkVersionUpdate(clear: clear),
     );
     return result!.fold(
       (l) => Left(l),
