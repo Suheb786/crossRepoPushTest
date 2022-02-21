@@ -7,28 +7,27 @@ class DashboardSwiper extends StatefulWidget {
   final int? currentStep;
   final SwiperController? pageController;
   final Function(int)? onIndexChanged;
-  // final PageController? appSwiperController;
+  PageController? appSwiperController;
 
-  DashboardSwiper({
-    Key? key,
-    this.pages,
-    this.currentStep,
-    this.pageController,
-    this.onIndexChanged,
-    // required this.appSwiperController
-  }) : super(key: key);
+  DashboardSwiper(
+      {Key? key,
+      this.pages,
+      this.currentStep,
+      this.pageController,
+      this.onIndexChanged,
+      required this.appSwiperController})
+      : super(key: key);
 
   @override
   _DashboardSwiperState createState() => _DashboardSwiperState();
 }
 
 class _DashboardSwiperState extends State<DashboardSwiper> {
-  late PageController _pageController;
   @override
   void initState() {
     super.initState();
 
-    _pageController = PageController(
+    widget.appSwiperController = PageController(
       initialPage: widget.currentStep!,
       viewportFraction: 0.8,
     );
@@ -43,7 +42,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
           onPageChanged: (i) {
             widget.onIndexChanged!.call(i);
           },
-          controller: _pageController,
+          controller: widget.appSwiperController,
           itemBuilder: (context, index) {
             return carouselView(index);
           }),
@@ -52,7 +51,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
 
   Widget carouselView(int index) {
     return AnimatedBuilder(
-      animation: _pageController,
+      animation: widget.appSwiperController!,
       builder: (context, child) {
         double value = 0.0;
         // if (widget.appSwiperController!.position.haveDimensions) {

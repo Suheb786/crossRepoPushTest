@@ -49,7 +49,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 1,
+        initialData: 0,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<GetDashboardDataResponse>>(
               stream: model.getDashboardDataStream,
@@ -210,8 +210,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     MyDebitCardPage(
                                                         cardData: cardData),
                                                   ],
-                                                  // appSwiperController:
-                                                  //     model.appSwiperController,
+                                                  appSwiperController:
+                                                      model.appSwiperController,
                                                   pageController:
                                                       model.pageController,
                                                   onIndexChanged: (index) {
@@ -1284,15 +1284,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Padding(
                                         padding: EdgeInsets.only(top: 48),
                                         child: Container(
-                                          height: 93,
-                                          width: 280,
+                                          height: 150,
+                                          width: double.infinity,
                                           decoration: BoxDecoration(
                                               // color: Theme.of(context)
                                               //     .primaryColor,
                                               image: DecorationImage(
                                                   image: AssetImage(
                                                       AssetUtils.credit),
-                                                  fit: BoxFit.cover),
+                                                  fit: BoxFit.contain),
                                               borderRadius:
                                                   BorderRadius.circular(16)),
                                           // child: Padding(
@@ -1349,53 +1349,65 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           // ),
                                         ),
                                       ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.only(top: 12),
-                                          child: Center(
-                                            child: Container(
-                                              width: 281,
-                                              height: 100,
-                                              decoration: BoxDecoration(
-                                                  color: currentStep == 1
-                                                      ? Theme.of(context)
-                                                          .primaryColor
-                                                      : currentStep == 2
-                                                          ? Theme.of(context)
-                                                              .canvasColor
-                                                          : Theme.of(context)
-                                                              .primaryColorDark,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  16),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  16))),
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 22, left: 27),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    currentStep == 1 ||
-                                                            currentStep == 0
-                                                        ? Image.asset(
-                                                            AssetUtils.blink,
-                                                            height: 34,
-                                                            width: 72)
-                                                        : AppSvg.asset(
-                                                            AssetUtils
-                                                                .blinkBlack,
-                                                            height: 34,
-                                                            width: 72),
-                                                  ],
+                                      Spacer(),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: model.deviceSize.height <
+                                                        ScreenSizeBreakPoints
+                                                            .SMALL_DEVICE_HEIGHT ||
+                                                    model.deviceSize.height <
+                                                        ScreenSizeBreakPoints
+                                                            .MEDIUM_DEVICE_HEIGHT
+                                                ? 80
+                                                : 20),
+                                        child: Stack(
+                                          children: [
+                                            Center(
+                                              child: Container(
+                                                width: 281,
+                                                height: 100,
+                                                margin: EdgeInsets.only(top: 8),
+                                                decoration: BoxDecoration(
+                                                    color: currentStep == 1 ||
+                                                            currentStep == 3
+                                                        ? Theme.of(context)
+                                                            .primaryColor
+                                                        : Theme.of(context)
+                                                            .canvasColor,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft: Radius
+                                                                .circular(16),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    16))),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 22, left: 27),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      currentStep == 1
+                                                          ? Image.asset(
+                                                              AssetUtils.blink,
+                                                              height: 34,
+                                                              width: 72)
+                                                          : AppSvg.asset(
+                                                              AssetUtils
+                                                                  .blinkBlack,
+                                                              height: 34,
+                                                              width: 72),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
+                                            Center(
+                                                child: AppSvg.asset(
+                                                    AssetUtils.swipeUp)),
+                                          ],
                                         ),
                                       ),
                                     ],

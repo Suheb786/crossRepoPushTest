@@ -82,7 +82,11 @@ dependencies:
   permission_handler: ^8.1.6
   geolocator: 7.7.0
   package_info: ^2.0.2
-  infobip_mobilemessaging: ^0.5.2
+#  infobip_mobilemessaging: ^0.5.2
+  infobip_mobilemessaging:
+    git:
+      url: https://github.com/mohammad-shaddad/mobile-messaging-flutter-plugin.git
+      ref: main
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
