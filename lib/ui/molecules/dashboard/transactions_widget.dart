@@ -26,6 +26,7 @@ class TransactionWidget extends StatelessWidget {
           color: Theme.of(context).accentColor,
           child: ListView.separated(
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1670,7 +1670,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "response5Required":
             MessageLookupByLibrary.simpleMessage("Response # 5 is required."),
         "resumeCreditCardProcess": MessageLookupByLibrary.simpleMessage(
-            "Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card."),
+            "You are almost there!\nComplete your application and get your Rebellious Red\ncredit card issued, today."),
+        "resumeCreditCardText":
+            MessageLookupByLibrary.simpleMessage("Resume application"),
         "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
             "Please accept the above terms and conditions"),
         "reviewApplication":
