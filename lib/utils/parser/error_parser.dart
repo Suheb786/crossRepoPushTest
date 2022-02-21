@@ -664,7 +664,7 @@ class ErrorParser {
         return localisedHelper.callRecordNotFound;
       case ErrorType.NI_HANDLER_ERROR:
         return localisedHelper.niHandlerError;
-      case ErrorType.NI_HANDLER_ERROR:
+      case ErrorType.LOAN_VALUES_ERROR:
         return localisedHelper.loanValuesError;
       case ErrorType.INVALID_LOAN_VALUE_ID:
         return localisedHelper.inValidLoanValueId;
