@@ -123,7 +123,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
-                                              Navigator.pushReplacementNamed(
+                                              Navigator.popAndPushNamed(
                                                   context,
                                                   RoutePaths
                                                       .OTPForChangeDevice);
@@ -308,11 +308,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             false) {
                                                                           if (kycData.type ==
                                                                               'MobileOTP') {
-                                                                            Navigator.pushReplacementNamed(context,
+                                                                            Navigator.popAndPushNamed(context,
                                                                                 RoutePaths.AccountRegistration,
                                                                                 arguments: AccountRegistrationParams(kycData: kycData, mobileCode: loginData!.data!.mobileCode!, mobileNumber: loginData.data!.mobile!));
                                                                           } else {
-                                                                            Navigator.pushReplacementNamed(context,
+                                                                            Navigator.popAndPushNamed(context,
                                                                                 RoutePaths.Registration,
                                                                                 arguments: RegisterPageParams(
                                                                                   applicationId: model.applicationId,
@@ -322,7 +322,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         } else {
                                                                           model
                                                                               .saveUserData();
-                                                                          Navigator.pushReplacementNamed(
+                                                                          Navigator.popAndPushNamed(
                                                                               context,
                                                                               RoutePaths.AppHome);
                                                                         }

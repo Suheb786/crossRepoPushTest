@@ -28,11 +28,9 @@ class ActivityHomeViewModel extends BasePageViewModel {
   Stream<PageController> get pageControllerStream =>
       _pageControllerSubject.stream;
 
+  ///payment activity transcation
   BehaviorSubject<PaymentActivityTransactionUseCaseParams>
       _paymentActivityTransactionRequest = BehaviorSubject();
-
-  BehaviorSubject<NotificationUseCaseParams> _notificationRequest =
-      BehaviorSubject();
 
   BehaviorSubject<Resource<PaymentActivityResponse>>
       _paymentActivityTransactionResponse = BehaviorSubject();
@@ -40,6 +38,10 @@ class ActivityHomeViewModel extends BasePageViewModel {
   Stream<Resource<PaymentActivityResponse>>
       get paymentActivityTransactionResponse =>
           _paymentActivityTransactionResponse.stream;
+
+  ///activity response
+  BehaviorSubject<NotificationUseCaseParams> _notificationRequest =
+      BehaviorSubject();
 
   BehaviorSubject<Resource<ActivityResponse>> _activityResponse =
       BehaviorSubject();
@@ -68,7 +70,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
         updateLoader();
         _paymentActivityTransactionResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -81,7 +83,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
         updateLoader();
         _activityResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showErrorState();
+          showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           getPaymentActivity();
         }

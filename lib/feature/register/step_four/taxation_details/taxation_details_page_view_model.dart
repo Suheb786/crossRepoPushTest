@@ -146,6 +146,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         _getFatcaQuestionsResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });

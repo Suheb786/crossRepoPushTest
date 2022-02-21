@@ -64,8 +64,11 @@ class SettingsDialogViewModel extends BasePageViewModel {
         value,
         createCall: () => _getProfileInfoUseCase.execute(params: value),
       ).asFlow().listen((event) {
-        updateLoader();
+        //updateLoader();
         _getProfileInfoResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
     getProfileDetails();

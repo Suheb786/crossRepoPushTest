@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/model/user/user.dart';
@@ -446,12 +447,23 @@ class SettingsDialogView extends StatelessWidget {
         });
 
         model.error.listen((event) {
-          _showTopError(
-              ErrorParser.getLocalisedStringError(
-                error: event,
-                localisedHelper: S.of(context),
-              ),
-              context);
+          if (event.type == ErrorType.UNAUTHORIZED_USER) {
+            _showTopError(
+                ErrorParser.getLocalisedStringError(
+                  error: event,
+                  localisedHelper: S.of(context),
+                ),
+                context);
+            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                ModalRoute.withName(RoutePaths.Splash));
+          } else {
+            _showTopError(
+                ErrorParser.getLocalisedStringError(
+                  error: event,
+                  localisedHelper: S.of(context),
+                ),
+                context);
+          }
         });
       },
     );

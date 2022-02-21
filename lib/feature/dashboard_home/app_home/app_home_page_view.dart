@@ -49,7 +49,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 0,
+        initialData: 1,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<GetDashboardDataResponse>>(
               stream: model.getDashboardDataStream,

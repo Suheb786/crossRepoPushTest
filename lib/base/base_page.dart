@@ -171,12 +171,8 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
             error: event,
             localisedHelper: S.of(context),
           ));
-          Future.delayed(Duration(milliseconds: 500), () {
-            // Navigator.popUntil(
-            //     context, ModalRoute.withName(RoutePaths.OnBoarding));
-            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                ModalRoute.withName(RoutePaths.Splash));
-          });
+          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+              ModalRoute.withName(RoutePaths.Splash));
         } else {
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,
