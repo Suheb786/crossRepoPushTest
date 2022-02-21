@@ -113,7 +113,9 @@ final sendToNewRecipientViewModelProvider =
 final enterOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
   (ref) => EnterOtpViewModel(
-      ref.read(enterOtpUseCaseProvider), ref.read(transferUseCaseProvider)),
+      ref.read(enterOtpUseCaseProvider),
+      ref.read(transferUseCaseProvider),
+      ref.read(transferVerifyUseCaseProvider)),
 );
 
 final requestFromNewRecipientViewModelProvider =

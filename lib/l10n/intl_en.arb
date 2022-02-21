@@ -1136,6 +1136,9 @@
   "emptyCardNo": "Empty Card No",
   "updateRequired": "Update required",
   "updateRequiredDesc": "A newer version is available. Please update Blink to continue using the services.",
+  "creditCardIssuanceFailure": "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.",
+  "resumeCreditCardProcess": "Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.",
+  "updateRequiredDesc": "A newer version is available. Please update Blink to continue using the services.",
   "additionalIncomePopUpDesc1": "Make sure you enter your ",
   "yearly": "YEARLY",
   "additionalIncomePopUpDesc2": " additional income instead of monthly income to get your credit card right away."

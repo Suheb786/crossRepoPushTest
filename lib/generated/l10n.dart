@@ -11180,6 +11180,26 @@ class S {
     );
   }
 
+  /// `Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.`
+  String get creditCardIssuanceFailure {
+    return Intl.message(
+      'Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later.',
+      name: 'creditCardIssuanceFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.`
+  String get resumeCreditCardProcess {
+    return Intl.message(
+      'Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.',
+      name: 'resumeCreditCardProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Make sure you enter your `
   String get additionalIncomePopUpDesc1 {
     return Intl.message(

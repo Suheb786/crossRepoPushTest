@@ -145,6 +145,7 @@ class AssetUtils {
   static const String receiver = svg + "receiver.svg";
   static const String capture = svg + "capture.svg";
   static const String alert = svg + "alert.svg";
+  static const String failure = svg + "failure.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

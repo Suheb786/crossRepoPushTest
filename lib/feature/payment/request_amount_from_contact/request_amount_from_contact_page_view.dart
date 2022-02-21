@@ -198,7 +198,7 @@ class RequestAmountFromContactPageView
                                             );
                                           }),
                                       Visibility(
-                                        visible: false,
+                                        visible: true,
                                         child: InkWell(
                                           onTap: () {
                                             EditTransactionPurposeDialog.show(
@@ -211,6 +211,17 @@ class RequestAmountFromContactPageView
                                               Navigator.pop(context);
                                             },
                                                 beneficiary: model.beneficiary,
+                                                purposeDetail: model
+                                                            .purposeDetail ==
+                                                        null
+                                                    ? model.beneficiary!
+                                                        .purposeDetails!
+                                                    : model
+                                                        .purposeDetail!.labelEn,
+                                                purpose: model.purpose == null
+                                                    ? model.beneficiary!
+                                                        .purposeParentDetails
+                                                    : model.purpose!.labelEn,
                                                 type: TransactionType.RTP);
                                           },
                                           child: Text(
