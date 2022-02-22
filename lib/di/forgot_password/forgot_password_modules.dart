@@ -23,7 +23,8 @@ final addIdNumberForResetPasswordViewModelProvider = ChangeNotifierProvider
 final enterOtpForResetPasswordViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOTPForResetPasswordPageViewModel>(
         (ref) => EnterOTPForResetPasswordPageViewModel(
-            ref.read(enterOtpForResetPasswordUseCaseProvider)));
+            ref.read(enterOtpForResetPasswordUseCaseProvider),
+            ref.read(createNewPasswordUseCaseProvider)));
 
 final createNewPasswordViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreateNewPasswordPageViewModel>((ref) =>

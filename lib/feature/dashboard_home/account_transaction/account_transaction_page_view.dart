@@ -461,6 +461,8 @@ class AccountTransactionPageView
                                             shrinkWrap: true,
                                             itemCount: transaction.data!
                                                 .transactionResponse!.length,
+                                            physics:
+                                                AlwaysScrollableScrollPhysics(),
                                           )
                                         : Center(
                                             child: Text(
