@@ -47,6 +47,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         .read(appViewModel)
                         .getToken();
                     ProviderScope.containerOf(context)
+                        .read(validateOtpViewModelProvider)
+                        .initiateSmsListener();
+                    ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .nextPage();
                   } else if (registerData.status == Status.ERROR) {

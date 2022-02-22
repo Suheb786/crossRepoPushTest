@@ -34,6 +34,9 @@ class AccountRegistrationPageState extends BaseStatefulPage<
               .updateMobileNumber(MobileNumberParams(
                   mobileCode: widget._arguments.mobileCode,
                   mobileNumber: widget._arguments.mobileNumber));
+          // ProviderScope.containerOf(context)
+          //     .read(validateOtpViewModelProvider)
+          //     .initiateSmsListener();
           Future.delayed(Duration(microseconds: 500), () {
             model.moveToPage(2);
           });
