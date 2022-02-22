@@ -420,9 +420,8 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void checkVersionUpdate({String? clear}) {
-    ///TODO:update clear value
     _checkVersionUpdateRequest
-        .safeAdd(CheckVersionUpdateUseCaseParams(clear: 'true'));
+        .safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
   }
 
   ///get current user

@@ -26,7 +26,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      getViewModel().checkVersionUpdate();
+      getViewModel().getCurrentUser();
     }
     super.didChangeAppLifecycleState(state);
   }
@@ -38,8 +38,8 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
 
   @override
   void onModelReady(LoginViewModel model) {
-    ///TODO:call getCurrent User if empty set clear as true else false
-    model.checkVersionUpdate();
+    //model.checkVersionUpdate();
+    model.getCurrentUser();
     super.onModelReady(model);
   }
 

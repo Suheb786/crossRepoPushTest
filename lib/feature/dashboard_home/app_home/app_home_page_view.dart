@@ -603,12 +603,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .length >
-                                                                  0
+                                                          left: (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .length >
+                                                                      0 &&
+                                                                  (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .isCompleted ??
+                                                                      false))
                                                               ? 170
                                                               : 0),
                                                       child: (cardData
@@ -863,11 +870,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       // Image.asset(AssetUtils.progress1),
                                                       Visibility(
                                                         visible: cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .creditCard!
-                                                                .length >
-                                                            0,
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .length >
+                                                                0 &&
+                                                            (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .first
+                                                                    .isCompleted ??
+                                                                false),
                                                         child: Stack(
                                                           children: [
                                                             Padding(
@@ -910,11 +924,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       ),
                                                       Visibility(
                                                         visible: cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .creditCard!
-                                                                .length >
-                                                            0,
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .length >
+                                                                0 &&
+                                                            (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .first
+                                                                    .isCompleted ??
+                                                                false),
                                                         child: Stack(
                                                           children: [
                                                             Image.asset(
@@ -954,12 +975,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Padding(
                                                             padding: EdgeInsets.only(
                                                                 right: 0.0,
-                                                                left: cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .length >
-                                                                        0
+                                                                left: (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                            0 &&
+                                                                        (cardData.data!.dashboardDataContent!.creditCard!.first.isCompleted ??
+                                                                            false))
                                                                     ? 0
                                                                     : 10),
                                                             child: Image.asset(
@@ -981,12 +1000,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           ),
                                                           Positioned(
                                                             top: 0,
-                                                            left: cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .creditCard!
-                                                                        .length >
-                                                                    0
+                                                            left: (cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .length >
+                                                                        0 &&
+                                                                    (cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .first
+                                                                            .isCompleted ??
+                                                                        false))
                                                                 ? -10
                                                                 : 0,
                                                             child: Container(
@@ -1081,12 +1107,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Row(
                                                   children: [
                                                     Visibility(
-                                                      visible: cardData
-                                                              .data!
-                                                              .dashboardDataContent!
-                                                              .creditCard!
-                                                              .length >
-                                                          0,
+                                                      visible: (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .length >
+                                                              0 &&
+                                                          (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .first
+                                                                  .isCompleted ??
+                                                              false)),
                                                       child: Column(
                                                         children: [
                                                           Text(
@@ -1154,12 +1187,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .length >
-                                                                  0
+                                                          left: (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .length >
+                                                                      0 &&
+                                                                  (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .isCompleted ??
+                                                                      false))
                                                               ? 180
                                                               : 0),
                                                       child: Column(

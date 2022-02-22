@@ -1071,9 +1071,13 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.CALL_RECORD_NOT_FOUND);
 
+          // case "err-128":
+          //   return AppError(
+          //       cause: cause, error: error, type: ErrorType.NI_HANDLER_ERROR);
+
           case "err-128":
             return AppError(
-                cause: cause, error: error, type: ErrorType.NI_HANDLER_ERROR);
+                cause: cause, error: error, type: ErrorType.USER_NOT_ELIGIBLE);
 
           case "err-129":
             return AppError(

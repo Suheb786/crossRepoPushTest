@@ -19,6 +19,8 @@ PODS:
     - Flutter
   - AgoraRtcEngine_iOS (3.5.0.3)
   - Alamofire (4.9.1)
+  - alt_sms_autofill (0.0.1):
+    - Flutter
   - blinkid_flutter (5.14.0):
     - Flutter
     - PPBlinkID (~> 5.14.0)
@@ -145,6 +147,7 @@ PODS:
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
+  - alt_sms_autofill (from `.symlinks/plugins/alt_sms_autofill/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -196,6 +199,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   agora_rtc_engine:
     :path: ".symlinks/plugins/agora_rtc_engine/ios"
+  alt_sms_autofill:
+    :path: ".symlinks/plugins/alt_sms_autofill/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera:
@@ -256,6 +261,7 @@ SPEC CHECKSUMS:
   agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
   AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  alt_sms_autofill: 6c623529a8de6a2a9297358bdb7dab3d8ad693e4
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
   CryptoSwift: a0799ee936271bd2253a006f1e4523df21845000
