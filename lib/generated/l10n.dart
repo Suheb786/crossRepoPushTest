@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11190,10 +11191,10 @@ class S {
     );
   }
 
-  /// `Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.`
+  /// `You are almost there!\nComplete your application and get your Rebellious Red\ncredit card issued, today.`
   String get resumeCreditCardProcess {
     return Intl.message(
-      'Never postpone a purchase again! Instantly issue\nyour free virtual\nRebellious Red credit card.',
+      'You are almost there!\nComplete your application and get your Rebellious Red\ncredit card issued, today.',
       name: 'resumeCreditCardProcess',
       desc: '',
       args: [],
@@ -11225,6 +11226,16 @@ class S {
     return Intl.message(
       ' additional income instead of monthly income to get your credit card right away.',
       name: 'additionalIncomePopUpDesc2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resume application`
+  String get resumeCreditCardText {
+    return Intl.message(
+      'Resume application',
+      name: 'resumeCreditCardText',
       desc: '',
       args: [],
     );

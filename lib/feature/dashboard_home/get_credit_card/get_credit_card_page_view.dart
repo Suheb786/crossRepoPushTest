@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
@@ -881,84 +882,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                         fit: BoxFit.cover,
                         scale: isSmallDevices ? 1.3 : 1,
                       )),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              print("toggle button");
-                              BackdropToggleButton();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 23, right: 23, left: 23),
-                              child: Image.asset(AssetUtils.blink,
-                                  height: isSmallDevices ? 26 : 33.64,
-                                  width: isSmallDevices ? 52 : 72),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: isSmallDevices ? 20 : 58),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: AppSvg.asset(AssetUtils.cardCircle,
-                                  height: isSmallDevices ? 72 : 96),
-                            ),
-                          ),
-                          Padding(
-                              padding:
-                                  EdgeInsets.only(top: 10, left: 23, right: 23),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  S.of(context).blinkCreditCard,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: isSmallDevices ? 10 : 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor),
-                                ),
-                              )),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: isSmallDevices ? 50 : 88,
-                                bottom: isSmallDevices ? 30 : 50,
-                                left: isSmallDevices ? 34 : 24,
-                                right: isSmallDevices ? 34 : 24),
-                            child: Center(
-                              child: InkWell(
-                                onTap: () {
-                                  // model.updateIsGetCardNowClicked(
-                                  //     !isValid!);
-                                  Navigator.pushNamed(
-                                      context, RoutePaths.BlinkCreditCard);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 17),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1
-                                          ?.color,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Center(
-                                    child: Text(
-                                      S.of(context).getCardNow,
-                                      style: TextStyle(
-                                          fontSize: isSmallDevices ? 12 : 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).accentColor),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: ResumeCreditCardApplicationView(
+                          blinkIconHeight: isSmallDevices ? 26 : 33.64,
+                          blinkIconWidth: isSmallDevices ? 52 : 72,
+                          iconHeight: isSmallDevices ? 72 : 96),
                     ),
                   ),
                 ),

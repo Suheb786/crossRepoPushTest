@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
@@ -45,20 +46,26 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.center,
-            child: Container(
-              height: 48,
-              width: 232,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Theme.of(context).accentTextTheme.bodyText1!.color,
-              ),
-              child: Center(
-                child: Text(
-                  S.of(context).getCardNow,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600),
+            child: InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                    context, RoutePaths.CreditCardActivationStatus);
+              },
+              child: Container(
+                height: 48,
+                width: 232,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                ),
+                child: Center(
+                  child: Text(
+                    S.of(context).resumeCreditCardText,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ),

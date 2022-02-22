@@ -1,5 +1,8 @@
+import 'package:domain/model/forget_password/forget_password_response.dart';
 import 'package:domain/model/forget_password/verify_forget_password_otp_response.dart';
+import 'package:domain/usecase/forgot_password/create_new_password_usecase.dart';
 import 'package:domain/usecase/forgot_password/enter_otp_for_reset_password_usecase.dart';
+import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,11 +23,13 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   ///countdown controller
   late CountdownTimerController countDownController;
 
+  final CreateNewPasswordUseCase _createPasswordUseCase;
+
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    notifyListeners();
+  void updateTime(context) {
+    createPassword(context);
+    //notifyListeners();
   }
 
   ///verify otp request subject holder
@@ -51,7 +56,36 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  EnterOTPForResetPasswordPageViewModel(this._enterOtpForResetPasswordUsecase) {
+  ///create password request subject holder
+  PublishSubject<CreateNewPasswordUseCaseParams> _createPasswordRequest =
+      PublishSubject();
+
+  /// create password response subject holder
+  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse =
+      PublishSubject();
+
+  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream =>
+      _createPasswordResponse.stream;
+
+  EnterOTPForResetPasswordPageViewModel(
+      this._enterOtpForResetPasswordUsecase, this._createPasswordUseCase) {
+    _createPasswordRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _createPasswordUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _createPasswordResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        } else if (event.status == Status.SUCCESS) {
+          print("got here");
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
+        }
+      });
+    });
+
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -65,6 +99,39 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  void createPassword(BuildContext context) {
+    _createPasswordRequest.safeAdd(CreateNewPasswordUseCaseParams(
+        createPassword: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .createPasswordController
+            .text,
+        confirmPassword: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .confirmPasswordController
+            .text,
+        minimumEightCharacters: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .minimumEightCharacters,
+        hasUpperCase: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .hasUpperCase,
+        hasSymbol: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .hasSymbol,
+        containsDigit: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .containsDigit,
+        email: ProviderScope.containerOf(context)
+            .read(forgotPasswordViewModelProvider)
+            .email,
+        idNo: ProviderScope.containerOf(context)
+            .read(forgotPasswordViewModelProvider)
+            .nationalId,
+        idExpiry: ProviderScope.containerOf(context)
+            .read(forgotPasswordViewModelProvider)
+            .expiryDate));
   }
 
   void validateOtp(BuildContext context) {

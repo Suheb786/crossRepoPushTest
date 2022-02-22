@@ -215,6 +215,8 @@ class CardTransactionPageView
                                                 .transactionResponse!.length >
                                             0
                                         ? ListView.builder(
+                                      physics:
+                                                AlwaysScrollableScrollPhysics(),
                                             itemBuilder: (context, index) {
                                               return TransactionWidget(
                                                 transactions: transaction.data!
