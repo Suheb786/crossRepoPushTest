@@ -29,6 +29,7 @@ class ValidateOtpPageState
 
   @override
   void onModelReady(ValidateOtpViewModel model) {
+    print('on model ready otp');
     model.countDownController =
         CountdownTimerController(endTime: model.endTime);
   }

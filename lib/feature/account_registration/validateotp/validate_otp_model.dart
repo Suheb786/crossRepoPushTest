@@ -190,7 +190,6 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _otpSubject.close();
     AltSmsAutofill().unregisterListener();
-    print('in dispose');
     super.dispose();
   }
 }

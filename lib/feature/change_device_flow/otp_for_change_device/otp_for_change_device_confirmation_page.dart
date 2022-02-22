@@ -35,6 +35,7 @@ class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
   void onModelReady(OtpForChangeDeviceConfirmationPageViewModel model) {
     model.countDownController =
         CountdownTimerController(endTime: model.endTime);
+    model.initiateSmsListener();
   }
 
   @override
