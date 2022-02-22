@@ -407,6 +407,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
             "Creating your credit card limit"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("Credit Bureau "),
+        "creditBureauAuthorization":
+            MessageLookupByLibrary.simpleMessage("Credit Bureau Authorization"),
+        "creditBureauAuthorizationDesc": MessageLookupByLibrary.simpleMessage(
+            "I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it."),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
         "creditCardDataNotFound":

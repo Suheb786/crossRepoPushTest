@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class ClaimOfTaxTreatyBenefitsPageView
@@ -25,16 +27,15 @@ class ClaimOfTaxTreatyBenefitsPageView
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                '''The instructions for this line have been updated to include representations required by individuals claiming treaty benefits on business profits or gains not attributable to a permanent establishment, including for a foreign partner that derives gain subject to tax under section 864(c)(8) upon the transfer of an interest in a partnership and who would be subject to withholding under section 1446(f). The instructions for this line have also been updated to include representations required by individuals claiming treaty benefits under an income tax treaty that provides for treaty benefits related to a remittance-based tax system. 
-                ''',
+                model.arguments.staticRouteContent ==
+                        StaticRouteContent.TAX_TREATY_BENEFITS
+                    ? '''The instructions for this line have been updated to include representations required by individuals claiming treaty benefits on business profits or gains not attributable to a permanent establishment, including for a foreign partner that derives gain subject to tax under section 864(c)(8) upon the transfer of an interest in a partnership and who would be subject to withholding under section 1446(f). The instructions for this line have also been updated to include representations required by individuals claiming treaty benefits under an income tax treaty that provides for treaty benefits related to a remittance-based tax system. 
+                '''
+                    : S.of(context).creditBureauAuthorizationDesc,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme
-                        .of(context)
-                        .primaryTextTheme
-                        .bodyText1!
-                        .color),
+                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),
             ],
           ),

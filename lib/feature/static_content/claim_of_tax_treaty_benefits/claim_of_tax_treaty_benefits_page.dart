@@ -10,17 +10,21 @@ import 'package:neo_bank/utils/asset_utils.dart';
 
 class ClaimOfTaxTreatyBenefitsPage
     extends BasePage<ClaimOfTaxTreatyBenefitsPageViewModel> {
+  final ClaimOfTaxTreatyBenefitsArguments _taxTreatyBenefitsArguments;
+
+  ClaimOfTaxTreatyBenefitsPage(this._taxTreatyBenefitsArguments);
+
   @override
   ClaimOfTaxTreatyBenefitsPageState createState() =>
       ClaimOfTaxTreatyBenefitsPageState();
 }
 
 class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
-    ClaimOfTaxTreatyBenefitsPageViewModel,
-    ClaimOfTaxTreatyBenefitsPage> {
+    ClaimOfTaxTreatyBenefitsPageViewModel, ClaimOfTaxTreatyBenefitsPage> {
   @override
   ProviderBase provideBase() {
-    return claimOfTaxTreatyBenefitsViewModelProvider;
+    return claimOfTaxTreatyBenefitsViewModelProvider
+        .call(widget._taxTreatyBenefitsArguments);
   }
 
   @override
@@ -37,25 +41,22 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    color: Theme.of(context).accentColor),
               ),
             ),
             Flexible(
               child: Text(
-                S
-                    .of(context)
-                    .claimOfTaxTreatyBenefits,
+                widget._taxTreatyBenefitsArguments.staticRouteContent ==
+                        StaticRouteContent.TAX_TREATY_BENEFITS
+                    ? S.of(context).claimOfTaxTreatyBenefits
+                    : S.of(context).creditBureauAuthorization,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    color: Theme.of(context).accentColor),
               ),
             ),
             Padding(
@@ -75,14 +76,21 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      ClaimOfTaxTreatyBenefitsPageViewModel model) {
+  Widget buildView(
+      BuildContext context, ClaimOfTaxTreatyBenefitsPageViewModel model) {
     return ClaimOfTaxTreatyBenefitsPageView(provideBase());
   }
 }
+
+class ClaimOfTaxTreatyBenefitsArguments {
+  final StaticRouteContent staticRouteContent;
+
+  ClaimOfTaxTreatyBenefitsArguments(
+      {this.staticRouteContent: StaticRouteContent.TAX_TREATY_BENEFITS});
+}
+
+enum StaticRouteContent { TAX_TREATY_BENEFITS, CREDIT_BUREAU }

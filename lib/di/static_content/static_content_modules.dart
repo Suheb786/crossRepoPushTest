@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view_model.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page_view_model.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page_view_model.dart';
@@ -8,36 +9,38 @@ import 'package:neo_bank/feature/static_content/us_tax_payer_identification_numb
 
 ///fatca view model provider
 final fatcaCertificationViewModelProvider =
-ChangeNotifierProvider.autoDispose<FatcaCertificationPageViewModel>(
+    ChangeNotifierProvider.autoDispose<FatcaCertificationPageViewModel>(
   (ref) => FatcaCertificationPageViewModel(),
 );
 
 ///exempt payee code page view model provider
 final exemptPayeeCodeViewModelProvider =
-ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
+    ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
   (ref) => ExemptPayeeCodePageViewModel(),
 );
 
 ///exempt from fatca reporting code page view model provider
 final exemptionFromFatcaReportingCodeViewModelProvider = ChangeNotifierProvider
     .autoDispose<ExemptionFromFatcaReportingCodePageViewModel>(
-        (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
+  (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
 );
 
 ///us taxpayer identification number page view model provider
 final usTaxPayerIdentificationNumberViewModelProvider = ChangeNotifierProvider
     .autoDispose<UsTaxPayerIdentificationNumberPageViewModel>(
-        (ref) => UsTaxPayerIdentificationNumberPageViewModel(),
+  (ref) => UsTaxPayerIdentificationNumberPageViewModel(),
 );
 
 ///reference Number page view model provider
 final referenceNumberViewModelProvider =
-ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
+    ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
   (ref) => ReferenceNumberPageViewModel(),
 );
 
 ///tax treaty benefits page view model provider
 final claimOfTaxTreatyBenefitsViewModelProvider =
-ChangeNotifierProvider.autoDispose<ClaimOfTaxTreatyBenefitsPageViewModel>(
-  (ref) => ClaimOfTaxTreatyBenefitsPageViewModel(),
+    ChangeNotifierProvider.autoDispose.family<
+        ClaimOfTaxTreatyBenefitsPageViewModel,
+        ClaimOfTaxTreatyBenefitsArguments>(
+  (ref, args) => ClaimOfTaxTreatyBenefitsPageViewModel(args),
 );
