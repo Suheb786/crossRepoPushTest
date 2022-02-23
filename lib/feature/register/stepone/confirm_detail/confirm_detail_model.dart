@@ -193,6 +193,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         _getAhwalDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });

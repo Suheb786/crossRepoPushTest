@@ -100,7 +100,7 @@ class AddNumberViewModel extends BasePageViewModel {
 
   ///selected country response holder
   BehaviorSubject<CountryData> _selectedCountryResponse =
-      BehaviorSubject.seeded(CountryData());
+      BehaviorSubject.seeded(CountryData(isoCode3: 'JOR', phoneCode: '962'));
 
   ///get allowed code country response stream
   Stream<CountryData> get getSelectedCountryStream =>

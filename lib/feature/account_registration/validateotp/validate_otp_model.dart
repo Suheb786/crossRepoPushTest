@@ -10,6 +10,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
@@ -36,6 +37,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   void updateTime() {
+    otpController.clear();
     resendOtp();
   }
 
@@ -78,6 +80,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get changeMyNumberStream =>
       _changeMyNumberResponse.stream;
 
+  String _incomingSms = 'Message';
+
   ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase,
       this._changeMyNumberUseCase) {
     _verifyOtpRequest.listen((value) {
@@ -105,6 +109,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -150,6 +155,33 @@ class ValidateOtpViewModel extends BasePageViewModel {
     Future.delayed(Duration(milliseconds: 800), () {
       _errorDetectorSubject.safeAdd(false);
     });
+  }
+
+  // Future<void> initiateSmsListener() async {
+  //   String? incomingMsg = "Message";
+  //   try {
+  //     incomingMsg = await AltSmsAutofill().listenForSms;
+  //   } on PlatformException {
+  //     incomingMsg = 'Failed to get Sms.';
+  //   }
+  //
+  //   ///SMS Sample: Your phone verification code is 625742.
+  //   _incomingSms = incomingMsg!;
+  //   print("====>Message: ${_incomingSms}");
+  //   print(
+  //       "${_incomingSms[32] + _incomingSms[33] + _incomingSms[34] + _incomingSms[35] + _incomingSms[36] + _incomingSms[37]}");
+  //   otpController.text = _incomingSms[32] +
+  //       _incomingSms[33] +
+  //       _incomingSms[34] +
+  //       _incomingSms[35] +
+  //       _incomingSms[36] +
+  //       _incomingSms[37];
+  //
+  //   notifyListeners();
+  // }
+
+  listenForSmsCode() async {
+    SmsAutoFill().listenForCode();
   }
 
   @override

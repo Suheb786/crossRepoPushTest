@@ -1,5 +1,6 @@
 import 'package:domain/usecase/device_change/resend_otp_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/verify_device_change_otp_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -7,6 +8,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   final VerifyDeviceChangeOtpUseCase _verifyDeviceChangeOtpUseCase;
@@ -14,6 +16,8 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
 
   ///countdown controller
   late CountdownTimerController countDownController;
+
+  TextEditingController otpController = TextEditingController();
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
@@ -73,6 +77,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -85,6 +90,11 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
 
   void resendOtp() {
     _resendOtpRequest.safeAdd(ResendOtpDeviceChangeUseCaseParams());
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   void validate(String value) {

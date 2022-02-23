@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11140,10 +11141,10 @@ class S {
     );
   }
 
-  /// `income? Make sure it’s not your monthly income to get your credit card right away.`
+  /// ` income? Make sure it’s not your monthly income to get your credit card right away.`
   String get makeSureItsAnnualNotMonthly {
     return Intl.message(
-      'income? Make sure it’s not your monthly income to get your credit card right away.',
+      ' income? Make sure it’s not your monthly income to get your credit card right away.',
       name: 'makeSureItsAnnualNotMonthly',
       desc: '',
       args: [],
@@ -11220,10 +11221,10 @@ class S {
     );
   }
 
-  /// ` additional income instead of monthly income to get your credit card right away.`
+  /// `additional income instead of monthly income to get your credit card right away.`
   String get additionalIncomePopUpDesc2 {
     return Intl.message(
-      ' additional income instead of monthly income to get your credit card right away.',
+      'additional income instead of monthly income to get your credit card right away.',
       name: 'additionalIncomePopUpDesc2',
       desc: '',
       args: [],
@@ -11235,6 +11236,26 @@ class S {
     return Intl.message(
       'Resume application',
       name: 'resumeCreditCardText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Bureau Authorization`
+  String get creditBureauAuthorization {
+    return Intl.message(
+      'Credit Bureau Authorization',
+      name: 'creditBureauAuthorization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it.`
+  String get creditBureauAuthorizationDesc {
+    return Intl.message(
+      'I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it.',
+      name: 'creditBureauAuthorizationDesc',
       desc: '',
       args: [],
     );

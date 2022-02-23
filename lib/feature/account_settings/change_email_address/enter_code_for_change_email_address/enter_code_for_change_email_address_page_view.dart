@@ -79,6 +79,7 @@ class EnterCodeForChangeEmailAddressPageView
                                 children: [
                                   AppOtpFields(
                                     length: 6,
+                                    controller: model.otpController,
                                     onChanged: (val) {
                                       model.validate(val);
                                     },
@@ -103,7 +104,13 @@ class EnterCodeForChangeEmailAddressPageView
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime();
+                                              model.resendOtp(
+                                                  email: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewEmailAddressViewModelProvider)
+                                                      .emailController
+                                                      .text);
                                             },
                                             child: Text(
                                               'Resend Code',

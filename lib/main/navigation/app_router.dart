@@ -206,7 +206,8 @@ class AppRouter {
 
       case RoutePaths.TaxTreatyBenefits:
         return CupertinoPageRoute(
-            builder: (context) => ClaimOfTaxTreatyBenefitsPage(),
+            builder: (context) => ClaimOfTaxTreatyBenefitsPage(
+                settings.arguments as ClaimOfTaxTreatyBenefitsArguments),
             settings: RouteSettings(name: RoutePaths.TaxTreatyBenefits));
 
       case RoutePaths.CardDelivery:

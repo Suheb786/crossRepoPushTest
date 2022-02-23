@@ -21,8 +21,8 @@ class CreditCardApplicationFailurePageView
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
         }
       },
-      child: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 92, bottom: 56),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 72.0, bottom: 24),
         child: Column(
           children: [
             Stack(
@@ -70,13 +70,11 @@ class CreditCardApplicationFailurePageView
                       fontSize: 14,
                       fontWeight: FontWeight.w600)),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 262),
-              child: AnimatedButton(
-                buttonText: S.of(context).swipeToProceed,
-                borderColor: Theme.of(context).accentColor,
-                textColor: Theme.of(context).accentColor,
-              ),
+            Spacer(),
+            AnimatedButton(
+              buttonText: S.of(context).swipeToProceed,
+              borderColor: Theme.of(context).accentColor,
+              textColor: Theme.of(context).accentColor,
             ),
             InkWell(
               onTap: () {},

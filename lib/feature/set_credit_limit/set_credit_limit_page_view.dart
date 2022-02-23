@@ -38,6 +38,8 @@ class SetCreditLimitPageView
                     if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
                       Navigator.pushReplacementNamed(
                           context, RoutePaths.CreditCardApplicationFailure);
+                    } else {
+                      model.showToastWithError(data.appError!);
                     }
                   }
                 },
@@ -51,12 +53,18 @@ class SetCreditLimitPageView
                               context, RoutePaths.CreditCardActivationStatus);
                         } else if (data.status == Status.ERROR) {
                           if (data.appError!.type ==
+                              ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE) {
+                            model.minimumSettlementKey.currentState!.isValid =
+                                false;
+                            model.showErrorState();
+                            model.showToastWithError(data.appError!);
+                          } else if (data.appError!.type ==
                               ErrorType.USER_NOT_ELIGIBLE) {
                             Navigator.pushReplacementNamed(context,
                                 RoutePaths.CreditCardApplicationFailure);
+                          } else {
+                            model.showToastWithError(data.appError!);
                           }
-
-                          model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, snapshot) {

@@ -54,7 +54,8 @@ class ChangeDeviceSuccessPageView
                             .applicationId));
               }
             } else {
-              Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
+              print('in change device');
+              Navigator.popAndPushNamed(context, RoutePaths.AppHome);
             }
           }
         },

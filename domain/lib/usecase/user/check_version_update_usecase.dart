@@ -14,11 +14,15 @@ class CheckVersionUpdateUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {CheckVersionUpdateUseCaseParams? params}) async {
-    return userRepository.checkVersionUpdate();
+    return userRepository.checkVersionUpdate(clear: params!.clear);
   }
 }
 
 class CheckVersionUpdateUseCaseParams extends Params {
+  final String clear;
+
+  CheckVersionUpdateUseCaseParams({required this.clear});
+
   @override
   Either<AppError, bool> verify() {
     return Right(true);

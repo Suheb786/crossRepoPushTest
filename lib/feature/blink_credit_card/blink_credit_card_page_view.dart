@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_view_model.dart';
+import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -236,6 +237,15 @@ class BlinkCreditCardPageView
                                                           text: S
                                                               .of(context)
                                                               .creditBureau,
+                                                          recognizer: new TapGestureRecognizer()
+                                                            ..onTap = () => Navigator.pushNamed(
+                                                                context,
+                                                                RoutePaths
+                                                                    .TaxTreatyBenefits,
+                                                                arguments: ClaimOfTaxTreatyBenefitsArguments(
+                                                                    staticRouteContent:
+                                                                        StaticRouteContent
+                                                                            .CREDIT_BUREAU)),
                                                           style: TextStyle(
                                                               color: Theme.of(
                                                                       context)

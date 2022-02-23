@@ -128,7 +128,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 stream: model.getAllowedCountryStream,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<CountryData>(
-                                    initialData: CountryData(),
+                                    initialData: CountryData(
+                                        isoCode3: 'JOR', phoneCode: '962'),
                                     stream: model.getSelectedCountryStream,
                                     dataBuilder: (context, selectedCountry) {
                                       return AppStreamBuilder<

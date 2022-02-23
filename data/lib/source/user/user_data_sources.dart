@@ -160,7 +160,7 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
       {String mobileNo, String mobileCode});
 
-  Future<HttpResponse<ResponseEntity>> checkVersionUpdate();
+  Future<HttpResponse<ResponseEntity>> checkVersionUpdate({String? clear});
 }
 
 abstract class UserLocalDS {

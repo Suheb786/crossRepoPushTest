@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/change_Device/change_device_modules.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page_view.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page_view_model.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeDeviceConfirmationPage
     extends BasePage<OtpForChangeDeviceConfirmationPageViewModel> {
@@ -16,7 +17,7 @@ class OtpForChangeDeviceConfirmationPage
 class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
         OtpForChangeDeviceConfirmationPageViewModel,
         OtpForChangeDeviceConfirmationPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   OtpForChangeDeviceConfirmationPageState()
       : super(subscribeVisibilityEvents: true);
 
@@ -50,4 +51,26 @@ class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    listenForCode();
+
+    SmsAutoFill().getAppSignature.then((signature) {
+      print('inside signature---->$signature');
+    });
+  }
+
+  @override
+  void codeUpdated() {
+    getViewModel().otpController.text = code!;
+  }
+
+  @override
+  void dispose() {
+    print('inside dispose');
+    super.dispose();
+    cancel();
+  }
 }

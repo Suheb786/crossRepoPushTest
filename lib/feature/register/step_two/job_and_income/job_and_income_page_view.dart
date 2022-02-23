@@ -248,6 +248,7 @@ class JobAndIncomePageView
                                         style: TextStyle(
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14,
+                                            height: 1.4,
                                             color: Theme.of(context)
                                                 .inputDecorationTheme
                                                 .focusedBorder!
@@ -512,6 +513,7 @@ class JobAndIncomePageView
                                                                   FontWeight
                                                                       .w400,
                                                               fontSize: 14,
+                                                              height: 1.4,
                                                               color: Theme.of(
                                                                       context)
                                                                   .inputDecorationTheme
@@ -522,7 +524,7 @@ class JobAndIncomePageView
                                                             TextSpan(
                                                                 text: S
                                                                     .of(context)
-                                                                    .yearly,
+                                                                    .annual,
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
