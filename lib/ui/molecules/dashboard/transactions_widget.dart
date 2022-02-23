@@ -62,26 +62,64 @@ class TransactionWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  // SizedBox(
+                  //   width: 8,
+                  // ),
+                  Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        transactions!.transactions![index].amount!.toString(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "-" +
+                                transactions!.transactions![index].amount!
+                                    .toString(),
+                            style: TextStyle(
+                                color: AppColor.dark_brown,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14),
+                          ),
+                          Text(
+                            " JOD",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "JOD",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10,
-                            color: Theme.of(context)
-                                .inputDecorationTheme
-                                .hintStyle!
-                                .color),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "7,334.100",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12),
+                          ),
+                          Text(
+                            " JOD",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color),
+                          ),
+                        ],
                       ),
                     ],
                   )

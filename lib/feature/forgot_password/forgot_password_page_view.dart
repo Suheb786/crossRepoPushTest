@@ -117,7 +117,7 @@ class ForgotPasswordPageView
                                             createNewPasswordViewModelProvider)
                                         .mobileNumber !=
                                     null
-                                ? "+ ${ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).mobileNumber}"
+                                ? "${ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).mobileNumber}"
                                 : "",
                             textAlign: TextAlign.center,
                             style: TextStyle(
