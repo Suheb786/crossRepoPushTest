@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SettingsDialogView extends StatelessWidget {
@@ -258,23 +259,34 @@ class SettingsDialogView extends StatelessWidget {
                                                           .isEmpty)
                                                   ? Center(
                                                       child: Container(
-                                                        child: Text(
-                                                          ///TODO: change received from api
-                                                          user!.profileName,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              fontSize: 18,
-                                                              color: currentStep ==
-                                                                      3
-                                                                  ? Theme.of(
-                                                                          context)
-                                                                      .accentColor
-                                                                  : Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark),
-                                                        ),
+                                                        child:
+                                                            AppStreamBuilder<
+                                                                    String>(
+                                                                stream: model
+                                                                    .textStream,
+                                                                initialData: "",
+                                                                dataBuilder:
+                                                                    (context,
+                                                                        text) {
+                                                                  print(
+                                                                      "got text in stream: $text");
+                                                                  return Text(
+                                                                    ///TODO: change received from api
+                                                                    StringUtils
+                                                                        .getFirstInitials(
+                                                                            text),
+                                                                    style: TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w700,
+                                                                        fontSize:
+                                                                            18,
+                                                                        color: currentStep ==
+                                                                                3
+                                                                            ? Theme.of(context).accentColor
+                                                                            : Theme.of(context).primaryColorDark),
+                                                                  );
+                                                                }),
                                                       ),
                                                     )
                                                   : CircleAvatar(

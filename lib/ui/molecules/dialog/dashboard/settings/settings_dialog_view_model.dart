@@ -44,6 +44,10 @@ class SettingsDialogViewModel extends BasePageViewModel {
   /// logout response stream
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
+  BehaviorSubject<String> _textResponse = BehaviorSubject();
+
+  Stream<String> get textStream => _textResponse.stream;
+
   SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
@@ -68,6 +72,9 @@ class SettingsDialogViewModel extends BasePageViewModel {
         _getProfileInfoResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          print("got fullname: ${event.data!.content!.fullName}");
+          _textResponse.safeAdd(event.data!.content!.fullName!);
         }
       });
     });
