@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page_view.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterOtpPage extends BasePage<EnterOtpViewModel> {
   @override
@@ -12,7 +13,8 @@ class EnterOtpPage extends BasePage<EnterOtpViewModel> {
 }
 
 class EnterOtpPageState
-    extends BaseStatefulPage<EnterOtpViewModel, EnterOtpPage> {
+    extends BaseStatefulPage<EnterOtpViewModel, EnterOtpPage>
+    with CodeAutoFill {
   @override
   ProviderBase provideBase() {
     return enterOtpViewModelProvider;
@@ -32,5 +34,27 @@ class EnterOtpPageState
   @override
   Widget buildView(BuildContext context, EnterOtpViewModel model) {
     return EnterOtpPageView(provideBase());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    listenForCode();
+
+    SmsAutoFill().getAppSignature.then((signature) {
+      print('inside signature---->$signature');
+    });
+  }
+
+  @override
+  void codeUpdated() {
+    getViewModel().otpController.text = code!;
+  }
+
+  @override
+  void dispose() {
+    print('inside dispose');
+    super.dispose();
+    cancel();
   }
 }

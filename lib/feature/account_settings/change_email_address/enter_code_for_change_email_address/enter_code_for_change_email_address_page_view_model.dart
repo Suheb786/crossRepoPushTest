@@ -1,6 +1,7 @@
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_email_address/add_new_email_address_usecase.dart';
 import 'package:domain/usecase/account_setting/change_email_address/validate_otp_for_new_email_address_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   final ValidateOtpForNewEmailAddressUseCase
@@ -23,7 +25,10 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
+    listenForSmsCode();
   }
+
+  TextEditingController otpController = TextEditingController();
 
   ///verify otp request subject holder
   PublishSubject<ValidateOtpForNewEmailAddressUseCaseParams> _verifyOtpRequest =
@@ -102,6 +107,11 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
 
   void resendOtp({required String email}) {
     _resendOtpRequest.safeAdd(AddNewEmailAddressUseCaseParams(email: email));
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   @override

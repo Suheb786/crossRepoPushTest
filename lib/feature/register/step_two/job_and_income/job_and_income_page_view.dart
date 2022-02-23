@@ -255,7 +255,7 @@ class JobAndIncomePageView
                                                 .color),
                                         children: [
                                           TextSpan(
-                                              text: S.of(context).annual,
+                                              text: S.of(context).yearly,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 14,

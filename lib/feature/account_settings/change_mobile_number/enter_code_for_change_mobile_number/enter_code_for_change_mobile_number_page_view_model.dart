@@ -1,6 +1,7 @@
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_mobile_number/add_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/account_setting/change_mobile_number/validate_otp_for_new_mobile_number_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   final ValidateOtpForNewMobileNumberUseCase
@@ -20,9 +22,12 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
+  TextEditingController otpController = TextEditingController();
+
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
+    listenForSmsCode();
   }
 
   ///verify otp request subject holder
@@ -91,6 +96,11 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   void changeOtp({required String mobileCode, required String mobileNo}) {

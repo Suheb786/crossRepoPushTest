@@ -82,6 +82,7 @@ class EnterCodeForChangeMobileNumberPageView
                                 children: [
                                   AppOtpFields(
                                     length: 6,
+                                    controller: model.otpController,
                                     onChanged: (val) {
                                       model.validate(val);
                                     },

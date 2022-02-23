@@ -70,6 +70,7 @@ class EnterOTPForResetPasswordPageView
                           children: [
                             AppOtpFields(
                               length: 6,
+                              controller: model.otpController,
                               onChanged: (val) {
                                 if (val.length == 6) model.validate(val);
                               },

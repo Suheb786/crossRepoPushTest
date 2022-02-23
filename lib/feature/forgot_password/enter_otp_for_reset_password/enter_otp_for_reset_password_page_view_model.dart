@@ -2,7 +2,6 @@ import 'package:domain/model/forget_password/forget_password_response.dart';
 import 'package:domain/model/forget_password/verify_forget_password_otp_response.dart';
 import 'package:domain/usecase/forgot_password/create_new_password_usecase.dart';
 import 'package:domain/usecase/forgot_password/enter_otp_for_reset_password_usecase.dart';
-import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +12,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   final EnterOtpForResetPasswordUseCase _enterOtpForResetPasswordUsecase;
@@ -82,6 +82,7 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
           print("got here");
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -170,6 +171,11 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
     Future.delayed(Duration(milliseconds: 800), () {
       _errorDetectorSubject.safeAdd(false);
     });
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   @override

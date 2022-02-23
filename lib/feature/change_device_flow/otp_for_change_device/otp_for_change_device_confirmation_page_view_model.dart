@@ -1,8 +1,6 @@
-import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:domain/usecase/device_change/resend_otp_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/verify_device_change_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -10,6 +8,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   final VerifyDeviceChangeOtpUseCase _verifyDeviceChangeOtpUseCase;
@@ -78,7 +77,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
-          initiateSmsListener();
+          listenForSmsCode();
         }
       });
     });
@@ -93,6 +92,11 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
     _resendOtpRequest.safeAdd(ResendOtpDeviceChangeUseCaseParams());
   }
 
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
+  }
+
   void validate(String value) {
     if (value.isNotEmpty && value.length == 6) {
       _showButtonSubject.safeAdd(true);
@@ -100,31 +104,6 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
-  }
-
-  String _incomingSms = 'Message';
-
-  Future<void> initiateSmsListener() async {
-    String? incomingMsg = "Message";
-    try {
-      incomingMsg = await AltSmsAutofill().listenForSms;
-    } on PlatformException {
-      incomingMsg = 'Failed to get Sms.';
-    }
-
-    ///SMS Sample: Your phone verification code is 625742.
-    _incomingSms = incomingMsg!;
-    print("====>Message<====: ${_incomingSms}");
-    print(
-        "${_incomingSms[32] + _incomingSms[33] + _incomingSms[34] + _incomingSms[35] + _incomingSms[36] + _incomingSms[37]}");
-    otpController.text = _incomingSms[32] +
-        _incomingSms[33] +
-        _incomingSms[34] +
-        _incomingSms[35] +
-        _incomingSms[36] +
-        _incomingSms[37];
-
-    notifyListeners();
   }
 
   @override

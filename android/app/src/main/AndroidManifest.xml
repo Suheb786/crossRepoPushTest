@@ -12,8 +12,6 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_SMS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -111,13 +109,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!--                <receiver-->
-        <!--                    android:name=".receiver.IncomingSmsReceiver"-->
-        <!--                    android:enabled="true"-->
-        <!--                    android:exported="true">-->
-        <!--                    <intent-filter>-->
-        <!--                        <action android:name="android.provider.Telephony.SMS_RECEIVED" />-->
-        <!--                    </intent-filter>-->
-        <!--                </receiver>-->
     </application>
 </manifest>

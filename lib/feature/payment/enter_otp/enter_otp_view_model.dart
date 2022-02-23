@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterOtpViewModel extends BasePageViewModel {
   final TransferUseCase _transferUseCase;
@@ -80,6 +81,7 @@ class EnterOtpViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -112,6 +114,11 @@ class EnterOtpViewModel extends BasePageViewModel {
 
   void enterOtp() {
     _enterOtpRequest.safeAdd(EnterOtpUseCaseParams(otpCode: _otpSubject.value));
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   void transfer(

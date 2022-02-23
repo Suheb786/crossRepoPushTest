@@ -93,8 +93,7 @@ dependencies:
   draggable_widget: ^2.0.0
   syncfusion_flutter_sliders: ^19.4.43
   url_launcher: ^6.0.18
-  alt_sms_autofill: ^1.0.0
-#  sms_autofill: ^2.2.0
+  sms_autofill: ^2.2.0
 #  firebase_messaging: ^11.2.5
 #  firebase_core: ^1.11.0
 #  firebase_crashlytics: ^2.4.5
