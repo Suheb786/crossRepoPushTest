@@ -78,8 +78,7 @@ class RegisterPageState
           Future.delayed(Duration(microseconds: 100), () {
             ProviderScope.containerOf(context)
                 .read(registerStepFourViewModelProvider)
-                .registrationStepFourPageController
-                .move(1, animation: false);
+                .moveToPage(1);
           });
 
           break;
@@ -91,8 +90,7 @@ class RegisterPageState
           Future.delayed(Duration(microseconds: 100), () {
             ProviderScope.containerOf(context)
                 .read(registerStepFourViewModelProvider)
-                .registrationStepFourPageController
-                .move(4, animation: false);
+                .moveToPage(4);
           });
 
           break;

@@ -65,12 +65,13 @@ class FatcaUSRelevantW8PageView
                           if (details.primaryVelocity!.isNegative) {
                             model.validateFatcaUSRelevantW8Details();
                           } else {
-                            Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .previousPage();
-                              // .previous();
-                            });
+                            ///Don't allow user to go back
+                            // Future.delayed(Duration(milliseconds: 500), () {
+                            //   ProviderScope.containerOf(context)
+                            //       .read(registerStepFourViewModelProvider)
+                            //       .previousPage();
+                            //   // .previous();
+                            // });
                           }
                         }
                       },
