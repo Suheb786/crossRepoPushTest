@@ -11221,10 +11221,10 @@ class S {
     );
   }
 
-  /// ` additional income instead of monthly income to get your credit card right away.`
+  /// `additional income instead of monthly income to get your credit card right away.`
   String get additionalIncomePopUpDesc2 {
     return Intl.message(
-      ' additional income instead of monthly income to get your credit card right away.',
+      'additional income instead of monthly income to get your credit card right away.',
       name: 'additionalIncomePopUpDesc2',
       desc: '',
       args: [],

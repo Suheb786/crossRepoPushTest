@@ -110,7 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "additionalIncomePopUpDesc1":
             MessageLookupByLibrary.simpleMessage("Make sure you enter your "),
         "additionalIncomePopUpDesc2": MessageLookupByLibrary.simpleMessage(
-            " additional income instead of monthly income to get your credit card right away."),
+            "additional income instead of monthly income to get your credit card right away."),
         "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage(
             "Additional Nationality Passport"),
         "additionalNationalityPassportDesc": MessageLookupByLibrary.simpleMessage(

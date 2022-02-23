@@ -524,7 +524,7 @@ class JobAndIncomePageView
                                                             TextSpan(
                                                                 text: S
                                                                     .of(context)
-                                                                    .yearly,
+                                                                    .annual,
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
