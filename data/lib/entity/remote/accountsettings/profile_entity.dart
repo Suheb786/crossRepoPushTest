@@ -16,11 +16,14 @@ class ProfileEntity
   final bool? biometric;
   @JsonKey(name: "profileImage")
   final String? profileImage;
+  @JsonKey(name: "fullName")
+  final String? fullName;
 
   ProfileEntity(
       {this.email: "",
       this.mobileNumber: "",
       this.biometric: false,
+      this.fullName: "",
       this.profileImage: ""});
 
   factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
@@ -38,6 +41,7 @@ class ProfileEntity
     return ProfileInfoContent(
         email: this.email,
         mobileNumber: this.mobileNumber,
+        fullName: this.fullName,
         biometric: this.biometric,
         profileImage: this.profileImage != null
             ? ImageUtils.dataFromBase64String(this.profileImage!)
