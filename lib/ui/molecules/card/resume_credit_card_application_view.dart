@@ -8,9 +8,14 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
   final double? iconHeight;
   final double? blinkIconWidth;
   final double? blinkIconHeight;
+  final double? fontSize;
 
   const ResumeCreditCardApplicationView(
-      {this.iconHeight, this.blinkIconWidth, this.blinkIconHeight, Key? key})
+      {this.iconHeight,
+      this.blinkIconWidth,
+      this.blinkIconHeight,
+      this.fontSize,
+      Key? key})
       : super(key: key);
 
   @override
@@ -36,7 +41,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
               S.of(context).resumeCreditCardProcess,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 14,
+                  fontSize: fontSize,
                   fontWeight: FontWeight.w600,
                   color: Theme.of(context).accentColor),
             ),

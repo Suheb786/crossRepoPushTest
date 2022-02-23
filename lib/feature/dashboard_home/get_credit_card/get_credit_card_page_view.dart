@@ -885,6 +885,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                       child: ResumeCreditCardApplicationView(
                           blinkIconHeight: isSmallDevices ? 26 : 33.64,
                           blinkIconWidth: isSmallDevices ? 52 : 72,
+                          fontSize: isSmallDevices ? 10 : 12,
                           iconHeight: isSmallDevices ? 72 : 96),
                     ),
                   ),
