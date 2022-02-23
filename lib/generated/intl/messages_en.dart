@@ -1269,7 +1269,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureItsAnnualNotMonthly": MessageLookupByLibrary.simpleMessage(
-            "income? Make sure it’s not your monthly income to get your credit card right away."),
+            " income? Make sure it’s not your monthly income to get your credit card right away."),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
             "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),

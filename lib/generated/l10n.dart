@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11140,10 +11141,10 @@ class S {
     );
   }
 
-  /// `income? Make sure it’s not your monthly income to get your credit card right away.`
+  /// ` income? Make sure it’s not your monthly income to get your credit card right away.`
   String get makeSureItsAnnualNotMonthly {
     return Intl.message(
-      'income? Make sure it’s not your monthly income to get your credit card right away.',
+      ' income? Make sure it’s not your monthly income to get your credit card right away.',
       name: 'makeSureItsAnnualNotMonthly',
       desc: '',
       args: [],

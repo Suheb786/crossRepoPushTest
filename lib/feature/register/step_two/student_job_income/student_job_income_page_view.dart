@@ -198,6 +198,7 @@ class StudentJobIncomePageView
                                                           fontWeight:
                                                               FontWeight.w400,
                                                           fontSize: 14,
+                                                          height: 1.4,
                                                           color: Theme.of(
                                                                   context)
                                                               .inputDecorationTheme
