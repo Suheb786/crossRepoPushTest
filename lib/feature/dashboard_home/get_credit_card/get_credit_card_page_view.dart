@@ -270,7 +270,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 children: [
                                                   Text(
                                                     cardData.creditCard!.first
-                                                        .minDue
+                                                        .paymentDueAmount
                                                         .toString(),
                                                     style: TextStyle(
                                                         color: Theme.of(context)
