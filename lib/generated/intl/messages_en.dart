@@ -1105,8 +1105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter job name"),
         "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
             "Limit value cannot be set greater than max limit value"),
-        "invalidLivelinessSCore":
-            MessageLookupByLibrary.simpleMessage("Invalid Liveliness Score"),
+        "invalidLivelinessSCore": MessageLookupByLibrary.simpleMessage(
+            "Please move your face closer to the screen!"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMaximumAge":

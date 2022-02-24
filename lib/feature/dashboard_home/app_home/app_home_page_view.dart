@@ -200,16 +200,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   return SizedBox();
                                                 }
                                                 return DashboardSwiper(
-                                                  pages: [
-                                                    MyAccountPage(
-                                                      cardData: cardData,
-                                                    ),
-                                                    GetCreditCardPage(
-                                                      cardData: cardData,
-                                                    ),
-                                                    MyDebitCardPage(
-                                                        cardData: cardData),
-                                                  ],
+                                                  pages: cardData.debitCard!
+                                                              .length >
+                                                          0
+                                                      ? [
+                                                          MyAccountPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          GetCreditCardPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          MyDebitCardPage(
+                                                              cardData:
+                                                                  cardData),
+                                                        ]
+                                                      : [
+                                                          MyAccountPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          GetCreditCardPage(
+                                                            cardData: cardData,
+                                                          )
+                                                        ],
                                                   appSwiperController:
                                                       model.appSwiperController,
                                                   pageController:
@@ -235,8 +247,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: model
-                                              .buildPageIndicator(currentStep!),
+                                          children: model.buildPageIndicator(
+                                              currentStep!,
+                                              cardData
+                                                          .data!
+                                                          .dashboardDataContent!
+                                                          .debitCard!
+                                                          .length >
+                                                      0
+                                                  ? 3
+                                                  : 2),
                                         ),
                                       ),
                                       // SmoothPageIndicator(
@@ -718,85 +738,74 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                       EdgeInsets
                                                                           .only(
                                                                               top: 5),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
-                                                                      // if (currentStep ==
-                                                                      //     1) {
-                                                                      //   var result = await Navigator.push(
-                                                                      //       context,
-                                                                      //       MaterialPageRoute(
-                                                                      //           builder: (context) => CreditCardDeliveredPage(
-                                                                      //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
-                                                                      //               )));
-                                                                      //   if (result !=
-                                                                      //       null) {
-                                                                      //     print(
-                                                                      //         '$result');
-                                                                      //     model
-                                                                      //         .getDashboardData();
-                                                                      //   }
-                                                                      // } else {
-                                                                      //   var result = await Navigator.push(
-                                                                      //       context,
-                                                                      //       MaterialPageRoute(
-                                                                      //           builder: (context) => DebitCardDeliveredPage(
-                                                                      //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                      //               )));
-                                                                      //   if (result !=
-                                                                      //       null) {
-                                                                      //     print(
-                                                                      //         '$result');
-                                                                      //     model
-                                                                      //         .getDashboardData();
-                                                                      //   }
-                                                                      // }
-                                                                      var result = await Navigator.push(
-                                                                          context,
-                                                                          MaterialPageRoute(
-                                                                              builder: (context) => DebitCardDeliveredPage(
-                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                                  )));
-                                                                      if (result !=
-                                                                          null) {
-                                                                        print(
-                                                                            '$result');
-                                                                        model
-                                                                            .getDashboardData();
-                                                                      }
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal:
-                                                                              11,
-                                                                          vertical:
-                                                                              2),
-                                                                      decoration: BoxDecoration(
-                                                                          color: Theme.of(context)
-                                                                              .accentColor,
-                                                                          borderRadius: BorderRadius.circular(
-                                                                              14),
-                                                                          border:
-                                                                              Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                                                      child:
-                                                                          Text(
-                                                                        S
-                                                                            .of(context)
-                                                                            .confirm,
-                                                                        style: TextStyle(
-                                                                            color: Theme.of(context)
-                                                                                .accentTextTheme
-                                                                                .bodyText1!
-                                                                                .color,
-                                                                            fontSize:
-                                                                                14,
-                                                                            fontWeight:
-                                                                                FontWeight.w600),
-                                                                      ),
-                                                                    ),
-                                                                  ),
+                                                                  child: cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .debitCard!
+                                                                              .length >
+                                                                          0
+                                                                      ? InkWell(
+                                                                          onTap:
+                                                                              () async {
+                                                                            // if (currentStep ==
+                                                                            //     1) {
+                                                                            //   var result = await Navigator.push(
+                                                                            //       context,
+                                                                            //       MaterialPageRoute(
+                                                                            //           builder: (context) => CreditCardDeliveredPage(
+                                                                            //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                            //               )));
+                                                                            //   if (result !=
+                                                                            //       null) {
+                                                                            //     print(
+                                                                            //         '$result');
+                                                                            //     model
+                                                                            //         .getDashboardData();
+                                                                            //   }
+                                                                            // } else {
+                                                                            //   var result = await Navigator.push(
+                                                                            //       context,
+                                                                            //       MaterialPageRoute(
+                                                                            //           builder: (context) => DebitCardDeliveredPage(
+                                                                            //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                            //               )));
+                                                                            //   if (result !=
+                                                                            //       null) {
+                                                                            //     print(
+                                                                            //         '$result');
+                                                                            //     model
+                                                                            //         .getDashboardData();
+                                                                            //   }
+                                                                            // }
+                                                                            var result = await Navigator.push(
+                                                                                context,
+                                                                                MaterialPageRoute(
+                                                                                    builder: (context) => DebitCardDeliveredPage(
+                                                                                          debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                                        )));
+                                                                            if (result !=
+                                                                                null) {
+                                                                              print('$result');
+                                                                              model.getDashboardData();
+                                                                            }
+                                                                          },
+                                                                          child:
+                                                                              Container(
+                                                                            padding:
+                                                                                EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                                                                            decoration: BoxDecoration(
+                                                                                color: Theme.of(context).accentColor,
+                                                                                borderRadius: BorderRadius.circular(14),
+                                                                                border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                            child:
+                                                                                Text(
+                                                                              S.of(context).confirm,
+                                                                              style: TextStyle(color: Theme.of(context).accentTextTheme.bodyText1!.color, fontSize: 14, fontWeight: FontWeight.w600),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      : Text(
+                                                                          '-'),
                                                                 )
                                                               ],
                                                             ),

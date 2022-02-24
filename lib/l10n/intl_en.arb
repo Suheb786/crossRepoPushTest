@@ -899,7 +899,7 @@
   "noSignatureFound": "No Signature Found",
   "fatcaDetailNotFound": "Fatca Details Not Found",
   "invalidMobileCode": "Invalid Mobile Code",
-  "invalidLivelinessSCore": "Invalid Liveliness Score",
+  "invalidLivelinessSCore": "Please move your face closer to the screen!",
   "invalidFaceMatchScore": "Invalid FaceMatch Score",
   "fingerPrintAlreadyExistForDevice": "Finger Print Already Exist for this device",
   "fingerPrintNotFound": "Finger Print Not Found",
