@@ -123,6 +123,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
+                                              model.emailController.clear();
+                                              model.passwordController.clear();
+                                              model.fingerPrintShow(false);
                                               Navigator.popAndPushNamed(
                                                   context,
                                                   RoutePaths
@@ -217,12 +220,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.applicationId = data
                                                                         .data!
                                                                         .applicationId!;
-                                                                    // ProviderScope
-                                                                    //         .containerOf(
-                                                                    //             context)
-                                                                    //     .read(
-                                                                    //         appViewModel)
-                                                                    //     .getToken();
+                                                                    ProviderScope.containerOf(
+                                                                            context)
+                                                                        .read(
+                                                                            appViewModel)
+                                                                        .getToken();
                                                                     // model
                                                                     //     .checkKycStatus();
 
@@ -255,11 +257,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             .sendOtpTokenMobile();
                                                                       });
                                                                     } else {
-                                                                      ProviderScope.containerOf(
-                                                                              context)
-                                                                          .read(
-                                                                              appViewModel)
-                                                                          .getToken();
                                                                       model
                                                                           .checkKycStatus();
                                                                     }
