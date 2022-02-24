@@ -8810,10 +8810,10 @@ class S {
     );
   }
 
-  /// `Invalid Liveliness Score`
+  /// `Please move your face closer to the screen!`
   String get invalidLivelinessSCore {
     return Intl.message(
-      'Invalid Liveliness Score',
+      'Please move your face closer to the screen!',
       name: 'invalidLivelinessSCore',
       desc: '',
       args: [],

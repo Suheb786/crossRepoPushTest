@@ -346,8 +346,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                                   : 10),
                                                     ),
                                                     Text(
-                                                      StringUtils
-                                                          .getMinDueDate(),
+                                                      cardData.creditCard!.first
+                                                              .nextPaymentDate ??
+                                                          "",
                                                       style: TextStyle(
                                                           color:
                                                               Theme.of(context)
@@ -381,13 +382,16 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                           .account!
                                                           .availableBalance!,
                                                       minDuePayBackAmount:
-                                                          cardData.creditCard!
-                                                              .first.minDue
+                                                          cardData
+                                                              .creditCard!
+                                                              .first
+                                                              .paymentDueAmount
                                                               .toString(),
-                                                      totalMinDueAmount: cardData
-                                                          .creditCard!
-                                                          .first
-                                                          .paymentDueAmount!));
+                                                      totalMinDueAmount:
+                                                          cardData
+                                                              .creditCard!
+                                                              .first
+                                                              .usedBalance!));
                                             },
                                             child: Container(
                                               height: 36,
