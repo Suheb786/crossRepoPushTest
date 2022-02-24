@@ -15,9 +15,24 @@ class TransactionEntity
   final DateTime? transactionTime;
   @JsonKey(name: "amount")
   final num? amount;
+  @JsonKey(name: "balance")
+  final num? balance;
+  @JsonKey(name: "balanceCUR")
+  final String? balanceCur;
+  @JsonKey(name: "amountCUR")
+  final String? amountCur;
+  @JsonKey(name: "TrnxType")
+  final String? trnxType;
 
   TransactionEntity(
-      {this.id, this.description, this.transactionTime, this.amount});
+      {this.id,
+      this.description,
+      this.transactionTime,
+      this.amount,
+      this.amountCur,
+      this.balance,
+      this.balanceCur,
+      this.trnxType});
 
   factory TransactionEntity.fromJson(Map<String, dynamic> json) =>
       _$TransactionEntityFromJson(json);
@@ -35,6 +50,10 @@ class TransactionEntity
         id: this.id,
         amount: this.amount,
         description: this.description,
-        time: this.transactionTime);
+        time: this.transactionTime,
+        amountCur: this.amountCur,
+        balance: this.balance,
+        balanceCur: this.balanceCur,
+        trnxType: this.trnxType);
   }
 }
