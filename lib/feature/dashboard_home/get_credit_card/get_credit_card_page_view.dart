@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -29,18 +30,46 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
     bool isSmallDevices = model.deviceSize.height <
             ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
-    return !(cardData.creditCard!.length > 0)
+    return cardData.somethingWrong!
         ? Center(
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: GestureDetector(
-                // onHorizontalDragEnd: (details) {
-                //   if (details.primaryVelocity!.isNegative) {
-                //     ProviderScope.containerOf(context)
-                //         .read(appHomeViewModelProvider)
-                //         .pageController
-                //         .next();
-                //   } else {
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 2,
+                  color: Theme.of(context).primaryColor,
+                  margin: EdgeInsets.zero,
+                  shadowColor:
+                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage(AssetUtils.zigzagBackground),
+                      fit: BoxFit.cover,
+                      scale: isSmallDevices ? 1.3 : 1,
+                    )),
+                    child: CreditCardIssuanceFailureWidget(
+                        fontSize: isSmallDevices ? 12 : 14),
+                  ),
+                ),
+              ),
+            ),
+          )
+        : !(cardData.creditCard!.length > 0)
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: GestureDetector(
+                    // onHorizontalDragEnd: (details) {
+                    //   if (details.primaryVelocity!.isNegative) {
+                    //     ProviderScope.containerOf(context)
+                    //         .read(appHomeViewModelProvider)
+                    //         .pageController
+                    //         .next();
+                    //   } else {
                 //     ProviderScope.containerOf(context)
                 //         .read(appHomeViewModelProvider)
                 //         .pageController
