@@ -317,8 +317,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                                   : 10),
                                                     ),
                                                     Text(
-                                                      StringUtils
-                                                          .getMinDueDate(),
+                                                      cardData.creditCard!.first
+                                                              .nextPaymentDate ??
+                                                          "",
                                                       style: TextStyle(
                                                           color:
                                                               Theme.of(context)

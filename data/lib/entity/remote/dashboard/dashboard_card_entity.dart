@@ -108,6 +108,6 @@ class DashboardCardEntity
         paymentDueAmount:
             this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
         nextPaymentDate:
-            this.nextPaymentDate != null ? this.nextPaymentDate : '0.0');
+            this.nextPaymentDate != null ? this.nextPaymentDate : '');
   }
 }
