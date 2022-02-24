@@ -36,6 +36,8 @@ class DashboardDataEntity
   final DateTime? blinkJoinedDate;
   @JsonKey(name: "blinkWasBorn")
   final DateTime? blinkBornDate;
+  @JsonKey(name: "somethingWrong")
+  final bool? somethingWrong;
 
   // @JsonKey(name: "debitDeliveredDatetime")
   // final dynamic? debitDeliveredDatetime;
@@ -49,6 +51,7 @@ class DashboardDataEntity
     this.blinkBornDate,
     this.blinkJoinedDate,
     this.mobileCode: "",
+    this.somethingWrong: false,
     // this.debitCardActivated,
     // this.isApplied,
     // this.isDebitDelivered,
@@ -78,6 +81,7 @@ class DashboardDataEntity
         blinkWasBorn: this.blinkBornDate,
         youJoinedBlink: this.blinkJoinedDate,
         mobileNumber: this.mobileNumber,
+        somethingWrong: this.somethingWrong,
         mobileCode: this.mobileCode);
   }
 }
