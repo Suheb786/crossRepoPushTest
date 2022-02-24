@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/account_settings/account_settings_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/add_new_email/add_new_email_address_page.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/change_email_address_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
@@ -103,9 +103,8 @@ class ChangeEmailAddressPageView
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  ProviderScope.containerOf(context)
-                                      .read(accountSettingViewModelProvider)
-                                      .mobile,
+                                  "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                      " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).accentColor,
