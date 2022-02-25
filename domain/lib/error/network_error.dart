@@ -1175,6 +1175,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.PAYMENT_CASHBACK_ERROR);
 
+          case "err-147":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.MINOR_NOT_ALLOWED);
+
           case "err-164":
             return AppError(
                 cause: cause, error: error, type: ErrorType.FORCE_UPDATE);

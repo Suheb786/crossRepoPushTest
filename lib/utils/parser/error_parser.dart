@@ -940,6 +940,8 @@ class ErrorParser {
         return localisedHelper.invalidExpiryDate;
       case ErrorType.EMPTY_CARD_NO:
         return localisedHelper.emptyCardNo;
+      case ErrorType.MINOR_NOT_ALLOWED:
+        return localisedHelper.minorNotAllowed;
 
       default:
         return "";
