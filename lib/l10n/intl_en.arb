@@ -900,7 +900,7 @@
   "fatcaDetailNotFound": "Fatca Details Not Found",
   "invalidMobileCode": "Invalid Mobile Code",
   "invalidLivelinessSCore": "Please move your face closer to the screen!",
-  "invalidFaceMatchScore": "Invalid FaceMatch Score",
+  "invalidFaceMatchScore": "Please move your face closer to the screen!",
   "fingerPrintAlreadyExistForDevice": "Finger Print Already Exist for this device",
   "fingerPrintNotFound": "Finger Print Not Found",
   "jobDetailsNotFound": "Job Details Not Found",
