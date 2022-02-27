@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4010,10 +4011,10 @@ class S {
     );
   }
 
-  /// `Id card is expired, cannot proceed.`
+  /// `Your ID is expired, please renew it and try again`
   String get idCardExpired {
     return Intl.message(
-      'Id card is expired, cannot proceed.',
+      'Your ID is expired, please renew it and try again',
       name: 'idCardExpired',
       desc: '',
       args: [],
@@ -4880,10 +4881,10 @@ class S {
     );
   }
 
-  /// `Email already Exist`
+  /// `Your Email already exists, please try logging in`
   String get emailAlreadyExist {
     return Intl.message(
-      'Email already Exist',
+      'Your Email already exists, please try logging in',
       name: 'emailAlreadyExist',
       desc: '',
       args: [],
@@ -4910,10 +4911,10 @@ class S {
     );
   }
 
-  /// `Error While Creating Account`
+  /// `Error While creating account. Please try again later`
   String get errorCreatingAccount {
     return Intl.message(
-      'Error While Creating Account',
+      'Error While creating account. Please try again later',
       name: 'errorCreatingAccount',
       desc: '',
       args: [],
@@ -4990,10 +4991,10 @@ class S {
     );
   }
 
-  /// `User is not Registered`
+  /// `User is not registered, please register`
   String get userNotRegister {
     return Intl.message(
-      'User is not Registered',
+      'User is not registered, please register',
       name: 'userNotRegister',
       desc: '',
       args: [],
@@ -5020,20 +5021,20 @@ class S {
     );
   }
 
-  /// `For Some Reason You lock, Please Contact Administrator`
+  /// `Oops, your account is locked, please call our engagement team`
   String get youLocked {
     return Intl.message(
-      'For Some Reason You lock, Please Contact Administrator',
+      'Oops, your account is locked, please call our engagement team',
       name: 'youLocked',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your account is locked, please contact customer service to unlock`
+  /// `Oops, your account is locked, please contact our engagement team to unlock`
   String get accountLocked {
     return Intl.message(
-      'Your account is locked, please contact customer service to unlock',
+      'Oops, your account is locked, please contact our engagement team to unlock',
       name: 'accountLocked',
       desc: '',
       args: [],
@@ -6050,10 +6051,10 @@ class S {
     );
   }
 
-  /// `An error has occurred while login, please try again`
+  /// `Error occurred while log in, please try again`
   String get wentWrongWhileLogin {
     return Intl.message(
-      'An error has occurred while login, please try again',
+      'Error occurred while log in, please try again',
       name: 'wentWrongWhileLogin',
       desc: '',
       args: [],
@@ -6330,10 +6331,10 @@ class S {
     );
   }
 
-  /// `Error while getting Balance Inquiry`
+  /// `Error while getting Balance Inquiry, please try again later or contact our enagement team`
   String get errorWhileBalanceInquiry {
     return Intl.message(
-      'Error while getting Balance Inquiry',
+      'Error while getting Balance Inquiry, please try again later or contact our enagement team',
       name: 'errorWhileBalanceInquiry',
       desc: '',
       args: [],
@@ -7770,20 +7771,20 @@ class S {
     );
   }
 
-  /// `Mobile No already Exist`
+  /// `Mobile number already exists`
   String get mobileAlreadyExists {
     return Intl.message(
-      'Mobile No already Exist',
+      'Mobile number already exists',
       name: 'mobileAlreadyExists',
       desc: '',
       args: [],
     );
   }
 
-  /// `We do not recommend to use your previous 10 passwords, please enter a new password `
+  /// `Please enter a new password, we don’t recommend using a pervious password`
   String get weDoNotRecommendToUsePreviousTenPass {
     return Intl.message(
-      'We do not recommend to use your previous 10 passwords, please enter a new password ',
+      'Please enter a new password, we don’t recommend using a pervious password',
       name: 'weDoNotRecommendToUsePreviousTenPass',
       desc: '',
       args: [],
@@ -8510,10 +8511,10 @@ class S {
     );
   }
 
-  /// `Invalid Account Id.`
+  /// `Invalid Account ID.`
   String get invalidAccountID {
     return Intl.message(
-      'Invalid Account Id.',
+      'Invalid Account ID.',
       name: 'invalidAccountID',
       desc: '',
       args: [],
@@ -8530,10 +8531,10 @@ class S {
     );
   }
 
-  /// `Invalid Product Id`
+  /// `Invalid Product ID`
   String get invalidProductId {
     return Intl.message(
-      'Invalid Product Id',
+      'Invalid Product ID',
       name: 'invalidProductId',
       desc: '',
       args: [],
@@ -8560,10 +8561,10 @@ class S {
     );
   }
 
-  /// `Maximum no. of Accounts exceeds, Cannot Open New Account.`
+  /// `Maximum no. of accounts exceeded, Cannot Open New Account.`
   String get maximumAccountOpeningExceed {
     return Intl.message(
-      'Maximum no. of Accounts exceeds, Cannot Open New Account.',
+      'Maximum no. of accounts exceeded, Cannot Open New Account.',
       name: 'maximumAccountOpeningExceed',
       desc: '',
       args: [],
@@ -8640,10 +8641,10 @@ class S {
     );
   }
 
-  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.`
+  /// `Hi There, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.`
   String get idCardScanningError {
     return Intl.message(
-      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.',
+      'Hi There, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.',
       name: 'idCardScanningError',
       desc: '',
       args: [],
@@ -8670,10 +8671,10 @@ class S {
     );
   }
 
-  /// `Invalid Id Card, cannot proceed.`
+  /// `Invalid ID Card, cannot proceed.`
   String get invalidIdCardCannotProceed {
     return Intl.message(
-      'Invalid Id Card, cannot proceed.',
+      'Invalid ID Card, cannot proceed.',
       name: 'invalidIdCardCannotProceed',
       desc: '',
       args: [],
@@ -8700,10 +8701,10 @@ class S {
     );
   }
 
-  /// `Guardian age must be greater than 18 years.`
+  /// `Guardian age must be older than 18 years.`
   String get guardianAgeMustBe {
     return Intl.message(
-      'Guardian age must be greater than 18 years.',
+      'Guardian age must be older than 18 years.',
       name: 'guardianAgeMustBe',
       desc: '',
       args: [],
@@ -8715,6 +8716,146 @@ class S {
     return Intl.message(
       'Profile Status Not Found',
       name: 'profileStatusNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid ID card, please use your National ID`
+  String get invalidNationalIdCard {
+    return Intl.message(
+      'Invalid ID card, please use your National ID',
+      name: 'invalidNationalIdCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your ID card is expired, please renew it and try again`
+  String get idCardIsExpired {
+    return Intl.message(
+      'Your ID card is expired, please renew it and try again',
+      name: 'idCardIsExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must less than Primary limit`
+  String get lessThanPrimary {
+    return Intl.message(
+      'Must less than Primary limit',
+      name: 'lessThanPrimary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Nationality`
+  String get invalidNationality {
+    return Intl.message(
+      'Invalid Nationality',
+      name: 'invalidNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while executing WSChldOnliAppliCr (NI Handler)`
+  String get wsChildError {
+    return Intl.message(
+      'Error while executing WSChldOnliAppliCr (NI Handler)',
+      name: 'wsChildError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Creating Card`
+  String get createCardError {
+    return Intl.message(
+      'Error While Creating Card',
+      name: 'createCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `primary not complete`
+  String get primaryNotComplete {
+    return Intl.message(
+      'primary not complete',
+      name: 'primaryNotComplete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Supplementary Card Id`
+  String get invalidSupplementaryCardId {
+    return Intl.message(
+      'Invalid Supplementary Card Id',
+      name: 'invalidSupplementaryCardId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Setting ContactLess Zero (NIhandler)`
+  String get setContactLessZeroError {
+    return Intl.message(
+      'Error while Setting ContactLess Zero (NIhandler)',
+      name: 'setContactLessZeroError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ContactLess already done`
+  String get contactlessAlreadyDone {
+    return Intl.message(
+      'ContactLess already done',
+      name: 'contactlessAlreadyDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step 2 is not done for this credit card`
+  String get step2NotDoneCreditCard {
+    return Intl.message(
+      'Step 2 is not done for this credit card',
+      name: 'step2NotDoneCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Process Loan Step not done for this card`
+  String get processLoanStepNotDone {
+    return Intl.message(
+      'Process Loan Step not done for this card',
+      name: 'processLoanStepNotDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Setting creating Shipment (NIhandler)`
+  String get creatingShippmentError {
+    return Intl.message(
+      'Error while Setting creating Shipment (NIhandler)',
+      name: 'creatingShippmentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Platform Not Found!`
+  String get platformNotFound {
+    return Intl.message(
+      'Platform Not Found!',
+      name: 'platformNotFound',
       desc: '',
       args: [],
     );
@@ -8810,40 +8951,40 @@ class S {
     );
   }
 
-  /// `Please move your face closer to the screen!`
+  /// `Come closer to the Camera and ….`
   String get invalidLivelinessSCore {
     return Intl.message(
-      'Please move your face closer to the screen!',
+      'Come closer to the Camera and ….',
       name: 'invalidLivelinessSCore',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please move your face closer to the screen!`
+  /// `Invalid FaceMatch Score`
   String get invalidFaceMatchScore {
     return Intl.message(
-      'Please move your face closer to the screen!',
+      'Invalid FaceMatch Score',
       name: 'invalidFaceMatchScore',
       desc: '',
       args: [],
     );
   }
 
-  /// `Finger Print Already Exist for this device`
+  /// `Biometric already exists for this device, please log in using your email and password`
   String get fingerPrintAlreadyExistForDevice {
     return Intl.message(
-      'Finger Print Already Exist for this device',
+      'Biometric already exists for this device, please log in using your email and password',
       name: 'fingerPrintAlreadyExistForDevice',
       desc: '',
       args: [],
     );
   }
 
-  /// `Finger Print Not Found`
+  /// `Biometric not found, please log in using your email and password`
   String get fingerPrintNotFound {
     return Intl.message(
-      'Finger Print Not Found',
+      'Biometric not found, please log in using your email and password',
       name: 'fingerPrintNotFound',
       desc: '',
       args: [],
@@ -8890,10 +9031,10 @@ class S {
     );
   }
 
-  /// `Invalid Minimum Age`
+  /// `you should be 18 years old and above to open an account.`
   String get invalidMinimumAge {
     return Intl.message(
-      'Invalid Minimum Age',
+      'you should be 18 years old and above to open an account.',
       name: 'invalidMinimumAge',
       desc: '',
       args: [],
@@ -8920,10 +9061,10 @@ class S {
     );
   }
 
-  /// `Application is under review`
+  /// `Your Application is under review`
   String get applicationUnderReview {
     return Intl.message(
-      'Application is under review',
+      'Your Application is under review',
       name: 'applicationUnderReview',
       desc: '',
       args: [],
@@ -9000,10 +9141,10 @@ class S {
     );
   }
 
-  /// `Invalid OTP`
+  /// `Incorrect OTP, please try again`
   String get invalidOtpNetwork {
     return Intl.message(
-      'Invalid OTP',
+      'Incorrect OTP, please try again',
       name: 'invalidOtpNetwork',
       desc: '',
       args: [],
@@ -9030,20 +9171,20 @@ class S {
     );
   }
 
-  /// `Otp is Expired`
+  /// `OTP code Expired, please try again`
   String get otpExpiredNetwork {
     return Intl.message(
-      'Otp is Expired',
+      'OTP code Expired, please try again',
       name: 'otpExpiredNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `You are Not Allowed to Login Please Try Again`
+  /// `You are Not Allowed to Login Please contact our engagement team`
   String get notAllowedToLogin {
     return Intl.message(
-      'You are Not Allowed to Login Please Try Again',
+      'You are Not Allowed to Login Please contact our engagement team',
       name: 'notAllowedToLogin',
       desc: '',
       args: [],
@@ -9160,20 +9301,20 @@ class S {
     );
   }
 
-  /// `Invalid Email`
+  /// `Invalid Email address`
   String get invalidEmailNetwork {
     return Intl.message(
-      'Invalid Email',
+      'Invalid Email address',
       name: 'invalidEmailNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Mobile No`
+  /// `Invalid Mobile Number`
   String get invalidMobileNo {
     return Intl.message(
-      'Invalid Mobile No',
+      'Invalid Mobile Number',
       name: 'invalidMobileNo',
       desc: '',
       args: [],
@@ -9250,10 +9391,10 @@ class S {
     );
   }
 
-  /// `Error while setting Pin EURONET`
+  /// `Error while setting your Pin, please try again`
   String get errorSettingPinEuronet {
     return Intl.message(
-      'Error while setting Pin EURONET',
+      'Error while setting your Pin, please try again',
       name: 'errorSettingPinEuronet',
       desc: '',
       args: [],
@@ -9320,50 +9461,80 @@ class S {
     );
   }
 
-  /// `Error in create credit card`
+  /// `Primary Card is not Active`
+  String get primaryCardNotActive {
+    return Intl.message(
+      'Primary Card is not Active',
+      name: 'primaryCardNotActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please scan relative card`
+  String get relativeIdError {
+    return Intl.message(
+      'Please scan relative card',
+      name: 'relativeIdError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan account list not found (Primary)`
+  String get primaryLoanAccListNotFound {
+    return Intl.message(
+      'Loan account list not found (Primary)',
+      name: 'primaryLoanAccListNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while issuing your Credit Card, please try again later`
   String get errorCreateCreditCard {
     return Intl.message(
-      'Error in create credit card',
+      'Error while issuing your Credit Card, please try again later',
       name: 'errorCreateCreditCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `setting contactless to 0 has error`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get settingContactLessError {
     return Intl.message(
-      'setting contactless to 0 has error',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'settingContactLessError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error in Get Card information`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorInGetCardInfoNet {
     return Intl.message(
-      'Error in Get Card information',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorInGetCardInfoNet',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Updating Limits`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorUpdatingLimits {
     return Intl.message(
-      'Error while Updating Limits',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorUpdatingLimits',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Updating Card Status (RuleEngine)`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorUpdatingCardStatusRuleEngine {
     return Intl.message(
-      'Error while Updating Card Status (RuleEngine)',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorUpdatingCardStatusRuleEngine',
       desc: '',
       args: [],
@@ -9380,30 +9551,30 @@ class S {
     );
   }
 
-  /// `Error while Updating Pin Status (RuleEngine)`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorWhileUpdatingPinStatusRE {
     return Intl.message(
-      'Error while Updating Pin Status (RuleEngine)',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorWhileUpdatingPinStatusRE',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while changing Card Status (NI Handler)`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorWhileUpdatingCardStatusNI {
     return Intl.message(
-      'Error while changing Card Status (NI Handler)',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorWhileUpdatingCardStatusNI',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Unblock Pin (NI Handler)`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get errorWhileUnblockPinNI {
     return Intl.message(
-      'Error while Unblock Pin (NI Handler)',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'errorWhileUnblockPinNI',
       desc: '',
       args: [],
@@ -10690,10 +10861,10 @@ class S {
     );
   }
 
-  /// `New Password and Re-enter Password is not Same`
+  /// `Passwords do not match, please make sure they are both the same`
   String get passwordMismatchError {
     return Intl.message(
-      'New Password and Re-enter Password is not Same',
+      'Passwords do not match, please make sure they are both the same',
       name: 'passwordMismatchError',
       desc: '',
       args: [],
@@ -10730,10 +10901,10 @@ class S {
     );
   }
 
-  /// `Invalid Schedule Time`
+  /// `Please select a valid date in the future`
   String get invalidScheduleTime {
     return Intl.message(
-      'Invalid Schedule Time',
+      'Please select a valid date in the future',
       name: 'invalidScheduleTime',
       desc: '',
       args: [],
@@ -10760,10 +10931,10 @@ class S {
     );
   }
 
-  /// `Error while calling CRIFAUEUPDATE (NI Handler)`
+  /// `We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services.`
   String get niHandlerError {
     return Intl.message(
-      'Error while calling CRIFAUEUPDATE (NI Handler)',
+      'We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services.',
       name: 'niHandlerError',
       desc: '',
       args: [],
@@ -10790,10 +10961,10 @@ class S {
     );
   }
 
-  /// `Invalid credit limit can not be greater than max limit`
+  /// `Your credit limit cannot excced 1000 JOD`
   String get inValidCreditLimit {
     return Intl.message(
-      'Invalid credit limit can not be greater than max limit',
+      'Your credit limit cannot excced 1000 JOD',
       name: 'inValidCreditLimit',
       desc: '',
       args: [],
@@ -11265,6 +11436,16 @@ class S {
     return Intl.message(
       'minor not allowed',
       name: 'minorNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Primary Card Id`
+  String get invalidPrimaryId {
+    return Intl.message(
+      'Invalid Primary Card Id',
+      name: 'invalidPrimaryId',
       desc: '',
       args: [],
     );

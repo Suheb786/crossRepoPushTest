@@ -1077,7 +1077,7 @@ class NetworkError extends BaseError {
 
           case "err-128":
             return AppError(
-                cause: cause, error: error, type: ErrorType.USER_NOT_ELIGIBLE);
+                cause: cause, error: error, type: ErrorType.NI_HANDLER_ERROR);
 
           case "err-129":
             return AppError(
@@ -1177,13 +1177,105 @@ class NetworkError extends BaseError {
 
           case "err-147":
             return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_PRIMARY_ID);
+
+          case "err-148":
+            return AppError(
                 cause: cause,
                 error: error,
-                type: ErrorType.MINOR_NOT_ALLOWED);
+                type: ErrorType.PRIMARY_LOAN_ACC_LIST_NOT_FOUND);
+
+          case "err-149":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PRIMARY_CARD_NOT_ACTIVE);
+
+          case "err-151":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_NATIONAL_ID_CARD);
+
+          case "err-152":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ID_CARD_IS_EXPIRED);
+
+          case "err-153":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LESS_THAN_PRIMARY);
+
+          case "err-154":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_NATIONALITY);
+
+          case "err-155":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.WS_CHILD_ERROR);
+
+          case "err-156":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.CREATE_CARD_ERROR);
+
+          case "err-157":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PRIMARY_NOT_COMPLETE);
+
+          case "err-158":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_SUPPLEMENTARY_CARD_ID);
+
+          case "err-159":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SET_CONTACTLESS_ZERO_ERROR);
+
+          case "err-160":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CONTACTLESS_ALREADY_DONE);
+
+          case "err-161":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.STEP_2_NOT_DONE_CREDIT_CARD);
+
+          case "err-162":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PROCESS_LOAN_STEP_NOT_DONE);
+
+          case "err-163":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CREATING_SHIPMENT_ERROR);
 
           case "err-164":
             return AppError(
-                cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
+                cause: cause, error: error, type: ErrorType.PLATFORM_NOT_FOUND);
+
+          case "err-164":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PLATFORM_NOT_FOUND);
+
+          case "err-150":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
+
+          // case "err-164":
+          //   return AppError(
+          //       cause: cause, error: error, type: ErrorType.FORCE_UPDATE);
 
           case "ex-001":
             return AppError(
