@@ -9821,20 +9821,20 @@ class S {
     );
   }
 
-  /// `Error while adding Username`
+  /// `Error while adding Username => RouterAPI`
   String get errorAddingUserName {
     return Intl.message(
-      'Error while adding Username',
+      'Error while adding Username => RouterAPI',
       name: 'errorAddingUserName',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error has occurred during Registration Process, please try again`
+  /// `An error occurred during registration process, please try again`
   String get registrationProcessError {
     return Intl.message(
-      'An error has occurred during Registration Process, please try again',
+      'An error occurred during registration process, please try again',
       name: 'registrationProcessError',
       desc: '',
       args: [],
@@ -9861,50 +9861,50 @@ class S {
     );
   }
 
-  /// `Error occurred while saving ID Card Details`
+  /// `Error occurred while saving ID Card Details, please try again`
   String get savingIdCardError {
     return Intl.message(
-      'Error occurred while saving ID Card Details',
+      'Error occurred while saving ID Card Details, please try again',
       name: 'savingIdCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Country Residence Info`
+  /// `Error occurred while saving Country Residence Info, please try again`
   String get savingCountryResidenceError {
     return Intl.message(
-      'Error occurred while saving Country Residence Info',
+      'Error occurred while saving Country Residence Info, please try again',
       name: 'savingCountryResidenceError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Profile status`
+  /// `Error occurred while saving profile status, please try again`
   String get savingProfileStatusError {
     return Intl.message(
-      'Error occurred while saving Profile status',
+      'Error occurred while saving profile status, please try again',
       name: 'savingProfileStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Job Details`
+  /// `Error occurred while saving job details, please try again`
   String get savingJobDetailsError {
     return Intl.message(
-      'Error occurred while saving Job Details',
+      'Error occurred while saving job details, please try again',
       name: 'savingJobDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while adding Account Purpose`
+  /// `Error occurred while adding Account Purpose, please enter it again`
   String get addAccountPurposeError {
     return Intl.message(
-      'Error occurred while adding Account Purpose',
+      'Error occurred while adding Account Purpose, please enter it again',
       name: 'addAccountPurposeError',
       desc: '',
       args: [],
@@ -9921,70 +9921,70 @@ class S {
     );
   }
 
-  /// `Error occurred while uploading Fatca Signature`
+  /// `Error occurred while uploading Fatca Signature, please try again`
   String get uploadFatcaSignatureError {
     return Intl.message(
-      'Error occurred while uploading Fatca Signature',
+      'Error occurred while uploading Fatca Signature, please try again',
       name: 'uploadFatcaSignatureError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Fatca Details`
+  /// `Error occurred while saving Fatca Details, please try again`
   String get savingFatcaDetailsError {
     return Intl.message(
-      'Error occurred while saving Fatca Details',
+      'Error occurred while saving Fatca Details, please try again',
       name: 'savingFatcaDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving W8 Form Details`
+  /// `Error occurred while saving W8 Form Details, please try again`
   String get savingW8FormError {
     return Intl.message(
-      'Error occurred while saving W8 Form Details',
+      'Error occurred while saving W8 Form Details, please try again',
       name: 'savingW8FormError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving W9 Form Details`
+  /// `Error occurred while saving W9 Form Details, please try again`
   String get savingW9FormError {
     return Intl.message(
-      'Error occurred while saving W9 Form Details',
+      'Error occurred while saving W9 Form Details, please try again',
       name: 'savingW9FormError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Selfee`
+  /// `Error occurred while checking Selfie, please try again`
   String get selfieCheckError {
     return Intl.message(
-      'Error occurred while checking Selfee',
+      'Error occurred while checking Selfie, please try again',
       name: 'selfieCheckError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while enabling FingerPrint`
+  /// `Error occurred while enabling biometric, please try again`
   String get enableFingerPrintError {
     return Intl.message(
-      'Error occurred while enabling FingerPrint',
+      'Error occurred while enabling biometric, please try again',
       name: 'enableFingerPrintError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while disabling FingerPrint`
+  /// `Error occurred while disabling biometric, please try again`
   String get disableFingerPrintError {
     return Intl.message(
-      'Error occurred while disabling FingerPrint',
+      'Error occurred while disabling biometric, please try again',
       name: 'disableFingerPrintError',
       desc: '',
       args: [],
@@ -10021,20 +10021,20 @@ class S {
     );
   }
 
-  /// `Error occurred while getting Account Details`
+  /// `Error occurred while getting Account Details, please try again`
   String get getAccountDetailsError {
     return Intl.message(
-      'Error occurred while getting Account Details',
+      'Error occurred while getting Account Details, please try again',
       name: 'getAccountDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while creating Account`
+  /// `Error occurred while creating Account, please try again`
   String get creatingAccountError {
     return Intl.message(
-      'Error occurred while creating Account',
+      'Error occurred while creating Account, please try again',
       name: 'creatingAccountError',
       desc: '',
       args: [],
@@ -10061,360 +10061,360 @@ class S {
     );
   }
 
-  /// `Error occurred while uploading Documents`
+  /// `Error occurred while uploading Documents, please try again`
   String get uploadDocumentsError {
     return Intl.message(
-      'Error occurred while uploading Documents',
+      'Error occurred while uploading Documents, please try again',
       name: 'uploadDocumentsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while logout`
+  /// `Error occurred while logout, please try again`
   String get logoutError {
     return Intl.message(
-      'Error occurred while logout',
+      'Error occurred while logout, please try again',
       name: 'logoutError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while Register interest`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get registerInterestError {
     return Intl.message(
-      'Error occurred while Register interest',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'registerInterestError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while verifying OTP`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyOtpError {
     return Intl.message(
-      'Error occurred while verifying OTP',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error has occurred during IPhone Login, please try again`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get iphoneLoginError {
     return Intl.message(
-      'An error has occurred during IPhone Login, please try again',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'iphoneLoginError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Document Status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkDocumentStatusError {
     return Intl.message(
-      'Error occurred while checking Document Status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkDocumentStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Agent Status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkAgentStatusError {
     return Intl.message(
-      'Error occurred while checking Agent Status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkAgentStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while changing Call Status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get changeCallStatusError {
     return Intl.message(
-      'Error occurred while changing Call Status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'changeCallStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Customer Schedule Time`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get saveCustomerTimeStatusError {
     return Intl.message(
-      'Error occurred while saving Customer Schedule Time',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'saveCustomerTimeStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Allowed Countries`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getAllowedCountriesError {
     return Intl.message(
-      'Error occurred while getting Allowed Countries',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getAllowedCountriesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Countries`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCountriesError {
     return Intl.message(
-      'Error occurred while getting Countries',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCountriesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while removing Debit Lock`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get removeDebitLockError {
     return Intl.message(
-      'Error occurred while removing Debit Lock',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'removeDebitLockError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while enabling Bio Metric`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get enableBiometricError {
     return Intl.message(
-      'Error occurred while enabling Bio Metric',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'enableBiometricError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Cipher`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCipherError {
     return Intl.message(
-      'Error occurred while getting Cipher',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCipherError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while generating Key Pair`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get generateKeyPairError {
     return Intl.message(
-      'Error occurred while generating Key Pair',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'generateKeyPairError',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error has occurred during Android Login, please try again`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get androidLoginError {
     return Intl.message(
-      'An error has occurred during Android Login, please try again',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'androidLoginError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Customer Status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkCustomerStatusError {
     return Intl.message(
-      'Error occurred while checking Customer Status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkCustomerStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Beneficairies`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getBeneficiariesError {
     return Intl.message(
-      'Error occurred while getting Beneficairies',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getBeneficiariesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Atms`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getAtmError {
     return Intl.message(
-      'Error occurred while getting Atms',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getAtmError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Issuer`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkIssuer {
     return Intl.message(
-      'Error occurred while checking Issuer',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkIssuer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting States`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getStatesError {
     return Intl.message(
-      'Error occurred while getting States',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getStatesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Cities`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCitiesError {
     return Intl.message(
-      'Error occurred while getting Cities',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCitiesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Cities by Country`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCitiesByCountryError {
     return Intl.message(
-      'Error occurred while getting Cities by Country',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCitiesByCountryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Contacts`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getContactsError {
     return Intl.message(
-      'Error occurred while getting Contacts',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getContactsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while adding Beneficiary`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get addBeneficiaryError {
     return Intl.message(
-      'Error occurred while adding Beneficiary',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'addBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while updating Beneficiary`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get updateBeneficiaryError {
     return Intl.message(
-      'Error occurred while updating Beneficiary',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'updateBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while deleting Beneficiary`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get deleteBeneficiaryError {
     return Intl.message(
-      'Error occurred while deleting Beneficiary',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'deleteBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while verifying Beneficiary OTP`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyBeneficiaryOtpError {
     return Intl.message(
-      'Error occurred while verifying Beneficiary OTP',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyBeneficiaryOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while uploading Beneficiary Image`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get uploadBeneficiaryError {
     return Intl.message(
-      'Error occurred while uploading Beneficiary Image',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'uploadBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Profile Info`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getProfileInfoError {
     return Intl.message(
-      'Error occurred while getting Profile Info',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getProfileInfoError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while deleting Profile Image`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get deleteProfileImageError {
     return Intl.message(
-      'Error occurred while deleting Profile Image',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'deleteProfileImageError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Customer Document`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCustomerDocumentError {
     return Intl.message(
-      'Error occurred while getting Customer Document',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCustomerDocumentError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Customer Document Id`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCustomerDocumentIdError {
     return Intl.message(
-      'Error occurred while getting Customer Document Id',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCustomerDocumentIdError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while changing Profile Image`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get changeProfileImageError {
     return Intl.message(
-      'Error occurred while changing Profile Image',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'changeProfileImageError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while changing Email`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get changeEmailError {
     return Intl.message(
-      'Error occurred while changing Email',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'changeEmailError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while verifying Change Email`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyChangeEmailError {
     return Intl.message(
-      'Error occurred while verifying Change Email',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyChangeEmailError',
       desc: '',
       args: [],
@@ -10431,10 +10431,10 @@ class S {
     );
   }
 
-  /// `Error occurred while verifying Change Mobile No`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyChangeMobileNoError {
     return Intl.message(
-      'Error occurred while verifying Change Mobile No',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyChangeMobileNoError',
       desc: '',
       args: [],
@@ -10451,30 +10451,30 @@ class S {
     );
   }
 
-  /// `Error occurred while verifying OTP`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyOtpPasswordError {
     return Intl.message(
-      'Error occurred while verifying OTP',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyOtpPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while updating Request to Pay Status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get requestToPayStatusError {
     return Intl.message(
-      'Error occurred while updating Request to Pay Status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'requestToPayStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while Card Issuance`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get cardIssuanceError {
     return Intl.message(
-      'Error occurred while Card Issuance',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'cardIssuanceError',
       desc: '',
       args: [],
@@ -10501,471 +10501,531 @@ class S {
     );
   }
 
-  /// `Error while getting Dashboard Data`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getDashboardDataError {
     return Intl.message(
-      'Error while getting Dashboard Data',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getDashboardDataError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting CustStatDateWise (MoneyThor)`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get moneyThorError {
     return Intl.message(
-      'Error while getting CustStatDateWise (MoneyThor)',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'moneyThorError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Debit Card Transaction List`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get debitCardTransactionListError {
     return Intl.message(
-      'Error while getting Debit Card Transaction List',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'debitCardTransactionListError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Account Activity`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get accountActivityError {
     return Intl.message(
-      'Error while Account Activity',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'accountActivityError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception in Confirm credit card delievery`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get confrimCreditCardDeliveryError {
     return Intl.message(
-      'Exception in Confirm credit card delievery',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'confrimCreditCardDeliveryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Credit Dashboard Data`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get creditDashboardDataError {
     return Intl.message(
-      'Error while getting Credit Dashboard Data',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'creditDashboardDataError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception Credit card req`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get creditCardReqError {
     return Intl.message(
-      'Exception Credit card req',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'creditCardReqError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Credit Card Transactions List`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get creditCardTransactionListError {
     return Intl.message(
-      'Exception while getting Credit Card Transactions List',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'creditCardTransactionListError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Credit Years`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCreditYearsError {
     return Intl.message(
-      'Exception while getting Credit Years',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCreditYearsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Credit Card Statement`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get creditCardStatementError {
     return Intl.message(
-      'Exception while getting Credit Card Statement',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'creditCardStatementError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Debit Years`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getDebitYearsError {
     return Intl.message(
-      'Exception while getting Debit Years',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getDebitYearsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Debit Card Statement`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get debitCardStatementError {
     return Intl.message(
-      'Exception while getting Debit Card Statement',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'debitCardStatementError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Updating Limits`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get updateLimitError {
     return Intl.message(
-      'Exception while Updating Limits',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'updateLimitError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Freeze Debit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get freezeDebitCardError {
     return Intl.message(
-      'Exception while Freeze Debit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'freezeDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Unfreeze Debit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get unfreezeDebitCardError {
     return Intl.message(
-      'Exception while Unfreeze Debit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'unfreezeDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Cancel Debit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get cancelDebitCardError {
     return Intl.message(
-      'Exception while Cancel Debit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'cancelDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Verifying Change Pin`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyChangePinError {
     return Intl.message(
-      'Exception while Verifying Change Pin',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyChangePinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Change Pin`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get changePinError {
     return Intl.message(
-      'Exception while Change Pin',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'changePinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Unblock Debit Card Pin`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get unblockDebitCardPinError {
     return Intl.message(
-      'Exception while Unblock Debit Card Pin',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'unblockDebitCardPinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Debit Card Limit`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getDebitCardLimitError {
     return Intl.message(
-      'Exception while getting Debit Card Limit',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getDebitCardLimitError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Requesting Suplementary Debit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get requestSupplementaryDebitCardError {
     return Intl.message(
-      'Exception while Requesting Suplementary Debit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'requestSupplementaryDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Freeze Credit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get freezeCreditCardError {
     return Intl.message(
-      'Exception while Freeze Credit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'freezeCreditCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Unfreeze Credit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get unfreezeCreditCardError {
     return Intl.message(
-      'Exception while Unfreeze Credit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'unfreezeCreditCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Unblock Credit Card Pin`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get unblockCreditCardPinError {
     return Intl.message(
-      'Exception while Unblock Credit Card Pin',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'unblockCreditCardPinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Account Details By Alias`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getAccountByAliasError {
     return Intl.message(
-      'Exception while getting Account Details By Alias',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getAccountByAliasError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Request to Pay`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get requestToPayError {
     return Intl.message(
-      'Exception while Request to Pay',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'requestToPayError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while checking Send Money`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkSendMoneyError {
     return Intl.message(
-      'Exception while checking Send Money',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkSendMoneyError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while verifying Transfer API`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyTransferApiError {
     return Intl.message(
-      'Exception while verifying Transfer API',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyTransferApiError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while executing TransferAPIV2`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyTransferApiV2Error {
     return Intl.message(
-      'Exception while executing TransferAPIV2',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyTransferApiV2Error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Transfer Purposes`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getTransferPurposeError {
     return Intl.message(
-      'Exception while getting Transfer Purposes',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getTransferPurposeError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while executing PaymentActivityAPI`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get paymentActivityApiError {
     return Intl.message(
-      'Exception while executing PaymentActivityAPI',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'paymentActivityApiError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while checking Credentials for Forget Password`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkCredentialsForForgetPasswordError {
     return Intl.message(
-      'Exception while checking Credentials for Forget Password',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkCredentialsForForgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Forget Password`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get forgetPasswordError {
     return Intl.message(
-      'Exception while Forget Password',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'forgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while verifying Forget Password`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyForgetPasswordError {
     return Intl.message(
-      'Exception while verifying Forget Password',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyForgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while sending OTP Token`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get sendOtpTokenError {
     return Intl.message(
-      'Exception while sending OTP Token',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'sendOtpTokenError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while verifying Device Change OTP`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get verifyDeviceChangeOtpError {
     return Intl.message(
-      'Exception while verifying Device Change OTP',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'verifyDeviceChangeOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while resending OTP`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get resendOtpError {
     return Intl.message(
-      'Exception while resending OTP',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'resendOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while checking exsiting call`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkExistingCallError {
     return Intl.message(
-      'Exception while checking exsiting call',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkExistingCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while requesting call`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get requestCallError {
     return Intl.message(
-      'Exception while requesting call',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'requestCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting gender status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getGenderStatusError {
     return Intl.message(
-      'Exception while getting gender status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getGenderStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting time slots`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getTimeSlotsError {
     return Intl.message(
-      'Exception while getting time slots',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getTimeSlotsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while adding call`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get addCallError {
     return Intl.message(
-      'Exception while adding call',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'addCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while checking call status`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get checkCallStatusError {
     return Intl.message(
-      'Exception while checking call status',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'checkCallStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Card Applications`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getCardApplicationError {
     return Intl.message(
-      'Exception while getting Card Applications',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getCardApplicationError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while getting Loan Values`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get getLoanValuesError {
     return Intl.message(
-      'Exception while getting Loan Values',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'getLoanValuesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while Process loan Values`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get processLoanValuesError {
     return Intl.message(
-      'Exception while Process loan Values',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'processLoanValuesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Exception while executing PayBack Credit Card`
+  /// `Error while processing your request, please try again later or call our Engagement team`
   String get paybackCreditCardError {
     return Intl.message(
-      'Exception while executing PayBack Credit Card',
+      'Error while processing your request, please try again later or call our Engagement team',
       name: 'paybackCreditCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get supplementaryCardApplicationError {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'supplementaryCardApplicationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get requestSupplementaryCardError {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'requestSupplementaryCardError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get supplementaryCardStep2Error {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'supplementaryCardStep2Error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get supplementaryCardStep3Error {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'supplementaryCardStep3Error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get relationshipListError {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'relationshipListError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while processing your request, please try again later or call our Engagement team`
+  String get getCurrentValuesError {
+    return Intl.message(
+      'Error while processing your request, please try again later or call our Engagement team',
+      name: 'getCurrentValuesError',
       desc: '',
       args: [],
     );
@@ -11351,10 +11411,10 @@ class S {
     );
   }
 
-  /// `Proof of Income & Proof of Address is Required.`
+  /// `Proof of Income & Proof of Address are Required.`
   String get proofRequired {
     return Intl.message(
-      'Proof of Income & Proof of Address is Required.',
+      'Proof of Income & Proof of Address are Required.',
       name: 'proofRequired',
       desc: '',
       args: [],
@@ -11366,6 +11426,16 @@ class S {
     return Intl.message(
       'OTP is null',
       name: 'otpNull',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device Id is Required`
+  String get deviceIsRequired {
+    return Intl.message(
+      'Device Id is Required',
+      name: 'deviceIsRequired',
       desc: '',
       args: [],
     );

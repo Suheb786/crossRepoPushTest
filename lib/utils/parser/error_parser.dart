@@ -488,6 +488,18 @@ class ErrorParser {
         return localisedHelper.getCountriesError;
       case ErrorType.REMOVE_DEBIT_LOCK_ERROR:
         return localisedHelper.removeDebitLockError;
+      case ErrorType.SUPPLEMENTARY_CARD_APPLICATION_ERROR:
+        return localisedHelper.supplementaryCardApplicationError;
+      case ErrorType.REQUEST_SUPPLEMENTARY_CARD_ERROR:
+        return localisedHelper.requestSupplementaryCardError;
+      case ErrorType.SUPPLEMENTARY_CARD_STEP_2_ERROR:
+        return localisedHelper.supplementaryCardStep2Error;
+      case ErrorType.SUPPLEMENTARY_CARD_STEP_3_ERROR:
+        return localisedHelper.supplementaryCardStep3Error;
+      case ErrorType.RELATIONSHIP_LIST_ERROR:
+        return localisedHelper.relationshipListError;
+      case ErrorType.GET_CURRENT_VALUES_ERROR:
+        return localisedHelper.getCurrentValuesError;
       case ErrorType.ENABLE_BIOMETRIC_ERROR:
         return localisedHelper.enableBiometricError;
       case ErrorType.GET_CIPHER_ERROR:
@@ -726,6 +738,8 @@ class ErrorParser {
         return localisedHelper.proofRequired;
       case ErrorType.OTP_NULL:
         return localisedHelper.otpNull;
+      case ErrorType.DEVICE_IS_REQUIRED:
+        return localisedHelper.deviceIsRequired;
       case ErrorType.UNAUTHORIZED_USER:
         return localisedHelper.sessionTimeout;
 

@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
-            "Error while Account Activity"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "accountBalance":
             MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
@@ -82,11 +82,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while adding Account Purpose"),
+            "Error occurred while adding Account Purpose, please enter it again"),
         "addBeneficiaryError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while adding Beneficiary"),
-        "addCallError":
-            MessageLookupByLibrary.simpleMessage("Exception while adding call"),
+            "Error while processing your request, please try again later or call our Engagement team"),
+        "addCallError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
@@ -143,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amount Should be Greater then or equal to minimum Amount"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
-            "An error has occurred during Android Login, please try again"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "annual": MessageLookupByLibrary.simpleMessage("ANNUAL "),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
@@ -256,7 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
             "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Cancel Debit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "cancelTheCard":
             MessageLookupByLibrary.simpleMessage("Cancel this card?"),
         "cancelThisCard":
@@ -273,7 +273,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardInfoError":
             MessageLookupByLibrary.simpleMessage("Card Info Error"),
         "cardIssuanceError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while Card Issuance"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "cardLater":
             MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
         "cardLoanAccNotFound":
@@ -293,7 +293,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
             "While frozen, your card can\'t be used for any transactions."),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while changing Call Status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCardPinError":
@@ -303,7 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while changing Email"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "changeLinkAccount":
             MessageLookupByLibrary.simpleMessage("Change linked account"),
         "changeLinkedAccount":
@@ -322,32 +322,32 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "changePasswordError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while changing Password"),
-        "changePinError":
-            MessageLookupByLibrary.simpleMessage("Exception while Change Pin"),
+        "changePinError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "changeProfileImageError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while changing Profile Image"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkAgentStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while checking Agent Status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkCallStatusError": MessageLookupByLibrary.simpleMessage(
-            "Exception while checking call status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkCredentialsForForgetPasswordError":
             MessageLookupByLibrary.simpleMessage(
-                "Exception while checking Credentials for Forget Password"),
+                "Error while processing your request, please try again later or call our Engagement team"),
         "checkCustomerStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while checking Customer Status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkDocumentStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while checking Document Status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkExistingCallError": MessageLookupByLibrary.simpleMessage(
-            "Exception while checking exsiting call"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkForgetPasswordError":
             MessageLookupByLibrary.simpleMessage("Error While Forget Password"),
         "checkIssuer": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while checking Issuer"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkOtherNationalityStatusError":
             MessageLookupByLibrary.simpleMessage(
                 "Error occurred while checking other Nationality Status"),
         "checkSendMoneyError": MessageLookupByLibrary.simpleMessage(
-            "Exception while checking Send Money"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "checkVideoCallStatusError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while checking Video Call Status"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
@@ -380,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Review and confirm\nyour details"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
-            "Exception in Confirm credit card delievery"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
@@ -411,7 +411,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your new password"),
         "creatingAccountError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while creating Account"),
+            "Error occurred while creating Account, please try again"),
         "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
             "Creating your credit card limit"),
         "creatingShippmentError": MessageLookupByLibrary.simpleMessage(
@@ -429,18 +429,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
         "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
-        "creditCardReqError":
-            MessageLookupByLibrary.simpleMessage("Exception Credit card req"),
+        "creditCardReqError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "creditCardSettings":
             MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardStatementError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Credit Card Statement"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "creditCardTransactionListError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Credit Card Transactions List"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "Credit card\nhas been verified."),
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
-            "Error while getting Credit Dashboard Data"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
         "creditLimitSettings":
             MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
@@ -475,23 +475,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitCardSettings":
             MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
         "debitCardStatementError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Debit Card Statement"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "debitCardTransactionListError": MessageLookupByLibrary.simpleMessage(
-            "Error while getting Debit Card Transaction List"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "Debit card\nhas been verified."),
         "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
             "declaration is true and correct."),
         "deleteBeneficiaryError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while deleting Beneficiary"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "deleteProfileImageError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while deleting Profile Image"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "deliveryIssue":
             MessageLookupByLibrary.simpleMessage("I have delivery issue"),
         "depositViaATM":
             MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
+        "deviceIsRequired":
+            MessageLookupByLibrary.simpleMessage("Device Id is Required"),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
         "deviceNotSupported":
@@ -501,7 +503,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
         "disableFingerPrintError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while disabling FingerPrint"),
+            "Error occurred while disabling biometric, please try again"),
         "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
             "I\'m dissatisfied with the digital platform"),
         "dissatisfiedWithOverallBankingExp":
@@ -627,7 +629,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("National Id cannot be empty"),
         "enable": MessageLookupByLibrary.simpleMessage("Enable"),
         "enableBiometricError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while enabling Bio Metric"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "enableBiometricLogin":
             MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
         "enableBiometricLoginDescriptionAndroid":
@@ -637,7 +639,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enableBiometricLoginTitle":
             MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while enabling FingerPrint"),
+            "Error occurred while enabling biometric, please try again"),
         "engagementTeam":
             MessageLookupByLibrary.simpleMessage("Engagement Team"),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
@@ -691,8 +693,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterYourEmailAndMobile": MessageLookupByLibrary.simpleMessage(
             "Enter your email and\nmobile number"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
-        "errorAddingUserName":
-            MessageLookupByLibrary.simpleMessage("Error while adding Username"),
+        "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
+            "Error while adding Username => RouterAPI"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "Error while issuing your Credit Card, please try again later"),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
@@ -853,17 +855,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "foreignTaxIdNumber": MessageLookupByLibrary.simpleMessage(
             "Foreign Tax Identifying Number"),
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Forget Password"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
             "You can unfreeze and activate your card at anytime."),
         "freezeCreditCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Freeze Credit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
             "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
         "freezeDebitCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Freeze Debit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":
@@ -876,73 +878,75 @@ class MessageLookup extends MessageLookupByLibrary {
         "generateBlockPin": MessageLookupByLibrary.simpleMessage(
             "Error while generating block pin"),
         "generateKeyPairError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while generating Key Pair"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "genericError": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
         "getAccountByAliasError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Account Details By Alias"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Account Details"),
+            "Error occurred while getting Account Details, please try again"),
         "getAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while getting Additional Documentation"),
         "getAllowedCountriesError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Allowed Countries"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getAtmError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Atms"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getBeneficiariesError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Beneficairies"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCallDurationError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while get call duration"),
         "getCallTokenError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during getting token"),
         "getCardApplicationError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Card Applications"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCardDelivered": MessageLookupByLibrary.simpleMessage(
             "Blink has made borrowing more accessible to everyone. With only a few steps, get your instant virtual credit card and we will deliver the physical one to your door step for free."),
         "getCardNow":
             MessageLookupByLibrary.simpleMessage("Get your card now!"),
         "getCipherError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Cipher"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCitiesByCountryError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Cities by Country"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCitiesError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Cities"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getComboValuesError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while getting Combo Values"),
         "getContactsError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Contacts"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCountriesError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Countries"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCreditYearsError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Credit Years"),
+            "Error while processing your request, please try again later or call our Engagement team"),
+        "getCurrentValuesError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCustomerDocumentError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Customer Document"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getCustomerDocumentIdError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Customer Document Id"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getDashboardDataError": MessageLookupByLibrary.simpleMessage(
-            "Error while getting Dashboard Data"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getDebitCardLimitError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Debit Card Limit"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getDebitYearsError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Debit Years"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getDirections": MessageLookupByLibrary.simpleMessage("Get Directions"),
         "getGenderStatusError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting gender status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getLater": MessageLookupByLibrary.simpleMessage("I’ll get it later"),
         "getLoanPaymentError": MessageLookupByLibrary.simpleMessage(
             "GetLoanAPI PAYMENT API Error"),
         "getLoanValuesError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Loan Values"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getMyCreditCard":
             MessageLookupByLibrary.simpleMessage("Get My Credit Card"),
         "getProfileInfoError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting Profile Info"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getStatesError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while getting States"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getTimeSlotsError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting time slots"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
-            "Exception while getting Transfer Purposes"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "Guardian age must be older than 18 years."),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
@@ -1219,7 +1223,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "IP Address Call Internal Server Error"),
         "iphoneLoginError": MessageLookupByLibrary.simpleMessage(
-            "An error has occurred during IPhone Login, please try again"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
             "Please enter if only the business name is different from the name above"),
         "isoNationalityNotFound":
@@ -1277,8 +1281,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
-        "logoutError":
-            MessageLookupByLibrary.simpleMessage("Error occurred while logout"),
+        "logoutError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred while logout, please try again"),
         "lookingFor":
             MessageLookupByLibrary.simpleMessage("What are you looking for?"),
         "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
@@ -1340,7 +1344,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your mobile number has been updated successfully"),
         "moneyThorError": MessageLookupByLibrary.simpleMessage(
-            "Error while getting CustStatDateWise (MoneyThor)"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
@@ -1475,11 +1479,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your password has been updated successfully"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while executing PayBack Credit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "paymentActivity":
             MessageLookupByLibrary.simpleMessage("Payment activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
-            "Exception while executing PaymentActivityAPI"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Error while getting Payment Cash Back (NI Handler)"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
@@ -1566,7 +1570,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "Process Loan Step not done for this card"),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Process loan Values"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
@@ -1594,7 +1598,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "proofOfIncomeDescSetting": MessageLookupByLibrary.simpleMessage(
             "If you receive a salary, upload your job certificate or your salary slip"),
         "proofRequired": MessageLookupByLibrary.simpleMessage(
-            "Proof of Income & Proof of Address is Required."),
+            "Proof of Income & Proof of Address are Required."),
         "provideSupplementaryCardId": MessageLookupByLibrary.simpleMessage(
             "Please scan supplementary cardholder\'s ID"),
         "providedCountryNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -1638,29 +1642,31 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reference Number"),
         "refno": MessageLookupByLibrary.simpleMessage("Ref No."),
         "registerInterestError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while Register interest"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "registerViaEmail":
             MessageLookupByLibrary.simpleMessage("Register via Email"),
         "registeringUserToVKeyError": MessageLookupByLibrary.simpleMessage(
             "Error while registering user to vkey"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
-            "An error has occurred during Registration Process, please try again"),
+            "An error occurred during registration process, please try again"),
         "relationShipWithPepCaps":
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationship": MessageLookupByLibrary.simpleMessage("Relationship"),
+        "relationshipListError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "relativeIdError":
             MessageLookupByLibrary.simpleMessage("Please scan relative card"),
         "removeDebitLockError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while removing Debit Lock"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "removeFromContact":
             MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report card issue"),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
-            "Exception while requesting call"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
         "requestMoneyFrom":
             MessageLookupByLibrary.simpleMessage("Request money from"),
@@ -1676,15 +1682,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Request Is Not Completed"),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
-        "requestSupplementaryDebitCardError":
-            MessageLookupByLibrary.simpleMessage(
-                "Exception while Requesting Suplementary Debit Card"),
+        "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
+        "requestSupplementaryDebitCardError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "requestSupplementarycard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestToPayError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Request to Pay"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "requestToPayStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while updating Request to Pay Status"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
         "requestedMoneyVia":
             MessageLookupByLibrary.simpleMessage("Request money via"),
@@ -1695,7 +1702,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),
         "resendIn": m3,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
-            "Exception while resending OTP"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "residenceCountryNotFound":
             MessageLookupByLibrary.simpleMessage("Residence Country Not Found"),
         "residentCity": MessageLookupByLibrary.simpleMessage("Resident City"),
@@ -1736,23 +1743,23 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Error occurred while saving Additional Documentation"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving Customer Schedule Time"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
             "Save your earnings digitally and securely"),
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving Country Residence Info"),
+            "Error occurred while saving Country Residence Info, please try again"),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving Fatca Details"),
+            "Error occurred while saving Fatca Details, please try again"),
         "savingIdCardError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving ID Card Details"),
+            "Error occurred while saving ID Card Details, please try again"),
         "savingJobDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving Job Details"),
+            "Error occurred while saving job details, please try again"),
         "savingProfileStatusError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving Profile status"),
+            "Error occurred while saving profile status, please try again"),
         "savingW8FormError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving W8 Form Details"),
+            "Error occurred while saving W8 Form Details, please try again"),
         "savingW9FormError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while saving W9 Form Details"),
+            "Error occurred while saving W9 Form Details, please try again"),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage(
             "Something wrong, scan ID again"),
         "scheduleLater":
@@ -1785,7 +1792,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while checking Selfee"),
+            "Error occurred while checking Selfie, please try again"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
@@ -1793,7 +1800,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
         "sendOtpTokenError": MessageLookupByLibrary.simpleMessage(
-            "Exception while sending OTP Token"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "Error While Sending Device Change OTP"),
@@ -1850,6 +1857,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
+        "supplementaryCardApplicationError": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
+        "supplementaryCardStep2Error": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
+        "supplementaryCardStep3Error": MessageLookupByLibrary.simpleMessage(
+            "Error while processing your request, please try again later or call our Engagement team"),
         "supplementaryDebitcardSuccessDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately."),
         "swipeDownToCancel":
@@ -1973,27 +1986,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "unblockCardPin":
             MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Unblock Credit Card Pin"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "unblockDebitCardPinError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Unblock Debit Card Pin"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
         "undoTransaction":
             MessageLookupByLibrary.simpleMessage("Undo transaction"),
         "unfreezeCreditCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Unfreeze Credit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "unfreezeDebitCardError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Unfreeze Debit Card"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "updateBeneficiaryError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while updating Beneficiary"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "updateLimitError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Updating Limits"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "updateRequired":
             MessageLookupByLibrary.simpleMessage("Update required"),
         "updateRequiredDesc": MessageLookupByLibrary.simpleMessage(
             "A newer version is available. Please update Blink to continue using the services."),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadBeneficiaryError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while uploading Beneficiary Image"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),
         "uploadDocWithinTendays": MessageLookupByLibrary.simpleMessage(
@@ -2009,11 +2022,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadDocuments":
             MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
         "uploadDocumentsError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while uploading Documents"),
+            "Error occurred while uploading Documents, please try again"),
         "uploadDocumentsSmall":
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "uploadFatcaSignatureError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while uploading Fatca Signature"),
+            "Error occurred while uploading Fatca Signature, please try again"),
         "uploadIdInstead":
             MessageLookupByLibrary.simpleMessage("Upload ID instead"),
         "uploadSignature":
@@ -2035,28 +2048,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
         "verifyBeneficiaryOtpError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while verifying Beneficiary OTP"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyChangeEmailError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while verifying Change Email"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyChangeMobileNoError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while verifying Change Mobile No"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyChangePinError": MessageLookupByLibrary.simpleMessage(
-            "Exception while Verifying Change Pin"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyDeviceChangeOtpError": MessageLookupByLibrary.simpleMessage(
-            "Exception while verifying Device Change OTP"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyForgetPasswordError": MessageLookupByLibrary.simpleMessage(
-            "Exception while verifying Forget Password"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party."),
         "verifyOtpError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while verifying OTP"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyOtpPasswordError": MessageLookupByLibrary.simpleMessage(
-            "Error occurred while verifying OTP"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyTransferApiError": MessageLookupByLibrary.simpleMessage(
-            "Exception while verifying Transfer API"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
-            "Exception while executing TransferAPIV2"),
+            "Error while processing your request, please try again later or call our Engagement team"),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),

@@ -1987,6 +1987,42 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.PAYBACK_CREDIT_CARD_ERROR);
 
+          case "ex-116":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SUPPLEMENTARY_CARD_APPLICATION_ERROR);
+
+          case "ex-117":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_SUPPLEMENTARY_CARD_ERROR);
+
+          case "ex-118":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SUPPLEMENTARY_CARD_STEP_2_ERROR);
+
+          case "ex-119":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SUPPLEMENTARY_CARD_STEP_3_ERROR);
+
+          case "ex-120":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.RELATIONSHIP_LIST_ERROR);
+
+          case "ex-121":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_CURRENT_VALUES_ERROR);
+
           case "err-vkey-1":
             return AppError(
                 cause: cause,
@@ -2046,6 +2082,10 @@ class NetworkError extends BaseError {
           case "err-0004":
             return AppError(
                 cause: cause, error: error, type: ErrorType.OTP_NULL);
+
+          case "err-0005":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.DEVICE_IS_REQUIRED);
 
           default:
             return AppError(
