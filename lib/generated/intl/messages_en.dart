@@ -137,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
+            "Amount Should be Not Greater then Total OutStandings"),
+        "amountLimitError": MessageLookupByLibrary.simpleMessage(
+            "Amount Should be Greater then or equal to minimum Amount"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Android Login, please try again"),
@@ -449,6 +453,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The current password entered is wrong. Please try again"),
         "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Current password is invalid. Password does not meet requirement."),
+        "customerNotEligible":
+            MessageLookupByLibrary.simpleMessage("Customer Is Not Eligible"),
         "customerPreferenceNotFound": MessageLookupByLibrary.simpleMessage(
             "Customer Preference Not Found"),
         "customerService": MessageLookupByLibrary.simpleMessage(
@@ -524,6 +530,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Information"),
         "editTransactionPurpose":
             MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
+        "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
+            "An Error has Occured while EDraw API get wrong"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "emailAddressSmall":
@@ -779,6 +787,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while processing your request, please try again later or call our Engagement team"),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "Error while processing your request, please try again later or call our Engagement team"),
+        "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
+            "An Error has Occured while ESettlement API get wrong"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while establish call"),
         "estimatedTime": m1,
@@ -919,6 +929,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "getGenderStatusError": MessageLookupByLibrary.simpleMessage(
             "Exception while getting gender status"),
         "getLater": MessageLookupByLibrary.simpleMessage("I’ll get it later"),
+        "getLoanPaymentError": MessageLookupByLibrary.simpleMessage(
+            "GetLoanAPI PAYMENT API Error"),
         "getLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Exception while getting Loan Values"),
         "getMyCreditCard":
@@ -1245,6 +1257,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
         "loanAccountListNotFound":
             MessageLookupByLibrary.simpleMessage("Loan account list not found"),
+        "loanNotActive":
+            MessageLookupByLibrary.simpleMessage("Loan Account Is Not Active"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "Process Loan Step not done for this card"),
         "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
@@ -1547,6 +1561,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("primary not complete"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
             "Proceed to the login page and use your\nnew password to login."),
+        "processLoanError": MessageLookupByLibrary.simpleMessage(
+            "ProcessLoanAPI PAYMENT API Error"),
         "processLoanStepNotDone": MessageLookupByLibrary.simpleMessage(
             "Process Loan Step not done for this card"),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
@@ -1709,6 +1725,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Resume application"),
         "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
             "Please accept the above terms and conditions"),
+        "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while retrieving your standing instruction details. Please try again later."),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -1922,6 +1940,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "Your Trasaction is not Allowed"),
         "transactionPeriod":
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactionPurpose":
@@ -1943,6 +1963,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN."),
+        "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred and we are unable to complete the transaction"),
+        "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred and we are unable to proceed with the transaction"),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "unauthorize": MessageLookupByLibrary.simpleMessage("Unauthorize"),

@@ -8861,6 +8861,126 @@ class S {
     );
   }
 
+  /// `Your Trasaction is not Allowed`
+  String get transactionNotAllowed {
+    return Intl.message(
+      'Your Trasaction is not Allowed',
+      name: 'transactionNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred and we are unable to proceed with the transaction`
+  String get unableToProceedTransaction {
+    return Intl.message(
+      'An error has occurred and we are unable to proceed with the transaction',
+      name: 'unableToProceedTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred and we are unable to complete the transaction`
+  String get unableToCompleteTransaction {
+    return Intl.message(
+      'An error has occurred and we are unable to complete the transaction',
+      name: 'unableToCompleteTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GetLoanAPI PAYMENT API Error`
+  String get getLoanPaymentError {
+    return Intl.message(
+      'GetLoanAPI PAYMENT API Error',
+      name: 'getLoanPaymentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ProcessLoanAPI PAYMENT API Error`
+  String get processLoanError {
+    return Intl.message(
+      'ProcessLoanAPI PAYMENT API Error',
+      name: 'processLoanError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Is Not Eligible`
+  String get customerNotEligible {
+    return Intl.message(
+      'Customer Is Not Eligible',
+      name: 'customerNotEligible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan Account Is Not Active`
+  String get loanNotActive {
+    return Intl.message(
+      'Loan Account Is Not Active',
+      name: 'loanNotActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while retrieving your standing instruction details. Please try again later.`
+  String get retrieveInstructionDetails {
+    return Intl.message(
+      'An error occurred while retrieving your standing instruction details. Please try again later.',
+      name: 'retrieveInstructionDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An Error has Occured while EDraw API get wrong`
+  String get edrawApiGotWrong {
+    return Intl.message(
+      'An Error has Occured while EDraw API get wrong',
+      name: 'edrawApiGotWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An Error has Occured while ESettlement API get wrong`
+  String get esettlementGoneWrong {
+    return Intl.message(
+      'An Error has Occured while ESettlement API get wrong',
+      name: 'esettlementGoneWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount Should be Greater then or equal to minimum Amount`
+  String get amountLimitError {
+    return Intl.message(
+      'Amount Should be Greater then or equal to minimum Amount',
+      name: 'amountLimitError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount Should be Not Greater then Total OutStandings`
+  String get amountGreaterThanOutstanding {
+    return Intl.message(
+      'Amount Should be Not Greater then Total OutStandings',
+      name: 'amountGreaterThanOutstanding',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Response # 1 is required.`
   String get response1Required {
     return Intl.message(

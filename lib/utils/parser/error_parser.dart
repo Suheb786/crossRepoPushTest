@@ -796,6 +796,30 @@ class ErrorParser {
         return localisedHelper.creatingShippmentError;
       case ErrorType.PLATFORM_NOT_FOUND:
         return localisedHelper.platformNotFound;
+      case ErrorType.TRANSACTION_NOT_ALLOWED:
+        return localisedHelper.transactionNotAllowed;
+      case ErrorType.UNABLE_TO_PROCEED_TRANSACTION:
+        return localisedHelper.unableToProceedTransaction;
+      case ErrorType.UNABLE_TO_COMPLETE_TRANSACTION:
+        return localisedHelper.unableToCompleteTransaction;
+      case ErrorType.GET_LOAN_PAYMENT_ERROR:
+        return localisedHelper.getLoanPaymentError;
+      case ErrorType.PROCESS_LOAN_ERROR:
+        return localisedHelper.processLoanError;
+      case ErrorType.CUSTOMER_NOT_ELIGIBLE:
+        return localisedHelper.customerNotEligible;
+      case ErrorType.LOAN_NOT_ACTIVE:
+        return localisedHelper.loanNotActive;
+      case ErrorType.RETRIEVE_INSTRUCTION_DETAILS:
+        return localisedHelper.retrieveInstructionDetails;
+      case ErrorType.EDRAW_API_GOT_WRONG:
+        return localisedHelper.edrawApiGotWrong;
+      case ErrorType.ESETTLEMENT_WENT_WRONG:
+        return localisedHelper.esettlementGoneWrong;
+      case ErrorType.AMOUNT_LIMIT_ERROR:
+        return localisedHelper.amountLimitError;
+      case ErrorType.AMOUNT_GREATER_THAN_OUTSTANDING:
+        return localisedHelper.amountGreaterThanOutstanding;
       case ErrorType.BUSINESS_RULES_NOT_IMPLEMENTED_AGAINST_COMPANY_ID:
         return localisedHelper.businessRulesNotImplementedAgainstCompanyId;
       case ErrorType.USE_VALID_ID:

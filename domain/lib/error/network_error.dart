@@ -1269,6 +1269,72 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.PLATFORM_NOT_FOUND);
 
+          case "err-165":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.TRANSACTION_NOT_ALLOWED);
+
+          case "err-166":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNABLE_TO_PROCEED_TRANSACTION);
+
+          case "err-167":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNABLE_TO_COMPLETE_TRANSACTION);
+
+          case "err-168":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.GET_LOAN_PAYMENT_ERROR);
+
+          case "err-169":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PROCESS_LOAN_ERROR);
+
+          case "err-170":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CUSTOMER_NOT_ELIGIBLE);
+
+          case "err-171":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.LOAN_NOT_ACTIVE);
+
+          case "err-172":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.RETRIEVE_INSTRUCTION_DETAILS);
+
+          case "err-173":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EDRAW_API_GOT_WRONG);
+
+          case "err-174":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ESETTLEMENT_WENT_WRONG);
+
+          case "err-175":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.AMOUNT_LIMIT_ERROR);
+
+          case "err-176":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.AMOUNT_GREATER_THAN_OUTSTANDING);
+
           case "err-150":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
