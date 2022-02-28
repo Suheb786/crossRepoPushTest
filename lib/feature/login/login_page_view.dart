@@ -78,7 +78,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           onData: (data) {
                             if (data.status == Status.ERROR) {
                               if (data.appError!.type ==
-                                  ErrorType.FORCE_UPDATE) {
+                                  ErrorType.PLATFORM_NOT_FOUND) {
                                 VersionUpdateDialog.show(context,
                                     image: AssetUtils.alert,
                                     title: S.of(context).updateRequired,
