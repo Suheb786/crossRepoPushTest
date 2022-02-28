@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11635,6 +11636,16 @@ class S {
     return Intl.message(
       'Invalid Primary Card Id',
       name: 'invalidPrimaryId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your Id to proceed further.`
+  String get scanIdToProceedFurther {
+    return Intl.message(
+      'Scan your Id to proceed further.',
+      name: 'scanIdToProceedFurther',
       desc: '',
       args: [],
     );

@@ -1762,6 +1762,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error occurred while saving W9 Form Details, please try again"),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage(
             "Something wrong, scan ID again"),
+        "scanIdToProceedFurther": MessageLookupByLibrary.simpleMessage(
+            "Scan your Id to proceed further."),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
         "scrollToSetDate": m4,

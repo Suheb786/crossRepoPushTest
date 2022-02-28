@@ -1016,6 +1016,8 @@ class ErrorParser {
         return localisedHelper.minorNotAllowed;
       case ErrorType.INVALID_PRIMARY_ID:
         return localisedHelper.invalidPrimaryId;
+      case ErrorType.DEVICE_NOT_COMPATIBLE:
+        return localisedHelper.scanIdToProceedFurther;
 
       default:
         return "";

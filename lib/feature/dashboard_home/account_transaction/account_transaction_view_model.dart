@@ -37,6 +37,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
   Resource<GetTransactionsResponse>? searchTransactionResponse;
 
   List<GetTransactionsResponse> transactionList = [];
+
   ///get debit years
   PublishSubject<GetDebitYearsUseCaseParams> _getDebitYearsRequest =
       PublishSubject();
@@ -80,7 +81,6 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   AccountTransactionViewModel(
       this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
-
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _cardTransactionsUseCase.execute(params: value))
