@@ -80,7 +80,11 @@ class TransactionWidget extends StatelessWidget {
                                 : transactions!.transactions![index].amount!
                                     .toString(),
                             style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
+                                color: transactions!
+                                            .transactions![index].trnxType ==
+                                        "D"
+                                    ? AppColor.dark_brown
+                                    : AppColor.darkModerateLimeGreen,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
                           ),

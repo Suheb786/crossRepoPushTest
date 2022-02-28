@@ -10,7 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dashboard/transactions_widget.dart';
+import 'package:neo_bank/ui/molecules/dashboard/card_transaction_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -218,7 +218,7 @@ class CardTransactionPageView
                                       physics:
                                                 AlwaysScrollableScrollPhysics(),
                                             itemBuilder: (context, index) {
-                                              return TransactionWidget(
+                                              return CardTransactionWidget(
                                                 transactions: transaction.data!
                                                         .transactionResponse![
                                                     index],
