@@ -21,7 +21,7 @@ class TransactionEntity
   final String? balanceCur;
   @JsonKey(name: "amountCUR")
   final String? amountCur;
-  @JsonKey(name: "TrnxType")
+  @JsonKey(name: "trnxType")
   final String? trnxType;
 
   TransactionEntity(

@@ -73,16 +73,19 @@ class TransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "-" +
-                                transactions!.transactions![index].amount!
+              transactions!.transactions![index].trnxType == "D"
+                                ? "-" +
+                                    transactions!.transactions![index].amount!
+                                        .toString()
+                                : transactions!.transactions![index].amount!
                                     .toString(),
                             style: TextStyle(
-                                color: AppColor.dark_brown,
+                                color: Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
                           ),
                           Text(
-                            " JOD",
+                            " ${transactions!.transactions![index].amountCur}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
@@ -100,7 +103,8 @@ class TransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            "7,334.100",
+                            transactions!.transactions![index].balance!
+                                .toStringAsFixed(3),
                             style: TextStyle(
                                 color: Theme.of(context)
                                     .inputDecorationTheme
@@ -110,7 +114,7 @@ class TransactionWidget extends StatelessWidget {
                                 fontSize: 12),
                           ),
                           Text(
-                            " JOD",
+                            " ${transactions!.transactions![index].balanceCur}",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
