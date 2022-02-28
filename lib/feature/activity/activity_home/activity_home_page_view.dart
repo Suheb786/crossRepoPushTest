@@ -8,7 +8,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_a
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -38,7 +38,9 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                             PaymentActivityTransactionPage()));
                   }
                 } else {
-                  Navigator.pop(context);
+                  if (details.primaryVelocity! > 0.5) {
+                    Navigator.pop(context);
+                  }
                 }
               },
               behavior: HitTestBehavior.translucent,
@@ -66,10 +68,13 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                 padding: EdgeInsets.only(top: 4),
                                 child: Stack(
                                   alignment: Alignment.center,
+                                  fit: StackFit.expand,
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(bottom: 20.0),
-                                      child: PaymentSwiper(
+                                      child: AppSwiper(
+                                        appSwiperController:
+                                            model.appSwiperController,
                                         pages: [
                                           NotificationPage(),
                                           PaymentActivityPage(),
