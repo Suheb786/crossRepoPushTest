@@ -198,6 +198,7 @@ class StudentJobIncomePageView
                                                           fontWeight:
                                                               FontWeight.w400,
                                                           fontSize: 14,
+                                                          height: 1.4,
                                                           color: Theme.of(
                                                                   context)
                                                               .inputDecorationTheme
@@ -208,7 +209,7 @@ class StudentJobIncomePageView
                                                         TextSpan(
                                                             text: S
                                                                 .of(context)
-                                                                .yearly,
+                                                                .annual,
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight

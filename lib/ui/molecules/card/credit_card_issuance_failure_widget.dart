@@ -4,7 +4,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class CreditCardIssuanceFailureWidget extends StatelessWidget {
-  const CreditCardIssuanceFailureWidget({Key? key}) : super(key: key);
+  double? fontSize;
+
+  CreditCardIssuanceFailureWidget({this.fontSize, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Theme.of(context).accentColor,
-                fontSize: 14,
+                fontSize: fontSize!,
                 fontWeight: FontWeight.w600),
           ),
         ],

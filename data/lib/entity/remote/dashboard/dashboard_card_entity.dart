@@ -47,6 +47,8 @@ class DashboardCardEntity
   final dynamic paymentDueAmount;
   @JsonKey(name: "isCompleted")
   final bool? isCompleted;
+  @JsonKey(name: "nextpaymentdate")
+  final String? nextPaymentDate;
 
   DashboardCardEntity(
       {this.name: "",
@@ -68,7 +70,8 @@ class DashboardCardEntity
       this.primarySecondaryCard,
       this.cardCode,
       this.paymentDueAmount,
-      this.isCompleted: false});
+      this.isCompleted: false,
+      this.nextPaymentDate: ""});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
@@ -103,6 +106,8 @@ class DashboardCardEntity
         cardCode: this.cardCode,
         isCompleted: this.isCompleted,
         paymentDueAmount:
-            this.paymentDueAmount != null ? this.paymentDueAmount : '0.0');
+            this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
+        nextPaymentDate:
+            this.nextPaymentDate != null ? this.nextPaymentDate : '');
   }
 }

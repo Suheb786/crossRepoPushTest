@@ -37,12 +37,12 @@ class InformationDialogView extends StatelessWidget {
               }
             },
             child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: SingleChildScrollView(
                   physics: ClampingScrollPhysics(),
                   child: Column(
                     children: [
-                      SizedBox(height: 41),
+                      SizedBox(height: 32),
                       image != null
                           ? AppSvg.asset(image!, height: 50, width: 50)
                           : Container(),

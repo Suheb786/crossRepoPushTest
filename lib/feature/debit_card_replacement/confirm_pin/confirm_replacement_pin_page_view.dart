@@ -48,7 +48,7 @@ class ConfirmReplacementPinPageView
                             .read(debitCardReplacementViewModelProvider)
                             .appSwiperController
                             .page ==
-                        1.0) {
+                        2.0) {
                       if (details.primaryVelocity!.isNegative) {
                         print(
                             'currentPin--->${ProviderScope.containerOf(context).read(createReplacementPinViewModelProvider).currentPin}');

@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_view.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class ValidateOtpPage extends BasePage<ValidateOtpViewModel> {
   @override
@@ -13,7 +14,7 @@ class ValidateOtpPage extends BasePage<ValidateOtpViewModel> {
 
 class ValidateOtpPageState
     extends BaseStatefulPage<ValidateOtpViewModel, ValidateOtpPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   ValidateOtpPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -51,4 +52,28 @@ class ValidateOtpPageState
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    print('inside init');
+    super.initState();
+    listenForCode();
+
+    SmsAutoFill().getAppSignature.then((signature) {
+      print('inside signature---->$signature');
+    });
+    print('inside init end');
+  }
+
+  @override
+  void codeUpdated() {
+    print('code updated');
+    getViewModel().otpController.text = code!;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    cancel();
+  }
 }

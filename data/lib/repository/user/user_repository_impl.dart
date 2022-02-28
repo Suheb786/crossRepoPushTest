@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/db/floor/utils/safe_db_call.dart';
 import 'package:data/entity/local/user_db_entity.dart';
+import 'package:data/helper/string_converter.dart';
 import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
@@ -341,7 +342,10 @@ class UserRepositoryImpl extends UserRepository {
     return document.fold(
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
-            fullName: r.fullName,
+            fullName: StringConverter.getFullName(
+                primaryId: r.mrzResult!.primaryId ?? '',
+                secondaryId: r.mrzResult!.secondaryId ?? '',
+                fullName: r.fullName),
             firstName: r.mrzResult!.secondaryId
                     ?.trim()
                     .split(" ")
@@ -349,7 +353,8 @@ class UserRepositoryImpl extends UserRepository {
                     .toString() ??
                 r.firstName ??
                 "",
-            middleName: r.fathersName,
+            middleName:
+                StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
             familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
             idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
             dob: r.dateOfBirth != null
@@ -649,9 +654,9 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> checkVersionUpdate() async {
+  Future<Either<NetworkError, bool>> checkVersionUpdate({String? clear}) async {
     final result = await safeApiCall(
-      _remoteDS.checkVersionUpdate(),
+      _remoteDS.checkVersionUpdate(clear: clear),
     );
     return result!.fold(
       (l) => Left(l),

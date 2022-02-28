@@ -49,7 +49,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               : 70),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 0,
+        initialData: 1,
         dataBuilder: (context, currentStep) {
           return AppStreamBuilder<Resource<GetDashboardDataResponse>>(
               stream: model.getDashboardDataStream,
@@ -61,6 +61,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   dataBuilder: (context, showTimeLine) {
                     return GestureDetector(
                       behavior: HitTestBehavior.translucent,
+                      onHorizontalDragEnd: (details) {},
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
                           print("SWIPE UP");
@@ -200,16 +201,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   return SizedBox();
                                                 }
                                                 return DashboardSwiper(
-                                                  pages: [
-                                                    MyAccountPage(
-                                                      cardData: cardData,
-                                                    ),
-                                                    GetCreditCardPage(
-                                                      cardData: cardData,
-                                                    ),
-                                                    MyDebitCardPage(
-                                                        cardData: cardData),
-                                                  ],
+                                                  pages: cardData.debitCard!
+                                                              .length >
+                                                          0
+                                                      ? [
+                                                          MyAccountPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          GetCreditCardPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          MyDebitCardPage(
+                                                              cardData:
+                                                                  cardData),
+                                                        ]
+                                                      : [
+                                                          MyAccountPage(
+                                                            cardData: cardData,
+                                                          ),
+                                                          GetCreditCardPage(
+                                                            cardData: cardData,
+                                                          )
+                                                        ],
                                                   appSwiperController:
                                                       model.appSwiperController,
                                                   pageController:
@@ -235,8 +248,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: model
-                                              .buildPageIndicator(currentStep!),
+                                          children: model.buildPageIndicator(
+                                              currentStep!,
+                                              cardData
+                                                          .data!
+                                                          .dashboardDataContent!
+                                                          .debitCard!
+                                                          .length >
+                                                      0
+                                                  ? 3
+                                                  : 2),
                                         ),
                                       ),
                                       // SmoothPageIndicator(
@@ -603,12 +624,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .length >
-                                                                  0
+                                                          left: (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .length >
+                                                                      0 &&
+                                                                  (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .isCompleted ??
+                                                                      false))
                                                               ? 170
                                                               : 0),
                                                       child: (cardData
@@ -711,85 +739,74 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                       EdgeInsets
                                                                           .only(
                                                                               top: 5),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
-                                                                      // if (currentStep ==
-                                                                      //     1) {
-                                                                      //   var result = await Navigator.push(
-                                                                      //       context,
-                                                                      //       MaterialPageRoute(
-                                                                      //           builder: (context) => CreditCardDeliveredPage(
-                                                                      //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
-                                                                      //               )));
-                                                                      //   if (result !=
-                                                                      //       null) {
-                                                                      //     print(
-                                                                      //         '$result');
-                                                                      //     model
-                                                                      //         .getDashboardData();
-                                                                      //   }
-                                                                      // } else {
-                                                                      //   var result = await Navigator.push(
-                                                                      //       context,
-                                                                      //       MaterialPageRoute(
-                                                                      //           builder: (context) => DebitCardDeliveredPage(
-                                                                      //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                      //               )));
-                                                                      //   if (result !=
-                                                                      //       null) {
-                                                                      //     print(
-                                                                      //         '$result');
-                                                                      //     model
-                                                                      //         .getDashboardData();
-                                                                      //   }
-                                                                      // }
-                                                                      var result = await Navigator.push(
-                                                                          context,
-                                                                          MaterialPageRoute(
-                                                                              builder: (context) => DebitCardDeliveredPage(
-                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                                  )));
-                                                                      if (result !=
-                                                                          null) {
-                                                                        print(
-                                                                            '$result');
-                                                                        model
-                                                                            .getDashboardData();
-                                                                      }
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal:
-                                                                              11,
-                                                                          vertical:
-                                                                              2),
-                                                                      decoration: BoxDecoration(
-                                                                          color: Theme.of(context)
-                                                                              .accentColor,
-                                                                          borderRadius: BorderRadius.circular(
-                                                                              14),
-                                                                          border:
-                                                                              Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                                                      child:
-                                                                          Text(
-                                                                        S
-                                                                            .of(context)
-                                                                            .confirm,
-                                                                        style: TextStyle(
-                                                                            color: Theme.of(context)
-                                                                                .accentTextTheme
-                                                                                .bodyText1!
-                                                                                .color,
-                                                                            fontSize:
-                                                                                14,
-                                                                            fontWeight:
-                                                                                FontWeight.w600),
-                                                                      ),
-                                                                    ),
-                                                                  ),
+                                                                  child: cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .debitCard!
+                                                                              .length >
+                                                                          0
+                                                                      ? InkWell(
+                                                                          onTap:
+                                                                              () async {
+                                                                            // if (currentStep ==
+                                                                            //     1) {
+                                                                            //   var result = await Navigator.push(
+                                                                            //       context,
+                                                                            //       MaterialPageRoute(
+                                                                            //           builder: (context) => CreditCardDeliveredPage(
+                                                                            //                 creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                            //               )));
+                                                                            //   if (result !=
+                                                                            //       null) {
+                                                                            //     print(
+                                                                            //         '$result');
+                                                                            //     model
+                                                                            //         .getDashboardData();
+                                                                            //   }
+                                                                            // } else {
+                                                                            //   var result = await Navigator.push(
+                                                                            //       context,
+                                                                            //       MaterialPageRoute(
+                                                                            //           builder: (context) => DebitCardDeliveredPage(
+                                                                            //                 debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                            //               )));
+                                                                            //   if (result !=
+                                                                            //       null) {
+                                                                            //     print(
+                                                                            //         '$result');
+                                                                            //     model
+                                                                            //         .getDashboardData();
+                                                                            //   }
+                                                                            // }
+                                                                            var result = await Navigator.push(
+                                                                                context,
+                                                                                MaterialPageRoute(
+                                                                                    builder: (context) => DebitCardDeliveredPage(
+                                                                                          debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                                        )));
+                                                                            if (result !=
+                                                                                null) {
+                                                                              print('$result');
+                                                                              model.getDashboardData();
+                                                                            }
+                                                                          },
+                                                                          child:
+                                                                              Container(
+                                                                            padding:
+                                                                                EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                                                                            decoration: BoxDecoration(
+                                                                                color: Theme.of(context).accentColor,
+                                                                                borderRadius: BorderRadius.circular(14),
+                                                                                border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                            child:
+                                                                                Text(
+                                                                              S.of(context).confirm,
+                                                                              style: TextStyle(color: Theme.of(context).accentTextTheme.bodyText1!.color, fontSize: 14, fontWeight: FontWeight.w600),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      : Text(
+                                                                          '-'),
                                                                 )
                                                               ],
                                                             ),
@@ -863,11 +880,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       // Image.asset(AssetUtils.progress1),
                                                       Visibility(
                                                         visible: cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .creditCard!
-                                                                .length >
-                                                            0,
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .length >
+                                                                0 &&
+                                                            (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .first
+                                                                    .isCompleted ??
+                                                                false),
                                                         child: Stack(
                                                           children: [
                                                             Padding(
@@ -910,11 +934,18 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       ),
                                                       Visibility(
                                                         visible: cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .creditCard!
-                                                                .length >
-                                                            0,
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .length >
+                                                                0 &&
+                                                            (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .creditCard!
+                                                                    .first
+                                                                    .isCompleted ??
+                                                                false),
                                                         child: Stack(
                                                           children: [
                                                             Image.asset(
@@ -954,12 +985,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Padding(
                                                             padding: EdgeInsets.only(
                                                                 right: 0.0,
-                                                                left: cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .length >
-                                                                        0
+                                                                left: (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                            0 &&
+                                                                        (cardData.data!.dashboardDataContent!.creditCard!.first.isCompleted ??
+                                                                            false))
                                                                     ? 0
                                                                     : 10),
                                                             child: Image.asset(
@@ -981,12 +1010,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           ),
                                                           Positioned(
                                                             top: 0,
-                                                            left: cardData
-                                                                        .data!
-                                                                        .dashboardDataContent!
-                                                                        .creditCard!
-                                                                        .length >
-                                                                    0
+                                                            left: (cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .length >
+                                                                        0 &&
+                                                                    (cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .first
+                                                                            .isCompleted ??
+                                                                        false))
                                                                 ? -10
                                                                 : 0,
                                                             child: Container(
@@ -1081,12 +1117,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Row(
                                                   children: [
                                                     Visibility(
-                                                      visible: cardData
-                                                              .data!
-                                                              .dashboardDataContent!
-                                                              .creditCard!
-                                                              .length >
-                                                          0,
+                                                      visible: (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .length >
+                                                              0 &&
+                                                          (cardData
+                                                                  .data!
+                                                                  .dashboardDataContent!
+                                                                  .creditCard!
+                                                                  .first
+                                                                  .isCompleted ??
+                                                              false)),
                                                       child: Column(
                                                         children: [
                                                           Text(
@@ -1154,12 +1197,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .length >
-                                                                  0
+                                                          left: (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .length >
+                                                                      0 &&
+                                                                  (cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .isCompleted ??
+                                                                      false))
                                                               ? 180
                                                               : 0),
                                                       child: Column(

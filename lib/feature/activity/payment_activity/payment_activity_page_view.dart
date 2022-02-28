@@ -25,8 +25,10 @@ class PaymentActivityPageView
             } else {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
-                  .pageController
-                  .previous();
+                  .appSwiperController
+                  .previousPage(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linear);
             }
           },
           child: Card(

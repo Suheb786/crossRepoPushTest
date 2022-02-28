@@ -381,8 +381,11 @@ class AccountSettingPageView
                                                                         .SUCCESS) {
                                                                   print(
                                                                       'authenticated success');
-                                                                  model
-                                                                      .generateKeyPair();
+                                                                  if (data
+                                                                      .data!) {
+                                                                    model
+                                                                        .generateKeyPair();
+                                                                  }
                                                                 }
                                                               },
                                                               dataBuilder: (context,

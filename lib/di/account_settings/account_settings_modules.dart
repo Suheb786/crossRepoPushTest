@@ -48,7 +48,8 @@ final addNewEmailAddressViewModelProvider =
 final enterOtpForNewEmailAddressViewModelProvider = ChangeNotifierProvider
     .autoDispose<EnterCodeForChangeEmailAddressPageViewModel>(
   (ref) => EnterCodeForChangeEmailAddressPageViewModel(
-      ref.read(validateOtpNewEmailAddressUseCaseProvider)),
+      ref.read(validateOtpNewEmailAddressUseCaseProvider),
+      ref.read(addNewEmailAddressUseCaseProvider)),
 );
 
 ///change mobile number view model provider
@@ -67,10 +68,10 @@ final addNewMobileNumberViewModelProvider =
 
 ///enter otp for mobile no change view model provider
 final enterOtpForNewMobileNumberViewModelProvider = ChangeNotifierProvider
-    .autoDispose<EnterCodeForChangeMobileNumberPageViewModel>(
-  (ref) => EnterCodeForChangeMobileNumberPageViewModel(
-      ref.read(validateOtpNewMobileNumberUseCaseProvider)),
-);
+    .autoDispose<EnterCodeForChangeMobileNumberPageViewModel>((ref) =>
+        EnterCodeForChangeMobileNumberPageViewModel(
+            ref.read(validateOtpNewMobileNumberUseCaseProvider),
+            ref.read(addNewNumberUseCaseProvider)));
 
 ///change password view model provider
 final changePasswordViewModelProvider =

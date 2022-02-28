@@ -30,11 +30,17 @@ class ReplacementVisaCardPageView
         dataBuilder: (context, data) {
           return GestureDetector(
             onHorizontalDragEnd: (details) {
-              if (data!.status == Status.SUCCESS) {
-                ProviderScope.containerOf(context)
-                    .read(debitCardReplacementViewModelProvider)
-                    .nextPage();
-                // .next(animation: true);
+              if (ProviderScope.containerOf(context)
+                      .read(debitCardReplacementViewModelProvider)
+                      .appSwiperController
+                      .page ==
+                  0.0) {
+                if (data!.status == Status.SUCCESS) {
+                  ProviderScope.containerOf(context)
+                      .read(debitCardReplacementViewModelProvider)
+                      .nextPage();
+                  // .next(animation: true);
+                }
               }
             },
             child: Card(

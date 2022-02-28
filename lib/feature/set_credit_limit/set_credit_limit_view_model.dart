@@ -1,4 +1,3 @@
-import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/usecase/apply_credit_card/set_credit_limit_usecase.dart';
@@ -72,16 +71,9 @@ class SetCreditLimitViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _setCreditLimitResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          if (event.appError!.type ==
-              ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE) {
-            minimumSettlementKey.currentState!.isValid = false;
-          }
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
       });
     });
+
     _getLoanValueRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getLoanValueUseCase.execute(params: value))
@@ -89,10 +81,7 @@ class SetCreditLimitViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getLoanValueResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
+        if (event.status == Status.SUCCESS) {
           updateSliderValue(SliderLimitValues(
               divisions: int.parse(event.data!.getLoanValuesContent!.step!),
               maxValue: event.data!.getLoanValuesContent!.maxLimit!.toDouble(),

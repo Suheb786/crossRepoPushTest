@@ -342,6 +342,20 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _generateKeyPairRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _generateKeyPairUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _generateKeyPairResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     //getCipher();
   }
 
@@ -405,13 +419,18 @@ class LoginViewModel extends BasePageViewModel {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
-  void checkVersionUpdate() {
-    _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams());
+  void checkVersionUpdate({String? clear}) {
+    _checkVersionUpdateRequest
+        .safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
   }
 
   ///get current user
   void getCurrentUser() {
     _currentUserRequestSubject.add(GetCurrentUserUseCaseParams());
+  }
+
+  void generateKeyPair() {
+    _generateKeyPairRequest.safeAdd(GenerateKeyPairUseCaseParams());
   }
 
   @override

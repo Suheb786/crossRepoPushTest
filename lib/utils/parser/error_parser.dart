@@ -488,6 +488,18 @@ class ErrorParser {
         return localisedHelper.getCountriesError;
       case ErrorType.REMOVE_DEBIT_LOCK_ERROR:
         return localisedHelper.removeDebitLockError;
+      case ErrorType.SUPPLEMENTARY_CARD_APPLICATION_ERROR:
+        return localisedHelper.supplementaryCardApplicationError;
+      case ErrorType.REQUEST_SUPPLEMENTARY_CARD_ERROR:
+        return localisedHelper.requestSupplementaryCardError;
+      case ErrorType.SUPPLEMENTARY_CARD_STEP_2_ERROR:
+        return localisedHelper.supplementaryCardStep2Error;
+      case ErrorType.SUPPLEMENTARY_CARD_STEP_3_ERROR:
+        return localisedHelper.supplementaryCardStep3Error;
+      case ErrorType.RELATIONSHIP_LIST_ERROR:
+        return localisedHelper.relationshipListError;
+      case ErrorType.GET_CURRENT_VALUES_ERROR:
+        return localisedHelper.getCurrentValuesError;
       case ErrorType.ENABLE_BIOMETRIC_ERROR:
         return localisedHelper.enableBiometricError;
       case ErrorType.GET_CIPHER_ERROR:
@@ -664,7 +676,7 @@ class ErrorParser {
         return localisedHelper.callRecordNotFound;
       case ErrorType.NI_HANDLER_ERROR:
         return localisedHelper.niHandlerError;
-      case ErrorType.NI_HANDLER_ERROR:
+      case ErrorType.LOAN_VALUES_ERROR:
         return localisedHelper.loanValuesError;
       case ErrorType.INVALID_LOAN_VALUE_ID:
         return localisedHelper.inValidLoanValueId;
@@ -726,6 +738,8 @@ class ErrorParser {
         return localisedHelper.proofRequired;
       case ErrorType.OTP_NULL:
         return localisedHelper.otpNull;
+      case ErrorType.DEVICE_IS_REQUIRED:
+        return localisedHelper.deviceIsRequired;
       case ErrorType.UNAUTHORIZED_USER:
         return localisedHelper.sessionTimeout;
 
@@ -733,7 +747,7 @@ class ErrorParser {
       case ErrorType.MODEL_NOT_CORRECT:
         return localisedHelper.errorModelNotCorrect;
       case ErrorType.UNAUTHORIZE:
-        return localisedHelper.errorModelNotCorrect;
+        return localisedHelper.unauthorize;
       case ErrorType.YOU_LOCKED:
         return localisedHelper.youLocked;
       case ErrorType.ENTER_VALID_USERNAME:
@@ -743,6 +757,8 @@ class ErrorParser {
       case ErrorType.ERROR_GETTING_RETAIL_CIF:
         return localisedHelper.errorWhileGettingRetailCIF;
       case ErrorType.INVALID_PRODUCT_ID:
+        return localisedHelper.invalidProductId;
+      case ErrorType.RESIDENT_INFO_NOT_FOUND:
         return localisedHelper.residentInfoNotFound;
       case ErrorType.INVALID_PRODUCT_SHORT_CODE:
         return localisedHelper.invalidProductShortCode;
@@ -768,6 +784,56 @@ class ErrorParser {
         return localisedHelper.invalidIssuerCountry;
       case ErrorType.INVALID_ID_CARD_CANNOT_PROCEED:
         return localisedHelper.invalidIdCardCannotProceed;
+      case ErrorType.INVALID_NATIONAL_ID_CARD:
+        return localisedHelper.invalidNationalIdCard;
+      case ErrorType.ID_CARD_IS_EXPIRED:
+        return localisedHelper.idCardIsExpired;
+      case ErrorType.LESS_THAN_PRIMARY:
+        return localisedHelper.lessThanPrimary;
+      case ErrorType.INVALID_NATIONALITY:
+        return localisedHelper.invalidNationality;
+      case ErrorType.WS_CHILD_ERROR:
+        return localisedHelper.wsChildError;
+      case ErrorType.CREATE_CARD_ERROR:
+        return localisedHelper.createCardError;
+      case ErrorType.INVALID_SUPPLEMENTARY_CARD_ID:
+        return localisedHelper.invalidSupplementaryCardId;
+      case ErrorType.SET_CONTACTLESS_ZERO_ERROR:
+        return localisedHelper.setContactLessZeroError;
+      case ErrorType.CONTACTLESS_ALREADY_DONE:
+        return localisedHelper.contactlessAlreadyDone;
+      case ErrorType.STEP_2_NOT_DONE_CREDIT_CARD:
+        return localisedHelper.step2NotDoneCreditCard;
+      case ErrorType.PROCESS_LOAN_STEP_NOT_DONE:
+        return localisedHelper.processLoanStepNotDone;
+      case ErrorType.CREATING_SHIPMENT_ERROR:
+        return localisedHelper.creatingShippmentError;
+      case ErrorType.PLATFORM_NOT_FOUND:
+        return localisedHelper.platformNotFound;
+      case ErrorType.TRANSACTION_NOT_ALLOWED:
+        return localisedHelper.transactionNotAllowed;
+      case ErrorType.UNABLE_TO_PROCEED_TRANSACTION:
+        return localisedHelper.unableToProceedTransaction;
+      case ErrorType.UNABLE_TO_COMPLETE_TRANSACTION:
+        return localisedHelper.unableToCompleteTransaction;
+      case ErrorType.GET_LOAN_PAYMENT_ERROR:
+        return localisedHelper.getLoanPaymentError;
+      case ErrorType.PROCESS_LOAN_ERROR:
+        return localisedHelper.processLoanError;
+      case ErrorType.CUSTOMER_NOT_ELIGIBLE:
+        return localisedHelper.customerNotEligible;
+      case ErrorType.LOAN_NOT_ACTIVE:
+        return localisedHelper.loanNotActive;
+      case ErrorType.RETRIEVE_INSTRUCTION_DETAILS:
+        return localisedHelper.retrieveInstructionDetails;
+      case ErrorType.EDRAW_API_GOT_WRONG:
+        return localisedHelper.edrawApiGotWrong;
+      case ErrorType.ESETTLEMENT_WENT_WRONG:
+        return localisedHelper.esettlementGoneWrong;
+      case ErrorType.AMOUNT_LIMIT_ERROR:
+        return localisedHelper.amountLimitError;
+      case ErrorType.AMOUNT_GREATER_THAN_OUTSTANDING:
+        return localisedHelper.amountGreaterThanOutstanding;
       case ErrorType.BUSINESS_RULES_NOT_IMPLEMENTED_AGAINST_COMPANY_ID:
         return localisedHelper.businessRulesNotImplementedAgainstCompanyId;
       case ErrorType.USE_VALID_ID:
@@ -896,6 +962,12 @@ class ErrorParser {
         return localisedHelper.errorGettingCardInfo;
       case ErrorType.LOAN_ACCOUNT_LIST_NOT_FOUND:
         return localisedHelper.loanAccountListNotFound;
+      case ErrorType.PRIMARY_LOAN_ACC_LIST_NOT_FOUND:
+        return localisedHelper.primaryLoanAccListNotFound;
+      case ErrorType.PRIMARY_CARD_NOT_ACTIVE:
+        return localisedHelper.primaryCardNotActive;
+      case ErrorType.RELATIVE_ID_ERROR:
+        return localisedHelper.relativeIdError;
       case ErrorType.ERROR_CREATE_CREDIT_CARD:
         return localisedHelper.errorCreateCreditCard;
       case ErrorType.SETTING_CONTACTLESS_ERROR:
@@ -940,6 +1012,10 @@ class ErrorParser {
         return localisedHelper.invalidExpiryDate;
       case ErrorType.EMPTY_CARD_NO:
         return localisedHelper.emptyCardNo;
+      case ErrorType.MINOR_NOT_ALLOWED:
+        return localisedHelper.minorNotAllowed;
+      case ErrorType.INVALID_PRIMARY_ID:
+        return localisedHelper.invalidPrimaryId;
 
       default:
         return "";

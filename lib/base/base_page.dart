@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focus_detector/focus_detector.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_progress.dart';
@@ -171,12 +172,13 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
             error: event,
             localisedHelper: S.of(context),
           ));
-          Future.delayed(Duration(milliseconds: 500), () {
-            // Navigator.popUntil(
-            //     context, ModalRoute.withName(RoutePaths.OnBoarding));
-            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                ModalRoute.withName(RoutePaths.Splash));
-          });
+          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+              ModalRoute.withName(RoutePaths.Splash));
+          if (ProviderScope.containerOf(context).read(appViewModel) != null) {
+            ProviderScope.containerOf(context)
+                .read(appViewModel)
+                .stopRefreshToken();
+          }
         } else {
           showTopError(ErrorParser.getLocalisedStringError(
             error: event,

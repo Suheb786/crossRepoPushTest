@@ -51,6 +51,9 @@ class VideoKycViewModel extends BasePageViewModel {
           .listen((event) {
         //updateLoader();
         _getCallStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 

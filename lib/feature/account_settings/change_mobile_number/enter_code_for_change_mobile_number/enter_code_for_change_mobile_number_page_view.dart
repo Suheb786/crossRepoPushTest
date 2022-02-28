@@ -82,6 +82,7 @@ class EnterCodeForChangeMobileNumberPageView
                                 children: [
                                   AppOtpFields(
                                     length: 6,
+                                    controller: model.otpController,
                                     onChanged: (val) {
                                       model.validate(val);
                                     },
@@ -106,7 +107,18 @@ class EnterCodeForChangeMobileNumberPageView
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime();
+                                              model.changeOtp(
+                                                  mobileNo: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewMobileNumberViewModelProvider)
+                                                      .mobileNumber,
+                                                  mobileCode: ProviderScope
+                                                          .containerOf(context)
+                                                      .read(
+                                                          addNewMobileNumberViewModelProvider)
+                                                      .countryData
+                                                      .phoneCode!);
                                             },
                                             child: Text(
                                               'Resend Code',

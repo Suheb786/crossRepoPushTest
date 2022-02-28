@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
+import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -328,7 +329,11 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                       Navigator.pushNamed(
                                                           context,
                                                           RoutePaths
-                                                              .TaxTreatyBenefits);
+                                                              .TaxTreatyBenefits,
+                                                          arguments: ClaimOfTaxTreatyBenefitsArguments(
+                                                              staticRouteContent:
+                                                                  StaticRouteContent
+                                                                      .TAX_TREATY_BENEFITS));
                                                     },
                                                     child: Text(
                                                       S

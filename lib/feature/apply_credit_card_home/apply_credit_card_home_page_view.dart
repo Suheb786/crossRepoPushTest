@@ -30,7 +30,7 @@ class ApplyCreditCardHomePageView
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
               } else {
-                Navigator.pop(context);
+                //Navigator.pop(context);
               }
             },
             child: Column(

@@ -32,8 +32,9 @@ class OnBoardingViewModel extends BasePageViewModel {
     //checkVersionUpdate();
   }
 
-  void checkVersionUpdate() {
-    _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams());
+  void checkVersionUpdate({String? clear}) {
+    _checkVersionUpdateRequest
+        .safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
   }
 
   @override

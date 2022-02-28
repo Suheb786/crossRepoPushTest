@@ -19,7 +19,8 @@ class CreditCard {
       this.usedBalance,
       this.paymentDueAmount,
       this.cardCode,
-      this.isCompleted: false});
+      this.isCompleted: false,
+      this.nextPaymentDate: ""});
 
   String? name;
   String? cardNumber;
@@ -40,5 +41,6 @@ class CreditCard {
   String? cardId;
   bool? isSupCard;
   String? cardCode;
+  String? nextPaymentDate;
   dynamic paymentDueAmount;
 }
