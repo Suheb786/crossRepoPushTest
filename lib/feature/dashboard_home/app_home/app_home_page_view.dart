@@ -1434,8 +1434,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   children: [
                                                     currentStep == 1 ||
                                                             currentStep == 0
-                                                        ? Image.asset(
-                                                            AssetUtils.blink,
+                                                        ? AppSvg.asset(
+                                                            AssetUtils
+                                                                .blink_updated_logo,
                                                             height: 34,
                                                             width: 72)
                                                         : AppSvg.asset(

@@ -70,7 +70,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 23, right: 23, left: 23),
-                          child: Image.asset(AssetUtils.blink,
+                          child: AppSvg.asset(AssetUtils.blink_updated_logo,
                               height: isSmallDevices ? 26 : 33.64,
                               width: isSmallDevices ? 52 : 72),
                         ),

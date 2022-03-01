@@ -1,9 +1,11 @@
+import 'package:domain/constants/enum/transaction_status_enum.dart';
 import 'package:domain/model/payment/payment_activity_content.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class PaymentActivityTransactionWidget extends StatelessWidget {
   final PaymentActivityContent? transactions;
@@ -117,8 +119,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  DateFormat.Hms().format(
-                                      transactions!.data![index].rtpDate!),
+                                  TimeUtils.getFormattedTimeForTransaction(
+                                      transactions!.data![index].rtpDate
+                                          .toString()),
                                   style: TextStyle(
                                       color: AppColor.gray1,
                                       fontSize: 12,
@@ -127,19 +130,17 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 9),
                                   child: Container(
-                                    height: 20,
-                                    width: 60,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 2),
                                     decoration: BoxDecoration(
-                                        color: transactions!
-                                                    .data![index].status! ==
-                                                "Pending"
-                                            ? AppColor.dark_orange
-                                            : AppColor.darkModerateLimeGreen,
+                                        color: getColor(
+                                            transactions!.data![index].status!),
                                         borderRadius:
                                             BorderRadius.circular(100)),
                                     child: Center(
                                       child: Text(
-                                        transactions!.data![index].status!,
+                                        transactions!.data![index].status!
+                                            .toString(),
                                         style: TextStyle(
                                             color:
                                                 Theme.of(context).accentColor,
@@ -181,5 +182,19 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Color getColor(TransactionStatusEnum value) {
+    switch (value) {
+      case TransactionStatusEnum.CATEGORY_ACCEPTED:
+        return AppColor.darkModerateLimeGreen;
+      case TransactionStatusEnum.CATEGORY_REJECTED:
+        return AppColor.vividRed;
+      case TransactionStatusEnum.CATEGORY_PENDING:
+        return AppColor.dark_orange;
+
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }

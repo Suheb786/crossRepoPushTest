@@ -47,13 +47,13 @@ class TransactionEntity
   @override
   Transactions transform() {
     return Transactions(
-        id: this.id,
-        amount: this.amount,
-        description: this.description,
+        id: this.id ?? 0,
+        amount: this.amount ?? 0.0,
+        description: this.description ?? '',
         time: this.transactionTime,
-        amountCur: this.amountCur,
-        balance: this.balance,
-        balanceCur: this.balanceCur,
-        trnxType: this.trnxType);
+        amountCur: this.amountCur ?? 'JOD',
+        balance: this.balance ?? 0.0,
+        balanceCur: this.balanceCur ?? 'JOD',
+        trnxType: this.trnxType ?? 'D');
   }
 }

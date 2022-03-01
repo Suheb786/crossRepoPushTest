@@ -146,6 +146,7 @@ class AssetUtils {
   static const String capture = svg + "capture.svg";
   static const String alert = svg + "alert.svg";
   static const String failure = svg + "failure.svg";
+  static const String blink_updated_logo = svg + "blink_updated_logo.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

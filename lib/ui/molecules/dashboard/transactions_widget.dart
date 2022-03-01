@@ -73,12 +73,12 @@ class TransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-              transactions!.transactions![index].trnxType == "D"
+                            transactions!.transactions![index].trnxType == "D"
                                 ? "-" +
                                     transactions!.transactions![index].amount!
-                                        .toString()
+                                        .toStringAsFixed(3)
                                 : transactions!.transactions![index].amount!
-                                    .toString(),
+                                    .toStringAsFixed(3),
                             style: TextStyle(
                                 color: transactions!
                                             .transactions![index].trnxType ==
