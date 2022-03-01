@@ -1955,6 +1955,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionHistory":
+            MessageLookupByLibrary.simpleMessage("Transaction History"),
         "transactionNotAllowed": MessageLookupByLibrary.simpleMessage(
             "Your Trasaction is not Allowed"),
         "transactionPeriod":

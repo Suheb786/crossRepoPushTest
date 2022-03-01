@@ -62,29 +62,72 @@ class TransactionWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  // SizedBox(
+                  //   width: 8,
+                  // ),
+                  Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        transactions!.transactions![index].amount != null
-                            ? transactions!.transactions![index].amount!
-                                .toStringAsFixed(3)
-                            : "0.000",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+              transactions!.transactions![index].trnxType == "D"
+                                ? "-" +
+                                    transactions!.transactions![index].amount!
+                                        .toString()
+                                : transactions!.transactions![index].amount!
+                                    .toString(),
+                            style: TextStyle(
+                                color: transactions!
+                                            .transactions![index].trnxType ==
+                                        "D"
+                                    ? AppColor.dark_brown
+                                    : AppColor.darkModerateLimeGreen,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14),
+                          ),
+                          Text(
+                            " ${transactions!.transactions![index].amountCur}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "JOD",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10,
-                            color: Theme.of(context)
-                                .inputDecorationTheme
-                                .hintStyle!
-                                .color),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            transactions!.transactions![index].balance!
+                                .toStringAsFixed(3),
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12),
+                          ),
+                          Text(
+                            " ${transactions!.transactions![index].balanceCur}",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color),
+                          ),
+                        ],
                       ),
                     ],
                   )

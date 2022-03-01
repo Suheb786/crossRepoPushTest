@@ -45,7 +45,7 @@ class AccountTransactionPageView
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          S.of(context).myAccount,
+                          S.of(context).transactionHistory,
                           style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w600,
