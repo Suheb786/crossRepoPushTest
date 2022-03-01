@@ -69,7 +69,8 @@ class CardTransactionWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        transactions!.transactions![index].amount!.toString(),
+                        transactions!.transactions![index].amount!
+                            .toStringAsFixed(3),
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 14),
                       ),

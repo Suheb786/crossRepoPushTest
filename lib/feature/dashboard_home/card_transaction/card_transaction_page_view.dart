@@ -45,7 +45,7 @@ class CardTransactionPageView
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          S.of(context).visaPlatinumCard,
+                          S.of(context).transactionHistory,
                           style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w600,
