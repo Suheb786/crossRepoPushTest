@@ -17,6 +17,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
   NotificationUseCase _notificationUseCase;
 
   final SwiperController pageController = SwiperController();
+  PageController appSwiperController = PageController(viewportFraction: 0.8);
   PageController controller =
       PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();

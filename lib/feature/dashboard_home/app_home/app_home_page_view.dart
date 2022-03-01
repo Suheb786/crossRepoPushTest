@@ -61,6 +61,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   dataBuilder: (context, showTimeLine) {
                     return GestureDetector(
                       behavior: HitTestBehavior.translucent,
+                      onHorizontalDragEnd: (details) {},
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
                           print("SWIPE UP");

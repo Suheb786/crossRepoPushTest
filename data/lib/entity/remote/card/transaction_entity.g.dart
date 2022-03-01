@@ -13,6 +13,10 @@ TransactionEntity _$TransactionEntityFromJson(Map<String, dynamic> json) {
     transactionTime:
         json['time'] == null ? null : DateTime.parse(json['time'] as String),
     amount: json['amount'] as num?,
+    amountCur: json['amountCUR'] as String?,
+    balance: json['balance'] as num?,
+    balanceCur: json['balanceCUR'] as String?,
+    trnxType: json['trnxType'] as String?,
   );
 }
 
@@ -22,4 +26,8 @@ Map<String, dynamic> _$TransactionEntityToJson(TransactionEntity instance) =>
       'description': instance.description,
       'time': instance.transactionTime?.toIso8601String(),
       'amount': instance.amount,
+      'balance': instance.balance,
+      'balanceCUR': instance.balanceCur,
+      'amountCUR': instance.amountCur,
+      'trnxType': instance.trnxType,
     };

@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
   // GetCreditCardPageView(ProviderBase model) : super(model);
@@ -346,20 +347,29 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                                   : 10),
                                                     ),
                                                     Text(
-                                                      cardData.creditCard!.first
-                                                              .nextPaymentDate ??
-                                                          "",
-                                                      style: TextStyle(
-                                                          color:
-                                                              Theme.of(context)
+                                                      cardData
+                                                                      .creditCard!
+                                                                      .first
+                                                                      .nextPaymentDate !=
+                                                                  null
+                                                              ? TimeUtils.getFormattedDateForCreditCard(
+                                                                  cardData
+                                                                      .creditCard!
+                                                                      .first
+                                                                      .nextPaymentDate!)
+                                                              : "",
+                                                          style: TextStyle(
+                                                              color: Theme.of(
+                                                                      context)
                                                                   .accentColor,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize:
-                                                              isSmallDevices
-                                                                  ? 8
-                                                                  : 10),
-                                                    ),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize:
+                                                                  isSmallDevices
+                                                                      ? 8
+                                                                      : 10),
+                                                        ),
                                                   ],
                                                 ),
                                               )
