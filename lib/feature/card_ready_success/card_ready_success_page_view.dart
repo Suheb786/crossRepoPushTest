@@ -63,21 +63,21 @@ class CardReadySuccessPageView
                           Text(
                             S.of(context).yourCardReady,
                             style: TextStyle(
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                                 fontSize: 24,
                                 color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
-                            height: 4,
+                            height: 24,
                           ),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
-                              S.of(context).yourCardReadyDesc,
+                              S.of(context).debitCardReadyDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).accentColor),
                             ),
@@ -85,7 +85,6 @@ class CardReadySuccessPageView
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
