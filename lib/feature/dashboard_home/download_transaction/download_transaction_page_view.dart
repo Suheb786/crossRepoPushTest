@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:share_plus/share_plus.dart';
 
 class DownloadTransactionPageView
@@ -100,13 +101,16 @@ class DownloadTransactionPageView
                                       ),
                                     ),
                                     InkWell(
-                                      onTap: () async{
-                                        _shareFiles(
-                                            context, await
-                                            statementResponse!
-                                                .data!
-                                                .cardStatementContent!
-                                                .pdfBase64String);
+                                      onTap: () async {
+                                        if (statementResponse!.status ==
+                                            Status.SUCCESS) {
+                                          _shareFiles(
+                                              context,
+                                              await statementResponse
+                                                  .data!
+                                                  .cardStatementContent!
+                                                  .pdfBase64String);
+                                        }
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.only(

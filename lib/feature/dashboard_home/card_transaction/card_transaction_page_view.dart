@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class CardTransactionPageView
     extends BasePageViewWidget<CardTransactionViewModel> {
@@ -61,17 +62,22 @@ class CardTransactionPageView
                               alignment: Alignment.centerRight,
                               child: InkWell(
                                   onTap: () {
-                                    DownloadTransactionDialog.show(context,
-                                        years: creditYears!.data!.years,
-                                        onSelected: (value) {
-                                      Navigator.pop(context);
-                                      Navigator.pushNamed(context,
-                                          RoutePaths.DownloadTransaction,
-                                          arguments: DownloadStatementArguments(
-                                              statementType:
-                                                  StatementType.Credit,
-                                              transactionDate: value));
-                                    });
+                                    if (creditYears!.status == Status.SUCCESS) {
+                                      DownloadTransactionDialog.show(context,
+                                          years: creditYears.data!.years,
+                                          onSelected: (value) {
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(context,
+                                            RoutePaths.DownloadTransaction,
+                                            arguments:
+                                                DownloadStatementArguments(
+                                                    statementType:
+                                                        StatementType.Credit,
+                                                    transactionDate: value));
+                                      });
+                                    } else {
+                                      print('not success');
+                                    }
                                   },
                                   child: AppSvg.asset(AssetUtils.download)));
                         })
@@ -215,7 +221,7 @@ class CardTransactionPageView
                                                 .transactionResponse!.length >
                                             0
                                         ? ListView.builder(
-                                      physics:
+                                            physics:
                                                 AlwaysScrollableScrollPhysics(),
                                             itemBuilder: (context, index) {
                                               return CardTransactionWidget(
