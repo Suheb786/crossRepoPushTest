@@ -15,14 +15,16 @@ class GetCreditCardStatementUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, CardStatementResponse>> execute(
       {required GetCreditCardStatementUseCaseParams params}) {
-    return _repository.getCreditCardStatement(params.monthYear);
+    return _repository.getCreditCardStatement(params.monthYear, params.cardId);
   }
 }
 
 class GetCreditCardStatementUseCaseParams extends Params {
   String monthYear;
+  String? cardId;
 
-  GetCreditCardStatementUseCaseParams({required this.monthYear});
+  GetCreditCardStatementUseCaseParams(
+      {required this.monthYear, required this.cardId});
 
   @override
   Either<AppError, bool> verify() {

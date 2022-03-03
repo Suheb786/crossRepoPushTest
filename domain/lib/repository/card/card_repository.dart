@@ -31,7 +31,7 @@ abstract class CardRepository {
       String monthYear);
 
   Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
-      String monthYear);
+      String monthYear, String? cardId);
 
   Future<Either<NetworkError, bool>> requestCreditCard(
       {required String cardId});

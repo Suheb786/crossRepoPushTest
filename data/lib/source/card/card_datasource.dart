@@ -37,7 +37,7 @@ abstract class CardRemoteDs {
   Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit();
 
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
-      {String? monthYear});
+      {String? monthYear, String? cardId});
 
   Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
       {String monthYear});

@@ -18,16 +18,19 @@ class GetCardStatementUseCase extends BaseUseCase<NetworkError,
       {required GetCardStatementUseCaseParams params}) {
     return params.statementType == StatementType.Debit
         ? _repository.getDebitCardStatement(params.monthYear)
-        : _repository.getCreditCardStatement(params.monthYear);
+        : _repository.getCreditCardStatement(params.monthYear, params.cardId);
   }
 }
 
 class GetCardStatementUseCaseParams extends Params {
   String monthYear;
+  String? cardId;
   StatementType statementType;
 
   GetCardStatementUseCaseParams(
-      {required this.monthYear, required this.statementType});
+      {required this.monthYear,
+      required this.statementType,
+      required this.cardId});
 
   @override
   Either<AppError, bool> verify() {

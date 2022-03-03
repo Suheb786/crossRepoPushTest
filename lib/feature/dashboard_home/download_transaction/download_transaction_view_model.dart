@@ -50,6 +50,7 @@ class DownloadTransactionViewModel extends BasePageViewModel {
   void getStatements() {
     _cardStatementRequest.safeAdd(GetCardStatementUseCaseParams(
         monthYear: arguments.transactionDate,
-        statementType: arguments.statementType));
+        statementType: arguments.statementType,
+        cardId: arguments.cardId));
   }
 }

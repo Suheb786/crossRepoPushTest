@@ -29,7 +29,7 @@ class CardTransactionEntity
   @override
   TransactionContent transform() {
     return TransactionContent(
-        label: this.date,
+        label: this.date ?? '',
         transactions: this.transactions!.map((e) => e.transform()).toList());
   }
 }

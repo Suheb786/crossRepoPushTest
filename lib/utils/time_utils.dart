@@ -98,6 +98,11 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
+  static String getFormattedDateForAccountTransaction(String date) {
+    final DateTime dateTime = DateFormat('M/d/yyyy').parse(date).toLocal();
+    return DateFormat('d MMMM').format(dateTime);
+  }
+
   static String getFormattedDateForCheckPassword(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
     final DateFormat formatter = DateFormat('yyyy-MM-dd');

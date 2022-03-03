@@ -38,7 +38,10 @@ class DownloadTransactionPageState extends BaseStatefulPage<
 class DownloadStatementArguments {
   final StatementType statementType;
   final String transactionDate;
+  final String cardId;
 
   DownloadStatementArguments(
-      {required this.statementType, required this.transactionDate});
+      {required this.statementType,
+      required this.transactionDate,
+      this.cardId: ''});
 }

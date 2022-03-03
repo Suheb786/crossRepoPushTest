@@ -68,18 +68,16 @@ class CardTransactionPageView
                                         years: creditYears.data!.years,
                                         onSelected: (value) {
                                           Navigator.pop(context);
-                                          Navigator
-                                              .pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .DownloadTransaction,
-                                                  arguments:
-                                                      DownloadStatementArguments(
-                                                          statementType:
-                                                              StatementType
-                                                                  .Credit,
-                                                          transactionDate:
-                                                              value));
+                                          Navigator.pushNamed(context,
+                                              RoutePaths.DownloadTransaction,
+                                              arguments:
+                                                  DownloadStatementArguments(
+                                                      statementType:
+                                                          StatementType.Credit,
+                                                      transactionDate: value,
+                                                      cardId: model
+                                                          .cardTransactionArguments
+                                                          .cardId!));
                                         },
                                         onDismissed: () {
                                           Navigator.pop(context);

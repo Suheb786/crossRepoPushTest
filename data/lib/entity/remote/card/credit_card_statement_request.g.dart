@@ -11,14 +11,16 @@ CreditCardStatementRequest _$CreditCardStatementRequestFromJson(
   return CreditCardStatementRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
-    monthYear: json['MonthYear'] as String?,
+    date: json['Date'] as String?,
+    cardId: json['CardId'] as String?,
   );
 }
 
 Map<String, dynamic> _$CreditCardStatementRequestToJson(
         CreditCardStatementRequest instance) =>
     <String, dynamic>{
-      'MonthYear': instance.monthYear,
+      'Date': instance.date,
+      'CardId': instance.cardId,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,
     };

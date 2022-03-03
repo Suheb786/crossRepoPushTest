@@ -1120,7 +1120,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CardStatementResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/CardTracking/GetCreditCardStatement',
+                .compose(_dio.options, '/CardTracking/GetCreditCardStatementV1',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CardStatementResponseEntity.fromJson(_result.data!);

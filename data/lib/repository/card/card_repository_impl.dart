@@ -103,9 +103,9 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
-      String monthYear) async {
+      String monthYear, String? cardId) async {
     final result = await safeApiCall(
-      _remoteDs.getCreditCardStatement(monthYear: monthYear),
+      _remoteDs.getCreditCardStatement(monthYear: monthYear, cardId: cardId),
     );
     return result!.fold(
       (l) => Left(l),

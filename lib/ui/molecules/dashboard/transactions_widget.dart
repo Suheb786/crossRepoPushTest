@@ -14,8 +14,11 @@ class TransactionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          // TimeUtils.getFormattedDateForTransaction(transactions!.label!),
-          transactions!.label!,
+          transactions!.label!.isNotEmpty
+              ? TimeUtils.getFormattedDateForAccountTransaction(
+                  transactions!.label!)
+              : '-',
+          //transactions!.label!,
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
