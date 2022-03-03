@@ -63,20 +63,28 @@ class CardTransactionPageView
                               child: InkWell(
                                   onTap: () {
                                     if (creditYears!.status == Status.SUCCESS) {
-                                      DownloadTransactionDialog.show(context,
-                                          years: creditYears.data!.years,
-                                          onSelected: (value) {
-                                        Navigator.pop(context);
-                                        Navigator.pushNamed(context,
-                                            RoutePaths.DownloadTransaction,
-                                            arguments:
-                                                DownloadStatementArguments(
-                                                    statementType:
-                                                        StatementType.Credit,
-                                                    transactionDate: value));
-                                      });
-                                    } else {
-                                      print('not success');
+                                      DownloadTransactionDialog.show(
+                                        context,
+                                        years: creditYears.data!.years,
+                                        onSelected: (value) {
+                                          Navigator.pop(context);
+                                          Navigator
+                                              .pushNamed(
+                                                  context,
+                                                  RoutePaths
+                                                      .DownloadTransaction,
+                                                  arguments:
+                                                      DownloadStatementArguments(
+                                                          statementType:
+                                                              StatementType
+                                                                  .Credit,
+                                                          transactionDate:
+                                                              value));
+                                        },
+                                        onDismissed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      );
                                     }
                                   },
                                   child: AppSvg.asset(AssetUtils.download)));

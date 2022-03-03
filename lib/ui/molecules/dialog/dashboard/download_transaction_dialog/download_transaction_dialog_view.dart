@@ -137,15 +137,21 @@ class DownloadTransactionDialogView extends StatelessWidget {
                                 color: Theme.of(context).accentColor),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                          child: Center(
-                            child: Text(
-                              S.of(context).swipeDownToCancel,
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.dark_gray_1),
+                        InkWell(
+                          onTap: () {
+                            onDismissed?.call();
+                          },
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 16),
+                            child: Center(
+                              child: Text(
+                                S.of(context).swipeDownToCancel,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.dark_gray_1),
+                              ),
                             ),
                           ),
                         ),

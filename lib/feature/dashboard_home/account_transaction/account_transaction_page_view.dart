@@ -65,7 +65,9 @@ class AccountTransactionPageView
                                 if (debitYears!.status == Status.SUCCESS) {
                                   DownloadTransactionDialog.show(context,
                                       years: debitYears.data!.years,
-                                      onSelected: (value) {
+                                      onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onSelected: (value) {
                                     Navigator.pop(context);
                                     Navigator.pushNamed(
                                         context, RoutePaths.DownloadTransaction,

@@ -35,8 +35,8 @@ class DownloadTransactionViewModel extends BasePageViewModel {
               createCall: () => _cardStatementUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _cardStatementResponse.safeAdd(event);
         updateLoader();
+        _cardStatementResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
