@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -89,256 +88,225 @@ class DebitCardSettingsPageView
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Column(children: [
-                        IgnorePointer(
-                          ignoring: true,
-                          child: AppStreamBuilder<bool>(
-                              stream: model.showDialogStream,
-                              initialData: false,
-                              onData: (showDialog) {
-                                if (showDialog) {
-                                  InformationDialog.show(context,
-                                      image: AssetUtils.cardFreeze,
-                                      title: S.of(context).freezeTheCard,
-                                      descriptionWidget: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 8.0, bottom: 10),
-                                            child: Text(
-                                                S
-                                                    .of(context)
-                                                    .acknowledgeBeforeFreezingCard,
-                                                style: TextStyle(
-                                                    fontSize: 14, height: 1.7)),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 24),
-                                            child: CustomBulletWithTitle(
-                                              title: S
+                        AppStreamBuilder<bool>(
+                            stream: model.showDialogStream,
+                            initialData: false,
+                            onData: (showDialog) {
+                              if (showDialog) {
+                                InformationDialog.show(context,
+                                    image: AssetUtils.cardFreeze,
+                                    title: S.of(context).freezeTheCard,
+                                    descriptionWidget: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, bottom: 10),
+                                          child: Text(
+                                              S
                                                   .of(context)
-                                                  .cardcantBeUsedForTransactions,
-                                              fontSize: 14,
-                                              lineHeight: 1.7,
-                                            ),
+                                                  .acknowledgeBeforeFreezingCard,
+                                              style: TextStyle(
+                                                  fontSize: 14, height: 1.7)),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .cardcantBeUsedForTransactions,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 24),
-                                            child: CustomBulletWithTitle(
-                                              title: S
-                                                  .of(context)
-                                                  .directDebitsWontBeMade,
-                                              fontSize: 14,
-                                              lineHeight: 1.7,
-                                            ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .directDebitsWontBeMade,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 24),
-                                            child: CustomBulletWithTitle(
-                                              title: S
-                                                  .of(context)
-                                                  .freezeAndActiveAtAnyTime,
-                                              fontSize: 14,
-                                              lineHeight: 1.7,
-                                            ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .freezeAndActiveAtAnyTime,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
                                           ),
-                                        ],
-                                      ), onSelected: () {
-                                    Navigator.pop(context);
-                                    model.freezeCard(
-                                        status: 'WM',
-                                        tokenizedPan:
-                                            ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .debitCard!
-                                                .first
-                                                .code!);
-                                  }, onDismissed: () {
-                                    Navigator.pop(context);
-                                    model.updateFreezeStatus(false);
-                                  });
-                                }
-                              },
-                              dataBuilder: (context, snapshot) {
-                                return AppStreamBuilder<bool>(
-                                  stream: model.freezeCardStream,
-                                  initialData: ProviderScope.containerOf(
-                                                  context)
-                                              .read(appHomeViewModelProvider)
-                                              .dashboardDataContent
-                                              .debitCard!
-                                              .first
-                                              .cardStatus ==
-                                          FreezeCardStatusEnum.F
-                                      ? true
-                                      : false,
-                                  onData: (value) {},
-                                  dataBuilder: (context, data) {
-                                    return SettingTile(
-                                      isNotify: true,
-                                      isEnabled: false,
-                                      onTap: () {
-                                        model.toggleFreezeCardStatus(!data!);
-                                      },
-                                      title: S.of(context).freezeThisCard,
-                                      tileIcon: AssetUtils.freeze,
-                                      trailing: FlutterSwitch(
-                                        value: data!,
-                                        onToggle: (value) {
-                                          if (value) {
-                                            model.updateShowDialog(true);
-                                          }
-                                          model.toggleFreezeCardStatus(value);
-                                          if (!value) {
-                                            model.unFreezeCard(
-                                                status: 'SR',
-                                                tokenizedPan: ProviderScope
-                                                        .containerOf(context)
-                                                    .read(
-                                                        appHomeViewModelProvider)
-                                                    .dashboardDataContent
-                                                    .debitCard!
-                                                    .first
-                                                    .code!);
-                                          }
-                                        },
-                                        width: 60,
-                                        height: 35,
-                                        padding: 4,
-                                        activeText: S.of(context).yes,
-                                        activeTextColor: AppColor.white,
-                                        inactiveTextColor: AppColor.darkGray,
-                                        activeTextFontWeight: FontWeight.w500,
-                                        showOnOff: true,
-                                        valueFontSize: 10,
-                                        activeToggleColor: AppColor.white,
-                                        inactiveText: S.of(context).no,
-                                        inactiveToggleColor:
-                                            AppColor.lightGrayishMagenta,
-                                        inactiveTextFontWeight: FontWeight.w500,
-                                        inactiveSwitchBorder:
-                                            Border.all(color: AppColor.gray_2),
-                                        activeColor: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color!,
-                                        inactiveColor:
-                                            Theme.of(context).accentColor,
-                                      ),
-                                    );
-                                  },
-                                );
-                              }),
-                        ),
-                        IgnorePointer(
-                          ignoring: true,
-                          child: AppStreamBuilder<Resource<bool>>(
-                            initialData: Resource.none(),
-                            stream: model.cancelCardResponseStream,
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                if (model.needsReplacement) {
-                                  Navigator.pushReplacementNamed(
-                                      context, RoutePaths.DebitCardReplacement);
-                                } else {
-                                  Navigator.pop(context, true);
-                                }
+                                        ),
+                                      ],
+                                    ), onSelected: () {
+                                  Navigator.pop(context);
+                                  model.freezeCard(
+                                      status: 'WM',
+                                      tokenizedPan: model
+                                          .debitCardSettingsArguments
+                                          .debitCard
+                                          .code!);
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                  model.updateFreezeStatus(false);
+                                });
                               }
                             },
-                            dataBuilder: (context, data) {
-                              return SettingTile(
-                                isNotify: true,
-                                isEnabled: false,
-                                onTap: () {
-                                  CardCancelDialog.show(
-                                    context,
-                                    onSelected:
-                                        (reasonValue, needsReplacement) {
-                                      model.needsReplacement = needsReplacement;
-                                      Navigator.pop(context);
-                                      model.cancelCard(
-                                          status: 'TE',
-                                          reasonValue: reasonValue,
-                                          tokenizedPlan:
-                                              ProviderScope.containerOf(context)
-                                                  .read(
-                                                      appHomeViewModelProvider)
-                                                  .dashboardDataContent
-                                                  .debitCard!
-                                                  .first
-                                                  .code!);
+                            dataBuilder: (context, snapshot) {
+                              return AppStreamBuilder<bool>(
+                                stream: model.freezeCardStream,
+                                initialData: model.debitCardSettingsArguments
+                                            .debitCard.cardStatus ==
+                                        FreezeCardStatusEnum.F
+                                    ? true
+                                    : false,
+                                onData: (value) {},
+                                dataBuilder: (context, data) {
+                                  return SettingTile(
+                                    onTap: () {
+                                      model.toggleFreezeCardStatus(!data!);
                                     },
-                                    onDismissed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onError: (AppError error) {
-                                      model.showToastWithError(error);
-                                    },
-                                    reasons: [
-                                      S.of(context).dontNeedMyCardAnymore,
-                                      S.of(context).tooManyRecurrentDeclined,
-                                      S
-                                          .of(context)
-                                          .dissatisfiedWithDigitalPlatform,
-                                      S
-                                          .of(context)
-                                          .dissatisfiedWithOverallBankingExp,
-                                      S.of(context).pleaseHelpUsImproveServices,
-                                    ],
+                                    title: S.of(context).freezeThisCard,
+                                    tileIcon: AssetUtils.freeze,
+                                    trailing: FlutterSwitch(
+                                      value: data!,
+                                      onToggle: (value) {
+                                        if (value) {
+                                          model.updateShowDialog(true);
+                                        }
+                                        model.toggleFreezeCardStatus(value);
+                                        if (!value) {
+                                          model.unFreezeCard(
+                                              status: 'SR',
+                                              tokenizedPan: model
+                                                  .debitCardSettingsArguments
+                                                  .debitCard
+                                                  .code);
+                                        }
+                                      },
+                                      width: 60,
+                                      height: 35,
+                                      padding: 4,
+                                      activeText: S.of(context).yes,
+                                      activeTextColor: AppColor.white,
+                                      inactiveTextColor: AppColor.darkGray,
+                                      activeTextFontWeight: FontWeight.w500,
+                                      showOnOff: true,
+                                      valueFontSize: 10,
+                                      activeToggleColor: AppColor.white,
+                                      inactiveText: S.of(context).no,
+                                      inactiveToggleColor:
+                                          AppColor.lightGrayishMagenta,
+                                      inactiveTextFontWeight: FontWeight.w500,
+                                      inactiveSwitchBorder:
+                                          Border.all(color: AppColor.gray_2),
+                                      activeColor: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color!,
+                                      inactiveColor:
+                                          Theme.of(context).accentColor,
+                                    ),
                                   );
                                 },
-                                title: S.of(context).cancelThisCard,
-                                tileIcon: AssetUtils.cancelCard,
                               );
-                            },
-                          ),
+                            }),
+                        AppStreamBuilder<Resource<bool>>(
+                          initialData: Resource.none(),
+                          stream: model.cancelCardResponseStream,
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              if (model.needsReplacement) {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.DebitCardReplacement);
+                              } else {
+                                Navigator.pop(context, true);
+                              }
+                            }
+                          },
+                          dataBuilder: (context, data) {
+                            return SettingTile(
+                              onTap: () {
+                                CardCancelDialog.show(
+                                  context,
+                                  onSelected: (reasonValue, needsReplacement) {
+                                    model.needsReplacement = needsReplacement;
+                                    Navigator.pop(context);
+                                    model.cancelCard(
+                                        status: 'TE',
+                                        reasonValue: reasonValue,
+                                        tokenizedPlan: model
+                                            .debitCardSettingsArguments
+                                            .debitCard
+                                            .code);
+                                  },
+                                  onDismissed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onError: (AppError error) {
+                                    model.showToastWithError(error);
+                                  },
+                                  reasons: [
+                                    S.of(context).dontNeedMyCardAnymore,
+                                    S.of(context).tooManyRecurrentDeclined,
+                                    S
+                                        .of(context)
+                                        .dissatisfiedWithDigitalPlatform,
+                                    S
+                                        .of(context)
+                                        .dissatisfiedWithOverallBankingExp,
+                                    S.of(context).pleaseHelpUsImproveServices,
+                                  ],
+                                );
+                              },
+                              title: S.of(context).cancelThisCard,
+                              tileIcon: AssetUtils.cancelCard,
+                            );
+                          },
                         ),
-                        IgnorePointer(
-                          ignoring: true,
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.manageDebitLimit,
-                                  arguments: ManageCardLimitsArguments(
-                                      cardType: CardType.DEBIT));
-                            },
-                            title: S.of(context).manageCardLimits,
-                            tileIcon: AssetUtils.settingBars,
-                          ),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.manageDebitLimit,
+                                arguments: ManageCardLimitsArguments(
+                                    cardType: CardType.DEBIT));
+                          },
+                          title: S.of(context).manageCardLimits,
+                          tileIcon: AssetUtils.settingBars,
                         ),
-                        IgnorePointer(
-                          ignoring: true,
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.ManageCardPin,
-                                  arguments: ManageCardPinArguments(
-                                      cardType: CardType.DEBIT));
-                            },
-                            title: S.of(context).manageCardPin,
-                            tileIcon: AssetUtils.cardShield,
-                          ),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCardPin,
+                                arguments: ManageCardPinArguments(
+                                    cardType: CardType.DEBIT,
+                                    cardNumber: model.debitCardSettingsArguments
+                                        .debitCard.cardNumber!,
+                                    tokenizedPan: model
+                                        .debitCardSettingsArguments
+                                        .debitCard
+                                        .code!,
+                                    freezeCardStatusEnum: model
+                                        .debitCardSettingsArguments
+                                        .debitCard
+                                        .cardStatus!));
+                          },
+                          title: S.of(context).manageCardPin,
+                          tileIcon: AssetUtils.cardShield,
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, RoutePaths.SupplementaryDebitCard);
-                            },
-                            title: S.of(context).requestSupplementarycard,
-                            tileIcon: AssetUtils.cardIcon,
-                          ),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.SupplementaryDebitCard);
+                          },
+                          title: S.of(context).requestSupplementarycard,
+                          tileIcon: AssetUtils.cardIcon,
                         ),
                         SettingTile(
                           onTap: () {},

@@ -5,9 +5,17 @@ import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_res
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
+import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
+import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -35,6 +43,8 @@ class AppHomeViewModel extends BasePageViewModel {
   bool isShowBalenceUpdatedToast = false;
 
   CardType cardType = CardType.DEBIT;
+
+  ChangeCardPinArguments changeCardPinArguments = ChangeCardPinArguments();
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 
@@ -80,6 +90,14 @@ class AppHomeViewModel extends BasePageViewModel {
 
   Size deviceSize = Size(0, 0);
 
+  ///pages response
+  BehaviorSubject<List> _pagesResponseSubject = BehaviorSubject();
+
+  ///pages response stream
+  Stream<List> get pageStream => _pagesResponseSubject.stream;
+
+  List pages = [];
+
   AppHomeViewModel(this._getDashboardDataUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
@@ -99,6 +117,7 @@ class AppHomeViewModel extends BasePageViewModel {
           }
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
+          getDashboardPages(event.data!.dashboardDataContent!);
         }
       });
     });
@@ -112,6 +131,62 @@ class AppHomeViewModel extends BasePageViewModel {
     });
 
     getDashboardData();
+  }
+
+  void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
+    pages.clear();
+    bool isSmallDevices =
+        deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+            deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
+    if (dashboardDataContent != null) {
+      pages.add(MyAccountPage(account: dashboardDataContent.account!));
+
+      if (dashboardDataContent.somethingWrong ?? false) {
+        pages.add(CreditCardIssuanceFailureWidget(
+          isSmallDevices: isSmallDevices,
+        ));
+      } else {
+        if (dashboardDataContent.creditCard!.length > 0) {
+          dashboardDataContent.creditCard!.forEach((creditCard) {
+            if (creditCard.isCompleted ?? false) {
+              pages.add(CreditCardWidget(
+                accountBalance: dashboardDataContent.account!.availableBalance,
+                isSmallDevice: isSmallDevices,
+                creditCard: creditCard,
+                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+              ));
+            } else {
+              pages.add(ApplyCreditCardWidget(
+                isSmallDevices: isSmallDevices,
+              ));
+            }
+          });
+        } else {
+          pages.add(ApplyCreditCardWidget(
+            isSmallDevices: isSmallDevices,
+          ));
+        }
+      }
+
+      if (dashboardDataContent.debitCard!.length > 0) {
+        dashboardDataContent.debitCard!.forEach((debitCard) {
+          pages.add(DebitCardWidget(
+              isSmallDevice: isSmallDevices,
+              key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
+              debitCard: debitCard));
+        });
+      } else {
+        pages.add(ApplyDebitCardWidget(
+          isSmallDevice: isSmallDevices,
+        ));
+      }
+    }
+    addPages(pages);
+  }
+
+  void addPages(List pagesList) {
+    print("lenght pages--->${pagesList.length}");
+    _pagesResponseSubject.safeAdd(pagesList);
   }
 
   void nextPage() {
@@ -131,7 +206,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List<Widget> buildPageIndicator(int currentPage, int totalPage) {
     List<Widget> list = [];
-    for (int i = 0; i < totalPage; i++) {
+    for (int i = 0; i < pages.length; i++) {
       list.add(i == currentPage
           ? indicator(true, i, currentPage)
           : indicator(false, i, currentPage));

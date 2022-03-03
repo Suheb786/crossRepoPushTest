@@ -32,7 +32,7 @@ class ChangeCardPinPageView
         }
       },
       child: Container(
-        color: model.cardType == CardType.DEBIT
+        color: model.changeCardPinArguments.cardType == CardType.DEBIT
             ? Theme.of(context).canvasColor
             : Theme.of(context).primaryColor,
         padding: EdgeInsets.only(top: 56),
@@ -50,9 +50,11 @@ class ChangeCardPinPageView
                             Text(
                               S.of(context).changeCardPin.toUpperCase(),
                               style: TextStyle(
-                                  color: model.cardType == CardType.DEBIT
-                                      ? Theme.of(context).primaryColorDark
-                                      : Theme.of(context).accentColor,
+                                  color:
+                                      model.changeCardPinArguments.cardType ==
+                                              CardType.DEBIT
+                                          ? Theme.of(context).primaryColorDark
+                                          : Theme.of(context).accentColor,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600),
                             ),
@@ -77,7 +79,9 @@ class ChangeCardPinPageView
                                   ),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: model.cardType == CardType.DEBIT
+                                      color: model.changeCardPinArguments
+                                                  .cardType ==
+                                              CardType.DEBIT
                                           ? Theme.of(context).primaryColorDark
                                           : Theme.of(context).accentColor,
                                       fontSize: 20,
@@ -100,7 +104,9 @@ class ChangeCardPinPageView
                                     '+962 79 322 8080',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: model.cardType == CardType.DEBIT
+                                        color: model.changeCardPinArguments
+                                                    .cardType ==
+                                                CardType.DEBIT
                                             ? Theme.of(context).primaryColorDark
                                             : Theme.of(context).accentColor,
                                         fontSize: 20,

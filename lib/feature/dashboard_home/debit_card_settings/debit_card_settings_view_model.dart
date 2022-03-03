@@ -2,6 +2,7 @@ import 'package:domain/usecase/card_delivery/cancel_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_debit_card_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -9,6 +10,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DebitCardSettingsViewModel extends BasePageViewModel {
+  final DebitCardSettingsArguments debitCardSettingsArguments;
   final FreezeDebitCardUseCase _freezeDebitCardUseCase;
   final UnFreezeDebitCardUseCase _unFreezeDebitCardUseCase;
   final CancelDebitCardUseCase _cancelDebitCardUseCase;
@@ -43,8 +45,11 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   Stream<bool> get showDialogStream => _showDialogRequestSubject.stream;
 
-  DebitCardSettingsViewModel(this._freezeDebitCardUseCase,
-      this._unFreezeDebitCardUseCase, this._cancelDebitCardUseCase) {
+  DebitCardSettingsViewModel(
+      this._freezeDebitCardUseCase,
+      this._unFreezeDebitCardUseCase,
+      this._cancelDebitCardUseCase,
+      this.debitCardSettingsArguments) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _freezeDebitCardUseCase.execute(params: value);

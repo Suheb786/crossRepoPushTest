@@ -44,7 +44,8 @@ class OtpForChangeCardPinPageView
                         arguments: ChangeCardPinSuccessArguments(
                             cardType: ProviderScope.containerOf(context)
                                 .read(changeCardPinViewModelProvider)
-                                .cardType));
+                                .changeCardPinArguments
+                                .cardType!));
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -57,6 +58,7 @@ class OtpForChangeCardPinPageView
                       if (data.status == Status.SUCCESS) {
                         ProviderScope.containerOf(context)
                                     .read(changeCardPinViewModelProvider)
+                                    .changeCardPinArguments
                                     .cardType ==
                                 CardType.DEBIT
                             ? model.changeDebitCardPin(

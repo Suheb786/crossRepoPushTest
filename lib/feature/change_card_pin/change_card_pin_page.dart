@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -20,13 +21,24 @@ class ChangeCardPinPageState
 
   @override
   void onModelReady(ChangeCardPinPageViewModel model) {
-    model.cardType = ProviderScope.containerOf(context)
+    model.changeCardPinArguments = ProviderScope.containerOf(context)
         .read(appHomeViewModelProvider)
-        .cardType;
+        .changeCardPinArguments;
   }
 
   @override
   Widget buildView(BuildContext context, ChangeCardPinPageViewModel model) {
     return ChangeCardPinPageView(provideBase());
   }
+}
+
+class ChangeCardPinArguments {
+  final CardType? cardType;
+  final String? tokenizedPan;
+  final String? cardNumber;
+
+  ChangeCardPinArguments(
+      {this.cardType: CardType.DEBIT,
+      this.tokenizedPan: "",
+      this.cardNumber: ""});
 }

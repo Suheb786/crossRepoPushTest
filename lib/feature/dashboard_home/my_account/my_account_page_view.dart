@@ -1,4 +1,4 @@
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,10 +16,9 @@ import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
-  // MyAccountPageView(ProviderBase model) : super(model);
-  final GetDashboardDataContent cardData;
+  final Account account;
 
-  MyAccountPageView(ProviderBase model, this.cardData) : super(model);
+  MyAccountPageView(ProviderBase model, this.account) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -99,7 +98,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //                 cardData!.account!
                                   //                             .accountTitle !=
                                   //                         null
-                                  //                     ? cardData.account!
+                                  //                     ? account!
                                   //                         .accountTitle!
                                   //                         .toTitleCase()
                                   //                     : '',
@@ -121,7 +120,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //                     MainAxisAlignment.start,
                                   //                 children: [
                                   //                   Text(
-                                  //                       cardData.account!
+                                  //                       account!
                                   //                           .availableBalance!,
                                   //                       style: TextStyle(
                                   //                           fontSize: 20,
@@ -192,10 +191,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             top: isSmallDevices ? 40 : 66,
                                           ),
                                           child: Text(
-                                            cardData.account!.accountTitle !=
-                                                    null
-                                                ? cardData
-                                                    .account!.accountTitle!
+                                            account.accountTitle != null
+                                                ? account.accountTitle!
                                                     .replaceAll(' ', '\n')
                                                 : '',
                                             maxLines: 3,
@@ -215,9 +212,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                  cardData.account!
-                                                      .availableBalance!,
+                                              Text(account.availableBalance!,
                                                   style: TextStyle(
                                                       fontSize: isSmallDevices
                                                           ? 12
@@ -280,7 +275,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          cardData.account!.accountNo ?? '',
+                                          account.accountNo ?? '',
                                           maxLines: 2,
                                           style: TextStyle(
                                               fontSize:
@@ -292,8 +287,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         InkWell(
                                           onTap: () {
                                             Clipboard.setData(ClipboardData(
-                                                    text: cardData.account!
-                                                            .accountNo ??
+                                                    text: account.accountNo ??
                                                         ''))
                                                 .then((value) =>
                                                     Fluttertoast.showToast(
@@ -328,7 +322,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          cardData.account!.iban!,
+                                          account.iban!,
                                           style: TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               color:
@@ -340,9 +334,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         InkWell(
                                           onTap: () {
                                             Clipboard.setData(ClipboardData(
-                                                    text: cardData
-                                                            .account!.iban ??
-                                                        ''))
+                                                    text: account.iban ?? ''))
                                                 .then((value) =>
                                                     Fluttertoast.showToast(
                                                         msg: 'IBAN Copied'));
@@ -409,7 +401,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         InkWell(
                                           onTap: () {
                                             _shareFiles(
-                                                model, context, cardData);
+                                                model, context, account);
                                           },
                                           child: Padding(
                                             padding:
@@ -461,11 +453,11 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
     );
   }
 
-  void _shareFiles(MyAccountViewModel model, BuildContext context,
-      GetDashboardDataContent cardData) async {
+  void _shareFiles(
+      MyAccountViewModel model, BuildContext context, Account account) async {
     final box = context.findRenderObject() as RenderBox?;
     await Share.share(
-        'Hello! Here are my Blink account details: \n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nOpen your Blink account today.',
+        'Hello! Here are my Blink account details: \n\n${account.accountTitle ?? ''} \n${account.iban ?? '-'}\n\nOpen your Blink account today.',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }

@@ -368,7 +368,8 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.VideoKYCScheduled));
 
       case RoutePaths.DebitCardSettings:
-        return CustomRoute.createRoute(DebitCardSettingsPage());
+        return CustomRoute.createRoute(DebitCardSettingsPage(
+            settings.arguments as DebitCardSettingsArguments));
 
       case RoutePaths.CreditCardSettings:
         return CustomRoute.createRoute(CreditCardSettingsPage());

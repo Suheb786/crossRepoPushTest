@@ -31,6 +31,7 @@ class EnterNewPinForCardPageState extends BaseStatefulPage<
   Color? scaffoldBackgroundColor() {
     return ProviderScope.containerOf(context)
                 .read(changeCardPinViewModelProvider)
+                .changeCardPinArguments
                 .cardType ==
             CardType.DEBIT
         ? Theme.of(context).canvasColor

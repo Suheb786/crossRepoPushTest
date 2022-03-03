@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_car
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
@@ -168,12 +169,13 @@ final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 /// DEBIT CArd Settings
-final debitCardSettingsViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DebitCardSettingsViewModel>(
-  (ref) => DebitCardSettingsViewModel(
+final debitCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<DebitCardSettingsViewModel, DebitCardSettingsArguments>(
+  (ref, args) => DebitCardSettingsViewModel(
       ref.read(freezeDebitCardUseCaseProvider),
       ref.read(unFreezeDebitCardUseCaseProvider),
-      ref.read(cancelDebitCardUseCaseProvider)),
+      ref.read(cancelDebitCardUseCaseProvider),
+      args),
 );
 
 /// Credit CArd Settings

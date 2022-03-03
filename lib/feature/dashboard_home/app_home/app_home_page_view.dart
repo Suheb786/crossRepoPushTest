@@ -10,9 +10,6 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dar
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
-import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
-import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
-import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -28,13 +25,6 @@ import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
-
-  // final List pages = [
-  //   MyAccountPage(),
-  //   GetCreditCardPage(),
-  //   MyDebitCardPage(),
-  //   // PlaceholderPage()
-  // ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -173,70 +163,75 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Expanded(
                                         child: Padding(
                                           padding: EdgeInsets.only(top: 4),
-                                          // child: DashboardSwiper(
-                                          //   pages: pages,
-                                          //   pageController:
-                                          //       model.pageController,
-                                          //   onIndexChanged: (index) {
-                                          //     // _currentPage = index;
-                                          //     model.updatePage(index);
-                                          //     model.updatePageControllerStream(
-                                          //         index);
-                                          //   },
-                                          //   currentStep: currentStep,
-                                          // ),
-                                          child: AppStreamBuilder<
-                                                  GetDashboardDataContent>(
-                                              stream: ProviderScope.containerOf(
-                                                      context)
-                                                  .read(
-                                                      appHomeViewModelProvider)
-                                                  .getDashboardCardDataStream,
-                                              initialData:
-                                                  GetDashboardDataContent(),
-                                              dataBuilder: (context, cardData) {
-                                                if (cardData!
-                                                        .account!.accountNo ==
-                                                    null) {
-                                                  return SizedBox();
-                                                }
-                                                return DashboardSwiper(
-                                                  pages: cardData.debitCard!
-                                                              .length >
-                                                          0
-                                                      ? [
-                                                          MyAccountPage(
-                                                            cardData: cardData,
-                                                          ),
-                                                          GetCreditCardPage(
-                                                            cardData: cardData,
-                                                          ),
-                                                          MyDebitCardPage(
-                                                              cardData:
-                                                                  cardData),
-                                                        ]
-                                                      : [
-                                                          MyAccountPage(
-                                                            cardData: cardData,
-                                                          ),
-                                                          GetCreditCardPage(
-                                                            cardData: cardData,
-                                                          )
-                                                        ],
-                                                  appSwiperController:
-                                                      model.appSwiperController,
-                                                  pageController:
-                                                      model.pageController,
-                                                  onIndexChanged: (index) {
-                                                    print(index);
-                                                    // _currentPage = index;
-                                                    model.updatePage(index);
-                                                    model
-                                                        .updatePageControllerStream(
-                                                            index);
-                                                  },
-                                                  currentStep: currentStep,
-                                                );
+                                          child: AppStreamBuilder<List>(
+                                              stream: model.pageStream,
+                                              initialData: [Container()],
+                                              dataBuilder:
+                                                  (context, pagesList) {
+                                                return AppStreamBuilder<
+                                                        GetDashboardDataContent>(
+                                                    stream: ProviderScope
+                                                            .containerOf(
+                                                                context)
+                                                        .read(
+                                                            appHomeViewModelProvider)
+                                                        .getDashboardCardDataStream,
+                                                    initialData:
+                                                        GetDashboardDataContent(),
+                                                    dataBuilder:
+                                                        (context, cardData) {
+                                                      if (cardData!.account!
+                                                              .accountNo ==
+                                                          null) {
+                                                        return SizedBox();
+                                                      }
+                                                      return DashboardSwiper(
+                                                        pages: pagesList,
+                                                        // cardData
+                                                        //             .debitCard!
+                                                        //             .length >
+                                                        //         0
+                                                        //     ? [
+                                                        //         MyAccountPage(
+                                                        //           cardData:
+                                                        //               cardData,
+                                                        //         ),
+                                                        //         GetCreditCardPage(
+                                                        //           cardData:
+                                                        //               cardData,
+                                                        //         ),
+                                                        //         MyDebitCardPage(
+                                                        //             cardData:
+                                                        //                 cardData),
+                                                        //       ]
+                                                        //     : [
+                                                        //         MyAccountPage(
+                                                        //           cardData:
+                                                        //               cardData,
+                                                        //         ),
+                                                        //         GetCreditCardPage(
+                                                        //           cardData:
+                                                        //               cardData,
+                                                        //         )
+                                                        //       ],
+                                                        appSwiperController: model
+                                                            .appSwiperController,
+                                                        pageController: model
+                                                            .pageController,
+                                                        onIndexChanged:
+                                                            (index) {
+                                                          print(index);
+                                                          // _currentPage = index;
+                                                          model.updatePage(
+                                                              index);
+                                                          model
+                                                              .updatePageControllerStream(
+                                                                  index);
+                                                        },
+                                                        currentStep:
+                                                            currentStep,
+                                                      );
+                                                    });
                                               }),
                                         ),
                                       ),
@@ -260,23 +255,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   : 2),
                                         ),
                                       ),
-                                      // SmoothPageIndicator(
-                                      //     controller: model.controller,
-                                      //     count: pages.length,
-                                      //     effect: ScrollingDotsEffect(
-                                      //       activeStrokeWidth: 2.6,
-                                      //       activeDotScale: 1.3,
-                                      //       activeDotColor: Theme.of(context)
-                                      //           .primaryColorDark,
-                                      //       dotColor: Theme.of(context)
-                                      //           .primaryColorDark
-                                      //           .withOpacity(0.6),
-                                      //       maxVisibleDots: 5,
-                                      //       radius: 8,
-                                      //       spacing: 10,
-                                      //       dotHeight: 10,
-                                      //       dotWidth: 10,
-                                      //     )),
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
@@ -337,18 +315,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           ),
                                         ),
                                       )
-                                      // DotsIndicator(
-                                      //   dotsCount: pages.length,
-                                      //   position: currentStep!.toDouble(),
-                                      //   decorator: DotsDecorator(
-                                      //       color: Theme.of(context)
-                                      //           .primaryColorDark
-                                      //           .withOpacity(0.6),
-                                      //       activeColor:
-                                      //           Theme.of(context).primaryColorDark,
-                                      //       size: Size(8, 8),
-                                      //       activeSize: Size(10, 10)),
-                                      // )
                                     ],
                                   ),
                                 )

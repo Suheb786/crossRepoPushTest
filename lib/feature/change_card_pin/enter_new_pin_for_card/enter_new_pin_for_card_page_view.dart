@@ -75,7 +75,8 @@ class EnterNewPinForCardPageView
                               model.enterNewPinForCard(
                                   ProviderScope.containerOf(context)
                                       .read(changeCardPinViewModelProvider)
-                                      .cardType);
+                                      .changeCardPinArguments
+                                      .cardType!);
                             }
                           },
                           child: Card(
