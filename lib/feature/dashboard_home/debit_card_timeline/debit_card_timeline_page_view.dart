@@ -6,6 +6,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class DebitCardTimeLinePageView
     extends BasePageViewWidget<DebitCardTimeLineViewModel> {
@@ -65,235 +66,130 @@ class DebitCardTimeLinePageView
                 ),
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.only(top: 10, right: 37),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 18),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                S.of(context).cardDelivered,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 12),
+            Container(
+              height: 103,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                itemBuilder: (context, index) {
+                  return Stack(
+                    children: [
+                      index % 2 == 0
+                          ? Image.asset(
+                              AssetUtils.progress1,
+                              fit: BoxFit.fitHeight,
+                              height: 103,
+                            )
+                          : Image.asset(
+                              AssetUtils.progress2,
+                              fit: BoxFit.contain,
+                              height: 103,
+                            ),
+                      index % 2 != 0
+                          ? Positioned(
+                              top: 0,
+                              left: -10,
+                              //right: 10,
+                              child: Container(
+                                height: 21,
+                                width: 21,
+                                decoration: BoxDecoration(
+                                    color: AppColor.vividYellow,
+                                    shape: BoxShape.circle),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 11, vertical: 2),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).accentColor,
-                                      borderRadius: BorderRadius.circular(14),
-                                      border: Border.all(
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!)),
-                                  child: Text(
-                                    "Confirm",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 170),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "You joined \nblink",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: Text(
-                                    "4 Jan",
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .hintStyle!
-                                            .color,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 56, top: 22),
-                      child: IntrinsicHeight(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Image.asset(AssetUtils.progress1),
-                            // Image.asset(AssetUtils.progress2a),
-                            // Image.asset(AssetUtils.progress1),
-                            Stack(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 15.0),
-                                  child: Image.asset(AssetUtils.progress2),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: -10,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 0,
-                                  left: 0,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Image.asset(AssetUtils.progress1),
-                                Positioned(
-                                  bottom: 0,
-                                  left: -10,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 0,
-                                  right: -10,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(right: 15),
-                                    child: Image.asset(AssetUtils.progress2)),
-                                Positioned(
-                                  top: 0,
-                                  left: -10,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    decoration: BoxDecoration(
-                                        color: AppColor.darkGrey,
-                                        shape: BoxShape.circle),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 19, left: 160),
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "Debit Card\nactivated.",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600, fontSize: 12),
+                            )
+                          : Positioned(
+                              bottom: 0,
+                              left: -10,
+                              child: Container(
+                                height: 21,
+                                width: 21,
+                                decoration: BoxDecoration(
+                                    color: AppColor.vividYellow,
+                                    shape: BoxShape.circle),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 4),
-                                child: Text(
-                                  "4 Jan",
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .inputDecorationTheme
-                                          .hintStyle!
-                                          .color,
-                                      fontSize: 12),
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 180),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Blink was\nborn",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 4),
-                                  child: Text(
-                                    "1 Jan",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .hintStyle!
-                                            .color,
-                                        fontSize: 12),
-                                  ),
-                                )
-                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                      index % 2 == 0
+                          ? Positioned(
+                              top: 0,
+                              right: -10,
+                              //right: 10,
+                              child: Container(
+                                height: 21,
+                                width: 21,
+                                decoration: BoxDecoration(
+                                    color: AppColor.vividYellow,
+                                    shape: BoxShape.circle),
+                              ),
+                            )
+                          : Positioned(
+                              bottom: 0,
+                              right: -10,
+                              child: Container(
+                                height: 21,
+                                width: 21,
+                                decoration: BoxDecoration(
+                                    color: AppColor.vividYellow,
+                                    shape: BoxShape.circle),
+                              ),
+                            ),
+
+                      index % 2 == 0
+                          ? Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Column(
+                                children: [
+                                  Text('Delivered date'),
+                                  Text(
+                                    TimeUtils.getFormattedDateForTransaction(
+                                        model
+                                            .timeLineArguments1
+                                            .timelineListArguments![index]
+                                            .cardCardActivated
+                                            .toString()),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(color: Colors.blue),
+                                  ),
+                                ],
+                              ))
+                          : Positioned(
+                              right: 0,
+                              bottom: 0,
+                              // right: -10,
+                              child: Column(
+                                children: [
+                                  Text('Activated Date'),
+                                  Text(TimeUtils.getFormattedDateForTransaction(
+                                      model
+                                          .timeLineArguments1
+                                          .timelineListArguments![index]
+                                          .cardDeliveredDatetime
+                                          .toString()))
+                                ],
+                              ))
+
+                      ///logic implement for start and end circle colour
+                      // index == 5
+                      //     ? Positioned(
+                      //         bottom: 0,
+                      //         right: -5,
+                      //         child: Container(
+                      //           height: 22,
+                      //           width: 22,
+                      //           decoration: BoxDecoration(
+                      //               color: AppColor.pure_blue,
+                      //               shape: BoxShape.circle),
+                      //         ),
+                      //       )
+                      //     : Container(),
+                    ],
+                  );
+                },
+                itemCount:
+                    model.timeLineArguments1.timelineListArguments!.length,
+                shrinkWrap: true,
               ),
             ),
             Padding(

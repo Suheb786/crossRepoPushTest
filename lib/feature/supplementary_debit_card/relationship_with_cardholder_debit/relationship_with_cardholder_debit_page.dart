@@ -14,7 +14,10 @@ class RelationshipWithCardholderDebitPage
 
 class RelationshipWithCardholderDebitPageState extends BaseStatefulPage<
     RelationshipWithCardholderDebitPageViewModel,
-    RelationshipWithCardholderDebitPage> {
+    RelationshipWithCardholderDebitPage> with AutomaticKeepAliveClientMixin {
+  RelationshipWithCardholderDebitPageState()
+      : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return relationShipWithCardHolderDebitViewModelProvider;
@@ -30,4 +33,13 @@ class RelationshipWithCardholderDebitPageState extends BaseStatefulPage<
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).canvasColor;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

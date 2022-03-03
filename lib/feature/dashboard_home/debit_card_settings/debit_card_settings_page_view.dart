@@ -275,6 +275,14 @@ class DebitCardSettingsPageView
                             Navigator.pushNamed(
                                 context, RoutePaths.manageDebitLimit,
                                 arguments: ManageCardLimitsArguments(
+                                    debitDeliveredDatetime: model
+                                        .debitCardSettingsArguments
+                                        .debitCard
+                                        .debitDeliveredDatetime,
+                                    tokenizedPan: model
+                                        .debitCardSettingsArguments
+                                        .debitCard
+                                        .code!,
                                     cardType: CardType.DEBIT));
                           },
                           title: S.of(context).manageCardLimits,
@@ -302,7 +310,7 @@ class DebitCardSettingsPageView
                         ),
                         SettingTile(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, RoutePaths.SupplementaryDebitCard);
                           },
                           title: S.of(context).requestSupplementarycard,

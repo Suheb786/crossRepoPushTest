@@ -35,6 +35,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
@@ -536,6 +537,11 @@ class AppRouter {
             builder: (context) => CheckScheduledVideoCallPage(
                 settings.arguments as CheckVideoCallScheduledArguments),
             settings: RouteSettings(name: RoutePaths.CheckScheduledVideoCall));
+
+      case RoutePaths.TimeLinePage:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardTimeLinePage(),
+            settings: RouteSettings(name: RoutePaths.TimeLinePage));
 
       default:
         return CupertinoPageRoute(

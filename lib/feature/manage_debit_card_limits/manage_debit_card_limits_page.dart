@@ -40,6 +40,11 @@ class ManageDebitCardLimitsPageState extends BaseStatefulPage<
 
 class ManageCardLimitsArguments {
   final CardType cardType;
+  final String tokenizedPan;
+  final dynamic debitDeliveredDatetime;
 
-  ManageCardLimitsArguments({this.cardType: CardType.CREDIT});
+  ManageCardLimitsArguments(
+      {this.cardType: CardType.CREDIT,
+      this.tokenizedPan: '',
+      this.debitDeliveredDatetime});
 }

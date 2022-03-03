@@ -308,6 +308,12 @@ class ErrorParser {
         return localisedHelper.locationServiceDisabled;
       case ErrorType.LIMIT_EXCEEDED:
         return localisedHelper.limitExceeded;
+      case ErrorType.ATM_WITHDRAWAL_VALUE_EXCEEDED:
+        return localisedHelper.atmLimitExceeded;
+      case ErrorType.MERCHANT_PAYMENT_EXCEEDED:
+        return localisedHelper.merchantPaymentValueExceeded;
+      case ErrorType.ONLINE_PURCHASE_VALUE_EXCEEDED:
+        return localisedHelper.onlinePurchaseExceeded;
       case ErrorType.EMPTY_IBAN_MOBILE:
         return localisedHelper.emptyIbanOrMobile;
       case ErrorType.EMPTY_PURPOSE:

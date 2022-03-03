@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11665,6 +11666,36 @@ class S {
     return Intl.message(
       'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
       name: 'debitCardReadyDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Atm withdrawal limit exceeded.`
+  String get atmLimitExceeded {
+    return Intl.message(
+      'Atm withdrawal limit exceeded.',
+      name: 'atmLimitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant payment limit exceeded.`
+  String get merchantPaymentValueExceeded {
+    return Intl.message(
+      'Merchant payment limit exceeded.',
+      name: 'merchantPaymentValueExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online purchase limit exceeded.`
+  String get onlinePurchaseExceeded {
+    return Intl.message(
+      'Online purchase limit exceeded.',
+      name: 'onlinePurchaseExceeded',
       desc: '',
       args: [],
     );

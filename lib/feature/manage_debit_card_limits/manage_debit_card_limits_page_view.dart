@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/manage_card_limits/manage_card_limits_modules.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_Debit_cards_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -30,14 +29,19 @@ class ManageDebitCardLimitsPageView
           initialData: Resource.none(),
           onData: (debitCardLimitResponse) {
             if (debitCardLimitResponse.status == Status.SUCCESS) {
-              model.atmWithdrawalValue = num.parse(debitCardLimitResponse
-                  .data!.debitCardLimitContent!.limits![0].currentLimit!);
-              model.merchantPaymentValue = num.parse(debitCardLimitResponse
-                  .data!.debitCardLimitContent!.limits![1].currentLimit!);
-              model.onlinePurchaseValue = num.parse(debitCardLimitResponse
-                  .data!.debitCardLimitContent!.limits![4].currentLimit!);
-              model.contactlessPaymentsValue = num.parse(debitCardLimitResponse
-                  .data!.debitCardLimitContent!.limits![5].currentLimit!);
+              model.atmWithdrawalValue = model.atmWithdrawalInitialValue =
+                  num.parse(debitCardLimitResponse
+                      .data!.debitCardLimitContent!.limits![0].currentLimit!);
+              model.merchantPaymentValue = model.merchantPaymentInitialValue =
+                  num.parse(debitCardLimitResponse
+                      .data!.debitCardLimitContent!.limits![1].currentLimit!);
+              model.onlinePurchaseValue = model.onlinePurchaseInitialValue =
+                  num.parse(debitCardLimitResponse
+                      .data!.debitCardLimitContent!.limits![4].currentLimit!);
+              model.contactlessPaymentsValue =
+                  model.contactlessPaymentsInitialValue = num.parse(
+                      debitCardLimitResponse.data!.debitCardLimitContent!
+                          .limits![5].currentLimit!);
             }
           },
           dataBuilder: (context, debitCardLimitResponse) {
@@ -182,6 +186,7 @@ class ManageDebitCardLimitsPageView
                                                         model.atmWithdrawalValue =
                                                             num.parse(
                                                                 atmWithdrawalValue);
+                                                        model.showSaveButton();
                                                       },
                                                       onDone:
                                                           (atmWithdrawalValue) {
@@ -296,6 +301,7 @@ class ManageDebitCardLimitsPageView
                                                         model.merchantPaymentValue =
                                                             num.parse(
                                                                 merchantPaymentValue);
+                                                        model.showSaveButton();
                                                       },
                                                       onDone:
                                                           (merchantPaymentValue) {
@@ -407,6 +413,7 @@ class ManageDebitCardLimitsPageView
                                                         model.onlinePurchaseValue =
                                                             num.parse(
                                                                 onlinePurchaseLimitValue);
+                                                        model.showSaveButton();
                                                       },
                                                       onDone:
                                                           (onlinePurchaseLimitValue) {
@@ -519,13 +526,7 @@ class ManageDebitCardLimitsPageView
                                                           //                 .limits![5]
                                                           //                 .currentLimit ==
                                                           //             150 &&
-                                                          ((ProviderScope.containerOf(
-                                                                              context)
-                                                                          .read(
-                                                                              appHomeViewModelProvider)
-                                                                          .dashboardDataContent
-                                                                          .debitCard!
-                                                                          .first
+                                                          ((model.cardLimitsArguments
                                                                           .debitDeliveredDatetime !=
                                                                       null) &&
                                                                   num.parse(debitCardLimitResponse
@@ -537,14 +538,8 @@ class ManageDebitCardLimitsPageView
                                                                       0)
                                                               ? true
                                                               : false,
-                                                      noToggle: !(ProviderScope
-                                                                  .containerOf(
-                                                                      context)
-                                                              .read(
-                                                                  appHomeViewModelProvider)
-                                                              .dashboardDataContent
-                                                              .debitCard!
-                                                              .first
+                                                      noToggle: !(model
+                                                              .cardLimitsArguments
                                                               .debitDeliveredDatetime !=
                                                           null),
                                                       title: S
@@ -573,6 +568,7 @@ class ManageDebitCardLimitsPageView
                                                         model.contactlessPaymentsValue =
                                                             num.parse(
                                                                 contactLessPaymentValue);
+                                                        model.showSaveButton();
                                                       },
                                                       onDone:
                                                           (contactLessPaymentValue) {
@@ -592,75 +588,90 @@ class ManageDebitCardLimitsPageView
                                     : Container()
                               ],
                             )),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: InkWell(
-                            onTap: () {
-                              if (model.atmWithdrawalValue >
-                                  num.parse(debitCardLimitResponse
-                                      .data!
-                                      .debitCardLimitContent!
-                                      .limits![0]
-                                      .maxLimit!)) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.LIMIT_EXCEEDED));
-                              } else if (model.merchantPaymentValue >
-                                  num.parse(debitCardLimitResponse
-                                      .data!
-                                      .debitCardLimitContent!
-                                      .limits![1]
-                                      .maxLimit!)) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.LIMIT_EXCEEDED));
-                              } else if (model.onlinePurchaseValue >
-                                  num.parse(debitCardLimitResponse
-                                      .data!
-                                      .debitCardLimitContent!
-                                      .limits![4]
-                                      .maxLimit!)) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.LIMIT_EXCEEDED));
-                              } else {
-                                model.updateCardLimits(
-                                    atmWithdrawalValue:
-                                        model.atmWithdrawalValue,
-                                    merchantPayment: model.merchantPaymentValue,
-                                    onlinePurchase: model.onlinePurchaseValue,
-                                    context: context,
-                                    contactlessPayments:
-                                        model.contactlessPaymentsValue);
-                              }
-                            },
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 20),
-                              padding: EdgeInsets.all(18),
-                              height: 56,
-                              width: double.maxFinite,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1
-                                    ?.color,
-                              ),
-                              child: Center(
-                                child: Text(S.of(context).saveChanges,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: 1,
-                                        color: Theme.of(context).accentColor)),
-                              ),
-                            ),
-                          ),
-                        ),
+                        AppStreamBuilder<bool>(
+                            stream: model.showSaveButtonStream,
+                            initialData: false,
+                            dataBuilder: (context, isVisible) {
+                              return Visibility(
+                                visible: isVisible!,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (model.atmWithdrawalValue >
+                                          num.parse(debitCardLimitResponse
+                                              .data!
+                                              .debitCardLimitContent!
+                                              .limits![0]
+                                              .maxLimit!)) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType
+                                                .ATM_WITHDRAWAL_VALUE_EXCEEDED));
+                                      } else if (model.merchantPaymentValue >
+                                          num.parse(debitCardLimitResponse
+                                              .data!
+                                              .debitCardLimitContent!
+                                              .limits![1]
+                                              .maxLimit!)) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType
+                                                .MERCHANT_PAYMENT_EXCEEDED));
+                                      } else if (model.onlinePurchaseValue >
+                                          num.parse(debitCardLimitResponse
+                                              .data!
+                                              .debitCardLimitContent!
+                                              .limits![4]
+                                              .maxLimit!)) {
+                                        model.showToastWithError(AppError(
+                                            cause: Exception(),
+                                            error: ErrorInfo(message: ''),
+                                            type: ErrorType
+                                                .ONLINE_PURCHASE_VALUE_EXCEEDED));
+                                      } else {
+                                        model.updateCardLimits(
+                                            atmWithdrawalValue:
+                                                model.atmWithdrawalValue,
+                                            merchantPayment:
+                                                model.merchantPaymentValue,
+                                            onlinePurchase:
+                                                model.onlinePurchaseValue,
+                                            context: context,
+                                            contactlessPayments:
+                                                model.contactlessPaymentsValue);
+                                      }
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 20),
+                                      padding: EdgeInsets.all(18),
+                                      height: 56,
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Theme.of(context)
+                                            .accentTextTheme
+                                            .bodyText1
+                                            ?.color,
+                                      ),
+                                      child: Center(
+                                        child: Text(S.of(context).saveChanges,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                letterSpacing: 1,
+                                                color: Theme.of(context)
+                                                    .accentColor)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
                       ],
                     ),
                   )

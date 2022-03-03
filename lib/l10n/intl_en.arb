@@ -1185,5 +1185,8 @@
   "invalidPrimaryId": "Invalid Primary Card Id",
   "scanIdToProceedFurther": "Scan your Id to proceed further.",
   "transactionHistory": "Transaction History",
-  "debitCardReadyDesc": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."
+  "debitCardReadyDesc": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
+  "atmLimitExceeded": "Atm withdrawal limit exceeded.",
+  "merchantPaymentValueExceeded": "Merchant payment limit exceeded.",
+  "onlinePurchaseExceeded": "Online purchase limit exceeded."
 }

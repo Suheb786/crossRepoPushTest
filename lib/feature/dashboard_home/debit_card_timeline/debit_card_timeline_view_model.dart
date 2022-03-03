@@ -5,4 +5,67 @@ class DebitCardTimeLineViewModel extends BasePageViewModel {
   DebitCardTimeLineUseCase _useCase;
 
   DebitCardTimeLineViewModel(this._useCase);
+
+  TimeLineArguments timeLineArguments = TimeLineArguments(
+      youJoinedBlink: DateTime.now().subtract(Duration(days: 5)),
+      blinkWasBorn: DateTime.now().subtract(Duration(days: 20)),
+      timelineListArguments: [
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
+        ),
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
+        ),
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
+        )
+      ]);
+
+  TimeLineArguments timeLineArguments1 = TimeLineArguments(
+      youJoinedBlink: DateTime.now().subtract(Duration(days: 5)),
+      blinkWasBorn: DateTime.now().subtract(Duration(days: 20)),
+      timelineListArguments: [
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
+          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
+        ),
+        TimeLineListArguments(
+          //cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
+        ),
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
+          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
+        ),
+        TimeLineListArguments(
+          //cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
+        ),
+        TimeLineListArguments(
+          cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
+          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
+        ),TimeLineListArguments(
+          //cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
+          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
+        )
+      ]);
+}
+
+class TimeLineListArguments {
+  final DateTime? cardDeliveredDatetime;
+  final DateTime? cardCardActivated;
+
+  TimeLineListArguments({this.cardDeliveredDatetime, this.cardCardActivated});
+}
+
+class TimeLineArguments {
+  final DateTime? youJoinedBlink;
+  final DateTime? blinkWasBorn;
+  final List<TimeLineListArguments>? timelineListArguments;
+
+  TimeLineArguments(
+      {this.youJoinedBlink, this.blinkWasBorn, this.timelineListArguments});
 }

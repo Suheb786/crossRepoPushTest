@@ -190,6 +190,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error in aramex api"),
         "assignTokenError": MessageLookupByLibrary.simpleMessage(
             "Error while assigning token vkey"),
+        "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
+            "Atm withdrawal limit exceeded."),
         "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
         "authorization": MessageLookupByLibrary.simpleMessage("authorization."),
         "authorize": MessageLookupByLibrary.simpleMessage(
@@ -1325,6 +1327,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Maximum age of User must be"),
         "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "merchantPaymentValueExceeded": MessageLookupByLibrary.simpleMessage(
+            "Merchant payment limit exceeded."),
         "merchantPayments":
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
@@ -1439,6 +1443,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
         "onlinePurchase":
             MessageLookupByLibrary.simpleMessage("Online Purchase"),
+        "onlinePurchaseExceeded": MessageLookupByLibrary.simpleMessage(
+            "Online purchase limit exceeded."),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),

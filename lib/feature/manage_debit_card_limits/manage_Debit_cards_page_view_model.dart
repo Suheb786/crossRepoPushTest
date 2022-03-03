@@ -4,9 +4,7 @@ import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.d
 import 'package:domain/usecase/card_delivery/debit_card_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -48,10 +46,20 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   Stream<Resource<DebitCardLimitResponse>> get debitCardLimitResponseStream =>
       _debitCardLimitResponseSubject.stream;
 
+  /// show save button visibility
+  BehaviorSubject<bool> _showSaveButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showSaveButtonStream => _showSaveButtonSubject.stream;
+
   num atmWithdrawalValue = 0;
   num merchantPaymentValue = 0;
   num onlinePurchaseValue = 0;
   num contactlessPaymentsValue = 0;
+
+  num atmWithdrawalInitialValue = 0;
+  num merchantPaymentInitialValue = 0;
+  num onlinePurchaseInitialValue = 0;
+  num contactlessPaymentsInitialValue = 0;
 
   bool isAtmWithdrawal = true;
   bool isMerchantPayments = true;
@@ -166,12 +174,18 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
             isAtmWithdrawal: isAtmWithdrawal,
             contactLessPayments: contactlessPayments,
             atmWithdrawal: atmWithdrawalValue,
-            tokenizedPan: ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .dashboardDataContent
-                .debitCard!
-                .first
-                .code!));
+            tokenizedPan: cardLimitsArguments.tokenizedPan));
+  }
+
+  void showSaveButton() {
+    bool show = false;
+    if (atmWithdrawalValue != atmWithdrawalInitialValue ||
+        merchantPaymentValue != merchantPaymentInitialValue ||
+        onlinePurchaseValue != onlinePurchaseInitialValue ||
+        contactlessPaymentsValue != contactlessPaymentsInitialValue) {
+      show = true;
+    }
+    _showSaveButtonSubject.safeAdd(show);
   }
 
   @override
