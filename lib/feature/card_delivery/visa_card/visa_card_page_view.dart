@@ -23,6 +23,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
+    listenPopUp(model, context);
     return AppStreamBuilder<Resource<CardIssuanceDetails>>(
       stream: model.cardIssuanceStream,
       initialData: Resource.none(),
@@ -207,5 +208,53 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
         );
       },
     );
+  }
+
+  void listenPopUp(VisaCardPageViewModel model, BuildContext context) {
+    model.cardDeliveryPopUpDataStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => popUpWidget(context, AssetUtils.anghamiPlus));
+      }
+    });
+  }
+
+  Widget popUpWidget(BuildContext context, String image) {
+    return Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+            Container(
+              height: 530,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Image.asset(
+                image,
+                fit: BoxFit.fill,
+              ),
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                  height: 55,
+                  width: 55,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColor.white,
+                  ),
+                  child: Icon(
+                    Icons.close,
+                    color: AppColor.brightBlue,
+                  )),
+            )
+          ],
+        ));
   }
 }

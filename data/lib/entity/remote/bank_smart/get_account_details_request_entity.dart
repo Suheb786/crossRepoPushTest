@@ -10,8 +10,7 @@ class GetAccountDetailsRequestEntity {
   @JsonKey(name: "baseClass")
   final BaseClassEntity baseData;
 
-  GetAccountDetailsRequestEntity(
-      {this.getToken: false, required this.baseData});
+  GetAccountDetailsRequestEntity({this.getToken: true, required this.baseData});
 
   factory GetAccountDetailsRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAccountDetailsRequestEntityFromJson(json);

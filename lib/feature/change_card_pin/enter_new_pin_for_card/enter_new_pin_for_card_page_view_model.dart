@@ -62,6 +62,7 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
         _enterNewPinForCardResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });

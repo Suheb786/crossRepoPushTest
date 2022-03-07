@@ -16,7 +16,7 @@ class CreateAccountRequestEntity {
   final Map<String, dynamic> baseData;
 
   CreateAccountRequestEntity(
-      {this.getToken,
+      {this.getToken: true,
       this.cif,
       this.customerDetailsEntity,
       this.account,

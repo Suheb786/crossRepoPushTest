@@ -78,6 +78,7 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
         _createPasswordResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           print("got here");
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;

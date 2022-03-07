@@ -81,10 +81,10 @@ class DownloadTransactionPageView
                                       padding: EdgeInsets.only(
                                           top: 38, left: 22, right: 22),
                                       child: Container(
-                                        height: 417,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: AppColor.gray1)),
+                                        // height: 417,
+                                        // decoration: BoxDecoration(
+                                        //     border: Border.all(
+                                        //         color: AppColor.gray1)),
                                         child: Stack(
                                           alignment: Alignment.center,
                                           children: [
@@ -114,7 +114,7 @@ class DownloadTransactionPageView
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.only(
-                                            top: 40, left: 48, right: 48),
+                                            top: 32, left: 48, right: 48),
                                         child: Container(
                                           height: 50,
                                           decoration: BoxDecoration(

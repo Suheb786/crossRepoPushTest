@@ -12,7 +12,7 @@ class SaveSelfieImageRequest {
   final Map<String, dynamic> baseData;
 
   SaveSelfieImageRequest(
-      {required this.baseData, this.getToken, this.selfieImage});
+      {required this.baseData, this.getToken: true, this.selfieImage});
 
   factory SaveSelfieImageRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveSelfieImageRequestFromJson(json);

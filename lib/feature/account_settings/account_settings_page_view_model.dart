@@ -188,6 +188,10 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       ).asFlow().listen((event) {
         updateLoader();
         _getProfileInfoResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
       });
     });
 

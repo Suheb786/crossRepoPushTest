@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11696,6 +11695,26 @@ class S {
     return Intl.message(
       'Online purchase limit exceeded.',
       name: 'onlinePurchaseExceeded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is Unavailable`
+  String get noInternetConnection {
+    return Intl.message(
+      'Service is Unavailable',
+      name: 'noInternetConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server is under maintenance. Please try again in sometime.`
+  String get serverUnderMaintenance {
+    return Intl.message(
+      'Server is under maintenance. Please try again in sometime.',
+      name: 'serverUnderMaintenance',
       desc: '',
       args: [],
     );

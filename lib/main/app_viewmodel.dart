@@ -274,16 +274,16 @@ class AppViewModel extends BaseViewModel {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
-  void getToken() async {
-    if (_isolate != null) {
-      return;
-    }
-    _receivePort = ReceivePort();
-    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
-    _receivePort.listen(_handleMessage, onDone: () {
-      print('Done');
-    });
-  }
+  // void getToken() async {
+  //   if (_isolate != null) {
+  //     return;
+  //   }
+  //   _receivePort = ReceivePort();
+  //   _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
+  //   _receivePort.listen(_handleMessage, onDone: () {
+  //     print('Done');
+  //   });
+  // }
 
   void _handleMessage(dynamic data) {
     print('data $data');
@@ -296,30 +296,30 @@ class AppViewModel extends BaseViewModel {
     });
   }
 
-  void pauseRefreshToken() {
-    if (_isolate != null) {
-      print('inside pause token');
-      _isolate!.pause(_isolate!.pauseCapability!);
-      //_receivePort.close();
-    }
-  }
-
-  void resumeRefreshToken() {
-    if (_isolate != null) {
-      print('inside resume token');
-      _isolate!.resume(_isolate!.pauseCapability!);
-    } else {
-      getToken();
-    }
-  }
-
-  void stopRefreshToken() {
-    if (_isolate != null) {
-      print('inside stop token');
-      _isolate!.kill(priority: 0);
-      _isolate = null;
-    }
-  }
+  // void pauseRefreshToken() {
+  //   if (_isolate != null) {
+  //     print('inside pause token');
+  //     _isolate!.pause(_isolate!.pauseCapability!);
+  //     //_receivePort.close();
+  //   }
+  // }
+  //
+  // void resumeRefreshToken() {
+  //   if (_isolate != null) {
+  //     print('inside resume token');
+  //     _isolate!.resume(_isolate!.pauseCapability!);
+  //   } else {
+  //     getToken();
+  //   }
+  // }
+  //
+  // void stopRefreshToken() {
+  //   if (_isolate != null) {
+  //     print('inside stop token');
+  //     _isolate!.kill(priority: 0);
+  //     _isolate = null;
+  //   }
+  // }
 
   void _callGetToken() {
     _getTokenRequest.add(GetTokenUseCaseParams());

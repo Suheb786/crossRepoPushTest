@@ -1406,6 +1406,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDebitCardRecordFound":
             MessageLookupByLibrary.simpleMessage("No Debit Card Record Found"),
         "noDueAmount": MessageLookupByLibrary.simpleMessage("No due Amount"),
+        "noInternetConnection":
+            MessageLookupByLibrary.simpleMessage("Service is Unavailable"),
         "noMatchingYearFound":
             MessageLookupByLibrary.simpleMessage("No matching year found!"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
@@ -1815,6 +1817,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
             "Error While Sending Device Change OTP"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
+        "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
+            "Server is under maintenance. Please try again in sometime."),
         "sessionTimeout":
             MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "setCardPintError": MessageLookupByLibrary.simpleMessage(

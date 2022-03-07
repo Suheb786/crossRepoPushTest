@@ -27,6 +27,20 @@ class VisaCardPageViewModel extends BasePageViewModel {
   Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
       _cardIssuanceResponse.stream;
 
+  /// card delivery pop up request
+  PublishSubject<bool> _cardDeliveryPopUpResponse = PublishSubject();
+
+  /// card delivery pop up response
+  PublishSubject<bool> _cardDeliveryRequest = PublishSubject();
+
+  /// card delivery pop up stream
+  Stream<bool> get cardDeliveryPopUpDataStream =>
+      _cardDeliveryPopUpResponse.stream;
+
+  void triggerPopup() {
+    _cardDeliveryRequest.safeAdd(true);
+  }
+
   VisaCardPageViewModel(this._cardIssuanceUseCase) {
     _cardIssuanceRequest.listen((value) {
       RequestManager(value,
@@ -39,8 +53,13 @@ class VisaCardPageViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           cardNumber = event.data!.cardNumber;
+          triggerPopup();
         }
       });
+    });
+
+    _cardDeliveryRequest.listen((value) {
+      _cardDeliveryPopUpResponse.safeAdd(value);
     });
     fetchCardIssuanceDetails();
   }

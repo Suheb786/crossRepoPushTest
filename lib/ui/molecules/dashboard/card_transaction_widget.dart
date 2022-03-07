@@ -75,7 +75,16 @@ class CardTransactionWidget extends StatelessWidget {
                         transactions!.transactions![index].amount!
                             .toStringAsFixed(3),
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14),
+                            color: transactions!.transactions![index].amount!
+                                    .toString()
+                                    .contains('-')
+                                ? AppColor.dark_brown
+                                : AppColor.darkModerateLimeGreen,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14),
+                      ),
+                      SizedBox(
+                        width: 4,
                       ),
                       Text(
                         "JOD",

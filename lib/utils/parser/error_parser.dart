@@ -21,7 +21,7 @@ class ErrorParser {
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
-        return localisedHelper.genericError;
+        return localisedHelper.serverUnderMaintenance;
       case ErrorType.DATABASE:
         return localisedHelper.genericError;
       case ErrorType.DATABASE_NOT_SUPPORTED:

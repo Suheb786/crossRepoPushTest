@@ -10,7 +10,7 @@ class FetchCountryListRequest {
   @JsonKey(name: "baseClass")
   final BaseClassEntity baseData;
 
-  FetchCountryListRequest({this.getToken, required this.baseData});
+  FetchCountryListRequest({this.getToken: true, required this.baseData});
 
   factory FetchCountryListRequest.fromJson(Map<String, dynamic> json) =>
       _$FetchCountryListRequestFromJson(json);

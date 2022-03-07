@@ -10,10 +10,10 @@ class CheckOtherNationalityStatusRequestEntity {
   final Map<String, dynamic> baseData;
 
   CheckOtherNationalityStatusRequestEntity(
-      {this.getToken, required this.baseData});
+      {this.getToken: true, required this.baseData});
 
   factory CheckOtherNationalityStatusRequestEntity.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$CheckOtherNationalityStatusRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

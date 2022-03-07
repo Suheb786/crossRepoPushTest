@@ -9,7 +9,6 @@ import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
@@ -155,12 +154,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       onData: (data) {
                                                         if (data.status ==
                                                             Status.SUCCESS) {
-                                                          ProviderScope
-                                                                  .containerOf(
-                                                                      context)
-                                                              .read(
-                                                                  appViewModel)
-                                                              .getToken();
+                                                          ///refresh token api
+                                                          // ProviderScope
+                                                          //         .containerOf(
+                                                          //             context)
+                                                          //     .read(
+                                                          //         appViewModel)
+                                                          //     .getToken();
                                                           model
                                                               .checkKycStatus();
                                                         }
@@ -220,11 +220,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.applicationId = data
                                                                         .data!
                                                                         .applicationId!;
-                                                                    ProviderScope.containerOf(
-                                                                            context)
-                                                                        .read(
-                                                                            appViewModel)
-                                                                        .getToken();
+
+                                                                    ///refresh token api
+                                                                    // ProviderScope.containerOf(
+                                                                    //         context)
+                                                                    //     .read(
+                                                                    //         appViewModel)
+                                                                    //     .getToken();
                                                                     // model
                                                                     //     .checkKycStatus();
 

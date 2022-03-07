@@ -12,7 +12,7 @@ class UploadDocumentRequestEntity {
   final Map<String, dynamic> baseData;
 
   UploadDocumentRequestEntity(
-      {this.documentBase64, this.getToken, required this.baseData});
+      {this.documentBase64, this.getToken: true, required this.baseData});
 
   factory UploadDocumentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$UploadDocumentRequestEntityFromJson(json);

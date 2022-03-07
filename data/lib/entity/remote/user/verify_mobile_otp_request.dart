@@ -12,7 +12,7 @@ class VerifyMobileOtpRequest {
   final Map<String, dynamic> baseData;
 
   VerifyMobileOtpRequest(
-      {this.otpCode: "", this.getToken: false, required this.baseData});
+      {this.otpCode: "", this.getToken: true, required this.baseData});
 
   factory VerifyMobileOtpRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyMobileOtpRequestFromJson(json);
