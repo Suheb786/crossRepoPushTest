@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -22,7 +23,12 @@ class CreditCardVerificationSuccessPageView
           if (details.primaryVelocity!.isNegative) {
             Navigator.of(context)
               ..pop()
-              ..pop(true);
+              ..pop()
+              ..pop();
+            //Navigator.pushNamed(context, RoutePaths.AppHome);
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
           }
         },
         child: Padding(

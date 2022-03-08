@@ -10,6 +10,8 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dar
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -58,7 +60,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           if (currentStep == 1) {
                             if (showTimeLine!) {
                               print("dragged here");
-                              model.updateShowTimeLineStream(!showTimeLine);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.TimeLinePage,
+                                  arguments: TimeLinePageArguments(
+                                      timeLineArguments:
+                                          model.timeLineArguments));
+                              //model.updateShowTimeLineStream(!showTimeLine);
                               return;
                             } else {
                               cardData!.data!.dashboardDataContent!.creditCard!
@@ -79,7 +86,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           } else if (currentStep == 0) {
                             if (showTimeLine!) {
                               print("dragged here");
-                              model.updateShowTimeLineStream(!showTimeLine);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.TimeLinePage,
+                                  arguments: TimeLinePageArguments(
+                                      timeLineArguments:
+                                          model.timeLineArguments));
+                              //model.updateShowTimeLineStream(!showTimeLine);
                               return;
                             } else {
                               Navigator.pushNamed(
@@ -87,10 +99,20 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             }
                           } else if (currentStep == 1) {
                             if (showTimeLine!) {
-                              model.updateShowTimeLineStream(!showTimeLine);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.TimeLinePage,
+                                  arguments: TimeLinePageArguments(
+                                      timeLineArguments:
+                                          model.timeLineArguments));
+                              //model.updateShowTimeLineStream(!showTimeLine);
                             }
                           } else if (currentStep == 2) {
-                            model.updateShowTimeLineStream(!showTimeLine!);
+                            Navigator.pushNamed(
+                                context, RoutePaths.TimeLinePage,
+                                arguments: TimeLinePageArguments(
+                                    timeLineArguments:
+                                        model.timeLineArguments));
+                            //model.updateShowTimeLineStream(!showTimeLine!);
                           }
                           // model.updateAppSwipeControllerStream(currentStep!);
                         } else {
@@ -104,7 +126,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                           // }
                           if (details.primaryVelocity! > 0.5) {
                             if (!showTimeLine!) {
-                              model.updateShowTimeLineStream(!showTimeLine);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.TimeLinePage,
+                                  arguments: TimeLinePageArguments(
+                                      timeLineArguments:
+                                          model.timeLineArguments));
+                              //model.updateShowTimeLineStream(!showTimeLine);
                             }
                           }
                         }
@@ -543,7 +570,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (context) => CreditCardDeliveredPage(
-                                                                                    creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                                    creditCard: TimeLineListArguments(),
+                                                                                    //creditCard: cardData.data!.dashboardDataContent!.creditCard!.first,
                                                                                   )));
                                                                       if (result !=
                                                                           null) {
@@ -747,8 +775,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                             var result = await Navigator.push(
                                                                                 context,
                                                                                 MaterialPageRoute(
-                                                                                    builder: (context) => DebitCardDeliveredPage(
-                                                                                          debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                                    builder: (context) => DebitCardDeliveredPage(debitCard: TimeLineListArguments() //cardData.data!.dashboardDataContent!.debitCard!.first,
                                                                                         )));
                                                                             if (result !=
                                                                                 null) {

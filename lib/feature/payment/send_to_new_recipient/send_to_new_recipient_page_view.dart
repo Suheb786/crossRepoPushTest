@@ -198,16 +198,20 @@ class SendToNewRecipientPageView
                                                           onFocusChange:
                                                               (hasFocus) {
                                                             if (!hasFocus) {
-                                                              model.checkSendMoney(
-                                                                  amount: ProviderScope
-                                                                          .containerOf(
-                                                                              context)
-                                                                      .read(
-                                                                          sendMoneyViewModelProvider)
-                                                                      .currentPinValue,
-                                                                  iban: model
-                                                                      .ibanOrMobileController
-                                                                      .text);
+                                                              if (model
+                                                                  .ibanOrMobileController
+                                                                  .text
+                                                                  .isNotEmpty) {
+                                                                model.checkSendMoney(
+                                                                    amount: ProviderScope.containerOf(
+                                                                            context)
+                                                                        .read(
+                                                                            sendMoneyViewModelProvider)
+                                                                        .currentPinValue,
+                                                                    iban: model
+                                                                        .ibanOrMobileController
+                                                                        .text);
+                                                              }
                                                             }
                                                           },
                                                         ),

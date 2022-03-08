@@ -63,13 +63,13 @@ class DashboardDebitCardEntity
                 ? EncryptDecryptHelper.decryptCard(cardNo: this.cvv!)
                 : "")
             : "",
-        expiryDate: this.expiryDate,
-        linkedAccountNumber: this.linkedAccountNumber,
-        accountTitle: this.accountTitle,
-        debitDeliveredDatetime: this.debitDeliveredDatetime,
+        expiryDate: this.expiryDate ?? '',
+        linkedAccountNumber: this.linkedAccountNumber ?? '',
+        accountTitle: this.accountTitle ?? '',
+        debitDeliveredDatetime: this.debitDeliveredDatetime ?? '',
         debitCardActivated: this.debitCardActivated,
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
-        code: this.code,
-        isDebitDelivered: this.isDebitDelivered);
+        code: this.code ?? '',
+        isDebitDelivered: this.isDebitDelivered ?? false);
   }
 }

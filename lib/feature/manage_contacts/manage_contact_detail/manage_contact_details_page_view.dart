@@ -277,7 +277,7 @@ class ManageContactDetailsPageView
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             model.showSuccessToast(
-                                S.of(context).yourContactDetailsUpdated);
+                                'Contact Deleted Successfully.');
                             Navigator.pop(context, true);
                           }
                         },

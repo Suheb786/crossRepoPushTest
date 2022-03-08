@@ -1,5 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
-import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,6 +34,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
@@ -273,13 +272,13 @@ class AppRouter {
       case RoutePaths.CreditCardDelivered:
         return CupertinoPageRoute(
             builder: (context) => CreditCardDeliveredPage(
-                creditCard: settings.arguments as List<CreditCard>),
+                creditCard: settings.arguments as TimeLineListArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:
         return CupertinoPageRoute(
             builder: (context) => DebitCardDeliveredPage(
-                debitCard: settings.arguments as DebitCard),
+                debitCard: settings.arguments as TimeLineListArguments),
             settings: RouteSettings(name: RoutePaths.DebitCardDelivered));
 
       case RoutePaths.CreditCardVerificationSuccess:
@@ -539,9 +538,8 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CheckScheduledVideoCall));
 
       case RoutePaths.TimeLinePage:
-        return CupertinoPageRoute(
-            builder: (context) => DebitCardTimeLinePage(),
-            settings: RouteSettings(name: RoutePaths.TimeLinePage));
+        return CustomRoute.createRoute(
+            DebitCardTimeLinePage(settings.arguments as TimeLinePageArguments));
 
       default:
         return CupertinoPageRoute(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -20,7 +21,11 @@ class DebitCardVerificationSuccessPageView
           if (details.primaryVelocity!.isNegative) {
             Navigator.of(context)
               ..pop()
-              ..pop(true);
+              ..pop()
+              ..pop();
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
           }
         },
         child: Padding(

@@ -1190,5 +1190,7 @@
   "merchantPaymentValueExceeded": "Merchant payment limit exceeded.",
   "onlinePurchaseExceeded": "Online purchase limit exceeded.",
   "noInternetConnection": "Service is Unavailable",
-  "serverUnderMaintenance": "Server is under maintenance. Please try again in sometime."
+  "serverUnderMaintenance": "Server is under maintenance. Please try again in sometime.",
+  "debitCardDeliveredQ": "Debit Card\ndelivered?",
+  "creditCardDeliveredQ": "Credit card\ndelivered?"
 }

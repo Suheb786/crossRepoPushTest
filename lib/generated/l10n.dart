@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11715,6 +11716,26 @@ class S {
     return Intl.message(
       'Server is under maintenance. Please try again in sometime.',
       name: 'serverUnderMaintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card\ndelivered?`
+  String get debitCardDeliveredQ {
+    return Intl.message(
+      'Debit Card\ndelivered?',
+      name: 'debitCardDeliveredQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card\ndelivered?`
+  String get creditCardDeliveredQ {
+    return Intl.message(
+      'Credit card\ndelivered?',
+      name: 'creditCardDeliveredQ',
       desc: '',
       args: [],
     );

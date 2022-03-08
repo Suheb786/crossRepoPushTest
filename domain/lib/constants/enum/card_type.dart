@@ -1,1 +1,1 @@
-enum CardType { CREDIT, DEBIT }
+enum CardType { CREDIT, DEBIT, ACCOUNT }

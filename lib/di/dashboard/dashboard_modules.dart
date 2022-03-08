@@ -1,5 +1,3 @@
-import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
-import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
@@ -18,6 +16,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
@@ -81,7 +80,7 @@ final myDebitCardViewModelProvider =
 );
 
 final cardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DebitCardDeliveredViewModel, DebitCard>(
+    .family<DebitCardDeliveredViewModel, TimeLineListArguments>(
   (ref, args) => DebitCardDeliveredViewModel(
       ref.read(debitCardConfirmDeliveryCaseProvider), args),
 );
@@ -101,7 +100,7 @@ final cardTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 final creditCardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<CreditCardDeliveredViewModel, List<CreditCard>>(
+    .family<CreditCardDeliveredViewModel, TimeLineListArguments>(
   (ref, args) => CreditCardDeliveredViewModel(
       ref.read(confirmCreditCardDeliveryUseCaseProvider), args),
 );
@@ -124,10 +123,10 @@ final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(
   (ref) => HomeViewModel(),
 );
 
-final debitCardTimeLineViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DebitCardTimeLineViewModel>(
-  (ref) =>
-      DebitCardTimeLineViewModel(ref.read(debitCardTimeLineUseCaseProvider)),
+final debitCardTimeLineViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<DebitCardTimeLineViewModel, TimeLinePageArguments>(
+  (ref, args) => DebitCardTimeLineViewModel(
+      ref.read(debitCardTimeLineUseCaseProvider), args),
 );
 
 ///add money option selector view model

@@ -1,72 +1,72 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/usecase/dashboard/debit_card_timeline_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
 
 class DebitCardTimeLineViewModel extends BasePageViewModel {
   DebitCardTimeLineUseCase _useCase;
 
-  DebitCardTimeLineViewModel(this._useCase);
-  int currentStep =1;
+  TimeLinePageArguments timeLineArguments;
 
-  TimeLineArguments timeLineArguments = TimeLineArguments(
-      youJoinedBlink: DateTime.now().subtract(Duration(days: 5)),
-      blinkWasBorn: DateTime.now().subtract(Duration(days: 20)),
-      timelineListArguments: [
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
-        ),
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
-        ),
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
-        )
-      ]);
+  DebitCardTimeLineViewModel(this._useCase, this.timeLineArguments);
 
-  TimeLineArguments timeLineArguments1 = TimeLineArguments(
-      youJoinedBlink: DateTime.now().subtract(Duration(days: 5)),
-      blinkWasBorn: DateTime.now().subtract(Duration(days: 20)),
-      timelineListArguments: [
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
-          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
-        ),
-        TimeLineListArguments(
-          //cardCardActivated: DateTime.now().subtract(Duration(days: 5)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 4)),
-        ),
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
-          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
-        ),
-        TimeLineListArguments(
-          //cardCardActivated: DateTime.now().subtract(Duration(days: 3)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 2)),
-        ),
-        TimeLineListArguments(
-          cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
-          //cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
-        ),TimeLineListArguments(
-          //cardCardActivated: DateTime.now().subtract(Duration(days: 2)),
-          cardDeliveredDatetime: DateTime.now().subtract(Duration(days: 1)),
-        )
-      ]);
+  int currentStep = 1;
+
+// TimeLineArguments timeLineArguments = TimeLineArguments(
+//     youJoinedBlink: DateTime.now().subtract(Duration(days: 5)).toString(),
+//     blinkWasBorn: DateTime.now().subtract(Duration(days: 20)).toString(),
+//     timelineListArguments: [
+//       TimeLineListArguments(
+//         cardCardActivated:
+//             DateTime.now().subtract(Duration(days: 5)).toString(),
+//         cardDeliveredDatetime:
+//             DateTime.now().subtract(Duration(days: 4)).toString(),
+//       ),
+//       TimeLineListArguments(
+//         cardCardActivated:
+//             DateTime.now().subtract(Duration(days: 3)).toString(),
+//         cardDeliveredDatetime:
+//             DateTime.now().subtract(Duration(days: 2)).toString(),
+//       ),
+//       TimeLineListArguments(
+//         cardCardActivated:
+//             DateTime.now().subtract(Duration(days: 2)).toString(),
+//         cardDeliveredDatetime:
+//             DateTime.now().subtract(Duration(days: 1)).toString(),
+//       )
+//     ]);
 }
 
 class TimeLineListArguments {
-  final DateTime? cardDeliveredDatetime;
-  final DateTime? cardCardActivated;
+  String? cardDeliveredDatetime;
+  String? cardCardActivated;
+  String? cardNumber;
+  String? accountTitle;
+  String? cardId;
+  CardType cardType;
+  bool? isCardDelivered;
 
-  TimeLineListArguments({this.cardDeliveredDatetime, this.cardCardActivated});
+  TimeLineListArguments(
+      {this.cardDeliveredDatetime: "",
+      this.cardCardActivated: "",
+      this.cardId: "",
+      this.cardNumber: "",
+      this.accountTitle: "",
+      this.cardType: CardType.DEBIT,
+      this.isCardDelivered: false});
 }
 
 class TimeLineArguments {
-  final DateTime? youJoinedBlink;
-  final DateTime? blinkWasBorn;
-  final List<TimeLineListArguments>? timelineListArguments;
+  String? youJoinedBlink;
+  String? blinkWasBorn;
+  String? availableBalance;
 
-  TimeLineArguments(
-      {this.youJoinedBlink, this.blinkWasBorn, this.timelineListArguments});
+  List<TimeLineListArguments> timelineListArguments;
+
+  TimeLineArguments({
+    this.youJoinedBlink: "",
+    this.blinkWasBorn: "",
+    required this.timelineListArguments,
+    this.availableBalance: '0.000',
+  });
 }

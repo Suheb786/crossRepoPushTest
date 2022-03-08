@@ -59,12 +59,12 @@ class CreditCardDeliveredPageView
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             model.confirmCreditCardDelivery(
-                                cardId: model.creditCard.first.cardId ?? '',
-                                cardDigit: model
-                                        .creditCard.first.cardNumber!.isNotEmpty
-                                    ? StringUtils.getLastFourDigitOfCardNo(
-                                        model.creditCard.first.cardNumber!)
-                                    : '');
+                                cardId: model.creditCard.cardId ?? '',
+                                cardDigit:
+                                    model.creditCard.cardNumber!.isNotEmpty
+                                        ? StringUtils.getLastFourDigitOfCardNo(
+                                            model.creditCard.cardNumber!)
+                                        : '');
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -93,10 +93,10 @@ class CreditCardDeliveredPageView
                                     Padding(
                                       padding: EdgeInsets.only(top: 9),
                                       child: Text(
-                                        model.creditCard.isNotEmpty
+                                        model.creditCard.cardNumber!.isNotEmpty
                                             ? StringUtils
-                                                .getLastFourDigitOfCardNo(model
-                                                    .creditCard[0].cardNumber)
+                                                .getLastFourDigitOfCardNo(
+                                                    model.creditCard.cardNumber)
                                             : '-',
                                         style: TextStyle(
                                             fontSize: 30,
@@ -155,8 +155,8 @@ class CreditCardDeliveredPageView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  model.creditCard.isNotEmpty
-                                      ? model.creditCard[0].name ?? '-'
+                                  model.creditCard.cardNumber!.isNotEmpty
+                                      ? model.creditCard.accountTitle ?? '-'
                                       : '-',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
@@ -166,12 +166,10 @@ class CreditCardDeliveredPageView
                                 Padding(
                                     padding: EdgeInsets.only(top: 10),
                                     child: Text(
-                                        model.creditCard.isNotEmpty
+                                        model.creditCard.cardNumber!.isNotEmpty
                                             ? StringUtils
                                                 .getLastFourDigitOfCardNo(model
-                                                    .creditCard
-                                                    .first
-                                                    .cardNumber!)
+                                                    .creditCard.cardNumber!)
                                             : '-',
                                         style: TextStyle(
                                             fontSize: 10,

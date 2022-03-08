@@ -6,6 +6,7 @@ import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
@@ -98,6 +99,11 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List pages = [];
 
+  TimeLineArguments timeLineArguments =
+      TimeLineArguments(timelineListArguments: []);
+
+  List<TimeLineListArguments> timeLineListArguments = [];
+
   AppHomeViewModel(this._getDashboardDataUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
@@ -135,11 +141,22 @@ class AppHomeViewModel extends BasePageViewModel {
 
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
+    timeLineListArguments.clear();
     bool isSmallDevices =
         deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
             deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     if (dashboardDataContent != null) {
       pages.add(MyAccountPage(account: dashboardDataContent.account!));
+
+      ///setting timeline arguments value start
+      timeLineArguments.availableBalance =
+          dashboardDataContent.account!.availableBalance ?? '0.000';
+      timeLineArguments.blinkWasBorn =
+          dashboardDataContent.blinkWasBorn.toString();
+      timeLineArguments.youJoinedBlink =
+          dashboardDataContent.youJoinedBlink.toString();
+
+      ///end
 
       if (dashboardDataContent.somethingWrong ?? false) {
         pages.add(CreditCardIssuanceFailureWidget(
@@ -155,6 +172,17 @@ class AppHomeViewModel extends BasePageViewModel {
                 creditCard: creditCard,
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
               ));
+
+              ///time line list arguments set
+              timeLineListArguments.add(TimeLineListArguments(
+                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                  cardDeliveredDatetime:
+                      creditCard.creditDeliveredDatetime ?? '',
+                  cardId: creditCard.cardId ?? '',
+                  cardNumber: creditCard.cardNumber ?? '',
+                  accountTitle: creditCard.name ?? '',
+                  cardType: CardType.CREDIT,
+                  isCardDelivered: creditCard.isCreditDelivered));
             } else {
               pages.add(ApplyCreditCardWidget(
                 isSmallDevices: isSmallDevices,
@@ -174,6 +202,17 @@ class AppHomeViewModel extends BasePageViewModel {
               isSmallDevice: isSmallDevices,
               key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
               debitCard: debitCard));
+
+          ///time line list arguments set
+          timeLineListArguments.add(TimeLineListArguments(
+              cardCardActivated: debitCard.debitCardActivated.toString(),
+              cardDeliveredDatetime:
+                  debitCard.debitDeliveredDatetime.toString(),
+              cardId: '',
+              cardNumber: debitCard.cardNumber ?? '',
+              accountTitle: debitCard.accountTitle ?? '',
+              cardType: CardType.DEBIT,
+              isCardDelivered: debitCard.isDebitDelivered));
         });
       } else {
         pages.add(ApplyDebitCardWidget(
@@ -182,10 +221,10 @@ class AppHomeViewModel extends BasePageViewModel {
       }
     }
     addPages(pages);
+    timeLineArguments.timelineListArguments = timeLineListArguments;
   }
 
   void addPages(List pagesList) {
-    print("lenght pages--->${pagesList.length}");
     _pagesResponseSubject.safeAdd(pagesList);
   }
 
