@@ -5,6 +5,7 @@ class DebitCardTimeLineViewModel extends BasePageViewModel {
   DebitCardTimeLineUseCase _useCase;
 
   DebitCardTimeLineViewModel(this._useCase);
+  int currentStep =1;
 
   TimeLineArguments timeLineArguments = TimeLineArguments(
       youJoinedBlink: DateTime.now().subtract(Duration(days: 5)),
