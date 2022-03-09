@@ -480,50 +480,35 @@ class DebitCardTimeLinePageView
                       height: 100,
                       margin: EdgeInsets.only(top: 8),
                       decoration: BoxDecoration(
-                          color: currentStep == 1 ||
-                              currentStep == 3
-                              ? Theme.of(context)
-                              .primaryColor
-                              : currentStep == 2
-                              ? Theme.of(context)
-                              .canvasColor
-                              : Theme.of(context)
-                              .primaryColorDark,
-                          borderRadius:
-                          BorderRadius.only(
-                              topLeft:
-                              Radius.circular(
-                                  16),
-                              topRight:
-                              Radius.circular(
-                                  16))),
+                          color: model.timeLineArguments.cardType ==
+                                  CardType.CREDIT
+                              ? Theme.of(context).primaryColor
+                              : model.timeLineArguments.cardType ==
+                                      CardType.DEBIT
+                                  ? Theme.of(context).canvasColor
+                                  : Theme.of(context).primaryColorDark,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16))),
                       child: Padding(
-                        padding: EdgeInsets.only(
-                            top: 22, left: 27),
+                        padding: EdgeInsets.only(top: 22, left: 27),
                         child: Column(
-                          crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            currentStep == 1 ||
-                                currentStep == 0
-                                ? AppSvg.asset(
-                                AssetUtils
-                                    .blink_updated_logo,
-                                height: 34,
-                                width: 72)
-                                : AppSvg.asset(
-                                AssetUtils
-                                    .blinkBlack,
-                                height: 34,
-                                width: 72),
+                            model.timeLineArguments.cardType ==
+                                        CardType.CREDIT ||
+                                    model.timeLineArguments.cardType ==
+                                        CardType.ACCOUNT
+                                ? AppSvg.asset(AssetUtils.blink_updated_logo,
+                                    height: 34, width: 72)
+                                : AppSvg.asset(AssetUtils.blinkBlack,
+                                    height: 34, width: 72),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  Center(
-                      child: AppSvg.asset(
-                          AssetUtils.swipeUp)),
+                  Center(child: AppSvg.asset(AssetUtils.swipeUp)),
                 ],
               ),
             ),

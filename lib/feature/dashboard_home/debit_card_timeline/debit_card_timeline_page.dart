@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -34,6 +35,9 @@ class DebitCardTimeLinePageState extends BaseStatefulPage<
 
 class TimeLinePageArguments {
   final TimeLineArguments timeLineArguments;
+  final CardType cardType;
 
-  TimeLinePageArguments({required this.timeLineArguments});
+  TimeLinePageArguments(
+      {required this.timeLineArguments,
+       this.cardType: CardType.ACCOUNT});
 }

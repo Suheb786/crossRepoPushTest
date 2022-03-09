@@ -1,4 +1,5 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
@@ -56,79 +57,86 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       onHorizontalDragEnd: (details) {},
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
-                          print("SWIPE UP");
-                          if (currentStep == 1) {
-                            if (showTimeLine!) {
-                              print("dragged here");
-                              Navigator.pushNamed(
-                                  context, RoutePaths.TimeLinePage,
-                                  arguments: TimeLinePageArguments(
-                                      timeLineArguments:
-                                          model.timeLineArguments));
-                              //model.updateShowTimeLineStream(!showTimeLine);
-                              return;
-                            } else {
-                              cardData!.data!.dashboardDataContent!.creditCard!
-                                          .length >
-                                      0
-                                  ? Navigator.pushNamed(
-                                      context, RoutePaths.CardTransaction,
-                                      arguments:
-                                          GetCreditCardTransactionArguments(
-                                              cardId: cardData
-                                                  .data!
-                                                  .dashboardDataContent!
-                                                  .creditCard!
-                                                  .first
-                                                  .cardId))
-                                  : () {};
-                            }
-                          } else if (currentStep == 0) {
-                            if (showTimeLine!) {
-                              print("dragged here");
-                              Navigator.pushNamed(
-                                  context, RoutePaths.TimeLinePage,
-                                  arguments: TimeLinePageArguments(
-                                      timeLineArguments:
-                                          model.timeLineArguments));
-                              //model.updateShowTimeLineStream(!showTimeLine);
-                              return;
-                            } else {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.AccountTransaction);
-                            }
-                          } else if (currentStep == 1) {
-                            if (showTimeLine!) {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.TimeLinePage,
-                                  arguments: TimeLinePageArguments(
-                                      timeLineArguments:
-                                          model.timeLineArguments));
-                              //model.updateShowTimeLineStream(!showTimeLine);
-                            }
-                          } else if (currentStep == 2) {
+                          if (model.cardTypeList[currentStep!] ==
+                              CardType.ACCOUNT) {
                             Navigator.pushNamed(
-                                context, RoutePaths.TimeLinePage,
-                                arguments: TimeLinePageArguments(
-                                    timeLineArguments:
-                                        model.timeLineArguments));
-                            //model.updateShowTimeLineStream(!showTimeLine!);
+                                context, RoutePaths.AccountTransaction);
+                          } else if (model.cardTypeList[currentStep] ==
+                              CardType.CREDIT) {
+                            Navigator.pushNamed(
+                                context, RoutePaths.CardTransaction,
+                                arguments: GetCreditCardTransactionArguments(
+                                    cardId: model
+                                        .timeLineListArguments[currentStep - 1]
+                                        .cardId));
                           }
-                          // model.updateAppSwipeControllerStream(currentStep!);
-                        } else {
-                          // if (currentStep == 1 ||
-                          //     currentStep == 2 ||
-                          //     currentStep == 3) {
-                          //   if (!showTimeLine!) {
-                          //     print("swipped there");
-                          //     model.updateShowTimeLineStream(!showTimeLine);
+                          // print("SWIPE UP");
+                          // if (currentStep == 1) {
+                          //   if (showTimeLine!) {
+                          //     print("dragged here");
+                          //     Navigator.pushNamed(
+                          //         context, RoutePaths.TimeLinePage,
+                          //         arguments: TimeLinePageArguments(
+                          //             timeLineArguments:
+                          //                 model.timeLineArguments));
+                          //     //model.updateShowTimeLineStream(!showTimeLine);
+                          //     return;
+                          //   } else {
+                          //     cardData!.data!.dashboardDataContent!.creditCard!
+                          //                 .length >
+                          //             0
+                          //         ? Navigator.pushNamed(
+                          //             context, RoutePaths.CardTransaction,
+                          //             arguments:
+                          //                 GetCreditCardTransactionArguments(
+                          //                     cardId: cardData
+                          //                         .data!
+                          //                         .dashboardDataContent!
+                          //                         .creditCard!
+                          //                         .first
+                          //                         .cardId))
+                          //         : () {};
                           //   }
+                          // } else if (currentStep == 0) {
+                          //   if (showTimeLine!) {
+                          //     print("dragged here");
+                          //     Navigator.pushNamed(
+                          //         context, RoutePaths.TimeLinePage,
+                          //         arguments: TimeLinePageArguments(
+                          //             timeLineArguments:
+                          //                 model.timeLineArguments));
+                          //     //model.updateShowTimeLineStream(!showTimeLine);
+                          //     return;
+                          //   } else {
+                          //     Navigator.pushNamed(
+                          //         context, RoutePaths.AccountTransaction);
+                          //   }
+                          // } else if (currentStep == 1) {
+                          //   if (showTimeLine!) {
+                          //     Navigator.pushNamed(
+                          //         context, RoutePaths.TimeLinePage,
+                          //         arguments: TimeLinePageArguments(
+                          //             timeLineArguments:
+                          //                 model.timeLineArguments));
+                          //     //model.updateShowTimeLineStream(!showTimeLine);
+                          //   }
+                          // } else if (currentStep == 2) {
+                          //   Navigator.pushNamed(
+                          //       context, RoutePaths.TimeLinePage,
+                          //       arguments: TimeLinePageArguments(
+                          //           timeLineArguments:
+                          //               model.timeLineArguments));
+                          //   //model.updateShowTimeLineStream(!showTimeLine!);
                           // }
+                          // // model.updateAppSwipeControllerStream(currentStep!);
+                        } else {
                           if (details.primaryVelocity! > 0.5) {
                             if (!showTimeLine!) {
                               Navigator.pushNamed(
                                   context, RoutePaths.TimeLinePage,
                                   arguments: TimeLinePageArguments(
+                                      cardType:
+                                          model.cardTypeList[currentStep!],
                                       timeLineArguments:
                                           model.timeLineArguments));
                               //model.updateShowTimeLineStream(!showTimeLine);
@@ -214,45 +222,20 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       }
                                                       return DashboardSwiper(
                                                         pages: pagesList,
-                                                        // cardData
-                                                        //             .debitCard!
-                                                        //             .length >
-                                                        //         0
-                                                        //     ? [
-                                                        //         MyAccountPage(
-                                                        //           cardData:
-                                                        //               cardData,
-                                                        //         ),
-                                                        //         GetCreditCardPage(
-                                                        //           cardData:
-                                                        //               cardData,
-                                                        //         ),
-                                                        //         MyDebitCardPage(
-                                                        //             cardData:
-                                                        //                 cardData),
-                                                        //       ]
-                                                        //     : [
-                                                        //         MyAccountPage(
-                                                        //           cardData:
-                                                        //               cardData,
-                                                        //         ),
-                                                        //         GetCreditCardPage(
-                                                        //           cardData:
-                                                        //               cardData,
-                                                        //         )
-                                                        //       ],
                                                         appSwiperController: model
                                                             .appSwiperController,
                                                         pageController: model
                                                             .pageController,
                                                         onIndexChanged:
                                                             (index) {
-                                                          print(index);
                                                           // _currentPage = index;
                                                           model.updatePage(
                                                               index);
                                                           model
                                                               .updatePageControllerStream(
+                                                                  index);
+                                                          model
+                                                              .updateAppSwipeControllerStream(
                                                                   index);
                                                         },
                                                         currentStep:

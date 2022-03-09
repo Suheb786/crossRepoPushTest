@@ -99,6 +99,8 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List pages = [];
 
+  List<CardType> cardTypeList = [];
+
   TimeLineArguments timeLineArguments =
       TimeLineArguments(timelineListArguments: []);
 
@@ -142,11 +144,13 @@ class AppHomeViewModel extends BasePageViewModel {
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
+    cardTypeList.clear();
     bool isSmallDevices =
         deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
             deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     if (dashboardDataContent != null) {
       pages.add(MyAccountPage(account: dashboardDataContent.account!));
+      cardTypeList.add(CardType.ACCOUNT);
 
       ///setting timeline arguments value start
       timeLineArguments.availableBalance =
@@ -162,6 +166,9 @@ class AppHomeViewModel extends BasePageViewModel {
         pages.add(CreditCardIssuanceFailureWidget(
           isSmallDevices: isSmallDevices,
         ));
+
+        ///adding cardType
+        cardTypeList.add(CardType.CREDIT);
       } else {
         if (dashboardDataContent.creditCard!.length > 0) {
           dashboardDataContent.creditCard!.forEach((creditCard) {
@@ -183,6 +190,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   accountTitle: creditCard.name ?? '',
                   cardType: CardType.CREDIT,
                   isCardDelivered: creditCard.isCreditDelivered));
+
+              ///adding cardType
+              cardTypeList.add(CardType.CREDIT);
             } else {
               pages.add(ApplyCreditCardWidget(
                 isSmallDevices: isSmallDevices,
@@ -193,6 +203,9 @@ class AppHomeViewModel extends BasePageViewModel {
           pages.add(ApplyCreditCardWidget(
             isSmallDevices: isSmallDevices,
           ));
+
+          ///adding cardType
+          cardTypeList.add(CardType.CREDIT);
         }
       }
 
@@ -213,11 +226,17 @@ class AppHomeViewModel extends BasePageViewModel {
               accountTitle: debitCard.accountTitle ?? '',
               cardType: CardType.DEBIT,
               isCardDelivered: debitCard.isDebitDelivered));
+
+          ///adding cardType
+          cardTypeList.add(CardType.DEBIT);
         });
       } else {
         pages.add(ApplyDebitCardWidget(
           isSmallDevice: isSmallDevices,
         ));
+
+        ///adding cardType
+        cardTypeList.add(CardType.DEBIT);
       }
     }
     addPages(pages);
@@ -305,6 +324,7 @@ class AppHomeViewModel extends BasePageViewModel {
     controller = PageController(
         initialPage: index, viewportFraction: 0.8, keepPage: true);
     _pageControllerSubject.safeAdd(controller);
+    _currentStep.safeAdd(index);
   }
 
   void updateAppSwipeControllerStream(int index) {
