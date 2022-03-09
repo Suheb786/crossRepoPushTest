@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/constants/enum/primary_secondary_enum.dart';
 
 class DebitCard {
   DebitCard(
@@ -11,7 +12,8 @@ class DebitCard {
       this.debitCardActivated,
       this.isDebitDelivered,
       this.debitDeliveredDatetime,
-      this.code});
+      this.code,
+      this.primarySecondaryCard: PrimarySecondaryEnum.NONE});
 
   String? accountTitle;
   String? cardNumber;
@@ -23,4 +25,5 @@ class DebitCard {
   bool? isDebitDelivered;
   dynamic? debitDeliveredDatetime;
   DateTime? debitCardActivated;
+  PrimarySecondaryEnum? primarySecondaryCard;
 }

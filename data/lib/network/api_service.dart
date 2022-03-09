@@ -67,6 +67,7 @@ import 'package:data/entity/remote/card/process_loan_request/process_loan_reques
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
@@ -513,7 +514,7 @@ abstract class ApiService {
 
   @POST("/DebitCard/UnblockPin")
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      @Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
+      @Body() UnblockDebitCardPinRequest unblockDebitCardPinRequest);
 
   @POST("/transfer/GetAccountByAlisas")
   Future<HttpResponse<GetAccountByAliasContentResponseEntity>>

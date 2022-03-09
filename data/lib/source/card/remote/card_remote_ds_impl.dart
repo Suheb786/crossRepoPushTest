@@ -26,6 +26,7 @@ import 'package:data/entity/remote/card/process_loan_request/process_loan_reques
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -216,6 +217,9 @@ class CardRemoteDsImpl extends CardRemoteDs {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     print('card No--->$cardNumber');
     return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
+        otp: otp,
+        pinCode: EncryptDecryptHelper.generateBlockPin(
+            cardNo: cardNumber, pinCode: otp),
         baseData: baseData.toJson(),
         tokenizedPan: tokenizedPan,
         getToken: true));
@@ -225,8 +229,8 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       {required String pin, required String status}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.unblockDebitCardPin(ChangeDebitCardPinRequest(
-        baseData: baseData.toJson(), tokenizedPan: status));
+    return _apiService.unblockDebitCardPin(UnblockDebitCardPinRequest(
+        baseData: baseData.toJson(), tokenizedPan: status, getToken: true));
   }
 
   @override

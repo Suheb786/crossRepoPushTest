@@ -37,9 +37,6 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
       child: FlipCard(
         controller: widget.flipCardController,
         flipOnTouch: false,
-        // widget.debitCard.cardStatus == FreezeCardStatusEnum.F
-        //     ? false
-        //     : true,
         direction: FlipDirection.HORIZONTAL,
         front: Container(
           color: Theme.of(context).accentColor,
@@ -98,7 +95,20 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   )
                                 : InkWell(
                                     splashFactory: NoSplash.splashFactory,
-                                    onTap: () {
+                                    onTap: () async{
+                                      ///go to settings
+                                      // var result = await Navigator.pushNamed(
+                                      //     context, RoutePaths.DebitCardSettings,
+                                      //     arguments: DebitCardSettingsArguments(
+                                      //         debitCard: widget.debitCard));
+                                      // if (result != null) {
+                                      //   bool value = result as bool;
+                                      //   if (value) {
+                                      //     ProviderScope.containerOf(context)
+                                      //         .read(appHomeViewModelProvider)
+                                      //         .getDashboardData();
+                                      //   }
+                                      // }
                                       widget.flipCardController!.toggleCard();
                                     },
                                     child: Container(

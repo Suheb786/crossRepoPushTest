@@ -1,5 +1,6 @@
 import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/constants/enum/primary_secondary_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -29,6 +30,8 @@ class DashboardDebitCardEntity
   final dynamic? debitDeliveredDatetime;
   @JsonKey(name: "debitCardActivated")
   final DateTime? debitCardActivated;
+  @JsonKey(name: "primarySecondaryCard")
+  final String? primarySecondaryCard;
 
   DashboardDebitCardEntity(
       {this.accountTitle: "",
@@ -40,7 +43,8 @@ class DashboardDebitCardEntity
       this.isDebitDelivered,
       this.debitCardActivated,
       this.cardStatus,
-      this.code});
+      this.code,
+      this.primarySecondaryCard: ''});
 
   factory DashboardDebitCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDebitCardEntityFromJson(json);
@@ -70,6 +74,8 @@ class DashboardDebitCardEntity
         debitCardActivated: this.debitCardActivated,
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
         code: this.code ?? '',
-        isDebitDelivered: this.isDebitDelivered ?? false);
+        isDebitDelivered: this.isDebitDelivered ?? false,
+        primarySecondaryCard:
+            this.primarySecondaryCard!.fromPrimarySecondaryCardValue());
   }
 }
