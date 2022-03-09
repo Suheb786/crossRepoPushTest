@@ -63,7 +63,7 @@ class DebitCardTimeLinePageView
                     child: Text(
                       "JOD",
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w700,
                           color: AppColor.verLightGray4),
                     ),
@@ -80,20 +80,17 @@ class DebitCardTimeLinePageView
                 },
                 child: Center(
                   child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     decoration: BoxDecoration(
                         color:
                             Theme.of(context).accentTextTheme.bodyText1!.color,
                         borderRadius: BorderRadius.circular(20)),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 17),
-                      child: Text(
-                        S.of(context).addMoney,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: Theme.of(context).accentColor),
-                      ),
+                    child: Text(
+                      S.of(context).addMoney,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
