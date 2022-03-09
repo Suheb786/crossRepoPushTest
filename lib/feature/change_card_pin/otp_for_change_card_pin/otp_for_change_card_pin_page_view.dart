@@ -91,6 +91,7 @@ class OtpForChangeCardPinPageView
                                   .appSwiperController
                                   .page ==
                               1.0) {
+                            FocusScope.of(context).unfocus();
                             if (details.primaryVelocity!.isNegative) {
                               model.validateOtp();
                             } else {
@@ -140,7 +141,7 @@ class OtpForChangeCardPinPageView
                                           return currentTimeRemaining == null
                                               ? TextButton(
                                                   onPressed: () {
-                                                    model.updateTime();
+                                                    model.resendOtp();
                                                   },
                                                   child: Text(
                                                     'Resend Code',

@@ -72,6 +72,7 @@ class EnterNewPinForCardPageView
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (details.primaryVelocity!.isNegative) {
+                              FocusScope.of(context).unfocus();
                               model.enterNewPinForCard(
                                   ProviderScope.containerOf(context)
                                       .read(changeCardPinViewModelProvider)

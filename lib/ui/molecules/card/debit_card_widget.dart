@@ -95,7 +95,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   )
                                 : InkWell(
                                     splashFactory: NoSplash.splashFactory,
-                                    onTap: () async{
+                                    onTap: () async {
                                       ///go to settings
                                       // var result = await Navigator.pushNamed(
                                       //     context, RoutePaths.DebitCardSettings,
@@ -261,216 +261,191 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
         ),
         back: Padding(
           padding: EdgeInsets.all(15),
-          child: GestureDetector(
-            onHorizontalDragEnd: (details) {
-              // if (details.primaryVelocity!.isNegative) {
-              //   ProviderScope.containerOf(context)
-              //       .read(appHomeViewModelProvider)
-              //       .pageController
-              //       .next();
-              //   Future.delayed(Duration(milliseconds: 300)).then((value) {
-              //     if (!model.cardKey.currentState!.isFront) {
-              //       model.cardKey.currentState!.toggleCard();
-              //     }
-              //   });
-              // } else {
-              //   ProviderScope.containerOf(context)
-              //       .read(appHomeViewModelProvider)
-              //       .pageController
-              //       .previous();
-              //   Future.delayed(Duration(milliseconds: 600)).then((value) {
-              //     if (!model.cardKey.currentState!.isFront) {
-              //       model.cardKey.currentState!.toggleCard();
-              //     }
-              //   });
-              // }
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 2,
-              color: Theme.of(context).canvasColor,
-              margin: EdgeInsets.zero,
-              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-              child: Padding(
-                padding:
-                    EdgeInsets.only(left: 29.0, top: 38, right: 25, bottom: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            elevation: 2,
+            color: Theme.of(context).canvasColor,
+            margin: EdgeInsets.zero,
+            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+            child: Padding(
+              padding:
+                  EdgeInsets.only(left: 29.0, top: 38, right: 25, bottom: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.debitCard.accountTitle != null
+                              ? widget.debitCard.accountTitle!.toTitleCase()
+                              : '',
+                          maxLines: 2,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark,
+                              fontSize: widget.isSmallDevice ? 10 : 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      InkWell(
+                        splashFactory: NoSplash.splashFactory,
+                        onTap: () {
+                          widget.flipCardController!.toggleCard();
+                        },
+                        child: Container(
+                          height: 50,
+                          alignment: Alignment.center,
                           child: Text(
-                            widget.debitCard.accountTitle != null
-                                ? widget.debitCard.accountTitle!.toTitleCase()
-                                : '',
-                            maxLines: 2,
+                            S.of(context).flipBack,
                             style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
-                                fontSize: widget.isSmallDevice ? 10 : 12,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color,
+                                fontSize: widget.isSmallDevice ? 12 : 14,
                                 fontWeight: FontWeight.w600),
                           ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: widget.isSmallDevice ? 50 : 63),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.debitCard.cardNumber!.isNotEmpty
+                              ? StringUtils.getFormattedCreditCardNumber(
+                                  widget.debitCard.cardNumber)
+                              : '-',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: widget.isSmallDevice ? 12 : 14,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: InkWell(
+                              onTap: () {
+                                Clipboard.setData(ClipboardData(
+                                        text:
+                                            widget.debitCard.cardNumber ?? ''))
+                                    .then((value) => Fluttertoast.showToast(
+                                        msg: 'Card number Copied'));
+                              },
+                              child: AppSvg.asset(AssetUtils.copy)),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 4),
+                    child: Text(
+                      S.of(context).cardNumber,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: widget.isSmallDevice ? 8 : 10,
+                          color: AppColor.green),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 21),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.debitCard.expiryDate ?? '',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: widget.isSmallDevice ? 10 : 12,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Text(
+                                S.of(context).expiryDate,
+                                style: TextStyle(
+                                    fontSize: widget.isSmallDevice ? 8 : 10,
+                                    color: AppColor.green,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            )
+                          ],
                         ),
                         SizedBox(
                           width: 8,
                         ),
-                        InkWell(
-                          splashFactory: NoSplash.splashFactory,
-                          onTap: () {
-                            widget.flipCardController!.toggleCard();
-                          },
-                          child: Container(
-                            height: 50,
-                            alignment: Alignment.center,
-                            child: Text(
-                              S.of(context).flipBack,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.debitCard.cvv ?? '',
                               style: TextStyle(
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
-                                  fontSize: widget.isSmallDevice ? 12 : 14,
-                                  fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w700,
+                                fontSize: widget.isSmallDevice ? 10 : 12,
+                              ),
                             ),
-                          ),
-                        )
+                            Padding(
+                              padding: EdgeInsets.only(top: 4),
+                              child: Text(
+                                S.of(context).cvv,
+                                style: TextStyle(
+                                    fontSize: widget.isSmallDevice ? 8 : 10,
+                                    color: AppColor.green,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: widget.isSmallDevice ? 50 : 63),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.debitCard.cardNumber!.isNotEmpty
-                                ? StringUtils.getFormattedCreditCardNumber(
-                                    widget.debitCard.cardNumber)
-                                : '-',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: widget.isSmallDevice ? 12 : 14,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: InkWell(
-                                onTap: () {
-                                  Clipboard.setData(ClipboardData(
-                                          text: widget.debitCard.cardNumber ??
-                                              ''))
-                                      .then((value) => Fluttertoast.showToast(
-                                          msg: 'Card number Copied'));
-                                },
-                                child: AppSvg.asset(AssetUtils.copy)),
-                          )
-                        ],
-                      ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 32),
+                    child: Divider(
+                      height: 2,
+                      color: Theme.of(context)
+                          .primaryTextTheme
+                          .bodyText1!
+                          .color!
+                          .withOpacity(0.1),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 4),
-                      child: Text(
-                        S.of(context).cardNumber,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: widget.isSmallDevice ? 8 : 10,
-                            color: AppColor.green),
-                      ),
+                  ),
+                  Text(
+                    widget.debitCard.linkedAccountNumber!.isNotEmpty
+                        ? StringUtils.getFormattedCreditCardNumber(
+                            widget.debitCard.linkedAccountNumber)
+                        : '',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: widget.isSmallDevice ? 12 : 14,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 21),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.debitCard.expiryDate ?? '',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: widget.isSmallDevice ? 10 : 12,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 4),
-                                child: Text(
-                                  S.of(context).expiryDate,
-                                  style: TextStyle(
-                                      fontSize: widget.isSmallDevice ? 8 : 10,
-                                      color: AppColor.green,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.debitCard.cvv ?? '',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: widget.isSmallDevice ? 10 : 12,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 4),
-                                child: Text(
-                                  S.of(context).cvv,
-                                  style: TextStyle(
-                                      fontSize: widget.isSmallDevice ? 8 : 10,
-                                      color: AppColor.green,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 32),
-                      child: Divider(
-                        height: 2,
-                        color: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyText1!
-                            .color!
-                            .withOpacity(0.1),
-                      ),
-                    ),
-                    Text(
-                      widget.debitCard.linkedAccountNumber!.isNotEmpty
-                          ? StringUtils.getFormattedCreditCardNumber(
-                              widget.debitCard.linkedAccountNumber)
-                          : '',
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: Text(
+                      S.of(context).linkedAccountNumber,
                       style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: widget.isSmallDevice ? 12 : 14,
-                      ),
+                          fontWeight: FontWeight.w600,
+                          fontSize: widget.isSmallDevice ? 8 : 10,
+                          color: AppColor.green),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 8),
-                      child: Text(
-                        S.of(context).linkedAccountNumber,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: widget.isSmallDevice ? 8 : 10,
-                            color: AppColor.green),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

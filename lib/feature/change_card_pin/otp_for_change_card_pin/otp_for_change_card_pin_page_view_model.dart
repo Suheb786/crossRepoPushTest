@@ -1,4 +1,5 @@
 import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,15 +14,12 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
 
   final ChangeDebitCardPinUseCase _changeDebitCardPinUseCase;
 
+  final ChangeDebitPinVerifyUseCase _resendOtpUseCase;
+
   ///countdown controller
   late CountdownTimerController countDownController;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-
-  void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    notifyListeners();
-  }
 
   String otp = '';
 
@@ -53,8 +51,18 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get changDebitCardPinStream =>
       _changDebitCardPinResponse.stream;
 
-  OtpForChangeCardPinPageViewModel(
-      this._otpForChangeCardPinUseCase, this._changeDebitCardPinUseCase) {
+  ///resend otp request subject holder
+  PublishSubject<ChangeDebitPinVerifyUseCaseParams> _resendOtpRequest =
+      PublishSubject();
+
+  ///resend otp response holder
+  PublishSubject<Resource<bool>> _resendOtpResponse = PublishSubject();
+
+  ///resend otp stream
+  Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
+
+  OtpForChangeCardPinPageViewModel(this._otpForChangeCardPinUseCase,
+      this._changeDebitCardPinUseCase, this._resendOtpUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -79,6 +87,22 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
         _changDebitCardPinResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _resendOtpRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _resendOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _resendOtpResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
         }
       });
     });
@@ -108,6 +132,10 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void resendOtp() {
+    _resendOtpRequest.safeAdd(ChangeDebitPinVerifyUseCaseParams());
   }
 
   @override

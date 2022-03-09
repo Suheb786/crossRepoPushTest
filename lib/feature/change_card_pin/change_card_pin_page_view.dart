@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_new_pin_for_card_page.dart';
@@ -101,7 +102,8 @@ class ChangeCardPinPageView
                                   direction: Direction.vertical,
                                   offset: 0.5,
                                   child: Text(
-                                    '+962 79 322 8080',
+                                    "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                        " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: model.changeCardPinArguments
