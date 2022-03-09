@@ -121,9 +121,9 @@ class DebitCardTimeLinePageView
                                           ? AppSvg.asset(AssetUtils.timelineEnd,
                                               height: 103)
                                           : AppSvg.asset(AssetUtils.timeline2,
-                                              height: 103),
+                                              height: 105),
                                       AppSvg.asset(AssetUtils.timeline1,
-                                          height: 103)
+                                          height: 105)
                                     ],
                                   ),
                                 ),
@@ -381,7 +381,7 @@ class DebitCardTimeLinePageView
                           Container(
                               height: 220,
                               child: AppSvg.asset(AssetUtils.timeline0,
-                                  height: 103)),
+                                  height: 105)),
                           Positioned(
                             left: -15,
                             child: Container(
@@ -468,46 +468,45 @@ class DebitCardTimeLinePageView
                     borderRadius: BorderRadius.circular(16)),
               ),
             ),
-            Expanded(
-              child: Stack(
-                children: [
-                  Center(
-                    child: Container(
-                      width: 281,
-                      height: 100,
-                      margin: EdgeInsets.only(top: 8),
-                      decoration: BoxDecoration(
-                          color: model.timeLineArguments.cardType ==
-                                  CardType.CREDIT
-                              ? Theme.of(context).primaryColor
-                              : model.timeLineArguments.cardType ==
-                                      CardType.DEBIT
-                                  ? Theme.of(context).canvasColor
-                                  : Theme.of(context).primaryColorDark,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16))),
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 22, left: 27),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            model.timeLineArguments.cardType ==
-                                        CardType.CREDIT ||
-                                    model.timeLineArguments.cardType ==
-                                        CardType.ACCOUNT
-                                ? AppSvg.asset(AssetUtils.blink_updated_logo,
-                                    height: 34, width: 72)
-                                : AppSvg.asset(AssetUtils.blinkBlack,
-                                    height: 34, width: 72),
-                          ],
-                        ),
+            Spacer(),
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
+              children: [
+                Center(
+                  child: Container(
+                    width: 281,
+                    height: 100,
+                    margin: EdgeInsets.only(top: 8),
+                    decoration: BoxDecoration(
+                        color: model.timeLineArguments.cardType ==
+                                CardType.CREDIT
+                            ? Theme.of(context).primaryColor
+                            : model.timeLineArguments.cardType == CardType.DEBIT
+                                ? Theme.of(context).canvasColor
+                                : Theme.of(context).primaryColorDark,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16))),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 22, left: 27),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          model.timeLineArguments.cardType == CardType.CREDIT ||
+                                  model.timeLineArguments.cardType ==
+                                      CardType.ACCOUNT
+                              ? AppSvg.asset(AssetUtils.blink_updated_logo,
+                                  height: 34, width: 72)
+                              : AppSvg.asset(AssetUtils.blinkBlack,
+                                  height: 34, width: 72),
+                        ],
                       ),
                     ),
                   ),
-                  Center(child: AppSvg.asset(AssetUtils.swipeUp)),
-                ],
-              ),
+                ),
+                Positioned(top: -3, child: AppSvg.asset(AssetUtils.swipeUp)),
+              ],
             ),
           ],
         ),
