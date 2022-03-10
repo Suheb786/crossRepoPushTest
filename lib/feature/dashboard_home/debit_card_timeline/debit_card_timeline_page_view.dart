@@ -122,13 +122,15 @@ class DebitCardTimeLinePageView
                                           children: [
                                             index == 0
                                                 ? AppSvg.asset(
-                                                    AssetUtils.timelineEnd,
+                                                    AssetUtils
+                                                        .timelineEndUpdated,
                                                     height: 103)
                                                 : AppSvg.asset(
-                                                    AssetUtils.timeline2,
-                                                    height: 105),
-                                            AppSvg.asset(AssetUtils.timeline1,
-                                                height: 105)
+                                                    AssetUtils.timeline2Updated,
+                                                    height: 103),
+                                            AppSvg.asset(
+                                                AssetUtils.timeline1Updated,
+                                                height: 103)
                                           ],
                                         ),
                                       ),
@@ -275,8 +277,7 @@ class DebitCardTimeLinePageView
                                                         child: Container(
                                                           padding: EdgeInsets
                                                               .symmetric(
-                                                                  horizontal:
-                                                                      11,
+                                                                  horizontal: 8,
                                                                   vertical: 2),
                                                           decoration: BoxDecoration(
                                                               color: Theme.of(
@@ -302,7 +303,7 @@ class DebitCardTimeLinePageView
                                                                     .accentTextTheme
                                                                     .bodyText1!
                                                                     .color,
-                                                                fontSize: 14,
+                                                                fontSize: 12,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600),
@@ -396,8 +397,8 @@ class DebitCardTimeLinePageView
                               children: [
                                 Container(
                                     height: 220,
-                                    child: AppSvg.asset(AssetUtils.timeline0,
-                                        height: 105)),
+                                    child: AppSvg.asset(AssetUtils.timelinec1,
+                                        height: 103)),
                                 Positioned(
                                   left: -15,
                                   child: Container(

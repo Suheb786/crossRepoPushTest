@@ -116,7 +116,8 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void getDebitCardLimit() {
-    _debitCardLimitRequest.safeAdd(DebitCardLimitUseCaseParams());
+    _debitCardLimitRequest.safeAdd(DebitCardLimitUseCaseParams(
+        tokenizedPan: cardLimitsArguments.tokenizedPan));
   }
 
   void updateCardLimits(

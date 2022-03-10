@@ -20,25 +20,25 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardIssuanceDetails>>
-      getCardIssuanceDetails() async {
+  getCardIssuanceDetails() async {
     final result = await safeApiCall(
       _remoteDs.getCardIssuanceDetails(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> setCardPin(
-      String pin, String cardNumber) async {
+  Future<Either<NetworkError, bool>> setCardPin(String pin,
+      String cardNumber) async {
     final result = await safeApiCall(
       _remoteDs.setCardPin(pin, cardNumber),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -48,32 +48,32 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.confirmCardDelivery(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
   Future<Either<NetworkError, GetTransactionsResponse>>
-      getDebitCardTransactions() async {
+  getDebitCardTransactions() async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardTransactions(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, GetTransactionsResponse>>
-      getCreditCardTransactions({required String cardId}) async {
+  getCreditCardTransactions({required String cardId}) async {
     final result = await safeApiCall(
       _remoteDs.getCreditCardTransactions(cardId: cardId),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -84,8 +84,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.confirmCreditCardDelivery(cardId: cardId, cardDigit: cardDigit),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -96,8 +96,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.getDebitCardStatement(monthYear: monthYear),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -108,8 +108,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.getCreditCardStatement(monthYear: monthYear, cardId: cardId),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -119,8 +119,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.getCreditYears(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -130,8 +130,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.getDebitYears(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -142,8 +142,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.requestCreditCard(cardId: cardId),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -153,8 +153,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.cancelCreditCard(reason: reason),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -164,8 +164,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.creditCardPinUnBlock(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -175,8 +175,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.freezeCreditCard(cardId: cardId!),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -187,8 +187,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.unFreezeCreditCard(cardId: cardId!),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -200,8 +200,8 @@ class CardRepositoryImpl extends CardRepository {
           reason: reason, status: status, tokenizedPan: tokenizedPan),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -212,8 +212,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.freezeDebitCard(status: status, tokenizedPan: tokenizedPan),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -224,17 +224,16 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.unFreezeDebitCard(status: status, tokenizedPan: tokenizedPan),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {required String pin,
-      required String otp,
-      required String cardNumber,
-      required String tokenizedPan}) async {
+  Future<Either<NetworkError, bool>> changeDebitCardPin({required String pin,
+    required String otp,
+    required String cardNumber,
+    required String tokenizedPan}) async {
     final result = await safeApiCall(
       _remoteDs.changeDebitCardPin(
           pin: pin,
@@ -243,8 +242,8 @@ class CardRepositoryImpl extends CardRepository {
           cardNumber: cardNumber),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -255,8 +254,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.unblockDebitCardPin(pin: pin, status: status!),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -285,21 +284,20 @@ class CardRepositoryImpl extends CardRepository {
           tokenizedPan: tokenizedPan),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateCreditCardLimits(
-      {num? atmWithdrawal,
-      num? contactLessPayments,
-      bool? isAtmWithdrawal,
-      bool? isContactLessPayments,
-      bool? isMerchantsPayments,
-      bool? isOnlinePurchase,
-      num? merchantsPayments,
-      num? onlinePurchase}) async {
+  Future<Either<NetworkError, bool>> updateCreditCardLimits({num? atmWithdrawal,
+    num? contactLessPayments,
+    bool? isAtmWithdrawal,
+    bool? isContactLessPayments,
+    bool? isMerchantsPayments,
+    bool? isOnlinePurchase,
+    num? merchantsPayments,
+    num? onlinePurchase}) async {
     final result = await safeApiCall(
       _remoteDs.updateCreditCardLimits(
           atmWithdrawal: atmWithdrawal,
@@ -312,32 +310,34 @@ class CardRepositoryImpl extends CardRepository {
           isContactLessPayments: isContactLessPayments),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
   Future<Either<NetworkError, DebitCardLimitResponse>>
-      getDebitCardLimit() async {
+  getDebitCardLimit({required String? tokenizedPan}) async {
     final result = await safeApiCall(
-      _remoteDs.getDebitCardLimit(),
+      _remoteDs.getDebitCardLimit(
+          tokenizedPan: tokenizedPan
+      ),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, GetCardApplicationResponse>>
-      getCardApplication() async {
+  getCardApplication() async {
     final result = await safeApiCall(
       _remoteDs.getCardApplication(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -348,25 +348,25 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.getLoanValues(accountId: accountId),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
       {String? minimumSettlement,
-      String? nickName,
-      num? loanValueId,
-      num? creditLimit}) async {
+        String? nickName,
+        num? loanValueId,
+        num? creditLimit}) async {
     final result = await safeApiCall(_remoteDs.processLoanRequest(
         minimumSettlement: minimumSettlement,
         nickName: nickName,
         loanValueId: loanValueId,
         creditLimit: creditLimit));
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -377,8 +377,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.linkCardStep(cardId: cardId, accountNumber: accountNumber),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -388,16 +388,16 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.changePinVerify(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
   Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
       {required ScannedDocumentInformation scannedDocumentInformation,
-      required String relation,
-      required String nickName}) async {
+        required String relation,
+        required String nickName}) async {
     final result = await safeApiCall(
       _remoteDs.applyDebitSupplementaryCard(
           scannedDocumentInformation: scannedDocumentInformation,
@@ -405,8 +405,8 @@ class CardRepositoryImpl extends CardRepository {
           nickName: nickName),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 }

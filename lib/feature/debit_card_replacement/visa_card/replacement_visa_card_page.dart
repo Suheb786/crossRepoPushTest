@@ -13,7 +13,7 @@ class ReplacementVisaCardPage
 
 class ReplacementVisaCardPageState extends BaseStatefulPage<
     ReplacementVisaCardPageViewModel,
-    ReplacementVisaCardPage> with TickerProviderStateMixin {
+    ReplacementVisaCardPage> with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return replacementVisaCardViewModelProvider;
@@ -29,4 +29,13 @@ class ReplacementVisaCardPageState extends BaseStatefulPage<
       BuildContext context, ReplacementVisaCardPageViewModel model) {
     return ReplacementVisaCardPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

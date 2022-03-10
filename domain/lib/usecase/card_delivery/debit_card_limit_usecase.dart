@@ -15,12 +15,14 @@ class DebitCardLimitUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, DebitCardLimitResponse>> execute(
       {required DebitCardLimitUseCaseParams params}) {
-    return _repository.getDebitCardLimit();
+    return _repository.getDebitCardLimit(tokenizedPan: params.tokenizedPan);
   }
 }
 
 class DebitCardLimitUseCaseParams extends Params {
-  DebitCardLimitUseCaseParams();
+  final String? tokenizedPan;
+
+  DebitCardLimitUseCaseParams({this.tokenizedPan: ""});
 
   @override
   Either<AppError, bool> verify() {

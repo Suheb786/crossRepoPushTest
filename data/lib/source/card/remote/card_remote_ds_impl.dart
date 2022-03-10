@@ -130,10 +130,13 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit() async {
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
+      {required String? tokenizedPan}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitCardLimit(DebitCardLimitRequestEntity(
-        getToken: true, baseData: baseData.toJson()));
+        tokenizedPan: tokenizedPan,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override

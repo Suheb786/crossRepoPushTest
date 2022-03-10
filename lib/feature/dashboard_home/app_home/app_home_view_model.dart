@@ -99,7 +99,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List pages = [];
 
-  List<CardType> cardTypeList = [];
+  List<TimeLineSwipeUpArgs> cardTypeList = [];
 
   TimeLineArguments timeLineArguments =
       TimeLineArguments(timelineListArguments: []);
@@ -150,7 +150,8 @@ class AppHomeViewModel extends BasePageViewModel {
             deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     if (dashboardDataContent != null) {
       pages.add(MyAccountPage(account: dashboardDataContent.account!));
-      cardTypeList.add(CardType.ACCOUNT);
+      cardTypeList.add(TimeLineSwipeUpArgs(
+          cardType: CardType.ACCOUNT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
 
       ///setting timeline arguments value start
       timeLineArguments.availableBalance =
@@ -168,7 +169,8 @@ class AppHomeViewModel extends BasePageViewModel {
         ));
 
         ///adding cardType
-        cardTypeList.add(CardType.CREDIT);
+        cardTypeList.add(TimeLineSwipeUpArgs(
+            cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
       } else {
         if (dashboardDataContent.creditCard!.length > 0) {
           dashboardDataContent.creditCard!.forEach((creditCard) {
@@ -192,7 +194,9 @@ class AppHomeViewModel extends BasePageViewModel {
                   isCardDelivered: creditCard.isCreditDelivered));
 
               ///adding cardType
-              cardTypeList.add(CardType.CREDIT);
+              cardTypeList.add(TimeLineSwipeUpArgs(
+                  cardType: CardType.CREDIT,
+                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
             } else {
               pages.add(ApplyCreditCardWidget(
                 isSmallDevices: isSmallDevices,
@@ -205,7 +209,8 @@ class AppHomeViewModel extends BasePageViewModel {
           ));
 
           ///adding cardType
-          cardTypeList.add(CardType.CREDIT);
+          cardTypeList.add(TimeLineSwipeUpArgs(
+              cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
 
@@ -228,7 +233,8 @@ class AppHomeViewModel extends BasePageViewModel {
               isCardDelivered: debitCard.isDebitDelivered));
 
           ///adding cardType
-          cardTypeList.add(CardType.DEBIT);
+          cardTypeList.add(TimeLineSwipeUpArgs(
+              cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         });
       } else {
         pages.add(ApplyDebitCardWidget(
@@ -236,7 +242,8 @@ class AppHomeViewModel extends BasePageViewModel {
         ));
 
         ///adding cardType
-        cardTypeList.add(CardType.DEBIT);
+        cardTypeList.add(TimeLineSwipeUpArgs(
+            cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
       }
     }
     addPages(pages);
@@ -364,3 +371,15 @@ class AppHomeViewModel extends BasePageViewModel {
     super.dispose();
   }
 }
+
+class TimeLineSwipeUpArgs {
+  final CardType cardType;
+
+  final SwipeUpEnum swipeUpEnum;
+
+  TimeLineSwipeUpArgs(
+      {this.cardType: CardType.ACCOUNT,
+      this.swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO});
+}
+
+enum SwipeUpEnum { SWIPE_UP_YES, SWIPE_UP_NO }

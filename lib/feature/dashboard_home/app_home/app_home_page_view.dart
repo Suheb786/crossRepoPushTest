@@ -57,12 +57,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       onHorizontalDragEnd: (details) {},
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
-                          if (model.cardTypeList[currentStep!] ==
+                          if (model.cardTypeList[currentStep!].cardType ==
                               CardType.ACCOUNT) {
                             Navigator.pushNamed(
                                 context, RoutePaths.AccountTransaction);
-                          } else if (model.cardTypeList[currentStep] ==
-                              CardType.CREDIT) {
+                          } else if (model.cardTypeList[currentStep].cardType ==
+                                  CardType.CREDIT &&
+                              model.cardTypeList[currentStep].swipeUpEnum ==
+                                  SwipeUpEnum.SWIPE_UP_YES) {
                             Navigator.pushNamed(
                                 context, RoutePaths.CardTransaction,
                                 arguments: GetCreditCardTransactionArguments(
@@ -135,8 +137,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               Navigator.pushNamed(
                                   context, RoutePaths.TimeLinePage,
                                   arguments: TimeLinePageArguments(
-                                      cardType:
-                                          model.cardTypeList[currentStep!],
+                                      cardType: model
+                                          .cardTypeList[currentStep!].cardType,
                                       timeLineArguments:
                                           model.timeLineArguments));
                               //model.updateShowTimeLineStream(!showTimeLine);

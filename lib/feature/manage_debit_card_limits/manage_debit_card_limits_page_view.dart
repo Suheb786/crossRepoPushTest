@@ -527,8 +527,9 @@ class ManageDebitCardLimitsPageView
                                                           //                 .currentLimit ==
                                                           //             150 &&
                                                           ((model.cardLimitsArguments
-                                                                          .debitDeliveredDatetime !=
-                                                                      null) &&
+                                                                      .debitDeliveredDatetime
+                                                                      .toString()
+                                                                      .isNotEmpty) &&
                                                                   num.parse(debitCardLimitResponse
                                                                           .data!
                                                                           .debitCardLimitContent!
@@ -539,9 +540,10 @@ class ManageDebitCardLimitsPageView
                                                               ? true
                                                               : false,
                                                       noToggle: !(model
-                                                              .cardLimitsArguments
-                                                              .debitDeliveredDatetime !=
-                                                          null),
+                                                          .cardLimitsArguments
+                                                          .debitDeliveredDatetime
+                                                          .toString()
+                                                          .isNotEmpty),
                                                       title: S
                                                           .of(context)
                                                           .contactLessPayments,

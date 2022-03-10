@@ -88,7 +88,8 @@ abstract class CardRepository {
       num merchantsPayments,
       num onlinePurchase});
 
-  Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit();
+  Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit(
+      {required String? tokenizedPan});
 
   Future<Either<NetworkError, GetCardApplicationResponse>> getCardApplication();
 
