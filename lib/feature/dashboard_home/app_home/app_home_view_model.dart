@@ -248,6 +248,9 @@ class AppHomeViewModel extends BasePageViewModel {
     }
     addPages(pages);
     timeLineArguments.timelineListArguments = timeLineListArguments;
+
+    print('device size---->${deviceSize.height}');
+    print('device size---->${deviceSize.width}');
   }
 
   void addPages(List pagesList) {

@@ -72,65 +72,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         .timeLineListArguments[currentStep - 1]
                                         .cardId));
                           }
-                          // print("SWIPE UP");
-                          // if (currentStep == 1) {
-                          //   if (showTimeLine!) {
-                          //     print("dragged here");
-                          //     Navigator.pushNamed(
-                          //         context, RoutePaths.TimeLinePage,
-                          //         arguments: TimeLinePageArguments(
-                          //             timeLineArguments:
-                          //                 model.timeLineArguments));
-                          //     //model.updateShowTimeLineStream(!showTimeLine);
-                          //     return;
-                          //   } else {
-                          //     cardData!.data!.dashboardDataContent!.creditCard!
-                          //                 .length >
-                          //             0
-                          //         ? Navigator.pushNamed(
-                          //             context, RoutePaths.CardTransaction,
-                          //             arguments:
-                          //                 GetCreditCardTransactionArguments(
-                          //                     cardId: cardData
-                          //                         .data!
-                          //                         .dashboardDataContent!
-                          //                         .creditCard!
-                          //                         .first
-                          //                         .cardId))
-                          //         : () {};
-                          //   }
-                          // } else if (currentStep == 0) {
-                          //   if (showTimeLine!) {
-                          //     print("dragged here");
-                          //     Navigator.pushNamed(
-                          //         context, RoutePaths.TimeLinePage,
-                          //         arguments: TimeLinePageArguments(
-                          //             timeLineArguments:
-                          //                 model.timeLineArguments));
-                          //     //model.updateShowTimeLineStream(!showTimeLine);
-                          //     return;
-                          //   } else {
-                          //     Navigator.pushNamed(
-                          //         context, RoutePaths.AccountTransaction);
-                          //   }
-                          // } else if (currentStep == 1) {
-                          //   if (showTimeLine!) {
-                          //     Navigator.pushNamed(
-                          //         context, RoutePaths.TimeLinePage,
-                          //         arguments: TimeLinePageArguments(
-                          //             timeLineArguments:
-                          //                 model.timeLineArguments));
-                          //     //model.updateShowTimeLineStream(!showTimeLine);
-                          //   }
-                          // } else if (currentStep == 2) {
-                          //   Navigator.pushNamed(
-                          //       context, RoutePaths.TimeLinePage,
-                          //       arguments: TimeLinePageArguments(
-                          //           timeLineArguments:
-                          //               model.timeLineArguments));
-                          //   //model.updateShowTimeLineStream(!showTimeLine!);
-                          // }
-                          // // model.updateAppSwipeControllerStream(currentStep!);
                         } else {
                           if (details.primaryVelocity! > 0.5) {
                             if (!showTimeLine!) {
@@ -192,11 +133,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             'assets/animation/Swipe_Down.json',
                                             width: 28.0,
                                             height: 28.0,
-                                          )
-
-                                          // child:
-                                          //     AppSvg.asset(AssetUtils.swipeDown),
-                                          ),
+                                          )),
                                       Expanded(
                                         child: Padding(
                                           padding: EdgeInsets.only(top: 4),
