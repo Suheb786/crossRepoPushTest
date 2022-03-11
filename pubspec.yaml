@@ -82,7 +82,7 @@ dependencies:
   permission_handler: ^8.1.6
   geolocator: 7.7.0
   package_info: ^2.0.2
-#  infobip_mobilemessaging: ^0.5.2
+  #  infobip_mobilemessaging: ^0.5.2
   infobip_mobilemessaging:
     git:
       url: https://github.com/mohammad-shaddad/mobile-messaging-flutter-plugin.git
@@ -94,10 +94,15 @@ dependencies:
   syncfusion_flutter_sliders: ^19.4.43
   url_launcher: ^6.0.18
   sms_autofill: ^2.2.0
-#  firebase_messaging: ^11.2.5
-#  firebase_core: ^1.11.0
-#  firebase_crashlytics: ^2.4.5
+  #  firebase_messaging: ^11.2.5
+  #  firebase_core: ^1.11.0
+  #  firebase_crashlytics: ^2.4.5
+  firebase_core: ^1.11.0
+  firebase_crashlytics: 2.4.4
+  firebase_performance: 0.7.1+1
 
+dependency_overrides:
+  firebase_crashlytics_platform_interface: 3.1.2
 
 
 dev_dependencies:
