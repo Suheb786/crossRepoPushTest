@@ -17,17 +17,22 @@ import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_credit_card_relationship_list_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_loan_values_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/link_card_step_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/relationship_with_card_holder_usecase.dart';
+import 'package:domain/usecase/card_delivery/supplementary_credit_card_request_usecase.dart';
+import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
+import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_two_usecase.dart';
 import 'package:domain/usecase/card_delivery/unblock_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -180,3 +185,32 @@ final changeDebitPinVerifyUseCaseProvider =
 final applySupplementaryDebitUseCaseProvider =
     Provider.autoDispose<ApplySupplementaryDebitCardUseCase>((ref) =>
         ApplySupplementaryDebitCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetCreditCardRelationshipListUseCase] provider
+final getCreditCardRelationshipUseCaseProvider =
+    Provider.autoDispose<GetCreditCardRelationshipListUseCase>((ref) =>
+        GetCreditCardRelationshipListUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetSupplementaryCreditCardApplicationUseCase] provider
+final getSupplementaryCreditCardApplicationUseCaseProvider =
+    Provider.autoDispose<GetSupplementaryCreditCardApplicationUseCase>((ref) =>
+        GetSupplementaryCreditCardApplicationUseCase(
+            ref.read(cardRepositoryProvider)));
+
+///[SupplementaryCreditCardRequestUseCase] provider
+final supplementaryCreditCardRequestUseCaseProvider =
+    Provider.autoDispose<SupplementaryCreditCardRequestUseCase>((ref) =>
+        SupplementaryCreditCardRequestUseCase(
+            ref.read(cardRepositoryProvider)));
+
+///[SupplementaryCreditCardStepTwoUseCase] provider
+final supplementaryCreditCardStepTwoUseCaseProvider =
+    Provider.autoDispose<SupplementaryCreditCardStepTwoUseCase>((ref) =>
+        SupplementaryCreditCardStepTwoUseCase(
+            ref.read(cardRepositoryProvider)));
+
+///[SupplementaryCreditCardStepThreeUseCase] provider
+final supplementaryCreditCardStepThreeUseCaseProvider =
+    Provider.autoDispose<SupplementaryCreditCardStepThreeUseCase>((ref) =>
+        SupplementaryCreditCardStepThreeUseCase(
+            ref.read(cardRepositoryProvider)));

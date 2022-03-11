@@ -29,6 +29,7 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
     paymentDueAmount: json['paymentDueAmount'],
     isCompleted: json['isCompleted'] as bool?,
     nextPaymentDate: json['nextpaymentdate'] as String?,
+    cardStatus: json['cardStatus'] as String?,
   );
 }
 
@@ -56,4 +57,5 @@ Map<String, dynamic> _$DashboardCardEntityToJson(
       'paymentDueAmount': instance.paymentDueAmount,
       'isCompleted': instance.isCompleted,
       'nextpaymentdate': instance.nextPaymentDate,
+      'cardStatus': instance.cardStatus,
     };

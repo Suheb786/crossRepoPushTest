@@ -6,15 +6,15 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SupplementaryCreditCardUseCase extends BaseUseCase<NetworkError,
-    SupplementaryCreditCardUseCaseParams, bool> {
+class SupplementaryCreditCardRequestUseCase extends BaseUseCase<NetworkError,
+    SupplementaryCreditCardRequestUseCaseParams, bool> {
   final CardRepository _repository;
 
-  SupplementaryCreditCardUseCase(this._repository);
+  SupplementaryCreditCardRequestUseCase(this._repository);
 
   @override
   Future<Either<NetworkError, bool>> execute(
-      {required SupplementaryCreditCardUseCaseParams params}) {
+      {required SupplementaryCreditCardRequestUseCaseParams params}) {
     return _repository.supplementaryCreditCardRequest(
       primaryCardId: params.primaryCard,
       relationship: params.relationship,
@@ -45,7 +45,7 @@ class SupplementaryCreditCardUseCase extends BaseUseCase<NetworkError,
   }
 }
 
-class SupplementaryCreditCardUseCaseParams extends Params {
+class SupplementaryCreditCardRequestUseCaseParams extends Params {
   final String primaryCard;
   final String nickName;
   final bool sameLimit;
@@ -53,7 +53,7 @@ class SupplementaryCreditCardUseCaseParams extends Params {
   final String relationship;
   final ScannedDocumentInformation scannedDocumentInformation;
 
-  SupplementaryCreditCardUseCaseParams(
+  SupplementaryCreditCardRequestUseCaseParams(
       {required this.primaryCard,
       required this.relationship,
       required this.nickName,

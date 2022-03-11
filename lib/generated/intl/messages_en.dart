@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The actions with 🔴 will be made available to you soon"),
         "activatingCreditCard":
             MessageLookupByLibrary.simpleMessage("Activating your credit card"),
+        "activatingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
+            "Activating your supplementary credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while adding Account Purpose, please enter it again"),
@@ -418,6 +420,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Creating your credit card limit"),
         "creatingShippmentError": MessageLookupByLibrary.simpleMessage(
             "Error while Setting creating Shipment (NIhandler)"),
+        "creatingSuppCreditLimit": MessageLookupByLibrary.simpleMessage(
+            "Creating your supplementary credit card limit"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("Credit Bureau "),
         "creditBureauAuthorization":
             MessageLookupByLibrary.simpleMessage("Credit Bureau Authorization"),
@@ -1238,6 +1242,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Iso Nationality Not Found"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
+            "Issuing your supplementary credit card"),
         "issuingYourCreditCard":
             MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),

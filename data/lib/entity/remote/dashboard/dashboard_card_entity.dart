@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -49,6 +50,8 @@ class DashboardCardEntity
   final bool? isCompleted;
   @JsonKey(name: "nextpaymentdate")
   final String? nextPaymentDate;
+  @JsonKey(name: "cardStatus")
+  final String? cardStatus;
 
   DashboardCardEntity(
       {this.name: "",
@@ -71,7 +74,8 @@ class DashboardCardEntity
       this.cardCode,
       this.paymentDueAmount,
       this.isCompleted: false,
-      this.nextPaymentDate: ""});
+      this.nextPaymentDate: "",
+      this.cardStatus: ""});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
@@ -86,28 +90,29 @@ class DashboardCardEntity
   @override
   CreditCard transform() {
     return CreditCard(
-        cardNumber: this.cardNumber != null ? this.cardNumber! : "",
-        expiryDate: this.expiryDate ?? '',
-        cvv: this.cvv != null ? (this.cvv!.isNotEmpty ? this.cvv : "") : "",
-        minDue: this.minDue ?? 0.000,
-        availableBalance: this.availableBalance ?? 0.000,
-        maxLimit: this.maxLimit ?? 0.000,
-        name: this.name ?? '',
-        totalAmount: this.totalAmount ?? 0.000,
-        cardId: this.cardId ?? '',
-        creditLimit: this.creditLimit ?? '',
-        creditDeliveredDatetime: this.creditDeliveredDatetime ?? '',
-        isApplied: this.isApplied ?? false,
-        creditCardActivatedDate: this.creditCardActivatedDate ?? '',
-        isCreditDelivered: this.isCreditDelivered ?? false,
-        isSupCard: this.isSupCard ?? false,
-        primarySecondaryCard: this.primarySecondaryCard ?? '',
-        usedBalance: this.usedBalance ?? '',
-        cardCode: this.cardCode ?? '',
-        isCompleted: this.isCompleted ?? false,
-        paymentDueAmount:
-            this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
-        nextPaymentDate:
-            this.nextPaymentDate != null ? this.nextPaymentDate : '');
+      cardNumber: this.cardNumber != null ? this.cardNumber! : "",
+      expiryDate: this.expiryDate ?? '',
+      cvv: this.cvv != null ? (this.cvv!.isNotEmpty ? this.cvv : "") : "",
+      minDue: this.minDue ?? 0.000,
+      availableBalance: this.availableBalance ?? 0.000,
+      maxLimit: this.maxLimit ?? 0.000,
+      name: this.name ?? '',
+      totalAmount: this.totalAmount ?? 0.000,
+      cardId: this.cardId ?? '',
+      creditLimit: this.creditLimit ?? '',
+      creditDeliveredDatetime: this.creditDeliveredDatetime ?? '',
+      isApplied: this.isApplied ?? false,
+      creditCardActivatedDate: this.creditCardActivatedDate ?? '',
+      isCreditDelivered: this.isCreditDelivered ?? false,
+      isSupCard: this.isSupCard ?? false,
+      primarySecondaryCard: this.primarySecondaryCard ?? '',
+      usedBalance: this.usedBalance ?? '',
+      cardCode: this.cardCode ?? '',
+      isCompleted: this.isCompleted ?? false,
+      paymentDueAmount:
+          this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
+      nextPaymentDate: this.nextPaymentDate != null ? this.nextPaymentDate : '',
+      cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
+    );
   }
 }

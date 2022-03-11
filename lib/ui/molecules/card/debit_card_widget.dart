@@ -78,7 +78,9 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                             ),
                             widget.debitCard.cardStatus ==
                                     FreezeCardStatusEnum.F
-                                ? Padding(
+                                ? Container(
+                                    height: 45,
+                                    alignment: Alignment.center,
                                     padding: EdgeInsets.only(right: 23.0),
                                     child: Text(
                                       S.of(context).cardFrozen,
@@ -112,7 +114,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       widget.flipCardController!.toggleCard();
                                     },
                                     child: Container(
-                                      height: 50,
+                                      height: 45,
                                       alignment: Alignment.center,
                                       child: Padding(
                                         padding: EdgeInsets.only(right: 23.0),
@@ -163,7 +165,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               top: widget.isSmallDevice ? 10 : 50),
                           child: Align(
                             alignment: Alignment.centerRight,
-                            child: AppSvg.asset(AssetUtils.zigzagCircle),
+                            child: AppSvg.asset(AssetUtils.zigzagCircle,
+                                height: widget.isSmallDevice ? 117 : 156),
                           ),
                         ),
                         Padding(

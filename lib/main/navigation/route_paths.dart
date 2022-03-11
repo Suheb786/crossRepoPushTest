@@ -95,4 +95,6 @@ class RoutePaths {
   static const String VideoCall = "/videoCall";
   static const String CheckScheduledVideoCall = "/checkScheduledVideoCall";
   static const String TimeLinePage = "/TimeLinePage";
+  static const String SupplementaryCreditCardActivationStatus =
+      "/supplementaryCreditCardActivationStatus";
 }

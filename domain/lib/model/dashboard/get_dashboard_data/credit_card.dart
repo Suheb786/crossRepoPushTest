@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+
 class CreditCard {
   CreditCard(
       {this.name,
@@ -20,7 +22,8 @@ class CreditCard {
       this.paymentDueAmount,
       this.cardCode,
       this.isCompleted: false,
-      this.nextPaymentDate: ""});
+      this.nextPaymentDate: "",
+      this.cardStatus: FreezeCardStatusEnum.NONE});
 
   String? name;
   String? cardNumber;
@@ -43,4 +46,5 @@ class CreditCard {
   String? cardCode;
   String? nextPaymentDate;
   dynamic paymentDueAmount;
+  FreezeCardStatusEnum? cardStatus;
 }

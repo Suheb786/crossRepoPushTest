@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11735,6 +11736,36 @@ class S {
     return Intl.message(
       'Credit card\ndelivered?',
       name: 'creditCardDeliveredQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creating your supplementary credit card limit`
+  String get creatingSuppCreditLimit {
+    return Intl.message(
+      'Creating your supplementary credit card limit',
+      name: 'creatingSuppCreditLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing your supplementary credit card`
+  String get issuingSuppCreditCard {
+    return Intl.message(
+      'Issuing your supplementary credit card',
+      name: 'issuingSuppCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activating your supplementary credit card`
+  String get activatingSuppCreditCard {
+    return Intl.message(
+      'Activating your supplementary credit card',
+      name: 'activatingSuppCreditCard',
       desc: '',
       args: [],
     );

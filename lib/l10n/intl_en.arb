@@ -1192,5 +1192,8 @@
   "noInternetConnection": "Service is Unavailable",
   "serverUnderMaintenance": "Server is under maintenance. Please try again in sometime.",
   "debitCardDeliveredQ": "Debit Card\ndelivered?",
-  "creditCardDeliveredQ": "Credit card\ndelivered?"
+  "creditCardDeliveredQ": "Credit card\ndelivered?",
+  "creatingSuppCreditLimit": "Creating your supplementary credit card limit",
+  "issuingSuppCreditCard": "Issuing your supplementary credit card",
+  "activatingSuppCreditCard": "Activating your supplementary credit card"
 }

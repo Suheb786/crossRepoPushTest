@@ -82,6 +82,7 @@ import 'package:neo_bank/feature/static_content/reference_number/reference_numbe
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
@@ -541,6 +542,12 @@ class AppRouter {
       case RoutePaths.TimeLinePage:
         return CustomRoute.createRoute(
             DebitCardTimeLinePage(settings.arguments as TimeLinePageArguments));
+
+      case RoutePaths.SupplementaryCreditCardActivationStatus:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCreditCardActivationStatusPage(),
+            settings: RouteSettings(
+                name: RoutePaths.SupplementaryCreditCardActivationStatus));
 
       default:
         return CupertinoPageRoute(
