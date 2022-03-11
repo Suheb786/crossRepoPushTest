@@ -2,6 +2,7 @@ import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -9,6 +10,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CreditCardSettingsViewModel extends BasePageViewModel {
+  final CreditCardSettingsArguments creditCardSettingsArguments;
   final FreezeCreditCardUseCase _freezeCreditCardUseCase;
   final UnFreezeCreditCardUseCase _unFreezeCreditCardUseCase;
   final CancelCreditCardUseCase _cancelCreditCardUseCase;
@@ -37,8 +39,11 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get cancelCreditCardStream =>
       _cancelCreditCardResponseSubject.stream;
 
-  CreditCardSettingsViewModel(this._freezeCreditCardUseCase,
-      this._unFreezeCreditCardUseCase, this._cancelCreditCardUseCase) {
+  CreditCardSettingsViewModel(
+      this._freezeCreditCardUseCase,
+      this._unFreezeCreditCardUseCase,
+      this._cancelCreditCardUseCase,
+      this.creditCardSettingsArguments) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value,
               createCall: () => _freezeCreditCardUseCase.execute(params: value))

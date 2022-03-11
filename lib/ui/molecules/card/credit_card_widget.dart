@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -300,7 +301,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     // model.updateIsGetCardNowClicked(
                                     //     !isValid!);
                                     Navigator.pushNamed(
-                                        context, RoutePaths.CreditCardSettings);
+                                        context, RoutePaths.CreditCardSettings,
+                                        arguments: CreditCardSettingsArguments(
+                                            creditCard: widget.creditCard));
                                   },
                                   child: AppSvg.asset(AssetUtils.settingsRed,
                                       color: AppColor.light_acccent_blue))

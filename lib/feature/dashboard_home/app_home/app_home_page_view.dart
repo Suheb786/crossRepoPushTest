@@ -173,9 +173,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           model
                                                               .updatePageControllerStream(
                                                                   index);
-                                                          model
-                                                              .updateAppSwipeControllerStream(
-                                                                  index);
+                                                          // model
+                                                          //     .updateAppSwipeControllerStream(
+                                                          //         index);
                                                         },
                                                         currentStep:
                                                             currentStep,

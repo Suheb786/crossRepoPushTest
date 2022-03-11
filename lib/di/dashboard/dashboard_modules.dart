@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dar
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
@@ -178,12 +179,13 @@ final debitCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 /// Credit CArd Settings
-final creditCardSettingsViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardSettingsViewModel>(
-  (ref) => CreditCardSettingsViewModel(
+final creditCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardSettingsViewModel, CreditCardSettingsArguments>(
+  (ref, args) => CreditCardSettingsViewModel(
       ref.read(freezeCreditCardUseCaseProvider),
       ref.read(unFreezeCreditCardUseCaseProvider),
-      ref.read(cancelCreditCardUseCaseProvider)),
+      ref.read(cancelCreditCardUseCaseProvider),
+      args),
 );
 
 /// check rescheduled video call

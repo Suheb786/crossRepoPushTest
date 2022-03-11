@@ -10,6 +10,11 @@ import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/credit_supplementary/get_credit_card_relationship_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_three_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_two_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
@@ -374,5 +379,109 @@ class CardRemoteDsImpl extends CardRemoteDs {
             scanPercentage: 0,
             nickName: nickName,
             relation: relation));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getSupplementaryCreditCardApplication(
+      {required String primaryCard}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getSupplementaryCreditCardApplication(
+        GetSupplementaryCreditCardApplicationRequestEntity(
+            baseData: baseData.toJson(),
+            primaryCard: primaryCard,
+            getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> supplementaryCreditCardRequest(
+      {required String primaryCardId,
+      required String relationship,
+      doi,
+      required String type,
+      required String fullName,
+      required String firstName,
+      required String middleName,
+      required String familyName,
+      required String idNumber,
+      required String dob,
+      required String doe,
+      required String gender,
+      required String documentCode,
+      required String issuer,
+      required String nationality,
+      required String optionalData1,
+      required String optionalData2,
+      required String mrtDraw,
+      required String frontCardImage,
+      required String backCardImage,
+      required String documentNumber,
+      required String nickName,
+      required bool sameLimit,
+      required num limit}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.supplementaryCreditCardRequest(
+        SupplementaryCreditCardRequestEntity(
+            baseData: baseData.toJson(),
+            getToken: true,
+            limit: limit,
+            nationality: nationality,
+            gender: gender,
+            fullName: fullName,
+            firstName: firstName,
+            dob: dob,
+            type: type,
+            nickName: nickName,
+            backCardImage: backCardImage,
+            documentCode: documentCode,
+            documentNumber: documentNumber,
+            doe: doe,
+            doi: doi,
+            familyName: familyName,
+            frontCardImage: frontCardImage,
+            idNumber: idNumber,
+            issuer: issuer,
+            middleName: middleName,
+            mrtDraw: mrtDraw,
+            optionalData1: optionalData1,
+            optionalData2: optionalData2,
+            primaryCardId: primaryCardId,
+            relationship: relationship,
+            sameLimit: sameLimit));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
+      {required String primaryCardId, required String secondaryCardId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.supplementaryCreditCardStepTwo(
+        SupplementaryCreditCardStepTwoRequestEntity(
+            baseData: baseData.toJson(),
+            getToken: true,
+            primaryCardId: primaryCardId,
+            secondaryCardId: secondaryCardId));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepThree(
+      {required String primaryCardId,
+      required String secondaryCardId,
+      required String accountNumber}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.supplementaryCreditCardStepThree(
+        SupplementaryCreditCardStepThreeRequestEntity(
+            baseData: baseData.toJson(),
+            getToken: true,
+            primaryCardId: primaryCardId,
+            secondaryCardId: secondaryCardId,
+            accountNumber: accountNumber));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCreditCardRelationShipList(
+      {required String cardId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCreditCardRelationShipList(
+        GetCreditCardRelationshipRequestEntity(
+            baseData: baseData.toJson(), getToken: true, cardId: cardId));
   }
 }

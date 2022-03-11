@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -156,13 +155,11 @@ class CreditCardSettingsPageView
                                           ],
                                         ), onSelected: () {
                                       Navigator.pop(context);
-                                      model.freezeCard(
-                                          ProviderScope.containerOf(context)
-                                              .read(appHomeViewModelProvider)
-                                              .dashboardDataContent
-                                              .creditCard!
-                                              .first
-                                              .cardId!);
+                                      model.freezeCard(model
+                                              .creditCardSettingsArguments
+                                              .creditCard
+                                              .cardId ??
+                                          '');
                                     }, onDismissed: () {
                                       Navigator.pop(context);
                                       model.freezeCardStatus(false);
@@ -183,14 +180,11 @@ class CreditCardSettingsPageView
                                       onToggle: (value) {
                                         model.toggleFreezeCardStatus(value);
                                         if (!value) {
-                                          model.unFreezeCard(
-                                              ProviderScope.containerOf(context)
-                                                  .read(
-                                                      appHomeViewModelProvider)
-                                                  .dashboardDataContent
-                                                  .creditCard!
-                                                  .first
-                                                  .cardId!);
+                                          model.unFreezeCard(model
+                                                  .creditCardSettingsArguments
+                                                  .creditCard
+                                                  .cardId ??
+                                              '');
                                         }
                                       },
                                       width: 60,

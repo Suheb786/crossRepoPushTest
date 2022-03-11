@@ -111,4 +111,44 @@ abstract class CardRepository {
       {required ScannedDocumentInformation scannedDocumentInformation,
       required String relation,
       required String nickName});
+
+  Future<Either<NetworkError, bool>> getSupplementaryCreditCardApplication(
+      {required String primaryCard});
+
+  Future<Either<NetworkError, bool>> supplementaryCreditCardRequest(
+      {required String primaryCardId,
+      required String relationship,
+      dynamic doi,
+      required String type,
+      required String fullName,
+      required String firstName,
+      required String middleName,
+      required String familyName,
+      required String idNumber,
+      required String dob,
+      required String doe,
+      required String gender,
+      required String documentCode,
+      required String issuer,
+      required String nationality,
+      required String documentNumber,
+      required String optionalData1,
+      required String optionalData2,
+      required String mrtDraw,
+      required String frontCardImage,
+      required String backCardImage,
+      required String nickName,
+      required bool sameLimit,
+      required num limit});
+
+  Future<Either<NetworkError, bool>> supplementaryCreditCardStepTwo(
+      {required String primaryCardId, required String secondaryCardId});
+
+  Future<Either<NetworkError, bool>> supplementaryCreditCardStepThree(
+      {required String primaryCardId,
+      required String secondaryCardId,
+      required String accountNumber});
+
+  Future<Either<NetworkError, bool>> getCreditCardRelationShipList(
+      {required String cardId});
 }
