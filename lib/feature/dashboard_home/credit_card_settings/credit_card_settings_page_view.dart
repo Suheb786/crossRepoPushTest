@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +31,7 @@ class CreditCardSettingsPageView
       child: GestureDetector(
         onVerticalDragEnd: (details) {
           if (!details.primaryVelocity!.isNegative) {
-            Navigator.pop(context);
+            Navigator.pop(context, model.willPop());
           }
         },
         child: Column(
@@ -87,97 +88,97 @@ class CreditCardSettingsPageView
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Column(children: [
-                        IgnorePointer(
-                          child: AppStreamBuilder<Resource<bool>>(
-                            initialData: Resource.none(),
-                            stream: model.toggleFreezeCardStream,
-                            onData: (remoteData) {},
-                            dataBuilder: (context, remoteData) {
+                        AppStreamBuilder<bool>(
+                            stream: model.showDialogStream,
+                            initialData: false,
+                            onData: (showDialog) {
+                              if (showDialog) {
+                                InformationDialog.show(context,
+                                    image: AssetUtils.cardFreeze,
+                                    title: S.of(context).freezeTheCard,
+                                    descriptionWidget: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, bottom: 10),
+                                          child: Text(
+                                              S
+                                                  .of(context)
+                                                  .acknowledgeBeforeFreezingCard,
+                                              style: TextStyle(
+                                                  fontSize: 14, height: 1.7)),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .cardcantBeUsedForTransactions,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .directDebitsWontBeMade,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 24),
+                                          child: CustomBulletWithTitle(
+                                            title: S
+                                                .of(context)
+                                                .freezeAndActiveAtAnyTime,
+                                            fontSize: 14,
+                                            lineHeight: 1.7,
+                                          ),
+                                        ),
+                                      ],
+                                    ), onSelected: () {
+                                  Navigator.pop(context);
+                                  model.freezeCard(model
+                                          .creditCardSettingsArguments
+                                          .creditCard
+                                          .cardId ??
+                                      '');
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                  model.freezeCardStatus(false);
+                                });
+                              }
+                            },
+                            dataBuilder: (context, snapshot) {
                               return AppStreamBuilder<bool>(
                                 stream: model.freezeCardStream,
-                                initialData: false,
-                                onData: (value) {
-                                  if (value) {
-                                    InformationDialog.show(context,
-                                        image: AssetUtils.cardFreeze,
-                                        title: S.of(context).freezeTheCard,
-                                        descriptionWidget: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8.0, bottom: 10),
-                                              child: Text(
-                                                  S
-                                                      .of(context)
-                                                      .acknowledgeBeforeFreezingCard,
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      height: 1.7)),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 24),
-                                              child: CustomBulletWithTitle(
-                                                title: S
-                                                    .of(context)
-                                                    .cardcantBeUsedForTransactions,
-                                                fontSize: 14,
-                                                lineHeight: 1.7,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 24),
-                                              child: CustomBulletWithTitle(
-                                                title: S
-                                                    .of(context)
-                                                    .directDebitsWontBeMade,
-                                                fontSize: 14,
-                                                lineHeight: 1.7,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 24),
-                                              child: CustomBulletWithTitle(
-                                                title: S
-                                                    .of(context)
-                                                    .freezeAndActiveAtAnyTime,
-                                                fontSize: 14,
-                                                lineHeight: 1.7,
-                                              ),
-                                            ),
-                                          ],
-                                        ), onSelected: () {
-                                      Navigator.pop(context);
-                                      model.freezeCard(model
-                                              .creditCardSettingsArguments
-                                              .creditCard
-                                              .cardId ??
-                                          '');
-                                    }, onDismissed: () {
-                                      Navigator.pop(context);
-                                      model.freezeCardStatus(false);
-                                    });
-                                  }
-                                },
+                                initialData: model.creditCardSettingsArguments
+                                            .creditCard.cardStatus ==
+                                        FreezeCardStatusEnum.F
+                                    ? true
+                                    : false,
+                                onData: (value) {},
                                 dataBuilder: (context, data) {
                                   return SettingTile(
                                     onTap: () {
                                       model.toggleFreezeCardStatus(!data!);
                                     },
-                                    isNotify: true,
-                                    isEnabled: false,
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
                                     trailing: FlutterSwitch(
                                       value: data!,
                                       onToggle: (value) {
+                                        if (value) {
+                                          model.updateShowDialog(true);
+                                        }
                                         model.toggleFreezeCardStatus(value);
                                         if (!value) {
                                           model.unFreezeCard(model
@@ -213,9 +214,7 @@ class CreditCardSettingsPageView
                                   );
                                 },
                               );
-                            },
-                          ),
-                        ),
+                            }),
                         IgnorePointer(
                           child: AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
@@ -292,17 +291,15 @@ class CreditCardSettingsPageView
                             tileIcon: AssetUtils.cardShield,
                           ),
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.SupplementaryCreditCard);
-                            },
-                            title: S.of(context).requestSupplementarycard,
-                            tileIcon: AssetUtils.cardIcon,
-                          ),
+                        SettingTile(
+                          isNotify: true,
+                          isEnabled: false,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.SupplementaryCreditCard);
+                          },
+                          title: S.of(context).requestSupplementarycard,
+                          tileIcon: AssetUtils.cardIcon,
                         ),
                         SettingTile(
                           onTap: () {},
@@ -327,15 +324,15 @@ class CreditCardSettingsPageView
                         ),
                         SettingTile(
                           onTap: () {},
-                          title: S.of(context).changeCountryRestriction,
-                          tileIcon: AssetUtils.globe,
+                          title: S.of(context).manageSettlement,
+                          tileIcon: AssetUtils.linked,
                           isEnabled: false,
                           isNotify: true,
                         ),
                         SettingTile(
                           onTap: () {},
-                          title: S.of(context).manageSettlement,
-                          tileIcon: AssetUtils.linked,
+                          title: S.of(context).changeCountryRestriction,
+                          tileIcon: AssetUtils.globe,
                           isEnabled: false,
                           isNotify: true,
                         ),

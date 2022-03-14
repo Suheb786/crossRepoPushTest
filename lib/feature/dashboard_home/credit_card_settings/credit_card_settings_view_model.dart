@@ -39,6 +39,15 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get cancelCreditCardStream =>
       _cancelCreditCardResponseSubject.stream;
 
+  bool isFreezed = false;
+  bool isUnFreezed = false;
+  bool isCancelled = false;
+
+  ///show dialog
+  PublishSubject<bool> _showDialogRequestSubject = PublishSubject();
+
+  Stream<bool> get showDialogStream => _showDialogRequestSubject.stream;
+
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
       this._unFreezeCreditCardUseCase,
@@ -56,6 +65,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           _toggleFreezeCardSubject.safeAdd(true);
+          isFreezed = true;
         }
       });
     });
@@ -73,6 +83,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           _toggleFreezeCardSubject.safeAdd(false);
+          isUnFreezed = true;
         }
       });
     });
@@ -86,6 +97,8 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         _cancelCreditCardResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          isCancelled = true;
         }
       });
     });
@@ -112,6 +125,18 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   void cancelCard(String reason) {
     _cancelCreditCardRequestSubject
         .safeAdd(CancelCreditCardUseCaseParams(reason: reason));
+  }
+
+  bool willPop() {
+    bool pop = false;
+    if (isFreezed || isUnFreezed || isCancelled) {
+      pop = true;
+    }
+    return pop;
+  }
+
+  void updateShowDialog(bool value) {
+    _showDialogRequestSubject.safeAdd(value);
   }
 
   @override

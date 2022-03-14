@@ -6781,10 +6781,10 @@ class S {
     );
   }
 
-  /// `Report card issue`
+  /// `Report stolen or lost card`
   String get reportCardIssue {
     return Intl.message(
-      'Report card issue',
+      'Report stolen or lost card',
       name: 'reportCardIssue',
       desc: '',
       args: [],

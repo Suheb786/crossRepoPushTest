@@ -1684,7 +1684,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
         "reportCardIssue":
-            MessageLookupByLibrary.simpleMessage("Report card issue"),
+            MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Error while processing your request, please try again later or call our Engagement team"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),

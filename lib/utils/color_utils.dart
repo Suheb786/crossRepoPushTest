@@ -108,4 +108,5 @@ class AppColor {
   static const lightGrayishBlue = const Color(0xffEFEFF0);
   static const softRed = const Color(0xfff25769);
   static const paleYellow = const Color(0xfffff59a);
+  static const verySoftRedCard = const Color(0xffEF8793);
 }

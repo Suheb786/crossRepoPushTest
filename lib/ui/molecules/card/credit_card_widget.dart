@@ -1,9 +1,12 @@
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -53,7 +56,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         borderRadius: BorderRadius.circular(16)),
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     elevation: 2,
-                    color: Theme.of(context).primaryColor,
+                    color:
+                        widget.creditCard.cardStatus == FreezeCardStatusEnum.F
+                            ? AppColor.verySoftRedCard
+                            : Theme.of(context).primaryColor,
                     margin: EdgeInsets.zero,
                     shadowColor:
                         Theme.of(context).primaryColorDark.withOpacity(0.32),
@@ -77,28 +83,46 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontSize: widget.isSmallDevice ? 10 : 12,
                                     color: Colors.white),
                               ),
-                              InkWell(
-                                splashFactory: NoSplash.splashFactory,
-                                onTap: () {
-                                  widget.flipCardController!.toggleCard();
-                                },
-                                child: Container(
-                                  height: 50,
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    S.of(context).flipCard,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize:
-                                            widget.isSmallDevice ? 12 : 14,
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color),
-                                  ),
-                                ),
-                              )
+                              widget.creditCard.cardStatus ==
+                                      FreezeCardStatusEnum.F
+                                  ? Container(
+                                      height: 45,
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsets.only(right: 23.0),
+                                      child: Text(
+                                        S.of(context).cardFrozen,
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .accentColor
+                                                .withOpacity(0.5),
+                                            fontSize:
+                                                widget.isSmallDevice ? 12 : 14,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    )
+                                  : InkWell(
+                                      splashFactory: NoSplash.splashFactory,
+                                      onTap: () {
+                                        widget.flipCardController!.toggleCard();
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          S.of(context).flipCard,
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: widget.isSmallDevice
+                                                  ? 12
+                                                  : 14,
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color),
+                                        ),
+                                      ),
+                                    )
                             ],
                           ),
                         ),
@@ -297,13 +321,19 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 ],
                               ),
                               InkWell(
-                                  onTap: () {
-                                    // model.updateIsGetCardNowClicked(
-                                    //     !isValid!);
-                                    Navigator.pushNamed(
+                                  onTap: () async {
+                                    var result = await Navigator.pushNamed(
                                         context, RoutePaths.CreditCardSettings,
                                         arguments: CreditCardSettingsArguments(
                                             creditCard: widget.creditCard));
+                                    if (result != null) {
+                                      bool value = result as bool;
+                                      if (value) {
+                                        ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .getDashboardData();
+                                      }
+                                    }
                                   },
                                   child: AppSvg.asset(AssetUtils.settingsRed,
                                       color: AppColor.light_acccent_blue))
