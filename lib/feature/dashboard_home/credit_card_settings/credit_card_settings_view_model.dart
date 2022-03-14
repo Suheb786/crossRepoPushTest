@@ -1,5 +1,7 @@
+import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
@@ -14,6 +16,8 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final FreezeCreditCardUseCase _freezeCreditCardUseCase;
   final UnFreezeCreditCardUseCase _unFreezeCreditCardUseCase;
   final CancelCreditCardUseCase _cancelCreditCardUseCase;
+  final GetSupplementaryCreditCardApplicationUseCase
+      _getSupplementaryCreditCardApplicationUseCase;
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
@@ -30,6 +34,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   PublishSubject<UnFreezeCreditCardUseCaseParams> _unFreezeCardRequestSubject =
       PublishSubject();
 
+  ///cancel credit card
   PublishSubject<CancelCreditCardUseCaseParams>
       _cancelCreditCardRequestSubject = PublishSubject();
 
@@ -48,11 +53,23 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
   Stream<bool> get showDialogStream => _showDialogRequestSubject.stream;
 
+  ///get supplementary credit card application use case
+  PublishSubject<GetSupplementaryCreditCardApplicationUseCaseParams>
+      _getSupplementaryCreditCardApplicationRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<GetCardApplicationResponse>>
+      _getSupplementaryCreditCardApplicationResponseSubject = PublishSubject();
+
+  Stream<Resource<GetCardApplicationResponse>>
+      get getSupplementaryCreditCardApplicationStream =>
+          _getSupplementaryCreditCardApplicationResponseSubject.stream;
+
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
       this._unFreezeCreditCardUseCase,
       this._cancelCreditCardUseCase,
-      this.creditCardSettingsArguments) {
+      this.creditCardSettingsArguments,
+      this._getSupplementaryCreditCardApplicationUseCase) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value,
               createCall: () => _freezeCreditCardUseCase.execute(params: value))
@@ -102,6 +119,18 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getSupplementaryCreditCardApplicationRequestSubject.listen((value) {
+      RequestManager(value,
+          createCall: () => _getSupplementaryCreditCardApplicationUseCase
+              .execute(params: value)).asFlow().listen((event) {
+        updateLoader();
+        _getSupplementaryCreditCardApplicationResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void toggleFreezeCardStatus(bool value) {
@@ -137,6 +166,12 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
   void updateShowDialog(bool value) {
     _showDialogRequestSubject.safeAdd(value);
+  }
+
+  void getSupplementaryCreditCardApplication() {
+    _getSupplementaryCreditCardApplicationRequestSubject.safeAdd(
+        GetSupplementaryCreditCardApplicationUseCaseParams(
+            primaryCard: creditCardSettingsArguments.creditCard.cardId));
   }
 
   @override

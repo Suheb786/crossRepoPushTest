@@ -114,7 +114,8 @@ final supplementaryCreditCardViewModelProvider =
 final relationShipWithCardHolderViewModelProvider =
     ChangeNotifierProvider.autoDispose<RelationshipWithCardholderPageViewModel>(
   (ref) => RelationshipWithCardholderPageViewModel(
-      ref.read(relationshipWithCardHolderUseCaseProvider)),
+      ref.read(relationshipWithCardHolderUseCaseProvider),
+      ref.read(getCreditCardRelationshipUseCaseProvider)),
 );
 
 ///relationship with card holder dialog view model provider
@@ -136,6 +137,7 @@ final personalizeCreditCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<PersonalizeCreditCardPageViewModel>(
   (ref) => PersonalizeCreditCardPageViewModel(
     ref.read(personalizeCreditCardUseCaseProvider),
+      ref.read(supplementaryCreditCardRequestUseCaseProvider)
   ),
 );
 

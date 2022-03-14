@@ -1,11 +1,13 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/error/app_error.dart';
+import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -19,6 +21,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class CreditCardSettingsPageView
     extends BasePageViewWidget<CreditCardSettingsViewModel> {
@@ -291,16 +294,50 @@ class CreditCardSettingsPageView
                             tileIcon: AssetUtils.cardShield,
                           ),
                         ),
-                        SettingTile(
-                          isNotify: true,
-                          isEnabled: false,
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.SupplementaryCreditCard);
-                          },
-                          title: S.of(context).requestSupplementarycard,
-                          tileIcon: AssetUtils.cardIcon,
-                        ),
+                        AppStreamBuilder<Resource<GetCardApplicationResponse>>(
+                            stream: model
+                                .getSupplementaryCreditCardApplicationStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                if (data.status == Status.SUCCESS) {
+                                  if (data
+                                      .data!.cardApplicationContent!.isEmpty) {
+                                    ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .currentCreditCard =
+                                        model.creditCardSettingsArguments
+                                            .creditCard;
+                                    Navigator.pushNamed(context,
+                                        RoutePaths.SupplementaryCreditCard);
+                                    // ProviderScope.containerOf(context)
+                                    //     .read(
+                                    //         relationShipWithCardHolderViewModelProvider)
+                                    //     .getCreditCardRelationship(
+                                    //         cardId: model
+                                    //                 .creditCardSettingsArguments
+                                    //                 .creditCard
+                                    //                 .cardId ??
+                                    //             '');
+                                  } else {
+                                    Navigator.pushReplacementNamed(
+                                        context,
+                                        RoutePaths
+                                            .SupplementaryCreditCardActivationStatus);
+                                  }
+                                }
+                              }
+                            },
+                            dataBuilder:
+                                (context, supplementaryCreditCardApplication) {
+                              return SettingTile(
+                                onTap: () {
+                                  model.getSupplementaryCreditCardApplication();
+                                },
+                                title: S.of(context).requestSupplementarycard,
+                                tileIcon: AssetUtils.cardIcon,
+                              );
+                            }),
                         SettingTile(
                           onTap: () {},
                           title: S.of(context).increaseCreditLimit,

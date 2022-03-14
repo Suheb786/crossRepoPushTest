@@ -23,7 +23,8 @@ class CreditCard {
       this.cardCode,
       this.isCompleted: false,
       this.nextPaymentDate: "",
-      this.cardStatus: FreezeCardStatusEnum.NONE});
+      this.cardStatus: FreezeCardStatusEnum.NONE,
+      this.minimumSettlement: 0});
 
   String? name;
   String? cardNumber;
@@ -33,6 +34,7 @@ class CreditCard {
   num? availableBalance;
   num? totalAmount;
   num? maxLimit;
+  num? minimumSettlement;
   String? primarySecondaryCard;
   String? creditLimit;
   String? usedBalance;

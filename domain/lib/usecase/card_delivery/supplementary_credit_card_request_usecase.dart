@@ -18,7 +18,9 @@ class SupplementaryCreditCardRequestUseCase extends BaseUseCase<NetworkError,
     return _repository.supplementaryCreditCardRequest(
       primaryCardId: params.primaryCard,
       relationship: params.relationship,
-      doi: params.scannedDocumentInformation.issuingDate,
+      doi: params.doi != null
+          ? params.doi.toString()
+          : params.scannedDocumentInformation.issuingDate.toString(),
       type: "C",
       fullName: params.scannedDocumentInformation.fullName ?? '',
       firstName: params.scannedDocumentInformation.firstName ??
@@ -26,8 +28,12 @@ class SupplementaryCreditCardRequestUseCase extends BaseUseCase<NetworkError,
       middleName: params.scannedDocumentInformation.middleName ?? '',
       familyName: params.scannedDocumentInformation.familyName ?? '',
       idNumber: params.scannedDocumentInformation.idNumber ?? '',
-      dob: params.scannedDocumentInformation.dob.toString(),
-      doe: params.scannedDocumentInformation.doe.toString(),
+      dob: params.dob != null
+          ? params.dob.toString()
+          : params.scannedDocumentInformation.dob.toString(),
+      doe: params.doe != null
+          ? params.doe.toString()
+          : params.scannedDocumentInformation.doe.toString(),
       gender: params.scannedDocumentInformation.gender![0].toUpperCase(),
       documentCode: params.scannedDocumentInformation.documentCode ?? 'I',
       documentNumber: params.scannedDocumentInformation.documentNumber ?? '',
@@ -40,7 +46,7 @@ class SupplementaryCreditCardRequestUseCase extends BaseUseCase<NetworkError,
       backCardImage: params.scannedDocumentInformation.backCardImage ?? '',
       nickName: params.nickName,
       sameLimit: params.sameLimit,
-      limit: params.limit,
+      limit: params.sameLimit ? 0 : params.limit,
     );
   }
 }
@@ -52,6 +58,9 @@ class SupplementaryCreditCardRequestUseCaseParams extends Params {
   final num limit;
   final String relationship;
   final ScannedDocumentInformation scannedDocumentInformation;
+  final String? dob;
+  final String? doi;
+  final String? doe;
 
   SupplementaryCreditCardRequestUseCaseParams(
       {required this.primaryCard,
@@ -59,7 +68,10 @@ class SupplementaryCreditCardRequestUseCaseParams extends Params {
       required this.nickName,
       required this.sameLimit,
       required this.limit,
-      required this.scannedDocumentInformation});
+      required this.scannedDocumentInformation,
+      this.doi,
+      this.dob,
+      this.doe});
 
   @override
   Either<AppError, bool> verify() {

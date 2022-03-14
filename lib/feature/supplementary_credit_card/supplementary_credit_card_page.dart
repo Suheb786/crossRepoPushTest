@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view_model.dart';
 
@@ -17,6 +18,13 @@ class SupplementaryCreditCardPageState extends BaseStatefulPage<
   @override
   ProviderBase provideBase() {
     return supplementaryCreditCardViewModelProvider;
+  }
+
+  @override
+  void onModelReady(SupplementaryCreditCardPageViewModel model) {
+    model.creditCard = ProviderScope.containerOf(context)
+        .read(appHomeViewModelProvider)
+        .currentCreditCard;
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -28,6 +29,8 @@ class SupplementaryCreditCardPageViewModel extends BasePageViewModel {
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
   }
+
+  CreditCard creditCard = CreditCard();
 
   @override
   void dispose() {

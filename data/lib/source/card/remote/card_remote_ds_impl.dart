@@ -9,9 +9,11 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
+import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_credit_card_relationship_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_three_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_two_request_entity.dart';
@@ -382,8 +384,9 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getSupplementaryCreditCardApplication(
-      {required String primaryCard}) async {
+  Future<HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>
+      getSupplementaryCreditCardApplication(
+          {required String primaryCard}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getSupplementaryCreditCardApplication(
         GetSupplementaryCreditCardApplicationRequestEntity(
@@ -477,7 +480,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getCreditCardRelationShipList(
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
       {required String cardId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardRelationShipList(

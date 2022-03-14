@@ -5,6 +5,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/card/card_statement_response.dart';
 import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:domain/model/card/get_credit_card_relationship/credit_card_relationship_respponse.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
@@ -411,14 +412,15 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getSupplementaryCreditCardApplication(
-      {required String primaryCard}) async {
+  Future<Either<NetworkError, GetCardApplicationResponse>>
+      getSupplementaryCreditCardApplication(
+          {required String primaryCard}) async {
     final result = await safeApiCall(
       _remoteDs.getSupplementaryCreditCardApplication(primaryCard: primaryCard),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -426,7 +428,7 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> supplementaryCreditCardRequest(
       {required String primaryCardId,
       required String relationship,
-      doi,
+      dynamic doi,
       required String type,
       required String fullName,
       required String firstName,
@@ -460,6 +462,7 @@ class CardRepositoryImpl extends CardRepository {
           idNumber: idNumber,
           dob: dob,
           doe: doe,
+          doi: doi,
           gender: gender,
           documentCode: documentCode,
           issuer: issuer,
@@ -507,13 +510,13 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getCreditCardRelationShipList(
-      {required String cardId}) async {
-    final result =
-        await safeApiCall(_remoteDs.getCreditCardRelationShipList(cardId: cardId));
+  Future<Either<NetworkError, CreditCardRelationshipResponse>>
+      getCreditCardRelationShipList({required String cardId}) async {
+    final result = await safeApiCall(
+        _remoteDs.getCreditCardRelationShipList(cardId: cardId));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 }

@@ -50,9 +50,11 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
+import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_credit_card_relationship_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_request_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_three_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_two_request_entity.dart';
@@ -729,8 +731,9 @@ abstract class ApiService {
       @Body() CheckVersionUpdateRequest request);
 
   @POST("/CardTracking/GetSupCardApplications")
-  Future<HttpResponse<ResponseEntity>> getSupplementaryCreditCardApplication(
-      @Body() GetSupplementaryCreditCardApplicationRequestEntity request);
+  Future<HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>
+      getSupplementaryCreditCardApplication(
+          @Body() GetSupplementaryCreditCardApplicationRequestEntity request);
 
   @POST("/CardTracking/CreditSupCardReq")
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardRequest(
@@ -745,6 +748,6 @@ abstract class ApiService {
       @Body() SupplementaryCreditCardStepThreeRequestEntity request);
 
   @POST("/CardTracking/GetRelationShipList")
-  Future<HttpResponse<ResponseEntity>> getCreditCardRelationShipList(
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
       @Body() GetCreditCardRelationshipRequestEntity request);
 }

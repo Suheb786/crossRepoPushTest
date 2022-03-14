@@ -1,6 +1,8 @@
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
@@ -111,8 +113,8 @@ abstract class CardRemoteDs {
       required String relation,
       required String nickName});
 
-  Future<HttpResponse<ResponseEntity>> getSupplementaryCreditCardApplication(
-      {required String primaryCard});
+  Future<HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>
+      getSupplementaryCreditCardApplication({required String primaryCard});
 
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardRequest(
       {required String primaryCardId,
@@ -148,6 +150,6 @@ abstract class CardRemoteDs {
       required String secondaryCardId,
       required String accountNumber});
 
-  Future<HttpResponse<ResponseEntity>> getCreditCardRelationShipList(
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
       {required String cardId});
 }

@@ -28,5 +28,8 @@ final creditCardActivationViewModelProvider =
 final supplementaryCreditCardActivationViewModelProvider =
     ChangeNotifierProvider.autoDispose<
         SupplementaryCreditCardActivationStatusPageViewModel>(
-  (ref) => SupplementaryCreditCardActivationStatusPageViewModel(),
+  (ref) => SupplementaryCreditCardActivationStatusPageViewModel(
+      ref.read(getSupplementaryCreditCardApplicationUseCaseProvider),
+      ref.read(supplementaryCreditCardStepTwoUseCaseProvider),
+      ref.read(supplementaryCreditCardStepThreeUseCaseProvider)),
 );

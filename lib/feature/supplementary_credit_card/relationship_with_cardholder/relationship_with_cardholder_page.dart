@@ -13,7 +13,8 @@ class RelationshipWithCardholderPage
 }
 
 class RelationshipWithCardholderPageState extends BaseStatefulPage<
-    RelationshipWithCardholderPageViewModel, RelationshipWithCardholderPage> {
+    RelationshipWithCardholderPageViewModel,
+    RelationshipWithCardholderPage> with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return relationShipWithCardHolderViewModelProvider;
@@ -26,7 +27,28 @@ class RelationshipWithCardholderPageState extends BaseStatefulPage<
   }
 
   @override
+  void onModelReady(RelationshipWithCardholderPageViewModel model) {
+    print(
+        'cardId---->${ProviderScope.containerOf(context).read(supplementaryCreditCardViewModelProvider).creditCard.cardId ?? ''}');
+    model.getCreditCardRelationship(
+        cardId: ProviderScope.containerOf(context)
+                .read(supplementaryCreditCardViewModelProvider)
+                .creditCard
+                .cardId ??
+            '');
+  }
+
+  @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

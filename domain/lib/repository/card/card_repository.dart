@@ -3,6 +3,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/card/card_statement_response.dart';
 import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:domain/model/card/get_credit_card_relationship/credit_card_relationship_respponse.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
@@ -112,8 +113,8 @@ abstract class CardRepository {
       required String relation,
       required String nickName});
 
-  Future<Either<NetworkError, bool>> getSupplementaryCreditCardApplication(
-      {required String primaryCard});
+  Future<Either<NetworkError, GetCardApplicationResponse>>
+      getSupplementaryCreditCardApplication({required String primaryCard});
 
   Future<Either<NetworkError, bool>> supplementaryCreditCardRequest(
       {required String primaryCardId,
@@ -149,6 +150,6 @@ abstract class CardRepository {
       required String secondaryCardId,
       required String accountNumber});
 
-  Future<Either<NetworkError, bool>> getCreditCardRelationShipList(
-      {required String cardId});
+  Future<Either<NetworkError, CreditCardRelationshipResponse>>
+      getCreditCardRelationShipList({required String cardId});
 }

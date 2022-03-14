@@ -20,6 +20,12 @@ class PersonalizeCreditCardPageState extends BaseStatefulPage<
   }
 
   @override
+  void onModelReady(PersonalizeCreditCardPageViewModel model) {
+    model.minimumSettlementController.text =
+        '${ProviderScope.containerOf(context).read(supplementaryCreditCardViewModelProvider).creditCard.minimumSettlement} %';
+  }
+
+  @override
   Widget buildView(
       BuildContext context, PersonalizeCreditCardPageViewModel model) {
     return PersonalizeCreditCardPageView(provideBase());

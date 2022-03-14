@@ -20,11 +20,13 @@ class PersonalizeCreditCardUseCaseParams extends Params {
   final String creditLimitSettings;
   final String minimumSettlement;
   final String nickname;
+  final bool readOnly;
 
   PersonalizeCreditCardUseCaseParams(
       {this.creditLimitSettings: "",
       this.minimumSettlement: "",
-      this.nickname: ""});
+      this.nickname: "",
+      this.readOnly: true});
 
   @override
   Either<AppError, bool> verify() {
@@ -33,13 +35,15 @@ class PersonalizeCreditCardUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.SELECT_CREDIT_LIMIT_SETTINGS,
           cause: Exception()));
+    } else if (!readOnly) {
+      if (Validator.isEmpty(minimumSettlement)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.SELECT_MINIMUM_SETTLEMENT,
+            cause: Exception()));
+      }
     }
-    // else if (Validator.isEmpty(minimumSettlement)) {
-    //   return Left(AppError(
-    //       error: ErrorInfo(message: ''),
-    //       type: ErrorType.SELECT_MINIMUM_SETTLEMENT,
-    //       cause: Exception()));
-    // }
+
     return Right(true);
   }
 }

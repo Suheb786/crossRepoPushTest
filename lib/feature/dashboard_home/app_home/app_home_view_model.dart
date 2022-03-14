@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
@@ -46,6 +47,8 @@ class AppHomeViewModel extends BasePageViewModel {
   CardType cardType = CardType.DEBIT;
 
   ChangeCardPinArguments changeCardPinArguments = ChangeCardPinArguments();
+
+  CreditCard currentCreditCard = CreditCard();
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 

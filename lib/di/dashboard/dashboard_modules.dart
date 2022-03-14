@@ -185,7 +185,8 @@ final creditCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
       ref.read(freezeCreditCardUseCaseProvider),
       ref.read(unFreezeCreditCardUseCaseProvider),
       ref.read(cancelCreditCardUseCaseProvider),
-      args),
+      args,
+      ref.read(getSupplementaryCreditCardApplicationUseCaseProvider)),
 );
 
 /// check rescheduled video call

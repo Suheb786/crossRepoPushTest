@@ -42,8 +42,8 @@ class EncryptDecryptHelper {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     try {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
-      data['data'] = dataPair.item2;
-      data['data1'] = dataPair.item1;
+      data['data'] = dataPair.item2; ///encrypted data
+      data['data1'] = dataPair.item1; /// encrypted key
       print("Request to encrypt " + jsonEncode(request));
       print('Encrypted key ' + dataPair.item1.toString());
       print('Encrypted request ' + dataPair.item2.toString());

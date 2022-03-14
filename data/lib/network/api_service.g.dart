@@ -2168,19 +2168,20 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getSupplementaryCreditCardApplication(
-      request) async {
+  Future<HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>
+      getSupplementaryCreditCardApplication(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/CardTracking/GetSupCardApplications',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
+            HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/CardTracking/GetSupCardApplications',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GetSupplementaryCreditCardApplicationResponseEntity.fromJson(
+        _result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2240,19 +2241,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getCreditCardRelationShipList(
-      request) async {
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>>
+      getCreditCardRelationShipList(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<CreditCardRelationshipResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/GetRelationShipList',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = CreditCardRelationshipResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
