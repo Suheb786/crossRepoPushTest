@@ -26,7 +26,13 @@ void main() async {
 
     runApp(ProviderScope(child: MyApp()));
   }, (error, stackTrace) async {
-    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    FirebaseCrashlytics.instance.recordError(
+      error,
+      stackTrace,
+      fatal: true,
+      reason: 'a fatal error',
+      printDetails: true,
+    );
   });
 }
 

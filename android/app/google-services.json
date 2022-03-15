@@ -1,41 +1,48 @@
 {
   "project_info": {
-    "project_number": "660487917685",
-    "firebase_url": "https://neo-bank-a8d6c-default-rtdb.firebaseio.com",
-    "project_id": "neo-bank-a8d6c",
-    "storage_bucket": "neo-bank-a8d6c.appspot.com"
+    "project_number": "570110559067",
+    "project_id": "blink-uat",
+    "storage_bucket": "blink-uat.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:660487917685:android:364d94761cd44f01a8a83c",
+        "mobilesdk_app_id": "1:570110559067:android:c8a0cd56a7716a0130507e",
         "android_client_info": {
           "package_name": "com.blink.cbt"
         }
       },
       "oauth_client": [
         {
-          "client_id": "660487917685-f6gml2so47fvociev8j3b2guvmkal7hg.apps.googleusercontent.com",
+          "client_id": "570110559067-a9s9lopvguskakf5v102vn4av5hegmdu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.blink.cbt",
+            "certificate_hash": "2772ad136214ce3af1cb089d27e06214633a2579"
+          }
+        },
+        {
+          "client_id": "570110559067-kp1h8gdljfjk10fo63o9s3ng2nfcln6u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBMVDG_ZmeHwpo6A35BHB37r1fHqzvx3Y"
+          "current_key": "AIzaSyCq8XWbVz8Gxb15c_JBJK6aBhO_-pEkj7c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "660487917685-f6gml2so47fvociev8j3b2guvmkal7hg.apps.googleusercontent.com",
+              "client_id": "570110559067-kp1h8gdljfjk10fo63o9s3ng2nfcln6u.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "660487917685-npikcp3ghttobcnh221achd4uravct2u.apps.googleusercontent.com",
+              "client_id": "570110559067-mq61gn8fdvks787413134rl1ef8gr810.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "blink.dev"
+                "bundle_id": "com.blink.cbt"
               }
             }
           ]

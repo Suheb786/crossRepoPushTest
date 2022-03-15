@@ -45,6 +45,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   FocusScope.of(context).unfocus();
                   if (details.primaryVelocity!.isNegative) {
                     model.validateEmail();
+                    //FirebaseCrashlytics.instance.crash();
                   }
                 },
                 child: SingleChildScrollView(
