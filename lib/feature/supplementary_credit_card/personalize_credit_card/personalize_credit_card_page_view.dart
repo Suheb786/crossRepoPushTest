@@ -1,10 +1,12 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/personalize_credit_card/personalize_credit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -37,7 +39,8 @@ class PersonalizeCreditCardPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<
+                            Resource<SupplementaryCreditCardResponse>>(
                         stream: model.supplementaryCreditCardResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
@@ -45,7 +48,12 @@ class PersonalizeCreditCardPageView
                             Navigator.pushNamed(
                                 context,
                                 RoutePaths
-                                    .SupplementaryCreditCardActivationStatus);
+                                    .SupplementaryCreditCardActivationStatus,
+                                arguments:
+                                    SupplementaryCreditCardActivationArguments(
+                                        primaryCardId:
+                                            data.data!.content!.primaryId ??
+                                                ''));
                           }
                         },
                         dataBuilder: (context, snapshot) {

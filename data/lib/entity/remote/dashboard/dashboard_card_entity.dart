@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -108,7 +109,8 @@ class DashboardCardEntity
         creditCardActivatedDate: this.creditCardActivatedDate ?? '',
         isCreditDelivered: this.isCreditDelivered ?? false,
         isSupCard: this.isSupCard ?? false,
-        primarySecondaryCard: this.primarySecondaryCard ?? '',
+        primarySecondaryCard:
+            this.primarySecondaryCard!.fromPrimarySecondaryCard(),
         usedBalance: this.usedBalance ?? '',
         cardCode: this.cardCode ?? '',
         isCompleted: this.isCompleted ?? false,

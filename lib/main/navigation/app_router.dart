@@ -545,7 +545,9 @@ class AppRouter {
 
       case RoutePaths.SupplementaryCreditCardActivationStatus:
         return CupertinoPageRoute(
-            builder: (context) => SupplementaryCreditCardActivationStatusPage(),
+            builder: (context) => SupplementaryCreditCardActivationStatusPage(
+                settings.arguments
+                    as SupplementaryCreditCardActivationArguments),
             settings: RouteSettings(
                 name: RoutePaths.SupplementaryCreditCardActivationStatus));
 

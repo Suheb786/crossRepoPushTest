@@ -1,3 +1,4 @@
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_request_usecase.dart';
@@ -64,11 +65,12 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
       _supplementaryCreditCardRequest = PublishSubject();
 
   /// supplementary credit card response subject holder
-  PublishSubject<Resource<bool>> _supplementaryCreditCardResponse =
-      PublishSubject();
+  PublishSubject<Resource<SupplementaryCreditCardResponse>>
+      _supplementaryCreditCardResponse = PublishSubject();
 
-  Stream<Resource<bool>> get supplementaryCreditCardResponseStream =>
-      _supplementaryCreditCardResponse.stream;
+  Stream<Resource<SupplementaryCreditCardResponse>>
+      get supplementaryCreditCardResponseStream =>
+          _supplementaryCreditCardResponse.stream;
 
   PersonalizeCreditCardPageViewModel(this._personalizeCreditCardUseCase,
       this._supplementaryCreditCardRequestUseCase) {

@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
@@ -177,33 +178,67 @@ class AppHomeViewModel extends BasePageViewModel {
       } else {
         if (dashboardDataContent.creditCard!.length > 0) {
           dashboardDataContent.creditCard!.forEach((creditCard) {
-            if (creditCard.isCompleted ?? false) {
-              pages.add(CreditCardWidget(
-                accountBalance: dashboardDataContent.account!.availableBalance,
-                isSmallDevice: isSmallDevices,
-                creditCard: creditCard,
-                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
-              ));
+            debugPrint('card type:--->${creditCard.primarySecondaryCard}');
+            if (creditCard.primarySecondaryCard ==
+                PrimarySecondaryCardEnum.PRIMARY) {
+              if (creditCard.isCompleted ?? false) {
+                pages.add(CreditCardWidget(
+                  accountBalance:
+                      dashboardDataContent.account!.availableBalance,
+                  isSmallDevice: isSmallDevices,
+                  creditCard: creditCard,
+                  key:
+                      ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                ));
 
-              ///time line list arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
-                  cardDeliveredDatetime:
-                      creditCard.creditDeliveredDatetime ?? '',
-                  cardId: creditCard.cardId ?? '',
-                  cardNumber: creditCard.cardNumber ?? '',
-                  accountTitle: creditCard.name ?? '',
-                  cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                ///time line list arguments set
+                timeLineListArguments.add(TimeLineListArguments(
+                    cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                    cardDeliveredDatetime:
+                        creditCard.creditDeliveredDatetime ?? '',
+                    cardId: creditCard.cardId ?? '',
+                    cardNumber: creditCard.cardNumber ?? '',
+                    accountTitle: creditCard.name ?? '',
+                    cardType: CardType.CREDIT,
+                    isCardDelivered: creditCard.isCreditDelivered));
 
-              ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(
-                  cardType: CardType.CREDIT,
-                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
-            } else {
-              pages.add(ApplyCreditCardWidget(
-                isSmallDevices: isSmallDevices,
-              ));
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.CREDIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+              } else {
+                pages.add(ApplyCreditCardWidget(
+                  isSmallDevices: isSmallDevices,
+                ));
+              }
+            } else if (creditCard.primarySecondaryCard ==
+                PrimarySecondaryCardEnum.SECONDARY) {
+              if (creditCard.isCompleted ?? false) {
+                pages.add(CreditCardWidget(
+                  accountBalance:
+                      dashboardDataContent.account!.availableBalance,
+                  isSmallDevice: isSmallDevices,
+                  creditCard: creditCard,
+                  key:
+                      ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                ));
+
+                ///time line list arguments set
+                timeLineListArguments.add(TimeLineListArguments(
+                    cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                    cardDeliveredDatetime:
+                        creditCard.creditDeliveredDatetime ?? '',
+                    cardId: creditCard.cardId ?? '',
+                    cardNumber: creditCard.cardNumber ?? '',
+                    accountTitle: creditCard.name ?? '',
+                    cardType: CardType.CREDIT,
+                    isCardDelivered: creditCard.isCreditDelivered));
+
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.CREDIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+              }
             }
           });
         } else {

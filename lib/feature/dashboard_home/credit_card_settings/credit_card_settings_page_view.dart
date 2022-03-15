@@ -1,7 +1,7 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -11,6 +11,7 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -294,7 +295,9 @@ class CreditCardSettingsPageView
                             tileIcon: AssetUtils.cardShield,
                           ),
                         ),
-                        AppStreamBuilder<Resource<GetCardApplicationResponse>>(
+                        AppStreamBuilder<
+                                Resource<
+                                    SupplementaryCreditCardApplicationResponse>>(
                             stream: model
                                 .getSupplementaryCreditCardApplicationStream,
                             initialData: Resource.none(),
@@ -323,7 +326,14 @@ class CreditCardSettingsPageView
                                     Navigator.pushReplacementNamed(
                                         context,
                                         RoutePaths
-                                            .SupplementaryCreditCardActivationStatus);
+                                            .SupplementaryCreditCardActivationStatus,
+                                        arguments:
+                                            SupplementaryCreditCardActivationArguments(
+                                                primaryCardId: model
+                                                        .creditCardSettingsArguments
+                                                        .creditCard
+                                                        .cardId ??
+                                                    ''));
                                   }
                                 }
                               }

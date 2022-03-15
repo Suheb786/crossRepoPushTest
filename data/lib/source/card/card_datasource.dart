@@ -2,7 +2,8 @@ import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
-import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_response_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_application_response_entity.dart';
+import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_response_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
@@ -113,34 +114,35 @@ abstract class CardRemoteDs {
       required String relation,
       required String nickName});
 
-  Future<HttpResponse<GetSupplementaryCreditCardApplicationResponseEntity>>
+  Future<HttpResponse<SupplementaryCreditCardApplicationResponseEntity>>
       getSupplementaryCreditCardApplication({required String primaryCard});
 
-  Future<HttpResponse<ResponseEntity>> supplementaryCreditCardRequest(
-      {required String primaryCardId,
-      required String relationship,
-      dynamic doi,
-      required String type,
-      required String fullName,
-      required String firstName,
-      required String middleName,
-      required String familyName,
-      required String idNumber,
-      required String dob,
-      required String doe,
-      required String gender,
-      required String documentCode,
-      required String issuer,
-      required String nationality,
-      required String documentNumber,
-      required String optionalData1,
-      required String optionalData2,
-      required String mrtDraw,
-      required String frontCardImage,
-      required String backCardImage,
-      required String nickName,
-      required bool sameLimit,
-      required num limit});
+  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>>
+      supplementaryCreditCardRequest(
+          {required String primaryCardId,
+          required String relationship,
+          dynamic doi,
+          required String type,
+          required String fullName,
+          required String firstName,
+          required String middleName,
+          required String familyName,
+          required String idNumber,
+          required String dob,
+          required String doe,
+          required String gender,
+          required String documentCode,
+          required String issuer,
+          required String nationality,
+          required String documentNumber,
+          required String optionalData1,
+          required String optionalData2,
+          required String mrtDraw,
+          required String frontCardImage,
+          required String backCardImage,
+          required String nickName,
+          required bool sameLimit,
+          required num limit});
 
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
       {required String primaryCardId, required String secondaryCardId});
@@ -150,6 +152,6 @@ abstract class CardRemoteDs {
       required String secondaryCardId,
       required String accountNumber});
 
-  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
-      {required String cardId});
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>>
+      getCreditCardRelationShipList({required String cardId});
 }

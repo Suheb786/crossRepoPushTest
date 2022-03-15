@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 
 class CreditCard {
   CreditCard(
@@ -17,7 +18,7 @@ class CreditCard {
       this.isApplied,
       this.creditCardActivatedDate,
       this.isSupCard,
-      this.primarySecondaryCard,
+      this.primarySecondaryCard: PrimarySecondaryCardEnum.NONE,
       this.usedBalance,
       this.paymentDueAmount,
       this.cardCode,
@@ -35,7 +36,7 @@ class CreditCard {
   num? totalAmount;
   num? maxLimit;
   num? minimumSettlement;
-  String? primarySecondaryCard;
+  PrimarySecondaryCardEnum? primarySecondaryCard;
   String? creditLimit;
   String? usedBalance;
   bool? isCreditDelivered;

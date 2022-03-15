@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/supplementary_credit_card_activation_status/sup
 
 class SupplementaryCreditCardActivationStatusPage
     extends BasePage<SupplementaryCreditCardActivationStatusPageViewModel> {
+  final SupplementaryCreditCardActivationArguments _arguments;
+
+  SupplementaryCreditCardActivationStatusPage(this._arguments);
+
   @override
   SupplementaryCreditCardActivationStatusPageState createState() =>
       SupplementaryCreditCardActivationStatusPageState();
@@ -17,7 +21,8 @@ class SupplementaryCreditCardActivationStatusPageState extends BaseStatefulPage<
     SupplementaryCreditCardActivationStatusPage> {
   @override
   ProviderBase provideBase() {
-    return supplementaryCreditCardActivationViewModelProvider;
+    return supplementaryCreditCardActivationViewModelProvider
+        .call(widget._arguments);
   }
 
   @override
@@ -25,4 +30,10 @@ class SupplementaryCreditCardActivationStatusPageState extends BaseStatefulPage<
       SupplementaryCreditCardActivationStatusPageViewModel model) {
     return SupplementaryCreditCardActivationStatusPageView(provideBase());
   }
+}
+
+class SupplementaryCreditCardActivationArguments {
+  final String primaryCardId;
+
+  SupplementaryCreditCardActivationArguments({required this.primaryCardId});
 }

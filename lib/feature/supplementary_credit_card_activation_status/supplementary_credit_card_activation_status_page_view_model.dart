@@ -1,8 +1,9 @@
-import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_two_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -20,16 +21,18 @@ class SupplementaryCreditCardActivationStatusPageViewModel
   final SupplementaryCreditCardStepThreeUseCase
       _supplementaryCreditCardStepThreeUseCase;
 
+  final SupplementaryCreditCardActivationArguments arguments;
+
   ///get application request
   PublishSubject<GetSupplementaryCreditCardApplicationUseCaseParams>
       _getSupplementaryCreditCardApplicationRequest = PublishSubject();
 
   ///get application response
-  PublishSubject<Resource<GetCardApplicationResponse>> _getApplicationResponse =
-      PublishSubject();
+  PublishSubject<Resource<SupplementaryCreditCardApplicationResponse>>
+      _getApplicationResponse = PublishSubject();
 
   ///get application response stream
-  Stream<Resource<GetCardApplicationResponse>>
+  Stream<Resource<SupplementaryCreditCardApplicationResponse>>
       get getApplicationResponseStream => _getApplicationResponse.stream;
 
   ///supplementary credit card step two request
@@ -59,14 +62,14 @@ class SupplementaryCreditCardActivationStatusPageViewModel
   SupplementaryCreditCardActivationStatusPageViewModel(
       this._getSupplementaryCreditCardApplicationUseCase,
       this._supplementaryCreditCardStepTwoUseCase,
-      this._supplementaryCreditCardStepThreeUseCase) {
+      this._supplementaryCreditCardStepThreeUseCase,
+      this.arguments) {
     _getSupplementaryCreditCardApplicationRequest.listen((value) {
       RequestManager(value,
           createCall: () => _getSupplementaryCreditCardApplicationUseCase
               .execute(params: value)).asFlow().listen((event) {
         _getApplicationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -80,7 +83,6 @@ class SupplementaryCreditCardActivationStatusPageViewModel
           .listen((event) {
         _supplementaryCreditCardStepTwoResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showErrorState();
           showToastWithError(event.appError!);
         }
       });
@@ -101,19 +103,20 @@ class SupplementaryCreditCardActivationStatusPageViewModel
   }
 
   void getApplication() {
-    _getSupplementaryCreditCardApplicationRequest
-        .safeAdd(GetSupplementaryCreditCardApplicationUseCaseParams());
+    _getSupplementaryCreditCardApplicationRequest.safeAdd(
+        GetSupplementaryCreditCardApplicationUseCaseParams(
+            primaryCard: arguments.primaryCardId));
   }
 
   void supplementaryCreditCardStepTwoRequest(
-      String cardId, String secondaryId) {
+      {String? cardId, String? secondaryId}) {
     _supplementaryCreditCardStepTwoRequest.safeAdd(
         SupplementaryCreditCardStepTwoUseCaseParams(
             primaryCardId: cardId, secondaryCardId: secondaryId));
   }
 
   void supplementaryCreditCardStepThree(
-      String cardId, String accountNumber, String secondaryId) {
+      {String? cardId, String? accountNumber, String? secondaryId}) {
     _supplementaryCreditcardStepThreeRequest.safeAdd(
         SupplementaryCreditCardStepThreeUseCaseParams(
             accountNumber: accountNumber,

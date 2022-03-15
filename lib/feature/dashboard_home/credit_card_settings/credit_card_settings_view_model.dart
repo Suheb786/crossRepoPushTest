@@ -1,4 +1,4 @@
-import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
@@ -57,10 +57,10 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   PublishSubject<GetSupplementaryCreditCardApplicationUseCaseParams>
       _getSupplementaryCreditCardApplicationRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<GetCardApplicationResponse>>
+  PublishSubject<Resource<SupplementaryCreditCardApplicationResponse>>
       _getSupplementaryCreditCardApplicationResponseSubject = PublishSubject();
 
-  Stream<Resource<GetCardApplicationResponse>>
+  Stream<Resource<SupplementaryCreditCardApplicationResponse>>
       get getSupplementaryCreditCardApplicationStream =>
           _getSupplementaryCreditCardApplicationResponseSubject.stream;
 

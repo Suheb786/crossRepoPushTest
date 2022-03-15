@@ -7,6 +7,8 @@ import 'package:domain/model/card/get_credit_card_relationship/credit_card_relat
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
@@ -113,34 +115,35 @@ abstract class CardRepository {
       required String relation,
       required String nickName});
 
-  Future<Either<NetworkError, GetCardApplicationResponse>>
+  Future<Either<NetworkError, SupplementaryCreditCardApplicationResponse>>
       getSupplementaryCreditCardApplication({required String primaryCard});
 
-  Future<Either<NetworkError, bool>> supplementaryCreditCardRequest(
-      {required String primaryCardId,
-      required String relationship,
-      dynamic doi,
-      required String type,
-      required String fullName,
-      required String firstName,
-      required String middleName,
-      required String familyName,
-      required String idNumber,
-      required String dob,
-      required String doe,
-      required String gender,
-      required String documentCode,
-      required String issuer,
-      required String nationality,
-      required String documentNumber,
-      required String optionalData1,
-      required String optionalData2,
-      required String mrtDraw,
-      required String frontCardImage,
-      required String backCardImage,
-      required String nickName,
-      required bool sameLimit,
-      required num limit});
+  Future<Either<NetworkError, SupplementaryCreditCardResponse>>
+      supplementaryCreditCardRequest(
+          {required String primaryCardId,
+          required String relationship,
+          dynamic doi,
+          required String type,
+          required String fullName,
+          required String firstName,
+          required String middleName,
+          required String familyName,
+          required String idNumber,
+          required String dob,
+          required String doe,
+          required String gender,
+          required String documentCode,
+          required String issuer,
+          required String nationality,
+          required String documentNumber,
+          required String optionalData1,
+          required String optionalData2,
+          required String mrtDraw,
+          required String frontCardImage,
+          required String backCardImage,
+          required String nickName,
+          required bool sameLimit,
+          required num limit});
 
   Future<Either<NetworkError, bool>> supplementaryCreditCardStepTwo(
       {required String primaryCardId, required String secondaryCardId});
