@@ -64,20 +64,21 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                       dataBuilder: (context, scannedData) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
+                            int sensitivity = 8;
                             if (ProviderScope.containerOf(context)
                                     .read(
                                         supplementaryCreditCardViewModelProvider)
                                     .appSwiperController
                                     .page ==
                                 1.0) {
-                              if (details.primaryVelocity!.isNegative) {
+                              if (details.primaryVelocity! < -sensitivity) {
                                 model.scanDocument();
-                              } else {
+                              } else if (details.primaryVelocity! >
+                                  sensitivity) {
                                 ProviderScope.containerOf(context)
                                     .read(
                                         supplementaryCreditCardViewModelProvider)
                                     .previousPage();
-                                // .previous();
                               }
                             }
                           },

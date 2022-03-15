@@ -186,7 +186,11 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
         contactlessPaymentsValue != contactlessPaymentsInitialValue) {
       show = true;
     }
-    _showSaveButtonSubject.safeAdd(show);
+    updateShowSaveButtonValue(show);
+  }
+
+  void updateShowSaveButtonValue(bool value) {
+    _showSaveButtonSubject.safeAdd(value);
   }
 
   @override

@@ -97,6 +97,7 @@ class PersonalizeCreditCardPageView
                               dataBuilder: (context, data) {
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
+                                    int sensitivity = 8;
                                     if (ProviderScope.containerOf(context)
                                             .read(
                                                 supplementaryCreditCardViewModelProvider)
@@ -104,14 +105,15 @@ class PersonalizeCreditCardPageView
                                             .page ==
                                         2.0) {
                                       FocusScope.of(context).unfocus();
-                                      if (details.primaryVelocity!.isNegative) {
+                                      if (details.primaryVelocity! <
+                                          -sensitivity) {
                                         model.personalizeCreditCard();
-                                      } else {
+                                      } else if (details.primaryVelocity! >
+                                          sensitivity) {
                                         ProviderScope.containerOf(context)
                                             .read(
                                                 supplementaryCreditCardViewModelProvider)
                                             .previousPage();
-                                        // .previous();
                                       }
                                     }
                                   },

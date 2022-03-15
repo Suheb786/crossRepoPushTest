@@ -210,6 +210,11 @@ class AppHomeViewModel extends BasePageViewModel {
                 pages.add(ApplyCreditCardWidget(
                   isSmallDevices: isSmallDevices,
                 ));
+
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.CREDIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             } else if (creditCard.primarySecondaryCard ==
                 PrimarySecondaryCardEnum.SECONDARY) {
@@ -286,9 +291,6 @@ class AppHomeViewModel extends BasePageViewModel {
     }
     addPages(pages);
     timeLineArguments.timelineListArguments = timeLineListArguments;
-
-    print('device size---->${deviceSize.height}');
-    print('device size---->${deviceSize.width}');
   }
 
   void addPages(List pagesList) {
@@ -324,8 +326,8 @@ class AppHomeViewModel extends BasePageViewModel {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
       margin: const EdgeInsets.symmetric(horizontal: 6.0),
-      height: getSize(isActive, i, currentPage),
-      width: getSize(isActive, i, currentPage),
+      height: getIndicatorSize(isActive, i, currentPage),
+      width: getIndicatorSize(isActive, i, currentPage),
       decoration: BoxDecoration(
         color: getColor(isActive, i),
         shape: BoxShape.circle,
@@ -341,28 +343,37 @@ class AppHomeViewModel extends BasePageViewModel {
     }
   }
 
-  double getSize(bool isActive, int i, int currentPage) {
+  double getIndicatorSize(bool isActive, int i, int currentPage) {
     if (isActive) {
       return 13.0;
-    } else if (i == 0 && !isActive && currentPage > 1) {
-      return 5.0;
-    } else if (i == 0 && !isActive && currentPage == 1) {
-      return 5.0;
-    } else if (i == 3 && !isActive && currentPage == 2) {
-      return 5.0;
-    } else if (i == 3 && !isActive && currentPage < 2) {
-      return 5.0;
-    } else if (i == 1 && !isActive && currentPage == 3) {
-      return 10.0;
-    } else if (i == 2 && !isActive && currentPage == 0) {
-      return 10.0;
-    } else if (i == 1 && !isActive && currentPage == 2) {
-      return 10.0;
-    } else if (i == 2 && !isActive && currentPage == 1) {
-      return 10.0;
+    } else if ((i == 0 || i == pages.length - 1) && !isActive) {
+      return 7.0;
     }
     return 10.0;
   }
+
+  // double getSize(bool isActive, int i, int currentPage) {
+  //   if (isActive) {
+  //     return 13.0;
+  //   } else if (i == 0 && !isActive && currentPage > 1) {
+  //     return 5.0;
+  //   } else if (i == 0 && !isActive && currentPage == 1) {
+  //     return 5.0;
+  //   } else if (i == 3 && !isActive && currentPage == 2) {
+  //     return 5.0;
+  //   } else if (i == 3 && !isActive && currentPage < 2) {
+  //     return 5.0;
+  //   } else if (i == 1 && !isActive && currentPage == 3) {
+  //     return 10.0;
+  //   } else if (i == 2 && !isActive && currentPage == 0) {
+  //     return 10.0;
+  //   } else if (i == 1 && !isActive && currentPage == 2) {
+  //     return 10.0;
+  //   } else if (i == 2 && !isActive && currentPage == 1) {
+  //     return 10.0;
+  //   }
+  //   return 10.0;
+  // }
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);

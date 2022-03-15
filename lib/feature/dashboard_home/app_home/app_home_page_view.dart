@@ -25,6 +25,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
@@ -198,12 +199,27 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           .data!
                                                           .dashboardDataContent!
                                                           .debitCard!
-                                                          .length >
-                                                      0
-                                                  ? 3
-                                                  : 2),
+                                                          .length),
                                         ),
                                       ),
+                                      // SmoothPageIndicator(
+                                      //     controller: model.controller,
+                                      //     count: model.pages.length,
+                                      //     effect: ScrollingDotsEffect(
+                                      //       activeStrokeWidth: 2.6,
+                                      //       activeDotScale: 1.5,
+                                      //       activeDotColor: Theme.of(context)
+                                      //           .primaryColorDark,
+                                      //       dotColor: Theme.of(context)
+                                      //           .primaryColorDark
+                                      //           .withOpacity(0.6),
+                                      //       paintStyle: PaintingStyle.fill,
+                                      //       maxVisibleDots: 5,
+                                      //       radius: 8,
+                                      //       spacing: 10,
+                                      //       dotHeight: 10,
+                                      //       dotWidth: 10,
+                                      //     )),
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
