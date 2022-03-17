@@ -11769,6 +11769,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Connection Failed`
+  String get connectionFailed {
+    return Intl.message(
+      'Connection Failed',
+      name: 'connectionFailed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

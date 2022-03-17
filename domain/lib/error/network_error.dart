@@ -23,6 +23,12 @@ class NetworkError extends BaseError {
   @override
   AppError transform() {
     switch (error.code) {
+      case 101:
+        return AppError(
+            error: error,
+            cause: cause,
+            type: ErrorType.CONNECTION_FAILED);
+
       case 503:
         return AppError(
             error: error,

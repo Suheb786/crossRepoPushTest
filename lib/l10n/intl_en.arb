@@ -1195,5 +1195,6 @@
   "creditCardDeliveredQ": "Credit card\ndelivered?",
   "creatingSuppCreditLimit": "Creating your supplementary credit card limit",
   "issuingSuppCreditCard": "Issuing your supplementary credit card",
-  "activatingSuppCreditCard": "Activating your supplementary credit card"
+  "activatingSuppCreditCard": "Activating your supplementary credit card",
+  "connectionFailed": "Connection Failed"
 }

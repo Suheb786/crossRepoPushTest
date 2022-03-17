@@ -389,6 +389,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
             "Connecting to our agent to assist you"),
+        "connectionFailed":
+            MessageLookupByLibrary.simpleMessage("Connection Failed"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
         "contactLessPayments":
