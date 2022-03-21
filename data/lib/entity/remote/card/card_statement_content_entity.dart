@@ -12,9 +12,9 @@ class CardStatementContentEntity
     implements
         BaseLayerDataTransformer<CardStatementContentEntity,
             CardStatementContent> {
-  @JsonKey(name: "pdfFileName")
+  @JsonKey(name: "fileName")
   final String? pdfFileName;
-  @JsonKey(name: "pdfBase64String")
+  @JsonKey(name: "PDFBase64")
   final String? pdfBase64String;
 
   CardStatementContentEntity({this.pdfBase64String, this.pdfFileName});
@@ -36,6 +36,6 @@ class CardStatementContentEntity
             ? ImageUtils.pdfFileFromBase64String(
                 this.pdfBase64String!, this.pdfFileName ?? 'statement')
             : File(''),
-        pdfFileName: this.pdfFileName);
+        pdfFileName: this.pdfFileName ?? '');
   }
 }
