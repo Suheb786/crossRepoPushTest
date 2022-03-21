@@ -247,7 +247,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n$PODS_ROOT/FirebaseCrashlytics/upload-symbols --build-phase --validate -ai 1:570110559067:ios:d875ec3796b1bdc630507e\n$PODS_ROOT/FirebaseCrashlytics/upload-symbols --build-phase -ai 1:570110559067:ios:d875ec3796b1bdc630507e\n";
 		};
 		D1666EF0E2E5AF17DBC28FFF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
