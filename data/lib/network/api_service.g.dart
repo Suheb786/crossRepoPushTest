@@ -1129,19 +1129,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
-      cardStatementRequest) async {
+  Future<HttpResponse<AccountCardStatementResponseEntity>>
+      getDebitCardStatement(cardStatementRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(cardStatementRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CardStatementResponseEntity>>(
+        _setStreamType<HttpResponse<AccountCardStatementResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/GetDebitCardStatement',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = CardStatementResponseEntity.fromJson(_result.data!);
+    final value = AccountCardStatementResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

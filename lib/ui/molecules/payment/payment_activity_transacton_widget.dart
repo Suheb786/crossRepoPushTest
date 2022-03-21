@@ -158,7 +158,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 44),
+                    padding: EdgeInsets.symmetric(vertical: 16),
                     child: Divider(
                       thickness: 4,
                       color: Colors.red,

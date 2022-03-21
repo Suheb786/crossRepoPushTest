@@ -109,6 +109,7 @@ class AppHomeViewModel extends BasePageViewModel {
       TimeLineArguments(timelineListArguments: []);
 
   List<TimeLineListArguments> timeLineListArguments = [];
+  List<TimeLineListArguments> blinkTimeLineListArguments = [];
 
   AppHomeViewModel(this._getDashboardDataUseCase) {
     isShowBalenceUpdatedToast = false;
@@ -148,6 +149,7 @@ class AppHomeViewModel extends BasePageViewModel {
   void getDashboardPages(GetDashboardDataContent dashboardDataContent) {
     pages.clear();
     timeLineListArguments.clear();
+    blinkTimeLineListArguments.clear();
     cardTypeList.clear();
     bool isSmallDevices =
         deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
@@ -290,7 +292,9 @@ class AppHomeViewModel extends BasePageViewModel {
       }
     }
     addPages(pages);
-    timeLineArguments.timelineListArguments = timeLineListArguments;
+    blinkTimeLineListArguments.addAll(timeLineListArguments);
+    timeLineArguments.timelineListArguments = blinkTimeLineListArguments;
+    sortTimeLineArgumentsList();
   }
 
   void addPages(List pagesList) {
@@ -333,6 +337,16 @@ class AppHomeViewModel extends BasePageViewModel {
         shape: BoxShape.circle,
       ),
     );
+  }
+
+  void sortTimeLineArgumentsList() {
+    if (blinkTimeLineListArguments.isNotEmpty) {
+      ///sorting in descending order
+      blinkTimeLineListArguments.sort((a, b) {
+        return DateTime.parse(b.cardCardActivated!)
+            .compareTo(DateTime.parse(a.cardCardActivated!));
+      });
+    }
   }
 
   Color getColor(bool isActive, int i) {

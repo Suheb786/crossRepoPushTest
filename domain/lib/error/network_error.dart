@@ -25,9 +25,7 @@ class NetworkError extends BaseError {
     switch (error.code) {
       case 101:
         return AppError(
-            error: error,
-            cause: cause,
-            type: ErrorType.CONNECTION_FAILED);
+            error: error, cause: cause, type: ErrorType.CONNECTION_FAILED);
 
       case 503:
         return AppError(
@@ -50,6 +48,10 @@ class NetworkError extends BaseError {
       case 401:
         return AppError(
             cause: cause, error: error, type: ErrorType.UNAUTHORIZED_USER);
+
+      case 408:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.REQUEST_TIMEOUT);
 
       case 1500:
         return AppError(

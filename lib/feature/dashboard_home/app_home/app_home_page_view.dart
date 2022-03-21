@@ -25,7 +25,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
@@ -196,10 +195,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           children: model.buildPageIndicator(
                                               currentStep!,
                                               cardData
-                                                          .data!
-                                                          .dashboardDataContent!
-                                                          .debitCard!
-                                                          .length),
+                                                  .data!
+                                                  .dashboardDataContent!
+                                                  .debitCard!
+                                                  .length),
                                         ),
                                       ),
                                       // SmoothPageIndicator(

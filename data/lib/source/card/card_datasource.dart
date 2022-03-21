@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -43,8 +44,8 @@ abstract class CardRemoteDs {
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       {String? monthYear, String? cardId});
 
-  Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
-      {String monthYear});
+  Future<HttpResponse<AccountCardStatementResponseEntity>>
+      getDebitCardStatement({String monthYear});
 
   Future<HttpResponse<ResponseEntity>> freezeCreditCard({String cardId});
 

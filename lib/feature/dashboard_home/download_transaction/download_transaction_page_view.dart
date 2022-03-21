@@ -181,7 +181,6 @@ class DownloadTransactionPageView
   }
 
   void _shareFiles(BuildContext context, File file) async {
-    debugPrint('pdf file:--->${file.path}');
     final box = context.findRenderObject() as RenderBox?;
     await Share.shareFiles([file.path],
         subject: 'Statement PDF',

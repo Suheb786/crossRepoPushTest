@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4150,10 +4151,10 @@ class S {
     );
   }
 
-  /// `You joined \nblink`
+  /// `You joined \nBlink`
   String get joinedBlink {
     return Intl.message(
-      'You joined \nblink',
+      'You joined \nBlink',
       name: 'joinedBlink',
       desc: '',
       args: [],
@@ -4790,10 +4791,10 @@ class S {
     );
   }
 
-  /// `Born blink.\nBe blink.`
+  /// `Born blink.\nBe Blink.`
   String get bornBlink {
     return Intl.message(
-      'Born blink.\nBe blink.',
+      'Born blink.\nBe Blink.',
       name: 'bornBlink',
       desc: '',
       args: [],
@@ -5360,10 +5361,10 @@ class S {
     );
   }
 
-  /// `We will connect you\nin blink...`
+  /// `We will connect you\nin Blink...`
   String get weWillConnectYouInBlink {
     return Intl.message(
-      'We will connect you\nin blink...',
+      'We will connect you\nin Blink...',
       name: 'weWillConnectYouInBlink',
       desc: '',
       args: [],
@@ -6020,10 +6021,10 @@ class S {
     );
   }
 
-  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  /// `You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money`
   String get noContactsYetDesc {
     return Intl.message(
-      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      'You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money',
       name: 'noContactsYetDesc',
       desc: '',
       args: [],
@@ -9070,10 +9071,10 @@ class S {
     );
   }
 
-  /// `Come closer to the Camera and ….`
+  /// `Please move your face closer to the screen!`
   String get invalidLivelinessSCore {
     return Intl.message(
-      'Come closer to the Camera and ….',
+      'Please move your face closer to the screen!',
       name: 'invalidLivelinessSCore',
       desc: '',
       args: [],
@@ -11775,6 +11776,16 @@ class S {
     return Intl.message(
       'Connection Failed',
       name: 'connectionFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REQUEST TIMEOUT`
+  String get requestTimeOut {
+    return Intl.message(
+      'REQUEST TIMEOUT',
+      name: 'requestTimeOut',
       desc: '',
       args: [],
     );

@@ -58,24 +58,24 @@ class DownloadTransactionDialogView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
-                            child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: Container(
-                                height: 64,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: AppColor.vividYellow,
-                                ),
-                              ),
-                            ),
-                            years!.length > 0
-                                ? AppScrollableListViewWidget(
+                        years!.length > 0
+                            ? Expanded(
+                                child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    child: Container(
+                                      height: 64,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16),
+                                        color: AppColor.vividYellow,
+                                      ),
+                                    ),
+                                  ),
+                                  AppScrollableListViewWidget(
                                     key: ValueKey(years!.length),
                                     child: ClickableListWheelScrollView(
                                       scrollController: model.scrollController,
@@ -114,14 +114,18 @@ class DownloadTransactionDialogView extends StatelessWidget {
                                                   })),
                                     ),
                                   )
-                                : Center(
-                                    child: Text('No Data to Display'),
-                                  ),
-                          ],
-                        )),
+                                ],
+                              ))
+                            : Expanded(
+                                child: Center(
+                                  child: Text('No Data to Display'),
+                                ),
+                              ),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(years![currentIndex!]);
+                            years!.length > 0
+                                ? onSelected!.call(years![currentIndex!])
+                                : Navigator.pop(context);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),

@@ -1026,6 +1026,8 @@ class ErrorParser {
         return localisedHelper.invalidPrimaryId;
       case ErrorType.DEVICE_NOT_COMPATIBLE:
         return localisedHelper.scanIdToProceedFurther;
+      case ErrorType.REQUEST_TIMEOUT:
+        return localisedHelper.requestTimeOut;
 
       default:
         return "";

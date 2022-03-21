@@ -267,10 +267,7 @@ class AccountSettingPageView
                                             image: AssetUtils.mobile,
                                             title: S.of(context).mobileNumber,
                                             subtitle:
-                                                (user.mobile!.isNotEmpty ||
-                                                        user.mobile != null)
-                                                    ? user.mobile!
-                                                    : '-',
+                                                '${(user.mobileCode != null || user.mobileCode!.isNotEmpty) ? ((user.mobileCode!.contains("00")) ? user.mobileCode!.replaceAll("00", '+') : '+${user.mobileCode}') : ''} ${(user.mobile!.isNotEmpty || user.mobile != null) ? user.mobile! : '-'}',
                                             onTap: () {
                                               Navigator.pushNamed(
                                                   context,

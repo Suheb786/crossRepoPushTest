@@ -93,6 +93,9 @@ class VideoCallAgentSelectionPageViewModel extends BasePageViewModel {
         createCall: () => _checkGenderStatusUseCase.execute(params: value),
       ).asFlow().listen((event) {
         _checkGenderStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
       });
     });
 
