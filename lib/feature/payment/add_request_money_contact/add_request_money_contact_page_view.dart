@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -95,27 +96,40 @@ class AddRequestMoneyContactPageView
                                         padding: EdgeInsets.only(bottom: 29.0),
                                         child: Visibility(
                                           visible: beneficiaries!.length >= 9,
-                                          child: Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                              height: 36,
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 8, horizontal: 14),
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              child: Text(
-                                                S.of(context).seeAllContacts,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  RoutePaths.AllContact,
+                                                  arguments:
+                                                      AllContactArguments(
+                                                          beneficiaryList:
+                                                              beneficiaries ??
+                                                                  []));
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                height: 36,
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 8,
+                                                    horizontal: 14),
+                                                decoration: BoxDecoration(
                                                     color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color),
+                                                        .accentColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: Text(
+                                                  S.of(context).seeAllContacts,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
+                                                          .accentTextTheme
+                                                          .bodyText1!
+                                                          .color),
+                                                ),
                                               ),
                                             ),
                                           ),

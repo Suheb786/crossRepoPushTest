@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -12,7 +13,8 @@ import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContactViewModel> {
+class AddSendMoneyContactPageView
+    extends BasePageViewWidget<AddSendMoneyContactViewModel> {
   final List<Beneficiary>? beneficiaries;
 
   AddSendMoneyContactPageView(ProviderBase model, this.beneficiaries)
@@ -31,8 +33,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    ProviderScope
-                        .containerOf(context)
+                    ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .pageController
                         .next();
@@ -94,27 +95,40 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                         padding: EdgeInsets.only(bottom: 29.0),
                                         child: Visibility(
                                           visible: beneficiaries!.length >= 9,
-                                          child: Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                              height: 36,
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 8, horizontal: 14),
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              child: Text(
-                                                S.of(context).seeAllContacts,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  RoutePaths.AllContact,
+                                                  arguments:
+                                                      AllContactArguments(
+                                                          beneficiaryList:
+                                                              beneficiaries ??
+                                                                  []));
+                                            },
+                                            child: Align(
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                height: 36,
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 8,
+                                                    horizontal: 14),
+                                                decoration: BoxDecoration(
                                                     color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color),
+                                                        .accentColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                child: Text(
+                                                  S.of(context).seeAllContacts,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
+                                                          .accentTextTheme
+                                                          .bodyText1!
+                                                          .color),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -166,14 +180,11 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                 Padding(
                   padding: EdgeInsets.only(top: 6),
                   child: Text(
-                    S
-                        .of(context)
-                        .swipeToSend,
+                    S.of(context).swipeToSend,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
-                        color: AppColor.dark_gray_1
-                    ),
+                        color: AppColor.dark_gray_1),
                   ),
                 )
               ],

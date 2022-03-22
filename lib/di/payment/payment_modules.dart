@@ -11,6 +11,8 @@ import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_ba
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page_view_model.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page.dart';
+import 'package:neo_bank/feature/payment/all_contact_page/all_contact_page_view_model.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
@@ -173,3 +175,9 @@ final purposeDetailDialogViewModelProvider = ChangeNotifierProvider.autoDispose
 final purposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PurposeDialogViewModel, List<Purpose>>(
         (ref, args) => PurposeDialogViewModel(args));
+
+///view all payment contact
+final allContactsViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<AllContactPageViewModel, AllContactArguments>(
+  (ref, args) => AllContactPageViewModel(args),
+);
