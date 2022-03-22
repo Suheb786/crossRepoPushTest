@@ -1001,7 +1001,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "idCardIsExpired": MessageLookupByLibrary.simpleMessage(
             "Your ID card is expired, please renew it and try again"),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
-            "ID card is not allowed for NeoBank."),
+            "ID card is not allowed for Blink."),
         "idCardNotFound":
             MessageLookupByLibrary.simpleMessage("Id Card Not Found"),
         "idCardScanningError": MessageLookupByLibrary.simpleMessage(
@@ -1291,7 +1291,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Loan values not found"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
-            "Location services are disabled. Please allow access to NeoBank"),
+            "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),

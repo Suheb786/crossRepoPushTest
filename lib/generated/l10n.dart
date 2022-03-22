@@ -4891,10 +4891,10 @@ class S {
     );
   }
 
-  /// `ID card is not allowed for NeoBank.`
+  /// `ID card is not allowed for Blink.`
   String get idCardNotAllowed {
     return Intl.message(
-      'ID card is not allowed for NeoBank.',
+      'ID card is not allowed for Blink.',
       name: 'idCardNotAllowed',
       desc: '',
       args: [],
@@ -6091,10 +6091,10 @@ class S {
     );
   }
 
-  /// `Location services are disabled. Please allow access to NeoBank`
+  /// `Location services are disabled. Please allow access to Blink`
   String get locationServiceDisabled {
     return Intl.message(
-      'Location services are disabled. Please allow access to NeoBank',
+      'Location services are disabled. Please allow access to Blink',
       name: 'locationServiceDisabled',
       desc: '',
       args: [],
