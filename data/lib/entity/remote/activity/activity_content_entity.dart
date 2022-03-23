@@ -27,7 +27,12 @@ class ActivityContentEntity
   @override
   ActivityContent transform() {
     return ActivityContent(
-      activities: this.activityContent!.map((e) => e.transform()).toList(),
+      activities: this
+          .activityContent!
+          .map((e) => e.transform())
+          .toList()
+          .reversed
+          .toList(),
     );
   }
 }

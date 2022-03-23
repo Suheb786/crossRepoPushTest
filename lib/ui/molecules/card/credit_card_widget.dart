@@ -178,7 +178,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         child: Text(
                                           "JOD",
                                           style: TextStyle(
-                                              color: AppColor.lightRed,
+                                              color: Theme.of(context)
+                                                  .accentColor
+                                                  .withOpacity(0.5),
                                               fontSize: widget.isSmallDevice
                                                   ? 12
                                                   : 14,
@@ -239,7 +241,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               widget.creditCard.usedBalance!));
                                 },
                                 child: Container(
-                                  height: 36,
                                   decoration: BoxDecoration(
                                     color: Theme.of(context)
                                         .accentTextTheme
@@ -298,7 +299,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         child: Text(
                                           "JOD",
                                           style: TextStyle(
-                                              color: AppColor.lightRed,
+                                              color: Theme.of(context)
+                                                  .accentColor
+                                                  .withOpacity(0.5),
                                               fontSize: widget.isSmallDevice
                                                   ? 12
                                                   : 14,

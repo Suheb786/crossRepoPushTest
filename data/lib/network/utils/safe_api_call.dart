@@ -43,7 +43,7 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
               NetworkError(
                   message:
                       "Connection to API server failed due to internet connection",
-                  httpError: 503,
+                  httpError: 101,
                   cause: throwable),
             );
         }

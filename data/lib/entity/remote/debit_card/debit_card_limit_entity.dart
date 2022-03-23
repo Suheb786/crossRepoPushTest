@@ -32,9 +32,9 @@ class DebitCardLimitEntity
   @override
   DebitCardLimit transform() {
     return DebitCardLimit(
-        description: this.description,
-        currentLimit: this.currentLimit,
-        maxLimit: this.maxLimit,
-        minLimit: this.minLimit);
+        description: this.description ?? '',
+        currentLimit: this.currentLimit ?? '',
+        maxLimit: this.maxLimit ?? '',
+        minLimit: this.minLimit ?? '');
   }
 }

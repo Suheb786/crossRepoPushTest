@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyAgent": MessageLookupByLibrary.simpleMessage("Any Agent"),
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
-        "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
+        "appName": MessageLookupByLibrary.simpleMessage("Blink"),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
         "applicationInProcess": MessageLookupByLibrary.simpleMessage(
@@ -232,7 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
         "bornBlink":
-            MessageLookupByLibrary.simpleMessage("Born blink.\nBe blink."),
+            MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
             "Make sure you’re in bright place and surrounding"),
         "buildingNameNo":
@@ -390,6 +390,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
             "Connecting to our agent to assist you"),
+        "connectionFailed":
+            MessageLookupByLibrary.simpleMessage("Connection Failed"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
         "contactLessPayments":
@@ -1000,7 +1002,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "idCardIsExpired": MessageLookupByLibrary.simpleMessage(
             "Your ID card is expired, please renew it and try again"),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
-            "ID card is not allowed for NeoBank."),
+            "ID card is not allowed for Blink."),
         "idCardNotFound":
             MessageLookupByLibrary.simpleMessage("Id Card Not Found"),
         "idCardScanningError": MessageLookupByLibrary.simpleMessage(
@@ -1141,7 +1143,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
             "Limit value cannot be set greater than max limit value"),
         "invalidLivelinessSCore": MessageLookupByLibrary.simpleMessage(
-            "Come closer to the Camera and …."),
+            "Please move your face closer to the screen!"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMaximumAge":
@@ -1255,7 +1257,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bear with us, just a few more questions about your income"),
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "joinedBlink":
-            MessageLookupByLibrary.simpleMessage("You joined \nblink"),
+            MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while getting KYC Status"),
         "legalDocumentNo":
@@ -1290,7 +1292,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Loan values not found"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
-            "Location services are disabled. Please allow access to NeoBank"),
+            "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
@@ -1409,7 +1411,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noAccountFound":
             MessageLookupByLibrary.simpleMessage("No Account Found"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
-            "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"),
+            "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noDebitCardFound":
@@ -1709,6 +1711,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while processing your request, please try again later or call our Engagement team"),
         "requestSupplementarycard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
+        "requestTimeOut":
+            MessageLookupByLibrary.simpleMessage("REQUEST TIMEOUT"),
         "requestToPayError": MessageLookupByLibrary.simpleMessage(
             "Error while processing your request, please try again later or call our Engagement team"),
         "requestToPayStatusError": MessageLookupByLibrary.simpleMessage(
@@ -2128,7 +2132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "weWillConnectYou": MessageLookupByLibrary.simpleMessage(
             "We will connect you\nin Blink..."),
         "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
-            "We will connect you\nin blink..."),
+            "We will connect you\nin Blink..."),
         "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
             "We will notify you once it\'s ready!"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),

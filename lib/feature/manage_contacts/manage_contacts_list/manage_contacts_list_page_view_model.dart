@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +17,14 @@ class ManageContactListPageViewModel extends BasePageViewModel {
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest =
       PublishSubject();
 
-  PublishSubject<Resource<GetBeneficiaryListResponse>>
-      _getBeneficiaryListResponse = PublishSubject();
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>>
+      _getBeneficiaryListResponse = BehaviorSubject();
 
-  Stream<Resource<GetBeneficiaryListResponse>> get getBeneficiaryListStream =>
-      _getBeneficiaryListResponse.stream;
+  Stream<Resource<List<Beneficiary>>> get getBeneficiaryListStream =>
+      _searchBeneficiaryListResponse.stream;
 
-  // BehaviorSubject<List<Beneficiary>> _searchBeneficiaryListResponse =
-  //     BehaviorSubject();
+  BehaviorSubject<Resource<List<Beneficiary>>> _searchBeneficiaryListResponse =
+      BehaviorSubject();
 
   ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryListRequest.listen((value) {
@@ -36,7 +37,9 @@ class ManageContactListPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-          //_searchBeneficiaryListResponse.safeAdd(event.data!.beneficiaryList);
+        } else if (event.status == Status.SUCCESS) {
+          _searchBeneficiaryListResponse
+              .safeAdd(Resource.success(data: event.data!.beneficiaryList));
         }
       });
     });
@@ -48,32 +51,36 @@ class ManageContactListPageViewModel extends BasePageViewModel {
     _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
   }
 
-  //
-  // void searchBeneficiary(String? searchText) {
-  //   searchResult!.clear();
-  //   List<Beneficiary>? beneficiaryList = _getBeneficiaryResponse.value.data;
-  //   if (searchText!.isNotEmpty) {
-  //     for (int i = 0; i < beneficiaryList!.length; i++) {
-  //       Beneficiary country = beneficiaryList[i];
-  //       if (country.countryName!
-  //           .toLowerCase()
-  //           .contains(searchText.toLowerCase())) {
-  //         searchResult!.add(country);
-  //       }
-  //     }
-  //     _searchBeneficiaryResponse.safeAdd(Resource.success(data: searchResult));
-  //     selectBeneficiary(0);
-  //   } else {
-  //     _searchBeneficiaryResponse
-  //         .safeAdd(Resource.success(data: _getBeneficiaryResponse.value.data));
-  //   }
-  // }
+  List<Beneficiary>? searchResult = [];
+
+  void searchBeneficiary(String? searchText) {
+    searchResult!.clear();
+    List<Beneficiary>? beneficiaryList =
+        _getBeneficiaryListResponse.value.data!.beneficiaryList;
+    if (searchText!.isNotEmpty) {
+      for (int i = 0; i < beneficiaryList!.length; i++) {
+        Beneficiary beneficiary = beneficiaryList[i];
+        if (beneficiary.nickName != null) {
+          if (beneficiary.nickName!
+              .toLowerCase()
+              .contains(searchText.toLowerCase())) {
+            searchResult!.add(beneficiary);
+          }
+        }
+      }
+      _searchBeneficiaryListResponse
+          .safeAdd(Resource.success(data: searchResult));
+    } else {
+      _searchBeneficiaryListResponse.safeAdd(Resource.success(
+          data: _getBeneficiaryListResponse.value.data!.beneficiaryList));
+    }
+  }
 
   @override
   void dispose() {
     _getBeneficiaryListRequest.close();
     _getBeneficiaryListResponse.close();
-    //_searchBeneficiaryListResponse.close();
+    _searchBeneficiaryListResponse.close();
     super.dispose();
   }
 }

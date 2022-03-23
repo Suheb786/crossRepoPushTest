@@ -22,6 +22,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
         return localisedHelper.serverUnderMaintenance;
+      case ErrorType.CONNECTION_FAILED:
+        return localisedHelper.connectionFailed;
       case ErrorType.DATABASE:
         return localisedHelper.genericError;
       case ErrorType.DATABASE_NOT_SUPPORTED:
@@ -1024,6 +1026,8 @@ class ErrorParser {
         return localisedHelper.invalidPrimaryId;
       case ErrorType.DEVICE_NOT_COMPATIBLE:
         return localisedHelper.scanIdToProceedFurther;
+      case ErrorType.REQUEST_TIMEOUT:
+        return localisedHelper.requestTimeOut;
 
       default:
         return "";

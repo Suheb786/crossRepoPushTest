@@ -1,6 +1,7 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
 import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
@@ -124,7 +125,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
+  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
       {String? monthYear}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitCardStatement(DebitCardStatementRequest(

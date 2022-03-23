@@ -1,4 +1,4 @@
-import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -29,30 +29,27 @@ class ManageContactListPageView
               topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 8, bottom: 24),
-            height: 4,
-            width: 64,
-            decoration: BoxDecoration(
-                color: AppColor.whiteGray,
-                borderRadius: BorderRadius.circular(4)),
-          ),
+          SizedBox(height: 24),
+          // Container(
+          //   margin: EdgeInsets.only(top: 8, bottom: 24),
+          //   height: 4,
+          //   width: 64,
+          //   decoration: BoxDecoration(
+          //       color: AppColor.whiteGray,
+          //       borderRadius: BorderRadius.circular(4)),
+          // ),
           AppTextField(
             labelText: '',
             controller: model.contactSearchController,
-            textFieldBorderColor: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .color!
-                .withOpacity(0.3),
-            hintTextColor: Theme.of(context)
-                .textTheme
-                .bodyText1!
-                .color!
-                .withOpacity(0.5),
+            textFieldBorderColor:
+                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.3),
+            hintTextColor:
+                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5),
             textColor: Theme.of(context).primaryColorDark,
             hintText: S.of(context).searchContacts,
-            onChanged: (value) {},
+            onChanged: (value) {
+              model.searchBeneficiary(value);
+            },
             suffixIcon: (value, data) {
               return InkWell(
                 onTap: () async {},
@@ -65,11 +62,11 @@ class ManageContactListPageView
               );
             },
           ),
-          AppStreamBuilder<Resource<GetBeneficiaryListResponse>>(
+          AppStreamBuilder<Resource<List<Beneficiary>>>(
               stream: model.getBeneficiaryListStream,
               initialData: Resource.none(),
               dataBuilder: (context, beneficiaryList) {
-                return beneficiaryList!.data!.beneficiaryList!.length > 0
+                return beneficiaryList!.data!.length > 0
                     ? Expanded(
                         child: Column(
                           children: [
@@ -98,17 +95,13 @@ class ManageContactListPageView
                                   itemBuilder: (context, index) {
                                     ///send data from api response once updated
                                     return ContactListWidget(
-                                      beneficiary: beneficiaryList
-                                          .data!.beneficiaryList![index],
+                                      beneficiary: beneficiaryList.data![index],
                                       onTap: () async {
-                                        var result =
-                                            await Navigator.pushNamed(
-                                                context,
-                                                RoutePaths
-                                                    .ManageContactsDetail,
-                                                arguments: beneficiaryList
-                                                    .data!
-                                                    .beneficiaryList![index]);
+                                        var result = await Navigator.pushNamed(
+                                            context,
+                                            RoutePaths.ManageContactsDetail,
+                                            arguments:
+                                                beneficiaryList.data![index]);
 
                                         if (result != null) {
                                           model.getBeneficiaryList();
@@ -118,8 +111,7 @@ class ManageContactListPageView
                                   },
                                   shrinkWrap: true,
                                   physics: ClampingScrollPhysics(),
-                                  itemCount: beneficiaryList
-                                      .data!.beneficiaryList!.length,
+                                  itemCount: beneficiaryList.data!.length,
                                 ),
                               ),
                             )
@@ -150,8 +142,7 @@ class ManageContactListPageView
                                 S.of(context).noContactsYetDesc,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
+                                    fontSize: 12, fontWeight: FontWeight.w600),
                               )
                             ],
                           ),

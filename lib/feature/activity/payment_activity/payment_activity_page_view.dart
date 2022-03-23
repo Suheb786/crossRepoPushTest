@@ -76,7 +76,7 @@ class PaymentActivityPageView
                                         .paymentActivityContent![ind]
                                         .data!
                                         .length,
-                                    padding: EdgeInsets.only(top: 20),
+                                    padding: EdgeInsets.only(top: 8),
                                     itemBuilder: (context, index) {
                                       print(
                                           "got list: ${transaction.data!.paymentActivityContent![ind].data!.length}");
