@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>660487917685-oi3qr2srq4rt6lk0sukc5157i80r4b04.apps.googleusercontent.com</string>
+	<string>570110559067-mq61gn8fdvks787413134rl1ef8gr810.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.660487917685-oi3qr2srq4rt6lk0sukc5157i80r4b04</string>
+	<string>com.googleusercontent.apps.570110559067-mq61gn8fdvks787413134rl1ef8gr810</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>570110559067-a9s9lopvguskakf5v102vn4av5hegmdu.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDqBbQHMZXGFTfIGGziB4lzWYEItDV9bwc</string>
+	<string>AIzaSyC74Yv5ZBZDMcTai_QaeYFHZ3D1pKGe3bk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>660487917685</string>
+	<string>570110559067</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.blink.cbt</string>
 	<key>PROJECT_ID</key>
-	<string>neo-bank-a8d6c</string>
+	<string>blink-uat</string>
 	<key>STORAGE_BUCKET</key>
-	<string>neo-bank-a8d6c.appspot.com</string>
+	<string>blink-uat.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:660487917685:ios:7a9a1c96489850e0a8a83c</string>
+	<string>1:570110559067:ios:d875ec3796b1bdc630507e</string>
 </dict>
 </plist>
