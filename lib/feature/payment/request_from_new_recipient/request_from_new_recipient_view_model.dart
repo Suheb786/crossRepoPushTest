@@ -101,7 +101,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   Stream<Resource<GetAccountByAliasContentResponse>>
       get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
-  PublishSubject<bool> _addNickNameSubject = PublishSubject();
+  BehaviorSubject<bool> _addNickNameSubject = BehaviorSubject();
 
   Stream<bool> get addNickNameStream => _addNickNameSubject.stream;
 
