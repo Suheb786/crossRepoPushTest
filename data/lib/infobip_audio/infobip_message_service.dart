@@ -27,11 +27,13 @@ class InfobipMessageService {
     );
     var installation = await InfobipMobilemessaging.fetchInstallation();
     var externalUserId = installation.pushRegistrationId.toString();
-    await saveUser(
-        userData: UserData(
-            firstName: 'GUEST',
-            lastName: 'USER',
-            externalUserId: externalUserId));
+    InfobipMobilemessaging.depersonalizeInstallation(externalUserId);
+
+    // await saveUser(
+    //     userData: UserData(
+    //         firstName: 'GUEST',
+    //         lastName: 'USER',
+    //         externalUserId: externalUserId));
 
     // sendEventToInfobip();
 

@@ -6,6 +6,7 @@ import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -42,9 +43,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
             Expanded(
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
+                  // FirebaseCrashlytics.instance.crash();
+
                   FocusScope.of(context).unfocus();
                   if (details.primaryVelocity!.isNegative) {
                     model.validateEmail();
+                    //FirebaseCrashlytics.instance.crash();
                   }
                 },
                 child: SingleChildScrollView(
