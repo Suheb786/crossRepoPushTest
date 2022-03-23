@@ -7,7 +7,8 @@ class Transactions {
       this.balance,
       this.balanceCur,
       this.amountCur,
-      this.trnxType});
+      this.trnxType,
+      this.memo: ""});
 
   int? id;
   String? description;
@@ -17,4 +18,5 @@ class Transactions {
   String? balanceCur;
   String? amountCur;
   String? trnxType;
+  String? memo;
 }

@@ -40,7 +40,7 @@ class CardTransactionWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          transactions!.transactions![index].description!,
+                          transactions!.transactions![index].memo!,
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: 12,

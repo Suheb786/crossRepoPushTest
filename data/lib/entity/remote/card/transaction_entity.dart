@@ -23,6 +23,8 @@ class TransactionEntity
   final String? amountCur;
   @JsonKey(name: "trnxType")
   final String? trnxType;
+  @JsonKey(name: "memo")
+  final String? memo;
 
   TransactionEntity(
       {this.id,
@@ -32,7 +34,8 @@ class TransactionEntity
       this.amountCur,
       this.balance,
       this.balanceCur,
-      this.trnxType});
+      this.trnxType,
+      this.memo: ""});
 
   factory TransactionEntity.fromJson(Map<String, dynamic> json) =>
       _$TransactionEntityFromJson(json);
@@ -54,6 +57,7 @@ class TransactionEntity
         amountCur: this.amountCur ?? 'JOD',
         balance: this.balance ?? 0.0,
         balanceCur: this.balanceCur ?? 'JOD',
-        trnxType: this.trnxType ?? 'D');
+        trnxType: this.trnxType ?? 'D',
+        memo: this.memo ?? '');
   }
 }
