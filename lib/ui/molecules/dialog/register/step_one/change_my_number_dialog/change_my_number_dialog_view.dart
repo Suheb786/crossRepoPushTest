@@ -72,11 +72,13 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                 labelText:
                                     S.of(context).mobileNumber.toUpperCase(),
                                 hintText: S.of(context).mobileNumberHint,
-                                inputType: TextInputType.number,
+                                inputType: TextInputType.phone,
                                 inputAction: TextInputAction.done,
                                 inputFormatters: [
                                   LengthLimitingTextInputFormatter(
                                       model.countryData.mobileMax),
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
                                 ],
                                 controller: model.mobileNumberController,
                                 key: model.mobileNumberKey,

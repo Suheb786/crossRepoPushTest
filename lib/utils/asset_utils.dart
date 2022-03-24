@@ -206,6 +206,8 @@ class AssetUtils {
   static const String anghamiPlus = drawable + "anghami_plus.png";
   static const String accountStatement = drawable + "account-statement.png";
   static const String creditStatement = drawable + "credit-statement.png";
+  static const String debitBlurWidget = drawable + "debit_blur_widget.png";
+  static const String creditBlurCard = drawable + "credit_blur_card.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

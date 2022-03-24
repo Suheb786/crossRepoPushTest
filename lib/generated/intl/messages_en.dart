@@ -1509,6 +1509,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Error while getting Payment Cash Back (NI Handler)"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
+        "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
         "permanentAddress":

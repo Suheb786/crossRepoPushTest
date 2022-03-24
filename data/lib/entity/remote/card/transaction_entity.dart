@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/transaction_type_enum.dart';
 import 'package:domain/model/dashboard/transactions/transactions.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -25,6 +26,8 @@ class TransactionEntity
   final String? trnxType;
   @JsonKey(name: "memo")
   final String? memo;
+  @JsonKey(name: "type")
+  final String? type;
 
   TransactionEntity(
       {this.id,
@@ -35,7 +38,8 @@ class TransactionEntity
       this.balance,
       this.balanceCur,
       this.trnxType,
-      this.memo: ""});
+      this.memo: "",
+      this.type: ""});
 
   factory TransactionEntity.fromJson(Map<String, dynamic> json) =>
       _$TransactionEntityFromJson(json);
@@ -58,6 +62,7 @@ class TransactionEntity
         balance: this.balance ?? 0.0,
         balanceCur: this.balanceCur ?? 'JOD',
         trnxType: this.trnxType ?? 'D',
-        memo: this.memo ?? '');
+        memo: this.memo ?? '',
+        type: this.type!.fromTransactionStatusValue());
   }
 }
