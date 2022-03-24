@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -259,36 +260,47 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       }
 
-      if (dashboardDataContent.debitCard!.length > 0) {
-        dashboardDataContent.debitCard!.forEach((debitCard) {
-          pages.add(DebitCardWidget(
-              isSmallDevice: isSmallDevices,
-              key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
-              debitCard: debitCard));
-
-          ///time line list arguments set
-          timeLineListArguments.add(TimeLineListArguments(
-              cardCardActivated: debitCard.debitCardActivated.toString(),
-              cardDeliveredDatetime:
-                  debitCard.debitDeliveredDatetime.toString(),
-              cardId: '',
-              cardNumber: debitCard.cardNumber ?? '',
-              accountTitle: debitCard.accountTitle ?? '',
-              cardType: CardType.DEBIT,
-              isCardDelivered: debitCard.isDebitDelivered));
-
-          ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(
-              cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-        });
-      } else {
-        pages.add(ApplyDebitCardWidget(
-          isSmallDevice: isSmallDevices,
+      if (dashboardDataContent.debitCardSomethingWrong ?? false) {
+        pages.add(DebitCardErrorWidget(
+          isSmallDevices: isSmallDevices,
         ));
 
         ///adding cardType
         cardTypeList.add(TimeLineSwipeUpArgs(
             cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+      } else {
+        if (dashboardDataContent.debitCard!.length > 0) {
+          dashboardDataContent.debitCard!.forEach((debitCard) {
+            pages.add(DebitCardWidget(
+                isSmallDevice: isSmallDevices,
+                key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
+                debitCard: debitCard));
+
+            ///time line list arguments set
+            timeLineListArguments.add(TimeLineListArguments(
+                cardCardActivated: debitCard.debitCardActivated.toString(),
+                cardDeliveredDatetime:
+                    debitCard.debitDeliveredDatetime.toString(),
+                cardId: '',
+                cardNumber: debitCard.cardNumber ?? '',
+                accountTitle: debitCard.accountTitle ?? '',
+                cardType: CardType.DEBIT,
+                isCardDelivered: debitCard.isDebitDelivered));
+
+            ///adding cardType
+            cardTypeList.add(TimeLineSwipeUpArgs(
+                cardType: CardType.DEBIT,
+                swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          });
+        } else {
+          pages.add(ApplyDebitCardWidget(
+            isSmallDevice: isSmallDevices,
+          ));
+
+          ///adding cardType
+          cardTypeList.add(TimeLineSwipeUpArgs(
+              cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+        }
       }
     }
     addPages(pages);
