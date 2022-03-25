@@ -29,7 +29,8 @@ class DebitCardDeliveredPageState
 
   @override
   void onModelReady(CardTransactionViewModel model) {
-    model.getTransactions(cardId: model.cardTransactionArguments.cardId!);
+    model.getTransactions(
+        cardId: model.cardTransactionArguments.cardId!, noOfDays: 180);
   }
 
   @override

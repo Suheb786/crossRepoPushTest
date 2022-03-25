@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11795,6 +11796,36 @@ class S {
     return Intl.message(
       'Pending',
       name: 'pending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Type`
+  String get transactionType {
+    return Intl.message(
+      'Transaction Type',
+      name: 'transactionType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Period`
+  String get paymentPeriod {
+    return Intl.message(
+      'Payment Period',
+      name: 'paymentPeriod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From Me`
+  String get fromMe {
+    return Intl.message(
+      'From Me',
+      name: 'fromMe',
       desc: '',
       args: [],
     );

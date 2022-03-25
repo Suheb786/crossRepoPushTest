@@ -885,6 +885,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "freezeThisCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
+        "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -1508,6 +1509,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while processing your request, please try again later or call our Engagement team"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Error while getting Payment Cash Back (NI Handler)"),
+        "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
@@ -1990,6 +1992,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactionPurpose":
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
+        "transactionType":
+            MessageLookupByLibrary.simpleMessage("Transaction Type"),
         "transferTypeNF":
             MessageLookupByLibrary.simpleMessage("Transfer Types Not Found"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(

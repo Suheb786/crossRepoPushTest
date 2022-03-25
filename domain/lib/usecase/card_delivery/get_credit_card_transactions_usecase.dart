@@ -15,14 +15,17 @@ class GetCreditCardTransactionsUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, GetTransactionsResponse>> execute(
       {required GetCreditCardTransactionsUseCaseParams params}) {
-    return _repository.getCreditCardTransactions(cardId: params.cardId);
+    return _repository.getCreditCardTransactions(
+        cardId: params.cardId, noOfDays: params.noOfDays);
   }
 }
 
 class GetCreditCardTransactionsUseCaseParams extends Params {
   final String cardId;
+  final num noOfDays;
 
-  GetCreditCardTransactionsUseCaseParams({required this.cardId});
+  GetCreditCardTransactionsUseCaseParams(
+      {required this.cardId, required this.noOfDays});
 
   @override
   Either<AppError, bool> verify() {

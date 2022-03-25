@@ -110,57 +110,77 @@ class PaymentActivityPageView
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  "You requested ${transaction.data![index].amount} JOD from ${transaction.data![index].name}",
-                                                  maxLines: 2,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 12),
-                                                ),
+                                                Text.rich(TextSpan(
+                                                    text: 'You requested ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 12),
+                                                    children: [
+                                                      TextSpan(
+                                                          text:
+                                                              '${transaction.data![index].amount} JOD ',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 12)),
+                                                      TextSpan(
+                                                          text: 'from ',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 12)),
+                                                      TextSpan(
+                                                          text:
+                                                              '${transaction.data![index].name}',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 12)),
+                                                    ])),
+                                                // Text(
+                                                //   "You requested ${transaction
+                                                //       .data![index]
+                                                //       .amount} JOD from ${transaction
+                                                //       .data![index].name}",
+                                                //   maxLines: 2,
+                                                //   style: TextStyle(
+                                                //       fontWeight:
+                                                //       FontWeight.w700,
+                                                //       fontSize: 12),
+                                                // ),
                                                 Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 6),
-                                                  child: transaction
-                                                              .data![index]
-                                                              .status !=
-                                                          null
-                                                      ? (transaction
-                                                                  .data![index]
-                                                                  .status! ==
-                                                              TransactionStatusEnum
-                                                                  .CATEGORY_PENDING
-                                                          ? Container(
-                                                              height: 20,
-                                                              width: 60,
-                                                              decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .dark_orange,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              100)),
-                                                              child: Center(
-                                                                child: Text(
-                                                                  transaction
-                                                                      .data![
-                                                                          index]
-                                                                      .status!
-                                                                      .toString(),
-                                                                  style: TextStyle(
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .accentColor,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          12),
-                                                                ),
-                                                              ),
-                                                            )
-                                                          : Container())
-                                                      : Container(),
+                                                  child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 8,
+                                                            vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                        color: getColor(
+                                                            transaction
+                                                                .data![index]
+                                                                .status!),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100)),
+                                                    child: Text(
+                                                      transaction
+                                                          .data![index].status!
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 12),
+                                                    ),
+                                                  ),
                                                 )
                                               ],
                                             ),
@@ -185,5 +205,19 @@ class PaymentActivityPageView
         ),
       ),
     );
+  }
+
+  Color getColor(TransactionStatusEnum value) {
+    switch (value) {
+      case TransactionStatusEnum.CATEGORY_ACCEPTED:
+        return AppColor.darkModerateLimeGreen;
+      case TransactionStatusEnum.CATEGORY_REJECTED:
+        return AppColor.vividRed;
+      case TransactionStatusEnum.CATEGORY_PENDING:
+        return AppColor.dark_orange;
+
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }

@@ -112,7 +112,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
       });
     });
 
-    getTransactions();
+    getTransactions(noOfDays: 180);
   }
 
   onSearchTextChanged(String text, [bool? isUpdated = false]) async {
@@ -221,8 +221,26 @@ class AccountTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  void getTransactions() {
-    _getTransactionsRequest.safeAdd(GetDebitCardTransactionsUseCaseParams());
+  void getTransactions({num? noOfDays}) {
+    _getTransactionsRequest.safeAdd(
+        GetDebitCardTransactionsUseCaseParams(noOfDays: noOfDays ?? 180));
+  }
+
+  void getFilteredData(String value) {
+    getTransactions(noOfDays: getFilterDays(value));
+  }
+
+  int getFilterDays(String value) {
+    switch (value) {
+      case "Last 30 days":
+        return 30;
+      case "Last 3 months":
+        return 90;
+      case "Last 6 months":
+        return 180;
+      default:
+        return 180;
+    }
   }
 
   @override

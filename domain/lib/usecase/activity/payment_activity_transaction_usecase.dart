@@ -15,12 +15,14 @@ class PaymentActivityTransactionUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, PaymentActivityResponse>> execute(
       {required PaymentActivityTransactionUseCaseParams params}) {
-    return _repository.getPaymentActivity();
+    return _repository.getPaymentActivity(filterDays: params.filterDays);
   }
 }
 
 class PaymentActivityTransactionUseCaseParams extends Params {
-  PaymentActivityTransactionUseCaseParams();
+  final int? filterDays;
+
+  PaymentActivityTransactionUseCaseParams({this.filterDays});
 
   @override
   Either<AppError, bool> verify() {

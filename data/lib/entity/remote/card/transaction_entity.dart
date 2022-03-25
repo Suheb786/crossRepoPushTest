@@ -63,6 +63,8 @@ class TransactionEntity
         balanceCur: this.balanceCur ?? 'JOD',
         trnxType: this.trnxType ?? 'D',
         memo: this.memo ?? '',
-        type: this.type!.fromTransactionStatusValue());
+        type: this.type != null
+            ? this.type!.fromTransactionStatusValue()
+            : TransactionTypeEnum.NONE);
   }
 }

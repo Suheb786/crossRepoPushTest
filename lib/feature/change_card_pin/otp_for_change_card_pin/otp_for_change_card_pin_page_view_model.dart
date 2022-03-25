@@ -1,6 +1,7 @@
 import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   final OtpForChangeCardPinUseCase _otpForChangeCardPinUseCase;
@@ -18,6 +20,8 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
 
   ///countdown controller
   late CountdownTimerController countDownController;
+
+  TextEditingController otpController = TextEditingController();
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
@@ -103,6 +107,7 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
           notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -136,6 +141,11 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
 
   void resendOtp() {
     _resendOtpRequest.safeAdd(ChangeDebitPinVerifyUseCaseParams());
+  }
+
+  listenForSmsCode() async {
+    otpController.clear();
+    SmsAutoFill().listenForCode();
   }
 
   @override

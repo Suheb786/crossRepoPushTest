@@ -91,20 +91,23 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<CardTransactionResponseEntity>>
-      getDebitCardTransactions() async {
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
+      {num? noOfDays}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitCardTransactions(GetDebitCardTransactionRequest(
-        baseData: baseData.toJson(), getToken: true, isDebit: true));
+        baseData: baseData.toJson(),
+        getToken: true,
+        isDebit: true,
+        noOfDays: noOfDays));
   }
 
   @override
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      {required String cardId}) async {
+      {required String cardId, num? noOfDays}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardTransactions(
         GetCreditCardTransactionListRequestEntity(
-            baseData: baseData.toJson(), cardId: cardId));
+            baseData: baseData.toJson(), cardId: cardId, noOfDays: noOfDays));
   }
 
   @override
@@ -125,8 +128,8 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
-      {String? monthYear}) async {
+  Future<HttpResponse<AccountCardStatementResponseEntity>>
+      getDebitCardStatement({String? monthYear}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitCardStatement(DebitCardStatementRequest(
         baseData: baseData.toJson(), monthYear: monthYear, getToken: true));

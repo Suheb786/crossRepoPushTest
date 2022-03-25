@@ -74,7 +74,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           RichText(
                               maxLines: 3,
                               text: TextSpan(
-                                  text: S.of(context).requestedFrom,
+                                  text: 'You requested',
                                   style: TextStyle(
                                       fontSize: 12,
                                       overflow: TextOverflow.ellipsis,

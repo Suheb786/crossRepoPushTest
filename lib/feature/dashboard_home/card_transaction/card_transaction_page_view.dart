@@ -144,8 +144,13 @@ class CardTransactionPageView
                                           onDismissed: () =>
                                               Navigator.pop(context),
                                           onSelected: (value) {
-                                            print("value: $value");
                                             Navigator.pop(context);
+                                            model.getTransactions(
+                                                cardId: model
+                                                    .cardTransactionArguments
+                                                    .cardId!,
+                                                noOfDays:
+                                                    model.getFilterDays(value));
                                           },
                                         );
                                       },

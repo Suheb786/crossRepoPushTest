@@ -1197,5 +1197,8 @@
   "activatingSuppCreditCard": "Activating your supplementary credit card",
   "connectionFailed": "Connection Failed",
   "requestTimeOut": "REQUEST TIMEOUT",
-  "pending": "Pending"
+  "pending": "Pending",
+  "transactionType": "Transaction Type",
+  "paymentPeriod": "Payment Period",
+  "fromMe": "From Me"
 }

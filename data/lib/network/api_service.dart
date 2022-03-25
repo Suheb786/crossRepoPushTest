@@ -201,7 +201,7 @@ abstract class ApiService {
   Future<HttpResponse<LoginResponseEntity>> loginUser(
       @Body() LoginUserRequest loginUserRequest);
 
-  @POST("/auth/RegisterV2")
+  @POST("/auth/RegisterV3")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
@@ -447,7 +447,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
-  @POST("/DashBoard/GetDashboardData")
+  @POST("/Dashboard/GetDashboardDataV2")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
@@ -474,8 +474,9 @@ abstract class ApiService {
       @Body() CreditCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetDebitCardStatement")
-  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement(
-      @Body() DebitCardStatementRequest cardStatementRequest);
+  Future<HttpResponse<AccountCardStatementResponseEntity>>
+      getDebitCardStatement(
+          @Body() DebitCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetCreditYears")
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
@@ -649,7 +650,7 @@ abstract class ApiService {
               VerifyForgetPasswordOtpRequestEntity
                   verifyForgetPasswordOtpRequestEntity);
 
-  @POST("/transfer/PaymentActivityAPI")
+  @POST("/transfer/PaymentActivityAPIV2")
   Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 

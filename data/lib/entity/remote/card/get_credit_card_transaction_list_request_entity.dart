@@ -16,7 +16,7 @@ class GetCreditCardTransactionListRequestEntity {
   GetCreditCardTransactionListRequestEntity({
     required this.baseData,
     this.getToken: true,
-    this.noOfDays: 90,
+    this.noOfDays: 180,
     this.cardId: "",
   });
 

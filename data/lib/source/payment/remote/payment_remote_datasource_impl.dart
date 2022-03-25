@@ -144,11 +144,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<PaymentActivityResponseEntity>>
-      getPaymentActivity() async {
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      {int? filterDays}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getPaymentActivity(PaymentActivityRequestEntity(
-        baseData: baseData.toJson(), getToken: true));
+        baseData: baseData.toJson(), getToken: true, filterDays: filterDays));
   }
 
   @override

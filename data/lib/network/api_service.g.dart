@@ -78,7 +78,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RegisterResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/RegisterV2',
+                .compose(_dio.options, '/auth/RegisterV3',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RegisterResponseEntity.fromJson(_result.data!);
@@ -1029,7 +1029,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<DashboardDataResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/DashBoard/GetDashboardData',
+                .compose(_dio.options, '/Dashboard/GetDashboardDataV2',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = DashboardDataResponseEntity.fromJson(_result.data!);
@@ -1856,7 +1856,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<PaymentActivityResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/transfer/PaymentActivityAPI',
+                .compose(_dio.options, '/transfer/PaymentActivityAPIV2',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PaymentActivityResponseEntity.fromJson(_result.data!);

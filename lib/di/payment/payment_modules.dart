@@ -29,6 +29,7 @@ import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_v
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog_view_model.dart';
 
@@ -181,3 +182,10 @@ final allContactsViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<AllContactPageViewModel, AllContactArguments>(
   (ref, args) => AllContactPageViewModel(args),
 );
+
+///payment activity filter dialog view model provider
+final paymentActivityFilterDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PaymentActivityFilterDialogViewModel>((
+  ref,
+) =>
+        PaymentActivityFilterDialogViewModel());
