@@ -46,7 +46,7 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       });
     });
 
-    getPaymentActivity(180);
+    getPaymentActivity(30);
   }
 
   void getPaymentActivity(int filterDays) {

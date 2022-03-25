@@ -344,6 +344,8 @@ class CreditCardSettingsPageView
                                 onTap: () {
                                   model.getSupplementaryCreditCardApplication();
                                 },
+                                isEnabled: false,
+                                isNotify: true,
                                 title: S.of(context).requestSupplementarycard,
                                 tileIcon: AssetUtils.cardIcon,
                               );

@@ -11,7 +11,7 @@ PaymentActivityRequestEntity _$PaymentActivityRequestEntityFromJson(
   return PaymentActivityRequestEntity(
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,
-    filterDays: json['FilterDays'] as int?,
+    filterDays: json['filterDays'] as int?,
   );
 }
 
@@ -19,6 +19,6 @@ Map<String, dynamic> _$PaymentActivityRequestEntityToJson(
         PaymentActivityRequestEntity instance) =>
     <String, dynamic>{
       'getToken': instance.getToken,
-      'FilterDays': instance.filterDays,
+      'filterDays': instance.filterDays,
       'baseClass': instance.baseData,
     };

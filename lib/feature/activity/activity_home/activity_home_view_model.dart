@@ -108,7 +108,7 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   void getPaymentActivity() {
     _paymentActivityTransactionRequest
-        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 30));
+        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 180));
   }
 
   void getActivity() {

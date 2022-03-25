@@ -145,19 +145,24 @@ class DownloadTransactionPageView
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(top: 24),
-                                      child: Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color),
-                                        child: Center(
-                                          child: AppSvg.asset(AssetUtils.tick,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
                                               color: Theme.of(context)
-                                                  .accentColor),
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color),
+                                          child: Center(
+                                            child: AppSvg.asset(AssetUtils.tick,
+                                                color: Theme.of(context)
+                                                    .accentColor),
+                                          ),
                                         ),
                                       ),
                                     ),

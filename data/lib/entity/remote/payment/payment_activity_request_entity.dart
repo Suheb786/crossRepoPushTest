@@ -6,7 +6,7 @@ part "payment_activity_request_entity.g.dart";
 class PaymentActivityRequestEntity {
   @JsonKey(name: "getToken")
   final bool? getToken;
-  @JsonKey(name: "FilterDays")
+  @JsonKey(name: "filterDays")
   final int? filterDays;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
