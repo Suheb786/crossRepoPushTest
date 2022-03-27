@@ -159,10 +159,6 @@ class EnterCodeForChangeMobileNumberPageView
                                         );
                                       }),
                                 ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).viewInsets.bottom,
-                                )
                               ],
                             ),
                           ],

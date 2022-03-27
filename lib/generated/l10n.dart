@@ -4011,10 +4011,10 @@ class S {
     );
   }
 
-  /// `Your ID is expired, please renew it and try again`
+  /// `Your ID is expired. Please try again after renewing your ID.`
   String get idCardExpired {
     return Intl.message(
-      'Your ID is expired, please renew it and try again',
+      'Your ID is expired. Please try again after renewing your ID.',
       name: 'idCardExpired',
       desc: '',
       args: [],
@@ -4821,10 +4821,10 @@ class S {
     );
   }
 
-  /// `You have entered an invalid username or password, please try again`
+  /// `You have entered an invalid username or password. Please try again.`
   String get invalidUserNamePassword {
     return Intl.message(
-      'You have entered an invalid username or password, please try again',
+      'You have entered an invalid username or password. Please try again.',
       name: 'invalidUserNamePassword',
       desc: '',
       args: [],
@@ -4881,10 +4881,10 @@ class S {
     );
   }
 
-  /// `Your Email already exists, please try logging in`
+  /// `The email you have entered already exists, please enter another email or try to login using this email if you have already tried to register previously.`
   String get emailAlreadyExist {
     return Intl.message(
-      'Your Email already exists, please try logging in',
+      'The email you have entered already exists, please enter another email or try to login using this email if you have already tried to register previously.',
       name: 'emailAlreadyExist',
       desc: '',
       args: [],
@@ -4911,10 +4911,10 @@ class S {
     );
   }
 
-  /// `Error While creating account. Please try again later`
+  /// `An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100.`
   String get errorCreatingAccount {
     return Intl.message(
-      'Error While creating account. Please try again later',
+      'An error occurred while opening your account. Please try again later or contact our Engagement Team on 06-5200100.',
       name: 'errorCreatingAccount',
       desc: '',
       args: [],
@@ -4961,10 +4961,10 @@ class S {
     );
   }
 
-  /// `Invalid User.`
+  /// `You have entered an invalid username. Please try again.`
   String get invalidUser {
     return Intl.message(
-      'Invalid User.',
+      'You have entered an invalid username. Please try again.',
       name: 'invalidUser',
       desc: '',
       args: [],
@@ -4991,10 +4991,10 @@ class S {
     );
   }
 
-  /// `User is not registered, please register`
+  /// `User is not registered. Please register and call our Engagement Team if needed on 06-5200100.`
   String get userNotRegister {
     return Intl.message(
-      'User is not registered, please register',
+      'User is not registered. Please register and call our Engagement Team if needed on 06-5200100.',
       name: 'userNotRegister',
       desc: '',
       args: [],
@@ -5021,20 +5021,20 @@ class S {
     );
   }
 
-  /// `Oops, your account is locked, please call our engagement team`
+  /// `Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock.`
   String get youLocked {
     return Intl.message(
-      'Oops, your account is locked, please call our engagement team',
+      'Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock.',
       name: 'youLocked',
       desc: '',
       args: [],
     );
   }
 
-  /// `Oops, your account is locked, please contact our engagement team to unlock`
+  /// `Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock.`
   String get accountLocked {
     return Intl.message(
-      'Oops, your account is locked, please contact our engagement team to unlock',
+      'Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock.',
       name: 'accountLocked',
       desc: '',
       args: [],
@@ -5641,11 +5641,21 @@ class S {
     );
   }
 
-  /// `Account Inquiry went wrong`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-010)`
   String get accountInquiryWentWrong {
     return Intl.message(
-      'Account Inquiry went wrong',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-010)',
       name: 'accountInquiryWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while trying to get your account information. Please try again later or contact our Engagement Team from the app or call 06-5200100.`
+  String get accountInquiryWentWrong61 {
+    return Intl.message(
+      'An error occurred while trying to get your account information. Please try again later or contact our Engagement Team from the app or call 06-5200100.',
+      name: 'accountInquiryWentWrong61',
       desc: '',
       args: [],
     );
@@ -6051,20 +6061,20 @@ class S {
     );
   }
 
-  /// `Error occurred while log in, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-014)`
   String get wentWrongWhileLogin {
     return Intl.message(
-      'Error occurred while log in, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-014)',
       name: 'wentWrongWhileLogin',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Account Details`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-072)`
   String get errorGetAccountDetails {
     return Intl.message(
-      'Error while getting Account Details',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-072)',
       name: 'errorGetAccountDetails',
       desc: '',
       args: [],
@@ -6321,20 +6331,20 @@ class S {
     );
   }
 
-  /// `Beneficiary not found.`
+  /// `Recipient not found. Please try another recipient.`
   String get beneficiaryNotFound {
     return Intl.message(
-      'Beneficiary not found.',
+      'Recipient not found. Please try another recipient.',
       name: 'beneficiaryNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Balance Inquiry, please try again later or contact our enagement team`
+  /// `An error occurred while trying to get your account balance. Please try again later or contact our Engagement Team from the app or call 06-5200100.`
   String get errorWhileBalanceInquiry {
     return Intl.message(
-      'Error while getting Balance Inquiry, please try again later or contact our enagement team',
+      'An error occurred while trying to get your account balance. Please try again later or contact our Engagement Team from the app or call 06-5200100.',
       name: 'errorWhileBalanceInquiry',
       desc: '',
       args: [],
@@ -7771,20 +7781,20 @@ class S {
     );
   }
 
-  /// `Mobile number already exists`
+  /// `The mobile number you have entered already exists, please enter another number or try to login using your email and password if you have already tried to register previously.`
   String get mobileAlreadyExists {
     return Intl.message(
-      'Mobile number already exists',
+      'The mobile number you have entered already exists, please enter another number or try to login using your email and password if you have already tried to register previously.',
       name: 'mobileAlreadyExists',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter a new password, we don’t recommend using a pervious password`
+  /// `You have entered one of the previous 10 passwords used. Please try a new password.`
   String get weDoNotRecommendToUsePreviousTenPass {
     return Intl.message(
-      'Please enter a new password, we don’t recommend using a pervious password',
+      'You have entered one of the previous 10 passwords used. Please try a new password.',
       name: 'weDoNotRecommendToUsePreviousTenPass',
       desc: '',
       args: [],
@@ -8481,90 +8491,90 @@ class S {
     );
   }
 
-  /// `Model Send Is Not Correct`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-mode)`
   String get errorModelNotCorrect {
     return Intl.message(
-      'Model Send Is Not Correct',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-mode)',
       name: 'errorModelNotCorrect',
       desc: '',
       args: [],
     );
   }
 
-  /// `Unauthorize`
+  /// `Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-u)`
   String get unauthorize {
     return Intl.message(
-      'Unauthorize',
+      'Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-u)',
       name: 'unauthorize',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter a valid UserName`
+  /// `You have entered an invalid username. Please try again.`
   String get enterValidUserName {
     return Intl.message(
-      'Please enter a valid UserName',
+      'You have entered an invalid username. Please try again.',
       name: 'enterValidUserName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Account ID.`
+  /// `Invalid account. Please try another account`
   String get invalidAccountID {
     return Intl.message(
-      'Invalid Account ID.',
+      'Invalid account. Please try another account',
       name: 'invalidAccountID',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error While Getting Retail CIF`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-009)`
   String get errorWhileGettingRetailCIF {
     return Intl.message(
-      'Error While Getting Retail CIF',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-009)',
       name: 'errorWhileGettingRetailCIF',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Product ID`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-011)`
   String get invalidProductId {
     return Intl.message(
-      'Invalid Product ID',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-011)',
       name: 'invalidProductId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Resident Info Not Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-012)`
   String get residentInfoNotFound {
     return Intl.message(
-      'Resident Info Not Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-012)',
       name: 'residentInfoNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Product Short Code.`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-015)`
   String get invalidProductShortCode {
     return Intl.message(
-      'Invalid Product Short Code.',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-015)',
       name: 'invalidProductShortCode',
       desc: '',
       args: [],
     );
   }
 
-  /// `Maximum no. of accounts exceeded, Cannot Open New Account.`
+  /// `You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account.`
   String get maximumAccountOpeningExceed {
     return Intl.message(
-      'Maximum no. of accounts exceeded, Cannot Open New Account.',
+      'You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account.',
       name: 'maximumAccountOpeningExceed',
       desc: '',
       args: [],
@@ -8591,150 +8601,150 @@ class S {
     );
   }
 
-  /// `Your Resident Country is restricted for this Product, cannot proceed.`
+  /// `Sorry, this product is restricted to specific resident countries only.`
   String get residentCountryRestricted {
     return Intl.message(
-      'Your Resident Country is restricted for this Product, cannot proceed.',
+      'Sorry, this product is restricted to specific resident countries only.',
       name: 'residentCountryRestricted',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your Nationality is restricted for this Product, cannot proceed.`
+  /// `Sorry, this product is restricted to specific nationalities only.`
   String get nationalityRestricted {
     return Intl.message(
-      'Your Nationality is restricted for this Product, cannot proceed.',
+      'Sorry, this product is restricted to specific nationalities only.',
       name: 'nationalityRestricted',
       desc: '',
       args: [],
     );
   }
 
-  /// `Id no. marked as Blacklisted, cannot proceed.`
+  /// `It seems your account is under review. Please contact our Engagement Team on 06-5200100 for more information.`
   String get idNoBlacklisted {
     return Intl.message(
-      'Id no. marked as Blacklisted, cannot proceed.',
+      'It seems your account is under review. Please contact our Engagement Team on 06-5200100 for more information.',
       name: 'idNoBlacklisted',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while checking Id no. for Blacklist, cannot proceed.`
+  /// `It seems your account is under review. Please contact our Engagement Team on 06-5200100 for more information.`
   String get errorWhileCheckingIDNoBlacklisted {
     return Intl.message(
-      'Error while checking Id no. for Blacklist, cannot proceed.',
+      'It seems your account is under review. Please contact our Engagement Team on 06-5200100 for more information.',
       name: 'errorWhileCheckingIDNoBlacklisted',
       desc: '',
       args: [],
     );
   }
 
-  /// `You're not allowed to open Account in this Product.`
+  /// `You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information.`
   String get notAllowedToOpenAccount {
     return Intl.message(
-      'You\'re not allowed to open Account in this Product.',
+      'You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information.',
       name: 'notAllowedToOpenAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Hi There, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.`
+  /// `We were unable to verify your ID. Please scan your ID again or contact our Engagement Team on 06-5200100.`
   String get idCardScanningError {
     return Intl.message(
-      'Hi There, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service.',
+      'We were unable to verify your ID. Please scan your ID again or contact our Engagement Team on 06-5200100.',
       name: 'idCardScanningError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Issuer Country`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-024)`
   String get invalidIssuerCountry {
     return Intl.message(
-      'Invalid Issuer Country',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-024)',
       name: 'invalidIssuerCountry',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Document`
+  /// `The document is invalid. Please try another document or contact our Engagement Team on 06-5200100.`
   String get invalidDocument {
     return Intl.message(
-      'Invalid Document',
+      'The document is invalid. Please try another document or contact our Engagement Team on 06-5200100.',
       name: 'invalidDocument',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid ID Card, cannot proceed.`
+  /// `We were unable to verify your ID card. Please contact our Engagement Team on 06-5200100.`
   String get invalidIdCardCannotProceed {
     return Intl.message(
-      'Invalid ID Card, cannot proceed.',
+      'We were unable to verify your ID card. Please contact our Engagement Team on 06-5200100.',
       name: 'invalidIdCardCannotProceed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Business Rules not implemented against Company Id.`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-028)`
   String get businessRulesNotImplementedAgainstCompanyId {
     return Intl.message(
-      'Business Rules not implemented against Company Id.',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-028)',
       name: 'businessRulesNotImplementedAgainstCompanyId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your ID is expired, please use a valid ID`
+  /// `Your ID is expired. Please try again after renewing your ID.`
   String get useValidId {
     return Intl.message(
-      'Your ID is expired, please use a valid ID',
+      'Your ID is expired. Please try again after renewing your ID.',
       name: 'useValidId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Guardian age must be older than 18 years.`
+  /// `Age must be greater than 18 to proceed.`
   String get guardianAgeMustBe {
     return Intl.message(
-      'Guardian age must be older than 18 years.',
+      'Age must be greater than 18 to proceed.',
       name: 'guardianAgeMustBe',
       desc: '',
       args: [],
     );
   }
 
-  /// `Profile Status Not Found`
+  /// `It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-56200100.`
   String get profileStatusNotFound {
     return Intl.message(
-      'Profile Status Not Found',
+      'It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-56200100.',
       name: 'profileStatusNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid ID card, please use your National ID`
+  /// `We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100.`
   String get invalidNationalIdCard {
     return Intl.message(
-      'Invalid ID card, please use your National ID',
+      'We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100.',
       name: 'invalidNationalIdCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your ID card is expired, please renew it and try again`
+  /// `ID is expired. Please try again with a valid ID.`
   String get idCardIsExpired {
     return Intl.message(
-      'Your ID card is expired, please renew it and try again',
+      'ID is expired. Please try again with a valid ID.',
       name: 'idCardIsExpired',
       desc: '',
       args: [],
@@ -8761,20 +8771,20 @@ class S {
     );
   }
 
-  /// `Error while executing WSChldOnliAppliCr (NI Handler)`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.`
   String get wsChildError {
     return Intl.message(
-      'Error while executing WSChldOnliAppliCr (NI Handler)',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.',
       name: 'wsChildError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error While Creating Card`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get createCardError {
     return Intl.message(
-      'Error While Creating Card',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'createCardError',
       desc: '',
       args: [],
@@ -8791,70 +8801,70 @@ class S {
     );
   }
 
-  /// `Invalid Supplementary Card Id`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get invalidSupplementaryCardId {
     return Intl.message(
-      'Invalid Supplementary Card Id',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'invalidSupplementaryCardId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Setting ContactLess Zero (NIhandler)`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later. `
   String get setContactLessZeroError {
     return Intl.message(
-      'Error while Setting ContactLess Zero (NIhandler)',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later. ',
       name: 'setContactLessZeroError',
       desc: '',
       args: [],
     );
   }
 
-  /// `ContactLess already done`
+  /// `A supplementary card with the same details already exists. Please check and try again.`
   String get contactlessAlreadyDone {
     return Intl.message(
-      'ContactLess already done',
+      'A supplementary card with the same details already exists. Please check and try again.',
       name: 'contactlessAlreadyDone',
       desc: '',
       args: [],
     );
   }
 
-  /// `Step 2 is not done for this credit card`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.`
   String get step2NotDoneCreditCard {
     return Intl.message(
-      'Step 2 is not done for this credit card',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.',
       name: 'step2NotDoneCreditCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Process Loan Step not done for this card`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.`
   String get processLoanStepNotDone {
     return Intl.message(
-      'Process Loan Step not done for this card',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.',
       name: 'processLoanStepNotDone',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Setting creating Shipment (NIhandler)`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.`
   String get creatingShippmentError {
     return Intl.message(
-      'Error while Setting creating Shipment (NIhandler)',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.',
       name: 'creatingShippmentError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Platform Not Found!`
+  /// `An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.`
   String get platformNotFound {
     return Intl.message(
-      'Platform Not Found!',
+      'An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later.',
       name: 'platformNotFound',
       desc: '',
       args: [],
@@ -8911,10 +8921,10 @@ class S {
     );
   }
 
-  /// `Customer Is Not Eligible`
+  /// `You are not eligible for this service. Please contact our Engagement Team from the app or call 06-5200100.`
   String get customerNotEligible {
     return Intl.message(
-      'Customer Is Not Eligible',
+      'You are not eligible for this service. Please contact our Engagement Team from the app or call 06-5200100.',
       name: 'customerNotEligible',
       desc: '',
       args: [],
@@ -8981,100 +8991,100 @@ class S {
     );
   }
 
-  /// `Response # 1 is required.`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get response1Required {
     return Intl.message(
-      'Response # 1 is required.',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'response1Required',
       desc: '',
       args: [],
     );
   }
 
-  /// `Response # 2 is required.`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get response2Required {
     return Intl.message(
-      'Response # 2 is required.',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'response2Required',
       desc: '',
       args: [],
     );
   }
 
-  /// `Response # 3 is required.`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get response3Required {
     return Intl.message(
-      'Response # 3 is required.',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'response3Required',
       desc: '',
       args: [],
     );
   }
 
-  /// `Response # 4 is required.`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get response4Required {
     return Intl.message(
-      'Response # 4 is required.',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'response4Required',
       desc: '',
       args: [],
     );
   }
 
-  /// `Response # 5 is required.`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get response5Required {
     return Intl.message(
-      'Response # 5 is required.',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'response5Required',
       desc: '',
       args: [],
     );
   }
 
-  /// `Residence Country Not Found`
+  /// `Residence country not found. Please choose another country or contact our Engagement Team for help 06-5200100.`
   String get residenceCountryNotFound {
     return Intl.message(
-      'Residence Country Not Found',
+      'Residence country not found. Please choose another country or contact our Engagement Team for help 06-5200100.',
       name: 'residenceCountryNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `No Signature Found`
+  /// `It seems your signature on the FATCA form is missing. Please check that you provided the signature or contact or Engagement Team for help 06-5200100.`
   String get noSignatureFound {
     return Intl.message(
-      'No Signature Found',
+      'It seems your signature on the FATCA form is missing. Please check that you provided the signature or contact or Engagement Team for help 06-5200100.',
       name: 'noSignatureFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Fatca Details Not Found`
+  /// `It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.`
   String get fatcaDetailNotFound {
     return Intl.message(
-      'Fatca Details Not Found',
+      'It seems you missed some of the required FATCA information. Please check again and ensure all information is provided.',
       name: 'fatcaDetailNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Mobile Code`
+  /// `It seems the mobile number you provided in the FATCA form is incorrect. Please check again and ensure the number is correct.`
   String get invalidMobileCode {
     return Intl.message(
-      'Invalid Mobile Code',
+      'It seems the mobile number you provided in the FATCA form is incorrect. Please check again and ensure the number is correct.',
       name: 'invalidMobileCode',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please move your face closer to the screen!`
+  /// `Please bring your face closer to the screen. Say cheese!`
   String get invalidLivelinessSCore {
     return Intl.message(
-      'Please move your face closer to the screen!',
+      'Please bring your face closer to the screen. Say cheese!',
       name: 'invalidLivelinessSCore',
       desc: '',
       args: [],
@@ -9111,20 +9121,20 @@ class S {
     );
   }
 
-  /// `Job Details Not Found`
+  /// `It seems you missed some of the required employment information. Please check again and ensure all information is provided.`
   String get jobDetailsNotFound {
     return Intl.message(
-      'Job Details Not Found',
+      'It seems you missed some of the required employment information. Please check again and ensure all information is provided.',
       name: 'jobDetailsNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Account Purpose Not Found`
+  /// `It seems you missed some information relating to purpose of opening your account. Please check again and ensure all information is provided.`
   String get accountPurposeNotFound {
     return Intl.message(
-      'Account Purpose Not Found',
+      'It seems you missed some information relating to purpose of opening your account. Please check again and ensure all information is provided.',
       name: 'accountPurposeNotFound',
       desc: '',
       args: [],
@@ -9151,50 +9161,50 @@ class S {
     );
   }
 
-  /// `you should be 18 years old and above to open an account.`
+  /// `The minimum age allowed to proceed is 18. Please come back on your 18th birthday. We'll be here waiting.`
   String get invalidMinimumAge {
     return Intl.message(
-      'you should be 18 years old and above to open an account.',
+      'The minimum age allowed to proceed is 18. Please come back on your 18th birthday. We\'ll be here waiting.',
       name: 'invalidMinimumAge',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Maximum Age`
+  /// `Sorry, this product is restricted to a specific age only.`
   String get invalidMaximumAge {
     return Intl.message(
-      'Invalid Maximum Age',
+      'Sorry, this product is restricted to a specific age only.',
       name: 'invalidMaximumAge',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Account Limit`
+  /// `The account limit has been exceeded.`
   String get invalidAccountLimit {
     return Intl.message(
-      'Invalid Account Limit',
+      'The account limit has been exceeded.',
       name: 'invalidAccountLimit',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your Application is under review`
+  /// `Your application is under review. Please bear with us.`
   String get applicationUnderReview {
     return Intl.message(
-      'Your Application is under review',
+      'Your application is under review. Please bear with us.',
       name: 'applicationUnderReview',
       desc: '',
       args: [],
     );
   }
 
-  /// `Rimno is taken by other User`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-054)`
   String get rimNoTakenByOtherUser {
     return Intl.message(
-      'Rimno is taken by other User',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-054)',
       name: 'rimNoTakenByOtherUser',
       desc: '',
       args: [],
@@ -9241,60 +9251,60 @@ class S {
     );
   }
 
-  /// `This Bank Is Not registered Bank`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-059)`
   String get notRegisteredBank {
     return Intl.message(
-      'This Bank Is Not registered Bank',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-059)',
       name: 'notRegisteredBank',
       desc: '',
       args: [],
     );
   }
 
-  /// `Provided Country Is Not Allowed`
+  /// `It seems there is an issue with the country code you've entered. Please try another country code or contact our Engagement Team on 06-5200100.`
   String get providedCountryNotAllowed {
     return Intl.message(
-      'Provided Country Is Not Allowed',
+      'It seems there is an issue with the country code you\'ve entered. Please try another country code or contact our Engagement Team on 06-5200100.',
       name: 'providedCountryNotAllowed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Incorrect OTP, please try again`
+  /// `You have entered an invalid code. Please try again.`
   String get invalidOtpNetwork {
     return Intl.message(
-      'Incorrect OTP, please try again',
+      'You have entered an invalid code. Please try again.',
       name: 'invalidOtpNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `You have entered an invalid OTP code, please enter a valid one`
+  /// `You have entered an invalid code. Please try again.`
   String get invalidOtpCodeNetwork {
     return Intl.message(
-      'You have entered an invalid OTP code, please enter a valid one',
+      'You have entered an invalid code. Please try again.',
       name: 'invalidOtpCodeNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your Request cancelled. OTP requested many time`
+  /// `You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100.`
   String get otpRequestedManyTime {
     return Intl.message(
-      'Your Request cancelled. OTP requested many time',
+      'You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100.',
       name: 'otpRequestedManyTime',
       desc: '',
       args: [],
     );
   }
 
-  /// `OTP code Expired, please try again`
+  /// `The code you have entered is expired. Please re-send code and try again.`
   String get otpExpiredNetwork {
     return Intl.message(
-      'OTP code Expired, please try again',
+      'The code you have entered is expired. Please re-send code and try again.',
       name: 'otpExpiredNetwork',
       desc: '',
       args: [],
@@ -9331,40 +9341,40 @@ class S {
     );
   }
 
-  /// `No Account Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-071)`
   String get noAccountFound {
     return Intl.message(
-      'No Account Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-071)',
       name: 'noAccountFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while updating Account`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-073)`
   String get errorUpdatingAccount {
     return Intl.message(
-      'Error while updating Account',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-073)',
       name: 'errorUpdatingAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Signature`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-074)`
   String get invalidSignatureNetwork {
     return Intl.message(
-      'Invalid Signature',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-074)',
       name: 'invalidSignatureNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `No Atm Data`
+  /// `ATM data cannot be retrieved. Please try again later.`
   String get noATMData {
     return Intl.message(
-      'No Atm Data',
+      'ATM data cannot be retrieved. Please try again later.',
       name: 'noATMData',
       desc: '',
       args: [],
@@ -9381,90 +9391,90 @@ class S {
     );
   }
 
-  /// `OTP Limit Exceed`
+  /// `You have exceed the number of times allowed to request a code. Please try again later or contact our Engagement Team from the app or call 06-5200100.`
   String get otpLimitExceedNetwork {
     return Intl.message(
-      'OTP Limit Exceed',
+      'You have exceed the number of times allowed to request a code. Please try again later or contact our Engagement Team from the app or call 06-5200100.',
       name: 'otpLimitExceedNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Otp Request`
+  /// `You have entered an invalid code. Please try again.`
   String get invalidOtpReq {
     return Intl.message(
-      'Invalid Otp Request',
+      'You have entered an invalid code. Please try again.',
       name: 'invalidOtpReq',
       desc: '',
       args: [],
     );
   }
 
-  /// `Image not found.`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-080)`
   String get imageNotFound {
     return Intl.message(
-      'Image not found.',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-080)',
       name: 'imageNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Documents not found.`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-081)`
   String get documentsNotFound {
     return Intl.message(
-      'Documents not found.',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-081)',
       name: 'documentsNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Email address`
+  /// `You have entered an invalid email address.`
   String get invalidEmailNetwork {
     return Intl.message(
-      'Invalid Email address',
+      'You have entered an invalid email address.',
       name: 'invalidEmailNetwork',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Mobile Number`
+  /// `You have entered an invalid mobile number.`
   String get invalidMobileNo {
     return Intl.message(
-      'Invalid Mobile Number',
+      'You have entered an invalid mobile number.',
       name: 'invalidMobileNo',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Current Password`
+  /// `The password you entered is incorrect. Please try again or click on "Forgot password?" to change your password.`
   String get invalidCurrentPass {
     return Intl.message(
-      'Invalid Current Password',
+      'The password you entered is incorrect. Please try again or click on "Forgot password?" to change your password.',
       name: 'invalidCurrentPass',
       desc: '',
       args: [],
     );
   }
 
-  /// `No Record Found in Request To Pay`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-086)`
   String get noRequestFoundRTP {
     return Intl.message(
-      'No Record Found in Request To Pay',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-086)',
       name: 'noRequestFoundRTP',
       desc: '',
       args: [],
     );
   }
 
-  /// `Iso Nationality Not Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-087)`
   String get isoNationalityNotFound {
     return Intl.message(
-      'Iso Nationality Not Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-087)',
       name: 'isoNationalityNotFound',
       desc: '',
       args: [],
@@ -9491,10 +9501,10 @@ class S {
     );
   }
 
-  /// `No Debit Card Record Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-090)`
   String get noDebitCardRecordFound {
     return Intl.message(
-      'No Debit Card Record Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-090)',
       name: 'noDebitCardRecordFound',
       desc: '',
       args: [],
@@ -9521,30 +9531,30 @@ class S {
     );
   }
 
-  /// `Invalid Card Id`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-093)`
   String get invalidCardId {
     return Intl.message(
-      'Invalid Card Id',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-093)',
       name: 'invalidCardId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Four Digit`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)`
   String get invalidFourDigit {
     return Intl.message(
-      'Invalid Four Digit',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)',
       name: 'invalidFourDigit',
       desc: '',
       args: [],
     );
   }
 
-  /// `ContactLess Error`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-095)`
   String get contactlessError {
     return Intl.message(
-      'ContactLess Error',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-095)',
       name: 'contactlessError',
       desc: '',
       args: [],
@@ -9561,1470 +9571,1470 @@ class S {
     );
   }
 
-  /// `Error while getting Card Information (NI Handler)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-097)`
   String get errorGettingCardInfo {
     return Intl.message(
-      'Error while getting Card Information (NI Handler)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-097)',
       name: 'errorGettingCardInfo',
       desc: '',
       args: [],
     );
   }
 
-  /// `Loan account list not found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-098)`
   String get loanAccountListNotFound {
     return Intl.message(
-      'Loan account list not found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-098)',
       name: 'loanAccountListNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Primary Card is not Active`
+  /// `Please activate your primary Rebellious Red credit card to process your request.`
   String get primaryCardNotActive {
     return Intl.message(
-      'Primary Card is not Active',
+      'Please activate your primary Rebellious Red credit card to process your request.',
       name: 'primaryCardNotActive',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please scan relative card`
+  /// `Please make sure you scan the supplemenary cardholder ID instead of your ID.`
   String get relativeIdError {
     return Intl.message(
-      'Please scan relative card',
+      'Please make sure you scan the supplemenary cardholder ID instead of your ID.',
       name: 'relativeIdError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Loan account list not found (Primary)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get primaryLoanAccListNotFound {
     return Intl.message(
-      'Loan account list not found (Primary)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'primaryLoanAccListNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while issuing your Credit Card, please try again later`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get errorCreateCreditCard {
     return Intl.message(
-      'Error while issuing your Credit Card, please try again later',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'errorCreateCreditCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-100)`
   String get settingContactLessError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-100)',
       name: 'settingContactLessError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorInGetCardInfoNet {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorInGetCardInfoNet',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)`
   String get errorUpdatingLimits {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)',
       name: 'errorUpdatingLimits',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorUpdatingCardStatusRuleEngine {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorUpdatingCardStatusRuleEngine',
       desc: '',
       args: [],
     );
   }
 
-  /// `No Debit Card Found`
+  /// `Something wrong with your Yellow Sun debit card information. Please contact our Engagement Team from the app or call 06-5200100.`
   String get noDebitCardFound {
     return Intl.message(
-      'No Debit Card Found',
+      'Something wrong with your Yellow Sun debit card information. Please contact our Engagement Team from the app or call 06-5200100.',
       name: 'noDebitCardFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get errorWhileUpdatingPinStatusRE {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'errorWhileUpdatingPinStatusRE',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get errorWhileUpdatingCardStatusNI {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'errorWhileUpdatingCardStatusNI',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get errorWhileUnblockPinNI {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'errorWhileUnblockPinNI',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Account Details By Alias (A2A Handler)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorWhileGettingAccountDetailsA2A {
     return Intl.message(
-      'Error while getting Account Details By Alias (A2A Handler)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorWhileGettingAccountDetailsA2A',
       desc: '',
       args: [],
     );
   }
 
-  /// `Purpose Details Not Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get purposeDetailsNotFound {
     return Intl.message(
-      'Purpose Details Not Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'purposeDetailsNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Customer By Account (A2A Handler)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorCustomerByAccountA2A {
     return Intl.message(
-      'Error while getting Customer By Account (A2A Handler)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorCustomerByAccountA2A',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Request to Pay (A2A Handler)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorWhileRTPA2A {
     return Intl.message(
-      'Error while Request to Pay (A2A Handler)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorWhileRTPA2A',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Account`
+  /// `Invalid account. Please try another account`
   String get invalidAccount {
     return Intl.message(
-      'Invalid Account',
+      'Invalid account. Please try another account',
       name: 'invalidAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Account (Bank Smart)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorWhileGettingAccountBS {
     return Intl.message(
-      'Error while getting Account (Bank Smart)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorWhileGettingAccountBS',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Amount`
+  /// `The amount you've entered exceeds your account balance. Please add money to your account or choose another amount.`
   String get invalidAmount {
     return Intl.message(
-      'Invalid Amount',
+      'The amount you\'ve entered exceeds your account balance. Please add money to your account or choose another amount.',
       name: 'invalidAmount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Multi branch API (Bank Smart)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get errorMultibranchAPIBS {
     return Intl.message(
-      'Error while getting Multi branch API (Bank Smart)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'errorMultibranchAPIBS',
       desc: '',
       args: [],
     );
   }
 
-  /// `Transfer Types Not Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. `
   String get transferTypeNF {
     return Intl.message(
-      'Transfer Types Not Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. ',
       name: 'transferTypeNF',
       desc: '',
       args: [],
     );
   }
 
-  /// `Transfer Types Not Found (RTP)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. `
   String get transferTypeNFRTP {
     return Intl.message(
-      'Transfer Types Not Found (RTP)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. ',
       name: 'transferTypeNFRTP',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Id No`
+  /// `The national ID number you entered is invalid. Please enter a valid ID number and try again.`
   String get invalidIdNo {
     return Intl.message(
-      'Invalid Id No',
+      'The national ID number you entered is invalid. Please enter a valid ID number and try again.',
       name: 'invalidIdNo',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Expiry Date`
+  /// `The ID expiry date you entered is incorrect. Please enter the correct date and try again.`
   String get invalidExpiryDate {
     return Intl.message(
-      'Invalid Expiry Date',
+      'The ID expiry date you entered is incorrect. Please enter the correct date and try again.',
       name: 'invalidExpiryDate',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while adding Username => RouterAPI`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get errorAddingUserName {
     return Intl.message(
-      'Error while adding Username => RouterAPI',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'errorAddingUserName',
       desc: '',
       args: [],
     );
   }
 
-  /// `An error occurred during registration process, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get registrationProcessError {
     return Intl.message(
-      'An error occurred during registration process, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'registrationProcessError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Akhwal`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get ahwalError {
     return Intl.message(
-      'Error occurred while checking Akhwal',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'ahwalError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting KYC Status`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get kycStausError {
     return Intl.message(
-      'Error occurred while getting KYC Status',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'kycStausError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving ID Card Details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingIdCardError {
     return Intl.message(
-      'Error occurred while saving ID Card Details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingIdCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Country Residence Info, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingCountryResidenceError {
     return Intl.message(
-      'Error occurred while saving Country Residence Info, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingCountryResidenceError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving profile status, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingProfileStatusError {
     return Intl.message(
-      'Error occurred while saving profile status, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingProfileStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving job details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingJobDetailsError {
     return Intl.message(
-      'Error occurred while saving job details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingJobDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while adding Account Purpose, please enter it again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get addAccountPurposeError {
     return Intl.message(
-      'Error occurred while adding Account Purpose, please enter it again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'addAccountPurposeError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Fatca-Crs`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get fatcaCrsError {
     return Intl.message(
-      'Error occurred while getting Fatca-Crs',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'fatcaCrsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while uploading Fatca Signature, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get uploadFatcaSignatureError {
     return Intl.message(
-      'Error occurred while uploading Fatca Signature, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'uploadFatcaSignatureError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Fatca Details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingFatcaDetailsError {
     return Intl.message(
-      'Error occurred while saving Fatca Details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingFatcaDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving W8 Form Details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingW8FormError {
     return Intl.message(
-      'Error occurred while saving W8 Form Details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingW8FormError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving W9 Form Details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get savingW9FormError {
     return Intl.message(
-      'Error occurred while saving W9 Form Details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'savingW9FormError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Selfie, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get selfieCheckError {
     return Intl.message(
-      'Error occurred while checking Selfie, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'selfieCheckError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while enabling biometric, please try again`
+  /// `An error occurred while enabling biometric login. Please try again later.`
   String get enableFingerPrintError {
     return Intl.message(
-      'Error occurred while enabling biometric, please try again',
+      'An error occurred while enabling biometric login. Please try again later.',
       name: 'enableFingerPrintError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while disabling biometric, please try again`
+  /// `An error occurred while disabling biometric login. Please try again later.`
   String get disableFingerPrintError {
     return Intl.message(
-      'Error occurred while disabling biometric, please try again',
+      'An error occurred while disabling biometric login. Please try again later.',
       name: 'disableFingerPrintError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Combo Values`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getComboValuesError {
     return Intl.message(
-      'Error occurred while getting Combo Values',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getComboValuesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Additional Documentation`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getAdditionalDocumentationError {
     return Intl.message(
-      'Error occurred while getting Additional Documentation',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getAdditionalDocumentationError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while saving Additional Documentation`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get saveAdditionalDocumentationError {
     return Intl.message(
-      'Error occurred while saving Additional Documentation',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'saveAdditionalDocumentationError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while getting Account Details, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-021)`
   String get getAccountDetailsError {
     return Intl.message(
-      'Error occurred while getting Account Details, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-021)',
       name: 'getAccountDetailsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while creating Account, please try again`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-022)`
   String get creatingAccountError {
     return Intl.message(
-      'Error occurred while creating Account, please try again',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-022)',
       name: 'creatingAccountError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking Video Call Status`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkVideoCallStatusError {
     return Intl.message(
-      'Error occurred while checking Video Call Status',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkVideoCallStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while checking other Nationality Status`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkOtherNationalityStatusError {
     return Intl.message(
-      'Error occurred while checking other Nationality Status',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkOtherNationalityStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while uploading Documents, please try again`
+  /// `An error occurred while uploading documents. Please try again later.`
   String get uploadDocumentsError {
     return Intl.message(
-      'Error occurred while uploading Documents, please try again',
+      'An error occurred while uploading documents. Please try again later.',
       name: 'uploadDocumentsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while logout, please try again`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get logoutError {
     return Intl.message(
-      'Error occurred while logout, please try again',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'logoutError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get registerInterestError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'registerInterestError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyOtpError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get iphoneLoginError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'iphoneLoginError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkDocumentStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkDocumentStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkAgentStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkAgentStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changeCallStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changeCallStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get saveCustomerTimeStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'saveCustomerTimeStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getAllowedCountriesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getAllowedCountriesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCountriesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCountriesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get removeDebitLockError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'removeDebitLockError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get enableBiometricError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'enableBiometricError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCipherError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCipherError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get generateKeyPairError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'generateKeyPairError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get androidLoginError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'androidLoginError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkCustomerStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkCustomerStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getBeneficiariesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getBeneficiariesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getAtmError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getAtmError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkIssuer {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkIssuer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getStatesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getStatesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCitiesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCitiesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCitiesByCountryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCitiesByCountryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getContactsError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getContactsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get addBeneficiaryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'addBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get updateBeneficiaryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'updateBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get deleteBeneficiaryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'deleteBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyBeneficiaryOtpError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyBeneficiaryOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get uploadBeneficiaryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'uploadBeneficiaryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getProfileInfoError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getProfileInfoError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get deleteProfileImageError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'deleteProfileImageError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCustomerDocumentError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCustomerDocumentError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCustomerDocumentIdError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCustomerDocumentIdError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changeProfileImageError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changeProfileImageError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changeEmailError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changeEmailError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyChangeEmailError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyChangeEmailError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while changing Mobile No`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changeMobileNoError {
     return Intl.message(
-      'Error occurred while changing Mobile No',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changeMobileNoError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyChangeMobileNoError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyChangeMobileNoError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error occurred while changing Password`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changePasswordError {
     return Intl.message(
-      'Error occurred while changing Password',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changePasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyOtpPasswordError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyOtpPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get requestToPayStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'requestToPayStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get cardIssuanceError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'cardIssuanceError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while setting Card Pin`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get setCardPintError {
     return Intl.message(
-      'Error while setting Card Pin',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'setCardPintError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while confirming Delivery`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get confirmDeliveryError {
     return Intl.message(
-      'Error while confirming Delivery',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'confirmDeliveryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getDashboardDataError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getDashboardDataError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get moneyThorError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'moneyThorError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get debitCardTransactionListError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'debitCardTransactionListError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get accountActivityError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'accountActivityError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get confrimCreditCardDeliveryError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'confrimCreditCardDeliveryError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get creditDashboardDataError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'creditDashboardDataError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get creditCardReqError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'creditCardReqError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get creditCardTransactionListError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'creditCardTransactionListError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCreditYearsError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCreditYearsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get creditCardStatementError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'creditCardStatementError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getDebitYearsError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getDebitYearsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get debitCardStatementError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'debitCardStatementError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get updateLimitError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'updateLimitError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get freezeDebitCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'freezeDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get unfreezeDebitCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'unfreezeDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get cancelDebitCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'cancelDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyChangePinError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyChangePinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get changePinError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'changePinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get unblockDebitCardPinError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'unblockDebitCardPinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getDebitCardLimitError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getDebitCardLimitError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get requestSupplementaryDebitCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'requestSupplementaryDebitCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get freezeCreditCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'freezeCreditCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get unfreezeCreditCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'unfreezeCreditCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get unblockCreditCardPinError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'unblockCreditCardPinError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getAccountByAliasError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getAccountByAliasError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get requestToPayError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'requestToPayError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkSendMoneyError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkSendMoneyError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyTransferApiError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyTransferApiError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyTransferApiV2Error {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyTransferApiV2Error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getTransferPurposeError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getTransferPurposeError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get paymentActivityApiError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'paymentActivityApiError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkCredentialsForForgetPasswordError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkCredentialsForForgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get forgetPasswordError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'forgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyForgetPasswordError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyForgetPasswordError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get sendOtpTokenError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'sendOtpTokenError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get verifyDeviceChangeOtpError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'verifyDeviceChangeOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get resendOtpError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'resendOtpError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkExistingCallError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkExistingCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get requestCallError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'requestCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getGenderStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getGenderStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getTimeSlotsError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getTimeSlotsError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get addCallError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'addCallError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get checkCallStatusError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'checkCallStatusError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCardApplicationError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCardApplicationError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getLoanValuesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getLoanValuesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get processLoanValuesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'processLoanValuesError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get paybackCreditCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'paybackCreditCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get supplementaryCardApplicationError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'supplementaryCardApplicationError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get requestSupplementaryCardError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'requestSupplementaryCardError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get supplementaryCardStep2Error {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'supplementaryCardStep2Error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get supplementaryCardStep3Error {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'supplementaryCardStep3Error',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get relationshipListError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'relationshipListError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing your request, please try again later or call our Engagement team`
+  /// `Oops! There seems to be an issue with the connectivity. Please try again later.`
   String get getCurrentValuesError {
     return Intl.message(
-      'Error while processing your request, please try again later or call our Engagement team',
+      'Oops! There seems to be an issue with the connectivity. Please try again later.',
       name: 'getCurrentValuesError',
       desc: '',
       args: [],
@@ -11041,20 +11051,20 @@ class S {
     );
   }
 
-  /// `Passwords do not match, please make sure they are both the same`
+  /// `The passwords you entered do not match. Please check and try again.`
   String get passwordMismatchError {
     return Intl.message(
-      'Passwords do not match, please make sure they are both the same',
+      'The passwords you entered do not match. Please check and try again.',
       name: 'passwordMismatchError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error While Sending Device Change OTP`
+  /// `An error has occurred in sending the code. Please try again later or contact our Engagement Team on 06-5200100.`
   String get sendingDeviceOtpError {
     return Intl.message(
-      'Error While Sending Device Change OTP',
+      'An error has occurred in sending the code. Please try again later or contact our Engagement Team on 06-5200100.',
       name: 'sendingDeviceOtpError',
       desc: '',
       args: [],
@@ -11091,20 +11101,20 @@ class S {
     );
   }
 
-  /// `Unable to connect to server Firebasse Issue`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get firebaseConnectionIssue {
     return Intl.message(
-      'Unable to connect to server Firebasse Issue',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'firebaseConnectionIssue',
       desc: '',
       args: [],
     );
   }
 
-  /// `Call Record Not Found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get callRecordNotFound {
     return Intl.message(
-      'Call Record Not Found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'callRecordNotFound',
       desc: '',
       args: [],
@@ -11131,90 +11141,90 @@ class S {
     );
   }
 
-  /// `Invalid LoanValue id`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get inValidLoanValueId {
     return Intl.message(
-      'Invalid LoanValue id',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'inValidLoanValueId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your credit limit cannot excced 1000 JOD`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get inValidCreditLimit {
     return Intl.message(
-      'Your credit limit cannot excced 1000 JOD',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'inValidCreditLimit',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while Process loan Values`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get loanValueProcessError {
     return Intl.message(
-      'Error while Process loan Values',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'loanValueProcessError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while processing Loan Request (RuleEngine)`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get loanValueRequestProcessingError {
     return Intl.message(
-      'Error while processing Loan Request (RuleEngine)',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'loanValueRequestProcessingError',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Customer id`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get invalidCustomerId {
     return Intl.message(
-      'Invalid Customer id',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'invalidCustomerId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid credit card id`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get invalidCreditCardId {
     return Intl.message(
-      'Invalid credit card id',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'invalidCreditCardId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Step 2 is not done for this credit card`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get step2Complete {
     return Intl.message(
-      'Step 2 is not done for this credit card',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'step2Complete',
       desc: '',
       args: [],
     );
   }
 
-  /// `Process Loan Step not done for this card`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get loanStepNotDone {
     return Intl.message(
-      'Process Loan Step not done for this card',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'loanStepNotDone',
       desc: '',
       args: [],
     );
   }
 
-  /// `Loan values not found`
+  /// `An error occurred while issuing your Rebellious Red credit card. Please try again later.`
   String get loanValuesNotFound {
     return Intl.message(
-      'Loan values not found',
+      'An error occurred while issuing your Rebellious Red credit card. Please try again later.',
       name: 'loanValuesNotFound',
       desc: '',
       args: [],
@@ -11251,50 +11261,50 @@ class S {
     );
   }
 
-  /// `Invalid PayBack Amount`
+  /// `The Pay Back amount you've entered exceeds your account balance. Please add money to your acount or choose another amount.`
   String get invalidPayBackAmount {
     return Intl.message(
-      'Invalid PayBack Amount',
+      'The Pay Back amount you\'ve entered exceeds your account balance. Please add money to your acount or choose another amount.',
       name: 'invalidPayBackAmount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Credit card data not found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get creditCardDataNotFound {
     return Intl.message(
-      'Credit card data not found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'creditCardDataNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Card Loan Account Claim not found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get accountClaimNotFound {
     return Intl.message(
-      'Card Loan Account Claim not found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'accountClaimNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Card Loan Account not found`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get cardLoanAccNotFound {
     return Intl.message(
-      'Card Loan Account not found',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'cardLoanAccNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while getting Payment Cash Back (NI Handler)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get paymentCashbackError {
     return Intl.message(
-      'Error while getting Payment Cash Back (NI Handler)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'paymentCashbackError',
       desc: '',
       args: [],
@@ -11391,50 +11401,50 @@ class S {
     );
   }
 
-  /// `Enter Mother Name or DOI or Place of Birth`
+  /// `Please enter missing information.`
   String get enterDetails {
     return Intl.message(
-      'Enter Mother Name or DOI or Place of Birth',
+      'Please enter missing information.',
       name: 'enterDetails',
       desc: '',
       args: [],
     );
   }
 
-  /// `Image is null`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get imageNull {
     return Intl.message(
-      'Image is null',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'imageNull',
       desc: '',
       args: [],
     );
   }
 
-  /// `Proof of Income & Proof of Address are Required.`
+  /// `Please upload required documents.`
   String get proofRequired {
     return Intl.message(
-      'Proof of Income & Proof of Address are Required.',
+      'Please upload required documents.',
       name: 'proofRequired',
       desc: '',
       args: [],
     );
   }
 
-  /// `OTP is null`
+  /// `Please enter valid code.`
   String get otpNull {
     return Intl.message(
-      'OTP is null',
+      'Please enter valid code.',
       name: 'otpNull',
       desc: '',
       args: [],
     );
   }
 
-  /// `Device Id is Required`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get deviceIsRequired {
     return Intl.message(
-      'Device Id is Required',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'deviceIsRequired',
       desc: '',
       args: [],
@@ -11631,10 +11641,10 @@ class S {
     );
   }
 
-  /// `Invalid Primary Card Id`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.`
   String get invalidPrimaryId {
     return Intl.message(
-      'Invalid Primary Card Id',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100.',
       name: 'invalidPrimaryId',
       desc: '',
       args: [],

@@ -76,114 +76,123 @@ class AddIDNumberForResetPasswordPageView
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: Column(
-                                  children: [
-                                    AppTextField(
-                                      labelText: S.of(context).emailAddress,
-                                      hintText: S.of(context).pleaseEnter,
-                                      controller: model.emailController,
-                                      key: model.emailKey,
-                                      inputAction: TextInputAction.go,
-                                      inputType: TextInputType.emailAddress,
-                                      onChanged: (value) {
-                                        model.validate();
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    AppTextField(
-                                        labelText: S.of(context).nationalId,
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  physics: ClampingScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      AppTextField(
+                                        labelText: S.of(context).emailAddress,
+                                        hintText: S.of(context).pleaseEnter,
+                                        controller: model.emailController,
+                                        key: model.emailKey,
+                                        inputAction: TextInputAction.go,
+                                        inputType: TextInputType.emailAddress,
+                                        onChanged: (value) {
+                                          model.validate();
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                          labelText: S.of(context).nationalId,
+                                          hintText: S.of(context).pleaseEnter,
+                                          inputType: TextInputType.text,
+                                          inputAction: TextInputAction.done,
+                                          controller:
+                                              model.nationalIdController,
+                                          key: model.nationalIdKey,
+                                          onChanged: (value) {
+                                            model.validate();
+                                          }),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText: S.of(context).idExpiryDate,
                                         hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         inputAction: TextInputAction.done,
-                                        controller: model.nationalIdController,
-                                        key: model.nationalIdKey,
+                                        readOnly: true,
+                                        controller:
+                                            model.idExpiryDateController,
+                                        key: model.idExpiryDateKey,
                                         onChanged: (value) {
                                           model.validate();
-                                        }),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    AppTextField(
-                                      labelText: S.of(context).idExpiryDate,
-                                      hintText: S.of(context).pleaseEnter,
-                                      inputType: TextInputType.text,
-                                      inputAction: TextInputAction.done,
-                                      readOnly: true,
-                                      controller: model.idExpiryDateController,
-                                      key: model.idExpiryDateKey,
-                                      onChanged: (value) {
-                                        model.validate();
-                                      },
-                                      suffixIcon: (isvalid, value) {
-                                        return InkWell(
-                                            onTap: () {
-                                              DatePicker.show(context,
-                                                  initialDate:
-                                                      model.initialDate,
-                                                  onSelected: (date) {
-                                                model.selectedExpiryDate =
-                                                    date.toString();
-                                                model.initialDate = date;
-                                                model.idExpiryDateController
-                                                        .text =
-                                                    TimeUtils
-                                                        .getFormattedDateForCheckPassword(
-                                                            date.toString());
-                                                model.validate();
-                                              }, onCancelled: () {
-                                                Navigator.pop(context);
+                                        },
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {
+                                                DatePicker.show(context,
+                                                    initialDate:
+                                                        model.initialDate,
+                                                    onSelected: (date) {
+                                                  model.selectedExpiryDate =
+                                                      date.toString();
+                                                  model.initialDate = date;
+                                                  model.idExpiryDateController
+                                                          .text =
+                                                      TimeUtils
+                                                          .getFormattedDateForCheckPassword(
+                                                              date.toString());
+                                                  model.validate();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .issuingDate);
                                               },
-                                                  title: S
-                                                      .of(context)
-                                                      .issuingDate);
-                                            },
-                                            child: Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 7),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.calendar,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark)));
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16.0),
-                                child: AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isValid) {
-                                      return Visibility(
-                                        visible: isValid!,
-                                        child: AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
-                                        ),
-                                      );
-                                    }),
-                              ),
-                              Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    S.of(context).backToLogin,
-                                    style: TextStyle(
-                                      color: AppColor.brightBlue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark)));
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
+                              ),
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 16.0),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.showButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return Visibility(
+                                            visible: isValid!,
+                                            child: AnimatedButton(
+                                              buttonText:
+                                                  S.of(context).swipeToProceed,
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                  Center(
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        S.of(context).backToLogin,
+                                        style: TextStyle(
+                                          color: AppColor.brightBlue,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           )),
