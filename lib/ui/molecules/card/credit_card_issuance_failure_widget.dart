@@ -27,8 +27,8 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage(AssetUtils.zigzagBackground),
-              fit: BoxFit.cover,
+              image: AssetImage(AssetUtils.creditBlurCard),
+              fit: BoxFit.fill,
               scale: isSmallDevices ? 1.3 : 1,
             )),
             child: Column(

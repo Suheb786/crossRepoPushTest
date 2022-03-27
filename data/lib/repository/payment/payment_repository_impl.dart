@@ -140,10 +140,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, PaymentActivityResponse>>
-      getPaymentActivity() async {
+  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity(
+      {int? filterDays}) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getPaymentActivity(),
+      paymentRemoteDs.getPaymentActivity(filterDays: filterDays),
     );
     return result!.fold(
       (l) => Left(l),

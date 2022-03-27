@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -886,6 +885,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "freezeThisCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
+        "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -1509,7 +1509,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while processing your request, please try again later or call our Engagement team"),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
             "Error while getting Payment Cash Back (NI Handler)"),
+        "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
+        "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
         "permanentAddress":
@@ -1990,6 +1992,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Period"),
         "transactionPurpose":
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
+        "transactionType":
+            MessageLookupByLibrary.simpleMessage("Transaction Type"),
         "transferTypeNF":
             MessageLookupByLibrary.simpleMessage("Transfer Types Not Found"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(

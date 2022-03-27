@@ -17,6 +17,8 @@ TransactionEntity _$TransactionEntityFromJson(Map<String, dynamic> json) {
     balance: json['balance'] as num?,
     balanceCur: json['balanceCUR'] as String?,
     trnxType: json['trnxType'] as String?,
+    memo: json['memo'] as String?,
+    type: json['type'] as String?,
   );
 }
 
@@ -30,4 +32,6 @@ Map<String, dynamic> _$TransactionEntityToJson(TransactionEntity instance) =>
       'balanceCUR': instance.balanceCur,
       'amountCUR': instance.amountCur,
       'trnxType': instance.trnxType,
+      'memo': instance.memo,
+      'type': instance.type,
     };

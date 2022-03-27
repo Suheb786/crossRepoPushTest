@@ -1,5 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/model/activity/activity_response.dart';
+import 'package:domain/model/payment/payment_activity_content.dart';
+import 'package:domain/model/payment/payment_activity_data.dart';
 import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/notification_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
@@ -60,6 +62,14 @@ class ActivityHomeViewModel extends BasePageViewModel {
     _pageControllerSubject.safeAdd(controller);
   }
 
+  List<PaymentActivityData> paymentActivityData = [];
+
+  BehaviorSubject<Resource<List<PaymentActivityData>>>
+      _paymentActivityListResponse = BehaviorSubject();
+
+  Stream<Resource<List<PaymentActivityData>>> get paymentActivityListStream =>
+      _paymentActivityListResponse.stream;
+
   ActivityHomeViewModel(
       this._paymentActivityTransactionUseCase, this._notificationUseCase) {
     _paymentActivityTransactionRequest.listen((value) {
@@ -72,6 +82,8 @@ class ActivityHomeViewModel extends BasePageViewModel {
         _paymentActivityTransactionResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          getPaymentActivityList(event.data!.paymentActivityContent!);
         }
       });
     });
@@ -96,12 +108,25 @@ class ActivityHomeViewModel extends BasePageViewModel {
 
   void getPaymentActivity() {
     _paymentActivityTransactionRequest
-        .safeAdd(PaymentActivityTransactionUseCaseParams());
+        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: 180));
   }
 
   void getActivity() {
     _notificationRequest
         .safeAdd(NotificationUseCaseParams(noOfDays: 90, isDebit: "true"));
+  }
+
+  void getPaymentActivityList(List<PaymentActivityContent> content) {
+    paymentActivityData.clear();
+    if (content.isNotEmpty) {
+      content.forEach((element) {
+        element.data!.forEach((e) {
+          paymentActivityData.add(e);
+        });
+      });
+    }
+    _paymentActivityListResponse
+        .safeAdd(Resource.success(data: paymentActivityData));
   }
 
   @override

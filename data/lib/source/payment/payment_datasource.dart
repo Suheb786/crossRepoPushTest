@@ -50,7 +50,8 @@ abstract class PaymentRemoteDs {
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(String toAccount,
       String transferType, String detCustomerType, String type);
 
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity();
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      {int? filterDays});
 
   Future<HttpResponse<ResponseEntity>> payBackCreditCard(
       {String? secureCode, String? payBackAmount});

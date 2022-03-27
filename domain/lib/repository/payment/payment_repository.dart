@@ -50,7 +50,8 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, PurposeResponse>> getPurpose(String toAccount,
       String transferType, String detCustomerType, String type);
 
-  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity();
+  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity(
+      {int? filterDays});
 
   Future<Either<NetworkError, bool>> payBackCreditCard(
       {String? secureCode, String? payBackAmount});

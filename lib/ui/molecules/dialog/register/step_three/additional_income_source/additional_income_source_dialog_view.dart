@@ -20,8 +20,9 @@ import 'additional_income_source_dialog_view_model.dart';
 class AdditionIncomeSourceDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(AdditionalIncomeType)? onSelected;
+  bool _keyboardVisible = false;
 
-  const AdditionIncomeSourceDialogView({
+  AdditionIncomeSourceDialogView({
     this.onDismissed,
     this.onSelected,
   });
@@ -32,13 +33,17 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<AdditionIncomeSourceDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              insetPadding: EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  bottom: 36,
+                  top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {

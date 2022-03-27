@@ -314,6 +314,8 @@ class DebitCardSettingsPageView
                                 context, RoutePaths.SupplementaryDebitCard);
                           },
                           title: S.of(context).requestSupplementarycard,
+                          isEnabled: false,
+                          isNotify: true,
                           tileIcon: AssetUtils.cardIcon,
                         ),
                         SettingTile(

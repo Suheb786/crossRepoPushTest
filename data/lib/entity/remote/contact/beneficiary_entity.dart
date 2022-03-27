@@ -76,7 +76,7 @@ class BeneficiaryEntity
   Beneficiary transform() {
     return Beneficiary(
         id: this.id,
-        bankName: this.bankName,
+        bankName: this.bankName ?? '',
         nickName: this.nickName,
         fullName: this.fullName,
         imageUrl: this.profileImage != null

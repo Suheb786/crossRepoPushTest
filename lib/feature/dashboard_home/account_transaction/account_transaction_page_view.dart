@@ -140,6 +140,7 @@ class AccountTransactionPageView
                                           onSelected: (value) {
                                             print("value: $value");
                                             Navigator.pop(context);
+                                            model.getFilteredData(value);
                                           },
                                         );
                                       },

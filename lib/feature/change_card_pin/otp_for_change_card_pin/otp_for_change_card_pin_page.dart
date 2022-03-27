@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view.dart';
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class OtpForChangeCardPinPage
     extends BasePage<OtpForChangeCardPinPageViewModel> {
@@ -15,7 +16,7 @@ class OtpForChangeCardPinPage
 
 class OtpForChangeCardPinPageState extends BaseStatefulPage<
         OtpForChangeCardPinPageViewModel, OtpForChangeCardPinPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   OtpForChangeCardPinPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -54,4 +55,19 @@ class OtpForChangeCardPinPageState extends BaseStatefulPage<
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    listenForCode();
+
+    SmsAutoFill().getAppSignature.then((signature) {
+      debugPrint('inside signature---->$signature');
+    });
+  }
+
+  @override
+  void codeUpdated() {
+    getViewModel().otpController.text = code!;
+  }
 }

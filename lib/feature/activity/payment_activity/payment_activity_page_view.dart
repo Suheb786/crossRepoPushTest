@@ -1,5 +1,5 @@
 import 'package:domain/constants/enum/transaction_status_enum.dart';
-import 'package:domain/model/payment/payment_activity_response.dart';
+import 'package:domain/model/payment/payment_activity_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -54,158 +54,140 @@ class PaymentActivityPageView
                   height: 10,
                 ),
                 Expanded(
-                  child: AppStreamBuilder<Resource<PaymentActivityResponse>>(
+                  child: AppStreamBuilder<Resource<List<PaymentActivityData>>>(
                       stream: ProviderScope.containerOf(context)
                           .read(activityHomeViewModelProvider)
-                          .paymentActivityTransactionResponse,
+                          .paymentActivityListStream,
                       initialData: Resource.none(),
                       dataBuilder: (context, transaction) {
-                        return transaction!
-                                    .data!.paymentActivityContent!.length >
-                                0
+                        return transaction!.data!.length > 0
                             ? ListView.builder(
-                                itemCount: transaction
-                                    .data!.paymentActivityContent!.length,
+                                itemCount: transaction.data!.length > 4
+                                    ? 4
+                                    : transaction.data!.length,
                                 shrinkWrap: true,
-                                itemBuilder: (mContext, ind) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: transaction
-                                        .data!
-                                        .paymentActivityContent![ind]
-                                        .data!
-                                        .length,
-                                    padding: EdgeInsets.only(top: 8),
-                                    itemBuilder: (context, index) {
-                                      print(
-                                          "got list: ${transaction.data!.paymentActivityContent![ind].data!.length}");
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                            top: index == 0 ? 0 : 23,
-                                            bottom: index ==
-                                                    transaction
-                                                            .data!
-                                                            .paymentActivityContent![
-                                                                ind]
-                                                            .data!
-                                                            .length -
-                                                        1
-                                                ? 10
-                                                : 0),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              height: 50,
-                                              width: 50,
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  shape: BoxShape.circle),
-                                              child: Center(
-                                                child: Text(
-                                                  transaction
-                                                              .data!
-                                                              .paymentActivityContent![
-                                                                  ind]
+                                itemBuilder: (mContext, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                        top: index == 0 ? 0 : 23,
+                                        bottom: index ==
+                                                transaction.data!.length - 1
+                                            ? 10
+                                            : 0),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              shape: BoxShape.circle),
+                                          child: Center(
+                                            child: Text(
+                                              transaction.data![index].name!
+                                                          .split(" ")
+                                                          .length >
+                                                      1
+                                                  ? StringUtils
+                                                      .getFirstInitials(
+                                                          transaction
                                                               .data![index]
-                                                              .name!
-                                                              .split(" ")
-                                                              .length >
-                                                          1
-                                                      ? StringUtils
-                                                          .getFirstInitials(
-                                                              transaction
-                                                                  .data!
-                                                                  .paymentActivityContent![
-                                                                      ind]
-                                                                  .data![index]
-                                                                  .name!)
-                                                      : "",
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 14),
-                                                ),
-                                              ),
+                                                              .name!)
+                                                  : "",
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14),
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 11),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "You requested ${transaction.data!.paymentActivityContent![ind].data![index].amount} JOD from ${transaction.data!.paymentActivityContent![ind].data![index].name}",
-                                                      maxLines: 2,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 11),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text.rich(TextSpan(
+                                                    text: 'You requested ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize: 12),
+                                                    children: [
+                                                      TextSpan(
+                                                          text:
+                                                              '${transaction.data![index].amount} JOD ',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 12)),
+                                                      TextSpan(
+                                                          text: 'from ',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 12)),
+                                                      TextSpan(
+                                                          text:
+                                                              '${transaction.data![index].name}',
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 12)),
+                                                    ])),
+                                                // Text(
+                                                //   "You requested ${transaction
+                                                //       .data![index]
+                                                //       .amount} JOD from ${transaction
+                                                //       .data![index].name}",
+                                                //   maxLines: 2,
+                                                //   style: TextStyle(
+                                                //       fontWeight:
+                                                //       FontWeight.w700,
+                                                //       fontSize: 12),
+                                                // ),
+                                                Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 6),
+                                                  child: Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 8,
+                                                            vertical: 2),
+                                                    decoration: BoxDecoration(
+                                                        color: getColor(
+                                                            transaction
+                                                                .data![index]
+                                                                .status!),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(100)),
+                                                    child: Text(
+                                                      transaction
+                                                          .data![index].status!
+                                                          .toString(),
                                                       style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor,
                                                           fontWeight:
-                                                              FontWeight.w700,
+                                                              FontWeight.w600,
                                                           fontSize: 12),
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 6),
-                                                      child: transaction
-                                                                  .data!
-                                                                  .paymentActivityContent![
-                                                                      ind]
-                                                                  .data![index]
-                                                                  .status! !=
-                                                              null
-                                                          ? (transaction
-                                                                      .data!
-                                                                      .paymentActivityContent![
-                                                                          ind]
-                                                                      .data![
-                                                                          index]
-                                                                      .status! ==
-                                                                  TransactionStatusEnum
-                                                                      .CATEGORY_PENDING
-                                                              ? Container(
-                                                                  height: 20,
-                                                                  width: 60,
-                                                                  decoration: BoxDecoration(
-                                                                      color: AppColor
-                                                                          .dark_orange,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              100)),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      transaction
-                                                                          .data!
-                                                                          .paymentActivityContent![
-                                                                              ind]
-                                                                          .data![
-                                                                              index]
-                                                                          .status!
-                                                                          .toString(),
-                                                                      style: TextStyle(
-                                                                          color: Theme.of(context)
-                                                                              .accentColor,
-                                                                          fontWeight: FontWeight
-                                                                              .w600,
-                                                                          fontSize:
-                                                                              12),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              : Container())
-                                                          : Container(),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      );
-                                    },
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   );
                                 },
                               )
@@ -223,5 +205,19 @@ class PaymentActivityPageView
         ),
       ),
     );
+  }
+
+  Color getColor(TransactionStatusEnum value) {
+    switch (value) {
+      case TransactionStatusEnum.CATEGORY_ACCEPTED:
+        return AppColor.darkModerateLimeGreen;
+      case TransactionStatusEnum.CATEGORY_REJECTED:
+        return AppColor.vividRed;
+      case TransactionStatusEnum.CATEGORY_PENDING:
+        return AppColor.dark_orange;
+
+      default:
+        return AppColor.darkModerateLimeGreen;
+    }
   }
 }

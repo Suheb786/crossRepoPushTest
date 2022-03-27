@@ -352,10 +352,12 @@ class JobAndIncomePageView
                           AppTextField(
                             labelText: S.of(context).employerContact,
                             hintText: S.of(context).pleaseEnter,
-                            inputType: TextInputType.number,
+                            inputType: TextInputType.phone,
                             inputAction: TextInputAction.done,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(12),
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[0-9]')),
                             ],
                             controller: model.employerContactController,
                             key: model.employerContactKey,

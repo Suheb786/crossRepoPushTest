@@ -11,7 +11,8 @@ class GetDashboardDataContent {
       this.somethingWrong: false,
       this.mobileNumber: "",
       this.mobileCode: "",
-      this.blinkWasBorn});
+      this.blinkWasBorn,
+      this.debitCardSomethingWrong: false});
 
   final Account? account;
   final bool? somethingWrong;
@@ -21,4 +22,5 @@ class GetDashboardDataContent {
   final DateTime? blinkWasBorn;
   final String? mobileNumber;
   final String? mobileCode;
+  final bool? debitCardSomethingWrong;
 }

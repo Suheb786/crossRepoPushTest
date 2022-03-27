@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:domain/constants/enum/statement_type.dart';
 import 'package:domain/model/card/card_statement_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -68,7 +69,7 @@ class DownloadTransactionPageView
                               width: 64,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
-                                  color: AppColor.whiteGray),
+                                  color: AppColor.white_gray),
                             ),
                           ),
                           AppStreamBuilder<Resource<CardStatementResponse>>(
@@ -79,25 +80,21 @@ class DownloadTransactionPageView
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: 38, left: 22, right: 22),
+                                          top: 38, left: 24, right: 24),
                                       child: Container(
-                                        // height: 417,
-                                        // decoration: BoxDecoration(
-                                        //     border: Border.all(
-                                        //         color: AppColor.gray1)),
-                                        child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Image.asset(
-                                                AssetUtils.statementPicture),
-                                            Text(
-                                              S.of(context).statementPDF,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                2,
+                                        width: double.infinity,
+                                        child: model.arguments.statementType ==
+                                                StatementType.Debit
+                                            ? Image.asset(
+                                                AssetUtils.accountStatement,
+                                                fit: BoxFit.contain,
+                                              )
+                                            : Image.asset(
+                                                AssetUtils.creditStatement,
+                                                fit: BoxFit.fill),
                                       ),
                                     ),
                                     InkWell(
@@ -147,20 +144,25 @@ class DownloadTransactionPageView
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 40),
-                                      child: Container(
-                                        height: 57,
-                                        width: 57,
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color),
-                                        child: Center(
-                                          child: AppSvg.asset(AssetUtils.tick,
+                                      padding: EdgeInsets.only(top: 24),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Container(
+                                          height: 57,
+                                          width: 57,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
                                               color: Theme.of(context)
-                                                  .accentColor),
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color),
+                                          child: Center(
+                                            child: AppSvg.asset(AssetUtils.tick,
+                                                color: Theme.of(context)
+                                                    .accentColor),
+                                          ),
                                         ),
                                       ),
                                     ),

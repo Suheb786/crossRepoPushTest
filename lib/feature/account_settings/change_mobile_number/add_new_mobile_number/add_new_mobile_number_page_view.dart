@@ -90,11 +90,13 @@ class AddNewMobileNumberPageView
                                                 .toUpperCase(),
                                             hintText:
                                                 S.of(context).mobileNumberHint,
-                                            inputType: TextInputType.number,
+                                            inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
                                               LengthLimitingTextInputFormatter(
                                                   12),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'[0-9]')),
                                             ],
                                             controller: model.mobileController,
                                             key: model.mobileKey,

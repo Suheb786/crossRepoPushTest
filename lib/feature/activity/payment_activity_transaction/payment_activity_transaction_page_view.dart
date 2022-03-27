@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_a
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_activity_transacton_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -23,7 +24,8 @@ class PaymentActivityTransactionPageView
         padding: EdgeInsets.only(top: 52),
         child: GestureDetector(
           onVerticalDragUpdate: (details) {
-            if (details.primaryDelta!.isNegative) {} else {
+            if (details.primaryDelta!.isNegative) {
+            } else {
               Navigator.pop(context);
             }
           },
@@ -64,7 +66,7 @@ class PaymentActivityTransactionPageView
                           ),
                           Padding(
                             padding:
-                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -81,45 +83,68 @@ class PaymentActivityTransactionPageView
                                     child: Row(
                                       children: [
                                         Text(
-                                          S.of(context).allTransaction,
+                                          S.of(context).fromMe,
                                           style: TextStyle(
                                               fontSize: 12,
+                                              color: AppColor.gray,
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(left: 12),
                                           child:
-                                          AppSvg.asset(AssetUtils.dropDown),
+                                              AppSvg.asset(AssetUtils.dropDown),
                                         )
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 8),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                        color: AppColor.whiteGray,
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 16),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            S.of(context).allTime,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                                  AppStreamBuilder<String>(
+                                      stream: model.paymentPeriodResponseStream,
+                                      initialData: 'Last 30 days',
+                                      dataBuilder: (mContext, paymentPeriod) {
+                                        return Padding(
+                                          padding: EdgeInsets.only(left: 8),
+                                          child: InkWell(
+                                            onTap: () {
+                                              PaymentActivityFilterDialog.show(
+                                                  context,
+                                                  type: FilterType.period,
+                                                  onSelected: (value) {
+                                                Navigator.pop(context);
+                                                model
+                                                    .updatePaymentPeriod(value);
+                                              }, onDismissed: () {
+                                                Navigator.pop(context);
+                                              });
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                color: AppColor.whiteGray,
+                                              ),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 10, horizontal: 16),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    paymentPeriod!,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 12),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.dropDown),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 12),
-                                            child: AppSvg.asset(
-                                                AssetUtils.dropDown),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
+                                        );
+                                      })
                                 ],
                               ),
                             ),

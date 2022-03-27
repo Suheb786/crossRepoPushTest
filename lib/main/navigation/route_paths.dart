@@ -97,4 +97,5 @@ class RoutePaths {
   static const String TimeLinePage = "/TimeLinePage";
   static const String SupplementaryCreditCardActivationStatus =
       "/supplementaryCreditCardActivationStatus";
+  static const String AllContact = "/allContact";
 }

@@ -25,11 +25,11 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
       {String? cardId, String? cardDigit});
 
-  Future<HttpResponse<CardTransactionResponseEntity>>
-      getDebitCardTransactions();
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
+      {num? noOfDays});
 
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
-      {required String cardId});
+      {required String cardId, num? noOfDays});
 
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
       {required String cardId});

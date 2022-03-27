@@ -21,6 +21,18 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       get paymentActivityTransactionResponse =>
           _paymentActivityTransactionResponse.stream;
 
+  ///transaction type
+  BehaviorSubject<String> _transactionTypeResponse = BehaviorSubject();
+
+  Stream<String> get transactionTypeResponseStream =>
+      _transactionTypeResponse.stream;
+
+  ///payment period
+  BehaviorSubject<String> _paymentPeriodResponse = BehaviorSubject();
+
+  Stream<String> get paymentPeriodResponseStream =>
+      _paymentPeriodResponse.stream;
+
   PaymentActivityTransactionViewModel(this._useCase) {
     _paymentActivityTransactionRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
@@ -34,12 +46,34 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       });
     });
 
-    getPaymentActivity();
+    getPaymentActivity(30);
   }
 
-  void getPaymentActivity() {
-    _paymentActivityTransactionRequest
-        .safeAdd(PaymentActivityTransactionUseCaseParams());
+  void getPaymentActivity(int filterDays) {
+    _paymentActivityTransactionRequest.safeAdd(
+        PaymentActivityTransactionUseCaseParams(filterDays: filterDays));
+  }
+
+  void updateTransactionType(String value) {
+    _transactionTypeResponse.safeAdd(value);
+  }
+
+  void updatePaymentPeriod(String value) {
+    _paymentPeriodResponse.safeAdd(value);
+    getPaymentActivity(getFilterDays(value));
+  }
+
+  int getFilterDays(String value) {
+    switch (value) {
+      case "Last 30 days":
+        return 30;
+      case "Last 3 months":
+        return 90;
+      case "Last 6 months":
+        return 180;
+      default:
+        return 180;
+    }
   }
 
   @override

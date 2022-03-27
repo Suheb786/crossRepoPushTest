@@ -220,9 +220,25 @@ class CardTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  void getTransactions({required String cardId}) {
-    _getTransactionsRequest
-        .safeAdd(GetCreditCardTransactionsUseCaseParams(cardId: cardId));
+  void getTransactions({
+    required String cardId,
+    required num noOfDays,
+  }) {
+    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams(
+        cardId: cardId, noOfDays: noOfDays));
+  }
+
+  int getFilterDays(String value) {
+    switch (value) {
+      case "Last 30 days":
+        return 30;
+      case "Last 3 months":
+        return 90;
+      case "Last 6 months":
+        return 180;
+      default:
+        return 180;
+    }
   }
 
   @override

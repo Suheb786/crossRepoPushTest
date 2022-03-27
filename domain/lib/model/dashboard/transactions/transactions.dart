@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/transaction_type_enum.dart';
+
 class Transactions {
   Transactions(
       {this.id,
@@ -7,7 +9,9 @@ class Transactions {
       this.balance,
       this.balanceCur,
       this.amountCur,
-      this.trnxType});
+      this.trnxType,
+      this.memo: "",
+      this.type: TransactionTypeEnum.NONE});
 
   int? id;
   String? description;
@@ -17,4 +21,6 @@ class Transactions {
   String? balanceCur;
   String? amountCur;
   String? trnxType;
+  String? memo;
+  TransactionTypeEnum? type;
 }

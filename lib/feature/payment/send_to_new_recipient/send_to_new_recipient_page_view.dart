@@ -430,6 +430,9 @@ class SendToNewRecipientPageView
                                                                         (value) {
                                                                       model.isFriend =
                                                                           value;
+                                                                      model
+                                                                          .addNickNameController
+                                                                          .clear();
                                                                       model.updateSwitchValue(
                                                                           value);
                                                                       if (value) {
@@ -531,33 +534,29 @@ class SendToNewRecipientPageView
                                                                                   stream: model.addNickNameStream,
                                                                                   initialData: false,
                                                                                   dataBuilder: (context, val) {
-                                                                                    return val!
-                                                                                        ? Container(
-                                                                                            height: 28,
-                                                                                            child: TextField(
-                                                                                              autofocus: true,
-                                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                              cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                                                                              controller: model.addNickNameController,
-                                                                                              decoration: InputDecoration(
-                                                                                                border: InputBorder.none,
-                                                                                                contentPadding: EdgeInsets.only(bottom: 18),
-                                                                                              ),
-                                                                                              onSubmitted: (value) {
-                                                                                                model.addNickNameVal = value;
-                                                                                                model.updateNickName(false);
-                                                                                              },
-                                                                                            ),
-                                                                                          )
-                                                                                        : InkWell(
-                                                                                            onTap: () {
-                                                                                              model.updateNickName(true);
-                                                                                            },
-                                                                                            child: Text(
-                                                                                              model.addNickNameVal!,
-                                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                                            ),
-                                                                                          );
+                                                                                    return FocusScope(
+                                                                                      onFocusChange: (hasFocus) {
+                                                                                        model.updateNickName(hasFocus);
+                                                                                      },
+                                                                                      child: Container(
+                                                                                        height: 28,
+                                                                                        child: TextField(
+                                                                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                          cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                                                          controller: model.addNickNameController,
+                                                                                          decoration: InputDecoration(
+                                                                                            hintText: S.of(context).addNickName,
+                                                                                            hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: val! ? Colors.transparent : Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                            border: InputBorder.none,
+                                                                                            contentPadding: EdgeInsets.only(bottom: 18),
+                                                                                          ),
+                                                                                          onSubmitted: (value) {
+                                                                                            model.addNickNameVal = value;
+                                                                                            // model.updateNickName(false);
+                                                                                          },
+                                                                                        ),
+                                                                                      ),
+                                                                                    );
                                                                                   }),
                                                                             ),
                                                                           )
