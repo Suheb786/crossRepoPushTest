@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/fatca_enum.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,26 +73,31 @@ class RegisterPageState
           break;
 
         case "W8":
+          model.fatcaEnum = FatcaEnum.w8;
           Future.delayed(Duration(microseconds: 100), () {
             model.navigateToPage(3);
           });
-          Future.delayed(Duration(microseconds: 100), () {
-            ProviderScope.containerOf(context)
-                .read(registerStepFourViewModelProvider)
-                .moveToPage(1);
-          });
+          // ProviderScope.containerOf(context)
+          //     .read(registerStepFourViewModelProvider)
+          //     .fatcaEnum = FatcaEnum.w8;
+          // Future.delayed(Duration(microseconds: 100), () {
+          //   ProviderScope.containerOf(context)
+          //       .read(registerStepFourViewModelProvider)
+          //       .moveToPage(1);
+          // });
 
           break;
 
         case "W9":
+          model.fatcaEnum = FatcaEnum.w9;
           Future.delayed(Duration(microseconds: 100), () {
             model.navigateToPage(3);
           });
-          Future.delayed(Duration(microseconds: 100), () {
-            ProviderScope.containerOf(context)
-                .read(registerStepFourViewModelProvider)
-                .moveToPage(4);
-          });
+          // Future.delayed(Duration(microseconds: 100), () {
+          //   ProviderScope.containerOf(context)
+          //       .read(registerStepFourViewModelProvider)
+          //       .moveToPage(4);
+          // });
 
           break;
 
