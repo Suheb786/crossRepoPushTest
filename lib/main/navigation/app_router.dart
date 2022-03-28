@@ -74,6 +74,8 @@ import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_c
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
+import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -557,6 +559,15 @@ class AppRouter {
             builder: (context) =>
                 AllContactPage(settings.arguments as AllContactArguments),
             settings: RouteSettings(name: RoutePaths.AllContact));
+
+      case RoutePaths.RequestMoneyQrGeneration:
+        return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
+
+      case RoutePaths.QRScreen:
+        return CupertinoPageRoute(
+            builder: (context) => QrScreenPage(),
+            settings: RouteSettings(name: RoutePaths.QRScreen));
+
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),

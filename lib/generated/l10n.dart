@@ -4086,7 +4086,7 @@ class S {
     return Intl.message(
       'ACCOUNT NO.',
       name: 'accountNo',
-      desc: '',
+      desc: 'accountNo',
       args: [],
     );
   }
@@ -11836,6 +11836,86 @@ class S {
     return Intl.message(
       'From Me',
       name: 'fromMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request via QR`
+  String get requestViaQR {
+    return Intl.message(
+      'Request via QR',
+      name: 'requestViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Account`
+  String get selectAccount {
+    return Intl.message(
+      'Select Account',
+      name: 'selectAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Savings Account {accountNo}`
+  String savingAccount(Object accountNo) {
+    return Intl.message(
+      'Savings Account $accountNo',
+      name: 'savingAccount',
+      desc: '',
+      args: [accountNo],
+    );
+  }
+
+  /// `QR PAYMENTS`
+  String get qrPayments {
+    return Intl.message(
+      'QR PAYMENTS',
+      name: 'qrPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please show your QR\nfor scanning`
+  String get showQrForScanning {
+    return Intl.message(
+      'Please show your QR\nfor scanning',
+      name: 'showQrForScanning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share QR`
+  String get shareQr {
+    return Intl.message(
+      'Share QR',
+      name: 'shareQr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR code will be valid\nfor 1 hour`
+  String get qrValidForOneHour {
+    return Intl.message(
+      'QR code will be valid\nfor 1 hour',
+      name: 'qrValidForOneHour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMOUNT`
+  String get amount {
+    return Intl.message(
+      'AMOUNT',
+      name: 'amount',
       desc: '',
       args: [],
     );

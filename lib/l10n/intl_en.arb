@@ -1201,5 +1201,17 @@
   "pending": "Pending",
   "transactionType": "Transaction Type",
   "paymentPeriod": "Payment Period",
-  "fromMe": "From Me"
+  "fromMe": "From Me",
+  "requestViaQR": "Request via QR",
+  "selectAccount": "Select Account",
+  "savingAccount": "Savings Account {accountNo}",
+  "@accountNo": {
+    "description": "accountNo",
+    "type": "string"
+  },
+  "qrPayments": "QR PAYMENTS",
+  "showQrForScanning": "Please show your QR\nfor scanning",
+  "shareQr": "Share QR",
+  "qrValidForOneHour": "QR code will be valid\nfor 1 hour",
+  "amount": "AMOUNT"
 }

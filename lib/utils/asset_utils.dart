@@ -208,6 +208,7 @@ class AssetUtils {
   static const String creditStatement = drawable + "credit-statement.png";
   static const String debitBlurWidget = drawable + "debit_blur_widget.png";
   static const String creditBlurCard = drawable + "credit_blur_card.png";
+  static const String qr = drawable + "qr.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
