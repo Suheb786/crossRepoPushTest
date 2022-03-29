@@ -77,6 +77,7 @@ import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -573,6 +574,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => SendMoneyQrScanningPage(),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
+
+      case RoutePaths.SendMoneyQrScanningSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => SendMoneyViaQrSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
 
       default:
         return CupertinoPageRoute(
