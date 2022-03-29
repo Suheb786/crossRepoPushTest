@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11935,6 +11936,106 @@ class S {
     return Intl.message(
       'Pay from',
       name: 'payFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage CliQ ID`
+  String get manageCliqId {
+    return Intl.message(
+      'Manage CliQ ID',
+      name: 'manageCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any CliQ ID.\nCreate your first one via Blink.`
+  String get NoCliqContactYet {
+    return Intl.message(
+      'You don’t have any CliQ ID.\nCreate your first one via Blink.',
+      name: 'NoCliqContactYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create CliQ ID`
+  String get createCliqId {
+    return Intl.message(
+      'Create CliQ ID',
+      name: 'createCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREATE NEW cliq ID`
+  String get createNewCliqId {
+    return Intl.message(
+      'CREATE NEW cliq ID',
+      name: 'createNewCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s create your new\nCliQ ID`
+  String get letsCreateNewCliqId {
+    return Intl.message(
+      'Let’s create your new\nCliQ ID',
+      name: 'letsCreateNewCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Type`
+  String get cliqIdType {
+    return Intl.message(
+      'CliQ ID Type',
+      name: 'cliqIdType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link bank account to \nyour new ID`
+  String get linkBankAccountToYourNewId {
+    return Intl.message(
+      'Link bank account to \nyour new ID',
+      name: 'linkBankAccountToYourNewId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `alias`
+  String get alias {
+    return Intl.message(
+      'alias',
+      name: 'alias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Select cliq Id Type`
+  String get emptyCliqIdType {
+    return Intl.message(
+      'Please Select cliq Id Type',
+      name: 'emptyCliqIdType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Alias`
+  String get emptyAlias {
+    return Intl.message(
+      'Please Enter Alias',
+      name: 'emptyAlias',
       desc: '',
       args: [],
     );

@@ -1215,5 +1215,15 @@
   "qrValidForOneHour": "QR code will be valid\nfor 1 hour",
   "amount": "AMOUNT",
   "youAreAcceptingMoneyRequestViaQr": "You are accepting a money\nrequest via QR",
-  "payFrom": "Pay from"
+  "payFrom": "Pay from",
+  "manageCliqId": "Manage CliQ ID",
+  "NoCliqContactYet": "You don’t have any CliQ ID.\nCreate your first one via Blink.",
+  "createCliqId": "Create CliQ ID",
+  "createNewCliqId": "CREATE NEW cliq ID",
+  "letsCreateNewCliqId": "Let’s create your new\nCliQ ID",
+  "cliqIdType": "CliQ ID Type",
+  "linkBankAccountToYourNewId": "Link bank account to \nyour new ID",
+  "alias": "alias",
+  "emptyCliqIdType": "Please Select cliq Id Type",
+  "emptyAlias": "Please Enter Alias"
 }

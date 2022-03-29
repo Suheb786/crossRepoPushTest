@@ -1030,6 +1030,10 @@ class ErrorParser {
         return localisedHelper.scanIdToProceedFurther;
       case ErrorType.REQUEST_TIMEOUT:
         return localisedHelper.requestTimeOut;
+      case ErrorType.EMPTY_CLIQ_ID_TYPE:
+        return localisedHelper.emptyCliqIdType;
+      case ErrorType.EMPTY_ALIAS:
+        return localisedHelper.emptyAlias;
 
       default:
         return "";

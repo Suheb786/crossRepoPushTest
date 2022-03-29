@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
+            "You don’t have any CliQ ID.\nCreate your first one via Blink."),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
@@ -138,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please agree to terms and conditions."),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+        "alias": MessageLookupByLibrary.simpleMessage("alias"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction":
             MessageLookupByLibrary.simpleMessage("All Transactions"),
@@ -364,6 +367,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Claim of Tax Treaty Benefits"),
         "clickToEditSomeMayBeDisabled": MessageLookupByLibrary.simpleMessage(
             "Click to edit the fields, some may be disabled."),
+        "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -412,6 +416,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+        "createCliqId": MessageLookupByLibrary.simpleMessage("Create CliQ ID"),
+        "createNewCliqId":
+            MessageLookupByLibrary.simpleMessage("CREATE NEW cliq ID"),
         "createPassword":
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
@@ -584,12 +591,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Employment Status"),
         "emptyAddressDocument": MessageLookupByLibrary.simpleMessage(
             "Please upload address document"),
+        "emptyAlias":
+            MessageLookupByLibrary.simpleMessage("Please Enter Alias"),
         "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
             "Building name or number field cannot be empty"),
         "emptyBusiness":
             MessageLookupByLibrary.simpleMessage("Specify Business"),
         "emptyCardNo": MessageLookupByLibrary.simpleMessage("Empty Card No"),
         "emptyCity": MessageLookupByLibrary.simpleMessage("Enter City"),
+        "emptyCliqIdType":
+            MessageLookupByLibrary.simpleMessage("Please Select cliq Id Type"),
         "emptyConfirmPin":
             MessageLookupByLibrary.simpleMessage("Enter pin again"),
         "emptyDistrict": MessageLookupByLibrary.simpleMessage("Enter district"),
@@ -1270,6 +1281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
             "Must less than Primary limit"),
+        "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
+            "Let’s create your new\nCliQ ID"),
         "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":
@@ -1279,6 +1292,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
+        "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
+            "Link bank account to \nyour new ID"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
@@ -1334,6 +1349,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage card limits"),
         "manageCardPin":
             MessageLookupByLibrary.simpleMessage("Manage card PIN"),
+        "manageCliqId": MessageLookupByLibrary.simpleMessage("Manage CliQ ID"),
         "manageContacts":
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings":

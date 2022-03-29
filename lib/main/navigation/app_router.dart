@@ -47,6 +47,8 @@ import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -580,6 +582,16 @@ class AppRouter {
             builder: (context) => SendMoneyViaQrSuccessPage(),
             settings:
                 RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
+
+      case RoutePaths.CliqIdList:
+        return CupertinoPageRoute(
+            builder: (context) => CliqIdListPage(),
+            settings: RouteSettings(name: RoutePaths.CliqIdList));
+
+      case RoutePaths.CreateCliqId:
+        return CupertinoPageRoute(
+            builder: (context) => CreateCliqIdPage(),
+            settings: RouteSettings(name: RoutePaths.CreateCliqId));
 
       default:
         return CupertinoPageRoute(

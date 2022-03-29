@@ -157,6 +157,7 @@ class AssetUtils {
   static const String timelineEnd = svg + "timeline_end.svg";
   static const String timelineEndUpdated = svg + "timeline_end_updated.svg";
   static const String timelinec1 = svg + "Timeline-C1.svg";
+  static const String cliqLogo = svg + "cliq_logo.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
