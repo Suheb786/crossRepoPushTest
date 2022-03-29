@@ -1509,6 +1509,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated successfully"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
+        "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentActivity":
@@ -2182,6 +2183,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "youAreAcceptingMoneyRequestViaQr":
+            MessageLookupByLibrary.simpleMessage(
+                "You are accepting a money\nrequest via QR"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested"),

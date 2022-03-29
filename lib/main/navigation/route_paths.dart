@@ -100,4 +100,5 @@ class RoutePaths {
   static const String AllContact = "/allContact";
   static const String RequestMoneyQrGeneration = "/requestMoneyQrGeneration";
   static const String QRScreen = "/qRScreen";
+  static const String SendMoneyQrScanning = "/sendMoneyQrScanning";
 }

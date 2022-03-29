@@ -11920,6 +11920,26 @@ class S {
       args: [],
     );
   }
+
+  /// `You are accepting a money\nrequest via QR`
+  String get youAreAcceptingMoneyRequestViaQr {
+    return Intl.message(
+      'You are accepting a money\nrequest via QR',
+      name: 'youAreAcceptingMoneyRequestViaQr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay from`
+  String get payFrom {
+    return Intl.message(
+      'Pay from',
+      name: 'payFrom',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

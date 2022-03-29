@@ -1213,5 +1213,7 @@
   "showQrForScanning": "Please show your QR\nfor scanning",
   "shareQr": "Share QR",
   "qrValidForOneHour": "QR code will be valid\nfor 1 hour",
-  "amount": "AMOUNT"
+  "amount": "AMOUNT",
+  "youAreAcceptingMoneyRequestViaQr": "You are accepting a money\nrequest via QR",
+  "payFrom": "Pay from"
 }
