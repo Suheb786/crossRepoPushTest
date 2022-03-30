@@ -98,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
+        "addLinkAccount":
+            MessageLookupByLibrary.simpleMessage("Add link account"),
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
@@ -140,7 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please agree to terms and conditions."),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
-        "alias": MessageLookupByLibrary.simpleMessage("alias"),
+        "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction":
             MessageLookupByLibrary.simpleMessage("All Transactions"),
@@ -367,6 +369,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Claim of Tax Treaty Benefits"),
         "clickToEditSomeMayBeDisabled": MessageLookupByLibrary.simpleMessage(
             "Click to edit the fields, some may be disabled."),
+        "cliqIdCreateSuccessFully": MessageLookupByLibrary.simpleMessage(
+            "CliQ ID created\nsuccessfully"),
         "cliqIdType": MessageLookupByLibrary.simpleMessage("CliQ ID Type"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
@@ -1883,6 +1887,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Set up and personalize your new debit card"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
+        "shareCliqId": MessageLookupByLibrary.simpleMessage("Share CliQ ID"),
         "shareMyReceipt":
             MessageLookupByLibrary.simpleMessage("Share my receipt"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
@@ -1999,6 +2004,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
+        "toManageCliq":
+            MessageLookupByLibrary.simpleMessage("to Manage CliQ ID"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(

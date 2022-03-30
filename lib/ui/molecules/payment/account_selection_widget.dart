@@ -36,7 +36,7 @@ class AccountSelectionWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              S.of(context).savingAccount('$currentIndex'),
+              S.of(context).savingAccount('${currentIndex + 1}'),
               style: TextStyle(
                   color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
             ),

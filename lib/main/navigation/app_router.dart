@@ -47,6 +47,7 @@ import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
@@ -592,6 +593,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CreateCliqIdPage(),
             settings: RouteSettings(name: RoutePaths.CreateCliqId));
+
+      case RoutePaths.CliqIdCreationSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CliqIdCreationSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.CliqIdCreationSuccess));
 
       default:
         return CupertinoPageRoute(

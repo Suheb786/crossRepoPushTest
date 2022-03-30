@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -65,7 +66,9 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutePaths.CreateCliqId);
+                      },
                       child: Container(
                         margin:
                             EdgeInsets.symmetric(horizontal: 24, vertical: 20),

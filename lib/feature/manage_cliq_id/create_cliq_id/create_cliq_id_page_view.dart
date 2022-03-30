@@ -3,18 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page_view_model.dart';
+import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/enter_otp_for_cliq_id/enter_otp_for_cliq_id_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
+import 'link_bank_account_cliqId/link_bank_account_cliqId_page.dart';
+
 class CreateCliqIdPageView
     extends BasePageViewWidget<CreateCliqIdPageViewModel> {
-  final pages = [CliqIdTypeSelectionPage(), BaseCardPage()];
+  final pages = [
+    CliqIdTypeSelectionPage(),
+    LinkBankAccountCliqIdPage(),
+    EnterOtpForCliqIdPage()
+  ];
 
   CreateCliqIdPageView(ProviderBase model) : super(model);
 

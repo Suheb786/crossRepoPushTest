@@ -1223,7 +1223,11 @@
   "letsCreateNewCliqId": "Let’s create your new\nCliQ ID",
   "cliqIdType": "CliQ ID Type",
   "linkBankAccountToYourNewId": "Link bank account to \nyour new ID",
-  "alias": "alias",
+  "alias": "Alias",
   "emptyCliqIdType": "Please Select cliq Id Type",
-  "emptyAlias": "Please Enter Alias"
+  "emptyAlias": "Please Enter Alias",
+  "addLinkAccount": "Add link account",
+  "cliqIdCreateSuccessFully": "CliQ ID created\nsuccessfully",
+  "shareCliqId": "Share CliQ ID",
+  "toManageCliq": "to Manage CliQ ID"
 }

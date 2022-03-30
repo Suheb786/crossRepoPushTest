@@ -16,8 +16,13 @@ class AccountsDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
   final List<String>? accountsList;
+  final String label;
 
-  AccountsDialogView({this.onDismissed, this.onSelected, this.accountsList});
+  AccountsDialogView(
+      {this.onDismissed,
+      this.onSelected,
+      this.accountsList,
+      required this.label});
 
   ProviderBase providerBase() {
     return accountsDialogViewModelProvider;
@@ -50,7 +55,7 @@ class AccountsDialogView extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 32.0),
                           child: Center(
                             child: Text(
-                              S.of(context).selectAccount,
+                              label,
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w600),
                             ),

@@ -129,7 +129,9 @@ class SendMoneyQrScanningPageView
                           key: model.payFromKey,
                           readOnly: true,
                           onPressed: () {
-                            AccountsDialog.show(context, onDismissed: () {
+                            AccountsDialog.show(context,
+                                label: S.of(context).selectAccount,
+                                onDismissed: () {
                               Navigator.pop(context);
                             }, onSelected: (value) {
                               Navigator.pop(context);

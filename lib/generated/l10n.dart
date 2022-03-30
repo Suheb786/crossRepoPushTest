@@ -12011,10 +12011,10 @@ class S {
     );
   }
 
-  /// `alias`
+  /// `Alias`
   String get alias {
     return Intl.message(
-      'alias',
+      'Alias',
       name: 'alias',
       desc: '',
       args: [],
@@ -12036,6 +12036,46 @@ class S {
     return Intl.message(
       'Please Enter Alias',
       name: 'emptyAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add link account`
+  String get addLinkAccount {
+    return Intl.message(
+      'Add link account',
+      name: 'addLinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID created\nsuccessfully`
+  String get cliqIdCreateSuccessFully {
+    return Intl.message(
+      'CliQ ID created\nsuccessfully',
+      name: 'cliqIdCreateSuccessFully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share CliQ ID`
+  String get shareCliqId {
+    return Intl.message(
+      'Share CliQ ID',
+      name: 'shareCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Manage CliQ ID`
+  String get toManageCliq {
+    return Intl.message(
+      'to Manage CliQ ID',
+      name: 'toManageCliq',
       desc: '',
       args: [],
     );

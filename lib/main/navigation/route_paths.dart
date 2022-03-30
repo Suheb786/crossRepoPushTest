@@ -105,4 +105,5 @@ class RoutePaths {
       "/sendMoneyQrScanningSuccess";
   static const String CliqIdList = "/cliqIdList";
   static const String CreateCliqId = "/createCliqId";
+  static const String CliqIdCreationSuccess = "/cliqIdCreationSuccess";
 }

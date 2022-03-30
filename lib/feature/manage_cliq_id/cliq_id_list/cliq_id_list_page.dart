@@ -5,6 +5,7 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   @override
@@ -45,7 +46,7 @@ class CliqIdListPageState
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, RoutePaths.CreateCliqId);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 24.0),
