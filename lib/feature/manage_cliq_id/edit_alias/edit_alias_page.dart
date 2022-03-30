@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view_model.dart';
+
+class EditAliasPage extends BasePage<EditAliasPageViewModel> {
+  @override
+  EditAliasPageState createState() => EditAliasPageState();
+}
+
+class EditAliasPageState
+    extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
+  @override
+  ProviderBase provideBase() {
+    return editAliasViewModelProvider;
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
+  Widget buildView(BuildContext context, EditAliasPageViewModel model) {
+    return EditAliasPageView(provideBase());
+  }
+}

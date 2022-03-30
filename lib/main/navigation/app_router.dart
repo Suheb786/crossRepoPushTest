@@ -50,6 +50,7 @@ import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -598,6 +599,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CliqIdCreationSuccessPage(),
             settings: RouteSettings(name: RoutePaths.CliqIdCreationSuccess));
+
+      case RoutePaths.EditAlias:
+        return CupertinoPageRoute(
+            builder: (context) => EditAliasPage(),
+            settings: RouteSettings(name: RoutePaths.EditAlias));
 
       default:
         return CupertinoPageRoute(

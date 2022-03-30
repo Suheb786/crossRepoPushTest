@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/manage_cliq/manage_cliq_bottom_sheet_view.dart';
+import 'package:neo_bank/ui/molecules/bottom_sheet/manage_cliq/manage_cliq_bottom_sheet/manage_cliq_bottom_sheet_view.dart';
 import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
 
 class ManageCliqBottomSheet {

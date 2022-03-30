@@ -1231,5 +1231,12 @@
   "shareCliqId": "Share CliQ ID",
   "toManageCliq": "to Manage CliQ ID",
   "setAsDefault": "Set as Default",
-  "unlinkAccount": "Unlink Account"
+  "unlinkAccount": "Unlink Account",
+  "editId": "Edit ID",
+  "shareId": "Share ID",
+  "suspendId": "Suspend ID",
+  "deleteCliqId": "Delete CliQ ID",
+  "editCliqId": "EDIT CLIQ ID",
+  "editYourAlias": "Edit your alias"
+
 }

@@ -12100,6 +12100,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit ID`
+  String get editId {
+    return Intl.message(
+      'Edit ID',
+      name: 'editId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share ID`
+  String get shareId {
+    return Intl.message(
+      'Share ID',
+      name: 'shareId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspend ID`
+  String get suspendId {
+    return Intl.message(
+      'Suspend ID',
+      name: 'suspendId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete CliQ ID`
+  String get deleteCliqId {
+    return Intl.message(
+      'Delete CliQ ID',
+      name: 'deleteCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EDIT CLIQ ID`
+  String get editCliqId {
+    return Intl.message(
+      'EDIT CLIQ ID',
+      name: 'editCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your alias`
+  String get editYourAlias {
+    return Intl.message(
+      'Edit your alias',
+      name: 'editYourAlias',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

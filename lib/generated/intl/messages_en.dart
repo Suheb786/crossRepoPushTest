@@ -513,6 +513,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "declaration is true and correct."),
         "deleteBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "deleteCliqId": MessageLookupByLibrary.simpleMessage("Delete CliQ ID"),
         "deleteProfileImageError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "deliveryIssue":
@@ -557,10 +558,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
+        "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
         "editTransactionPurpose":
             MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
+        "editYourAlias":
+            MessageLookupByLibrary.simpleMessage("Edit your alias"),
         "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while EDraw API get wrong"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
@@ -1889,6 +1894,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
         "shareCliqId": MessageLookupByLibrary.simpleMessage("Share CliQ ID"),
+        "shareId": MessageLookupByLibrary.simpleMessage("Share ID"),
         "shareMyReceipt":
             MessageLookupByLibrary.simpleMessage("Share my receipt"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
@@ -1935,6 +1941,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "supplementaryDebitcardSuccessDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately."),
+        "suspendId": MessageLookupByLibrary.simpleMessage("Suspend ID"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(
