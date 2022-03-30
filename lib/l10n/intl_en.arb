@@ -1229,5 +1229,7 @@
   "addLinkAccount": "Add link account",
   "cliqIdCreateSuccessFully": "CliQ ID created\nsuccessfully",
   "shareCliqId": "Share CliQ ID",
-  "toManageCliq": "to Manage CliQ ID"
+  "toManageCliq": "to Manage CliQ ID",
+  "setAsDefault": "Set as Default",
+  "unlinkAccount": "Unlink Account"
 }

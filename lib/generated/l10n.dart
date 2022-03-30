@@ -12080,6 +12080,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Set as Default`
+  String get setAsDefault {
+    return Intl.message(
+      'Set as Default',
+      name: 'setAsDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlink Account`
+  String get unlinkAccount {
+    return Intl.message(
+      'Unlink Account',
+      name: 'unlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1872,6 +1872,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Server is under maintenance. Please try again in sometime."),
         "sessionTimeout":
             MessageLookupByLibrary.simpleMessage("Session Timeout."),
+        "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
         "setCardPintError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "setContactLessZeroError": MessageLookupByLibrary.simpleMessage(
@@ -2072,6 +2073,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "unfreezeDebitCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "unlinkAccount": MessageLookupByLibrary.simpleMessage("Unlink Account"),
         "updateBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "updateLimitError": MessageLookupByLibrary.simpleMessage(
