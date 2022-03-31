@@ -243,21 +243,13 @@ class CreditCardSettingsPageView
                                       model.showToastWithError(error);
                                     },
                                     reasons: [
-                                      S.of(context).dontNeedMyCardAnymore,
-                                      S
-                                          .of(context)
-                                          .controlMyExpensesInOtherWays,
-                                      S.of(context).highInterestFeesAndCharges,
-                                      S.of(context).feelThatCreditLimitLow,
-                                      S.of(context).tooManyRecurrentDeclined,
-                                      S.of(context).exchangeRateForCurrencies,
-                                      S
-                                          .of(context)
-                                          .dissatisfiedWithDigitalPlatform,
-                                      S
-                                          .of(context)
-                                          .dissatisfiedWithOverallBankingExp,
-                                      S.of(context).pleaseHelpUsImproveServices,
+                                      "I don’t need my card anymore.",
+                                      "High interest, fees & charges.",
+                                      "I feel the credit limit is low.",
+                                      "High FX rates.",
+                                      "I’m trying to control my expenses.",
+                                      "I’m dissatisfied with service.",
+                                      "There are too many declined trx’s"
                                     ],
                                   );
                                 },

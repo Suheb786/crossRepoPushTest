@@ -185,6 +185,8 @@ class AppViewModel extends BaseViewModel {
                   borderRadius: BorderRadius.circular(50)),
               textTheme: ButtonTextTheme.normal,
             ),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             dividerColor: AppColor.lightGrayishBlue,
             canvasColor: AppColor.vividYellow);
         break;

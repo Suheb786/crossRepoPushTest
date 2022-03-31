@@ -266,12 +266,19 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                           .checkKycStatus();
                                                                     }
 
-                                                                    // Future.delayed(Duration(milliseconds: 500),
+                                                                    // Future.delayed(
+                                                                    //     Duration(
+                                                                    //         milliseconds:
+                                                                    //             500),
                                                                     //     () {
                                                                     //   // Navigator.pushReplacementNamed(
                                                                     //   //     context, RoutePaths.AppHome);
                                                                     //   Navigator.pushReplacementNamed(
-                                                                    //       context, RoutePaths.Registration);
+                                                                    //       context,
+                                                                    //       RoutePaths
+                                                                    //           .Registration,
+                                                                    //       arguments:
+                                                                    //           RegisterPageParams());
                                                                     // });
                                                                   } else if (data
                                                                           .status ==

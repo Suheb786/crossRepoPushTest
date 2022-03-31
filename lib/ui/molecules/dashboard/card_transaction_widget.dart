@@ -111,7 +111,7 @@ class CardTransactionWidget extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            "JOD",
+                            transactions!.transactions![index].currency!,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,

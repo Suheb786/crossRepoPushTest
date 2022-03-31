@@ -253,15 +253,9 @@ class DebitCardSettingsPageView
                                     model.showToastWithError(error);
                                   },
                                   reasons: [
-                                    S.of(context).dontNeedMyCardAnymore,
-                                    S.of(context).tooManyRecurrentDeclined,
-                                    S
-                                        .of(context)
-                                        .dissatisfiedWithDigitalPlatform,
-                                    S
-                                        .of(context)
-                                        .dissatisfiedWithOverallBankingExp,
-                                    S.of(context).pleaseHelpUsImproveServices,
+                                    "I don’t need my card anymore.",
+                                    "I'am dissatisfied with service.",
+                                    "There are too many declined trx’s"
                                   ],
                                 );
                               },
