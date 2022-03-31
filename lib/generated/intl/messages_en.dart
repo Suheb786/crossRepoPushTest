@@ -566,6 +566,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
         "editYourAlias":
             MessageLookupByLibrary.simpleMessage("Edit your alias"),
+        "editYourMobileNo":
+            MessageLookupByLibrary.simpleMessage("Edit your mobile number"),
         "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while EDraw API get wrong"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),

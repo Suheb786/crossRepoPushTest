@@ -1237,6 +1237,6 @@
   "suspendId": "Suspend ID",
   "deleteCliqId": "Delete CliQ ID",
   "editCliqId": "EDIT CLIQ ID",
-  "editYourAlias": "Edit your alias"
-
+  "editYourAlias": "Edit your alias",
+  "editYourMobileNo": "Edit your mobile number"
 }

@@ -12160,6 +12160,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit your mobile number`
+  String get editYourMobileNo {
+    return Intl.message(
+      'Edit your mobile number',
+      name: 'editYourMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
