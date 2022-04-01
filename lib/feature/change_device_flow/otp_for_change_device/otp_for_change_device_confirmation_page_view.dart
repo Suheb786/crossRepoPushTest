@@ -123,6 +123,7 @@ class OtpForChangeDeviceConfirmationPageView
                                       child: Column(
                                         children: [
                                           AppOtpFields(
+                                            autoFocus: true,
                                             length: 6,
                                             controller: model.otpController,
                                             onChanged: (val) {
