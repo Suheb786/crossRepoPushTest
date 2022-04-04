@@ -1,4 +1,3 @@
-import 'package:backdrop/backdrop.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
@@ -97,19 +96,12 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                print("toggle button");
-                                BackdropToggleButton();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 23, right: 23, left: 23),
-                                child: AppSvg.asset(
-                                    AssetUtils.blink_updated_logo,
-                                    height: isSmallDevices ? 26 : 33.64,
-                                    width: isSmallDevices ? 52 : 72),
-                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 23, right: 23, left: 23),
+                              child: AppSvg.asset(AssetUtils.blink_updated_logo,
+                                  height: isSmallDevices ? 26 : 33.64,
+                                  width: isSmallDevices ? 52 : 72),
                             ),
                             Padding(
                               padding: EdgeInsets.only(

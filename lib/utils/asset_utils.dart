@@ -191,7 +191,7 @@ class AssetUtils {
   static const String debitCard = drawable + "debit_card.png";
   static const String refresh = drawable + "refresh.png";
   static const String requestedOffer = drawable + "requested_offer.png";
-  static const String sentOffer = drawable + "sent_offer.png";
+  //static const String sentOffer = drawable + "sent_offer.png";
   static const String placeholder = drawable + "placeholder.png";
   static const String swigglePng = drawable + "swiggle.png";
   static const String blinkMarkerPng = drawable + "blink_marker.png";

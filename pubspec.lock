@@ -22,13 +22,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  another_transformer_page_view:
-    dependency: "direct main"
-    description:
-      name: another_transformer_page_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   archive:
     dependency: transitive
     description:
@@ -64,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
-  backdrop:
-    dependency: "direct main"
-    description:
-      name: backdrop
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.6.2"
   blinkid_flutter:
     dependency: transitive
     description:
@@ -255,13 +241,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  draggable_widget:
-    dependency: "direct main"
-    description:
-      name: draggable_widget
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   encrypt:
     dependency: transitive
     description:
@@ -393,13 +372,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_3des:
-    dependency: "direct main"
-    description:
-      name: flutter_3des
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   flutter_countdown_timer:
     dependency: "direct main"
     description:
@@ -733,7 +705,7 @@ packages:
     source: hosted
     version: "1.0.1"
   package_info:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: package_info
       url: "https://pub.dartlang.org"
@@ -1094,13 +1066,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.1"
-  steel_crypt:
-    dependency: "direct main"
-    description:
-      name: steel_crypt
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0+1"
   stream_channel:
     dependency: transitive
     description:
