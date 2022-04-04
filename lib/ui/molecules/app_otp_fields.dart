@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../utils/color_utils.dart';
@@ -12,6 +13,7 @@ class AppOtpFields extends StatelessWidget {
   final double? fieldHeight;
   final double? fieldWidth;
   final Color? selectedFillColor;
+  final bool? autoFocus;
 
   const AppOtpFields(
       {Key? key,
@@ -21,7 +23,8 @@ class AppOtpFields extends StatelessWidget {
       this.onCompleted,
       this.controller,
       this.onChanged,
-      this.selectedFillColor})
+      this.selectedFillColor,
+      this.autoFocus: false})
       : super(key: key);
 
   @override
@@ -30,15 +33,17 @@ class AppOtpFields extends StatelessWidget {
       child: PinCodeTextField(
         appContext: context,
         length: length!,
+        autoFocus: autoFocus!,
         onChanged: (value) {
           onChanged?.call(value);
         },
         onCompleted: (value) {
           onCompleted?.call(value);
         },
+        inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
         controller: controller,
         animationType: AnimationType.fade,
-        keyboardType: TextInputType.number,
+        keyboardType: TextInputType.phone,
         blinkWhenObscuring: true,
         errorTextSpace: 20,
         useHapticFeedback: true,

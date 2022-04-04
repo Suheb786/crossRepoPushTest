@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/fatca_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -13,6 +14,8 @@ class RegisterViewModel extends BasePageViewModel {
   RegisterViewModel() {
     changeCurrentPage(registrationStepsController.initialPage);
   }
+
+  FatcaEnum? fatcaEnum;
 
   void changeCurrentPage(int currentPage) {
     _currentPageSubject.safeAdd(currentPage);

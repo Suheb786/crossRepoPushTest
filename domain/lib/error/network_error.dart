@@ -720,7 +720,7 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause,
                 error: error,
-                type: ErrorType.ACCOUNT_INQUIRY_WENT_WRONG);
+                type: ErrorType.ACCOUNT_INQUIRY_WENT_WRONG_61);
 
           case "err-062":
             return AppError(

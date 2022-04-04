@@ -103,7 +103,9 @@ class EnterNewPinForCardPageView
                                             obscureText: true,
                                             inputFormatters: [
                                               LengthLimitingTextInputFormatter(
-                                                  4)
+                                                  4),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'[0-9]'))
                                             ],
                                             controller: model.newPinController,
                                             key: model.newPinKey,
@@ -122,7 +124,9 @@ class EnterNewPinForCardPageView
                                             obscureText: true,
                                             inputFormatters: [
                                               LengthLimitingTextInputFormatter(
-                                                  4)
+                                                  4),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp(r'[0-9]'))
                                             ],
                                             inputType: TextInputType.number,
                                             controller:

@@ -306,10 +306,10 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                       );
                                     }),
                               ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).viewInsets.bottom,
-                              ),
+                              // SizedBox(
+                              //   height:
+                              //       MediaQuery.of(context).viewInsets.bottom,
+                              // ),
                             ],
                           )),
                     ),

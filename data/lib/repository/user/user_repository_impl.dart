@@ -356,7 +356,7 @@ class UserRepositoryImpl extends UserRepository {
             middleName:
                 StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
             familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
-            idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
+            idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber ?? '',
             dob: r.dateOfBirth != null
                 ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
                     r.dateOfBirth!.day!)
@@ -372,7 +372,7 @@ class UserRepositoryImpl extends UserRepository {
                 ? r.mrzResult!.documentCode
                 : '',
             documentNumber:
-                r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+                r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber ?? '',
             issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
                 ? r.mrzResult!.sanitizedIssuer
                 : '',

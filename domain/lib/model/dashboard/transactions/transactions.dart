@@ -11,7 +11,8 @@ class Transactions {
       this.amountCur,
       this.trnxType,
       this.memo: "",
-      this.type: TransactionTypeEnum.NONE});
+      this.type: TransactionTypeEnum.NONE,
+      this.currency: ""});
 
   int? id;
   String? description;
@@ -23,4 +24,5 @@ class Transactions {
   String? trnxType;
   String? memo;
   TransactionTypeEnum? type;
+  String? currency;
 }

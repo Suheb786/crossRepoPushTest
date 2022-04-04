@@ -234,9 +234,6 @@ class IdVerificationInfoView
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                        height: 56,
-                                                      ),
                                                       Row(
                                                         children: [
                                                           AppStreamBuilder<

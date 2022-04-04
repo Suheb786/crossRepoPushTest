@@ -151,10 +151,6 @@ class EnterCodeForChangeEmailAddressPageView
                                         );
                                       }),
                                 ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).viewInsets.bottom,
-                                )
                               ],
                             ),
                           ],
