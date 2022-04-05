@@ -1399,14 +1399,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   }
 
   void listenPopUps(AppHomeViewModel model, BuildContext context) {
-    model.getSentMoneyPopUpDataStream.listen((data) {
-      if (data) {
-        showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => popUpWidget(context, AssetUtils.sentOffer));
-      }
-    });
+    ///talabat placeholder
+    // model.getSentMoneyPopUpDataStream.listen((data) {
+    //   if (data) {
+    //     showDialog(
+    //         context: context,
+    //         barrierDismissible: false,
+    //         builder: (context) => popUpWidget(context, AssetUtils.sentOffer));
+    //   }
+    // });
 
     model.getRequestMoneyPopUpDataStream.listen((data) {
       if (data) {

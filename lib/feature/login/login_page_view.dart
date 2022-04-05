@@ -193,9 +193,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                         .getCipherContent!
                                                                         .cipher!
                                                                         .isNotEmpty) {
-                                                                  model
-                                                                      .fingerPrintShow(
-                                                                          true);
+                                                                  // model
+                                                                  //     .fingerPrintShow(
+                                                                  //         true);
                                                                 }
                                                               }
                                                             },
@@ -394,7 +394,10 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                   onData: (data) {
                                                                                                     if (data.status == Status.SUCCESS) {
                                                                                                       //model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
-                                                                                                      model.checkVersionUpdate(clear: "false");
+                                                                                                      if (data.data!.isBiometricEnabled ?? false) {
+                                                                                                        model.fingerPrintShow(true);
+                                                                                                        model.checkVersionUpdate(clear: "false");
+                                                                                                      }
                                                                                                     } else if (data.status == Status.ERROR) {
                                                                                                       if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
                                                                                                         model.checkVersionUpdate(clear: "true");

@@ -412,6 +412,7 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void getCipher() {
+    debugPrint('cipher called');
     _getCipherRequest.safeAdd(GetCipherUseCaseParams());
   }
 

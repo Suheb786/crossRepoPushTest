@@ -136,9 +136,10 @@ class AppHomeViewModel extends BasePageViewModel {
       });
     });
 
-    _sentMoneyRequest.listen((value) {
-      _sentMoneyPopUpResponse.safeAdd(value);
-    });
+    ///talabat placeholder
+    // _sentMoneyRequest.listen((value) {
+    //   _sentMoneyPopUpResponse.safeAdd(value);
+    // });
 
     _requestMoneyRequest.listen((value) {
       _requestMoneyPopUpResponse.safeAdd(value);
@@ -433,9 +434,9 @@ class AppHomeViewModel extends BasePageViewModel {
     _getDashboardDataRequest.safeAdd(GetDashboardDataUseCaseParams());
   }
 
-  void triggerSentMoneyPopup() {
-    _sentMoneyRequest.safeAdd(true);
-  }
+  // void triggerSentMoneyPopup() {
+  //   _sentMoneyRequest.safeAdd(true);
+  // }
 
   void triggerRequestMoneyPopup() {
     _requestMoneyRequest.safeAdd(true);
