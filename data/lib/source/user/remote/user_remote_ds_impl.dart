@@ -452,11 +452,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
     String userId = '';
     if (userDBEntity != null) {
       user = userDBEntity.transform();
-      print('user private key--->${user.privatePEM}');
-      userId = await decryptData(
-          content: cipher,
-          publicKey: user.publicPEM,
-          privateKey: user.privatePEM);
+      userId = user.id!;
+      // print('user private key--->${user.privatePEM}');
+      // userId = await decryptData(
+      //     content: cipher,
+      //     publicKey: user.publicPEM,
+      //     privateKey: user.privatePEM);
     }
 
     return _apiService.androidLogin(AndroidLoginRequestEntity(
