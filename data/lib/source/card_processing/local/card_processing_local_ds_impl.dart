@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:convert/convert.dart';
-//import 'package:dart_des/dart_des.dart';
+import 'package:dart_des/dart_des.dart';
 import 'package:data/source/card_processing/card_processing_data_source.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -13,11 +13,10 @@ class CardProcessingLocalDsImpl with CardProcessingLocalDs {
   @override
   String decryptCard({required String cardNo}) {
     final List<int> decrypted;
-    // DES3 desECB = DES3(key: cardKey, mode: DESMode.ECB);
-    // decrypted = desECB.decrypt(
-    //     isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
-    // return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
-    return '';
+    DES3 desECB = DES3(key: cardKey, mode: DESMode.ECB);
+    decrypted = desECB.decrypt(
+        isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
+    return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
   }
 
   @override
@@ -29,9 +28,8 @@ class CardProcessingLocalDsImpl with CardProcessingLocalDs {
     String finalBlock = (int.tryParse(blockPart1, radix: 16)! ^
             int.tryParse(blockPart2, radix: 16)!)
         .toRadixString(16);
-    // DES3 desECB = DES3(key: pinKey, mode: DESMode.ECB);
-    // encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
-    // return hex.encode(encrypted).substring(0, 16).toUpperCase();
-    return '';
+    DES3 desECB = DES3(key: pinKey, mode: DESMode.ECB);
+    encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
+    return hex.encode(encrypted).substring(0, 16).toUpperCase();
   }
 }
