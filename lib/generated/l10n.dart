@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4270,10 +4271,10 @@ class S {
     );
   }
 
-  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!`
+  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card.`
   String get blinkCreditCard {
     return Intl.message(
-      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!',
+      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card.',
       name: 'blinkCreditCard',
       desc: '',
       args: [],
@@ -11835,6 +11836,76 @@ class S {
     return Intl.message(
       'From Me',
       name: 'fromMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply now`
+  String get applyNow {
+    return Intl.message(
+      'Apply now',
+      name: 'applyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application submitted`
+  String get applicationSubmitted {
+    return Intl.message(
+      'Application submitted',
+      name: 'applicationSubmitted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are require to verify yourself via video call with our Engagement Team to complete your application.`
+  String get applicationSubmittedDesc {
+    return Intl.message(
+      'You are require to verify yourself via video call with our Engagement Team to complete your application.',
+      name: 'applicationSubmittedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APPLY FOR CREDIT CARD`
+  String get applyForCreditCard {
+    return Intl.message(
+      'APPLY FOR CREDIT CARD',
+      name: 'applyForCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It’s time for a quick\nvideo call`
+  String get timeForQuickVideoCall {
+    return Intl.message(
+      'It’s time for a quick\nvideo call',
+      name: 'timeForQuickVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification call\nhas ended`
+  String get verificationCallEnded {
+    return Intl.message(
+      'Verification call\nhas ended',
+      name: 'verificationCallEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call is completed.\nYou’ll be notified on the application status.`
+  String get verificationCallEndedDesc {
+    return Intl.message(
+      'Call is completed.\nYou’ll be notified on the application status.',
+      name: 'verificationCallEndedDesc',
       desc: '',
       args: [],
     );

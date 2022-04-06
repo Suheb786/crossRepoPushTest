@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -67,7 +68,11 @@ class CreditCardApplySuccessPageView
                       height: 56,
                     ),
                     Text(
-                      S.of(context).yourCardIsReady,
+                      model.creditCardApplySuccessArguments
+                                  .creditSuccessState ==
+                              CreditSuccessState.Applied_Success
+                          ? S.of(context).yourCardIsReady
+                          : S.of(context).applicationSubmitted,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
@@ -80,7 +85,11 @@ class CreditCardApplySuccessPageView
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        S.of(context).cardApplyMsg,
+                        model.creditCardApplySuccessArguments
+                                    .creditSuccessState ==
+                                CreditSuccessState.Applied_Success
+                            ? S.of(context).cardApplyMsg
+                            : S.of(context).applicationSubmittedDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,

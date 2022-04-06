@@ -98,4 +98,8 @@ class RoutePaths {
   static const String SupplementaryCreditCardActivationStatus =
       "/supplementaryCreditCardActivationStatus";
   static const String AllContact = "/allContact";
+  static const String CreditCardVideoCallInitiate =
+      "/creditCardVideoCallInitiate";
+  static const String CreditCardVideoCallComplete =
+      "/creditCardVideoCallComplete";
 }

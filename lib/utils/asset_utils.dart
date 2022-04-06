@@ -157,6 +157,7 @@ class AssetUtils {
   static const String timelineEnd = svg + "timeline_end.svg";
   static const String timelineEndUpdated = svg + "timeline_end_updated.svg";
   static const String timelinec1 = svg + "Timeline-C1.svg";
+  static const String ccAgent = svg + "cc_agent.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -191,6 +192,7 @@ class AssetUtils {
   static const String debitCard = drawable + "debit_card.png";
   static const String refresh = drawable + "refresh.png";
   static const String requestedOffer = drawable + "requested_offer.png";
+
   //static const String sentOffer = drawable + "sent_offer.png";
   static const String placeholder = drawable + "placeholder.png";
   static const String swigglePng = drawable + "swiggle.png";

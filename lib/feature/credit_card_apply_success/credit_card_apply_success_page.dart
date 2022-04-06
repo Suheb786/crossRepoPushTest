@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_suc
 
 class CreditCardApplySuccessPage
     extends BasePage<CreditCardApplySuccessPageViewModel> {
+  final CreditCardApplySuccessArguments _creditCardApplySuccessArguments;
+
+  CreditCardApplySuccessPage(this._creditCardApplySuccessArguments);
+
   @override
   CreditCardApplySuccessPageState createState() =>
       CreditCardApplySuccessPageState();
@@ -16,7 +20,8 @@ class CreditCardApplySuccessPageState extends BaseStatefulPage<
     CreditCardApplySuccessPageViewModel, CreditCardApplySuccessPage> {
   @override
   ProviderBase provideBase() {
-    return creditCardApplySuccessViewModelProvider;
+    return creditCardApplySuccessViewModelProvider
+        .call(widget._creditCardApplySuccessArguments);
   }
 
   @override
@@ -24,4 +29,13 @@ class CreditCardApplySuccessPageState extends BaseStatefulPage<
       BuildContext context, CreditCardApplySuccessPageViewModel model) {
     return CreditCardApplySuccessPageView(provideBase());
   }
+}
+
+enum CreditSuccessState { Submitted, Applied_Success }
+
+class CreditCardApplySuccessArguments {
+  final CreditSuccessState creditSuccessState;
+
+  CreditCardApplySuccessArguments(
+      {this.creditSuccessState: CreditSuccessState.Applied_Success});
 }

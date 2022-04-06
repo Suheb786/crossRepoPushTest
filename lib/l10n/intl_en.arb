@@ -437,7 +437,7 @@
   "creditCardVerified": "Credit card\nhas been verified.",
   "physicalCardUse": "You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.",
   "debitCardVerified": "Debit card\nhas been verified.",
-  "blinkCreditCard": "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!",
+  "blinkCreditCard": "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card.",
   "totalUsedLimit": "TOTAL USED LIMIT",
   "payBack": "Pay back",
   "availableAmount": "AVAILABLE AMOUNT",
@@ -1201,5 +1201,12 @@
   "pending": "Pending",
   "transactionType": "Transaction Type",
   "paymentPeriod": "Payment Period",
-  "fromMe": "From Me"
+  "fromMe": "From Me",
+  "applyNow": "Apply now",
+  "applicationSubmitted": "Application submitted",
+  "applicationSubmittedDesc": "You are require to verify yourself via video call with our Engagement Team to complete your application.",
+  "applyForCreditCard": "APPLY FOR CREDIT CARD",
+  "timeForQuickVideoCall": "It’s time for a quick\nvideo call",
+  "verificationCallEnded": "Verification call\nhas ended",
+  "verificationCallEndedDesc": "Call is completed.\nYou’ll be notified on the application status."
 }

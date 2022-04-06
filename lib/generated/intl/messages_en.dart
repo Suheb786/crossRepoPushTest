@@ -162,6 +162,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Application Is In Process"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
+        "applicationSubmitted":
+            MessageLookupByLibrary.simpleMessage("Application submitted"),
+        "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
+            "You are require to verify yourself via video call with our Engagement Team to complete your application."),
         "applicationUnderReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review. Please bear with us."),
         "applyCreditCard":
@@ -170,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyDebitCard":
             MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
+        "applyForCreditCard":
+            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyNow": MessageLookupByLibrary.simpleMessage("Apply now"),
         "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
@@ -229,7 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "To Blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
-            "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!"),
+            "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
         "bornBlink":
@@ -1965,6 +1972,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
+        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
+            "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
@@ -2087,6 +2096,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vkey Message Id is Required"),
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
+        "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
+            "Verification call\nhas ended"),
+        "verificationCallEndedDesc": MessageLookupByLibrary.simpleMessage(
+            "Call is completed.\nYou’ll be notified on the application status."),
         "verifyBeneficiaryOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyChangeEmailError": MessageLookupByLibrary.simpleMessage(
