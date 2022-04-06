@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class ApplyCreditCardWidget extends StatelessWidget {
+class GetCreditCardNowWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false})
+  const GetCreditCardNowWidget({Key? key, this.isSmallDevices: false})
       : super(key: key);
 
   @override
@@ -50,14 +49,14 @@ class ApplyCreditCardWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 10, left: 23, right: 23),
+                    padding: EdgeInsets.only(top: 10, left: 24, right: 24),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        S.of(context).blinkCreditCard,
+                        S.of(context).getCreditCardNowDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: isSmallDevices ? 10 : 12,
+                            fontSize: isSmallDevices ? 12 : 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),
@@ -71,8 +70,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.BlinkCreditCard);
+                        ///TODO: Navigate to credit card activation status page
                       },
                       child: Container(
                         padding:
@@ -85,7 +83,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            S.of(context).applyNow,
+                            S.of(context).getCardNow,
                             style: TextStyle(
                                 fontSize: isSmallDevices ? 12 : 14,
                                 fontWeight: FontWeight.w600,

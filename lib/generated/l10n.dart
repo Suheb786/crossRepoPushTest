@@ -4041,10 +4041,10 @@ class S {
     );
   }
 
-  /// `Get your card now!`
+  /// `Get your card now`
   String get getCardNow {
     return Intl.message(
-      'Get your card now!',
+      'Get your card now',
       name: 'getCardNow',
       desc: '',
       args: [],
@@ -11906,6 +11906,56 @@ class S {
     return Intl.message(
       'Call is completed.\nYou’ll be notified on the application status.',
       name: 'verificationCallEndedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify yourself via video call with our Engagement Team to complete your credit card application.`
+  String get verifyViaVideoCallCC {
+    return Intl.message(
+      'Verify yourself via video call with our Engagement Team to complete your credit card application.',
+      name: 'verifyViaVideoCallCC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify now`
+  String get verifyNow {
+    return Intl.message(
+      'Verify now',
+      name: 'verifyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is being reviewed. You’ll be notified soon.`
+  String get creditCardApplicationUnderReviewDesc {
+    return Intl.message(
+      'Your application is being reviewed. You’ll be notified soon.',
+      name: 'creditCardApplicationUnderReviewDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is success. Time to get your card!`
+  String get getCreditCardNowDesc {
+    return Intl.message(
+      'Your application is success. Time to get your card!',
+      name: 'getCreditCardNowDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.`
+  String get applicationRejectedByEngagementTeam {
+    return Intl.message(
+      'Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.',
+      name: 'applicationRejectedByEngagementTeam',
       desc: '',
       args: [],
     );

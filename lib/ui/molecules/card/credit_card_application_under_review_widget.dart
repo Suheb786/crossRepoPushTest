@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class ApplyCreditCardWidget extends StatelessWidget {
+class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false})
+  const CreditCardApplicationUnderReviewWidget(
+      {Key? key, this.isSmallDevices: false})
       : super(key: key);
 
   @override
@@ -50,52 +50,18 @@ class ApplyCreditCardWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 10, left: 23, right: 23),
+                    padding: EdgeInsets.only(top: 10, left: 28, right: 28),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        S.of(context).blinkCreditCard,
+                        S.of(context).creditCardApplicationUnderReviewDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: isSmallDevices ? 10 : 12,
+                            fontSize: isSmallDevices ? 12 : 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),
                     )),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: isSmallDevices ? 50 : 88,
-                      // bottom: isSmallDevices ? 30 : 50,
-                      left: isSmallDevices ? 34 : 24,
-                      right: isSmallDevices ? 34 : 24),
-                  child: Center(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.BlinkCreditCard);
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-                        decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1
-                                ?.color,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Center(
-                          child: Text(
-                            S.of(context).applyNow,
-                            style: TextStyle(
-                                fontSize: isSmallDevices ? 12 : 14,
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).accentColor),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

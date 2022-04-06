@@ -414,7 +414,7 @@
   "idCardExpired": "Your ID is expired. Please try again after renewing your ID.",
   "deviceNotFound": "Device Not Found",
   "getLater": "I’ll get it later",
-  "getCardNow": "Get your card now!",
+  "getCardNow": "Get your card now",
   "totalBalance": "Total Balance",
   "myAccount": "My Account",
   "availableBalance": "AVAILABLE BALANCE",
@@ -1208,5 +1208,10 @@
   "applyForCreditCard": "APPLY FOR CREDIT CARD",
   "timeForQuickVideoCall": "It’s time for a quick\nvideo call",
   "verificationCallEnded": "Verification call\nhas ended",
-  "verificationCallEndedDesc": "Call is completed.\nYou’ll be notified on the application status."
+  "verificationCallEndedDesc": "Call is completed.\nYou’ll be notified on the application status.",
+  "verifyViaVideoCallCC": "Verify yourself via video call with our Engagement Team to complete your credit card application.",
+  "verifyNow": "Verify now",
+  "creditCardApplicationUnderReviewDesc": "Your application is being reviewed. You’ll be notified soon.",
+  "getCreditCardNowDesc": "Your application is success. Time to get your card!",
+  "applicationRejectedByEngagementTeam": "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."
 }

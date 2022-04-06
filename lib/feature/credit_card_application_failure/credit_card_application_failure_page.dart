@@ -7,6 +7,11 @@ import 'package:neo_bank/feature/credit_card_application_failure/credit_card_app
 
 class CreditCardApplicationFailurePage
     extends BasePage<CreditCardApplicationFailureViewModel> {
+  final CreditCardApplicationFailureArguments
+      _creditCardApplicationFailureArguments;
+
+  CreditCardApplicationFailurePage(this._creditCardApplicationFailureArguments);
+
   @override
   CreditCardApplicationFailurePageState createState() =>
       CreditCardApplicationFailurePageState();
@@ -16,7 +21,8 @@ class CreditCardApplicationFailurePageState extends BaseStatefulPage<
     CreditCardApplicationFailureViewModel, CreditCardApplicationFailurePage> {
   @override
   ProviderBase provideBase() {
-    return creditCardApplicationFailureViewModelProvider;
+    return creditCardApplicationFailureViewModelProvider
+        .call(widget._creditCardApplicationFailureArguments);
   }
 
   @override
@@ -29,4 +35,13 @@ class CreditCardApplicationFailurePageState extends BaseStatefulPage<
       BuildContext context, CreditCardApplicationFailureViewModel model) {
     return CreditCardApplicationFailurePageView(provideBase());
   }
+}
+
+enum CreditFailureState { InEligible, EngagementTeamRejection }
+
+class CreditCardApplicationFailureArguments {
+  final CreditFailureState creditFailureState;
+
+  CreditCardApplicationFailureArguments(
+      {this.creditFailureState: CreditFailureState.InEligible});
 }

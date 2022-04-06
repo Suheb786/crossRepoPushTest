@@ -5,10 +5,10 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class ApplyCreditCardWidget extends StatelessWidget {
+class VerifyCreditCardVideoCallWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false})
+  const VerifyCreditCardVideoCallWidget({Key? key, this.isSmallDevices: false})
       : super(key: key);
 
   @override
@@ -54,10 +54,10 @@ class ApplyCreditCardWidget extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        S.of(context).blinkCreditCard,
+                        S.of(context).verifyViaVideoCallCC,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: isSmallDevices ? 10 : 12,
+                            fontSize: isSmallDevices ? 12 : 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),
@@ -72,7 +72,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(
-                            context, RoutePaths.BlinkCreditCard);
+                            context, RoutePaths.CreditCardVideoCallInitiate);
                       },
                       child: Container(
                         padding:
@@ -85,7 +85,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            S.of(context).applyNow,
+                            S.of(context).verifyNow,
                             style: TextStyle(
                                 fontSize: isSmallDevices ? 12 : 14,
                                 fontWeight: FontWeight.w600,

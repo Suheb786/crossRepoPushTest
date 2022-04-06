@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -16,8 +18,12 @@ class CreditCardVideoCallCompletePageView
   @override
   Widget build(BuildContext context, model) {
     return GestureDetector(
-      onVerticalDragEnd: (details) {
+      onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .getDashboardData();
         } else {
           //Navigator.pop(context);
         }

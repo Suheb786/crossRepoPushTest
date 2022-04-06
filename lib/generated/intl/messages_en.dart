@@ -162,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Application Is In Process"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
+        "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
+            "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."),
         "applicationSubmitted":
             MessageLookupByLibrary.simpleMessage("Application submitted"),
         "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
@@ -439,6 +441,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it."),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
+        "creditCardApplicationUnderReviewDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your application is being reviewed. You’ll be notified soon."),
         "creditCardDataNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
         "creditCardDelivered":
@@ -922,8 +927,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCardDelivered": MessageLookupByLibrary.simpleMessage(
             "Blink has made borrowing more accessible to everyone. With only a few steps, get your instant virtual credit card and we will deliver the physical one to your door step for free."),
-        "getCardNow":
-            MessageLookupByLibrary.simpleMessage("Get your card now!"),
+        "getCardNow": MessageLookupByLibrary.simpleMessage("Get your card now"),
         "getCipherError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCitiesByCountryError": MessageLookupByLibrary.simpleMessage(
@@ -936,6 +940,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCountriesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "getCreditCardNowDesc": MessageLookupByLibrary.simpleMessage(
+            "Your application is success. Time to get your card!"),
         "getCreditYearsError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCurrentValuesError": MessageLookupByLibrary.simpleMessage(
@@ -2115,6 +2121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party."),
+        "verifyNow": MessageLookupByLibrary.simpleMessage("Verify now"),
         "verifyOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyOtpPasswordError": MessageLookupByLibrary.simpleMessage(
@@ -2123,6 +2130,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
+            "Verify yourself via video call with our Engagement Team to complete your credit card application."),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),

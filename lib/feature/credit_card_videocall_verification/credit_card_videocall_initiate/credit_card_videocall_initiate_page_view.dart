@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -15,8 +16,9 @@ class CreditCardVideoCallInitiatePageView
   @override
   Widget build(BuildContext context, model) {
     return GestureDetector(
-      onVerticalDragEnd: (details) {
+      onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
+          Navigator.pushNamed(context, RoutePaths.CreditCardVideoCallComplete);
         } else {
           //Navigator.pop(context);
         }

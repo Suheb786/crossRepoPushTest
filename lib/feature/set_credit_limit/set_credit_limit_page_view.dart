@@ -4,6 +4,7 @@ import 'package:domain/model/card/process_loan_request/process_loan_request_resp
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -37,7 +38,10 @@ class SetCreditLimitPageView
                   if (data.status == Status.ERROR) {
                     if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
                       Navigator.pushReplacementNamed(
-                          context, RoutePaths.CreditCardApplicationFailure);
+                          context, RoutePaths.CreditCardApplicationFailure,
+                          arguments: CreditCardApplicationFailureArguments(
+                              creditFailureState:
+                                  CreditFailureState.InEligible));
                     } else {
                       model.showToastWithError(data.appError!);
                     }
@@ -61,7 +65,11 @@ class SetCreditLimitPageView
                           } else if (data.appError!.type ==
                               ErrorType.USER_NOT_ELIGIBLE) {
                             Navigator.pushReplacementNamed(context,
-                                RoutePaths.CreditCardApplicationFailure);
+                                RoutePaths.CreditCardApplicationFailure,
+                                arguments:
+                                    CreditCardApplicationFailureArguments(
+                                        creditFailureState:
+                                            CreditFailureState.InEligible));
                           } else {
                             model.showToastWithError(data.appError!);
                           }

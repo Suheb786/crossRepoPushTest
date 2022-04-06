@@ -462,7 +462,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardApplicationFailure:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardApplicationFailurePage(),
+            builder: (context) => CreditCardApplicationFailurePage(
+                settings.arguments as CreditCardApplicationFailureArguments),
             settings:
                 RouteSettings(name: RoutePaths.CreditCardApplicationFailure));
 
