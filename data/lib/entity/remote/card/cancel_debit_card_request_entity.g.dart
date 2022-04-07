@@ -13,6 +13,7 @@ CancelDebitCardRequestEntity _$CancelDebitCardRequestEntityFromJson(
     getToken: json['getToken'] as bool?,
     status: json['Status'] as String?,
     tokenizedPan: json['TokenizedPan'] as String?,
+    cancellationReason: json['CancellationReason'] as String?,
   );
 }
 
@@ -22,5 +23,6 @@ Map<String, dynamic> _$CancelDebitCardRequestEntityToJson(
       'Status': instance.status,
       'TokenizedPan': instance.tokenizedPan,
       'getToken': instance.getToken,
+      'CancellationReason': instance.cancellationReason,
       'BaseClass': instance.baseData,
     };

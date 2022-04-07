@@ -197,10 +197,16 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> cancelDebitCard(
-      {String? reason, String? status, String? tokenizedPan}) async {
+      {String? reason,
+      String? status,
+      String? tokenizedPan,
+      String? cancellationReason}) async {
     final result = await safeApiCall(
       _remoteDs.cancelDebitCard(
-          reason: reason, status: status, tokenizedPan: tokenizedPan),
+          reason: reason,
+          status: status,
+          tokenizedPan: tokenizedPan,
+          cancellationReason: cancellationReason),
     );
     return result!.fold(
       (l) => Left(l),

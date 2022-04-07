@@ -247,7 +247,8 @@ class DebitCardSettingsPageView
                                         tokenizedPlan: model
                                             .debitCardSettingsArguments
                                             .debitCard
-                                            .code);
+                                            .code,
+                                        cancellationReason: reasonValue);
                                   },
                                   onDismissed: () {
                                     Navigator.pop(context);

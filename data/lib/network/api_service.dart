@@ -506,7 +506,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
       @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
-  @POST("/DebitCard/CancelCard")
+  @POST("/DebitCard/CancelCardV2")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
       @Body() CancelDebitCardRequestEntity cancelDebitCardRequest);
 

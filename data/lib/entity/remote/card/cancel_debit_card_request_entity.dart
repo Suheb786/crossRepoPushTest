@@ -10,15 +10,17 @@ class CancelDebitCardRequestEntity {
   final String? tokenizedPan;
   @JsonKey(name: "getToken")
   final bool? getToken;
+  @JsonKey(name: "CancellationReason")
+  final String? cancellationReason;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  CancelDebitCardRequestEntity({
-    required this.baseData,
-    this.getToken: true,
-    this.status: "",
-    this.tokenizedPan: "",
-  });
+  CancelDebitCardRequestEntity(
+      {required this.baseData,
+      this.getToken: true,
+      this.status: "",
+      this.tokenizedPan: "",
+      this.cancellationReason: ""});
 
   factory CancelDebitCardRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CancelDebitCardRequestEntityFromJson(json);

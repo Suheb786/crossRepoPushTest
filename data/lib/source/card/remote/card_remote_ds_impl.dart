@@ -192,12 +192,16 @@ class CardRemoteDsImpl extends CardRemoteDs {
 
   @override
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      {String? reason, String? status, String? tokenizedPan}) async {
+      {String? reason,
+      String? status,
+      String? tokenizedPan,
+      String? cancellationReason}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.cancelDebitCard(CancelDebitCardRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         status: status,
+        cancellationReason: cancellationReason,
         tokenizedPan: tokenizedPan));
   }
 
