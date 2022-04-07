@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_p
 
 class DebitCardReplacementPage
     extends BasePage<DebitCardReplacementPageViewModel> {
+  final DebitCardReplacementArguments _debitCardReplacementArguments;
+
+  DebitCardReplacementPage(this._debitCardReplacementArguments);
+
   @override
   DebitCardReplacementPageState createState() =>
       DebitCardReplacementPageState();
@@ -20,8 +24,30 @@ class DebitCardReplacementPageState extends BaseStatefulPage<
   }
 
   @override
+  void onModelReady(DebitCardReplacementPageViewModel model) {
+    super.onModelReady(model);
+    if (widget._debitCardReplacementArguments != null) {
+      if (widget._debitCardReplacementArguments.isPinSet) {
+        Future.delayed(Duration(microseconds: 100), () {
+          model.navigateToPage(0);
+        });
+      } else {
+        Future.delayed(Duration(microseconds: 100), () {
+          model.moveToPage(1);
+        });
+      }
+    }
+  }
+
+  @override
   Widget buildView(
       BuildContext context, DebitCardReplacementPageViewModel model) {
     return DebitCardReplacementPageView(provideBase());
   }
+}
+
+class DebitCardReplacementArguments {
+  final bool isPinSet;
+
+  DebitCardReplacementArguments({this.isPinSet: true});
 }

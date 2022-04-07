@@ -337,7 +337,6 @@ class LoginViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () {
         return _getCurrentUserUseCase.execute(params: value);
       }).asFlow().listen((event) async {
-        await Future.delayed(Duration(seconds: 4));
         _currentUserResponseSubject.add(event);
       });
     });

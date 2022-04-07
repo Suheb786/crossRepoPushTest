@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -7,8 +8,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 
 class ApplyDebitCardWidget extends StatelessWidget {
   final bool isSmallDevice;
+  final bool isPinSet;
 
-  const ApplyDebitCardWidget({Key? key, this.isSmallDevice: false})
+  const ApplyDebitCardWidget(
+      {Key? key, this.isSmallDevice: false, this.isPinSet: true})
       : super(key: key);
 
   @override
@@ -72,7 +75,9 @@ class ApplyDebitCardWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(
-                            context, RoutePaths.DebitCardReplacement);
+                            context, RoutePaths.DebitCardReplacement,
+                            arguments: DebitCardReplacementArguments(
+                                isPinSet: isPinSet));
                       },
                       child: Container(
                         padding:

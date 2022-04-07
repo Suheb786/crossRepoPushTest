@@ -80,14 +80,14 @@ class CreditCardSettingsPageView
                       BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
                 children: [
-                  Container(
-                    height: 4,
-                    width: 64,
-                    margin: EdgeInsets.only(top: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: AppColor.whiteGray),
-                  ),
+                  // Container(
+                  //   height: 4,
+                  //   width: 64,
+                  //   margin: EdgeInsets.only(top: 8),
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(4),
+                  //       color: AppColor.whiteGray),
+                  // ),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24),

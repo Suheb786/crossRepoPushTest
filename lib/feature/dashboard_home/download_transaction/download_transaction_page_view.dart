@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:domain/constants/enum/statement_type.dart';
 import 'package:domain/model/card/card_statement_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +14,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class DownloadTransactionPageView
     extends BasePageViewWidget<DownloadTransactionViewModel> {
@@ -78,28 +78,39 @@ class DownloadTransactionPageView
                               dataBuilder: (context, statementResponse) {
                                 return Column(
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 38, left: 24, right: 24),
-                                      child: Container(
-                                        height:
-                                            MediaQuery.of(context).size.height /
+                                    statementResponse!.status == Status.SUCCESS
+                                        ? Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 38, left: 24, right: 24),
+                                            child: Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  2,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color:
+                                                          AppColor.white_gray,
+                                                      width: 1)),
+                                              width: double.infinity,
+                                              child: SfPdfViewer.memory(
+                                                statementResponse
+                                                    .data!
+                                                    .cardStatementContent!
+                                                    .pdfUint8List,
+                                              ),
+                                            ),
+                                          )
+                                        : Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
                                                 2,
-                                        width: double.infinity,
-                                        child: model.arguments.statementType ==
-                                                StatementType.Debit
-                                            ? Image.asset(
-                                                AssetUtils.accountStatement,
-                                                fit: BoxFit.contain,
-                                              )
-                                            : Image.asset(
-                                                AssetUtils.creditStatement,
-                                                fit: BoxFit.fill),
-                                      ),
-                                    ),
+                                            width: double.infinity,
+                                          ),
                                     InkWell(
                                       onTap: () async {
-                                        if (statementResponse!.status ==
+                                        if (statementResponse.status ==
                                             Status.SUCCESS) {
                                           _shareFiles(
                                               context,

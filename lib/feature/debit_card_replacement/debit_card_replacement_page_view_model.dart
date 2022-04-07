@@ -15,6 +15,10 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
+  void navigateToPage(int index) {
+    if (index != null) swiperController.move(index, animation: false);
+  }
+
   void nextPage() {
     appSwiperController.nextPage(
         duration: Duration(seconds: 1), curve: Curves.linear);
@@ -27,6 +31,12 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
 
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
+  }
+
+  void moveToPage(int index) {
+    appSwiperController.jumpToPage(
+      index,
+    );
   }
 
   @override
