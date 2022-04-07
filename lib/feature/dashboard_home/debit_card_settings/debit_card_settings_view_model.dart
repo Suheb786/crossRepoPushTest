@@ -114,9 +114,15 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   }
 
   void cancelCard(
-      {String? reasonValue, String? status, String? tokenizedPlan}) {
+      {String? reasonValue,
+      String? status,
+      String? tokenizedPlan,
+      String? cancellationReason}) {
     _cancelCardRequestSubject.safeAdd(CancelDebitCardUseCaseParams(
-        status: status!, reason: reasonValue!, tokenizedPan: tokenizedPlan!));
+        status: status!,
+        reason: reasonValue!,
+        tokenizedPan: tokenizedPlan!,
+        cancellationReason: cancellationReason!));
   }
 
   void updateFreezeStatus(bool value) {

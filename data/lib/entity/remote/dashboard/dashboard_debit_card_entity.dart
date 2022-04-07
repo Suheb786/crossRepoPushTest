@@ -32,6 +32,8 @@ class DashboardDebitCardEntity
   final DateTime? debitCardActivated;
   @JsonKey(name: "primarySecondaryCard")
   final String? primarySecondaryCard;
+  @JsonKey(name: "isPINSet")
+  final bool? isPINSet;
 
   DashboardDebitCardEntity(
       {this.accountTitle: "",
@@ -44,7 +46,8 @@ class DashboardDebitCardEntity
       this.debitCardActivated,
       this.cardStatus,
       this.code,
-      this.primarySecondaryCard: ''});
+      this.primarySecondaryCard: '',
+      this.isPINSet: true});
 
   factory DashboardDebitCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDebitCardEntityFromJson(json);
@@ -75,6 +78,7 @@ class DashboardDebitCardEntity
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
         code: this.code ?? '',
         isDebitDelivered: this.isDebitDelivered ?? false,
+        isPINSet: this.isPINSet ?? true,
         primarySecondaryCard:
             this.primarySecondaryCard!.fromPrimarySecondaryCardValue());
   }
