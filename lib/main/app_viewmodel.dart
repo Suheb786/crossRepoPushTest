@@ -113,8 +113,8 @@ class AppViewModel extends BaseViewModel {
                 iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
             textSelectionTheme: TextSelectionThemeData(
               cursorColor: AppColor.veryDarkGray2,
-              selectionHandleColor: AppColor.veryDarkGray2,
-              selectionColor: AppColor.veryDarkGray2,
+              selectionHandleColor: Colors.blue,
+              selectionColor: Colors.blue.withOpacity(0.3),
             ),
             inputDecorationTheme: InputDecorationTheme(
                 hintStyle: TextStyle(
