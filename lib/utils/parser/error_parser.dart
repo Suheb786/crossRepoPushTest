@@ -1030,6 +1030,8 @@ class ErrorParser {
         return localisedHelper.scanIdToProceedFurther;
       case ErrorType.REQUEST_TIMEOUT:
         return localisedHelper.requestTimeOut;
+      case ErrorType.INVALID_ID_VERIFICATION:
+        return localisedHelper.idVerificationFailed;
 
       default:
         return "";

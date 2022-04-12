@@ -337,68 +337,75 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Either<LocalError, ScannedDocumentInformation>>
-      scanUserDocument() async {
+  scanUserDocument() async {
     final document = await _localDS.scanUserDocument();
     return document.fold(
-        (l) => Left(l),
-        (r) => Right(ScannedDocumentInformation(
-            fullName: StringConverter.getFullName(
-                primaryId: r.mrzResult!.primaryId ?? '',
-                secondaryId: r.mrzResult!.secondaryId ?? '',
-                fullName: r.fullName),
-            firstName: r.mrzResult!.secondaryId
+            (l) => Left(l),
+            (r) =>
+            Right(ScannedDocumentInformation(
+                fullName: StringConverter.getFullName(
+                    primaryId: r.mrzResult!.primaryId ?? '',
+                    secondaryId: r.mrzResult!.secondaryId ?? '',
+                    fullName: r.fullName),
+                firstName: r.mrzResult!.secondaryId
                     ?.trim()
                     .split(" ")
                     .elementAt(0)
                     .toString() ??
-                r.firstName ??
-                "",
-            middleName:
+                    r.firstName ??
+                    "",
+                middleName:
                 StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
-            familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
-            idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber ?? '',
-            dob: r.dateOfBirth != null
-                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+                familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
+                idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber ??
+                    '',
+                dob: r.dateOfBirth != null
+                    ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
                     r.dateOfBirth!.day!)
-                : DateTime(0),
-            nationality: r.nationality!.isNotEmpty ? r.nationality : '',
-            doe: r.dateOfExpiry != null
-                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                    : DateTime(0),
+                nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+                doe: r.dateOfExpiry != null
+                    ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
                     r.dateOfExpiry!.day!)
-                : DateTime(0),
-            gender: r.sex!.isNotEmpty ? r.sex : '',
-            motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
-            documentCode: r.mrzResult!.documentCode!.isNotEmpty
-                ? r.mrzResult!.documentCode
-                : '',
-            documentNumber:
+                    : DateTime(0),
+                gender: r.sex!.isNotEmpty ? r.sex : '',
+                motherName: r.mothersName != null
+                    ? (r.mothersName!.isNotEmpty ? r.mothersName : '')
+                    : "",
+                documentCode: r.mrzResult!.documentCode!.isNotEmpty
+                    ? r.mrzResult!.documentCode
+                    : '',
+                documentNumber:
                 r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber ?? '',
-            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            frontCardImage: r.fullDocumentFrontImage,
-            backCardImage: r.fullDocumentBackImage,
-            personFaceImage: r.faceImage,
-            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingDate: r.dateOfIssue != null &&
+                issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                frontCardImage: r.fullDocumentFrontImage,
+                backCardImage: r.fullDocumentBackImage,
+                personFaceImage: r.faceImage,
+                issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingDate: r.dateOfIssue != null &&
                     r.dateOfIssue!.year != 0 &&
                     r.dateOfIssue!.month != 0 &&
                     r.dateOfIssue!.day != 0
-                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                    ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
-                : r.dateOfExpiry != null
+                    : r.dateOfExpiry != null
                     ? DateTime(r.dateOfExpiry!.year! - 10,
-                        r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
+                    r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
                     : DateTime(0),
-            currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
+                currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                nationalityIsoCode3: r.mrzResult?.nationality ?? "",
+                placeOfBirth: r.placeOfBirth != null
+                    ? (r.placeOfBirth!.isNotEmpty ? r.placeOfBirth : "")
+                    : "")));
   }
 
   @override

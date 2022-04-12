@@ -1201,5 +1201,6 @@
   "pending": "Pending",
   "transactionType": "Transaction Type",
   "paymentPeriod": "Payment Period",
-  "fromMe": "From Me"
+  "fromMe": "From Me",
+  "idVerificationFailed": "ID verification failed, can’t proceed"
 }
