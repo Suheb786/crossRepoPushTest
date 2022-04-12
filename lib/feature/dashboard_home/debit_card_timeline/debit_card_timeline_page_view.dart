@@ -590,16 +590,19 @@ class DebitCardTimeLinePageView
                       ],
                     ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Container(
-                height: 150,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(AssetUtils.credit),
-                        fit: BoxFit.contain),
-                    borderRadius: BorderRadius.circular(16)),
+            Visibility(
+              visible: false,
+              child: Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Container(
+                  height: 150,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(AssetUtils.credit),
+                          fit: BoxFit.contain),
+                      borderRadius: BorderRadius.circular(16)),
+                ),
               ),
             ),
             Spacer(),
@@ -610,7 +613,7 @@ class DebitCardTimeLinePageView
                 Center(
                   child: Container(
                     width: 281,
-                    height: 100,
+                    height: 90,
                     margin: EdgeInsets.only(top: 8),
                     decoration: BoxDecoration(
                         color: model.timeLineArguments.cardType ==

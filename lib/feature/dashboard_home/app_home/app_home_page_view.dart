@@ -1261,72 +1261,75 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 48),
-                                        child: Container(
-                                          height: 150,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                              // color: Theme.of(context)
-                                              //     .primaryColor,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AssetUtils.credit),
-                                                  fit: BoxFit.contain),
-                                              borderRadius:
-                                                  BorderRadius.circular(16)),
-                                          // child: Padding(
-                                          //   padding: EdgeInsets.only(
-                                          //       top: 31,
-                                          //       right: 26,
-                                          //       bottom: 31,
-                                          //       left: 19),
-                                          //   child: Row(
-                                          //     children: [
-                                          //       Image.asset(
-                                          //         AssetUtils.blink,
-                                          //         width: 50,
-                                          //       ),
-                                          //       Expanded(child: Container()),
-                                          //       InkWell(
-                                          //         onTap: () {
-                                          //           Navigator.pushNamed(
-                                          //               context,
-                                          //               RoutePaths
-                                          //                   .BlinkCreditCard);
-                                          //         },
-                                          //         child: Container(
-                                          //           decoration: BoxDecoration(
-                                          //               color: Theme.of(context)
-                                          //                   .accentTextTheme
-                                          //                   .bodyText1!
-                                          //                   .color,
-                                          //               borderRadius:
-                                          //               BorderRadius
-                                          //                   .circular(20)),
-                                          //           child: Padding(
-                                          //             padding:
-                                          //             EdgeInsets.symmetric(
-                                          //                 vertical: 8,
-                                          //                 horizontal: 15),
-                                          //             child: Text(
-                                          //               S
-                                          //                   .of(context)
-                                          //                   .getCardNow,
-                                          //               style: TextStyle(
-                                          //                   fontWeight:
-                                          //                   FontWeight.w600,
-                                          //                   fontSize: 14,
-                                          //                   color: Theme.of(
-                                          //                       context)
-                                          //                       .accentColor),
-                                          //             ),
-                                          //           ),
-                                          //         ),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ),
+                                      Visibility(
+                                        visible: false,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 48),
+                                          child: Container(
+                                            height: 150,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                                // color: Theme.of(context)
+                                                //     .primaryColor,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        AssetUtils.credit),
+                                                    fit: BoxFit.contain),
+                                                borderRadius:
+                                                    BorderRadius.circular(16)),
+                                            // child: Padding(
+                                            //   padding: EdgeInsets.only(
+                                            //       top: 31,
+                                            //       right: 26,
+                                            //       bottom: 31,
+                                            //       left: 19),
+                                            //   child: Row(
+                                            //     children: [
+                                            //       Image.asset(
+                                            //         AssetUtils.blink,
+                                            //         width: 50,
+                                            //       ),
+                                            //       Expanded(child: Container()),
+                                            //       InkWell(
+                                            //         onTap: () {
+                                            //           Navigator.pushNamed(
+                                            //               context,
+                                            //               RoutePaths
+                                            //                   .BlinkCreditCard);
+                                            //         },
+                                            //         child: Container(
+                                            //           decoration: BoxDecoration(
+                                            //               color: Theme.of(context)
+                                            //                   .accentTextTheme
+                                            //                   .bodyText1!
+                                            //                   .color,
+                                            //               borderRadius:
+                                            //               BorderRadius
+                                            //                   .circular(20)),
+                                            //           child: Padding(
+                                            //             padding:
+                                            //             EdgeInsets.symmetric(
+                                            //                 vertical: 8,
+                                            //                 horizontal: 15),
+                                            //             child: Text(
+                                            //               S
+                                            //                   .of(context)
+                                            //                   .getCardNow,
+                                            //               style: TextStyle(
+                                            //                   fontWeight:
+                                            //                   FontWeight.w600,
+                                            //                   fontSize: 14,
+                                            //                   color: Theme.of(
+                                            //                       context)
+                                            //                       .accentColor),
+                                            //             ),
+                                            //           ),
+                                            //         ),
+                                            //       ),
+                                            //     ],
+                                            //   ),
+                                            // ),
+                                          ),
                                         ),
                                       ),
                                       Spacer(),
