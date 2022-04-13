@@ -12,6 +12,7 @@ import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/credit_card_video_call/credit_card_call_status_update_request.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_credit_card_relationship_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_application_response_entity.dart';
@@ -496,5 +497,16 @@ class CardRemoteDsImpl extends CardRemoteDs {
     return _apiService.getCreditCardRelationShipList(
         GetCreditCardRelationshipRequestEntity(
             baseData: baseData.toJson(), getToken: true, cardId: cardId));
+  }
+
+  @override
+  Future<HttpResponse<bool>> callStatusUpdate(
+      {String? cardId, String? status}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.callStatusUpdate(CreditCardCallStatusUpdateRequest(
+        baseData: baseData.toJson(),
+        cardId: cardId,
+        getToken: false,
+        status: status));
   }
 }

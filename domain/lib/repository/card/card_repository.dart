@@ -158,4 +158,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, CreditCardRelationshipResponse>>
       getCreditCardRelationShipList({required String cardId});
+
+  Future<Either<NetworkError, bool>> callStatusUpdate(
+      {String? cardId, String? status});
 }

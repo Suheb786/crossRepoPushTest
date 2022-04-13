@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page_view_model.dart';
@@ -201,7 +202,8 @@ final supplementaryDebitCardSuccessViewModelProvider = ChangeNotifierProvider
 ///credit card video call verification initiate view model provider
 final creditCardVideoCallInitiateViewModelProvider = ChangeNotifierProvider
     .autoDispose<CreditCardVideoCallInitiatePageViewModel>(
-  (ref) => CreditCardVideoCallInitiatePageViewModel(),
+  (ref) => CreditCardVideoCallInitiatePageViewModel(
+      ref.read(requestCallUsecaseProvider)),
 );
 
 ///credit card video call verification complete view model provider
