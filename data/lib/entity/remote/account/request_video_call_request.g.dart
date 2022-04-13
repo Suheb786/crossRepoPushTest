@@ -11,6 +11,7 @@ RequestVideoCallRequest _$RequestVideoCallRequestFromJson(
   return RequestVideoCallRequest(
     gender: json['Gender'] as String?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
+    type: json['Type'] as String?,
   );
 }
 
@@ -18,5 +19,6 @@ Map<String, dynamic> _$RequestVideoCallRequestToJson(
         RequestVideoCallRequest instance) =>
     <String, dynamic>{
       'Gender': instance.gender,
+      'Type': instance.type,
       'BaseClass': instance.baseData,
     };

@@ -36,7 +36,7 @@ abstract class AccountRepository {
   Future<Either<NetworkError, AgentGenderStatus>> checkGenderStatus();
 
   /// Request New Call
-  Future<Either<NetworkError, RequestCallStatus>> requestCall();
+  Future<Either<NetworkError, RequestCallStatus>> requestCall(String? type);
 
   Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(
       String callDate);

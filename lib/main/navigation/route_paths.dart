@@ -102,4 +102,5 @@ class RoutePaths {
       "/creditCardVideoCallInitiate";
   static const String CreditCardVideoCallComplete =
       "/creditCardVideoCallComplete";
+  static const String CreditCardVideoKyc = "/creditCardVideoKyc";
 }

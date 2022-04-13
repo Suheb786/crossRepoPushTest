@@ -25,6 +25,14 @@ class CreditCardVideoCallInitiatePageState extends BaseStatefulPage<
   }
 
   @override
+  void onModelReady(CreditCardVideoCallInitiatePageViewModel model) {
+    super.onModelReady(model);
+    Future.delayed(Duration(seconds: 2), () {
+      model.getAgoraCredentials();
+    });
+  }
+
+  @override
   Widget buildView(
       BuildContext context, CreditCardVideoCallInitiatePageViewModel model) {
     return CreditCardVideoCallInitiatePageView(provideBase());

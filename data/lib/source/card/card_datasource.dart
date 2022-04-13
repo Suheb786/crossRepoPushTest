@@ -158,4 +158,6 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<CreditCardRelationshipResponseEntity>>
       getCreditCardRelationShipList({required String cardId});
+
+  Future<HttpResponse<bool>> callStatusUpdate({String? cardId, String? status});
 }

@@ -528,4 +528,15 @@ class CardRepositoryImpl extends CardRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> callStatusUpdate(
+      {String? cardId, String? status}) async {
+    final result = await safeApiCall(
+        _remoteDs.callStatusUpdate(cardId: cardId, status: status));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data),
+    );
+  }
 }
