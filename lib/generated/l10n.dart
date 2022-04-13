@@ -11841,6 +11841,16 @@ class S {
     );
   }
 
+  /// `ID verification failed, can’t proceed`
+  String get idVerificationFailed {
+    return Intl.message(
+      'ID verification failed, can’t proceed',
+      name: 'idVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Apply now`
   String get applyNow {
     return Intl.message(
