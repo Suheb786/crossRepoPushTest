@@ -447,7 +447,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
-  @POST("/Dashboard/GetDashboardDataV2")
+  @POST("/Dashboard/GetDashboardDataV3")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
@@ -465,7 +465,7 @@ abstract class ApiService {
   Future<HttpResponse<AtmsResponseEntity>> getAtms(
       @Body() BaseRequest baseRequest);
 
-  @POST("/CardTracking/CreditCardReq")
+  @POST("/CardTracking/CreditCardReqV1")
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
       @Body() RequestCardRequest requestCardRequest);
 
