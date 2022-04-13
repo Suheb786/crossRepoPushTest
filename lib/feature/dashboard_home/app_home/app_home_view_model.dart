@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -16,6 +17,8 @@ import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.d
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
+import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
+import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -209,14 +212,42 @@ class AppHomeViewModel extends BasePageViewModel {
               if (creditCard.primarySecondaryCard ==
                   PrimarySecondaryCardEnum.SECONDARY) {
               } else {
-                pages.add(ApplyCreditCardWidget(
-                  isSmallDevices: isSmallDevices,
-                ));
+                switch (creditCard.callStatus) {
+                  case CreditCardCallStatusEnum.APPROVED:
+                    pages.add(GetCreditCardNowWidget(
+                      isSmallDevices: isSmallDevices,
+                      key: ValueKey('credit#GetCreditCardNowWidget#'),
+                    ));
+                    cardTypeList.add(TimeLineSwipeUpArgs(
+                        cardType: CardType.CREDIT,
+                        swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    break;
 
-                ///adding cardType
-                cardTypeList.add(TimeLineSwipeUpArgs(
-                    cardType: CardType.CREDIT,
-                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                  case CreditCardCallStatusEnum.DROP:
+                  case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
+                    pages.add(VerifyCreditCardVideoCallWidget(
+                      isSmallDevices: isSmallDevices,
+                    ));
+
+                    ///adding cardType
+                    cardTypeList.add(TimeLineSwipeUpArgs(
+                        cardType: CardType.CREDIT,
+                        swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    break;
+
+                  case CreditCardCallStatusEnum.REJECTED:
+                    break;
+
+                  default:
+                    pages.add(ApplyCreditCardWidget(
+                      isSmallDevices: isSmallDevices,
+                    ));
+
+                    ///adding cardType
+                    cardTypeList.add(TimeLineSwipeUpArgs(
+                        cardType: CardType.CREDIT,
+                        swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                }
               }
             }
           });

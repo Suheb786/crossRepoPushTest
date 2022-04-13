@@ -13,6 +13,8 @@ class CreditCardCallStatusEnum {
   static const CreditCardCallStatusEnum DROP = CreditCardCallStatusEnum._("D");
   static const CreditCardCallStatusEnum REJECTED =
       CreditCardCallStatusEnum._("R");
+  static const CreditCardCallStatusEnum CALL_NOT_RECEIVED =
+      CreditCardCallStatusEnum._("");
   static const CreditCardCallStatusEnum NONE =
       CreditCardCallStatusEnum._("None");
 }
@@ -26,8 +28,8 @@ extension CreditCardCallStatusEnumExt on String {
         return CreditCardCallStatusEnum.DROP;
       case "R":
         return CreditCardCallStatusEnum.REJECTED;
-      case "None":
-        return CreditCardCallStatusEnum.NONE;
+      case "":
+        return CreditCardCallStatusEnum.CALL_NOT_RECEIVED;
       default:
         return CreditCardCallStatusEnum.NONE;
     }
