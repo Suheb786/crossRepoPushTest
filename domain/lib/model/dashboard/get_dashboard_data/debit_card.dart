@@ -13,7 +13,8 @@ class DebitCard {
       this.isDebitDelivered,
       this.debitDeliveredDatetime,
       this.code,
-      this.primarySecondaryCard: PrimarySecondaryEnum.NONE});
+      this.primarySecondaryCard: PrimarySecondaryEnum.NONE,
+      this.isPINSet: true});
 
   String? accountTitle;
   String? cardNumber;
@@ -23,6 +24,7 @@ class DebitCard {
   FreezeCardStatusEnum? cardStatus;
   String? code;
   bool? isDebitDelivered;
+  bool? isPINSet;
   dynamic? debitDeliveredDatetime;
   DateTime? debitCardActivated;
   PrimarySecondaryEnum? primarySecondaryCard;

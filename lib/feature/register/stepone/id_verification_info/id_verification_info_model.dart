@@ -212,12 +212,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         dateOfBirth: scannedDocumentInformation.dob!.year == 0
             ? ""
             : scannedDocumentInformation.dob.toString(),
-        nationality: scannedDocumentInformation.nationalityIsoCode3,
+        nationality: scannedDocumentInformation.placeOfBirth,
         expiryDate: scannedDocumentInformation.doe!.year == 0
             ? ""
             : scannedDocumentInformation.doe!.toString(),
         gender: scannedDocumentInformation.gender,
-        motherName: "",
+        motherName: scannedDocumentInformation.motherName,
         legalDocumentNo: scannedDocumentInformation.documentNumber,
         issuingDate: scannedDocumentInformation.issuingDate!.year == 0
             ? ""
@@ -225,6 +225,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         issuingPlace: scannedDocumentInformation.issuingPlaceISo3,
         declarationSelected: true,
         scannedDocumentInformation: scannedDocumentInformation,
+        isValidationRequired: false,
         isMotherNameRequired: false,
         isCardIssueDateRequired: false));
   }

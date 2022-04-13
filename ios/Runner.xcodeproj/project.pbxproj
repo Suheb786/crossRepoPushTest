@@ -398,7 +398,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2204011;
+				CURRENT_PROJECT_VERSION = 2204121;
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -552,8 +552,6 @@
 					"\"firebase_crashlytics\"",
 					"-framework",
 					"\"firebase_performance\"",
-					"-framework",
-					"\"flutter_3des\"",
 					"-framework",
 					"\"flutter_jailbreak_detection\"",
 					"-framework",
@@ -727,7 +725,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2204011;
+				CURRENT_PROJECT_VERSION = 2204121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
@@ -883,8 +881,6 @@
 					"-framework",
 					"\"firebase_performance\"",
 					"-framework",
-					"\"flutter_3des\"",
-					"-framework",
 					"\"flutter_jailbreak_detection\"",
 					"-framework",
 					"\"flutter_secure_storage\"",
@@ -951,7 +947,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2204011;
+				CURRENT_PROJECT_VERSION = 2204121;
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -1105,8 +1101,6 @@
 					"\"firebase_crashlytics\"",
 					"-framework",
 					"\"firebase_performance\"",
-					"-framework",
-					"\"flutter_3des\"",
 					"-framework",
 					"\"flutter_jailbreak_detection\"",
 					"-framework",

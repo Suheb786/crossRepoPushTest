@@ -1339,6 +1339,18 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.AMOUNT_GREATER_THAN_OUTSTANDING);
 
+          case "err-177":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_ID_VERIFICATION);
+
+          case "err-178":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_ID_VERIFICATION);
+
           case "err-150":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);

@@ -1027,6 +1027,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
         "idScanInfo": MessageLookupByLibrary.simpleMessage(
             "Place your ID inside the frame"),
+        "idVerificationFailed": MessageLookupByLibrary.simpleMessage(
+            "ID verification failed, can’t proceed"),
         "idVerificationInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Grab your ID and let\'s\nget scanning"),
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(

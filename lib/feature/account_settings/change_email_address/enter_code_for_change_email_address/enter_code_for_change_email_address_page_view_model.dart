@@ -1,6 +1,7 @@
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_email_address/add_new_email_address_usecase.dart';
 import 'package:domain/usecase/account_setting/change_email_address/validate_otp_for_new_email_address_usecase.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -16,6 +17,8 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
       _validateOtpForNewEmailAddressUseCase;
 
   final AddNewEmailAddressUseCase _addNewEmailUseCase;
+
+  final SaveUserUseCase _saveUserUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
@@ -59,8 +62,15 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
+
   EnterCodeForChangeEmailAddressPageViewModel(
-      this._validateOtpForNewEmailAddressUseCase, this._addNewEmailUseCase) {
+      this._validateOtpForNewEmailAddressUseCase,
+      this._addNewEmailUseCase,
+      this._saveUserUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -89,6 +99,14 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _saveUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _saveuserResponseSubject.safeAdd(event);
+      });
+    });
   }
 
   void validateOtp({required String email}) {
@@ -112,6 +130,10 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   listenForSmsCode() async {
     otpController.clear();
     SmsAutoFill().listenForCode();
+  }
+
+  void saveUserData() {
+    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   @override

@@ -62,6 +62,7 @@ class ConfirmDetailUseCaseParams extends Params {
   final bool isMotherNameRequired;
   final bool isPlaceOfBirthRequired;
   final bool isCardIssueDateRequired;
+  final bool isValidationRequired;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -78,66 +79,71 @@ class ConfirmDetailUseCaseParams extends Params {
       this.motherName,
       this.isPlaceOfBirthRequired: true,
       this.isCardIssueDateRequired: true,
-      this.isMotherNameRequired: true});
+      this.isMotherNameRequired: true,
+      this.isValidationRequired: true});
 
   @override
   Either<AppError, bool> verify() {
-    if (Validator.isEmpty(name!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_NAME,
-          cause: Exception()));
-    } else if (Validator.isEmpty(idNumber!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_ID_NUMBER,
-          cause: Exception()));
-    } else if (Validator.isEmpty(dateOfBirth!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_DATE_OF_BIRTH,
-          cause: Exception()));
-    } else if (Validator.isEmpty(nationality!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_NATIONALITY,
-          cause: Exception()));
-    } else if (Validator.isEmpty(expiryDate!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_EXPIRY_DATE,
-          cause: Exception()));
-    } else if (Validator.isEmpty(gender!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_GENDER,
-          cause: Exception()));
-    } else if (isMotherNameRequired && Validator.isEmpty(motherName!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_MOTHER_NAME,
-          cause: Exception()));
-    } else if (Validator.isEmpty(legalDocumentNo!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_LEGAL_DOCUMENT,
-          cause: Exception()));
-    } else if (isCardIssueDateRequired && Validator.isEmpty(issuingDate!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_ISSUING_DATE,
-          cause: Exception()));
-    } else if (Validator.isEmpty(issuingPlace!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_ISSUING_PLACE,
-          cause: Exception()));
-    } else if (!declarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
+    if (isValidationRequired) {
+      if (Validator.isEmpty(name!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_NAME,
+            cause: Exception()));
+      } else if (Validator.isEmpty(idNumber!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_ID_NUMBER,
+            cause: Exception()));
+      } else if (Validator.isEmpty(dateOfBirth!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_DATE_OF_BIRTH,
+            cause: Exception()));
+      } else if (Validator.isEmpty(nationality!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_NATIONALITY,
+            cause: Exception()));
+      } else if (Validator.isEmpty(expiryDate!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_EXPIRY_DATE,
+            cause: Exception()));
+      } else if (Validator.isEmpty(gender!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_GENDER,
+            cause: Exception()));
+      } else if (isMotherNameRequired && Validator.isEmpty(motherName!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_MOTHER_NAME,
+            cause: Exception()));
+      } else if (Validator.isEmpty(legalDocumentNo!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_LEGAL_DOCUMENT,
+            cause: Exception()));
+      } else if (isCardIssueDateRequired && Validator.isEmpty(issuingDate!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_ISSUING_DATE,
+            cause: Exception()));
+      } else if (Validator.isEmpty(issuingPlace!)) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_ISSUING_PLACE,
+            cause: Exception()));
+      } else if (!declarationSelected) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_DECLARATION_SELECTION,
+            cause: Exception()));
+      }
+      return Right(true);
+    } else {
+      return Right(true);
     }
-    return Right(true);
   }
 }

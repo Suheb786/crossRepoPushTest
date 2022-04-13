@@ -56,7 +56,10 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock();
 
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      {String? reason, String? status, String? tokenizedPan});
+      {String? reason,
+      String? status,
+      String? tokenizedPan,
+      String? cancellationReason});
 
   Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
       {String? status, String? tokenizedPan});

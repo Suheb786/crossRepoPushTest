@@ -410,7 +410,8 @@ class AppRouter {
 
       case RoutePaths.DebitCardReplacement:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardReplacementPage(),
+            builder: (context) => DebitCardReplacementPage(
+                settings.arguments as DebitCardReplacementArguments),
             settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
 
       case RoutePaths.DebitCardReplacementSuccess:

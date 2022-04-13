@@ -1202,6 +1202,7 @@
   "transactionType": "Transaction Type",
   "paymentPeriod": "Payment Period",
   "fromMe": "From Me",
+  "idVerificationFailed": "ID verification failed, can’t proceed",
   "applyNow": "Apply now",
   "applicationSubmitted": "Application submitted",
   "applicationSubmittedDesc": "You are require to verify yourself via video call with our Engagement Team to complete your application.",
