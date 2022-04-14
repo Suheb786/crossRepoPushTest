@@ -566,7 +566,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardVideoCallInitiate:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardVideoCallInitiatePage(),
+            builder: (context) => CreditCardVideoCallInitiatePage(
+                settings.arguments as CreditCardVideoCallInitiateArgs),
             settings:
                 RouteSettings(name: RoutePaths.CreditCardVideoCallInitiate));
 

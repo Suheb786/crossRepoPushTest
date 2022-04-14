@@ -30,6 +30,8 @@ class CreditCardVideoKycPageState
 class CreditCardVideKycCredentials {
   final String channelName;
   final String token;
+  final String cardId;
 
-  CreditCardVideKycCredentials({this.channelName: "", this.token: ""});
+  CreditCardVideKycCredentials(
+      {this.channelName: "", this.token: "", this.cardId: ""});
 }

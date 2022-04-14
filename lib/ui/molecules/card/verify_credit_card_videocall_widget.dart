@@ -1,5 +1,7 @@
+import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -7,8 +9,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 
 class VerifyCreditCardVideoCallWidget extends StatelessWidget {
   final bool isSmallDevices;
+  final CreditCard creditCard;
 
-  const VerifyCreditCardVideoCallWidget({Key? key, this.isSmallDevices: false})
+  const VerifyCreditCardVideoCallWidget(
+      {Key? key, this.isSmallDevices: false, required this.creditCard})
       : super(key: key);
 
   @override
@@ -72,7 +76,9 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(
-                            context, RoutePaths.CreditCardVideoCallInitiate);
+                            context, RoutePaths.CreditCardVideoCallInitiate,
+                            arguments: CreditCardVideoCallInitiateArgs(
+                                creditCard: creditCard));
                       },
                       child: Container(
                         padding:

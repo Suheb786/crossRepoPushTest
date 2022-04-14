@@ -31,14 +31,15 @@ class CreditCardVideoCallInitiatePageView
       child: AppStreamBuilder<Resource<RequestCallStatus>>(
           initialData: Resource.none(),
           stream: model.requestCallStream,
-          onData: (data) async {
+          onData: (data) {
             if (data.status == Status.SUCCESS) {
-              print("got channelName : ${data.data!.callId}");
-              final result = await Navigator.pushNamed(
-                  context, RoutePaths.VideoKyc,
+              Navigator.pushNamed(context, RoutePaths.CreditCardVideoKyc,
                   arguments: CreditCardVideKycCredentials(
                       token: data.data!.conferenceLink,
-                      channelName: data.data!.callId));
+                      channelName: data.data!.callId,
+                      cardId: model.creditCardVideoCallInitiateArgs.creditCard
+                              .cardId ??
+                          ''));
             } else if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             }

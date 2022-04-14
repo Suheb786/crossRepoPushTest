@@ -6,9 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_model.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class CreditCardVideoKycPageView
     extends BasePageViewWidget<CreditCardVideoKycViewModel> {
@@ -52,27 +56,41 @@ class CreditCardVideoKycPageView
             left: 0,
             right: 0,
             bottom: 50,
-            child: InkWell(
-              onTap: () {
-                model.isJoined
-                    ? model.leaveAgoraChannel()
-                    : model.joinAgoraChannel();
-              },
-              child: Container(
-                width: 57,
-                height: 57,
-                padding: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: model.isJoined
-                      ? AppColor.vivid_red
-                      : AppColor.darkModerateLimeGreen,
-                  shape: BoxShape.circle,
-                ),
-                child: model.isJoined
-                    ? AppSvg.asset(AssetUtils.receiver)
-                    : AppSvg.asset(AssetUtils.voiceCall, color: AppColor.white),
-              ),
-            ),
+            child: AppStreamBuilder<Resource<bool>>(
+                stream: model.callEndStatusUpdateStream,
+                initialData: Resource.none(),
+                onData: (response) {
+                  if (response.status == Status.SUCCESS) {
+                    Navigator.pushNamed(
+                      context,
+                      RoutePaths.CreditCardVideoCallComplete,
+                    );
+                  }
+                },
+                dataBuilder: (context, data) {
+                  return InkWell(
+                    onTap: () {
+                      model.isJoined
+                          ? model.leaveAgoraChannel()
+                          : model.joinAgoraChannel();
+                    },
+                    child: Container(
+                      width: 57,
+                      height: 57,
+                      padding: EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: model.isJoined
+                            ? AppColor.vivid_red
+                            : AppColor.darkModerateLimeGreen,
+                        shape: BoxShape.circle,
+                      ),
+                      child: model.isJoined
+                          ? AppSvg.asset(AssetUtils.receiver)
+                          : AppSvg.asset(AssetUtils.voiceCall,
+                              color: AppColor.white),
+                    ),
+                  );
+                }),
           )
         ],
       ),

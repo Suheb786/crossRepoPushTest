@@ -58,6 +58,8 @@ class DashboardCardEntity
   final num? minimumSettlement;
   @JsonKey(name: "callStatus")
   final String? callStatus;
+  @JsonKey(name: "isCallPending")
+  final bool? isCallPending;
 
   DashboardCardEntity(
       {this.name: "",
@@ -83,7 +85,8 @@ class DashboardCardEntity
       this.nextPaymentDate: "",
       this.cardStatus: "",
       this.minimumSettlement: 0,
-      this.callStatus: ""});
+      this.callStatus: "",
+      this.isCallPending: false});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
@@ -98,32 +101,33 @@ class DashboardCardEntity
   @override
   CreditCard transform() {
     return CreditCard(
-      cardNumber: this.cardNumber != null ? this.cardNumber! : "",
-      expiryDate: this.expiryDate ?? '',
-      cvv: this.cvv != null ? (this.cvv!.isNotEmpty ? this.cvv : "") : "",
-      minDue: this.minDue ?? 0.000,
-      availableBalance: this.availableBalance ?? 0.000,
-      maxLimit: this.maxLimit ?? 0.000,
-      name: this.name ?? '',
-      totalAmount: this.totalAmount ?? 0.000,
-      cardId: this.cardId ?? '',
-      creditLimit: this.creditLimit ?? '',
-      creditDeliveredDatetime: this.creditDeliveredDatetime ?? '',
-      isApplied: this.isApplied ?? false,
-      creditCardActivatedDate: this.creditCardActivatedDate ?? '',
-      isCreditDelivered: this.isCreditDelivered ?? false,
-      isSupCard: this.isSupCard ?? false,
-      primarySecondaryCard:
-          this.primarySecondaryCard!.fromPrimarySecondaryCard(),
-      usedBalance: this.usedBalance ?? '',
-      cardCode: this.cardCode ?? '',
-      isCompleted: this.isCompleted ?? false,
-      paymentDueAmount:
-          this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
-      nextPaymentDate: this.nextPaymentDate != null ? this.nextPaymentDate : '',
-      cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
-      minimumSettlement: this.minimumSettlement ?? 0,
-      callStatus: this.callStatus!.fromCreditCardCallStatusValue(),
-    );
+        cardNumber: this.cardNumber != null ? this.cardNumber! : "",
+        expiryDate: this.expiryDate ?? '',
+        cvv: this.cvv != null ? (this.cvv!.isNotEmpty ? this.cvv : "") : "",
+        minDue: this.minDue ?? 0.000,
+        availableBalance: this.availableBalance ?? 0.000,
+        maxLimit: this.maxLimit ?? 0.000,
+        name: this.name ?? '',
+        totalAmount: this.totalAmount ?? 0.000,
+        cardId: this.cardId ?? '',
+        creditLimit: this.creditLimit ?? '',
+        creditDeliveredDatetime: this.creditDeliveredDatetime ?? '',
+        isApplied: this.isApplied ?? false,
+        creditCardActivatedDate: this.creditCardActivatedDate ?? '',
+        isCreditDelivered: this.isCreditDelivered ?? false,
+        isSupCard: this.isSupCard ?? false,
+        primarySecondaryCard:
+            this.primarySecondaryCard!.fromPrimarySecondaryCard(),
+        usedBalance: this.usedBalance ?? '',
+        cardCode: this.cardCode ?? '',
+        isCompleted: this.isCompleted ?? false,
+        paymentDueAmount:
+            this.paymentDueAmount != null ? this.paymentDueAmount : '0.0',
+        nextPaymentDate:
+            this.nextPaymentDate != null ? this.nextPaymentDate : '',
+        cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
+        minimumSettlement: this.minimumSettlement ?? 0,
+        callStatus: this.callStatus!.fromCreditCardCallStatusValue(),
+        isCallPending: this.isCallPending ?? false);
   }
 }

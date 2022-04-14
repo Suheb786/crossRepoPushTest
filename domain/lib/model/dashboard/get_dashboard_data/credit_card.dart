@@ -27,7 +27,8 @@ class CreditCard {
       this.nextPaymentDate: "",
       this.cardStatus: FreezeCardStatusEnum.NONE,
       this.minimumSettlement: 0,
-      this.callStatus: CreditCardCallStatusEnum.NONE});
+      this.callStatus: CreditCardCallStatusEnum.NONE,
+      this.isCallPending: false});
 
   String? name;
   String? cardNumber;
@@ -53,4 +54,5 @@ class CreditCard {
   dynamic paymentDueAmount;
   FreezeCardStatusEnum? cardStatus;
   CreditCardCallStatusEnum? callStatus;
+  bool? isCallPending;
 }

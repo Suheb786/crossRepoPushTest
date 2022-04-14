@@ -15,6 +15,7 @@ import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page_view_model.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
@@ -200,10 +201,14 @@ final supplementaryDebitCardSuccessViewModelProvider = ChangeNotifierProvider
 );
 
 ///credit card video call verification initiate view model provider
-final creditCardVideoCallInitiateViewModelProvider = ChangeNotifierProvider
-    .autoDispose<CreditCardVideoCallInitiatePageViewModel>(
-  (ref) => CreditCardVideoCallInitiatePageViewModel(
-      ref.read(requestCallUsecaseProvider)),
+final creditCardVideoCallInitiateViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<
+        CreditCardVideoCallInitiatePageViewModel,
+        CreditCardVideoCallInitiateArgs>(
+  (ref, args) => CreditCardVideoCallInitiatePageViewModel(
+      ref.read(requestCallUsecaseProvider),
+      args,
+      ref.read(checkGenderStatusUsecaseProvider)),
 );
 
 ///credit card video call verification complete view model provider

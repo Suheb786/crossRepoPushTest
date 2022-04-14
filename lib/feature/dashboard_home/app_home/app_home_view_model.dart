@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
+import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -227,6 +228,7 @@ class AppHomeViewModel extends BasePageViewModel {
                   case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
                     pages.add(VerifyCreditCardVideoCallWidget(
                       isSmallDevices: isSmallDevices,
+                      creditCard: creditCard,
                     ));
 
                     ///adding cardType
@@ -239,7 +241,7 @@ class AppHomeViewModel extends BasePageViewModel {
                     break;
 
                   default:
-                    pages.add(ApplyCreditCardWidget(
+                    pages.add(ResumeCreditCardApplicationView(
                       isSmallDevices: isSmallDevices,
                     ));
 

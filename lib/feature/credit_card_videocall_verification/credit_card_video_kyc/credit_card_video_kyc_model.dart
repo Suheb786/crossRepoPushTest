@@ -5,12 +5,14 @@ import 'package:domain/usecase/credit_card_videocall_verification/credit_card_ca
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CreditCardVideoKycViewModel extends BasePageViewModel {
-  CreditCardCallStatusUpdateUseCase _callStatusUpdateUseCase;
+  final CreditCardCallStatusUpdateUseCase _callStatusUpdateUseCase;
   final String agoraAppId = "95c7a3ae0ee54a2bb6999d730d281e59";
   String channelId = "";
   String tempToken = "";
@@ -22,7 +24,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
 
-  /// call status update
+  /// call status initiate update
   PublishSubject<CreditCardCallStatusUpdateUseCaseParams>
       _callStatusUpdateRequest = PublishSubject();
 
@@ -31,11 +33,47 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get callStatusUpdateStream =>
       _callStatusUpdateResponse.stream;
 
+  /// call status end update
+  PublishSubject<CreditCardCallStatusUpdateUseCaseParams>
+      _callEndStatusUpdateRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _callEndStatusUpdateResponse =
+      PublishSubject();
+
+  Stream<Resource<bool>> get callEndStatusUpdateStream =>
+      _callEndStatusUpdateResponse.stream;
+
   CreditCardVideoKycViewModel(
       this.agoraCredentials, this._callStatusUpdateUseCase) {
     channelId = agoraCredentials.channelName;
     tempToken = agoraCredentials.token;
     _initEngine();
+
+    _callStatusUpdateRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _callStatusUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _callStatusUpdateResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _callEndStatusUpdateRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _callStatusUpdateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _callEndStatusUpdateResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   _initEngine() async {
@@ -53,17 +91,14 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   _addAgoraEventHandlers() {
     _engine.setEventHandler(RtcEngineEventHandler(
       joinChannelSuccess: (channel, uid, elapsed) {
-        print("joinChannelSuccess $uid");
         isJoined = true;
         notifyListeners();
       },
       userJoined: (uid, elapsed) {
-        print("userJoined $uid");
         remoteUid.add(uid);
         notifyListeners();
       },
       userOffline: (uid, reason) {
-        print("userOffline $uid");
         remoteUid.removeWhere((element) => element == uid);
         notifyListeners();
       },
@@ -79,9 +114,8 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     if (Platform.isAndroid) {
       await [Permission.microphone, Permission.camera].request();
     }
-    print("Joininig");
     await _engine.joinChannel(tempToken, channelId, null, uid);
-    callStatusUpdate("E");
+    callStatusUpdate("S");
     notifyListeners();
   }
 
@@ -95,9 +129,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     _engine.switchCamera().then((value) {
       switchCamera = !switchCamera;
       notifyListeners();
-    }).catchError((err) {
-      print('switchCamera $err');
-    });
+    }).catchError((err) {});
   }
 
   switchAgoraRender() {
@@ -107,8 +139,13 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   void callStatusUpdate(String? status) {
-    _callStatusUpdateRequest.safeAdd(
-        CreditCardCallStatusUpdateUseCaseParams(cardId: "", status: status));
+    _callStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(
+        cardId: agoraCredentials.cardId, status: status));
+  }
+
+  void callEndStatusUpdate(String? status) {
+    _callEndStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(
+        cardId: agoraCredentials.cardId, status: status));
   }
 
   @override
