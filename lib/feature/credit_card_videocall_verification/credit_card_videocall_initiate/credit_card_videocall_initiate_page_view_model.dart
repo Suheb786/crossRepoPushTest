@@ -54,11 +54,10 @@ class CreditCardVideoCallInitiatePageViewModel extends BasePageViewModel {
         createCall: () =>
             _checkAgentAvailabilityStatusUseCase.execute(params: value),
       ).asFlow().listen((event) {
+        //updateLoader();
         _checkAgentAvailabilityStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          getAgoraCredentials();
         }
       });
     });

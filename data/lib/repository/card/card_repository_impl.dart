@@ -536,7 +536,7 @@ class CardRepositoryImpl extends CardRepository {
         _remoteDs.callStatusUpdate(cardId: cardId, status: status));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.data),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }

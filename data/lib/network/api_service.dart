@@ -758,6 +758,6 @@ abstract class ApiService {
           @Body() GetCreditCardRelationshipRequestEntity request);
 
   @POST("/DashBoard/CallStatusUpdate")
-  Future<HttpResponse<bool>> callStatusUpdate(
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
       @Body() CreditCardCallStatusUpdateRequest request);
 }

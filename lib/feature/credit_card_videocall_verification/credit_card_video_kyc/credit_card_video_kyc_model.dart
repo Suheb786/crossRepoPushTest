@@ -54,7 +54,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
               createCall: () => _callStatusUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _callStatusUpdateResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -67,7 +67,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
               createCall: () => _callStatusUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _callEndStatusUpdateResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -85,7 +85,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     await _engine.setChannelProfile(ChannelProfile.Communication);
     await _engine.setClientRole(ClientRole.Broadcaster);
 
-    joinAgoraChannel();
+    //joinAgoraChannel();
   }
 
   _addAgoraEventHandlers() {
@@ -116,12 +116,12 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     }
     await _engine.joinChannel(tempToken, channelId, null, uid);
     callStatusUpdate("S");
-    notifyListeners();
+    //notifyListeners();
   }
 
   leaveAgoraChannel() async {
     await _engine.leaveChannel();
-    callStatusUpdate("E");
+    callEndStatusUpdate("E");
     //notifyListeners();
   }
 

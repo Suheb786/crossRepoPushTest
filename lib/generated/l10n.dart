@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11966,6 +11965,16 @@ class S {
     return Intl.message(
       'Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.',
       name: 'applicationRejectedByEngagementTeam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry we could not connect your call with an available agent, please reach back to our team again.`
+  String get agentNotAvailable {
+    return Intl.message(
+      'Sorry we could not connect your call with an available agent, please reach back to our team again.',
+      name: 'agentNotAvailable',
       desc: '',
       args: [],
     );

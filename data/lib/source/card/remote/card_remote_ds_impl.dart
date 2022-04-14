@@ -500,13 +500,13 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<bool>> callStatusUpdate(
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
       {String? cardId, String? status}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.callStatusUpdate(CreditCardCallStatusUpdateRequest(
         baseData: baseData.toJson(),
         cardId: cardId,
-        getToken: false,
+        getToken: true,
         status: status));
   }
 }

@@ -116,8 +116,9 @@ class DashboardCardEntity
         creditCardActivatedDate: this.creditCardActivatedDate ?? '',
         isCreditDelivered: this.isCreditDelivered ?? false,
         isSupCard: this.isSupCard ?? false,
-        primarySecondaryCard:
-            this.primarySecondaryCard!.fromPrimarySecondaryCard(),
+        primarySecondaryCard: this.primarySecondaryCard != null
+            ? this.primarySecondaryCard!.fromPrimarySecondaryCard()
+            : PrimarySecondaryCardEnum.NONE,
         usedBalance: this.usedBalance ?? '',
         cardCode: this.cardCode ?? '',
         isCompleted: this.isCompleted ?? false,
