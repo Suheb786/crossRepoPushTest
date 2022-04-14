@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11840,11 +11841,21 @@ class S {
     );
   }
 
-  /// `ID verification failed, can’t proceed`
-  String get idVerificationFailed {
+  /// `ID verification failed, can’t proceed err:177`
+  String get idVerificationFailed177 {
     return Intl.message(
-      'ID verification failed, can’t proceed',
-      name: 'idVerificationFailed',
+      'ID verification failed, can’t proceed err:177',
+      name: 'idVerificationFailed177',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID verification failed, can’t proceed err:178`
+  String get idVerificationFailed178 {
+    return Intl.message(
+      'ID verification failed, can’t proceed err:178',
+      name: 'idVerificationFailed178',
       desc: '',
       args: [],
     );

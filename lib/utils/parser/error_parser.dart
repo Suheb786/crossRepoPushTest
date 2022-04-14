@@ -1030,8 +1030,10 @@ class ErrorParser {
         return localisedHelper.scanIdToProceedFurther;
       case ErrorType.REQUEST_TIMEOUT:
         return localisedHelper.requestTimeOut;
-      case ErrorType.INVALID_ID_VERIFICATION:
-        return localisedHelper.idVerificationFailed;
+      case ErrorType.INVALID_ID_VERIFICATION_177:
+        return localisedHelper.idVerificationFailed177;
+      case ErrorType.INVALID_ID_VERIFICATION_178:
+        return localisedHelper.idVerificationFailed178;
       case ErrorType.AGENT_NOT_AVAILABLE:
         return localisedHelper.agentNotAvailable;
 
