@@ -22,6 +22,7 @@ import 'package:neo_bank/feature/credit_card_application_failure/credit_card_app
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_page.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
@@ -565,7 +566,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardVideoCallInitiate:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardVideoCallInitiatePage(),
+            builder: (context) => CreditCardVideoCallInitiatePage(
+                settings.arguments as CreditCardVideoCallInitiateArgs),
             settings:
                 RouteSettings(name: RoutePaths.CreditCardVideoCallInitiate));
 
@@ -574,6 +576,13 @@ class AppRouter {
             builder: (context) => CreditCardVideoCallCompletePage(),
             settings:
                 RouteSettings(name: RoutePaths.CreditCardVideoCallComplete));
+
+      case RoutePaths.CreditCardVideoKyc:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardVideoKycPage(
+                credentials:
+                    settings.arguments as CreditCardVideKycCredentials),
+            settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
       default:
         return CupertinoPageRoute(

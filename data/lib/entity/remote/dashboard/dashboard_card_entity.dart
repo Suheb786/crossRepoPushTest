@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
@@ -55,6 +56,10 @@ class DashboardCardEntity
   final String? cardStatus;
   @JsonKey(name: "minimumSettlement")
   final num? minimumSettlement;
+  @JsonKey(name: "callStatus")
+  final String? callStatus;
+  @JsonKey(name: "isCallPending")
+  final bool? isCallPending;
 
   DashboardCardEntity(
       {this.name: "",
@@ -79,7 +84,9 @@ class DashboardCardEntity
       this.isCompleted: false,
       this.nextPaymentDate: "",
       this.cardStatus: "",
-      this.minimumSettlement: 0});
+      this.minimumSettlement: 0,
+      this.callStatus: "",
+      this.isCallPending: false});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
@@ -109,8 +116,9 @@ class DashboardCardEntity
         creditCardActivatedDate: this.creditCardActivatedDate ?? '',
         isCreditDelivered: this.isCreditDelivered ?? false,
         isSupCard: this.isSupCard ?? false,
-        primarySecondaryCard:
-            this.primarySecondaryCard!.fromPrimarySecondaryCard(),
+        primarySecondaryCard: this.primarySecondaryCard != null
+            ? this.primarySecondaryCard!.fromPrimarySecondaryCard()
+            : PrimarySecondaryCardEnum.NONE,
         usedBalance: this.usedBalance ?? '',
         cardCode: this.cardCode ?? '',
         isCompleted: this.isCompleted ?? false,
@@ -119,6 +127,8 @@ class DashboardCardEntity
         nextPaymentDate:
             this.nextPaymentDate != null ? this.nextPaymentDate : '',
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
-        minimumSettlement: this.minimumSettlement ?? 0);
+        minimumSettlement: this.minimumSettlement ?? 0,
+        callStatus: this.callStatus!.fromCreditCardCallStatusValue(),
+        isCallPending: this.isCallPending ?? false);
   }
 }

@@ -15,12 +15,14 @@ class RequestCallUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, RequestCallStatus>> execute(
       {required RequestCallUseCaseParams params}) {
-    return _accountRepository.requestCall();
+    return _accountRepository.requestCall(params.type);
   }
 }
 
 class RequestCallUseCaseParams extends Params {
-  RequestCallUseCaseParams();
+  String? type;
+
+  RequestCallUseCaseParams({this.type: "ONBOARD"});
 
   @override
   Either<AppError, bool> verify() {

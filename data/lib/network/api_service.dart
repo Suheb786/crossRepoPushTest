@@ -53,6 +53,7 @@ import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_relationship/credit_card_relationship_response_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/credit_card_video_call/credit_card_call_status_update_request.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_credit_card_relationship_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/get_supplementary_credit_card_application_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_application_response_entity.dart';
@@ -447,7 +448,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
-  @POST("/Dashboard/GetDashboardDataV2")
+  @POST("/Dashboard/GetDashboardDataV3")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
@@ -465,7 +466,7 @@ abstract class ApiService {
   Future<HttpResponse<AtmsResponseEntity>> getAtms(
       @Body() BaseRequest baseRequest);
 
-  @POST("/CardTracking/CreditCardReq")
+  @POST("/CardTracking/CreditCardReqV1")
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
       @Body() RequestCardRequest requestCardRequest);
 
@@ -674,7 +675,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(
       @Body() BaseRequest request);
 
-  @POST("/video/RequestCall")
+  @POST("/video/RequestCallV1")
   Future<HttpResponse<RequestCallResponseEntity>> requestCall(
       @Body() RequestVideoCallRequest request);
 
@@ -755,4 +756,8 @@ abstract class ApiService {
   Future<HttpResponse<CreditCardRelationshipResponseEntity>>
       getCreditCardRelationShipList(
           @Body() GetCreditCardRelationshipRequestEntity request);
+
+  @POST("/DashBoard/CallStatusUpdate")
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
+      @Body() CreditCardCallStatusUpdateRequest request);
 }

@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 
@@ -25,7 +26,9 @@ class CreditCard {
       this.isCompleted: false,
       this.nextPaymentDate: "",
       this.cardStatus: FreezeCardStatusEnum.NONE,
-      this.minimumSettlement: 0});
+      this.minimumSettlement: 0,
+      this.callStatus: CreditCardCallStatusEnum.NONE,
+      this.isCallPending: false});
 
   String? name;
   String? cardNumber;
@@ -50,4 +53,6 @@ class CreditCard {
   String? nextPaymentDate;
   dynamic paymentDueAmount;
   FreezeCardStatusEnum? cardStatus;
+  CreditCardCallStatusEnum? callStatus;
+  bool? isCallPending;
 }

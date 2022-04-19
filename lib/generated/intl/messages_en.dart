@@ -129,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
+        "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "Sorry we could not connect your call with an available agent, please reach back to our team again."),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
         "agreeData": MessageLookupByLibrary.simpleMessage("and "),
@@ -1027,8 +1029,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
         "idScanInfo": MessageLookupByLibrary.simpleMessage(
             "Place your ID inside the frame"),
-        "idVerificationFailed": MessageLookupByLibrary.simpleMessage(
-            "ID verification failed, can’t proceed"),
+        "idVerificationFailed177": MessageLookupByLibrary.simpleMessage(
+            "ID verification failed, can’t proceed err:177"),
+        "idVerificationFailed178": MessageLookupByLibrary.simpleMessage(
+            "ID verification failed, can’t proceed err:178"),
         "idVerificationInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Grab your ID and let\'s\nget scanning"),
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(

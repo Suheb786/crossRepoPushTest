@@ -1343,13 +1343,13 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause,
                 error: error,
-                type: ErrorType.INVALID_ID_VERIFICATION);
+                type: ErrorType.INVALID_ID_VERIFICATION_177);
 
           case "err-178":
             return AppError(
                 cause: cause,
                 error: error,
-                type: ErrorType.INVALID_ID_VERIFICATION);
+                type: ErrorType.INVALID_ID_VERIFICATION_178);
 
           case "err-150":
             return AppError(

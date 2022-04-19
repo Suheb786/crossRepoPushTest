@@ -102,9 +102,10 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, RequestCallStatus>> requestCall() async {
+  Future<Either<NetworkError, RequestCallStatus>> requestCall(
+      String? type) async {
     final result = await safeApiCall(
-      _accountRemoteDS.requestCall(),
+      _accountRemoteDS.requestCall(type),
     );
     return result!.fold(
       (l) => Left(l),

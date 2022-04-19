@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -54,7 +55,10 @@ class SetCreditLimitPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(
-                              context, RoutePaths.CreditCardActivationStatus);
+                              context, RoutePaths.CreditCardApplySuccess,
+                              arguments: CreditCardApplySuccessArguments(
+                                  creditSuccessState:
+                                      CreditSuccessState.Submitted));
                         } else if (data.status == Status.ERROR) {
                           if (data.appError!.type ==
                               ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE) {
@@ -184,33 +188,6 @@ class SetCreditLimitPageView
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             100)),
-                                                // child: Draggable(
-                                                //   axis: Axis.horizontal,
-                                                //   feedback: Container(
-                                                //     height: 40,
-                                                //     width: 40,
-                                                //     decoration: BoxDecoration(
-                                                //         shape: BoxShape.circle,
-                                                //         color: Theme.of(context)
-                                                //             .accentTextTheme
-                                                //             .bodyText1!
-                                                //             .color!),
-                                                //   ),
-                                                //   onDragStarted: () {
-                                                //     print("dragged");
-                                                //   },
-                                                //   childWhenDragging: Container(),
-                                                //   child: Container(
-                                                //     height: 40,
-                                                //     width: 40,
-                                                //     decoration: BoxDecoration(
-                                                //         shape: BoxShape.circle,
-                                                //         color: Theme.of(context)
-                                                //             .accentTextTheme
-                                                //             .bodyText1!
-                                                //             .color!),
-                                                //   ),
-                                                // ),
                                                 child: AppStreamBuilder<double>(
                                                     stream: model.valueStream,
                                                     initialData:

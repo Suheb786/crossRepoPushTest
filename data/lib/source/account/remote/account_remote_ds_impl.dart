@@ -95,10 +95,11 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   }
 
   @override
-  Future<HttpResponse<RequestCallResponseEntity>> requestCall() async {
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(
+      String? type) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestCall(
-      RequestVideoCallRequest(baseData: baseData.toJson()),
+      RequestVideoCallRequest(baseData: baseData.toJson(), type: type),
     );
   }
 
