@@ -103,4 +103,14 @@ class RoutePaths {
   static const String CreditCardVideoCallComplete =
       "/creditCardVideoCallComplete";
   static const String CreditCardVideoKyc = "/creditCardVideoKyc";
+  static const String RequestMoneyQrGeneration = "/requestMoneyQrGeneration";
+  static const String QRScreen = "/qRScreen";
+  static const String SendMoneyQrScanning = "/sendMoneyQrScanning";
+  static const String SendMoneyQrScanningSuccess =
+      "/sendMoneyQrScanningSuccess";
+  static const String CliqIdList = "/cliqIdList";
+  static const String CreateCliqId = "/createCliqId";
+  static const String CliqIdCreationSuccess = "/cliqIdCreationSuccess";
+  static const String EditAlias = "/editAlias";
+  static const String EditMobileNoCliq = "/editMobileNoCliq";
 }

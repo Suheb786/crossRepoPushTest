@@ -1036,6 +1036,10 @@ class ErrorParser {
         return localisedHelper.idVerificationFailed178;
       case ErrorType.AGENT_NOT_AVAILABLE:
         return localisedHelper.agentNotAvailable;
+      case ErrorType.EMPTY_CLIQ_ID_TYPE:
+        return localisedHelper.emptyCliqIdType;
+      case ErrorType.EMPTY_ALIAS:
+        return localisedHelper.emptyAlias;
 
       default:
         return "";

@@ -50,6 +50,11 @@ import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id_creation_success_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -77,6 +82,10 @@ import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_c
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
+import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -583,6 +592,51 @@ class AppRouter {
                 credentials:
                     settings.arguments as CreditCardVideKycCredentials),
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
+
+
+      case RoutePaths.RequestMoneyQrGeneration:
+        return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
+
+      case RoutePaths.QRScreen:
+        return CupertinoPageRoute(
+            builder: (context) => QrScreenPage(),
+            settings: RouteSettings(name: RoutePaths.QRScreen));
+
+      case RoutePaths.SendMoneyQrScanning:
+        return CupertinoPageRoute(
+            builder: (context) => SendMoneyQrScanningPage(),
+            settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
+
+      case RoutePaths.SendMoneyQrScanningSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => SendMoneyViaQrSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
+
+      case RoutePaths.CliqIdList:
+        return CupertinoPageRoute(
+            builder: (context) => CliqIdListPage(),
+            settings: RouteSettings(name: RoutePaths.CliqIdList));
+
+      case RoutePaths.CreateCliqId:
+        return CupertinoPageRoute(
+            builder: (context) => CreateCliqIdPage(),
+            settings: RouteSettings(name: RoutePaths.CreateCliqId));
+
+      case RoutePaths.CliqIdCreationSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CliqIdCreationSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.CliqIdCreationSuccess));
+
+      case RoutePaths.EditAlias:
+        return CupertinoPageRoute(
+            builder: (context) => EditAliasPage(),
+            settings: RouteSettings(name: RoutePaths.EditAlias));
+
+      case RoutePaths.EditMobileNoCliq:
+        return CupertinoPageRoute(
+            builder: (context) => EditMobileNoCliqPage(),
+            settings: RouteSettings(name: RoutePaths.EditMobileNoCliq));
 
       default:
         return CupertinoPageRoute(
