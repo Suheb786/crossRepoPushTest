@@ -95,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "addCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "addCountryRestriction":
+            MessageLookupByLibrary.simpleMessage("Add Country Restrictions"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
@@ -251,6 +253,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockedCountries":
+            MessageLookupByLibrary.simpleMessage("Blocked Countries"),
         "bornBlink":
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -323,8 +327,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCardPinError":
             MessageLookupByLibrary.simpleMessage("Change Chard Pin Error"),
+        "changeCardRestrictionDesc": MessageLookupByLibrary.simpleMessage(
+            "Your card will be restricted in below listed country of your selection."),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
+        "changeCreditLimit":
+            MessageLookupByLibrary.simpleMessage("Change credit limit"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
@@ -425,6 +433,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
             "I\'m trying to control my expenses in other ways"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
+            "Convert purchases to instalments"),
+        "convertPurchaseToInstallments": MessageLookupByLibrary.simpleMessage(
             "Convert purchases to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
         "countryOfCitizenship":
@@ -1488,6 +1498,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-059)"),
+        "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
+            "You have not set up any country restrictions yet"),
         "notVerified": MessageLookupByLibrary.simpleMessage("Not Verified"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
@@ -1746,6 +1758,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeFromContact":
             MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
+        "replaceDamageCard":
+            MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
@@ -2194,6 +2208,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "It’s time for a quick\nvideo call"),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "Your video call is scheduled for the 15th of October at 10:00AM."),
+        "viewCardSubscription":
+            MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),

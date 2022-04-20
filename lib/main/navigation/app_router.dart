@@ -15,6 +15,7 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
@@ -593,7 +594,6 @@ class AppRouter {
                     settings.arguments as CreditCardVideKycCredentials),
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
-
       case RoutePaths.RequestMoneyQrGeneration:
         return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
 
@@ -637,6 +637,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EditMobileNoCliqPage(),
             settings: RouteSettings(name: RoutePaths.EditMobileNoCliq));
+
+      case RoutePaths.ChangeCountryRestriction:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCountryRestrictionPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCountryRestriction));
 
       default:
         return CupertinoPageRoute(

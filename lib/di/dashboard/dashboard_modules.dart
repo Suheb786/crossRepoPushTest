@@ -4,6 +4,7 @@ import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
@@ -195,4 +196,10 @@ final checkRescheduledVideoCallViewModelProvider =
         CheckScheduledVideoCallPageViewModel, CheckVideoCallScheduledArguments>(
   (ref, args) => CheckScheduledVideoCallPageViewModel(
       ref.read(logoutUseCaseProvider), args),
+);
+
+///change country restriction page view model
+final changeCountryRestrictionPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeCountryRestrictionPageViewModel>(
+  (ref) => ChangeCountryRestrictionPageViewModel(),
 );

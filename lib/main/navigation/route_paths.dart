@@ -113,4 +113,5 @@ class RoutePaths {
   static const String CliqIdCreationSuccess = "/cliqIdCreationSuccess";
   static const String EditAlias = "/editAlias";
   static const String EditMobileNoCliq = "/editMobileNoCliq";
+  static const String ChangeCountryRestriction = "/changeCountryRestriction";
 }

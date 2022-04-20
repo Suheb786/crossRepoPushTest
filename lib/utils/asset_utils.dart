@@ -159,6 +159,9 @@ class AssetUtils {
   static const String timelinec1 = svg + "Timeline-C1.svg";
   static const String ccAgent = svg + "cc_agent.svg";
   static const String cliqLogo = svg + "cliq_logo.svg";
+  static const String cardSubscription = svg + "card_subscription.svg";
+  static const String damageCard = svg + "damage_card.svg";
+  static const String countryRestriction = svg + "country_restriction.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

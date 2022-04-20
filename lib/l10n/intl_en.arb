@@ -1216,8 +1216,7 @@
   "creditCardApplicationUnderReviewDesc": "Your application is being reviewed. You’ll be notified soon.",
   "getCreditCardNowDesc": "Your application has been approved. Time to get your card ready!",
   "applicationRejectedByEngagementTeam": "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.",
-  "agentNotAvailable": "Sorry we could not connect your call with an available agent, please reach back to our team again."
-  "fromMe": "From Me",
+  "agentNotAvailable": "Sorry we could not connect your call with an available agent, please reach back to our team again.",
   "requestViaQR": "Request via QR",
   "selectAccount": "Select Account",
   "savingAccount": "Savings Account {accountNo}",
@@ -1254,5 +1253,13 @@
   "deleteCliqId": "Delete CliQ ID",
   "editCliqId": "EDIT CLIQ ID",
   "editYourAlias": "Edit your alias",
-  "editYourMobileNo": "Edit your mobile number"
+  "editYourMobileNo": "Edit your mobile number",
+  "viewCardSubscription": "View card subscriptions",
+  "changeCreditLimit": "Change credit limit",
+  "convertPurchaseToInstallments": "Convert purchases to instalments",
+  "replaceDamageCard": "Replace damaged card",
+  "changeCardRestrictionDesc": "Your card will be restricted in below listed country of your selection.",
+  "addCountryRestriction": "Add Country Restrictions",
+  "blockedCountries": "Blocked Countries",
+  "notSetUpCountryRestrictionYet": "You have not set up any country restrictions yet"
 }
