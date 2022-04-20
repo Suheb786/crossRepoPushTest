@@ -67,25 +67,40 @@ class CreditCardVideoCallInitiatePageView
                   padding: EdgeInsets.only(
                       top: 56.0, left: 24, right: 24, bottom: 36),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        S.of(context).applyForCreditCard,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 10,
-                            color: Theme.of(context).accentColor),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: AppSvg.asset(AssetUtils.leftArrow,
+                              color: Theme.of(context).accentColor,
+                              height: 24,
+                              width: 24)),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Center(
+                        child: Text(
+                          S.of(context).applyForCreditCard,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10,
+                              color: Theme.of(context).accentColor),
+                        ),
                       ),
                       SizedBox(
                         height: 8,
                       ),
-                      Text(
-                        S.of(context).timeForQuickVideoCall,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                            color: Theme.of(context).accentColor),
+                      Center(
+                        child: Text(
+                          S.of(context).timeForQuickVideoCall,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              color: Theme.of(context).accentColor),
+                        ),
                       ),
                       SizedBox(
                         height: 32,

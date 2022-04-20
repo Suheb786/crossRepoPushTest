@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -9650,10 +9651,10 @@ class S {
     );
   }
 
-  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)`
+  /// `Please unfreeze your card to be able to update your card limits.`
   String get errorUpdatingLimits {
     return Intl.message(
-      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)',
+      'Please unfreeze your card to be able to update your card limits.',
       name: 'errorUpdatingLimits',
       desc: '',
       args: [],
@@ -11880,10 +11881,10 @@ class S {
     );
   }
 
-  /// `You are require to verify yourself via video call with our Engagement Team to complete your application.`
+  /// `To complete your credit card application, you are required to verify yourself via video call.`
   String get applicationSubmittedDesc {
     return Intl.message(
-      'You are require to verify yourself via video call with our Engagement Team to complete your application.',
+      'To complete your credit card application, you are required to verify yourself via video call.',
       name: 'applicationSubmittedDesc',
       desc: '',
       args: [],
@@ -11930,20 +11931,20 @@ class S {
     );
   }
 
-  /// `Verify yourself via video call with our Engagement Team to complete your credit card application.`
+  /// `Get ready and verify yourself now to complete your credit card application.`
   String get verifyViaVideoCallCC {
     return Intl.message(
-      'Verify yourself via video call with our Engagement Team to complete your credit card application.',
+      'Get ready and verify yourself now to complete your credit card application.',
       name: 'verifyViaVideoCallCC',
       desc: '',
       args: [],
     );
   }
 
-  /// `Verify now`
+  /// `Start video call`
   String get verifyNow {
     return Intl.message(
-      'Verify now',
+      'Start video call',
       name: 'verifyNow',
       desc: '',
       args: [],
@@ -11960,10 +11961,10 @@ class S {
     );
   }
 
-  /// `Your application is success. Time to get your card!`
+  /// `Your application has been approved. Time to get your card ready!`
   String get getCreditCardNowDesc {
     return Intl.message(
-      'Your application is success. Time to get your card!',
+      'Your application has been approved. Time to get your card ready!',
       name: 'getCreditCardNowDesc',
       desc: '',
       args: [],
