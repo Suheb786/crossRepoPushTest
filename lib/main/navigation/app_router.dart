@@ -59,6 +59,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mob
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
@@ -654,6 +655,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ChangeCardPaymentAccountPage(),
             settings: RouteSettings(name: RoutePaths.ChangeCardPayment));
+
+      case RoutePaths.ChangeCardSettlementPercentage:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardSettlementPercentagePage(),
+            settings:
+                RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
 
       default:
         return CupertinoPageRoute(

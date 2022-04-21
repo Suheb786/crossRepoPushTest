@@ -30,6 +30,7 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view_model.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view_model.dart';
@@ -216,4 +217,11 @@ final manageCreditSettlementPageViewModelProvider =
 final changeCardPaymentPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeCardPaymentAccountPageViewModel>(
   (ref) => ChangeCardPaymentAccountPageViewModel(),
+);
+
+///change card settlement percentage page view model
+final changeCardSettlementPercentagePageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<
+        ChangeCardSettlementPercentagePageViewModel>(
+  (ref) => ChangeCardSettlementPercentagePageViewModel(),
 );

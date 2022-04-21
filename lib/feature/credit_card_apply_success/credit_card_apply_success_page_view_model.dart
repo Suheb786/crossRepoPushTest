@@ -16,6 +16,8 @@ class CreditCardApplySuccessPageViewModel extends BasePageViewModel {
         return S.of(context).applicationSubmitted;
       case CreditSuccessState.Settlement_Account_Changed:
         return S.of(context).cardDetailsUpdated;
+      case CreditSuccessState.Settlement_Percentage_Changed:
+        return S.of(context).cardDetailsUpdated;
       default:
         return "";
     }
@@ -30,6 +32,8 @@ class CreditCardApplySuccessPageViewModel extends BasePageViewModel {
         return S.of(context).applicationSubmittedDesc;
       case CreditSuccessState.Settlement_Account_Changed:
         return S.of(context).cardDetailsUpdatedDesc;
+      case CreditSuccessState.Settlement_Percentage_Changed:
+        return S.of(context).creditSettlementPercentageChangedDesc;
       default:
         return "";
     }

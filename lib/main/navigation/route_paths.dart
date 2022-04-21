@@ -116,4 +116,6 @@ class RoutePaths {
   static const String ChangeCountryRestriction = "/changeCountryRestriction";
   static const String ManageCreditSettlement = "/manageCreditSettlement";
   static const String ChangeCardPayment = "/changeCardPayment";
+  static const String ChangeCardSettlementPercentage =
+      "/changeCardSettlementPercentage";
 }

@@ -1270,5 +1270,10 @@
   "currentSettlementAccount": "Current Settlement Account",
   "newSettlementAccount": "New settlement account",
   "cardDetailsUpdated": "Card details updated successfully",
-  "cardDetailsUpdatedDesc": "Your credit card settlement account has been updated with your new selected account"
+  "cardDetailsUpdatedDesc": "Your credit card settlement account has been updated with your new selected account",
+  "selectNewPercentage": "Select new settlement percentage for your next payment cycle",
+  "currentSettlementPercentage": "Current Settlement Percentage",
+  "newSettlementPercentage": "New settlement Percentage",
+  "settlementPercentage": "Settlement Percentages",
+  "creditSettlementPercentageChangedDesc": "Your credit card settlement percentages has been updated with your new selected account"
 }

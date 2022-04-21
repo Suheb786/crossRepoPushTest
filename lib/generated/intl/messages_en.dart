@@ -505,6 +505,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
         "creditLimitSettings":
             MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
+        "creditSettlementPercentageChangedDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your credit card settlement percentages has been updated with your new selected account"),
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "cridUpdateError":
             MessageLookupByLibrary.simpleMessage("Error in crif update"),
@@ -516,6 +519,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Current password is invalid. Password does not meet requirement."),
         "currentSettlementAccount":
             MessageLookupByLibrary.simpleMessage("Current Settlement Account"),
+        "currentSettlementPercentage": MessageLookupByLibrary.simpleMessage(
+            "Current Settlement Percentage"),
         "customerNotEligible": MessageLookupByLibrary.simpleMessage(
             "You are not eligible for this service. Please contact our Engagement Team from the app or call 06-5200100."),
         "customerPreferenceNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1481,6 +1486,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "newSettlementAccount":
             MessageLookupByLibrary.simpleMessage("New settlement account"),
+        "newSettlementPercentage":
+            MessageLookupByLibrary.simpleMessage("New settlement Percentage"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
@@ -1910,6 +1917,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select future date"),
         "selectMinimumSettlement":
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
+        "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
+            "Select new settlement percentage for your next payment cycle"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
@@ -1938,6 +1947,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settingContactLessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-100)"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "settlementPercentage":
+            MessageLookupByLibrary.simpleMessage("Settlement Percentages"),
         "setupAndPersonalizeYourNewCreditCard":
             MessageLookupByLibrary.simpleMessage(
                 "Complete the details to issue the supplementary card"),

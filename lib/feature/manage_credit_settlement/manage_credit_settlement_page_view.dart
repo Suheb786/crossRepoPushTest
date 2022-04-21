@@ -104,7 +104,10 @@ class ManageCreditSettlementPageView
                     ),
                     AppDivider(),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, RoutePaths.ChangeCardSettlementPercentage);
+                      },
                       child: Padding(
                         padding: EdgeInsets.all(24),
                         child: Row(

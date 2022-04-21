@@ -12490,6 +12490,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Select new settlement percentage for your next payment cycle`
+  String get selectNewPercentage {
+    return Intl.message(
+      'Select new settlement percentage for your next payment cycle',
+      name: 'selectNewPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Settlement Percentage`
+  String get currentSettlementPercentage {
+    return Intl.message(
+      'Current Settlement Percentage',
+      name: 'currentSettlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New settlement Percentage`
+  String get newSettlementPercentage {
+    return Intl.message(
+      'New settlement Percentage',
+      name: 'newSettlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settlement Percentages`
+  String get settlementPercentage {
+    return Intl.message(
+      'Settlement Percentages',
+      name: 'settlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your credit card settlement percentages has been updated with your new selected account`
+  String get creditSettlementPercentageChangedDesc {
+    return Intl.message(
+      'Your credit card settlement percentages has been updated with your new selected account',
+      name: 'creditSettlementPercentageChangedDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

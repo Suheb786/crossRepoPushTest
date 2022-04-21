@@ -163,6 +163,7 @@ class AssetUtils {
   static const String damageCard = svg + "damage_card.svg";
   static const String countryRestriction = svg + "country_restriction.svg";
   static const String dollarSvg = svg + "dollar_svg.svg";
+  static const String percentage = svg + "percentage.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
