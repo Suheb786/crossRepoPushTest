@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -9650,10 +9651,10 @@ class S {
     );
   }
 
-  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)`
+  /// `Please unfreeze your card to be able to update your card limits.`
   String get errorUpdatingLimits {
     return Intl.message(
-      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)',
+      'Please unfreeze your card to be able to update your card limits.',
       name: 'errorUpdatingLimits',
       desc: '',
       args: [],
@@ -11880,10 +11881,10 @@ class S {
     );
   }
 
-  /// `You are require to verify yourself via video call with our Engagement Team to complete your application.`
+  /// `To complete your credit card application, you are required to verify yourself via video call.`
   String get applicationSubmittedDesc {
     return Intl.message(
-      'You are require to verify yourself via video call with our Engagement Team to complete your application.',
+      'To complete your credit card application, you are required to verify yourself via video call.',
       name: 'applicationSubmittedDesc',
       desc: '',
       args: [],
@@ -11930,20 +11931,20 @@ class S {
     );
   }
 
-  /// `Verify yourself via video call with our Engagement Team to complete your credit card application.`
+  /// `Get ready and verify yourself now to complete your credit card application.`
   String get verifyViaVideoCallCC {
     return Intl.message(
-      'Verify yourself via video call with our Engagement Team to complete your credit card application.',
+      'Get ready and verify yourself now to complete your credit card application.',
       name: 'verifyViaVideoCallCC',
       desc: '',
       args: [],
     );
   }
 
-  /// `Verify now`
+  /// `Start video call`
   String get verifyNow {
     return Intl.message(
-      'Verify now',
+      'Start video call',
       name: 'verifyNow',
       desc: '',
       args: [],
@@ -11960,10 +11961,10 @@ class S {
     );
   }
 
-  /// `Your application is success. Time to get your card!`
+  /// `Your application has been approved. Time to get your card ready!`
   String get getCreditCardNowDesc {
     return Intl.message(
-      'Your application is success. Time to get your card!',
+      'Your application has been approved. Time to get your card ready!',
       name: 'getCreditCardNowDesc',
       desc: '',
       args: [],
@@ -11985,6 +11986,86 @@ class S {
     return Intl.message(
       'Sorry we could not connect your call with an available agent, please reach back to our team again.',
       name: 'agentNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `subscriptions`
+  String get subscription {
+    return Intl.message(
+      'subscriptions',
+      name: 'subscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View card subscriptions`
+  String get viewCardSubSubscription {
+    return Intl.message(
+      'View card subscriptions',
+      name: 'viewCardSubSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive OTP to your\nnew number for future\ntransactions.`
+  String get receiveOtpToNewNumber {
+    return Intl.message(
+      'You will receive OTP to your\nnew number for future\ntransactions.',
+      name: 'receiveOtpToNewNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NEW MOBILE NUMBER`
+  String get newMobileNumber {
+    return Intl.message(
+      'NEW MOBILE NUMBER',
+      name: 'newMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.`
+  String get changeMobileNumberInfo {
+    return Intl.message(
+      'Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.',
+      name: 'changeMobileNumberInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter 6-digit OTP sent to`
+  String get dcEnterOtpHeader {
+    return Intl.message(
+      'Enter 6-digit OTP sent to',
+      name: 'dcEnterOtpHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card details updated\nsuccessfully`
+  String get cardDetailUpdated {
+    return Intl.message(
+      'Card details updated\nsuccessfully',
+      name: 'cardDetailUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new mobile number has been successfully verified and tied to your card transactions.`
+  String get dcMobileNumberUpdated {
+    return Intl.message(
+      'Your new mobile number has been successfully verified and tied to your card transactions.',
+      name: 'dcMobileNumberUpdated',
       desc: '',
       args: [],
     );

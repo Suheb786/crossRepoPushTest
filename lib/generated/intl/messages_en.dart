@@ -169,7 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "applicationSubmitted":
             MessageLookupByLibrary.simpleMessage("Application submitted"),
         "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
-            "You are require to verify yourself via video call with our Engagement Team to complete your application."),
+            "To complete your credit card application, you are required to verify yourself via video call."),
         "applicationUnderReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review. Please bear with us."),
         "applyCreditCard":
@@ -284,6 +284,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Card delivered?"),
         "cardDelivery":
             MessageLookupByLibrary.simpleMessage("to Card Delivery"),
+        "cardDetailUpdated": MessageLookupByLibrary.simpleMessage(
+            "Card details updated\nsuccessfully"),
         "cardFrozen": MessageLookupByLibrary.simpleMessage("Card frozen"),
         "cardHasBeenDelivered": MessageLookupByLibrary.simpleMessage(
             "Check that the numbers on the back of your card match the numbers above."),
@@ -333,6 +335,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
+        "changeMobileNumberInfo": MessageLookupByLibrary.simpleMessage(
+            "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings."),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "changePassword":
@@ -490,6 +494,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
             MessageLookupByLibrary.simpleMessage("Date of Birth"),
+        "dcEnterOtpHeader":
+            MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
+            "Your new mobile number has been successfully verified and tied to your card transactions."),
         "debitCard": MessageLookupByLibrary.simpleMessage("DEBIT CARD"),
         "debitCardActivated":
             MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
@@ -765,7 +773,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorUpdatingCategoryCif": MessageLookupByLibrary.simpleMessage(
             "Error while updating category CIF"),
         "errorUpdatingLimits": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)"),
+            "Please unfreeze your card to be able to update your card limits."),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
         "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
@@ -943,7 +951,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getCountriesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCreditCardNowDesc": MessageLookupByLibrary.simpleMessage(
-            "Your application is success. Time to get your card!"),
+            "Your application has been approved. Time to get your card ready!"),
         "getCreditYearsError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCurrentValuesError": MessageLookupByLibrary.simpleMessage(
@@ -1423,6 +1431,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
         "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
+        "newMobileNumber":
+            MessageLookupByLibrary.simpleMessage("NEW MOBILE NUMBER"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
@@ -1682,6 +1692,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
             "Share your account info to be able to receive money."),
+        "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
+            "You will receive OTP to your\nnew number for future\ntransactions."),
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
@@ -1908,6 +1920,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
+        "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
@@ -2127,7 +2140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party."),
-        "verifyNow": MessageLookupByLibrary.simpleMessage("Verify now"),
+        "verifyNow": MessageLookupByLibrary.simpleMessage("Start video call"),
         "verifyOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyOtpPasswordError": MessageLookupByLibrary.simpleMessage(
@@ -2137,7 +2150,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
-            "Verify yourself via video call with our Engagement Team to complete your credit card application."),
+            "Get ready and verify yourself now to complete your credit card application."),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
@@ -2147,6 +2160,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "It’s time for a quick\nvideo call"),
         "videoCallScheduledDateTime": MessageLookupByLibrary.simpleMessage(
             "Your video call is scheduled for the 15th of October at 10:00AM."),
+        "viewCardSubSubscription":
+            MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),
