@@ -58,6 +58,8 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart'
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
@@ -642,6 +644,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ChangeCountryRestrictionPage(),
             settings: RouteSettings(name: RoutePaths.ChangeCountryRestriction));
+
+      case RoutePaths.ManageCreditSettlement:
+        return CupertinoPageRoute(
+            builder: (context) => ManageCreditSettlementPage(),
+            settings: RouteSettings(name: RoutePaths.ManageCreditSettlement));
+
+      case RoutePaths.ChangeCardPayment:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPaymentAccountPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPayment));
 
       default:
         return CupertinoPageRoute(

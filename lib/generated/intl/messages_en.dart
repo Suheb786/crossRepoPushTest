@@ -253,6 +253,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
+        "blockThisCountry":
+            MessageLookupByLibrary.simpleMessage("Block this country?"),
+        "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
+            "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
             MessageLookupByLibrary.simpleMessage("Blocked Countries"),
         "bornBlink":
@@ -296,6 +300,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Card delivered?"),
         "cardDelivery":
             MessageLookupByLibrary.simpleMessage("to Card Delivery"),
+        "cardDetailsUpdated": MessageLookupByLibrary.simpleMessage(
+            "Card details updated successfully"),
+        "cardDetailsUpdatedDesc": MessageLookupByLibrary.simpleMessage(
+            "Your credit card settlement account has been updated with your new selected account"),
         "cardFrozen": MessageLookupByLibrary.simpleMessage("Card frozen"),
         "cardHasBeenDelivered": MessageLookupByLibrary.simpleMessage(
             "Check that the numbers on the back of your card match the numbers above."),
@@ -323,6 +331,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "While frozen, your card can\'t be used for any transactions."),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "changeCardPaymentAccount":
+            MessageLookupByLibrary.simpleMessage("Change card payment account"),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCardPinError":
@@ -359,6 +369,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changeProfileImageError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "changeSettlementOptions":
+            MessageLookupByLibrary.simpleMessage("Change settlement options "),
         "checkAgentStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "checkCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -502,6 +514,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The current password entered is wrong. Please try again"),
         "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Current password is invalid. Password does not meet requirement."),
+        "currentSettlementAccount":
+            MessageLookupByLibrary.simpleMessage("Current Settlement Account"),
         "customerNotEligible": MessageLookupByLibrary.simpleMessage(
             "You are not eligible for this service. Please contact our Engagement Team from the app or call 06-5200100."),
         "customerPreferenceNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1465,6 +1479,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
+        "newSettlementAccount":
+            MessageLookupByLibrary.simpleMessage("New settlement account"),
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
@@ -1876,6 +1892,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeAllContacts":
             MessageLookupByLibrary.simpleMessage("See all contacts"),
         "selectAccount": MessageLookupByLibrary.simpleMessage("Select Account"),
+        "selectAccountToPayCreditCard": MessageLookupByLibrary.simpleMessage(
+            "Select account to pay your credit card"),
         "selectAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("Select Additional Income"),
         "selectAnyOption":

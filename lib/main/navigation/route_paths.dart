@@ -114,4 +114,6 @@ class RoutePaths {
   static const String EditAlias = "/editAlias";
   static const String EditMobileNoCliq = "/editMobileNoCliq";
   static const String ChangeCountryRestriction = "/changeCountryRestriction";
+  static const String ManageCreditSettlement = "/manageCreditSettlement";
+  static const String ChangeCardPayment = "/changeCardPayment";
 }

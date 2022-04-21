@@ -1261,5 +1261,14 @@
   "changeCardRestrictionDesc": "Your card will be restricted in below listed country of your selection.",
   "addCountryRestriction": "Add Country Restrictions",
   "blockedCountries": "Blocked Countries",
-  "notSetUpCountryRestrictionYet": "You have not set up any country restrictions yet"
+  "notSetUpCountryRestrictionYet": "You have not set up any country restrictions yet",
+  "blockThisCountry": "Block this country?",
+  "blockThisCountryDesc": "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments.",
+  "changeCardPaymentAccount": "Change card payment account",
+  "changeSettlementOptions": "Change settlement options ",
+  "selectAccountToPayCreditCard": "Select account to pay your credit card",
+  "currentSettlementAccount": "Current Settlement Account",
+  "newSettlementAccount": "New settlement account",
+  "cardDetailsUpdated": "Card details updated successfully",
+  "cardDetailsUpdatedDesc": "Your credit card settlement account has been updated with your new selected account"
 }

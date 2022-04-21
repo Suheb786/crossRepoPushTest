@@ -29,6 +29,8 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
@@ -202,4 +204,16 @@ final checkRescheduledVideoCallViewModelProvider =
 final changeCountryRestrictionPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeCountryRestrictionPageViewModel>(
   (ref) => ChangeCountryRestrictionPageViewModel(),
+);
+
+///manage credit settlement page view model
+final manageCreditSettlementPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ManageCreditSettlementViewModel>(
+  (ref) => ManageCreditSettlementViewModel(),
+);
+
+///change card payment page view model
+final changeCardPaymentPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeCardPaymentAccountPageViewModel>(
+  (ref) => ChangeCardPaymentAccountPageViewModel(),
 );

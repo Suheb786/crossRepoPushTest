@@ -12400,6 +12400,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Block this country?`
+  String get blockThisCountry {
+    return Intl.message(
+      'Block this country?',
+      name: 'blockThisCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments.`
+  String get blockThisCountryDesc {
+    return Intl.message(
+      'If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments.',
+      name: 'blockThisCountryDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change card payment account`
+  String get changeCardPaymentAccount {
+    return Intl.message(
+      'Change card payment account',
+      name: 'changeCardPaymentAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change settlement options `
+  String get changeSettlementOptions {
+    return Intl.message(
+      'Change settlement options ',
+      name: 'changeSettlementOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select account to pay your credit card`
+  String get selectAccountToPayCreditCard {
+    return Intl.message(
+      'Select account to pay your credit card',
+      name: 'selectAccountToPayCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Settlement Account`
+  String get currentSettlementAccount {
+    return Intl.message(
+      'Current Settlement Account',
+      name: 'currentSettlementAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New settlement account`
+  String get newSettlementAccount {
+    return Intl.message(
+      'New settlement account',
+      name: 'newSettlementAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card details updated successfully`
+  String get cardDetailsUpdated {
+    return Intl.message(
+      'Card details updated successfully',
+      name: 'cardDetailsUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your credit card settlement account has been updated with your new selected account`
+  String get cardDetailsUpdatedDesc {
+    return Intl.message(
+      'Your credit card settlement account has been updated with your new selected account',
+      name: 'cardDetailsUpdatedDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

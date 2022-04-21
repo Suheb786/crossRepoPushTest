@@ -331,7 +331,10 @@ class CreditCardSettingsPageView
                           isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ChangeCountryRestriction);
+                          },
                           title: S.of(context).changeCountryRestriction,
                           tileIcon: AssetUtils.globe,
                           isEnabled: true,
