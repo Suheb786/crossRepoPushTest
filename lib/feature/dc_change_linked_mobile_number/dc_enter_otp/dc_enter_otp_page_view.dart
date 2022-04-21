@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dc_change_linked_mobile_number/dc_change_linked_mobile_number_module.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_enter_otp/dc_enter_otp_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -34,9 +36,13 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  print('i am here');
                   Navigator.pushNamed(
-                      context, RoutePaths.DcChangeMobileNumberSuccess);
+                      context, RoutePaths.DcChangeMobileNumberSuccess,
+                      arguments: DCChangeLinkedMobileNumberArguments(
+                          cardType: ProviderScope.containerOf(context)
+                              .read(dcChangeLinkedMobileNumberViewModelProvider)
+                              .arguments!
+                              .cardType));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -44,100 +50,104 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.enterOtp();
+                    if (ProviderScope.containerOf(context)
+                            .read(dcChangeLinkedMobileNumberViewModelProvider)
+                            .appSwiperController
+                            .page ==
+                        1.0) {
+                      if (details.primaryVelocity!.isNegative) {
+                        FocusScope.of(context).unfocus();
+                        model.enterOtp();
+                      } else {
+                        ProviderScope.containerOf(context)
+                            .read(dcChangeLinkedMobileNumberViewModelProvider)
+                            .previousPage();
+                      }
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          bottom:
-                              MediaQuery.of(context).viewInsets.bottom - 50 <= 0
-                                  ? 0
-                                  : MediaQuery.of(context).viewInsets.bottom -
-                                      48),
-                      child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 32, horizontal: 24),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChildScrollView(
-                                physics: ClampingScrollPhysics(),
-                                child: Column(
-                                  children: [
-                                    AppOtpFields(
-                                      length: 6,
-                                      controller: model.otpController,
-                                      onChanged: (val) {
-                                        model.validate(val);
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Column(
+                    child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SingleChildScrollView(
+                              physics: ClampingScrollPhysics(),
+                              child: Column(
                                 children: [
-                                  CountdownTimer(
-                                    controller: model.countDownController,
-                                    onEnd: () {},
-                                    endTime: model.endTime,
-                                    textStyle: TextStyle(
-                                        fontSize: 16,
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color!),
-                                    widgetBuilder:
-                                        (context, currentTimeRemaining) {
-                                      return currentTimeRemaining == null
-                                          ? TextButton(
-                                              onPressed: () {
-                                                model.updateTime();
-                                              },
-                                              child: Text(
-                                                'Resend Code',
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color!),
-                                              ))
-                                          : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                  AppOtpFields(
+                                    length: 6,
+                                    controller: model.otpController,
+                                    onChanged: (val) {
+                                      model.validate(val);
+                                    },
+                                  ),
+                                  Container()
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                CountdownTimer(
+                                  controller: model.countDownController,
+                                  onEnd: () {},
+                                  endTime: model.endTime,
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color!),
+                                  widgetBuilder:
+                                      (context, currentTimeRemaining) {
+                                    return currentTimeRemaining == null
+                                        ? TextButton(
+                                            onPressed: () {
+                                              model.updateTime();
+                                            },
+                                            child: Text(
+                                              'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Theme.of(context)
                                                       .accentTextTheme
                                                       .bodyText1!
                                                       .color!),
-                                            );
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 16.0),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonHeight: 50,
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
-                                            ),
+                                            ))
+                                        : Text(
+                                            S.of(context).resendIn(
+                                                '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color!),
                                           );
-                                        }),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
+                                  },
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 16.0),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return Visibility(
+                                          visible: isValid!,
+                                          child: AnimatedButton(
+                                            buttonHeight: 50,
+                                            buttonText:
+                                                S.of(context).swipeToProceed,
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          ],
+                        )),
                   ),
                 );
               },

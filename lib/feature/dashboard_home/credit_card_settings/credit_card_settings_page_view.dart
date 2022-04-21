@@ -10,8 +10,10 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
+import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -248,7 +250,12 @@ class CreditCardSettingsPageView
                           ),
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ViewDebitCardSubscription,
+                                arguments: ViewDebitCardSubscriptionArguments(
+                                    cardType: CardType.CREDIT));
+                          },
                           title: S.of(context).viewCardSubscription,
                           tileIcon: AssetUtils.cardSubscription,
                           isEnabled: true,
@@ -324,7 +331,12 @@ class CreditCardSettingsPageView
                           isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.DcChangeLinkedMobileNumber,
+                                arguments: DCChangeLinkedMobileNumberArguments(
+                                    cardType: CardType.CREDIT));
+                          },
                           title: S.of(context).changeLinkedMobileNumber,
                           tileIcon: AssetUtils.mobile,
                           isEnabled: true,

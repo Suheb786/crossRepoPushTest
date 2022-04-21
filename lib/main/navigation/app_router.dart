@@ -666,14 +666,17 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
 
       case RoutePaths.ViewDebitCardSubscription:
-        return CustomRoute.createRoute(ViewDebitCardSubscriptionPage());
+        return CustomRoute.createRoute(ViewDebitCardSubscriptionPage(
+            settings.arguments as ViewDebitCardSubscriptionArguments));
 
       case RoutePaths.DcChangeLinkedMobileNumber:
-        return CustomRoute.createRoute(DcChangeLinkedMobileNumberPage());
+        return CustomRoute.createRoute(DcChangeLinkedMobileNumberPage(
+            settings.arguments as DCChangeLinkedMobileNumberArguments));
 
       case RoutePaths.DcChangeMobileNumberSuccess:
         return CupertinoPageRoute(
-            builder: (context) => DcChangeMobileNumberSuccessPage(),
+            builder: (context) => DcChangeMobileNumberSuccessPage(
+                settings.arguments as DCChangeLinkedMobileNumberArguments),
             settings:
                 RouteSettings(name: RoutePaths.DcChangeMobileNumberSuccess));
 
