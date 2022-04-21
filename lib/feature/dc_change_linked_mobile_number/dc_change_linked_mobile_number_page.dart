@@ -4,13 +4,11 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dc_change_linked_mobile_number/dc_change_linked_mobile_number_module.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page_view.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_view_model.dart';
-import 'package:neo_bank/utils/navgition_type.dart';
 
 class DcChangeLinkedMobileNumberPage
     extends BasePage<DcChangeLinkedMobileNumberViewModel> {
-  NavigationType? navigationType;
 
-  DcChangeLinkedMobileNumberPage({this.navigationType});
+  DcChangeLinkedMobileNumberPage();
 
   @override
   DcChangeLinkedMobileNumberPageState createState() =>
@@ -39,8 +37,7 @@ class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
   @override
   Widget buildView(
       BuildContext context, DcChangeLinkedMobileNumberViewModel model) {
-    return DcChangeLinkedMobileNumberPageView(
-        provideBase(), widget.navigationType);
+    return DcChangeLinkedMobileNumberPageView(provideBase());
   }
 
   @override

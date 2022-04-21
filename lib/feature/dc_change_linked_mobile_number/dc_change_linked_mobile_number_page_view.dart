@@ -7,16 +7,13 @@ import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_enter_otp/dc_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class DcChangeLinkedMobileNumberPageView
     extends BasePageViewWidget<DcChangeLinkedMobileNumberViewModel> {
-  NavigationType? navigationType;
 
-  DcChangeLinkedMobileNumberPageView(ProviderBase model, this.navigationType)
-      : super(model);
+  DcChangeLinkedMobileNumberPageView(ProviderBase model) : super(model);
 
   // final List pages = [
   // ];

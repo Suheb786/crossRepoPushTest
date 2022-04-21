@@ -1224,5 +1224,8 @@
   "changeMobileNumberInfo": "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.",
   "dcEnterOtpHeader": "Enter 6-digit OTP sent to",
   "cardDetailUpdated": "Card details updated\nsuccessfully",
-  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions."
+  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions.",
+  "linkedAccountDebited": "Linked account is debited\nwhenever transaction made\nusing this card",
+  "reportStolenCardInfo": "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.",
+  "yourCardIssued": "Your card has\nbeen issued"
 }

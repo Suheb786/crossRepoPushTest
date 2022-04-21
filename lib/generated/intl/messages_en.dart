@@ -1303,6 +1303,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
+        "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
+            "Linked account is debited\nwhenever transaction made\nusing this card"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
@@ -1726,6 +1728,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
+        "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
@@ -2228,6 +2232,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardIssued":
+            MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardLimit":
             MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
         "yourCardReady":

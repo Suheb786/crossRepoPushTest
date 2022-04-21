@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12066,6 +12065,36 @@ class S {
     return Intl.message(
       'Your new mobile number has been successfully verified and tied to your card transactions.',
       name: 'dcMobileNumberUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked account is debited\nwhenever transaction made\nusing this card`
+  String get linkedAccountDebited {
+    return Intl.message(
+      'Linked account is debited\nwhenever transaction made\nusing this card',
+      name: 'linkedAccountDebited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  String get reportStolenCardInfo {
+    return Intl.message(
+      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      name: 'reportStolenCardInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card has\nbeen issued`
+  String get yourCardIssued {
+    return Intl.message(
+      'Your card has\nbeen issued',
+      name: 'yourCardIssued',
       desc: '',
       args: [],
     );
