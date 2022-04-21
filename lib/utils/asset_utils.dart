@@ -164,6 +164,7 @@ class AssetUtils {
   static const String countryRestriction = svg + "country_restriction.svg";
   static const String dollarSvg = svg + "dollar_svg.svg";
   static const String percentage = svg + "percentage.svg";
+  static const String circleRight = svg + "circle_right.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -217,6 +218,7 @@ class AssetUtils {
   static const String debitBlurWidget = drawable + "debit_blur_widget.png";
   static const String creditBlurCard = drawable + "credit_blur_card.png";
   static const String qr = drawable + "qr.png";
+  static const String viewSubscription = drawable + "view_subscription.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

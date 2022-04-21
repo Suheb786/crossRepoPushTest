@@ -1275,5 +1275,13 @@
   "currentSettlementPercentage": "Current Settlement Percentage",
   "newSettlementPercentage": "New settlement Percentage",
   "settlementPercentage": "Settlement Percentages",
-  "creditSettlementPercentageChangedDesc": "Your credit card settlement percentages has been updated with your new selected account"
+  "creditSettlementPercentageChangedDesc": "Your credit card settlement percentages has been updated with your new selected account",
+  "subscription": "subscriptions",
+  "viewCardSubSubscription": "View card subscriptions",
+  "receiveOtpToNewNumber": "You will receive OTP to your\nnew number for future\ntransactions.",
+  "newMobileNumber": "NEW MOBILE NUMBER",
+  "changeMobileNumberInfo": "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.",
+  "dcEnterOtpHeader": "Enter 6-digit OTP sent to",
+  "cardDetailUpdated": "Card details updated\nsuccessfully",
+  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions."
 }

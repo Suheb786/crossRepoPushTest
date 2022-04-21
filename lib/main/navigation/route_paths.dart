@@ -118,4 +118,9 @@ class RoutePaths {
   static const String ChangeCardPayment = "/changeCardPayment";
   static const String ChangeCardSettlementPercentage =
       "/changeCardSettlementPercentage";
+  static const String ViewDebitCardSubscription = "/viewDebitCardSubscription";
+  static const String DcChangeLinkedMobileNumber =
+      "/dcChangeLinkedMobileNumber";
+  static const String DcChangeMobileNumberSuccess =
+      "/dcChangeMobileNumberSuccess";
 }
