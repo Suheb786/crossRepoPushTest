@@ -74,7 +74,7 @@ class CardReadySuccessPageView
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
-                              S.of(context).debitCardReadyDesc,
+                              S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
