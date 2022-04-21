@@ -42,6 +42,8 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
@@ -92,6 +94,7 @@ import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_ca
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
+import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -583,6 +586,18 @@ class AppRouter {
                 credentials:
                     settings.arguments as CreditCardVideKycCredentials),
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
+
+      case RoutePaths.ViewDebitCardSubscription:
+        return CustomRoute.createRoute(ViewDebitCardSubscriptionPage());
+
+      case RoutePaths.DcChangeLinkedMobileNumber:
+        return CustomRoute.createRoute(DcChangeLinkedMobileNumberPage());
+
+      case RoutePaths.DcChangeMobileNumberSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => DcChangeMobileNumberSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.DcChangeMobileNumberSuccess));
 
       default:
         return CupertinoPageRoute(

@@ -103,4 +103,9 @@ class RoutePaths {
   static const String CreditCardVideoCallComplete =
       "/creditCardVideoCallComplete";
   static const String CreditCardVideoKyc = "/creditCardVideoKyc";
+  static const String ViewDebitCardSubscription = "/viewDebitCardSubscription";
+  static const String DcChangeLinkedMobileNumber =
+      "/dcChangeLinkedMobileNumber";
+  static const String DcChangeMobileNumberSuccess =
+      "/dcChangeMobileNumberSuccess";
 }

@@ -11990,6 +11990,86 @@ class S {
       args: [],
     );
   }
+
+  /// `subscriptions`
+  String get subscription {
+    return Intl.message(
+      'subscriptions',
+      name: 'subscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View card subscriptions`
+  String get viewCardSubSubscription {
+    return Intl.message(
+      'View card subscriptions',
+      name: 'viewCardSubSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive OTP to your\nnew number for future\ntransactions.`
+  String get receiveOtpToNewNumber {
+    return Intl.message(
+      'You will receive OTP to your\nnew number for future\ntransactions.',
+      name: 'receiveOtpToNewNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NEW MOBILE NUMBER`
+  String get newMobileNumber {
+    return Intl.message(
+      'NEW MOBILE NUMBER',
+      name: 'newMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.`
+  String get changeMobileNumberInfo {
+    return Intl.message(
+      'Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.',
+      name: 'changeMobileNumberInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter 6-digit OTP sent to`
+  String get dcEnterOtpHeader {
+    return Intl.message(
+      'Enter 6-digit OTP sent to',
+      name: 'dcEnterOtpHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card details updated\nsuccessfully`
+  String get cardDetailUpdated {
+    return Intl.message(
+      'Card details updated\nsuccessfully',
+      name: 'cardDetailUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new mobile number has been successfully verified and tied to your card transactions.`
+  String get dcMobileNumberUpdated {
+    return Intl.message(
+      'Your new mobile number has been successfully verified and tied to your card transactions.',
+      name: 'dcMobileNumberUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
