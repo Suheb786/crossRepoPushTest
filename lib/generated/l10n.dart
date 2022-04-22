@@ -11989,6 +11989,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You can add money to your account and start using your virtual Yellow Sun debit card immediately.`
+  String get youCanAddMoney {
+    return Intl.message(
+      'You can add money to your account and start using your virtual Yellow Sun debit card immediately.',
+      name: 'youCanAddMoney',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
