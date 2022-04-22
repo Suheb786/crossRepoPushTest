@@ -12620,6 +12620,86 @@ class S {
       args: [],
     );
   }
+
+  /// `RENEW CREDIT CARD`
+  String get renewNewCreditCard {
+    return Intl.message(
+      'RENEW CREDIT CARD',
+      name: 'renewNewCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card has\nbeen issued`
+  String get yourCardIssued {
+    return Intl.message(
+      'Your card has\nbeen issued',
+      name: 'yourCardIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can change the above details in the card settings `
+  String get youCanChangeCardDetailsInSettings {
+    return Intl.message(
+      'You can change the above details in the card settings ',
+      name: 'youCanChangeCardDetailsInSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CARD SETTLEMENT ACCOUNT`
+  String get cardSettlementAccount {
+    return Intl.message(
+      'CARD SETTLEMENT ACCOUNT',
+      name: 'cardSettlementAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  String get reportStolenLostCardDesc {
+    return Intl.message(
+      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      name: 'reportStolenLostCardDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adjust your\ndesired credit limit`
+  String get changeCreditLimitDesc {
+    return Intl.message(
+      'Adjust your\ndesired credit limit',
+      name: 'changeCreditLimitDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit limit is successfully updated`
+  String get creditLimitChangedSuccess {
+    return Intl.message(
+      'Credit limit is successfully updated',
+      name: 'creditLimitChangedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New credit limit has been set for your credit card.`
+  String get creditLimitChangedDesc {
+    return Intl.message(
+      'New credit limit has been set for your credit card.',
+      name: 'creditLimitChangedDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

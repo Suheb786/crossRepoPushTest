@@ -310,14 +310,17 @@ class CreditCardSettingsPageView
                                 onTap: () {
                                   model.getSupplementaryCreditCardApplication();
                                 },
-                                isEnabled: false,
-                                isNotify: true,
+                                isEnabled: true,
+                                isNotify: false,
                                 title: S.of(context).requestSupplementarycard,
                                 tileIcon: AssetUtils.cardIcon,
                               );
                             }),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ChangeCreditLimit);
+                          },
                           title: S.of(context).changeCreditLimit,
                           tileIcon: AssetUtils.add,
                           isEnabled: true,
@@ -332,7 +335,7 @@ class CreditCardSettingsPageView
                         ),
                         SettingTile(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, RoutePaths.DcChangeLinkedMobileNumber,
                                 arguments: DCChangeLinkedMobileNumberArguments(
                                     cardType: CardType.CREDIT));
@@ -353,21 +356,58 @@ class CreditCardSettingsPageView
                           isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCreditSettlement);
+                          },
                           title: S.of(context).manageSettlement,
                           tileIcon: AssetUtils.linked,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportCardIssue,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.RenewCreditCard);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
                           title: S.of(context).reportCardIssue,
                           tileIcon: AssetUtils.report,
                           isEnabled: true,
                           isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportCardIssue,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.RenewCreditCard);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
                           title: S.of(context).replaceDamageCard,
                           tileIcon: AssetUtils.damageCard,
                           isEnabled: true,

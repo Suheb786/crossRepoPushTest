@@ -16,6 +16,7 @@ import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page.dart';
+import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
@@ -88,6 +89,7 @@ import 'package:neo_bank/feature/register/step_five/video_call_scheduled/video_c
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_page.dart';
+import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
@@ -679,6 +681,16 @@ class AppRouter {
                 settings.arguments as DCChangeLinkedMobileNumberArguments),
             settings:
                 RouteSettings(name: RoutePaths.DcChangeMobileNumberSuccess));
+
+      case RoutePaths.RenewCreditCard:
+        return CupertinoPageRoute(
+            builder: (context) => RenewCreditCardPage(),
+            settings: RouteSettings(name: RoutePaths.RenewCreditCard));
+
+      case RoutePaths.ChangeCreditLimit:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCreditLimitPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCreditLimit));
 
       default:
         return CupertinoPageRoute(

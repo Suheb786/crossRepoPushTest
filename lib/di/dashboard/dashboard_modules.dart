@@ -5,6 +5,7 @@ import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
+import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
@@ -34,6 +35,7 @@ import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page_view_model.dart';
+import 'package:neo_bank/feature/renew_credit_card/renew_credit_card_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
@@ -224,4 +226,16 @@ final changeCardSettlementPercentagePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<
         ChangeCardSettlementPercentagePageViewModel>(
   (ref) => ChangeCardSettlementPercentagePageViewModel(),
+);
+
+///renew credit card page view model
+final renewCreditCardPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RenewCreditCardPageViewModel>(
+  (ref) => RenewCreditCardPageViewModel(),
+);
+
+///change credit limit page view model
+final changeCreditLimitPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeCreditLimitPageViewModel>(
+  (ref) => ChangeCreditLimitPageViewModel(),
 );

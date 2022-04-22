@@ -83,7 +83,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
           );
         },
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: 6,
         separatorBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 15.0),

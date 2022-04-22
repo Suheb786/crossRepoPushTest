@@ -329,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPinSucccesFullyUnblockedDesc":
             MessageLookupByLibrary.simpleMessage(
                 "Your may use your card PIN for payments immediately."),
+        "cardSettlementAccount":
+            MessageLookupByLibrary.simpleMessage("CARD SETTLEMENT ACCOUNT"),
         "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
             "While frozen, your card can\'t be used for any transactions."),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -345,6 +347,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeCreditLimit":
             MessageLookupByLibrary.simpleMessage("Change credit limit"),
+        "changeCreditLimitDesc": MessageLookupByLibrary.simpleMessage(
+            "Adjust your\ndesired credit limit"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeEmailError": MessageLookupByLibrary.simpleMessage(
@@ -507,6 +511,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditDashboardDataError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
+        "creditLimitChangedDesc": MessageLookupByLibrary.simpleMessage(
+            "New credit limit has been set for your credit card."),
+        "creditLimitChangedSuccess": MessageLookupByLibrary.simpleMessage(
+            "Credit limit is successfully updated"),
         "creditLimitSettings":
             MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
         "creditSettlementPercentageChangedDesc":
@@ -1793,10 +1801,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeFromContact":
             MessageLookupByLibrary.simpleMessage("Remove contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
+        "renewNewCreditCard":
+            MessageLookupByLibrary.simpleMessage("RENEW CREDIT CARD"),
         "replaceDamageCard":
             MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
+        "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
@@ -2308,6 +2320,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
                 "You are accepting a money\nrequest via QR"),
+        "youCanChangeCardDetailsInSettings":
+            MessageLookupByLibrary.simpleMessage(
+                "You can change the above details in the card settings "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested"),
@@ -2323,6 +2338,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardIssued":
+            MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardLimit":
             MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
         "yourCardReady":

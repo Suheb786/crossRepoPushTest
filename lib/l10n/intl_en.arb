@@ -1283,5 +1283,13 @@
   "changeMobileNumberInfo": "Changing the mobile number is only for notification relating to this card. If you wish to change the mobile number relating to account, please go to Profile Settings.",
   "dcEnterOtpHeader": "Enter 6-digit OTP sent to",
   "cardDetailUpdated": "Card details updated\nsuccessfully",
-  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions."
+  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions.",
+  "renewNewCreditCard": "RENEW CREDIT CARD",
+  "yourCardIssued": "Your card has\nbeen issued",
+  "youCanChangeCardDetailsInSettings": "You can change the above details in the card settings ",
+  "cardSettlementAccount": "CARD SETTLEMENT ACCOUNT",
+  "reportStolenLostCardDesc": "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.",
+  "changeCreditLimitDesc": "Adjust your\ndesired credit limit",
+  "creditLimitChangedSuccess": "Credit limit is successfully updated",
+  "creditLimitChangedDesc": "New credit limit has been set for your credit card."
 }
