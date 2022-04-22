@@ -1,21 +1,23 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_view_model.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_view_model.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/time_utils.dart';
 
 class DcChangeMobileNumberSuccessPageView
     extends BasePageViewWidget<DcChangeMobileNumberSuccessViewModel> {
-  DcChangeMobileNumberSuccessPageView(ProviderBase model) : super(model);
+  final DCChangeLinkedMobileNumberArguments _arguments;
+
+  DcChangeMobileNumberSuccessPageView(ProviderBase model, this._arguments)
+      : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -26,15 +28,12 @@ class DcChangeMobileNumberSuccessPageView
           ProviderScope.containerOf(context)
               .read(appHomeViewModelProvider)
               .getDashboardData();
-          // ProviderScope.containerOf(context)
-          //     .read(appHomeViewModelProvider)
-          //     .triggerSentMoneyPopup();
         }
       },
       child: Padding(
-        padding: EdgeInsets.only(top: 92, bottom: 56),
+        padding: EdgeInsets.only(top: 92, bottom: 36),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
@@ -42,18 +41,24 @@ class DcChangeMobileNumberSuccessPageView
                   alignment: Alignment.center,
                   children: [
                     Image.asset(AssetUtils.line,
-                        color: Theme.of(context).accentColor.withOpacity(0.4)),
+                        color: _arguments.cardType == CardType.DEBIT
+                            ? Theme.of(context).accentColor.withOpacity(0.4)
+                            : AppColor.softRed),
                     Align(
                       alignment: Alignment.center,
                       child: Container(
                         height: 111.37,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor,
+                          color: _arguments.cardType == CardType.DEBIT
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).canvasColor,
                         ),
                         child: Center(
                             child: AppSvg.asset(AssetUtils.right,
-                                color: Theme.of(context).accentColor)),
+                                color: _arguments.cardType == CardType.DEBIT
+                                    ? Theme.of(context).accentColor
+                                    : Theme.of(context).primaryColorDark)),
                       ),
                     ),
                   ],
@@ -64,9 +69,11 @@ class DcChangeMobileNumberSuccessPageView
                     S.of(context).cardDetailUpdated,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                    ),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        color: _arguments.cardType == CardType.DEBIT
+                            ? Theme.of(context).primaryColorDark
+                            : Theme.of(context).accentColor),
                   ),
                 ),
                 Padding(
@@ -75,9 +82,11 @@ class DcChangeMobileNumberSuccessPageView
                     S.of(context).dcMobileNumberUpdated,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: _arguments.cardType == CardType.DEBIT
+                            ? Theme.of(context).primaryColorDark
+                            : Theme.of(context).accentColor),
                   ),
                 ),
               ],
@@ -86,8 +95,12 @@ class DcChangeMobileNumberSuccessPageView
               children: [
                 AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
-                  borderColor: AppColor.brightBlue,
-                  textColor: AppColor.brightBlue,
+                  borderColor: _arguments.cardType == CardType.DEBIT
+                      ? Theme.of(context).accentTextTheme.bodyText1!.color
+                      : Theme.of(context).accentColor,
+                  textColor: _arguments.cardType == CardType.DEBIT
+                      ? Theme.of(context).accentTextTheme.bodyText1!.color
+                      : Theme.of(context).accentColor,
                 ),
                 InkWell(
                   onTap: () {},
@@ -96,7 +109,12 @@ class DcChangeMobileNumberSuccessPageView
                     child: Text(
                       S.of(context).toDashboard,
                       style: TextStyle(
-                          color: AppColor.brightBlue,
+                          color: _arguments.cardType == CardType.DEBIT
+                              ? Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color
+                              : Theme.of(context).accentColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),
                     ),

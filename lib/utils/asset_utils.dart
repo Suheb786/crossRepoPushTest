@@ -158,9 +158,15 @@ class AssetUtils {
   static const String timelineEndUpdated = svg + "timeline_end_updated.svg";
   static const String timelinec1 = svg + "Timeline-C1.svg";
   static const String ccAgent = svg + "cc_agent.svg";
+  static const String cliqLogo = svg + "cliq_logo.svg";
+  static const String cardSubscription = svg + "card_subscription.svg";
+  static const String damageCard = svg + "damage_card.svg";
+  static const String countryRestriction = svg + "country_restriction.svg";
+  static const String dollarSvg = svg + "dollar_svg.svg";
+  static const String percentage = svg + "percentage.svg";
   static const String circleRight = svg + "circle_right.svg";
 
-  /// DRAWABLESx
+  /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
   static const String loginCard = drawable + "login_card.png";
   static const String complete = drawable + "complete.png";
@@ -211,6 +217,7 @@ class AssetUtils {
   static const String creditStatement = drawable + "credit-statement.png";
   static const String debitBlurWidget = drawable + "debit_blur_widget.png";
   static const String creditBlurCard = drawable + "credit_blur_card.png";
+  static const String qr = drawable + "qr.png";
   static const String viewSubscription = drawable + "view_subscription.png";
 
   /// Animations

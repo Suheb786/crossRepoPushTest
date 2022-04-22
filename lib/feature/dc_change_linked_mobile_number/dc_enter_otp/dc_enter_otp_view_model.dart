@@ -29,8 +29,8 @@ class DcEnterOtpViewModel extends BasePageViewModel {
   PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
   void updateTime() {
-    // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    // notifyListeners();
+    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    notifyListeners();
   }
 
   PublishSubject<DcEnterOtpUseCaseParams> _dcEnterOtpRequest = PublishSubject();

@@ -10,8 +10,10 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
+import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -220,46 +222,6 @@ class CreditCardSettingsPageView
                               );
                             }),
                         IgnorePointer(
-                          child: AppStreamBuilder<Resource<bool>>(
-                            initialData: Resource.none(),
-                            stream: model.cancelCreditCardStream,
-                            onData: (data) {},
-                            dataBuilder: (context, data) {
-                              return SettingTile(
-                                isNotify: true,
-                                isEnabled: false,
-                                onTap: () {
-                                  CardCancelDialog.show(
-                                    context,
-                                    onSelected:
-                                        (reasonValue, needsReplacement) {
-                                      Navigator.pop(context);
-                                      model.cancelCard(reasonValue);
-                                    },
-                                    onDismissed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onError: (AppError error) {
-                                      model.showToastWithError(error);
-                                    },
-                                    reasons: [
-                                      "I don’t need my card anymore.",
-                                      "High interest, fees & charges.",
-                                      "I feel the credit limit is low.",
-                                      "High FX rates.",
-                                      "I’m trying to control my expenses.",
-                                      "I’m dissatisfied with service.",
-                                      "There are too many declined trx’s"
-                                    ],
-                                  );
-                                },
-                                title: S.of(context).cancelThisCard,
-                                tileIcon: AssetUtils.cancelCard,
-                              );
-                            },
-                          ),
-                        ),
-                        IgnorePointer(
                           child: SettingTile(
                             isNotify: true,
                             isEnabled: false,
@@ -286,6 +248,18 @@ class CreditCardSettingsPageView
                             title: S.of(context).manageCardPin,
                             tileIcon: AssetUtils.cardShield,
                           ),
+                        ),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ViewDebitCardSubscription,
+                                arguments: ViewDebitCardSubscriptionArguments(
+                                    cardType: CardType.CREDIT));
+                          },
+                          title: S.of(context).viewCardSubscription,
+                          tileIcon: AssetUtils.cardSubscription,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         AppStreamBuilder<
                                 Resource<
@@ -336,53 +310,148 @@ class CreditCardSettingsPageView
                                 onTap: () {
                                   model.getSupplementaryCreditCardApplication();
                                 },
-                                isEnabled: false,
-                                isNotify: true,
+                                isEnabled: true,
+                                isNotify: false,
                                 title: S.of(context).requestSupplementarycard,
                                 tileIcon: AssetUtils.cardIcon,
                               );
                             }),
                         SettingTile(
-                          onTap: () {},
-                          title: S.of(context).increaseCreditLimit,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ChangeCreditLimit);
+                          },
+                          title: S.of(context).changeCreditLimit,
                           tileIcon: AssetUtils.add,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         SettingTile(
                           onTap: () {},
-                          title: S.of(context).convertBalanceToInstalments,
+                          title: S.of(context).convertPurchaseToInstallments,
                           tileIcon: AssetUtils.chart,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.DcChangeLinkedMobileNumber,
+                                arguments: DCChangeLinkedMobileNumberArguments(
+                                    cardType: CardType.CREDIT));
+                          },
                           title: S.of(context).changeLinkedMobileNumber,
                           tileIcon: AssetUtils.mobile,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
-                          title: S.of(context).manageSettlement,
-                          tileIcon: AssetUtils.linked,
-                          isEnabled: false,
-                          isNotify: true,
-                        ),
-                        SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ChangeCountryRestriction);
+                          },
                           title: S.of(context).changeCountryRestriction,
                           tileIcon: AssetUtils.globe,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCreditSettlement);
+                          },
+                          title: S.of(context).manageSettlement,
+                          tileIcon: AssetUtils.linked,
+                          isEnabled: true,
+                          isNotify: false,
+                        ),
+                        SettingTile(
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportCardIssue,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.RenewCreditCard);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
                           title: S.of(context).reportCardIssue,
                           tileIcon: AssetUtils.report,
-                          isEnabled: false,
-                          isNotify: true,
+                          isEnabled: true,
+                          isNotify: false,
+                        ),
+                        SettingTile(
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportCardIssue,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.RenewCreditCard);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
+                          title: S.of(context).replaceDamageCard,
+                          tileIcon: AssetUtils.damageCard,
+                          isEnabled: true,
+                          isNotify: false,
+                        ),
+                        IgnorePointer(
+                          child: AppStreamBuilder<Resource<bool>>(
+                            initialData: Resource.none(),
+                            stream: model.cancelCreditCardStream,
+                            onData: (data) {},
+                            dataBuilder: (context, data) {
+                              return SettingTile(
+                                isNotify: true,
+                                isEnabled: false,
+                                onTap: () {
+                                  CardCancelDialog.show(
+                                    context,
+                                    onSelected:
+                                        (reasonValue, needsReplacement) {
+                                      Navigator.pop(context);
+                                      model.cancelCard(reasonValue);
+                                    },
+                                    onDismissed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    onError: (AppError error) {
+                                      model.showToastWithError(error);
+                                    },
+                                    reasons: [
+                                      "I don’t need my card anymore.",
+                                      "High interest, fees & charges.",
+                                      "I feel the credit limit is low.",
+                                      "High FX rates.",
+                                      "I’m trying to control my expenses.",
+                                      "I’m dissatisfied with service.",
+                                      "There are too many declined trx’s"
+                                    ],
+                                  );
+                                },
+                                title: S.of(context).cancelThisCard,
+                                tileIcon: AssetUtils.cancelCard,
+                              );
+                            },
+                          ),
                         ),
                         SizedBox(height: 15),
                         Padding(

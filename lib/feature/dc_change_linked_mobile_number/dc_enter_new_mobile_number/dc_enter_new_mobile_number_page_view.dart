@@ -44,13 +44,21 @@ class DcEnterNewMobileNumberPageView
                   dataBuilder: (context, data) {
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          if (data?.status == Status.SUCCESS) {
-                            ProviderScope.containerOf(context)
+                        if (ProviderScope.containerOf(context)
                                 .read(
                                     dcChangeLinkedMobileNumberViewModelProvider)
-                                .nextPage();
-                          }
+                                .appSwiperController
+                                .page ==
+                            0.0) {
+                          if (details.primaryVelocity!.isNegative) {
+                            FocusScope.of(context).unfocus();
+                            if (data?.status == Status.SUCCESS) {
+                              ProviderScope.containerOf(context)
+                                  .read(
+                                      dcChangeLinkedMobileNumberViewModelProvider)
+                                  .nextPage();
+                            }
+                          } else {}
                         }
                       },
                       child: Card(
@@ -202,19 +210,6 @@ class DcEnterNewMobileNumberPageView
                                   ),
                                 ),
                                 Spacer(),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    S.of(context).backToCardSettings,
-                                    style: TextStyle(
-                                      color: AppColor.brightBlue,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 12.0),
                                   child: AppStreamBuilder<bool>(
@@ -230,6 +225,20 @@ class DcEnterNewMobileNumberPageView
                                         );
                                       }),
                                 ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    S.of(context).backToCardSettings,
+                                    style: TextStyle(
+                                      color: AppColor.brightBlue,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+
                                 // SizedBox(
                                 //   height:
                                 //       MediaQuery.of(context).viewInsets.bottom,
