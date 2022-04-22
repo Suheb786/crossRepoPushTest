@@ -5,6 +5,7 @@ import 'package:domain/model/account/video_kyc_status.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/account/get_call_status_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -76,15 +77,18 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   _initEngine() async {
-    _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
-    _addAgoraEventHandlers();
+    try {
+      _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
+      _addAgoraEventHandlers();
 
-    await _engine.enableVideo();
-    await _engine.startPreview();
-    await _engine.setChannelProfile(ChannelProfile.Communication);
-    await _engine.setClientRole(ClientRole.Broadcaster);
-
-    joinAgoraChannel();
+      await _engine.enableVideo();
+      await _engine.startPreview();
+      await _engine.setChannelProfile(ChannelProfile.Communication);
+      await _engine.setClientRole(ClientRole.Broadcaster);
+    } catch (e) {
+      print('----Catch----');
+      joinAgoraChannel();
+    }
   }
 
   void logOutUser() {
@@ -92,35 +96,36 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(
-      joinChannelSuccess: (channel, uid, elapsed) {
-        print("joinChannelSuccess $uid");
-        isJoined = true;
-        notifyListeners();
-      },
-      userJoined: (uid, elapsed) {
-        print("userJoined $uid");
-        remoteUid.add(uid);
-        notifyListeners();
-      },
-      userOffline: (uid, reason) {
-        print("userOffline $uid");
-        remoteUid.removeWhere((element) => element == uid);
-        notifyListeners();
-      },
-      leaveChannel: (stats) {
-        isJoined = false;
-        remoteUid.clear();
-        notifyListeners();
-      },
-    ));
+    _engine.setEventHandler(
+        RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
+      debugPrint("joinChannelSuccess $uid");
+      isJoined = true;
+      notifyListeners();
+    }, userJoined: (uid, elapsed) {
+      debugPrint("userJoined $uid");
+      remoteUid.add(uid);
+      notifyListeners();
+    }, userOffline: (uid, reason) {
+      debugPrint("userOffline $uid");
+      remoteUid.removeWhere((element) => element == uid);
+      leaveAgoraChannel();
+      //notifyListeners();
+    }, leaveChannel: (stats) {
+      debugPrint('leave channel');
+      isJoined = false;
+      remoteUid.clear();
+      // notifyListeners();
+      //leaveAgoraChannel();
+      //getCallStatus();
+    }, connectionStateChanged: (type, reason) {
+      debugPrint('type----->${type}');
+    }));
   }
 
   joinAgoraChannel() async {
     if (Platform.isAndroid) {
       await [Permission.microphone, Permission.camera].request();
     }
-    print("Joininig");
     await _engine.joinChannel(tempToken, channelId, null, uid);
     notifyListeners();
   }

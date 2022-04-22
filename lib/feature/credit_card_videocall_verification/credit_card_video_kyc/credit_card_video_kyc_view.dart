@@ -70,24 +70,17 @@ class CreditCardVideoKycPageView
                 dataBuilder: (context, data) {
                   return InkWell(
                     onTap: () {
-                      model.isJoined
-                          ? model.leaveAgoraChannel()
-                          : model.joinAgoraChannel();
+                      model.leaveAgoraChannel();
                     },
                     child: Container(
                       width: 57,
                       height: 57,
                       padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: model.isJoined
-                            ? AppColor.vivid_red
-                            : AppColor.darkModerateLimeGreen,
+                        color: AppColor.vivid_red,
                         shape: BoxShape.circle,
                       ),
-                      child: model.isJoined
-                          ? AppSvg.asset(AssetUtils.receiver)
-                          : AppSvg.asset(AssetUtils.voiceCall,
-                              color: AppColor.white),
+                      child: AppSvg.asset(AssetUtils.receiver),
                     ),
                   );
                 }),

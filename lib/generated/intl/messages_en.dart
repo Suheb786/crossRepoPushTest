@@ -1140,7 +1140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidFourDigit": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
-            "Invalid Gender for virtual agent correct values are M|F"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdCardCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -1184,8 +1184,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter name as per tax return"),
         "invalidNationalIdCard": MessageLookupByLibrary.simpleMessage(
             "We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100."),
-        "invalidNationality":
-            MessageLookupByLibrary.simpleMessage("Invalid Nationality"),
+        "invalidNationality": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
@@ -1285,7 +1285,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
-            "Must less than Primary limit"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)"),
         "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":

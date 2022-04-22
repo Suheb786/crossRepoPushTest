@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8751,20 +8750,20 @@ class S {
     );
   }
 
-  /// `Must less than Primary limit`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)`
   String get lessThanPrimary {
     return Intl.message(
-      'Must less than Primary limit',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)',
       name: 'lessThanPrimary',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Nationality`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)`
   String get invalidNationality {
     return Intl.message(
-      'Invalid Nationality',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)',
       name: 'invalidNationality',
       desc: '',
       args: [],
@@ -11081,10 +11080,10 @@ class S {
     );
   }
 
-  /// `Invalid Gender for virtual agent correct values are M|F`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)`
   String get invalidGenderValue {
     return Intl.message(
-      'Invalid Gender for virtual agent correct values are M|F',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)',
       name: 'invalidGenderValue',
       desc: '',
       args: [],
