@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CreditCardVideoCallInitiatePageView
     extends BasePageViewWidget<CreditCardVideoCallInitiatePageViewModel> {
@@ -28,10 +29,15 @@ class CreditCardVideoCallInitiatePageView
     return AppStreamBuilder<Resource<AgentGenderStatus>>(
         stream: model.getAgentAvailabilityStream,
         initialData: Resource.none(),
-        onData: (data) {
+        onData: (data) async {
           if (data.status == Status.SUCCESS) {
             if (data.data!.isExist) {
-              model.getAgoraCredentials();
+              if (!(await Permission.bluetoothConnect.isGranted)) {
+                await Permission.bluetoothConnect.request();
+                model.getAgoraCredentials();
+              } else {
+                model.getAgoraCredentials();
+              }
             } else {
               model.showToastWithError(AppError(
                   cause: Exception(),
