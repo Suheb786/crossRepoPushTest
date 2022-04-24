@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:domain/usecase/credit_card_videocall_verification/credit_card_call_status_update_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -77,37 +78,44 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   _initEngine() async {
-    _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
-    _addAgoraEventHandlers();
+    try {
+      _engine = await RtcEngine.createWithContext(RtcEngineContext(agoraAppId));
+      _addAgoraEventHandlers();
 
-    await _engine.enableVideo();
-    await _engine.startPreview();
-    await _engine.setChannelProfile(ChannelProfile.Communication);
-    await _engine.setClientRole(ClientRole.Broadcaster);
-
-    //joinAgoraChannel();
+      await _engine.enableVideo();
+      await _engine.startPreview();
+      await _engine.setChannelProfile(ChannelProfile.Communication);
+      await _engine.setClientRole(ClientRole.Broadcaster);
+    } catch (e) {
+      joinAgoraChannel();
+    }
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(RtcEngineEventHandler(
-      joinChannelSuccess: (channel, uid, elapsed) {
-        isJoined = true;
-        notifyListeners();
-      },
-      userJoined: (uid, elapsed) {
-        remoteUid.add(uid);
-        notifyListeners();
-      },
-      userOffline: (uid, reason) {
-        remoteUid.removeWhere((element) => element == uid);
-        notifyListeners();
-      },
-      leaveChannel: (stats) {
-        isJoined = false;
-        remoteUid.clear();
-        notifyListeners();
-      },
-    ));
+    _engine.setEventHandler(
+        RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
+      debugPrint("joinChannelSuccess $uid");
+      isJoined = true;
+      notifyListeners();
+    }, userJoined: (uid, elapsed) {
+      debugPrint("userJoined $uid");
+      remoteUid.add(uid);
+      notifyListeners();
+    }, userOffline: (uid, reason) {
+      debugPrint("userOffline $uid");
+      remoteUid.removeWhere((element) => element == uid);
+      leaveAgoraChannel();
+      //notifyListeners();
+    }, leaveChannel: (stats) {
+      debugPrint('leave channel');
+      isJoined = false;
+      remoteUid.clear();
+      // notifyListeners();
+      //leaveAgoraChannel();
+      //getCallStatus();
+    }, connectionStateChanged: (type, reason) {
+      debugPrint('type----->${type}');
+    }));
   }
 
   joinAgoraChannel() async {
