@@ -11980,10 +11980,10 @@ class S {
     );
   }
 
-  /// `Sorry we could not connect your call with an available agent, please reach back to our team again.`
+  /// `Engagement team is currently not available, please try later`
   String get agentNotAvailable {
     return Intl.message(
-      'Sorry we could not connect your call with an available agent, please reach back to our team again.',
+      'Engagement team is currently not available, please try later',
       name: 'agentNotAvailable',
       desc: '',
       args: [],
