@@ -117,6 +117,12 @@ class AppHomeViewModel extends BasePageViewModel {
   List<TimeLineListArguments> timeLineListArguments = [];
   List<TimeLineListArguments> blinkTimeLineListArguments = [];
 
+  ///subscription pop up stream
+  PublishSubject<bool> _showSubSubscriptionPopUpStream = PublishSubject();
+
+  Stream<bool> get showSubSubscriptionPopUpStream =>
+      _showSubSubscriptionPopUpStream.stream;
+
   AppHomeViewModel(this._getDashboardDataUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
@@ -466,6 +472,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
   void triggerRequestMoneyPopup() {
     _requestMoneyRequest.safeAdd(true);
+  }
+
+  void triggerSubscriptionPopUp() {
+    _showSubSubscriptionPopUpStream.safeAdd(true);
   }
 
   @override

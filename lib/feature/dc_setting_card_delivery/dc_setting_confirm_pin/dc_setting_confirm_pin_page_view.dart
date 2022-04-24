@@ -37,7 +37,7 @@ class DcSettingConfirmPinPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pushReplacementNamed(
-                      context, RoutePaths.CardReadySuccess);
+                      context, RoutePaths.DcSettingCardReady);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }

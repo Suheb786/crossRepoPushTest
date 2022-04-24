@@ -110,4 +110,5 @@ class RoutePaths {
       "/dcChangeMobileNumberSuccess";
   static const String DcChangeLinkedAccount = "/dcChangeLinkedAccount";
   static const String DcSettingCardDelivery = "/dcSettingCardDelivery";
+  static const String DcSettingCardReady = "/dcSettingCardReady";
 }

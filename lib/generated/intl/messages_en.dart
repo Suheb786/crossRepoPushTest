@@ -309,6 +309,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPinSucccesFullyUnblockedDesc":
             MessageLookupByLibrary.simpleMessage(
                 "Your may use your card PIN for payments immediately."),
+        "cardSubscription":
+            MessageLookupByLibrary.simpleMessage("Card subscriptions"),
         "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
             "While frozen, your card can\'t be used for any transactions."),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -498,6 +500,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your new mobile number has been successfully verified and tied to your card transactions."),
+        "dcSettingCardReady": MessageLookupByLibrary.simpleMessage(
+            "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
         "debitCard": MessageLookupByLibrary.simpleMessage("DEBIT CARD"),
         "debitCardActivated":
             MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
@@ -1925,6 +1929,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
         "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
+        "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
+            "Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details."),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),

@@ -1421,6 +1421,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                 popUpWidget(context, AssetUtils.requestedOffer));
       }
     });
+
+    model.showSubSubscriptionPopUpStream.listen((data) {
+      if (data) {
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => subscriptionPopUpWidget(context));
+      }
+    });
   }
 
   Widget popUpWidget(BuildContext context, String image) {
@@ -1458,5 +1467,170 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
             )
           ],
         ));
+  }
+
+  Widget subscriptionPopUpWidget(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Padding(
+        padding: EdgeInsets.only(top: 116, bottom: 56, left: 23, right: 23),
+        child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(16)),
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 40),
+                      Text(
+                        S.of(context).cardSubscription,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 5),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 26.0),
+                        child: Text(
+                          S.of(context).subscriptionPopUpInfo,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 15),
+                        ),
+                      ),
+                      SizedBox(height: 32),
+                      ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context).primaryColor),
+                                  child: Container(
+                                    height: 36,
+                                    width: 36,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.asset(
+                                        AssetUtils.viewSubscription),
+                                  )),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 14),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Netflix US",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14),
+                                          ),
+                                          Spacer(),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "8.51",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 2, top: 4),
+                                                child: Text(
+                                                  "JOD/YR",
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: AppColor.gray1),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 4),
+                                        child: Text(
+                                          "Monthly",
+                                          style: TextStyle(
+                                              color: AppColor.gray1,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 14),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16),
+                                child: Divider(
+                                  thickness: 4,
+                                  color: Colors.red,
+                                ),
+                              )
+                            ],
+                          );
+                        },
+                        shrinkWrap: true,
+                        itemCount: 5,
+                        separatorBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                            child: Container(
+                              height: 1,
+                              color: AppColor.light_grayish_violet,
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: 36,
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(16),
+                        height: 57,
+                        width: 57,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context)
+                                .accentTextTheme
+                                .bodyText1!
+                                .color!),
+                        child: AppSvg.asset(AssetUtils.tick,
+                            color: Theme.of(context).accentColor),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )),
+      ),
+    );
   }
 }

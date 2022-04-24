@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12095,6 +12096,36 @@ class S {
     return Intl.message(
       'Your card has\nbeen issued',
       name: 'yourCardIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.`
+  String get dcSettingCardReady {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.',
+      name: 'dcSettingCardReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card subscriptions`
+  String get cardSubscription {
+    return Intl.message(
+      'Card subscriptions',
+      name: 'cardSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details.`
+  String get subscriptionPopUpInfo {
+    return Intl.message(
+      'Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details.',
+      name: 'subscriptionPopUpInfo',
       desc: '',
       args: [],
     );
