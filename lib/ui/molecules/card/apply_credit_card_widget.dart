@@ -85,7 +85,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            S.of(context).getCardNow,
+                            S.of(context).applyNow,
                             style: TextStyle(
                                 fontSize: isSmallDevices ? 12 : 14,
                                 fontWeight: FontWeight.w600,

@@ -197,10 +197,16 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> cancelDebitCard(
-      {String? reason, String? status, String? tokenizedPan}) async {
+      {String? reason,
+      String? status,
+      String? tokenizedPan,
+      String? cancellationReason}) async {
     final result = await safeApiCall(
       _remoteDs.cancelDebitCard(
-          reason: reason, status: status, tokenizedPan: tokenizedPan),
+          reason: reason,
+          status: status,
+          tokenizedPan: tokenizedPan,
+          cancellationReason: cancellationReason),
     );
     return result!.fold(
       (l) => Left(l),
@@ -520,6 +526,17 @@ class CardRepositoryImpl extends CardRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> callStatusUpdate(
+      {String? cardId, String? status}) async {
+    final result = await safeApiCall(
+        _remoteDs.callStatusUpdate(cardId: cardId, status: status));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }

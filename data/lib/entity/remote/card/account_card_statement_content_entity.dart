@@ -38,6 +38,9 @@ class AccountCardStatementContentEntity
             ? ImageUtils.pdfFileFromBase64String(
                 this.pdfBase64String!, this.pdfFileName ?? 'Account Statement')
             : File(''),
-        pdfFileName: this.pdfFileName ?? '');
+        pdfFileName: this.pdfFileName ?? '',
+        pdfUint8List: this.pdfBase64String != null
+            ? ImageUtils.dataFromBase64String(this.pdfBase64String!)
+            : "");
   }
 }

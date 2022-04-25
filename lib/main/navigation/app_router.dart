@@ -22,6 +22,9 @@ import 'package:neo_bank/feature/credit_card_application_failure/credit_card_app
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
 import 'package:neo_bank/feature/credit_card_pay_back_success/credit_card_pay_back_success_page.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_page.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -408,7 +411,8 @@ class AppRouter {
 
       case RoutePaths.DebitCardReplacement:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardReplacementPage(),
+            builder: (context) => DebitCardReplacementPage(
+                settings.arguments as DebitCardReplacementArguments),
             settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
 
       case RoutePaths.DebitCardReplacementSuccess:
@@ -460,7 +464,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardApplicationFailure:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardApplicationFailurePage(),
+            builder: (context) => CreditCardApplicationFailurePage(
+                settings.arguments as CreditCardApplicationFailureArguments),
             settings:
                 RouteSettings(name: RoutePaths.CreditCardApplicationFailure));
 
@@ -488,7 +493,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardApplySuccess:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardApplySuccessPage(),
+            builder: (context) => CreditCardApplySuccessPage(
+                settings.arguments as CreditCardApplySuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardApplySuccess));
 
       case RoutePaths.ResetPasswordSuccess:
@@ -557,6 +563,27 @@ class AppRouter {
             builder: (context) =>
                 AllContactPage(settings.arguments as AllContactArguments),
             settings: RouteSettings(name: RoutePaths.AllContact));
+
+      case RoutePaths.CreditCardVideoCallInitiate:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardVideoCallInitiatePage(
+                settings.arguments as CreditCardVideoCallInitiateArgs),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardVideoCallInitiate));
+
+      case RoutePaths.CreditCardVideoCallComplete:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardVideoCallCompletePage(),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardVideoCallComplete));
+
+      case RoutePaths.CreditCardVideoKyc:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardVideoKycPage(
+                credentials:
+                    settings.arguments as CreditCardVideKycCredentials),
+            settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
+
       default:
         return CupertinoPageRoute(
           builder: (context) => Container(),

@@ -48,6 +48,11 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   Stream<String> get textStream => _textResponse.stream;
 
+  ///onclick
+  final BehaviorSubject<bool> _onClickSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get onClickStream => _onClickSubject.stream;
+
   SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
@@ -72,8 +77,9 @@ class SettingsDialogViewModel extends BasePageViewModel {
         _getProfileInfoResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+          updateOnClickValue(false);
         } else if (event.status == Status.SUCCESS) {
-          print("got fullname: ${event.data!.content!.fullName}");
+          updateOnClickValue(true);
           _textResponse.safeAdd(event.data!.content!.fullName!);
         }
       });
@@ -93,6 +99,10 @@ class SettingsDialogViewModel extends BasePageViewModel {
 
   void logout() {
     _logoutRequest.safeAdd(LogoutUseCaseParams());
+  }
+
+  void updateOnClickValue(bool) {
+    _onClickSubject.safeAdd(bool);
   }
 
   @override

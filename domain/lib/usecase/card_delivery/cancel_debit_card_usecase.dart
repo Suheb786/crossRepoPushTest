@@ -17,7 +17,8 @@ class CancelDebitCardUseCase
     return _repository.cancelDebitCard(
         reason: params.status,
         status: params.status,
-        tokenizedPan: params.tokenizedPan);
+        tokenizedPan: params.tokenizedPan,
+        cancellationReason: params.cancellationReason);
   }
 }
 
@@ -25,9 +26,13 @@ class CancelDebitCardUseCaseParams extends Params {
   final String status;
   final String tokenizedPan;
   final String reason;
+  final String cancellationReason;
 
   CancelDebitCardUseCaseParams(
-      {this.status: "", this.tokenizedPan: "", this.reason: ""});
+      {this.status: "",
+      this.tokenizedPan: "",
+      this.reason: "",
+      this.cancellationReason: ""});
 
   @override
   Either<AppError, bool> verify() {

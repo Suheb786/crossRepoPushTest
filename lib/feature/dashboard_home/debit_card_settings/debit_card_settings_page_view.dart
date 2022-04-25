@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -224,7 +225,9 @@ class DebitCardSettingsPageView
                             if (data.status == Status.SUCCESS) {
                               if (model.needsReplacement) {
                                 Navigator.pushReplacementNamed(
-                                    context, RoutePaths.DebitCardReplacement);
+                                    context, RoutePaths.DebitCardReplacement,
+                                    arguments: DebitCardReplacementArguments(
+                                        isPinSet: true));
                               } else {
                                 Navigator.pop(context, true);
                               }
@@ -244,7 +247,8 @@ class DebitCardSettingsPageView
                                         tokenizedPlan: model
                                             .debitCardSettingsArguments
                                             .debitCard
-                                            .code);
+                                            .code,
+                                        cancellationReason: reasonValue);
                                   },
                                   onDismissed: () {
                                     Navigator.pop(context);

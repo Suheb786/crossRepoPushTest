@@ -6,13 +6,13 @@ part 'request_video_call_request.g.dart';
 class RequestVideoCallRequest {
   @JsonKey(name: "Gender")
   final String? gender;
+  @JsonKey(name: "Type")
+  final String? type;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  RequestVideoCallRequest({
-    this.gender: "",
-    required this.baseData,
-  });
+  RequestVideoCallRequest(
+      {this.gender: "", required this.baseData, this.type: "ONBOARD"});
 
   factory RequestVideoCallRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestVideoCallRequestFromJson(json);

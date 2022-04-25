@@ -28,7 +28,7 @@ abstract class AccountRemoteDS {
 
   Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus();
 
-  Future<HttpResponse<RequestCallResponseEntity>> requestCall();
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(String? type);
 
   Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(
       String callDate);

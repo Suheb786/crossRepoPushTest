@@ -4040,10 +4040,10 @@ class S {
     );
   }
 
-  /// `Get your card now!`
+  /// `Get your card now`
   String get getCardNow {
     return Intl.message(
-      'Get your card now!',
+      'Get your card now',
       name: 'getCardNow',
       desc: '',
       args: [],
@@ -4270,10 +4270,10 @@ class S {
     );
   }
 
-  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!`
+  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card.`
   String get blinkCreditCard {
     return Intl.message(
-      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!',
+      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card.',
       name: 'blinkCreditCard',
       desc: '',
       args: [],
@@ -8750,20 +8750,20 @@ class S {
     );
   }
 
-  /// `Must less than Primary limit`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)`
   String get lessThanPrimary {
     return Intl.message(
-      'Must less than Primary limit',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)',
       name: 'lessThanPrimary',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Nationality`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)`
   String get invalidNationality {
     return Intl.message(
-      'Invalid Nationality',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)',
       name: 'invalidNationality',
       desc: '',
       args: [],
@@ -9650,10 +9650,10 @@ class S {
     );
   }
 
-  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)`
+  /// `Please unfreeze your card to be able to update your card limits.`
   String get errorUpdatingLimits {
     return Intl.message(
-      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)',
+      'Please unfreeze your card to be able to update your card limits.',
       name: 'errorUpdatingLimits',
       desc: '',
       args: [],
@@ -11080,10 +11080,10 @@ class S {
     );
   }
 
-  /// `Invalid Gender for virtual agent correct values are M|F`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)`
   String get invalidGenderValue {
     return Intl.message(
-      'Invalid Gender for virtual agent correct values are M|F',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)',
       name: 'invalidGenderValue',
       desc: '',
       args: [],
@@ -11835,6 +11835,166 @@ class S {
     return Intl.message(
       'From Me',
       name: 'fromMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID verification failed, can’t proceed err:177`
+  String get idVerificationFailed177 {
+    return Intl.message(
+      'ID verification failed, can’t proceed err:177',
+      name: 'idVerificationFailed177',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID verification failed, can’t proceed err:178`
+  String get idVerificationFailed178 {
+    return Intl.message(
+      'ID verification failed, can’t proceed err:178',
+      name: 'idVerificationFailed178',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply now`
+  String get applyNow {
+    return Intl.message(
+      'Apply now',
+      name: 'applyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application submitted`
+  String get applicationSubmitted {
+    return Intl.message(
+      'Application submitted',
+      name: 'applicationSubmitted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To complete your credit card application, you are required to verify yourself via video call.`
+  String get applicationSubmittedDesc {
+    return Intl.message(
+      'To complete your credit card application, you are required to verify yourself via video call.',
+      name: 'applicationSubmittedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APPLY FOR CREDIT CARD`
+  String get applyForCreditCard {
+    return Intl.message(
+      'APPLY FOR CREDIT CARD',
+      name: 'applyForCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It’s time for a quick\nvideo call`
+  String get timeForQuickVideoCall {
+    return Intl.message(
+      'It’s time for a quick\nvideo call',
+      name: 'timeForQuickVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification call\nhas ended`
+  String get verificationCallEnded {
+    return Intl.message(
+      'Verification call\nhas ended',
+      name: 'verificationCallEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call is completed.\nYou’ll be notified on the application status.`
+  String get verificationCallEndedDesc {
+    return Intl.message(
+      'Call is completed.\nYou’ll be notified on the application status.',
+      name: 'verificationCallEndedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get ready and verify yourself now to complete your credit card application.`
+  String get verifyViaVideoCallCC {
+    return Intl.message(
+      'Get ready and verify yourself now to complete your credit card application.',
+      name: 'verifyViaVideoCallCC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start video call`
+  String get verifyNow {
+    return Intl.message(
+      'Start video call',
+      name: 'verifyNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is being reviewed. You’ll be notified soon.`
+  String get creditCardApplicationUnderReviewDesc {
+    return Intl.message(
+      'Your application is being reviewed. You’ll be notified soon.',
+      name: 'creditCardApplicationUnderReviewDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application has been approved. Time to get your card ready!`
+  String get getCreditCardNowDesc {
+    return Intl.message(
+      'Your application has been approved. Time to get your card ready!',
+      name: 'getCreditCardNowDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.`
+  String get applicationRejectedByEngagementTeam {
+    return Intl.message(
+      'Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.',
+      name: 'applicationRejectedByEngagementTeam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Engagement team is currently not available, please try later`
+  String get agentNotAvailable {
+    return Intl.message(
+      'Engagement team is currently not available, please try later',
+      name: 'agentNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add money to your account and start using your virtual Yellow Sun debit card immediately.`
+  String get youCanAddMoney {
+    return Intl.message(
+      'You can add money to your account and start using your virtual Yellow Sun debit card immediately.',
+      name: 'youCanAddMoney',
       desc: '',
       args: [],
     );

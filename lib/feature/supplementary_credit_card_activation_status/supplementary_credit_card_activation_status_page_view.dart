@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -95,7 +96,10 @@ class SupplementaryCreditCardActivationStatusPageView
                                 .data!.cardApplicationContent!.first.step3!) {
                               Future.delayed(Duration(seconds: 1), () {
                                 Navigator.pushNamed(
-                                    context, RoutePaths.CreditCardApplySuccess);
+                                    context, RoutePaths.CreditCardApplySuccess,
+                                    arguments: CreditCardApplySuccessArguments(
+                                        creditSuccessState: CreditSuccessState
+                                            .Applied_Success));
                               });
                             }
                           }

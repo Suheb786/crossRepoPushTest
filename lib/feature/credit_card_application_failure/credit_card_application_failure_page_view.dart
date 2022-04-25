@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,10 +20,18 @@ class CreditCardApplicationFailurePageView
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          if (model.creditCardApplicationFailureArguments.creditFailureState ==
+              CreditFailureState.InEligible) {
+            Navigator.popUntil(
+                context, ModalRoute.withName(RoutePaths.AppHome));
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
+          } else if (model
+                  .creditCardApplicationFailureArguments.creditFailureState ==
+              CreditFailureState.EngagementTeamRejection) {
+            Navigator.pushNamed(context, RoutePaths.AppHome);
+          }
         }
       },
       child: Padding(
@@ -67,7 +76,12 @@ class CreditCardApplicationFailurePageView
                 left: 40,
                 right: 40,
               ),
-              child: Text(S.of(context).applicationFailureMsg,
+              child: Text(
+                  model.creditCardApplicationFailureArguments
+                              .creditFailureState ==
+                          CreditFailureState.InEligible
+                      ? S.of(context).applicationFailureMsg
+                      : S.of(context).applicationRejectedByEngagementTeam,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page_view_model.dart';
@@ -11,7 +12,11 @@ import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_ne
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page_view_model.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page.dart';
+import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
@@ -136,9 +141,8 @@ final supplementaryIdScanInfoViewModelProvider = ChangeNotifierProvider
 final personalizeCreditCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<PersonalizeCreditCardPageViewModel>(
   (ref) => PersonalizeCreditCardPageViewModel(
-    ref.read(personalizeCreditCardUseCaseProvider),
-      ref.read(supplementaryCreditCardRequestUseCaseProvider)
-  ),
+      ref.read(personalizeCreditCardUseCaseProvider),
+      ref.read(supplementaryCreditCardRequestUseCaseProvider)),
 );
 
 ///supplementary credit card ready view model provider
@@ -185,12 +189,30 @@ final supplementaryCardInReviewViewModelProvider =
 
 ///credit card apply success view model provider
 final creditCardApplySuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardApplySuccessPageViewModel>(
-  (ref) => CreditCardApplySuccessPageViewModel(),
+    ChangeNotifierProvider.autoDispose.family<
+        CreditCardApplySuccessPageViewModel, CreditCardApplySuccessArguments>(
+  (ref, args) => CreditCardApplySuccessPageViewModel(args),
 );
 
 ///debit card supplementary success view model provider
 final supplementaryDebitCardSuccessViewModelProvider = ChangeNotifierProvider
     .autoDispose<SupplementaryDebitCardSuccessPageViewModel>(
   (ref) => SupplementaryDebitCardSuccessPageViewModel(),
+);
+
+///credit card video call verification initiate view model provider
+final creditCardVideoCallInitiateViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<
+        CreditCardVideoCallInitiatePageViewModel,
+        CreditCardVideoCallInitiateArgs>(
+  (ref, args) => CreditCardVideoCallInitiatePageViewModel(
+      ref.read(requestCallUsecaseProvider),
+      args,
+      ref.read(checkGenderStatusUsecaseProvider)),
+);
+
+///credit card video call verification complete view model provider
+final creditCardVideoCallCompleteViewModelProvider = ChangeNotifierProvider
+    .autoDispose<CreditCardVideoCallCompletePageViewModel>(
+  (ref) => CreditCardVideoCallCompletePageViewModel(),
 );

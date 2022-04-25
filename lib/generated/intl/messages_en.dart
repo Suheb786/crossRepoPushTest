@@ -130,6 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
+        "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
+            "Engagement team is currently not available, please try later"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
         "agreeData": MessageLookupByLibrary.simpleMessage("and "),
@@ -163,6 +165,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Application Is In Process"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
+        "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
+            "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions."),
+        "applicationSubmitted":
+            MessageLookupByLibrary.simpleMessage("Application submitted"),
+        "applicationSubmittedDesc": MessageLookupByLibrary.simpleMessage(
+            "To complete your credit card application, you are required to verify yourself via video call."),
         "applicationUnderReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review. Please bear with us."),
         "applyCreditCard":
@@ -171,6 +179,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyDebitCard":
             MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
+        "applyForCreditCard":
+            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
+        "applyNow": MessageLookupByLibrary.simpleMessage("Apply now"),
         "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
@@ -230,7 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "To Blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
-            "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!"),
+            "Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card."),
         "blinkCreditCardTitle":
             MessageLookupByLibrary.simpleMessage("Rebellious Red Credit Card"),
         "bornBlink":
@@ -433,6 +444,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "I hereby irrevocably authorize Blink to retrieve my Credit Bureau data and inquire about all credit facilities granted to me by other banks and financial institutions including, but not limited to, all related terms, conditions, collateral, repayment schedule, and any changes applied to them from time to time; from any official licensed credit bureau companies in accordance with Credit Information Law dated 2010, for the purpose of (a) granting me a credit card limit along with any future increase to the limit, restructuring, changes to the credit card terms and conditions, or (b) inquiring about the reasons of any payment delay or default. I reserve the right to view my credit information, correct any wrongful information, or object to it."),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
+        "creditCardApplicationUnderReviewDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your application is being reviewed. You’ll be notified soon."),
         "creditCardDataNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
         "creditCardDelivered":
@@ -752,7 +766,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorUpdatingCategoryCif": MessageLookupByLibrary.simpleMessage(
             "Error while updating category CIF"),
         "errorUpdatingLimits": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-103)"),
+            "Please unfreeze your card to be able to update your card limits."),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
         "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
@@ -916,8 +930,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCardDelivered": MessageLookupByLibrary.simpleMessage(
             "Blink has made borrowing more accessible to everyone. With only a few steps, get your instant virtual credit card and we will deliver the physical one to your door step for free."),
-        "getCardNow":
-            MessageLookupByLibrary.simpleMessage("Get your card now!"),
+        "getCardNow": MessageLookupByLibrary.simpleMessage("Get your card now"),
         "getCipherError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCitiesByCountryError": MessageLookupByLibrary.simpleMessage(
@@ -930,6 +943,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCountriesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "getCreditCardNowDesc": MessageLookupByLibrary.simpleMessage(
+            "Your application has been approved. Time to get your card ready!"),
         "getCreditYearsError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getCurrentValuesError": MessageLookupByLibrary.simpleMessage(
@@ -1015,6 +1030,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
         "idScanInfo": MessageLookupByLibrary.simpleMessage(
             "Place your ID inside the frame"),
+        "idVerificationFailed177": MessageLookupByLibrary.simpleMessage(
+            "ID verification failed, can’t proceed err:177"),
+        "idVerificationFailed178": MessageLookupByLibrary.simpleMessage(
+            "ID verification failed, can’t proceed err:178"),
         "idVerificationInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Grab your ID and let\'s\nget scanning"),
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
@@ -1122,7 +1141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidFourDigit": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
-            "Invalid Gender for virtual agent correct values are M|F"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdCardCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -1166,8 +1185,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter name as per tax return"),
         "invalidNationalIdCard": MessageLookupByLibrary.simpleMessage(
             "We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100."),
-        "invalidNationality":
-            MessageLookupByLibrary.simpleMessage("Invalid Nationality"),
+        "invalidNationality": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
@@ -1267,7 +1286,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
-            "Must less than Primary limit"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)"),
         "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":
@@ -1966,6 +1985,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
+        "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
+            "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
@@ -2088,6 +2109,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vkey Message Id is Required"),
         "vKeyTransactionFailed":
             MessageLookupByLibrary.simpleMessage("Vkey transaction failed"),
+        "verificationCallEnded": MessageLookupByLibrary.simpleMessage(
+            "Verification call\nhas ended"),
+        "verificationCallEndedDesc": MessageLookupByLibrary.simpleMessage(
+            "Call is completed.\nYou’ll be notified on the application status."),
         "verifyBeneficiaryOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyChangeEmailError": MessageLookupByLibrary.simpleMessage(
@@ -2103,6 +2128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party."),
+        "verifyNow": MessageLookupByLibrary.simpleMessage("Start video call"),
         "verifyOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyOtpPasswordError": MessageLookupByLibrary.simpleMessage(
@@ -2111,6 +2137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
+            "Get ready and verify yourself now to complete your credit card application."),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
@@ -2171,6 +2199,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
+            "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "youRequested": MessageLookupByLibrary.simpleMessage("You requested"),

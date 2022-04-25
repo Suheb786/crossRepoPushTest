@@ -58,7 +58,10 @@ abstract class CardRepository {
       {String? status, String? tokenizedPan});
 
   Future<Either<NetworkError, bool>> cancelDebitCard(
-      {String reason, String status, String? tokenizedPan});
+      {String reason,
+      String status,
+      String? tokenizedPan,
+      String? cancellationReason});
 
   Future<Either<NetworkError, bool>> changeDebitCardPin(
       {required String pin,
@@ -155,4 +158,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, CreditCardRelationshipResponse>>
       getCreditCardRelationShipList({required String cardId});
+
+  Future<Either<NetworkError, bool>> callStatusUpdate(
+      {String? cardId, String? status});
 }
