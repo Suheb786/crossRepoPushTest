@@ -202,6 +202,23 @@ class DcSettingVisaCardPageView
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 23),
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            S.of(context).backToCardSettings,
+                            style: TextStyle(
+                                color: AppColor.brightBlue,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 )),
           ),

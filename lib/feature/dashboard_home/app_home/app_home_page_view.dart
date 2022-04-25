@@ -1472,7 +1472,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
 
   Widget subscriptionPopUpWidget(BuildContext context, AppHomeViewModel model) {
     return Material(
-      color: Colors.transparent,
+      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
       child: Padding(
         padding: EdgeInsets.only(top: 116, bottom: 56, left: 23, right: 23),
         child: Container(

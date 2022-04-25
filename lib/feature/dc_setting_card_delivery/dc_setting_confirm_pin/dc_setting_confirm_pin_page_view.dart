@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/di/dc_setting_card_delivery/dc_setting_card_delivery_module.dart';
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_confirm_pin/dc_setting_confirm_pin_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -53,7 +52,7 @@ class DcSettingConfirmPinPageView
                       FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
                         print(
-                            'currentPin--->${ProviderScope.containerOf(context).read(createPinViewModelProvider).currentPin}');
+                            'currentPin--->${ProviderScope.containerOf(context).read(dcSettingCreatePinViewModelProvider).currentPin}');
                         model.validatePin(
                             ProviderScope.containerOf(context)
                                 .read(dcSettingCreatePinViewModelProvider)

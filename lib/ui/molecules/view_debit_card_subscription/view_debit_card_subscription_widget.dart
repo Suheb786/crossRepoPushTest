@@ -71,7 +71,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                             style: TextStyle(
                                 color: AppColor.gray1,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                                fontSize: 12),
                           ),
                         )
                       ],

@@ -1,6 +1,8 @@
-import 'package:domain/usecase/dc_setting_card_delivery/dc_setting_confirm_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dc_setting_card_delivery/dc_setting_card_delivery_module.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -8,14 +10,13 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DcSettingConfirmPinPageViewModel extends BasePageViewModel {
-  final DcSettingConfirmPinUseCase _confirmPinUseCase;
+  final ConfirmPinUseCase _confirmPinUseCase;
 
   ///otp controller
   TextEditingController confirmPinController = TextEditingController();
 
   ///Confirm pin request subject holder
-  PublishSubject<DcSettingConfirmPinUseCaseParams> _confirmPinRequest =
-      PublishSubject();
+  PublishSubject<ConfirmPinUseCaseParams> _confirmPinRequest = PublishSubject();
 
   ///Confirm pin response holder
   PublishSubject<Resource<bool>> _confirmPinResponse = PublishSubject();
@@ -47,8 +48,12 @@ class DcSettingConfirmPinPageViewModel extends BasePageViewModel {
   }
 
   void validatePin(String previousPin, BuildContext context) {
-    _confirmPinRequest.safeAdd(DcSettingConfirmPinUseCaseParams(
-        currentPin: _pinSubject.value, previousPin: previousPin));
+    _confirmPinRequest.safeAdd(ConfirmPinUseCaseParams(
+        currentPin: _pinSubject.value,
+        previousPin: previousPin,
+        cardNumber: ProviderScope.containerOf(context)
+            .read(dcSettingCardDeliveryViewModelProvider)
+            .cardNumber));
   }
 
   void validate(String value) {
