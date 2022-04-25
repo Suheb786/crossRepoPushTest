@@ -25,9 +25,11 @@ class InfobipMessageService {
             logging: true),
       ),
     );
-    var installation = await InfobipMobilemessaging.fetchInstallation();
-    var externalUserId = installation.pushRegistrationId.toString();
-    InfobipMobilemessaging.depersonalizeInstallation(externalUserId);
+
+    // var installation = await InfobipMobilemessaging.fetchInstallation();
+    // var externalUserId =
+    //     InfobipMobilemessaging.getPushRegistrationId.toString();
+    InfobipMobilemessaging.depersonalize();
 
     // await saveUser(
     //     userData: UserData(
@@ -135,7 +137,7 @@ class InfobipMessageService {
       firstName: userData.firstName,
       lastName: userData.lastName,
       emails: userData.emails,
-      // phones: userData.phones,
+      phones: userData.phones,
       gender: Gender.Male,
       customAttributes: userData.customAttributes ?? {},
       externalUserId: userData.externalUserId,
@@ -143,7 +145,7 @@ class InfobipMessageService {
     var userIdentity = UserIdentity(
       externalUserId: userData.externalUserId,
       emails: userData.emails,
-      // phones: userData.phones,
+      phones: userData.phones,
     );
     InfobipMobilemessaging.saveUser(user);
     InfobipMobilemessaging.personalize(PersonalizeContext(
