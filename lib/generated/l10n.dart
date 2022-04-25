@@ -12700,6 +12700,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Select your preferred instalment duration`
+  String get selectPreferredInstallmentDuration {
+    return Intl.message(
+      'Select your preferred instalment duration',
+      name: 'selectPreferredInstallmentDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instalment Options`
+  String get installmentOption {
+    return Intl.message(
+      'Instalment Options',
+      name: 'installmentOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase instalment is successfully set`
+  String get purchaseInstallmentsSuccessfullySet {
+    return Intl.message(
+      'Purchase instalment is successfully set',
+      name: 'purchaseInstallmentsSuccessfullySet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.`
+  String get purchaseInstallmentsSuccessfullySetDesc {
+    return Intl.message(
+      'Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.',
+      name: 'purchaseInstallmentsSuccessfullySetDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

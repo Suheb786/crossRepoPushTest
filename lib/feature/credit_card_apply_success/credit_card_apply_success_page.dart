@@ -36,7 +36,8 @@ enum CreditSuccessState {
   Applied_Success,
   Settlement_Account_Changed,
   Settlement_Percentage_Changed,
-  Credit_Limit_Changed
+  Credit_Limit_Changed,
+  Convert_Purchase_To_Installments
 }
 
 class CreditCardApplySuccessArguments {

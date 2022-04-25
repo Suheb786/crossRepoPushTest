@@ -1122,6 +1122,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error occurred while Initialization"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
+        "installmentOption":
+            MessageLookupByLibrary.simpleMessage("Instalment Options"),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
             "insufficient Balance (Err-89)"),
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
@@ -1738,6 +1740,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "It seems there is an issue with the country code you\'ve entered. Please try another country code or contact our Engagement Team on 06-5200100."),
         "provisionClaim": MessageLookupByLibrary.simpleMessage(
             "provisions CLAIM of Article & paragraph"),
+        "purchaseInstallmentsSuccessfullySet":
+            MessageLookupByLibrary.simpleMessage(
+                "Purchase instalment is successfully set"),
+        "purchaseInstallmentsSuccessfullySetDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021."),
         "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
         "purposeDetail":
             MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
@@ -1943,6 +1951,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "Select new settlement percentage for your next payment cycle"),
+        "selectPreferredInstallmentDuration":
+            MessageLookupByLibrary.simpleMessage(
+                "Select your preferred instalment duration"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(

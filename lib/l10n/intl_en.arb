@@ -1291,5 +1291,9 @@
   "reportStolenLostCardDesc": "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.",
   "changeCreditLimitDesc": "Adjust your\ndesired credit limit",
   "creditLimitChangedSuccess": "Credit limit is successfully updated",
-  "creditLimitChangedDesc": "New credit limit has been set for your credit card."
+  "creditLimitChangedDesc": "New credit limit has been set for your credit card.",
+  "selectPreferredInstallmentDuration": "Select your preferred instalment duration",
+  "installmentOption": "Instalment Options",
+  "purchaseInstallmentsSuccessfullySet": "Purchase instalment is successfully set",
+  "purchaseInstallmentsSuccessfullySetDesc": "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021."
 }

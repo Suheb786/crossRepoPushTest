@@ -125,4 +125,6 @@ class RoutePaths {
       "/dcChangeMobileNumberSuccess";
   static const String RenewCreditCard = "/renewCreditCard";
   static const String ChangeCreditLimit = "/changeCreditLimit";
+  static const String ConvertPurchaseToInstallments =
+      "/convertPurchaseToInstallments";
 }
