@@ -19,6 +19,7 @@ import 'package:neo_bank/feature/change_country_restriction/change_country_restr
 import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page.dart';
 import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page.dart';
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
+import 'package:neo_bank/feature/covert_purchase_to_installements/covert_purchase_to_installments_page.dart';
 import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
@@ -691,6 +692,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ChangeCreditLimitPage(),
             settings: RouteSettings(name: RoutePaths.ChangeCreditLimit));
+
+      case RoutePaths.ConvertPurchaseToInstallments:
+        return CupertinoPageRoute(
+            builder: (context) => ConvertPurchaseToInstallmentsPage(),
+            settings:
+                RouteSettings(name: RoutePaths.ConvertPurchaseToInstallments));
 
       default:
         return CupertinoPageRoute(

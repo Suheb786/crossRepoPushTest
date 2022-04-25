@@ -20,6 +20,8 @@ class CreditCardApplySuccessPageViewModel extends BasePageViewModel {
         return S.of(context).cardDetailsUpdated;
       case CreditSuccessState.Credit_Limit_Changed:
         return S.of(context).creditLimitChangedSuccess;
+      case CreditSuccessState.Convert_Purchase_To_Installments:
+        return S.of(context).purchaseInstallmentsSuccessfullySet;
       default:
         return "";
     }
@@ -38,6 +40,8 @@ class CreditCardApplySuccessPageViewModel extends BasePageViewModel {
         return S.of(context).creditSettlementPercentageChangedDesc;
       case CreditSuccessState.Credit_Limit_Changed:
         return S.of(context).creditLimitChangedDesc;
+      case CreditSuccessState.Convert_Purchase_To_Installments:
+        return S.of(context).purchaseInstallmentsSuccessfullySetDesc;
       default:
         return "";
     }

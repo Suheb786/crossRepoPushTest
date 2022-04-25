@@ -327,7 +327,10 @@ class CreditCardSettingsPageView
                           isNotify: false,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context,
+                                RoutePaths.ConvertPurchaseToInstallments);
+                          },
                           title: S.of(context).convertPurchaseToInstallments,
                           tileIcon: AssetUtils.chart,
                           isEnabled: true,

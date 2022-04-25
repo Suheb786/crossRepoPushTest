@@ -6,6 +6,7 @@ import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usec
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
 import 'package:neo_bank/feature/change_credit_limit/change_credit_limit_page_view_model.dart';
+import 'package:neo_bank/feature/covert_purchase_to_installements/covert_purchase_to_installments_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
@@ -238,4 +239,11 @@ final renewCreditCardPageViewModelProvider =
 final changeCreditLimitPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeCreditLimitPageViewModel>(
   (ref) => ChangeCreditLimitPageViewModel(),
+);
+
+///convert purchase to installments page view model
+final convertPurchaseToInstallmentsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<
+        ConvertPurchaseToInstallmentsPageViewModel>(
+  (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );
