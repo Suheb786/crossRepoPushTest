@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -7,8 +8,9 @@ import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked
 
 class DcChangeLinkedMobileNumberPage
     extends BasePage<DcChangeLinkedMobileNumberViewModel> {
+  final DCChangeLinkedMobileNumberArguments _arguments;
 
-  DcChangeLinkedMobileNumberPage();
+  DcChangeLinkedMobileNumberPage(this._arguments);
 
   @override
   DcChangeLinkedMobileNumberPageState createState() =>
@@ -24,8 +26,16 @@ class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
   }
 
   @override
+  void onModelReady(DcChangeLinkedMobileNumberViewModel model) {
+    model.arguments = widget._arguments;
+    super.onModelReady(model);
+  }
+
+  @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+    return widget._arguments.cardType == CardType.DEBIT
+        ? Theme.of(context).canvasColor
+        : Theme.of(context).primaryColor;
   }
 
   @override
@@ -37,9 +47,15 @@ class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
   @override
   Widget buildView(
       BuildContext context, DcChangeLinkedMobileNumberViewModel model) {
-    return DcChangeLinkedMobileNumberPageView(provideBase());
+    return DcChangeLinkedMobileNumberPageView(provideBase(), widget._arguments);
   }
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class DCChangeLinkedMobileNumberArguments {
+  final CardType cardType;
+
+  DCChangeLinkedMobileNumberArguments({this.cardType: CardType.DEBIT});
 }

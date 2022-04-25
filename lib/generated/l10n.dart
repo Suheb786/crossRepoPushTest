@@ -4086,7 +4086,7 @@ class S {
     return Intl.message(
       'ACCOUNT NO.',
       name: 'accountNo',
-      desc: '',
+      desc: 'accountNo',
       args: [],
     );
   }
@@ -11991,6 +11991,556 @@ class S {
     );
   }
 
+  /// `Request via QR`
+  String get requestViaQR {
+    return Intl.message(
+      'Request via QR',
+      name: 'requestViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Account`
+  String get selectAccount {
+    return Intl.message(
+      'Select Account',
+      name: 'selectAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Savings Account {accountNo}`
+  String savingAccount(Object accountNo) {
+    return Intl.message(
+      'Savings Account $accountNo',
+      name: 'savingAccount',
+      desc: '',
+      args: [accountNo],
+    );
+  }
+
+  /// `QR PAYMENTS`
+  String get qrPayments {
+    return Intl.message(
+      'QR PAYMENTS',
+      name: 'qrPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please show your QR\nfor scanning`
+  String get showQrForScanning {
+    return Intl.message(
+      'Please show your QR\nfor scanning',
+      name: 'showQrForScanning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share QR`
+  String get shareQr {
+    return Intl.message(
+      'Share QR',
+      name: 'shareQr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR code will be valid\nfor 1 hour`
+  String get qrValidForOneHour {
+    return Intl.message(
+      'QR code will be valid\nfor 1 hour',
+      name: 'qrValidForOneHour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMOUNT`
+  String get amount {
+    return Intl.message(
+      'AMOUNT',
+      name: 'amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are accepting a money\nrequest via QR`
+  String get youAreAcceptingMoneyRequestViaQr {
+    return Intl.message(
+      'You are accepting a money\nrequest via QR',
+      name: 'youAreAcceptingMoneyRequestViaQr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay from`
+  String get payFrom {
+    return Intl.message(
+      'Pay from',
+      name: 'payFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage CliQ ID`
+  String get manageCliqId {
+    return Intl.message(
+      'Manage CliQ ID',
+      name: 'manageCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any CliQ ID.\nCreate your first one via Blink.`
+  String get NoCliqContactYet {
+    return Intl.message(
+      'You don’t have any CliQ ID.\nCreate your first one via Blink.',
+      name: 'NoCliqContactYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create CliQ ID`
+  String get createCliqId {
+    return Intl.message(
+      'Create CliQ ID',
+      name: 'createCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREATE NEW cliq ID`
+  String get createNewCliqId {
+    return Intl.message(
+      'CREATE NEW cliq ID',
+      name: 'createNewCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s create your new\nCliQ ID`
+  String get letsCreateNewCliqId {
+    return Intl.message(
+      'Let’s create your new\nCliQ ID',
+      name: 'letsCreateNewCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID Type`
+  String get cliqIdType {
+    return Intl.message(
+      'CliQ ID Type',
+      name: 'cliqIdType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link bank account to \nyour new ID`
+  String get linkBankAccountToYourNewId {
+    return Intl.message(
+      'Link bank account to \nyour new ID',
+      name: 'linkBankAccountToYourNewId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alias`
+  String get alias {
+    return Intl.message(
+      'Alias',
+      name: 'alias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Select cliq Id Type`
+  String get emptyCliqIdType {
+    return Intl.message(
+      'Please Select cliq Id Type',
+      name: 'emptyCliqIdType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Alias`
+  String get emptyAlias {
+    return Intl.message(
+      'Please Enter Alias',
+      name: 'emptyAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add link account`
+  String get addLinkAccount {
+    return Intl.message(
+      'Add link account',
+      name: 'addLinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CliQ ID created\nsuccessfully`
+  String get cliqIdCreateSuccessFully {
+    return Intl.message(
+      'CliQ ID created\nsuccessfully',
+      name: 'cliqIdCreateSuccessFully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share CliQ ID`
+  String get shareCliqId {
+    return Intl.message(
+      'Share CliQ ID',
+      name: 'shareCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Manage CliQ ID`
+  String get toManageCliq {
+    return Intl.message(
+      'to Manage CliQ ID',
+      name: 'toManageCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set as Default`
+  String get setAsDefault {
+    return Intl.message(
+      'Set as Default',
+      name: 'setAsDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unlink Account`
+  String get unlinkAccount {
+    return Intl.message(
+      'Unlink Account',
+      name: 'unlinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit ID`
+  String get editId {
+    return Intl.message(
+      'Edit ID',
+      name: 'editId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share ID`
+  String get shareId {
+    return Intl.message(
+      'Share ID',
+      name: 'shareId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suspend ID`
+  String get suspendId {
+    return Intl.message(
+      'Suspend ID',
+      name: 'suspendId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete CliQ ID`
+  String get deleteCliqId {
+    return Intl.message(
+      'Delete CliQ ID',
+      name: 'deleteCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EDIT CLIQ ID`
+  String get editCliqId {
+    return Intl.message(
+      'EDIT CLIQ ID',
+      name: 'editCliqId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your alias`
+  String get editYourAlias {
+    return Intl.message(
+      'Edit your alias',
+      name: 'editYourAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit your mobile number`
+  String get editYourMobileNo {
+    return Intl.message(
+      'Edit your mobile number',
+      name: 'editYourMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View card subscriptions`
+  String get viewCardSubscription {
+    return Intl.message(
+      'View card subscriptions',
+      name: 'viewCardSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change credit limit`
+  String get changeCreditLimit {
+    return Intl.message(
+      'Change credit limit',
+      name: 'changeCreditLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Convert purchases to instalments`
+  String get convertPurchaseToInstallments {
+    return Intl.message(
+      'Convert purchases to instalments',
+      name: 'convertPurchaseToInstallments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replace damaged card`
+  String get replaceDamageCard {
+    return Intl.message(
+      'Replace damaged card',
+      name: 'replaceDamageCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card will be restricted in below listed country of your selection.`
+  String get changeCardRestrictionDesc {
+    return Intl.message(
+      'Your card will be restricted in below listed country of your selection.',
+      name: 'changeCardRestrictionDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Country Restrictions`
+  String get addCountryRestriction {
+    return Intl.message(
+      'Add Country Restrictions',
+      name: 'addCountryRestriction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blocked Countries`
+  String get blockedCountries {
+    return Intl.message(
+      'Blocked Countries',
+      name: 'blockedCountries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not set up any country restrictions yet`
+  String get notSetUpCountryRestrictionYet {
+    return Intl.message(
+      'You have not set up any country restrictions yet',
+      name: 'notSetUpCountryRestrictionYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block this country?`
+  String get blockThisCountry {
+    return Intl.message(
+      'Block this country?',
+      name: 'blockThisCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments.`
+  String get blockThisCountryDesc {
+    return Intl.message(
+      'If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments.',
+      name: 'blockThisCountryDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change card payment account`
+  String get changeCardPaymentAccount {
+    return Intl.message(
+      'Change card payment account',
+      name: 'changeCardPaymentAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change settlement options `
+  String get changeSettlementOptions {
+    return Intl.message(
+      'Change settlement options ',
+      name: 'changeSettlementOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select account to pay your credit card`
+  String get selectAccountToPayCreditCard {
+    return Intl.message(
+      'Select account to pay your credit card',
+      name: 'selectAccountToPayCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Settlement Account`
+  String get currentSettlementAccount {
+    return Intl.message(
+      'Current Settlement Account',
+      name: 'currentSettlementAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New settlement account`
+  String get newSettlementAccount {
+    return Intl.message(
+      'New settlement account',
+      name: 'newSettlementAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card details updated successfully`
+  String get cardDetailsUpdated {
+    return Intl.message(
+      'Card details updated successfully',
+      name: 'cardDetailsUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your credit card settlement account has been updated with your new selected account`
+  String get cardDetailsUpdatedDesc {
+    return Intl.message(
+      'Your credit card settlement account has been updated with your new selected account',
+      name: 'cardDetailsUpdatedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select new settlement percentage for your next payment cycle`
+  String get selectNewPercentage {
+    return Intl.message(
+      'Select new settlement percentage for your next payment cycle',
+      name: 'selectNewPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Settlement Percentage`
+  String get currentSettlementPercentage {
+    return Intl.message(
+      'Current Settlement Percentage',
+      name: 'currentSettlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New settlement Percentage`
+  String get newSettlementPercentage {
+    return Intl.message(
+      'New settlement Percentage',
+      name: 'newSettlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settlement Percentages`
+  String get settlementPercentage {
+    return Intl.message(
+      'Settlement Percentages',
+      name: 'settlementPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your credit card settlement percentages has been updated with your new selected account`
+  String get creditSettlementPercentageChangedDesc {
+    return Intl.message(
+      'Your credit card settlement percentages has been updated with your new selected account',
+      name: 'creditSettlementPercentageChangedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `subscriptions`
   String get subscription {
     return Intl.message(
@@ -12071,21 +12621,11 @@ class S {
     );
   }
 
-  /// `Linked account is debited\nwhenever transaction made\nusing this card`
-  String get linkedAccountDebited {
+  /// `RENEW CREDIT CARD`
+  String get renewNewCreditCard {
     return Intl.message(
-      'Linked account is debited\nwhenever transaction made\nusing this card',
-      name: 'linkedAccountDebited',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
-  String get reportStolenCardInfo {
-    return Intl.message(
-      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
-      name: 'reportStolenCardInfo',
+      'RENEW CREDIT CARD',
+      name: 'renewNewCreditCard',
       desc: '',
       args: [],
     );
@@ -12101,41 +12641,101 @@ class S {
     );
   }
 
-  /// `Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.`
-  String get dcSettingCardReady {
+  /// `You can change the above details in the card settings `
+  String get youCanChangeCardDetailsInSettings {
     return Intl.message(
-      'Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.',
-      name: 'dcSettingCardReady',
+      'You can change the above details in the card settings ',
+      name: 'youCanChangeCardDetailsInSettings',
       desc: '',
       args: [],
     );
   }
 
-  /// `Card subscriptions`
-  String get cardSubscription {
+  /// `CARD SETTLEMENT ACCOUNT`
+  String get cardSettlementAccount {
     return Intl.message(
-      'Card subscriptions',
-      name: 'cardSubscription',
+      'CARD SETTLEMENT ACCOUNT',
+      name: 'cardSettlementAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details.`
-  String get subscriptionPopUpInfo {
+  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  String get reportStolenLostCardDesc {
     return Intl.message(
-      'Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details.',
-      name: 'subscriptionPopUpInfo',
+      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      name: 'reportStolenLostCardDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `to View Subscriptionss`
-  String get toViewSubscription {
+  /// `Adjust your\ndesired credit limit`
+  String get changeCreditLimitDesc {
     return Intl.message(
-      'to View Subscriptionss',
-      name: 'toViewSubscription',
+      'Adjust your\ndesired credit limit',
+      name: 'changeCreditLimitDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit limit is successfully updated`
+  String get creditLimitChangedSuccess {
+    return Intl.message(
+      'Credit limit is successfully updated',
+      name: 'creditLimitChangedSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New credit limit has been set for your credit card.`
+  String get creditLimitChangedDesc {
+    return Intl.message(
+      'New credit limit has been set for your credit card.',
+      name: 'creditLimitChangedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your preferred instalment duration`
+  String get selectPreferredInstallmentDuration {
+    return Intl.message(
+      'Select your preferred instalment duration',
+      name: 'selectPreferredInstallmentDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instalment Options`
+  String get installmentOption {
+    return Intl.message(
+      'Instalment Options',
+      name: 'installmentOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase instalment is successfully set`
+  String get purchaseInstallmentsSuccessfullySet {
+    return Intl.message(
+      'Purchase instalment is successfully set',
+      name: 'purchaseInstallmentsSuccessfullySet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.`
+  String get purchaseInstallmentsSuccessfullySetDesc {
+    return Intl.message(
+      'Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.',
+      name: 'purchaseInstallmentsSuccessfullySetDesc',
       desc: '',
       args: [],
     );

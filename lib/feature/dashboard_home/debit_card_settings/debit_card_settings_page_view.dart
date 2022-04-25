@@ -7,7 +7,9 @@ import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
+import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -306,18 +308,8 @@ class DebitCardSettingsPageView
                           onTap: () {
                             Navigator.pushNamed(
                                 context, RoutePaths.ViewDebitCardSubscription,
-                                arguments: ManageCardPinArguments(
-                                    cardType: CardType.DEBIT,
-                                    cardNumber: model.debitCardSettingsArguments
-                                        .debitCard.cardNumber!,
-                                    tokenizedPan: model
-                                        .debitCardSettingsArguments
-                                        .debitCard
-                                        .code!,
-                                    freezeCardStatusEnum: model
-                                        .debitCardSettingsArguments
-                                        .debitCard
-                                        .cardStatus!));
+                                arguments: ViewDebitCardSubscriptionArguments(
+                                    cardType: CardType.DEBIT));
                           },
                           title: S.of(context).viewCardSubSubscription,
                           tileIcon: AssetUtils.circleRight,
@@ -335,7 +327,9 @@ class DebitCardSettingsPageView
                         SettingTile(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, RoutePaths.DcChangeLinkedMobileNumber);
+                                context, RoutePaths.DcChangeLinkedMobileNumber,
+                                arguments: DCChangeLinkedMobileNumberArguments(
+                                    cardType: CardType.DEBIT));
                           },
                           title: S.of(context).changeLinkedMobileNumber,
                           tileIcon: AssetUtils.mobile,

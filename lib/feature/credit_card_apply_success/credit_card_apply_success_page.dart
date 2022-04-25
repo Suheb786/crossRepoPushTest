@@ -31,7 +31,14 @@ class CreditCardApplySuccessPageState extends BaseStatefulPage<
   }
 }
 
-enum CreditSuccessState { Submitted, Applied_Success }
+enum CreditSuccessState {
+  Submitted,
+  Applied_Success,
+  Settlement_Account_Changed,
+  Settlement_Percentage_Changed,
+  Credit_Limit_Changed,
+  Convert_Purchase_To_Installments
+}
 
 class CreditCardApplySuccessArguments {
   final CreditSuccessState creditSuccessState;

@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -30,7 +31,12 @@ class ViewDebitCardSubscriptionPageView
                 child: Center(
                   child: Text(
                     S.of(context).viewCardSubSubscription,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: model.arguments.cardType == CardType.DEBIT
+                            ? Theme.of(context).primaryColorDark
+                            : Theme.of(context).accentColor),
                   ),
                 ),
               ),
@@ -55,7 +61,7 @@ class ViewDebitCardSubscriptionPageView
                               width: 64,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
-                                  color: AppColor.whiteGray),
+                                  color: AppColor.white_gray),
                             ),
                           ),
                           Padding(
@@ -95,15 +101,8 @@ class ViewDebitCardSubscriptionPageView
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.only(left: 24, right: 24),
-                              child: ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return ViewDebitCardSubscriptionWidget();
-                                },
-                                shrinkWrap: true,
-                                itemCount: 1,
-                              ),
-                            ),
+                                padding: EdgeInsets.only(left: 24, right: 24),
+                                child: ViewDebitCardSubscriptionWidget()),
                           ),
                         ],
                       ),

@@ -22,7 +22,7 @@ class DcEnterOtpPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+    return Colors.transparent;
   }
 
   @override

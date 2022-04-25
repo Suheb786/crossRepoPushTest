@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -7,6 +8,10 @@ import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_su
 
 class ViewDebitCardSubscriptionPage
     extends BasePage<ViewDebitCardSubscriptionViewModel> {
+  final ViewDebitCardSubscriptionArguments _arguments;
+
+  ViewDebitCardSubscriptionPage(this._arguments);
+
   @override
   ViewDebitCardSubscriptionPageState createState() =>
       ViewDebitCardSubscriptionPageState();
@@ -16,12 +21,14 @@ class ViewDebitCardSubscriptionPageState extends BaseStatefulPage<
     ViewDebitCardSubscriptionViewModel, ViewDebitCardSubscriptionPage> {
   @override
   ProviderBase provideBase() {
-    return viewDebitCardSubscriptionViewModelProvider;
+    return viewDebitCardSubscriptionViewModelProvider.call(widget._arguments);
   }
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+    return getViewModel().arguments.cardType == CardType.DEBIT
+        ? Theme.of(context).canvasColor
+        : Theme.of(context).primaryColor;
   }
 
   @override
@@ -29,4 +36,10 @@ class ViewDebitCardSubscriptionPageState extends BaseStatefulPage<
       BuildContext context, ViewDebitCardSubscriptionViewModel model) {
     return ViewDebitCardSubscriptionPageView(provideBase());
   }
+}
+
+class ViewDebitCardSubscriptionArguments {
+  final CardType cardType;
+
+  ViewDebitCardSubscriptionArguments({this.cardType: CardType.DEBIT});
 }

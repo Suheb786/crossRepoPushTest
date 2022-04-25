@@ -1,26 +1,22 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DcChangeLinkedMobileNumberViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
-  PageController appSwiperController = PageController(viewportFraction: 0.8);
-  PageController controller =
-      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
-  PublishSubject<int> _currentStep = PublishSubject();
 
-  Stream<int> get currentStep => _currentStep.stream;
+  DCChangeLinkedMobileNumberArguments? arguments;
 
-  PublishSubject<PageController> _pageControllerSubject = PublishSubject();
+  PageController appSwiperController = PageController(viewportFraction: 0.90);
 
-  Stream<PageController> get pageControllerStream =>
-      _pageControllerSubject.stream;
+  ///current page index request holder
+  PublishSubject<int> _currentPageSubject = PublishSubject();
 
-  void updatePage(int index) {
-    _currentStep.safeAdd(index);
-  }
+  ///current page index stream
+  Stream<int> get currentPageStream => _currentPageSubject.stream;
 
   void nextPage() {
     appSwiperController.nextPage(
@@ -32,15 +28,23 @@ class DcChangeLinkedMobileNumberViewModel extends BasePageViewModel {
         duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
-  void updatePageControllerStream(int index) {
-    controller = PageController(
-        initialPage: index, viewportFraction: 0.8, keepPage: true);
-    _pageControllerSubject.safeAdd(controller);
+  void changeCurrentPage(int index) {
+    _currentPageSubject.safeAdd(index);
+  }
+
+  void navigateToPage(int index) {
+    if (index != null) pageController.move(index, animation: false);
+  }
+
+  void moveToPage(int index) {
+    appSwiperController.jumpToPage(
+      index,
+    );
   }
 
   @override
   void dispose() {
-    _currentStep.close();
+    _currentPageSubject.close();
     super.dispose();
   }
 }
