@@ -71,10 +71,12 @@ final addNewMobileNumberViewModelProvider =
 
 ///enter otp for mobile no change view model provider
 final enterOtpForNewMobileNumberViewModelProvider = ChangeNotifierProvider
-    .autoDispose<EnterCodeForChangeMobileNumberPageViewModel>((ref) =>
-        EnterCodeForChangeMobileNumberPageViewModel(
-            ref.read(validateOtpNewMobileNumberUseCaseProvider),
-            ref.read(addNewNumberUseCaseProvider)));
+    .autoDispose<EnterCodeForChangeMobileNumberPageViewModel>(
+        (ref) => EnterCodeForChangeMobileNumberPageViewModel(
+              ref.read(validateOtpNewMobileNumberUseCaseProvider),
+              ref.read(addNewNumberUseCaseProvider),
+              ref.read(saveUserUseCaseProvider),
+            ));
 
 ///change password view model provider
 final changePasswordViewModelProvider =
