@@ -356,6 +356,8 @@ class DebitCardSettingsPageView
                                 Navigator.pushNamed(
                                     context, RoutePaths.DcSettingCardDelivery);
                               });
+                            }, onDismissed: () {
+                              Navigator.pop(context);
                             });
                           },
                           title: S.of(context).reportCardIssue,

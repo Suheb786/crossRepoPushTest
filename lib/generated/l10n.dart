@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12125,6 +12126,16 @@ class S {
     return Intl.message(
       'Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your\nnew card details.',
       name: 'subscriptionPopUpInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to View Subscriptionss`
+  String get toViewSubscription {
+    return Intl.message(
+      'to View Subscriptionss',
+      name: 'toViewSubscription',
       desc: '',
       args: [],
     );

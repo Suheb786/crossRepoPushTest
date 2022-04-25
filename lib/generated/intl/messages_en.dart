@@ -2014,6 +2014,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
+        "toViewSubscription":
+            MessageLookupByLibrary.simpleMessage("to View Subscriptionss"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(
