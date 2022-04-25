@@ -31,6 +31,7 @@ import 'package:rxdart/rxdart.dart';
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
   final SwiperController pageController = SwiperController();
+  ScrollController scrollController = ScrollController();
   PageController appSwiperController = PageController(viewportFraction: 0.8);
 
   PageController controller =

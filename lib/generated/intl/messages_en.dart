@@ -331,6 +331,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Your may use your card PIN for payments immediately."),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("CARD SETTLEMENT ACCOUNT"),
+        "cardSubscription":
+            MessageLookupByLibrary.simpleMessage("Card subscriptions"),
         "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
             "While frozen, your card can\'t be used for any transactions."),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
@@ -549,6 +551,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "dcMobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
             "Your new mobile number has been successfully verified and tied to your card transactions."),
+        "dcSettingCardReady": MessageLookupByLibrary.simpleMessage(
+            "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
         "debitCard": MessageLookupByLibrary.simpleMessage("DEBIT CARD"),
         "debitCardActivated":
             MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
@@ -1371,6 +1375,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
         "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
             "Link bank account to \nyour new ID"),
+        "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
+            "Linked account is debited\nwhenever transaction made\nusing this card"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
@@ -1815,6 +1821,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
+        "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(
             "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "requestCallError": MessageLookupByLibrary.simpleMessage(
@@ -2030,6 +2038,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
         "subscription": MessageLookupByLibrary.simpleMessage("subscriptions"),
+        "subscriptionPopUpInfo": MessageLookupByLibrary.simpleMessage(
+            "Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details."),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
@@ -2116,6 +2126,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
         "toManageCliq":
             MessageLookupByLibrary.simpleMessage("to Manage CliQ ID"),
+        "toViewSubscription":
+            MessageLookupByLibrary.simpleMessage("to View Subscriptionss"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "tokenSerialApnEmpty": MessageLookupByLibrary.simpleMessage(

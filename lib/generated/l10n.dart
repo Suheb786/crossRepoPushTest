@@ -12621,11 +12621,21 @@ class S {
     );
   }
 
-  /// `RENEW CREDIT CARD`
-  String get renewNewCreditCard {
+  /// `Linked account is debited\nwhenever transaction made\nusing this card`
+  String get linkedAccountDebited {
     return Intl.message(
-      'RENEW CREDIT CARD',
-      name: 'renewNewCreditCard',
+      'Linked account is debited\nwhenever transaction made\nusing this card',
+      name: 'linkedAccountDebited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.`
+  String get reportStolenCardInfo {
+    return Intl.message(
+      'Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.',
+      name: 'reportStolenCardInfo',
       desc: '',
       args: [],
     );
@@ -12636,6 +12646,56 @@ class S {
     return Intl.message(
       'Your card has\nbeen issued',
       name: 'yourCardIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.`
+  String get dcSettingCardReady {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.',
+      name: 'dcSettingCardReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card subscriptions`
+  String get cardSubscription {
+    return Intl.message(
+      'Card subscriptions',
+      name: 'cardSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details.`
+  String get subscriptionPopUpInfo {
+    return Intl.message(
+      'Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details.',
+      name: 'subscriptionPopUpInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to View Subscriptionss`
+  String get toViewSubscription {
+    return Intl.message(
+      'to View Subscriptionss',
+      name: 'toViewSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RENEW CREDIT CARD`
+  String get renewNewCreditCard {
+    return Intl.message(
+      'RENEW CREDIT CARD',
+      name: 'renewNewCreditCard',
       desc: '',
       args: [],
     );

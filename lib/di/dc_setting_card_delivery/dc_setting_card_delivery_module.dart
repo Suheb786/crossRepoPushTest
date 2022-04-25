@@ -16,7 +16,7 @@ final dcSettingCardDeliveryViewModelProvider =
 ///dc setting visa card view model provider
 final dcSettingVisaCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DcSettingVisaCardPageViewModel>(
-  (ref) => DcSettingVisaCardPageViewModel(),
+  (ref) => DcSettingVisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
 );
 
 ///dc setting create pin view model provider

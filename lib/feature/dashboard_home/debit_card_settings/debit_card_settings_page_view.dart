@@ -15,7 +15,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/card_settings/report_stolen_debit_card/report_stolen_debit_card_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -320,8 +319,6 @@ class DebitCardSettingsPageView
                                 context, RoutePaths.SupplementaryDebitCard);
                           },
                           title: S.of(context).requestSupplementarycard,
-                          isEnabled: false,
-                          isNotify: true,
                           tileIcon: AssetUtils.cardIcon,
                         ),
                         SettingTile(
@@ -343,13 +340,19 @@ class DebitCardSettingsPageView
                         ),
                         SettingTile(
                           onTap: () {
-                            ReportStolenDebitCardDialog.show(context,
-                                onSelected: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportCardIssue,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
                               Navigator.pop(context);
-                              Future.delayed(Duration(microseconds: 200), () {
-                                Navigator.pushNamed(
-                                    context, RoutePaths.DcSettingCardDelivery);
-                              });
+                              Navigator.pushNamed(
+                                  context, RoutePaths.DcSettingCardDelivery);
                             }, onDismissed: () {
                               Navigator.pop(context);
                             });

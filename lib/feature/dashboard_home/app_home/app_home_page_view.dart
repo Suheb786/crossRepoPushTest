@@ -2,6 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -1427,7 +1428,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) => subscriptionPopUpWidget(context));
+            builder: (context) => subscriptionPopUpWidget(context, model));
       }
     });
   }
@@ -1469,7 +1470,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         ));
   }
 
-  Widget subscriptionPopUpWidget(BuildContext context) {
+  Widget subscriptionPopUpWidget(BuildContext context, AppHomeViewModel model) {
     return Material(
       color: Colors.transparent,
       child: Padding(
@@ -1483,40 +1484,43 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
             child: Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 40),
-                      Text(
-                        S.of(context).cardSubscription,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(height: 5),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 26.0),
-                        child: Text(
-                          S.of(context).subscriptionPopUpInfo,
+                FadingEdgeScrollView.fromSingleChildScrollView(
+                  gradientFractionOnEnd: 0.3,
+                  child: SingleChildScrollView(
+                    controller: model.scrollController,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 40),
+                        Text(
+                          S.of(context).cardSubscription,
                           style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 15),
+                              fontSize: 20, fontWeight: FontWeight.w600),
                         ),
-                      ),
-                      SizedBox(height: 32),
-                      ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 17),
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context).primaryColor),
-                                  child: Container(
+                        SizedBox(height: 5),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 26.0),
+                          child: Text(
+                            S.of(context).subscriptionPopUpInfo,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400, fontSize: 14),
+                          ),
+                        ),
+                        SizedBox(height: 32),
+                        Container(
+                          height: 1,
+                          color: AppColor.light_grayish_violet,
+                        ),
+                        ListView.separated(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 24),
+                              child: Row(
+                                children: [
+                                  Container(
                                     height: 36,
                                     width: 36,
                                     decoration: BoxDecoration(
@@ -1524,85 +1528,85 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     ),
                                     child: Image.asset(
                                         AssetUtils.viewSubscription),
-                                  )),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 14),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "Netflix US",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14),
-                                          ),
-                                          Spacer(),
                                           Row(
                                             children: [
                                               Text(
-                                                "8.51",
+                                                "Netflix US",
                                                 style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 12),
                                               ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 2, top: 4),
-                                                child: Text(
-                                                  "JOD/YR",
-                                                  style: TextStyle(
-                                                      fontSize: 10,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: AppColor.gray1),
-                                                ),
+                                              Spacer(),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    "8.51",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 2, top: 4),
+                                                    child: Text(
+                                                      "JOD",
+                                                      style: TextStyle(
+                                                          fontSize: 10,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color:
+                                                              AppColor.gray1),
+                                                    ),
+                                                  )
+                                                ],
                                               )
                                             ],
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 4),
+                                            child: Text(
+                                              "Monthly",
+                                              style: TextStyle(
+                                                  color: AppColor.gray1,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12),
+                                            ),
                                           )
                                         ],
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 4),
-                                        child: Text(
-                                          "Monthly",
-                                          style: TextStyle(
-                                              color: AppColor.gray1,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14),
-                                        ),
-                                      )
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 16),
+                                    child: Divider(
+                                      thickness: 4,
+                                      color: Colors.red,
+                                    ),
+                                  )
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                child: Divider(
-                                  thickness: 4,
-                                  color: Colors.red,
-                                ),
-                              )
-                            ],
-                          );
-                        },
-                        shrinkWrap: true,
-                        itemCount: 5,
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 15.0),
-                            child: Container(
+                            );
+                          },
+                          shrinkWrap: true,
+                          itemCount: 5,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Container(
                               height: 1,
                               color: AppColor.light_grayish_violet,
-                            ),
-                          );
-                        },
-                      )
-                    ],
+                            );
+                          },
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(
