@@ -195,7 +195,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
               ));
 
-              ///time line list arguments set
+              ///time line list  arguments set
               timeLineListArguments.add(TimeLineListArguments(
                   cardCardActivated: creditCard.creditCardActivatedDate ?? '',
                   cardDeliveredDatetime:
