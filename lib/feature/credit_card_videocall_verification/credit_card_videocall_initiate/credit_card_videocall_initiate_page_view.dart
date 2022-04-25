@@ -32,9 +32,22 @@ class CreditCardVideoCallInitiatePageView
         onData: (data) async {
           if (data.status == Status.SUCCESS) {
             if (data.data!.isExist) {
-              if (!(await Permission.bluetoothConnect.isGranted)) {
-                await Permission.bluetoothConnect.request();
-                model.getAgoraCredentials();
+              Map<Permission, PermissionStatus> statuses = await [
+                Permission.camera,
+                Permission.microphone,
+                Permission.bluetooth,
+                Permission.bluetoothConnect
+              ].request();
+
+              if (statuses[Permission.camera] ==
+                      PermissionStatus.permanentlyDenied ||
+                  statuses[Permission.microphone] ==
+                      PermissionStatus.permanentlyDenied ||
+                  statuses[Permission.bluetooth] ==
+                      PermissionStatus.permanentlyDenied ||
+                  statuses[Permission.bluetoothConnect] ==
+                      PermissionStatus.permanentlyDenied) {
+                openAppSettings();
               } else {
                 model.getAgoraCredentials();
               }
