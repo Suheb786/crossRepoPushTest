@@ -21,8 +21,8 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///get application response
-  PublishSubject<Resource<GetCardApplicationResponse>> _getApplicationResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<GetCardApplicationResponse>>
+      _getApplicationResponse = BehaviorSubject();
 
   ///get application response stream
   Stream<Resource<GetCardApplicationResponse>>
@@ -58,10 +58,11 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         //updateLoader();
-        _getApplicationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getApplicationResponse.safeAdd(event);
         }
       });
     });

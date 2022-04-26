@@ -68,9 +68,10 @@ class SupplementaryCreditCardActivationStatusPageViewModel
       RequestManager(value,
           createCall: () => _getSupplementaryCreditCardApplicationUseCase
               .execute(params: value)).asFlow().listen((event) {
-        _getApplicationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getApplicationResponse.safeAdd(event);
         }
       });
     });
