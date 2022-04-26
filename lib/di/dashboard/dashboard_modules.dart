@@ -41,7 +41,6 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/dashboard/subscription/subscription_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
@@ -57,11 +56,6 @@ final biometricLoginViewModelProvider =
     ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
   (ref) =>
       BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
-);
-
-final subscriptionDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SubscriptionDialogViewModel>(
-  (ref) => SubscriptionDialogViewModel(),
 );
 
 final getCreditCardViewModelProvider =
