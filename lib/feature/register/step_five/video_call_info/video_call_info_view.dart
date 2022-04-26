@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,35 +30,58 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               curve: Curves.easeInOutSine,
               child: GestureDetector(
                 onHorizontalDragEnd: (details) async {
-                  if (ProviderScope.containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .appSwiperController
-                          .page ==
+                  if (ProviderScope
+                      .containerOf(context)
+                      .read(registerStepFiveViewModelProvider)
+                      .appSwiperController
+                      .page ==
                       1.0) {
                     if (details.primaryVelocity!.isNegative) {
-                      Map<Permission, PermissionStatus> statuses = await [
-                        Permission.camera,
-                        Permission.microphone,
-                        Permission.bluetooth,
-                        Permission.bluetoothConnect
-                      ].request();
+                      if (Platform.isAndroid) {
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.camera,
+                          Permission.microphone,
+                          Permission.bluetooth,
+                          Permission.bluetoothConnect
+                        ].request();
 
-                      if (statuses[Permission.camera] ==
-                              PermissionStatus.permanentlyDenied ||
-                          statuses[Permission.microphone] ==
-                              PermissionStatus.permanentlyDenied ||
-                          statuses[Permission.bluetooth] ==
-                              PermissionStatus.permanentlyDenied ||
-                          statuses[Permission.bluetoothConnect] ==
-                              PermissionStatus.permanentlyDenied) {
-                        openAppSettings();
+                        if (statuses[Permission.camera] ==
+                            PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.microphone] ==
+                                PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.bluetooth] ==
+                                PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.bluetoothConnect] ==
+                                PermissionStatus.permanentlyDenied) {
+                          openAppSettings();
+                        } else {
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFiveViewModelProvider)
+                                .nextPage();
+                            // .next();
+                          });
+                        }
+                      } else if (Platform.isIOS) {
+                        Map<Permission, PermissionStatus> statuses = await [
+                          Permission.camera,
+                          Permission.microphone,
+                        ].request();
+
+                        if (statuses[Permission.camera] ==
+                            PermissionStatus.permanentlyDenied ||
+                            statuses[Permission.microphone] ==
+                                PermissionStatus.permanentlyDenied) {
+                          openAppSettings();
+                        } else {
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFiveViewModelProvider)
+                                .nextPage();
+                            // .next();
+                          });
+                        }
                       }
-                      Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
-                            .read(registerStepFiveViewModelProvider)
-                            .nextPage();
-                        // .next();
-                      });
                     }
                   }
                 },
@@ -65,7 +90,8 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
-                  color: Theme.of(context)
+                  color: Theme
+                      .of(context)
                       .cardTheme
                       .copyWith(color: AppColor.white)
                       .color,
@@ -73,7 +99,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                   shadowColor: AppColor.black.withOpacity(0.32),
                   child: Padding(
                       padding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -94,18 +120,23 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: AppSvg.asset(AssetUtils.maleAgent,
-                                          color: Theme.of(context)
+                                          color: Theme
+                                              .of(context)
                                               .primaryColorDark),
                                     ),
                                   ),
                                   Text(
-                                    S.of(context).videoCallInfoDescription,
+                                    S
+                                        .of(context)
+                                        .videoCallInfoDescription,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color:
-                                            Theme.of(context).primaryColorDark),
+                                        Theme
+                                            .of(context)
+                                            .primaryColorDark),
                                   ),
                                   SizedBox(
                                     height: 43,
@@ -116,14 +147,17 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                           Duration(milliseconds: 500), () {
                                         ProviderScope.containerOf(context)
                                             .read(
-                                                registerStepFiveViewModelProvider)
+                                            registerStepFiveViewModelProvider)
                                             .moveToPage(3);
                                         // .move(3, animation: false);
                                       });
                                     },
-                                    child: Text(S.of(context).scheduleLater,
+                                    child: Text(S
+                                        .of(context)
+                                        .scheduleLater,
                                         style: TextStyle(
-                                            color: Theme.of(context)
+                                            color: Theme
+                                                .of(context)
                                                 .accentTextTheme
                                                 .bodyText1!
                                                 .color,
@@ -137,7 +171,9 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
+                              buttonText: S
+                                  .of(context)
+                                  .swipeToProceed,
                             ),
                           ),
                         ],

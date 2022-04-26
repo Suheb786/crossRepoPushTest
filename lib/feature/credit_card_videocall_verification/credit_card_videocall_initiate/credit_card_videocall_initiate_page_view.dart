@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/account/agent_gender_status.dart';
@@ -32,24 +34,40 @@ class CreditCardVideoCallInitiatePageView
         onData: (data) async {
           if (data.status == Status.SUCCESS) {
             if (data.data!.isExist) {
-              Map<Permission, PermissionStatus> statuses = await [
-                Permission.camera,
-                Permission.microphone,
-                Permission.bluetooth,
-                Permission.bluetoothConnect
-              ].request();
+              if (Platform.isAndroid) {
+                Map<Permission, PermissionStatus> statuses = await [
+                  Permission.camera,
+                  Permission.microphone,
+                  Permission.bluetooth,
+                  Permission.bluetoothConnect
+                ].request();
 
-              if (statuses[Permission.camera] ==
-                      PermissionStatus.permanentlyDenied ||
-                  statuses[Permission.microphone] ==
-                      PermissionStatus.permanentlyDenied ||
-                  statuses[Permission.bluetooth] ==
-                      PermissionStatus.permanentlyDenied ||
-                  statuses[Permission.bluetoothConnect] ==
-                      PermissionStatus.permanentlyDenied) {
-                openAppSettings();
-              } else {
-                model.getAgoraCredentials();
+                if (statuses[Permission.camera] ==
+                        PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.microphone] ==
+                        PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.bluetooth] ==
+                        PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.bluetoothConnect] ==
+                        PermissionStatus.permanentlyDenied) {
+                  openAppSettings();
+                } else {
+                  model.getAgoraCredentials();
+                }
+              } else if (Platform.isIOS) {
+                Map<Permission, PermissionStatus> statuses = await [
+                  Permission.camera,
+                  Permission.microphone,
+                ].request();
+
+                if (statuses[Permission.camera] ==
+                        PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.microphone] ==
+                        PermissionStatus.permanentlyDenied) {
+                  openAppSettings();
+                } else {
+                  model.getAgoraCredentials();
+                }
               }
             } else {
               model.showToastWithError(AppError(
