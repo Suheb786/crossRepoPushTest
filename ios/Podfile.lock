@@ -120,8 +120,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - Flutter (1.0.0)
-  - flutter_3des (0.0.1):
-    - Flutter
   - flutter_jailbreak_detection (1.0.0):
     - DTTJailbreakDetection
     - Flutter
@@ -223,6 +221,8 @@ PODS:
   - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
+  - wakelock (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
@@ -234,7 +234,6 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
-  - flutter_3des (from `.symlinks/plugins/flutter_3des/ios`)
   - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
@@ -258,6 +257,7 @@ DEPENDENCIES:
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
   trunk:
@@ -310,8 +310,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
     :path: Flutter
-  flutter_3des:
-    :path: ".symlinks/plugins/flutter_3des/ios"
   flutter_jailbreak_detection:
     :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
@@ -358,6 +356,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/syncfusion_flutter_pdfviewer/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  wakelock:
+    :path: ".symlinks/plugins/wakelock/ios"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -384,7 +384,6 @@ SPEC CHECKSUMS:
   FirebasePerformance: c40a3bfe5ed9e91f2ab4851d1aa8e0f2f3ca19cf
   FirebaseRemoteConfig: 39462033ba6fe7979eb49499f40f07feaa016b0a
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_3des: b3e82de7e7b4a0b0328b00101418ae0b1c74df63
   flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
@@ -422,7 +421,8 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
+  wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 54b0ce3705f0fb34c832e24ebeb86ac61b0dfd5e
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1

@@ -14,6 +14,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:wakelock/wakelock.dart';
 
 class VideoKycViewModel extends BasePageViewModel {
   final GetCallStatusUseCase _getCallStatusUseCase;
@@ -161,6 +162,7 @@ class VideoKycViewModel extends BasePageViewModel {
     _engine.destroy();
     _getCallStatusRequest.close();
     _getCallStatusResponse.close();
+    Wakelock.disable();
     super.dispose();
   }
 }

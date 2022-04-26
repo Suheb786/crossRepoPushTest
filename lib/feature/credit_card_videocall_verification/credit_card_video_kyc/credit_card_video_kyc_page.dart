@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/credit_card_videocall_verification/credit_card_videocall_verification_module.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_model.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_view.dart';
+import 'package:wakelock/wakelock.dart';
 
 class CreditCardVideoKycPage extends BasePage<CreditCardVideoKycViewModel> {
   final CreditCardVideKycCredentials credentials;
@@ -24,6 +25,12 @@ class CreditCardVideoKycPageState extends BaseStatefulPage<
   @override
   Widget buildView(BuildContext context, CreditCardVideoKycViewModel model) {
     return CreditCardVideoKycPageView(provideBase());
+  }
+
+  @override
+  void onModelReady(CreditCardVideoKycViewModel model) {
+    Wakelock.enable();
+    super.onModelReady(model);
   }
 }
 
