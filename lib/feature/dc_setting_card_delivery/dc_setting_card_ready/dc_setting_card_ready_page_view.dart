@@ -22,9 +22,9 @@ class DcSettingCardReadyPageView
           ProviderScope.containerOf(context)
               .read(appHomeViewModelProvider)
               .getDashboardData();
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .triggerSubscriptionPopUp();
+          // ProviderScope.containerOf(context)
+          //     .read(appHomeViewModelProvider)
+          //     .triggerSubscriptionPopUp();
         }
       },
       child: Container(

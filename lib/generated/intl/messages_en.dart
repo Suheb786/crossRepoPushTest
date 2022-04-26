@@ -1819,8 +1819,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("RENEW CREDIT CARD"),
         "replaceDamageCard":
             MessageLookupByLibrary.simpleMessage("Replace damaged card"),
+        "replaceDamagedCard":
+            MessageLookupByLibrary.simpleMessage("Replace damaged card"),
         "reportCardIssue":
             MessageLookupByLibrary.simpleMessage("Report stolen or lost card"),
+        "reportDamagedCard":
+            MessageLookupByLibrary.simpleMessage("Report damaged card"),
         "reportStolenCardInfo": MessageLookupByLibrary.simpleMessage(
             "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one."),
         "reportStolenLostCardDesc": MessageLookupByLibrary.simpleMessage(

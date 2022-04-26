@@ -1303,5 +1303,7 @@
   "selectPreferredInstallmentDuration": "Select your preferred instalment duration",
   "installmentOption": "Instalment Options",
   "purchaseInstallmentsSuccessfullySet": "Purchase instalment is successfully set",
-  "purchaseInstallmentsSuccessfullySetDesc": "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021."
+  "purchaseInstallmentsSuccessfullySetDesc": "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.",
+  "replaceDamagedCard": "Replace damaged card",
+  "reportDamagedCard": "Report damaged card"
 }

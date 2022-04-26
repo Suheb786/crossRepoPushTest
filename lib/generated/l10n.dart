@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12796,6 +12795,26 @@ class S {
     return Intl.message(
       'Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.',
       name: 'purchaseInstallmentsSuccessfullySetDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replace damaged card`
+  String get replaceDamagedCard {
+    return Intl.message(
+      'Replace damaged card',
+      name: 'replaceDamagedCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report damaged card`
+  String get reportDamagedCard {
+    return Intl.message(
+      'Report damaged card',
+      name: 'reportDamagedCard',
       desc: '',
       args: [],
     );

@@ -312,6 +312,8 @@ class DebitCardSettingsPageView
                           },
                           title: S.of(context).viewCardSubSubscription,
                           tileIcon: AssetUtils.circleRight,
+                          isEnabled: false,
+                          isNotify: true,
                         ),
                         SettingTile(
                           onTap: () {
@@ -359,6 +361,28 @@ class DebitCardSettingsPageView
                           },
                           title: S.of(context).reportCardIssue,
                           tileIcon: AssetUtils.report,
+                        ),
+                        SettingTile(
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardCancelIcon,
+                                title: S.of(context).reportDamagedCard,
+                                descriptionWidget: Text(
+                                  S.of(context).reportStolenLostCardDesc,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_brown),
+                                ), onSelected: () {
+                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, RoutePaths.DcSettingCardDelivery);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
+                          title: S.of(context).replaceDamageCard,
+                          tileIcon: AssetUtils.replaceCard,
                         ),
                         SizedBox(height: 15),
                         Padding(
