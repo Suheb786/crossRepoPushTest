@@ -47,6 +47,8 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart'
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_mobile_number_success/dc_change_mobile_number_success_page.dart';
+import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delivery_page.dart';
+import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_ready/dc_setting_card_ready_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
@@ -675,6 +677,16 @@ class AppRouter {
       case RoutePaths.DcChangeLinkedMobileNumber:
         return CustomRoute.createRoute(DcChangeLinkedMobileNumberPage(
             settings.arguments as DCChangeLinkedMobileNumberArguments));
+
+      case RoutePaths.DcSettingCardDelivery:
+        return CupertinoPageRoute(
+            builder: (context) => DcSettingCardDeliveryPage(),
+            settings: RouteSettings(name: RoutePaths.DcSettingCardDelivery));
+
+      case RoutePaths.DcSettingCardReady:
+        return CupertinoPageRoute(
+            builder: (context) => DcSettingCardReadyPage(),
+            settings: RouteSettings(name: RoutePaths.DcSettingCardReady));
 
       case RoutePaths.DcChangeMobileNumberSuccess:
         return CupertinoPageRoute(
