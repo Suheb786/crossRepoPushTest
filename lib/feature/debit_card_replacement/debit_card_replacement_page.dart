@@ -27,6 +27,8 @@ class DebitCardReplacementPageState extends BaseStatefulPage<
   void onModelReady(DebitCardReplacementPageViewModel model) {
     super.onModelReady(model);
     if (widget._debitCardReplacementArguments != null) {
+      model.debitCardReplacementArguments =
+          widget._debitCardReplacementArguments;
       if (widget._debitCardReplacementArguments.isPinSet) {
         Future.delayed(Duration(microseconds: 100), () {
           model.navigateToPage(0);
@@ -48,6 +50,10 @@ class DebitCardReplacementPageState extends BaseStatefulPage<
 
 class DebitCardReplacementArguments {
   final bool isPinSet;
+  final DebitReplacementEnum type;
 
-  DebitCardReplacementArguments({this.isPinSet: true});
+  DebitCardReplacementArguments(
+      {this.isPinSet: true, this.type: DebitReplacementEnum.Normal});
 }
+
+enum DebitReplacementEnum { Normal, Supplementary }

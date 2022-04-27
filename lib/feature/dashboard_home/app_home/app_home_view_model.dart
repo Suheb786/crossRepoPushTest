@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
@@ -292,37 +293,61 @@ class AppHomeViewModel extends BasePageViewModel {
       } else {
         if (dashboardDataContent.debitCard!.length > 0) {
           dashboardDataContent.debitCard!.forEach((debitCard) {
-            if (!(debitCard.isPINSet ?? true)) {
-              pages.add(ApplyDebitCardWidget(
-                isSmallDevice: isSmallDevices,
-                isPinSet: debitCard.isPINSet!,
-              ));
-
-              ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(
-                  cardType: CardType.DEBIT,
-                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-            } else {
-              pages.add(DebitCardWidget(
+            if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
+              if (!(debitCard.isPINSet ?? true)) {
+                pages.add(ApplyDebitCardWidget(
                   isSmallDevice: isSmallDevices,
-                  key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
-                  debitCard: debitCard));
+                  isPinSet: debitCard.isPINSet!,
+                ));
 
-              ///time line list arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: debitCard.debitCardActivated.toString(),
-                  cardDeliveredDatetime:
-                      debitCard.debitDeliveredDatetime.toString(),
-                  cardId: '',
-                  cardNumber: debitCard.cardNumber ?? '',
-                  accountTitle: debitCard.accountTitle ?? '',
-                  cardType: CardType.DEBIT,
-                  isCardDelivered: debitCard.isDebitDelivered));
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.DEBIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              } else {
+                pages.add(ApplyDebitCardWidget(
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: true,
+                ));
 
-              ///adding cardType
-              cardTypeList.add(TimeLineSwipeUpArgs(
-                  cardType: CardType.DEBIT,
-                  swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.DEBIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              }
+            } else {
+              if (!(debitCard.isPINSet ?? true)) {
+                pages.add(ApplyDebitCardWidget(
+                  isSmallDevice: isSmallDevices,
+                  isPinSet: debitCard.isPINSet!,
+                ));
+
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.DEBIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              } else {
+                pages.add(DebitCardWidget(
+                    isSmallDevice: isSmallDevices,
+                    key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
+                    debitCard: debitCard));
+
+                ///time line list arguments set
+                timeLineListArguments.add(TimeLineListArguments(
+                    cardCardActivated: debitCard.debitCardActivated.toString(),
+                    cardDeliveredDatetime:
+                        debitCard.debitDeliveredDatetime.toString(),
+                    cardId: '',
+                    cardNumber: debitCard.cardNumber ?? '',
+                    accountTitle: debitCard.accountTitle ?? '',
+                    cardType: CardType.DEBIT,
+                    isCardDelivered: debitCard.isDebitDelivered));
+
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.DEBIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              }
             }
           });
         } else {

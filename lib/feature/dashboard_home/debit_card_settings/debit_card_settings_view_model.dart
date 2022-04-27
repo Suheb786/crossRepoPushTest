@@ -35,9 +35,31 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get cancelCardResponseStream =>
       _cancelCardResponseSubject.stream;
 
+  ///report stolen/lost card
+  PublishSubject<CancelDebitCardUseCaseParams>
+      _reportStolenLostCardRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _reportStolenLostCardResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<bool>> get reportStolenLostCardResponseStream =>
+      _reportStolenLostCardResponseSubject.stream;
+
+  ///report damaged card
+  PublishSubject<CancelDebitCardUseCaseParams>
+      _reportDamagedCardRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _reportDamagedCardResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<bool>> get reportDamagedCardResponseStream =>
+      _reportDamagedCardResponseSubject.stream;
+
   bool isFreezed = false;
   bool isUnFreezed = false;
   bool isCancelled = false;
+  bool lostStolenReported = false;
+  bool isReportDamagedCard = false;
 
   bool needsReplacement = false;
 
@@ -97,6 +119,34 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _reportStolenLostCardRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _cancelDebitCardUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _reportStolenLostCardResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          lostStolenReported = true;
+        }
+      });
+    });
+
+    _reportDamagedCardRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _cancelDebitCardUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _reportDamagedCardResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          isReportDamagedCard = true;
+        }
+      });
+    });
   }
 
   void toggleFreezeCardStatus(bool value) {
@@ -125,13 +175,41 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         cancellationReason: cancellationReason!));
   }
 
+  void reportStolenLostCard(
+      {String? reasonValue,
+      String? status,
+      String? tokenizedPlan,
+      String? cancellationReason}) {
+    _reportStolenLostCardRequestSubject.safeAdd(CancelDebitCardUseCaseParams(
+        status: status!,
+        reason: reasonValue!,
+        tokenizedPan: tokenizedPlan!,
+        cancellationReason: cancellationReason!));
+  }
+
+  void reportDamagedCard(
+      {String? reasonValue,
+      String? status,
+      String? tokenizedPlan,
+      String? cancellationReason}) {
+    _reportDamagedCardRequestSubject.safeAdd(CancelDebitCardUseCaseParams(
+        status: status!,
+        reason: reasonValue!,
+        tokenizedPan: tokenizedPlan!,
+        cancellationReason: cancellationReason!));
+  }
+
   void updateFreezeStatus(bool value) {
     _freezeCardSubject.safeAdd(value);
   }
 
   bool willPop() {
     bool pop = false;
-    if (isFreezed || isUnFreezed || isCancelled) {
+    if (isFreezed ||
+        isUnFreezed ||
+        isCancelled ||
+        isReportDamagedCard ||
+        lostStolenReported) {
       pop = true;
     }
     return pop;

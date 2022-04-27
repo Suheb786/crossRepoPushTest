@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -38,6 +39,9 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
       index,
     );
   }
+
+  DebitCardReplacementArguments debitCardReplacementArguments =
+      DebitCardReplacementArguments();
 
   @override
   void dispose() {
