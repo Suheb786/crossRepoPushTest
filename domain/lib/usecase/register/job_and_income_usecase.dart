@@ -23,7 +23,7 @@ class JobAndIncomeUseCase extends BaseUseCase<NetworkError,
         occupation: params.occupation,
         businessType: params.businessType,
         annualIncome:
-            '${double.parse(params.annualIncome!).toStringAsFixed(3)}',
+            '${double.parse("${double.parse(params.annualIncome!) * 12}").toStringAsFixed(3)}',
         employeeName: params.employerName,
         employerCountry: params.employerCountry,
         employerCity: params.employerCity,

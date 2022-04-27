@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/error/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -8,16 +9,20 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class DebitCardSettingsPageView
     extends BasePageViewWidget<DebitCardSettingsViewModel> {
@@ -215,56 +220,6 @@ class DebitCardSettingsPageView
                                 },
                               );
                             }),
-                        // AppStreamBuilder<Resource<bool>>(
-                        //   initialData: Resource.none(),
-                        //   stream: model.cancelCardResponseStream,
-                        //   onData: (data) {
-                        //     if (data.status == Status.SUCCESS) {
-                        //       if (model.needsReplacement) {
-                        //         Navigator.pushReplacementNamed(
-                        //             context, RoutePaths.DebitCardReplacement,
-                        //             arguments: DebitCardReplacementArguments(
-                        //                 isPinSet: true));
-                        //       } else {
-                        //         Navigator.pop(context, true);
-                        //       }
-                        //     }
-                        //   },
-                        //   dataBuilder: (context, data) {
-                        //     return SettingTile(
-                        //       onTap: () {
-                        //         CardCancelDialog.show(
-                        //           context,
-                        //           onSelected: (reasonValue, needsReplacement) {
-                        //             model.needsReplacement = needsReplacement;
-                        //             Navigator.pop(context);
-                        //             model.cancelCard(
-                        //                 status: 'TE',
-                        //                 reasonValue: reasonValue,
-                        //                 tokenizedPlan: model
-                        //                     .debitCardSettingsArguments
-                        //                     .debitCard
-                        //                     .code,
-                        //                 cancellationReason: reasonValue);
-                        //           },
-                        //           onDismissed: () {
-                        //             Navigator.pop(context);
-                        //           },
-                        //           onError: (AppError error) {
-                        //             model.showToastWithError(error);
-                        //           },
-                        //           reasons: [
-                        //             "I don’t need my card anymore.",
-                        //             "I'am dissatisfied with service.",
-                        //             "There are too many declined trx’s"
-                        //           ],
-                        //         );
-                        //       },
-                        //       title: S.of(context).cancelThisCard,
-                        //       tileIcon: AssetUtils.cancelCard,
-                        //     );
-                        //   },
-                        // ),
                         SettingTile(
                           onTap: () {
                             Navigator.pushNamed(
@@ -344,49 +299,134 @@ class DebitCardSettingsPageView
                           isEnabled: false,
                           isNotify: true,
                         ),
-                        SettingTile(
-                          onTap: () {
-                            InformationDialog.show(context,
-                                image: AssetUtils.cardCancelIcon,
+                        AppStreamBuilder<Resource<bool>>(
+                            initialData: Resource.none(),
+                            stream: model.reportStolenLostCardResponseStream,
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                Navigator.pushNamed(
+                                    context, RoutePaths.DcSettingCardDelivery);
+                              }
+                            },
+                            dataBuilder: (context, data) {
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardCancelIcon,
+                                      title: S.of(context).reportCardIssue,
+                                      descriptionWidget: Text(
+                                        S.of(context).reportStolenLostCardDesc,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.dark_brown),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    model.reportStolenLostCard(
+                                        status: 'LO',
+                                        reasonValue: "Lost or Stolen",
+                                        tokenizedPlan: model
+                                            .debitCardSettingsArguments
+                                            .debitCard
+                                            .code,
+                                        cancellationReason: "Lost or Stolen");
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
                                 title: S.of(context).reportCardIssue,
-                                descriptionWidget: Text(
-                                  S.of(context).reportStolenLostCardDesc,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_brown),
-                                ), onSelected: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                  context, RoutePaths.DcSettingCardDelivery);
-                            }, onDismissed: () {
-                              Navigator.pop(context);
-                            });
+                                tileIcon: AssetUtils.report,
+                              );
+                            }),
+                        AppStreamBuilder<Resource<bool>>(
+                            initialData: Resource.none(),
+                            stream: model.reportDamagedCardResponseStream,
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                Navigator.pushNamed(
+                                    context, RoutePaths.DcSettingCardDelivery);
+                              }
+                            },
+                            dataBuilder: (context, data) {
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardCancelIcon,
+                                      title: S.of(context).reportDamagedCard,
+                                      descriptionWidget: Text(
+                                        S.of(context).reportStolenLostCardDesc,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.dark_brown),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    model.reportDamagedCard(
+                                        status: 'TE',
+                                        reasonValue: "Damage",
+                                        tokenizedPlan: model
+                                            .debitCardSettingsArguments
+                                            .debitCard
+                                            .code,
+                                        cancellationReason: "Damage");
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                title: S.of(context).replaceDamageCard,
+                                tileIcon: AssetUtils.replaceCard,
+                              );
+                            }),
+                        AppStreamBuilder<Resource<bool>>(
+                          initialData: Resource.none(),
+                          stream: model.cancelCardResponseStream,
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              if (model.needsReplacement) {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.DebitCardReplacement,
+                                    arguments: DebitCardReplacementArguments(
+                                        isPinSet: true,
+                                        type: DebitReplacementEnum.Normal));
+                              } else {
+                                Navigator.pop(context, true);
+                              }
+                            }
                           },
-                          title: S.of(context).reportCardIssue,
-                          tileIcon: AssetUtils.report,
-                        ),
-                        SettingTile(
-                          onTap: () {
-                            InformationDialog.show(context,
-                                image: AssetUtils.cardCancelIcon,
-                                title: S.of(context).reportDamagedCard,
-                                descriptionWidget: Text(
-                                  S.of(context).reportStolenLostCardDesc,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_brown),
-                                ), onSelected: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                  context, RoutePaths.DcSettingCardDelivery);
-                            }, onDismissed: () {
-                              Navigator.pop(context);
-                            });
+                          dataBuilder: (context, data) {
+                            return SettingTile(
+                              onTap: () {
+                                CardCancelDialog.show(
+                                  context,
+                                  onSelected: (reasonValue, needsReplacement) {
+                                    model.needsReplacement = needsReplacement;
+                                    Navigator.pop(context);
+                                    model.cancelCard(
+                                        status: 'TE',
+                                        reasonValue: reasonValue,
+                                        tokenizedPlan: model
+                                            .debitCardSettingsArguments
+                                            .debitCard
+                                            .code,
+                                        cancellationReason: reasonValue);
+                                  },
+                                  onDismissed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onError: (AppError error) {
+                                    model.showToastWithError(error);
+                                  },
+                                  reasons: [
+                                    "I don’t need my card anymore.",
+                                    "I'am dissatisfied with service.",
+                                    "There are too many declined trx’s"
+                                  ],
+                                );
+                              },
+                              title: S.of(context).cancelThisCard,
+                              tileIcon: AssetUtils.cancelCard,
+                            );
                           },
-                          title: S.of(context).replaceDamageCard,
-                          tileIcon: AssetUtils.replaceCard,
                         ),
                         SizedBox(height: 15),
                         Padding(

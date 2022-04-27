@@ -97,6 +97,7 @@ import 'package:data/entity/remote/country/state_list/state_list_response_entity
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
+import 'package:data/entity/remote/dashboard/placeholder/get_placeholder_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/device_change/resend_otp_device_change_request_entity.dart';
@@ -780,4 +781,8 @@ abstract class ApiService {
   @POST("/CardTracking/ChangeMobileNumber")
   Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
       @Body() CcChangeMobileNumberRequestEntity request);
+
+  @POST("/DashBoard/GetAdPlaceholder")
+  Future<HttpResponse<ResponseEntity>> getPlaceholder(
+      @Body() GetPlaceholderRequestEntity request);
 }

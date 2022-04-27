@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_view_model.dart';
@@ -15,7 +14,6 @@ final dcChangeLinkedMobileNumberViewModelProvider =
 final dcEnterNewMobileNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<DcEnterNewMobileNumberPageViewModel>(
   (ref) => DcEnterNewMobileNumberPageViewModel(
-      ref.read(fetchCountryByCodeUseCaseProvider),
       ref.read(getAllowedCodeCountriesListUseCaseProvider),
       ref.read(dcEnterNewMobileNumberUseCaseProvider)),
 );

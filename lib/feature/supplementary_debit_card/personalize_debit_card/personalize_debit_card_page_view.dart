@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/personalize_debit_card/personalize_debit_card_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -37,8 +38,11 @@ class PersonalizeDebitCardPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context,
-                                RoutePaths.SupplementaryDebitCardSuccess);
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.DebitCardReplacement,
+                                arguments: DebitCardReplacementArguments(
+                                    isPinSet: true,
+                                    type: DebitReplacementEnum.Supplementary));
                           }
                         },
                         dataBuilder: (context, data) {
@@ -80,47 +84,40 @@ class PersonalizeDebitCardPageView
                                     }
                                   },
                                   child: Card(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context)
-                                                          .viewInsets
-                                                          .bottom -
-                                                      50 <=
-                                                  0
-                                              ? 0
-                                              : MediaQuery.of(context)
-                                                      .viewInsets
-                                                      .bottom -
-                                                  48),
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 32, horizontal: 24),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            AppTextField(
-                                              labelText: S
-                                                  .of(context)
-                                                  .nickName
-                                                  .toUpperCase(),
-                                              hintText: S.of(context).optional,
-                                              controller:
-                                                  model.nicknameController,
-                                              key: model.nicknameKey,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 32, horizontal: 24),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SingleChildScrollView(
+                                            child: Column(
+                                              children: [
+                                                AppTextField(
+                                                  labelText: S
+                                                      .of(context)
+                                                      .nickName
+                                                      .toUpperCase(),
+                                                  hintText:
+                                                      S.of(context).optional,
+                                                  controller:
+                                                      model.nicknameController,
+                                                  key: model.nicknameKey,
+                                                ),
+                                              ],
                                             ),
-                                            Center(
-                                              child: AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed,
-                                              ),
+                                          ),
+                                          Center(
+                                            child: AnimatedButton(
+                                              buttonText:
+                                                  S.of(context).swipeToProceed,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),

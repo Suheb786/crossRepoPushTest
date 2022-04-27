@@ -36,7 +36,10 @@ class ConfirmReplacementPinPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pushReplacementNamed(
-                      context, RoutePaths.DebitCardReplacementSuccess);
+                      context, RoutePaths.DebitCardReplacementSuccess,
+                      arguments: ProviderScope.containerOf(context)
+                          .read(debitCardReplacementViewModelProvider)
+                          .debitCardReplacementArguments);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }

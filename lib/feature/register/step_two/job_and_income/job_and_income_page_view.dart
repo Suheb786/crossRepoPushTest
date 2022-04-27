@@ -206,83 +206,36 @@ class JobAndIncomePageView
                               );
                             },
                           ),
-                          Focus(
-                            child: AppTextField(
-                              labelText: S.of(context).mainAnnualIncome,
-                              hintText: '',
-                              controller: model.annualIncomeController,
-                              key: model.annualIncomeKey,
-                              inputType: TextInputType.number,
-                              inputAction: TextInputAction.done,
-                              prefixIcon: () {
-                                return Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 8.0, right: 8),
-                                  child: Text(
-                                    S.of(context).JOD,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyText1!
-                                            .color!),
-                                  ),
-                                );
-                              },
-                              onChanged: (value) {
-                                model.isValid();
-                              },
-                            ),
-                            onFocusChange: (hasFocus) {
-                              if (!hasFocus) {
-                                InformationDialog.show(context,
-                                    title: S.of(context).annualIncomeSmall,
-                                    isSwipeToCancel: false, onSelected: () {
-                                  Navigator.pop(context);
-                                },
-                                    descriptionWidget: Text.rich(TextSpan(
-                                        text: S
-                                            .of(context)
-                                            .areYouSureYouEnteredYour,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14,
-                                            height: 1.4,
-                                            color: Theme.of(context)
-                                                .inputDecorationTheme
-                                                .focusedBorder!
-                                                .borderSide
-                                                .color),
-                                        children: [
-                                          TextSpan(
-                                              text: S.of(context).annual,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .inputDecorationTheme
-                                                      .focusedBorder!
-                                                      .borderSide
-                                                      .color),
-                                              children: [
-                                                TextSpan(
-                                                  text: S
-                                                      .of(context)
-                                                      .makeSureItsAnnualNotMonthly,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 14,
-                                                      color: Theme.of(context)
-                                                          .inputDecorationTheme
-                                                          .focusedBorder!
-                                                          .borderSide
-                                                          .color),
-                                                )
-                                              ])
-                                        ])));
-                              }
+                          AppTextField(
+                            labelText: S.of(context).monthlyIncome,
+                            hintText: '',
+                            controller: model.annualIncomeController,
+                            key: model.annualIncomeKey,
+                            inputType:
+                                TextInputType.numberWithOptions(decimal: true),
+                            inputAction: TextInputAction.done,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'[0-9.]')),
+                            ],
+                            prefixIcon: () {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 8.0, right: 8),
+                                child: Text(
+                                  S.of(context).JOD,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyText1!
+                                          .color!),
+                                ),
+                              );
+                            },
+                            onChanged: (value) {
+                              model.isValid();
                             },
                           ),
                           SizedBox(

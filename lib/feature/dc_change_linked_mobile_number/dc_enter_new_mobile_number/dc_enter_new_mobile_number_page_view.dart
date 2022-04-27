@@ -130,13 +130,17 @@ class DcEnterNewMobileNumberPageView
                                               Navigator.pop(context);
                                               model.countryData = data;
                                               model.setSelectedCountry(data);
-                                              print(
-                                                  'selectedData---->${data.phoneCode}');
                                             }, onDismissed: () {
                                               Navigator.pop(context);
                                             },
-                                                countryDataList: country!.data!
-                                                    .contentData!.countryData);
+                                                countryDataList:
+                                                    country!.status ==
+                                                            Status.SUCCESS
+                                                        ? country
+                                                            .data!
+                                                            .contentData!
+                                                            .countryData
+                                                        : []);
                                           },
                                           child: Padding(
                                             padding: EdgeInsets.only(top: 8.0),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -18,10 +19,21 @@ class DebitCardReplacementSuccessPageView
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.of(context)..pop();
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          if (model.debitCardReplacementArguments.type ==
+              DebitReplacementEnum.Normal) {
+            Navigator.of(context)..pop();
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
+          } else {
+            Navigator.of(context)
+              ..pop
+              ..pop()
+              ..pop();
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
+          }
         }
       },
       child: Container(
