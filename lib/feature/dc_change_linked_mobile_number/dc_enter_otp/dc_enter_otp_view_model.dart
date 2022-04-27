@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class DcEnterOtpViewModel extends BasePageViewModel {
   DcEnterOtpViewModel(this._dcEnterOtpUseCase) {
     _dcEnterOtpRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _dcEnterOtpUseCase.execute(params: value))
+          createCall: () => _dcEnterOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -55,9 +56,14 @@ class DcEnterOtpViewModel extends BasePageViewModel {
     });
   }
 
-  void enterOtp() {
-    _dcEnterOtpRequest
-        .safeAdd(DcEnterOtpUseCaseParams(otpCode: _otpSubject.value));
+  void enterOtp(String? tokenizedPan, String? mobileNumber, String? mobileCode,
+      CardType cardType) {
+    _dcEnterOtpRequest.safeAdd(DcEnterOtpUseCaseParams(
+        otpCode: _otpSubject.value,
+        tokenizedPan: tokenizedPan,
+        cardType: cardType,
+        mobileCode: "00${mobileCode}",
+        mobileNumber: mobileNumber));
   }
 
   listenForSmsCode() async {
