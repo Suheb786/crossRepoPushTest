@@ -48,6 +48,7 @@ import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
@@ -136,6 +137,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_response
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_request_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
@@ -158,6 +160,7 @@ import 'package:data/entity/remote/user/get_combo_values/get_combo_values_respon
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_request_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
 import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
@@ -177,6 +180,7 @@ import 'package:data/entity/remote/user/save_selfie_image_request.dart';
 import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
+import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -760,4 +764,20 @@ abstract class ApiService {
   @POST("/DashBoard/CallStatusUpdate")
   Future<HttpResponse<ResponseEntity>> callStatusUpdate(
       @Body() CreditCardCallStatusUpdateRequest request);
+
+  @POST("/DebitCard/ChangeMobileNumberVerify")
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumberVerify(
+      @Body() DcChangeMobileNumberVerifyRequestEntity request);
+
+  @POST("/DebitCard/ChangeMobileNumber")
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(
+      @Body() DcChangeMobileNumberRequestEntity request);
+
+  @POST("/CardTracking/ChangeMobileNumberVerify")
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumberVerify(
+      @Body() CcChangeMobileNumberVerifyRequestEntity request);
+
+  @POST("/CardTracking/ChangeMobileNumber")
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
+      @Body() CcChangeMobileNumberRequestEntity request);
 }

@@ -56,6 +56,8 @@ class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
 
 class DCChangeLinkedMobileNumberArguments {
   final CardType cardType;
+  final String? tokenizedPan;
 
-  DCChangeLinkedMobileNumberArguments({this.cardType: CardType.DEBIT});
+  DCChangeLinkedMobileNumberArguments(
+      {this.cardType: CardType.DEBIT, this.tokenizedPan});
 }

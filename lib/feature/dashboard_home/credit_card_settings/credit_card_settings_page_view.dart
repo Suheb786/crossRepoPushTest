@@ -341,7 +341,11 @@ class CreditCardSettingsPageView
                             Navigator.pushNamed(
                                 context, RoutePaths.DcChangeLinkedMobileNumber,
                                 arguments: DCChangeLinkedMobileNumberArguments(
-                                    cardType: CardType.CREDIT));
+                                    cardType: CardType.CREDIT,
+                                    tokenizedPan: model
+                                        .creditCardSettingsArguments
+                                        .creditCard
+                                        .cardCode));
                           },
                           title: S.of(context).changeLinkedMobileNumber,
                           tileIcon: AssetUtils.mobile,

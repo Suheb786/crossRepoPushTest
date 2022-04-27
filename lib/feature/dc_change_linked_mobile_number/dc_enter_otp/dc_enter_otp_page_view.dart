@@ -57,7 +57,27 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                         1.0) {
                       if (details.primaryVelocity!.isNegative) {
                         FocusScope.of(context).unfocus();
-                        model.enterOtp();
+                        print(
+                            "got country data : ${ProviderScope.containerOf(context).read(dcEnterNewMobileNumberViewModelProvider).countryData.isoCode3}");
+                        model.enterOtp(
+                            ProviderScope.containerOf(context)
+                                .read(
+                                    dcChangeLinkedMobileNumberViewModelProvider)
+                                .arguments!
+                                .tokenizedPan,
+                            ProviderScope.containerOf(context)
+                                .read(dcEnterNewMobileNumberViewModelProvider)
+                                .mobileNumberController
+                                .text,
+                            ProviderScope.containerOf(context)
+                                .read(dcEnterNewMobileNumberViewModelProvider)
+                                .countryData
+                                .phoneCode,
+                            ProviderScope.containerOf(context)
+                                .read(
+                                    dcChangeLinkedMobileNumberViewModelProvider)
+                                .arguments!
+                                .cardType);
                       } else {
                         ProviderScope.containerOf(context)
                             .read(dcChangeLinkedMobileNumberViewModelProvider)

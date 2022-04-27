@@ -7,6 +7,8 @@ import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_request_entity.dart';
+import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
@@ -20,6 +22,8 @@ import 'package:data/entity/remote/card/credit_supplementary/supplementary_credi
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_response_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_three_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_two_request_entity.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_request_entity.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
@@ -508,5 +512,59 @@ class CardRemoteDsImpl extends CardRemoteDs {
         cardId: cardId,
         getToken: true,
         status: status));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumberVerify(
+      {required params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.dcChangeLinkedMobileNumberVerify(
+        DcChangeMobileNumberVerifyRequestEntity(
+            baseData: baseData.toJson(),
+            mobileNumber: params.mobileNumber,
+            getToken: true,
+            mobileCode: params.mobileCode,
+            tokenizedPan: params.tokenizedPan));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(
+      {required params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.dcChangeLinkedMobileNumber(
+        DcChangeMobileNumberRequestEntity(
+            baseData: baseData.toJson(),
+            mobileNumber: params.mobileNumber,
+            otpCode: params.otpCode,
+            getToken: true,
+            mobileCode: params.mobileCode,
+            tokenizedPan: params.tokenizedPan));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumberVerify(
+      {required params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.ccChangeLinkedMobileNumberVerify(
+        CcChangeMobileNumberVerifyRequestEntity(
+            baseData: baseData.toJson(),
+            mobileNumber: params.mobileNumber,
+            getToken: true,
+            mobileCode: params.mobileCode,
+            tokenizedPan: params.tokenizedPan));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
+      {required params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.ccChangeLinkedMobileNumber(
+        CcChangeMobileNumberRequestEntity(
+            baseData: baseData.toJson(),
+            mobileNumber: params.mobileNumber,
+            otpCode: params.otpCode,
+            getToken: true,
+            mobileCode: params.mobileCode,
+            tokenizedPan: params.tokenizedPan));
   }
 }
