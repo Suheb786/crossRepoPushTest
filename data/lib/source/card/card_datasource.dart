@@ -12,6 +12,8 @@ import 'package:data/entity/remote/card/process_loan_request/process_loan_respon
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
+import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class CardRemoteDs {
@@ -161,4 +163,16 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> callStatusUpdate(
       {String? cardId, String? status});
+
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumberVerify(
+      {required DcEnterNewMobileNumberUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(
+      {required DcEnterOtpUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumberVerify(
+      {required DcEnterNewMobileNumberUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
+      {required DcEnterOtpUseCaseParams params});
 }

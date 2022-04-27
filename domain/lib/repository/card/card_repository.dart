@@ -12,6 +12,8 @@ import 'package:domain/model/card/supplementary_credit_card/supplementary_credit
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
+import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
 
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
@@ -161,4 +163,16 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> callStatusUpdate(
       {String? cardId, String? status});
+
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumberVerify(
+      {required DcEnterNewMobileNumberUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber(
+      {required DcEnterOtpUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumberVerify(
+      {required DcEnterNewMobileNumberUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber(
+      {required DcEnterOtpUseCaseParams params});
 }

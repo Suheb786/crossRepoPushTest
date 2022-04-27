@@ -328,7 +328,11 @@ class DebitCardSettingsPageView
                             Navigator.pushNamed(
                                 context, RoutePaths.DcChangeLinkedMobileNumber,
                                 arguments: DCChangeLinkedMobileNumberArguments(
-                                    cardType: CardType.DEBIT));
+                                    cardType: CardType.DEBIT,
+                                    tokenizedPan: model
+                                        .debitCardSettingsArguments
+                                        .debitCard
+                                        .code));
                           },
                           title: S.of(context).changeLinkedMobileNumber,
                           tileIcon: AssetUtils.mobile,

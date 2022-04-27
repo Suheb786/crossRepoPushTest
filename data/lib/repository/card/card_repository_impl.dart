@@ -539,4 +539,48 @@ class CardRepositoryImpl extends CardRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumberVerify(
+      {required params}) async {
+    final result = await safeApiCall(
+        _remoteDs.dcChangeLinkedMobileNumberVerify(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber(
+      {required params}) async {
+    final result =
+        await safeApiCall(_remoteDs.dcChangeLinkedMobileNumber(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumberVerify(
+      {required params}) async {
+    final result = await safeApiCall(
+        _remoteDs.ccChangeLinkedMobileNumberVerify(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber(
+      {required params}) async {
+    final result =
+        await safeApiCall(_remoteDs.ccChangeLinkedMobileNumber(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }
