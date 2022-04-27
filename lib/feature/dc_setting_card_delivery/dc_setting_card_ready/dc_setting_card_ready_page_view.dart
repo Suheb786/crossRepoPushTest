@@ -117,7 +117,7 @@ class DcSettingCardReadyPageView
                     ),
                     child: Center(
                       child: Text(
-                        S.of(context).toViewSubscription,
+                        S.of(context).toDashboard,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,

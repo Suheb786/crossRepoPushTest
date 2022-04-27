@@ -17,7 +17,7 @@ class DcEnterOtpViewModel extends BasePageViewModel {
 
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
-  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
@@ -43,7 +43,7 @@ class DcEnterOtpViewModel extends BasePageViewModel {
   DcEnterOtpViewModel(this._dcEnterOtpUseCase) {
     _dcEnterOtpRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _dcEnterOtpUseCase.execute(params: value))
+              createCall: () => _dcEnterOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

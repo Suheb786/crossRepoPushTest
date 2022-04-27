@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dc_change_linked_mobile_number/dc_change_linked_mobile_number_module.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_view_model.dart';
@@ -92,7 +93,9 @@ class DcChangeLinkedMobileNumberPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "+962 79 421 5580",
+                            ProviderScope.containerOf(context)
+                                .read(dcEnterNewMobileNumberViewModelProvider)
+                                .mobileNumberWithCode,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: arguments.cardType == CardType.DEBIT
