@@ -33,4 +33,16 @@ class DashboardRepositoryImpl extends DashboardRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> getPlaceholder(
+      {int? placeholderId}) async {
+    final result = await safeApiCall(
+      _remoteDs.getPlaceholder(placeholderId: placeholderId),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }
