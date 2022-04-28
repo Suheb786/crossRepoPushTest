@@ -36,6 +36,8 @@ class DcEnterNewMobileNumberPageView
               ProviderScope.containerOf(context)
                   .read(dcChangeLinkedMobileNumberViewModelProvider)
                   .nextPage();
+            } else if (data.status == Status.ERROR) {
+              model.showToastWithError(data.appError!);
             }
           },
           initialData: Resource.none(),

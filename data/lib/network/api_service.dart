@@ -182,6 +182,7 @@ import 'package:data/entity/remote/user/status/customer_status_response_entity.d
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
+import 'package:data/entity/remote/card/cc_new_settlement/cc_update_settlement_request_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -785,4 +786,8 @@ abstract class ApiService {
   @POST("/DashBoard/GetAdPlaceholder")
   Future<HttpResponse<ResponseEntity>> getPlaceholder(
       @Body() GetPlaceholderRequestEntity request);
+
+  @POST("/CardTracking/UpdateSettlement")
+  Future<HttpResponse<ResponseEntity>> updateSettlement(
+      @Body() CcUpdateSettlementRequestEntity request);
 }
