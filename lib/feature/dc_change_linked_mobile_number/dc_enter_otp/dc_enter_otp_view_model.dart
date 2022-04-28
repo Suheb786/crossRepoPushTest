@@ -34,8 +34,6 @@ class DcEnterOtpViewModel extends BasePageViewModel {
   PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
   void updateTime(BuildContext context) {
-    // endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    // notifyListeners();
     verifyMobile(context);
   }
 
