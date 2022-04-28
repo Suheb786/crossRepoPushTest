@@ -20,7 +20,8 @@ final dcEnterNewMobileNumberViewModelProvider =
 
 final dcEnterOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<DcEnterOtpViewModel>(
-  (ref) => DcEnterOtpViewModel(ref.read(dcEnterOtpUseCaseProvider)),
+  (ref) => DcEnterOtpViewModel(ref.read(dcEnterOtpUseCaseProvider),
+      ref.read(dcEnterNewMobileNumberUseCaseProvider)),
 );
 
 final dcChangeMobileNumberSuccessViewModelProvider =

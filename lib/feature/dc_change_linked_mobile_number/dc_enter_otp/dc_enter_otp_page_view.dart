@@ -123,7 +123,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
-                                              model.updateTime();
+                                              model.updateTime(context);
                                             },
                                             child: Text(
                                               'Resend Code',
