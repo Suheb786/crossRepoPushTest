@@ -14,6 +14,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
+import 'package:domain/usecase/update_settlement/update_settlement_usecase.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class CardRemoteDs {
@@ -175,4 +176,7 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
       {required DcEnterOtpUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> updateSettlement(
+      {required UpdateSettlementUseCaseParams params});
 }

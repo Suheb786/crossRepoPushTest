@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -106,7 +107,9 @@ class ManageCreditSettlementPageView
                     InkWell(
                       onTap: () {
                         Navigator.pushReplacementNamed(
-                            context, RoutePaths.ChangeCardSettlementPercentage);
+                            context, RoutePaths.ChangeCardSettlementPercentage,
+                            arguments: ChangeCardSettlementPercentageArguments(
+                                creditCard: model.arguments!.creditCard));
                       },
                       child: Padding(
                         padding: EdgeInsets.all(24),

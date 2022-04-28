@@ -583,4 +583,14 @@ class CardRepositoryImpl extends CardRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> updateSettlement({required params}) async {
+    final result =
+        await safeApiCall(_remoteDs.updateSettlement(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }
