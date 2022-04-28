@@ -123,7 +123,10 @@ class DcEnterOtpViewModel extends BasePageViewModel {
             .read(dcEnterNewMobileNumberViewModelProvider)
             .countryData
             .phoneCode,
-        cardType: CardType.DEBIT));
+        cardType: ProviderScope.containerOf(context)
+            .read(dcChangeLinkedMobileNumberViewModelProvider)
+            .arguments!
+            .cardType));
   }
 
   @override
