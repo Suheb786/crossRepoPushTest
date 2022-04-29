@@ -1040,6 +1040,10 @@ class ErrorParser {
         return localisedHelper.emptyCliqIdType;
       case ErrorType.EMPTY_ALIAS:
         return localisedHelper.emptyAlias;
+      case ErrorType.NO_PLACEHOLDER_FOUND:
+        return localisedHelper.noPlaceholderFound;
+      case ErrorType.PLACEHOLDER_ID_NULL:
+        return localisedHelper.placeholderIdNull;
 
       default:
         return "";

@@ -590,21 +590,23 @@ class DebitCardTimeLinePageView
                       ],
                     ),
             ),
-            Visibility(
-              visible: false,
-              child: Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Container(
-                  height: 150,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AssetUtils.credit),
-                          fit: BoxFit.contain),
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-              ),
-            ),
+            model.timeLineArguments.timeLineArguments.placeholderData!.status ??
+                    false
+                ? Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Container(
+                      height: 150,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: Image.memory(model.timeLineArguments
+                                      .timeLineArguments.placeholderData!.image)
+                                  .image,
+                              fit: BoxFit.contain),
+                          borderRadius: BorderRadius.circular(16)),
+                    ),
+                  )
+                : Container(),
             Spacer(),
             Stack(
               clipBehavior: Clip.none,

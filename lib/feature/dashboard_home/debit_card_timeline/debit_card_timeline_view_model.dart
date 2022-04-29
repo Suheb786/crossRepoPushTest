@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/usecase/dashboard/debit_card_timeline_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_page.dart';
@@ -62,11 +63,12 @@ class TimeLineArguments {
   String? availableBalance;
 
   List<TimeLineListArguments> timelineListArguments;
+  PlaceholderData? placeholderData;
 
-  TimeLineArguments({
-    this.youJoinedBlink: "",
-    this.blinkWasBorn: "",
-    required this.timelineListArguments,
-    this.availableBalance: '0.000',
-  });
+  TimeLineArguments(
+      {this.youJoinedBlink: "",
+      this.blinkWasBorn: "",
+      required this.timelineListArguments,
+      this.availableBalance: '0.000',
+      this.placeholderData});
 }

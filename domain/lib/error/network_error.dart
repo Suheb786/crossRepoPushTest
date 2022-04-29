@@ -1351,6 +1351,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_ID_VERIFICATION_178);
 
+          case "err-300":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.NO_PLACEHOLDER_FOUND);
+
           case "err-150":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -2102,6 +2108,12 @@ class NetworkError extends BaseError {
           case "err-0005":
             return AppError(
                 cause: cause, error: error, type: ErrorType.DEVICE_IS_REQUIRED);
+
+          case "err-0007":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PLACEHOLDER_ID_NULL);
 
           default:
             return AppError(

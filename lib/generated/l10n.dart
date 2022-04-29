@@ -12819,6 +12819,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No Placeholder Record Found against this Id`
+  String get noPlaceholderFound {
+    return Intl.message(
+      'No Placeholder Record Found against this Id',
+      name: 'noPlaceholderFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PlaceHolder Id is null`
+  String get placeholderIdNull {
+    return Intl.message(
+      'PlaceHolder Id is null',
+      name: 'placeholderIdNull',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,4 +1,5 @@
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
+import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -13,6 +14,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -180,20 +183,33 @@ class AddMoneyOptionSelectorPageView
                     //     ],
                     //   ),
                     // ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 0),
-                      child: Container(
-                        height: 120,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            // color: Theme.of(context)
-                            //     .primaryColor,
-                            image: DecorationImage(
-                                image: AssetImage(AssetUtils.newOutfit),
-                                fit: BoxFit.contain),
-                            borderRadius: BorderRadius.circular(16)),
-                      ),
-                    ),
+                    AppStreamBuilder<Resource<GetPlaceholderResponse>>(
+                        stream: model.getPlaceHolderStream,
+                        initialData: Resource.none(),
+                        dataBuilder: (context, snapshot) {
+                          switch (snapshot!.status) {
+                            case Status.SUCCESS:
+                              return (snapshot.data!.data!.status ?? false)
+                                  ? Padding(
+                                      padding: EdgeInsets.only(top: 0),
+                                      child: Container(
+                                        height: 120,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: Image.memory(snapshot
+                                                        .data!.data!.image)
+                                                    .image,
+                                                fit: BoxFit.contain),
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
+                                      ),
+                                    )
+                                  : Container();
+                            default:
+                              return Container();
+                          }
+                        }),
                   ],
                 ),
               )

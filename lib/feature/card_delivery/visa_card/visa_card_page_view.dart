@@ -216,12 +216,13 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
         showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) => popUpWidget(context, AssetUtils.anghamiPlus));
+            builder: (context) =>
+                popUpWidget(context, model.onBoardingPlaceholderData.image));
       }
     });
   }
 
-  Widget popUpWidget(BuildContext context, String image) {
+  Widget popUpWidget(BuildContext context, dynamic image) {
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -230,14 +231,14 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
           children: [
             const SizedBox(height: 30),
             Container(
-              height: 530,
+              //height: 530,
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Image.asset(
+              child: Image.memory(
                 image,
                 fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 16),
             GestureDetector(
               onTap: () {
                 Navigator.pop(context);

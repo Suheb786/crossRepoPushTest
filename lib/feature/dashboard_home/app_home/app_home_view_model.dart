@@ -6,7 +6,10 @@ import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
+import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
+import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
+import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
@@ -31,6 +34,9 @@ import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
+
+  final GetPlaceholderUseCase _getPlaceholderUseCase;
+
   final SwiperController pageController = SwiperController();
   ScrollController scrollController = ScrollController();
   PageController appSwiperController = PageController(viewportFraction: 0.8);
@@ -125,7 +131,33 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<bool> get showSubSubscriptionPopUpStream =>
       _showSubSubscriptionPopUpStream.stream;
 
-  AppHomeViewModel(this._getDashboardDataUseCase) {
+  /// get placeholder request
+
+  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest =
+      PublishSubject();
+
+  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse =
+      BehaviorSubject();
+
+  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream =>
+      _getPlaceHolderResponse.stream;
+
+  PlaceholderData timelinePlaceholderData = PlaceholderData();
+
+  /// get request money placeholder request
+  PublishSubject<GetPlaceholderUseCaseParams>
+      _getRequestMoneyPlaceHolderRequest = PublishSubject();
+
+  BehaviorSubject<Resource<GetPlaceholderResponse>>
+      _getRequestMoneyPlaceHolderResponse = BehaviorSubject();
+
+  Stream<Resource<GetPlaceholderResponse>>
+      get getRequestMoneyPlaceHolderStream =>
+          _getRequestMoneyPlaceHolderResponse.stream;
+
+  PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
+
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value,
@@ -138,6 +170,7 @@ class AppHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          getTimelinePlaceholder();
           if (isShowBalenceUpdatedToast) {
             showSuccessToast("Your account balance is successfully updated.");
             isShowBalenceUpdatedToast = false;
@@ -145,6 +178,41 @@ class AppHomeViewModel extends BasePageViewModel {
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
           getDashboardPages(event.data!.dashboardDataContent!);
+        }
+      });
+    });
+
+    _getPlaceHolderRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPlaceHolderResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          // showErrorState();
+          // showToastWithError(event.appError!);
+          timeLineArguments.placeholderData = timelinePlaceholderData;
+        } else if (event.status == Status.SUCCESS) {
+          timelinePlaceholderData = event.data!.data!;
+          timeLineArguments.placeholderData = event.data!.data;
+        }
+      });
+    });
+
+    _getRequestMoneyPlaceHolderRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getRequestMoneyPlaceHolderResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+        } else if (event.status == Status.SUCCESS) {
+          if (event.data!.data!.status ?? false) {
+            requestMoneyPlaceholderData = event.data!.data!;
+            _requestMoneyRequest.safeAdd(true);
+          }
         }
       });
     });
@@ -496,12 +564,20 @@ class AppHomeViewModel extends BasePageViewModel {
   //   _sentMoneyRequest.safeAdd(true);
   // }
 
+  ///request money timeline placeholder
   void triggerRequestMoneyPopup() {
-    _requestMoneyRequest.safeAdd(true);
+    _getRequestMoneyPlaceHolderRequest
+        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 4));
   }
 
   void triggerSubscriptionPopUp() {
     _showSubSubscriptionPopUpStream.safeAdd(true);
+  }
+
+  ///timeline placeholder
+  void getTimelinePlaceholder() {
+    _getPlaceHolderRequest
+        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 5));
   }
 
   @override
@@ -509,6 +585,8 @@ class AppHomeViewModel extends BasePageViewModel {
     _currentStep.close();
     _showTimeLineSubject.close();
     _pageControllerSubject.close();
+    _getPlaceHolderRequest.close();
+    _getPlaceHolderResponse.close();
     super.dispose();
   }
 }

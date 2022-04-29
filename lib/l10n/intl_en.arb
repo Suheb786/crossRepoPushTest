@@ -1291,9 +1291,7 @@
   "cardSubscription": "Card subscriptions",
   "subscriptionPopUpInfo": "Please remember that the card you reported as stolen/lost had the following subscription. You will need to update you subscription with your new card details.",
   "toViewSubscription": "to View Subscriptionss",
-  "dcMobileNumberUpdated": "Your new mobile number has been successfully verified and tied to your card transactions.",
   "renewNewCreditCard": "RENEW CREDIT CARD",
-  "yourCardIssued": "Your card has\nbeen issued",
   "youCanChangeCardDetailsInSettings": "You can change the above details in the card settings ",
   "cardSettlementAccount": "CARD SETTLEMENT ACCOUNT",
   "reportStolenLostCardDesc": "Are you sure you would like to proceed? This will cancel you card but don’t worry, we will immediately issue a new one.",
@@ -1305,5 +1303,7 @@
   "purchaseInstallmentsSuccessfullySet": "Purchase instalment is successfully set",
   "purchaseInstallmentsSuccessfullySetDesc": "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021.",
   "replaceDamagedCard": "Replace damaged card",
-  "reportDamagedCard": "Report damaged card"
+  "reportDamagedCard": "Report damaged card",
+  "noPlaceholderFound": "No Placeholder Record Found against this Id",
+  "placeholderIdNull": "PlaceHolder Id is null"
 }
