@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/dc_change_linked_mobile_number/dc_change_linked_mobile_number_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/change_country_restriction/change_country_restriction_page_view_model.dart';
@@ -228,7 +229,8 @@ final changeCardPaymentPageViewModelProvider =
 final changeCardSettlementPercentagePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<
         ChangeCardSettlementPercentagePageViewModel>(
-  (ref) => ChangeCardSettlementPercentagePageViewModel(),
+          (ref) => ChangeCardSettlementPercentagePageViewModel(
+      ref.read(updateSettlementUseCaseProvider)),
 );
 
 ///renew credit card page view model

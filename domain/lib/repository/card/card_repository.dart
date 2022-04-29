@@ -14,6 +14,7 @@ import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
+import 'package:domain/usecase/update_settlement/update_settlement_usecase.dart';
 
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
@@ -175,4 +176,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber(
       {required DcEnterOtpUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> updateSettlement(
+      {required UpdateSettlementUseCaseParams params});
 }

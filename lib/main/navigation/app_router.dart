@@ -657,7 +657,9 @@ class AppRouter {
 
       case RoutePaths.ManageCreditSettlement:
         return CupertinoPageRoute(
-            builder: (context) => ManageCreditSettlementPage(),
+            builder: (context) => ManageCreditSettlementPage(
+                manageCreditSettlementArguments:
+                    settings.arguments as ManageCreditSettlementArguments),
             settings: RouteSettings(name: RoutePaths.ManageCreditSettlement));
 
       case RoutePaths.ChangeCardPayment:
@@ -667,7 +669,9 @@ class AppRouter {
 
       case RoutePaths.ChangeCardSettlementPercentage:
         return CupertinoPageRoute(
-            builder: (context) => ChangeCardSettlementPercentagePage(),
+            builder: (context) => ChangeCardSettlementPercentagePage(
+                changeCardSettlementPercentageArguments: settings.arguments
+                    as ChangeCardSettlementPercentageArguments),
             settings:
                 RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
 
