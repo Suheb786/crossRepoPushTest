@@ -11,8 +11,8 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
+import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
-import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -222,19 +222,25 @@ class CreditCardSettingsPageView
                                 },
                               );
                             }),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.manageDebitLimit,
-                                  arguments: ManageCardLimitsArguments(
-                                      cardType: CardType.CREDIT));
-                            },
-                            title: S.of(context).manageCardLimits,
-                            tileIcon: AssetUtils.settingBars,
-                          ),
+                        SettingTile(
+                          isNotify: false,
+                          isEnabled: true,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCreditCardLimits,
+                                arguments: ManageCreditCardLimitsArguments(
+                                    secureCode: model
+                                            .creditCardSettingsArguments
+                                            .creditCard
+                                            .cardCode ??
+                                        '',
+                                    creditDeliveredDatetime: model
+                                        .creditCardSettingsArguments
+                                        .creditCard
+                                        .creditDeliveredDatetime));
+                          },
+                          title: S.of(context).manageCardLimits,
+                          tileIcon: AssetUtils.settingBars,
                         ),
                         IgnorePointer(
                           child: SettingTile(

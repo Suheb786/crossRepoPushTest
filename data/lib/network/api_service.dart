@@ -49,6 +49,8 @@ import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_request_entity.dart';
+import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
+import 'package:data/entity/remote/card/cc_new_settlement/cc_update_settlement_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
@@ -62,6 +64,8 @@ import 'package:data/entity/remote/card/credit_supplementary/supplementary_credi
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_request_response_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_three_request_entity.dart';
 import 'package:data/entity/remote/card/credit_supplementary/supplementary_credit_card_step_two_request_entity.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_request_entity.dart';
+import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
@@ -94,6 +98,8 @@ import 'package:data/entity/remote/country/get_allowed_country/get_allowed_count
 import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
+import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
@@ -139,7 +145,6 @@ import 'package:data/entity/remote/upload_document/save_upload_document_response
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
-import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_request_entity.dart';
 import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
@@ -162,7 +167,6 @@ import 'package:data/entity/remote/user/get_combo_values/get_combo_values_respon
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
-import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_request_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
 import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
@@ -182,8 +186,6 @@ import 'package:data/entity/remote/user/save_selfie_image_request.dart';
 import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
-import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
-import 'package:data/entity/remote/card/cc_new_settlement/cc_update_settlement_request_entity.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -791,4 +793,8 @@ abstract class ApiService {
   @POST("/CardTracking/UpdateSettlement")
   Future<HttpResponse<ResponseEntity>> updateSettlement(
       @Body() CcUpdateSettlementRequestEntity request);
+
+  @POST("/CardTracking/GetLimit")
+  Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
+      @Body() CreditCardLimitRequestEntity request);
 }

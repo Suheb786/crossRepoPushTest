@@ -1044,6 +1044,8 @@ class ErrorParser {
         return localisedHelper.noPlaceholderFound;
       case ErrorType.PLACEHOLDER_ID_NULL:
         return localisedHelper.placeholderIdNull;
+      case ErrorType.PRIMARY_NOT_COMPLETE:
+        return localisedHelper.primaryNotComplete;
 
       default:
         return "";

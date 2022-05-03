@@ -45,6 +45,6 @@ class AddMoneyOptionSelectorViewModel extends BasePageViewModel {
   ///dashboard placeholder
   void getPlaceholder() {
     _getPlaceHolderRequest
-        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 2));
+        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 6));
   }
 }

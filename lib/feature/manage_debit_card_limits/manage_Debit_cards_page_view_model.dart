@@ -155,7 +155,6 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
             isMerchantsPayments: isMerchantPayments,
             isContactLessPayments: isContactLessPayments,
             isAtmWithdrawal: isAtmWithdrawal,
-            contactLessPayments: contactlessPayments,
             atmWithdrawal: atmWithdrawalValue));
   }
 

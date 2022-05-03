@@ -42,6 +42,8 @@ import 'package:data/entity/remote/card/process_loan_request/process_loan_respon
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
+import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -287,27 +289,28 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
-      {num? atmWithdrawal,
-      num? merchantsPayments,
-      num? onlinePurchase,
-      num? contactLessPayments,
-      bool? isAtmWithdrawal,
-      bool? isMerchantsPayments,
-      bool? isOnlinePurchase,
-      bool? isContactLessPayments}) async {
+  Future<HttpResponse<ResponseEntity>> updateCreditCardLimits({
+    num? atmWithdrawal,
+    num? merchantsPayments,
+    num? onlinePurchase,
+    bool? isAtmWithdrawal,
+    bool? isMerchantsPayments,
+    bool? isOnlinePurchase,
+    bool? isContactLessPayments,
+    String? secureCode,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateCreditCardLimits(
         CreditCardSLimitsUpdateRequestEntity(
             getToken: true,
             atmWithdrawal: atmWithdrawal,
-            contactLessPayments: contactLessPayments,
             merchantsPayments: merchantsPayments,
             onlinePurchase: onlinePurchase,
             isAtmWithdrawal: isAtmWithdrawal,
             isContactLessPayments: isContactLessPayments,
             isMerchantsPayments: isMerchantsPayments,
             isOnlinePurchase: isOnlinePurchase,
+            secureCode: secureCode,
             baseData: baseData.toJson()));
   }
 
@@ -579,5 +582,13 @@ class CardRemoteDsImpl extends CardRemoteDs {
       rate: params.rate,
       getToken: true,
     ));
+  }
+
+  @override
+  Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
+      {required String? secureCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCreditCardLimit(CreditCardLimitRequestEntity(
+        secureCode: secureCode, getToken: true, baseData: baseData.toJson()));
   }
 }

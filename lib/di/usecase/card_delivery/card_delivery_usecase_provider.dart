@@ -17,6 +17,7 @@ import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_credit_card_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_relationship_list_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
@@ -214,3 +215,8 @@ final supplementaryCreditCardStepThreeUseCaseProvider =
     Provider.autoDispose<SupplementaryCreditCardStepThreeUseCase>((ref) =>
         SupplementaryCreditCardStepThreeUseCase(
             ref.read(cardRepositoryProvider)));
+
+///[GetCreditCardLimitUseCase] provider
+final getCreditCardLimitUseCaseProvider =
+    Provider.autoDispose<GetCreditCardLimitUseCase>(
+        (ref) => GetCreditCardLimitUseCase(ref.read(cardRepositoryProvider)));

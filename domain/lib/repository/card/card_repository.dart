@@ -9,6 +9,7 @@ import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart'
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
+import 'package:domain/model/credit_card/get_credit_card_limit_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
@@ -89,7 +90,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> updateCreditCardLimits(
       {num atmWithdrawal,
-      num contactLessPayments,
+      String? secureCode,
       bool isAtmWithdrawal,
       bool isContactLessPayments,
       bool isMerchantsPayments,
@@ -99,6 +100,9 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit(
       {required String? tokenizedPan});
+
+  Future<Either<NetworkError, GetCreditCardLimitResponse>> getCreditCardLimit(
+      {required String? secureCode});
 
   Future<Either<NetworkError, GetCardApplicationResponse>> getCardApplication();
 

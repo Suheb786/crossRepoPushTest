@@ -16,7 +16,7 @@ class CreditCardLimitsUpdateUseCase extends BaseUseCase<NetworkError,
       {required CreditCardLimitsUpdateUseCaseParams params}) {
     return _repository.updateCreditCardLimits(
         atmWithdrawal: params.atmWithdrawal!,
-        contactLessPayments: params.contactLessPayments!,
+        secureCode: params.secureCode!,
         isAtmWithdrawal: params.isAtmWithdrawal!,
         isContactLessPayments: params.isContactLessPayments!,
         isMerchantsPayments: params.isMerchantsPayments!,
@@ -30,7 +30,7 @@ class CreditCardLimitsUpdateUseCaseParams extends Params {
   final num? atmWithdrawal;
   final num? merchantsPayments;
   final num? onlinePurchase;
-  final num? contactLessPayments;
+  final String? secureCode;
   final bool? isAtmWithdrawal;
   final bool? isMerchantsPayments;
   final bool? isOnlinePurchase;
@@ -40,7 +40,7 @@ class CreditCardLimitsUpdateUseCaseParams extends Params {
       {this.atmWithdrawal,
       this.merchantsPayments,
       this.onlinePurchase,
-      this.contactLessPayments,
+      this.secureCode,
       this.isAtmWithdrawal,
       this.isMerchantsPayments,
       this.isOnlinePurchase,

@@ -130,4 +130,5 @@ class RoutePaths {
   static const String ChangeCreditLimit = "/changeCreditLimit";
   static const String ConvertPurchaseToInstallments =
       "/convertPurchaseToInstallments";
+  static const String ManageCreditCardLimits = "/manageCreditCardLimits";
 }
