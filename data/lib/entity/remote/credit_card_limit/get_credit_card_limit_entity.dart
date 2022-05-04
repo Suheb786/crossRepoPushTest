@@ -35,7 +35,7 @@ class GetCreditCardLimitEntity
   CreditCardLimit transform() {
     return CreditCardLimit(
         currentLimit: this.internetCurrentLimit ?? '0',
-        maxLimit: this.internetLimitMin ?? '0',
-        minLimit: this.internetLimitMax ?? '0');
+        maxLimit: this.internetLimitMax ?? '0',
+        minLimit: this.internetLimitMin ?? '0');
   }
 }
