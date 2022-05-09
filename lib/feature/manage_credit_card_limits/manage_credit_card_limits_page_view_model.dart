@@ -50,10 +50,15 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
   num onlinePurchaseInitialValue = 0;
   num contactlessPaymentsInitialValue = 0;
 
-  bool isAtmWithdrawal = true;
-  bool isMerchantPayments = true;
-  bool isOnlinePurchase = true;
+  bool isAtmWithdrawal = false;
+  bool isMerchantPayments = false;
+  bool isOnlinePurchase = false;
   bool isContactLessPayments = false;
+
+  bool isAtmWithdrawalInitialValue = false;
+  bool isMerchantPaymentsInitialValue = false;
+  bool isOnlinePurchaseInitialValue = false;
+  bool isContactLessPaymentsInitialValue = false;
 
   ManageCreditCardLimitsPageViewModel(this.cardLimitsArguments,
       this._creditCardLimitUseCase, this._creditCardLimitsUpdateUseCase) {
@@ -114,7 +119,11 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
     if (atmWithdrawalValue != atmWithdrawalInitialValue ||
         merchantPaymentValue != merchantPaymentInitialValue ||
         onlinePurchaseValue != onlinePurchaseInitialValue ||
-        contactlessPaymentsValue != contactlessPaymentsInitialValue) {
+        contactlessPaymentsValue != contactlessPaymentsInitialValue ||
+        isAtmWithdrawal != isAtmWithdrawalInitialValue ||
+        isMerchantPayments != isMerchantPaymentsInitialValue ||
+        isOnlinePurchase != isOnlinePurchaseInitialValue ||
+        isContactLessPayments != isContactLessPaymentsInitialValue) {
       show = true;
     }
     updateShowSaveButtonValue(show);

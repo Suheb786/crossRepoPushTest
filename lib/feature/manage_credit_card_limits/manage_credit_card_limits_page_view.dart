@@ -29,45 +29,32 @@ class ManageCreditCardLimitsPageView
           onData: (creditCardLimitResponse) {
             if (creditCardLimitResponse.status == Status.SUCCESS) {
               model.atmWithdrawalValue = model.atmWithdrawalInitialValue =
-                  num.parse(
-                      creditCardLimitResponse.data!.cardLimit!.currentLimit ??
-                          '0');
-              model.merchantPaymentValue = model.merchantPaymentInitialValue =
-                  num.parse(
-                      creditCardLimitResponse.data!.cardLimit!.currentLimit ??
-                          '0');
-              model.onlinePurchaseValue = model.onlinePurchaseInitialValue =
-                  num.parse(
-                      creditCardLimitResponse.data!.cardLimit!.currentLimit ??
-                          '0');
-              model.contactlessPaymentsValue =
-                  model.contactlessPaymentsInitialValue = num.parse(
-                  creditCardLimitResponse.data!.cardLimit!.currentLimit ??
+                  num.parse(creditCardLimitResponse
+                          .data!.cardLimit!.atmCurrentLimit ??
                       '0');
-              model.isAtmWithdrawal = num.parse(creditCardLimitResponse
-                  .data!.cardLimit!.currentLimit ??
-                  '0') >
-                  0
-                  ? true
-                  : false;
-              model.isMerchantPayments = num.parse(creditCardLimitResponse
-                  .data!.cardLimit!.currentLimit ??
-                  '0') >
-                  0
-                  ? true
-                  : false;
-              model.isOnlinePurchase = num.parse(creditCardLimitResponse
-                  .data!.cardLimit!.currentLimit ??
-                  '0') >
-                  0
-                  ? true
-                  : false;
-              model.isContactLessPayments = num.parse(creditCardLimitResponse
-                  .data!.cardLimit!.currentLimit ??
-                  '0') >
-                  0
-                  ? true
-                  : false;
+              model.merchantPaymentValue = model.merchantPaymentInitialValue =
+                  num.parse(creditCardLimitResponse
+                          .data!.cardLimit!.merchantCurrentLimit ??
+                      '0');
+              model.onlinePurchaseValue = model.onlinePurchaseInitialValue =
+                  num.parse(creditCardLimitResponse
+                          .data!.cardLimit!.onlinePurchaseCurrentLimit ??
+                      '0');
+              // model.contactlessPaymentsValue =
+              //     model.contactlessPaymentsInitialValue = num.parse(
+              //     creditCardLimitResponse.data!.cardLimit!.currentLimit ??
+              //         '0');
+              model.isAtmWithdrawal = model.isAtmWithdrawalInitialValue =
+                  creditCardLimitResponse.data!.cardLimit!.isATM ?? false;
+              model.isMerchantPayments = model.isMerchantPaymentsInitialValue =
+                  creditCardLimitResponse.data!.cardLimit!.isMerchant ?? false;
+              model.isOnlinePurchase = model.isOnlinePurchaseInitialValue =
+                  creditCardLimitResponse.data!.cardLimit!.isOnlinePurchase ??
+                      false;
+              model.isContactLessPayments =
+                  model.isContactLessPaymentsInitialValue =
+                      creditCardLimitResponse.data!.cardLimit!.isContactLess ??
+                          false;
               model.updateShowSaveButtonValue(false);
             }
           },
@@ -80,9 +67,7 @@ class ManageCreditCardLimitsPageView
                 } else if (details.primaryVelocity! < -sensitivity) {}
               },
               child: Container(
-                color: Theme
-                    .of(context)
-                    .primaryColor,
+                color: Theme.of(context).primaryColor,
                 child: Column(
                   children: [
                     Column(
@@ -91,14 +76,10 @@ class ManageCreditCardLimitsPageView
                           height: 50,
                         ),
                         Text(
-                          S
-                              .of(context)
-                              .manageCardLimits,
+                          S.of(context).manageCardLimits,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Theme
-                                .of(context)
-                                .accentColor,
+                            color: Theme.of(context).accentColor,
                             fontSize: 13,
                           ),
                         ),
@@ -129,354 +110,359 @@ class ManageCreditCardLimitsPageView
                                     height: 45,
                                   ),
                                   creditCardLimitResponse!.status ==
-                                      Status.SUCCESS
+                                          Status.SUCCESS
                                       ? Expanded(
-                                    child: SingleChildScrollView(
-                                      physics:
-                                      ClampingScrollPhysics(),
-                                      child: Card(
-                                        color: AppColor.veryLightGray,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(16.0),
-                                        ),
-                                        margin: EdgeInsets.only(bottom: 45),
-                                        elevation: 20,
-                                        child: AppStreamBuilder<Resource<bool>>(
-                                            stream: model
-                                                .updateCreditCardLimitsStream,
-                                            initialData: Resource.none(),
-                                            onData: (data) {
-                                              if (data.status ==
-                                                  Status.SUCCESS) {
-                                                model.getCreditCardLimit();
-                                              }
-                                            },
-                                            dataBuilder: (context, response) {
-                                              return Column(
-                                                children: [
-                                                  ManageLimitsWidget(
-                                                    onToggle: (value) {
-                                                      model.isAtmWithdrawal =
-                                                          value;
-                                                      if (!value) {
-                                                        model
-                                                            .updateCreditCardLimits(
-                                                            onlinePurchase: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            atmWithdrawalValue:
-                                                            0,
-                                                            contactlessPayments:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            merchantPayment: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'));
-                                                      }
-                                                    },
-                                                    initialValue: num.parse(
-                                                        creditCardLimitResponse
-                                                            .data!
-                                                            .cardLimit!
-                                                            .currentLimit ??
-                                                            '0') ==
-                                                        0
-                                                        ? false
-                                                        : true,
-                                                    title: S
-                                                        .of(context)
-                                                        .atmWithDrawal,
-                                                    amountSet:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .currentLimit ??
-                                                        '0',
-                                                    maxAmount:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .maxLimit ??
-                                                        '0',
-                                                    providerBase:
-                                                    atmWithdrawalViewModelProvider,
-                                                    onChange:
-                                                        (atmWithdrawalValue) {
-                                                      model.atmWithdrawalValue =
-                                                          num.parse(
-                                                              atmWithdrawalValue);
-                                                      model.showSaveButton();
-                                                    },
-                                                    onDone: (String value) {},
-                                                  ),
-                                                  ManageLimitsWidget(
-                                                    onToggle: (value) {
-                                                      model.isMerchantPayments =
-                                                          value;
-                                                      if (!value) {
-                                                        model
-                                                            .updateCreditCardLimits(
-                                                            onlinePurchase: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            atmWithdrawalValue:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            contactlessPayments:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            merchantPayment:
-                                                            0);
-                                                      }
-                                                    },
-                                                    title: S
-                                                        .of(context)
-                                                        .merchantPayments,
-                                                    initialValue: num.parse(
-                                                        creditCardLimitResponse
-                                                            .data!
-                                                            .cardLimit!
-                                                            .currentLimit ??
-                                                            '0') ==
-                                                        0
-                                                        ? false
-                                                        : true,
-                                                    amountSet:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .currentLimit ??
-                                                        '0',
-                                                    maxAmount:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .maxLimit ??
-                                                        '0',
-                                                    providerBase:
-                                                    merchantPaymentViewModelProvider,
-                                                    onChange:
-                                                        (merchantPaymentValue) {
+                                          child: SingleChildScrollView(
+                                            physics: ClampingScrollPhysics(),
+                                            child: Card(
+                                              color: AppColor.veryLightGray,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(16.0),
+                                              ),
+                                              margin:
+                                                  EdgeInsets.only(bottom: 45),
+                                              elevation: 20,
+                                              child: AppStreamBuilder<
+                                                      Resource<bool>>(
+                                                  stream: model
+                                                      .updateCreditCardLimitsStream,
+                                                  initialData: Resource.none(),
+                                                  onData: (data) {
+                                                    if (data.status ==
+                                                        Status.SUCCESS) {
                                                       model
-                                                          .merchantPaymentValue =
-                                                          num.parse(
-                                                              merchantPaymentValue);
-                                                      model.showSaveButton();
-                                                    },
-                                                    onDone:
-                                                        (
-                                                        merchantPaymentValue) {},
-                                                  ),
-                                                  ManageLimitsWidget(
-                                                    onToggle: (value) {
-                                                      model.isOnlinePurchase =
-                                                          value;
-                                                      if (!value) {
-                                                        model
-                                                            .updateCreditCardLimits(
-                                                            onlinePurchase: 0,
-                                                            atmWithdrawalValue:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            contactlessPayments:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            merchantPayment: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'));
-                                                      }
-                                                    },
-                                                    title: S
-                                                        .of(context)
-                                                        .onlinePurchase,
-                                                    initialValue: num.parse(
-                                                        creditCardLimitResponse
-                                                            .data!
-                                                            .cardLimit!
-                                                            .currentLimit ??
-                                                            '0') ==
-                                                        0
-                                                        ? false
-                                                        : true,
-                                                    amountSet:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .currentLimit ??
-                                                        '0',
-                                                    maxAmount:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .maxLimit ??
-                                                        '0',
-                                                    providerBase:
-                                                    onlinePurchaseViewModelProvider,
-                                                    onChange:
-                                                        (
-                                                        onlinePurchaseLimitValue) {
-                                                      model
-                                                          .onlinePurchaseValue =
-                                                          num.parse(
-                                                              onlinePurchaseLimitValue);
-                                                      model.showSaveButton();
-                                                    },
-                                                    onDone:
-                                                        (
-                                                        onlinePurchaseLimitValue) {},
-                                                  ),
-                                                  ManageLimitsWidget(
-                                                    onToggle: (value) {
-                                                      model
-                                                          .isContactLessPayments =
-                                                          value;
-                                                      if (value) {
-                                                        model
-                                                            .updateCreditCardLimits(
-                                                            onlinePurchase: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            atmWithdrawalValue:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            contactlessPayments:
-                                                            150,
-                                                            merchantPayment: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'));
-                                                      } else {
-                                                        model
-                                                            .updateCreditCardLimits(
-                                                            onlinePurchase: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            atmWithdrawalValue:
-                                                            num.parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'),
-                                                            contactlessPayments:
-                                                            0,
-                                                            merchantPayment: num
-                                                                .parse(
-                                                                creditCardLimitResponse
-                                                                    .data!
-                                                                    .cardLimit!
-                                                                    .currentLimit ??
-                                                                    '0'));
-                                                      }
-                                                    },
-                                                    initialValue:
-                                                    ((model.cardLimitsArguments
-                                                        .creditDeliveredDatetime
-                                                        .toString()
-                                                        .isNotEmpty) &&
-                                                        num.parse(
-                                                            creditCardLimitResponse
-                                                                .data!
-                                                                .cardLimit!
-                                                                .currentLimit ??
-                                                                '0') !=
-                                                            0)
-                                                        ? true
-                                                        : false,
-                                                    noToggle: !(model
-                                                        .cardLimitsArguments
-                                                        .creditDeliveredDatetime
-                                                        .toString()
-                                                        .isNotEmpty),
-                                                    title: S
-                                                        .of(context)
-                                                        .contactLessPayments,
-                                                    amountSet:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!
-                                                        .currentLimit ??
-                                                        '0',
-                                                    maxAmount:
-                                                    creditCardLimitResponse
-                                                        .data!
-                                                        .cardLimit!.maxLimit ??
-                                                        '0',
-                                                    isLast: true,
-                                                    readOnly: true,
-                                                    providerBase:
-                                                    contactLessPaymentViewModelProvider,
-                                                    onChange:
-                                                        (
-                                                        contactLessPaymentValue) {
-                                                      model
-                                                          .contactlessPaymentsValue =
-                                                          num.parse(
-                                                              contactLessPaymentValue);
-                                                      model.showSaveButton();
-                                                    },
-                                                    onDone:
-                                                        (
-                                                        contactLessPaymentValue) {},
-                                                  ),
-                                                ],
-                                              );
-                                            }),
-                                      ),
-                                    ),
-                                  )
+                                                          .getCreditCardLimit();
+                                                    }
+                                                  },
+                                                  dataBuilder:
+                                                      (context, response) {
+                                                    return Column(
+                                                      children: [
+                                                        ManageLimitsWidget(
+                                                          onToggle: (value) {
+                                                            model.isAtmWithdrawal =
+                                                                value;
+                                                            model
+                                                                .showSaveButton();
+                                                            // if (!value) {
+                                                            //   model
+                                                            //       .updateCreditCardLimits(
+                                                            //       onlinePurchase: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       atmWithdrawalValue:
+                                                            //       0,
+                                                            //       contactlessPayments:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       merchantPayment: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'));
+                                                            // }
+                                                          },
+                                                          initialValue:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .isATM ??
+                                                                  false,
+                                                          title: S
+                                                              .of(context)
+                                                              .atmWithDrawal,
+                                                          amountSet:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .atmCurrentLimit ??
+                                                                  '0',
+                                                          maxAmount:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .atmMaxLimit ??
+                                                                  '0',
+                                                          providerBase:
+                                                              atmWithdrawalViewModelProvider,
+                                                          onChange:
+                                                              (atmWithdrawalValue) {
+                                                            model.atmWithdrawalValue =
+                                                                num.parse(
+                                                                    atmWithdrawalValue);
+                                                            model
+                                                                .showSaveButton();
+                                                          },
+                                                          onDone:
+                                                              (String value) {},
+                                                        ),
+                                                        ManageLimitsWidget(
+                                                          onToggle: (value) {
+                                                            model.isMerchantPayments =
+                                                                value;
+                                                            model
+                                                                .showSaveButton();
+                                                            // if (!value) {
+                                                            //   model
+                                                            //       .updateCreditCardLimits(
+                                                            //       onlinePurchase: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       atmWithdrawalValue:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       contactlessPayments:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       merchantPayment:
+                                                            //       0);
+                                                            // }
+                                                          },
+                                                          title: S
+                                                              .of(context)
+                                                              .merchantPayments,
+                                                          initialValue:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .isMerchant ??
+                                                                  false,
+                                                          amountSet:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .merchantCurrentLimit ??
+                                                                  '0',
+                                                          maxAmount:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .merchantMaxLimit ??
+                                                                  '0',
+                                                          providerBase:
+                                                              merchantPaymentViewModelProvider,
+                                                          onChange:
+                                                              (merchantPaymentValue) {
+                                                            model.merchantPaymentValue =
+                                                                num.parse(
+                                                                    merchantPaymentValue);
+                                                            model
+                                                                .showSaveButton();
+                                                          },
+                                                          onDone:
+                                                              (merchantPaymentValue) {},
+                                                        ),
+                                                        ManageLimitsWidget(
+                                                          onToggle: (value) {
+                                                            model.isOnlinePurchase =
+                                                                value;
+                                                            model
+                                                                .showSaveButton();
+                                                            // if (!value) {
+                                                            //   model
+                                                            //       .updateCreditCardLimits(
+                                                            //       onlinePurchase: 0,
+                                                            //       atmWithdrawalValue:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       contactlessPayments:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       merchantPayment: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'));
+                                                            // }
+                                                          },
+                                                          title: S
+                                                              .of(context)
+                                                              .onlinePurchase,
+                                                          initialValue:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .isOnlinePurchase ??
+                                                                  false,
+                                                          amountSet:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .onlinePurchaseCurrentLimit ??
+                                                                  '0',
+                                                          maxAmount:
+                                                              creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .onlinePurchaseMaxLimit ??
+                                                                  '0',
+                                                          providerBase:
+                                                              onlinePurchaseViewModelProvider,
+                                                          onChange:
+                                                              (onlinePurchaseLimitValue) {
+                                                            model.onlinePurchaseValue =
+                                                                num.parse(
+                                                                    onlinePurchaseLimitValue);
+                                                            model
+                                                                .showSaveButton();
+                                                          },
+                                                          onDone:
+                                                              (onlinePurchaseLimitValue) {},
+                                                        ),
+                                                        ManageLimitsWidget(
+                                                          onToggle: (value) {
+                                                            model.isContactLessPayments =
+                                                                value;
+                                                            model
+                                                                .showSaveButton();
+                                                            // if (value) {
+                                                            //   model
+                                                            //       .updateCreditCardLimits(
+                                                            //       onlinePurchase: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       atmWithdrawalValue:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       contactlessPayments:
+                                                            //       150,
+                                                            //       merchantPayment: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'));
+                                                            // } else {
+                                                            //   model
+                                                            //       .updateCreditCardLimits(
+                                                            //       onlinePurchase: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       atmWithdrawalValue:
+                                                            //       num.parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'),
+                                                            //       contactlessPayments:
+                                                            //       0,
+                                                            //       merchantPayment: num
+                                                            //           .parse(
+                                                            //           creditCardLimitResponse
+                                                            //               .data!
+                                                            //               .cardLimit!
+                                                            //               .currentLimit ??
+                                                            //               '0'));
+                                                            // }
+                                                          },
+                                                          initialValue: (model
+                                                                      .cardLimitsArguments
+                                                                      .creditDeliveredDatetime
+                                                                      .toString()
+                                                                      .isNotEmpty &&
+                                                                  (creditCardLimitResponse
+                                                                              .data!
+                                                                              .cardLimit!
+                                                                              .isContactLess !=
+                                                                          null &&
+                                                                      creditCardLimitResponse
+                                                                          .data!
+                                                                          .cardLimit!
+                                                                          .isContactLess!))
+                                                              ? true
+                                                              : false,
+                                                          noToggle: !(model
+                                                              .cardLimitsArguments
+                                                              .creditDeliveredDatetime
+                                                              .toString()
+                                                              .isNotEmpty),
+                                                          title: S
+                                                              .of(context)
+                                                              .contactLessPayments,
+
+                                                          ///TODO:check with backend
+                                                          amountSet: creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .isContactLess ??
+                                                                  false
+                                                              ? "150"
+                                                              : "0",
+                                                          maxAmount: creditCardLimitResponse
+                                                                      .data!
+                                                                      .cardLimit!
+                                                                      .isContactLess ??
+                                                                  false
+                                                              ? "150"
+                                                              : "0",
+                                                          isLast: true,
+                                                          readOnly: true,
+                                                          providerBase:
+                                                              contactLessPaymentViewModelProvider,
+                                                          onChange:
+                                                              (contactLessPaymentValue) {
+                                                            model.contactlessPaymentsValue =
+                                                                num.parse(
+                                                                    contactLessPaymentValue);
+                                                            model
+                                                                .showSaveButton();
+                                                          },
+                                                          onDone:
+                                                              (contactLessPaymentValue) {},
+                                                        ),
+                                                      ],
+                                                    );
+                                                  }),
+                                            ),
+                                          ),
+                                        )
                                       : Container()
                                 ],
                               )),
@@ -491,30 +477,33 @@ class ManageCreditCardLimitsPageView
                                     child: InkWell(
                                       onTap: () {
                                         if (model.atmWithdrawalValue >
-                                            num.parse(
-                                                creditCardLimitResponse.data!
-                                                    .cardLimit!.maxLimit ??
-                                                    '0')) {
+                                            num.parse(creditCardLimitResponse
+                                                    .data!
+                                                    .cardLimit!
+                                                    .atmMaxLimit ??
+                                                '0')) {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),
                                               error: ErrorInfo(message: ''),
                                               type: ErrorType
                                                   .ATM_WITHDRAWAL_VALUE_EXCEEDED));
                                         } else if (model.merchantPaymentValue >
-                                            num.parse(
-                                                creditCardLimitResponse.data!
-                                                    .cardLimit!.maxLimit ??
-                                                    '0')) {
+                                            num.parse(creditCardLimitResponse
+                                                    .data!
+                                                    .cardLimit!
+                                                    .merchantMaxLimit ??
+                                                '0')) {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),
                                               error: ErrorInfo(message: ''),
                                               type: ErrorType
                                                   .MERCHANT_PAYMENT_EXCEEDED));
                                         } else if (model.onlinePurchaseValue >
-                                            num.parse(
-                                                creditCardLimitResponse.data!
-                                                    .cardLimit!.maxLimit ??
-                                                    '0')) {
+                                            num.parse(creditCardLimitResponse
+                                                    .data!
+                                                    .cardLimit!
+                                                    .onlinePurchaseMaxLimit ??
+                                                '0')) {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),
                                               error: ErrorInfo(message: ''),
@@ -523,13 +512,13 @@ class ManageCreditCardLimitsPageView
                                         } else {
                                           model.updateCreditCardLimits(
                                               atmWithdrawalValue:
-                                              model.atmWithdrawalValue,
+                                                  model.atmWithdrawalValue,
                                               merchantPayment:
-                                              model.merchantPaymentValue,
+                                                  model.merchantPaymentValue,
                                               onlinePurchase:
-                                              model.onlinePurchaseValue,
-                                              contactlessPayments:
-                                              model.contactlessPaymentsValue);
+                                                  model.onlinePurchaseValue,
+                                              contactlessPayments: model
+                                                  .contactlessPaymentsValue);
                                         }
                                       },
                                       child: Container(
@@ -540,23 +529,19 @@ class ManageCreditCardLimitsPageView
                                         width: double.maxFinite,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(100),
-                                          color: Theme
-                                              .of(context)
+                                              BorderRadius.circular(100),
+                                          color: Theme.of(context)
                                               .accentTextTheme
                                               .bodyText1
                                               ?.color,
                                         ),
                                         child: Center(
-                                          child: Text(S
-                                              .of(context)
-                                              .saveChanges,
+                                          child: Text(S.of(context).saveChanges,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,
-                                                  color: Theme
-                                                      .of(context)
+                                                  color: Theme.of(context)
                                                       .accentColor)),
                                         ),
                                       ),

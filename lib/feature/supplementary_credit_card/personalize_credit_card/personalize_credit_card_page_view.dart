@@ -68,7 +68,7 @@ class PersonalizeCreditCardPageView
                                               .read(
                                                   supplementaryCreditCardViewModelProvider)
                                               .creditCard
-                                              .cardId ??
+                                              .parentId ??
                                           '',
                                       relationShip: ProviderScope.containerOf(
                                               context)

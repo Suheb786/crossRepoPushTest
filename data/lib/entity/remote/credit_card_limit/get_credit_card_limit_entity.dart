@@ -8,18 +8,41 @@ part "get_credit_card_limit_entity.g.dart";
 class GetCreditCardLimitEntity
     implements
         BaseLayerDataTransformer<GetCreditCardLimitEntity, CreditCardLimit> {
-  ///online purchase
-  @JsonKey(name: "monthlyinternettranmin")
-  String? internetLimitMin;
-  @JsonKey(name: "monthlyinternettranmax")
-  String? internetLimitMax;
-  @JsonKey(name: "dailycashnbtranlimit")
-  String? internetCurrentLimit;
+  @JsonKey(name: "isATM")
+  final bool? isATM;
+  @JsonKey(name: "atmCurrentLimit")
+  final String? atmCurrentLimit;
+  @JsonKey(name: "atmmaxLimit")
+  final String? atmMaxLimit;
+
+  @JsonKey(name: "isMarchant")
+  final bool? isMerchant;
+  @JsonKey(name: "marchantCurrentLimit")
+  final String? merchantCurrentLimit;
+  @JsonKey(name: "marchantMAXLimit")
+  final String? merchantMAXLimit;
+
+  @JsonKey(name: "isOnlinePurchase")
+  final bool? isOnlinePurchase;
+  @JsonKey(name: "onlinePurchaseCurrentLimit")
+  final String? onlinePurchaseCurrentLimit;
+  @JsonKey(name: "onlinePurchaseMAXLimit")
+  final String? onlinePurchaseMAXLimit;
+
+  @JsonKey(name: "isContactLess")
+  final bool? isContactLess;
 
   GetCreditCardLimitEntity(
-      {this.internetLimitMin: "0",
-      this.internetLimitMax: "0",
-      this.internetCurrentLimit: "0"});
+      {this.isATM: false,
+      this.atmCurrentLimit: "0",
+      this.atmMaxLimit: "0",
+      this.isMerchant: false,
+      this.merchantCurrentLimit: "0",
+      this.merchantMAXLimit: "0",
+      this.isOnlinePurchase: false,
+      this.onlinePurchaseCurrentLimit: "0",
+      this.onlinePurchaseMAXLimit: "0",
+      this.isContactLess: false});
 
   factory GetCreditCardLimitEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardLimitEntityFromJson(json);
@@ -34,8 +57,15 @@ class GetCreditCardLimitEntity
   @override
   CreditCardLimit transform() {
     return CreditCardLimit(
-        currentLimit: this.internetCurrentLimit ?? '0',
-        maxLimit: this.internetLimitMax ?? '0',
-        minLimit: this.internetLimitMin ?? '0');
+        isOnlinePurchase: this.isOnlinePurchase ?? false,
+        atmCurrentLimit: this.atmCurrentLimit ?? "0",
+        atmMaxLimit: this.atmMaxLimit ?? '0',
+        isATM: this.isATM ?? false,
+        isContactLess: this.isContactLess ?? false,
+        isMerchant: this.isMerchant ?? false,
+        merchantCurrentLimit: this.merchantCurrentLimit ?? "0",
+        merchantMaxLimit: this.merchantMAXLimit ?? "0",
+        onlinePurchaseCurrentLimit: this.onlinePurchaseCurrentLimit ?? "0",
+        onlinePurchaseMaxLimit: this.onlinePurchaseMAXLimit ?? "0");
   }
 }
