@@ -20,9 +20,10 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
   Widget build(BuildContext context, model) {
     return GestureDetector(
       onVerticalDragEnd: (details) {
-        if (!details.primaryVelocity!.isNegative) {
+        int sensitivity = 8;
+        if (details.primaryVelocity! > sensitivity) {
           Navigator.pop(context);
-        }
+        } else if (details.primaryVelocity! < -sensitivity) {}
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -117,27 +118,28 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       },
                     ),
                     AppDivider(),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(24),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                child: Text(
-                              S.of(context).changeCardPin,
-                              style: TextStyle(fontWeight: FontWeight.w600),
-                            )),
-                            AppSvg.asset(AssetUtils.rightChevron,
-                                width: 20,
-                                height: 20,
-                                color: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1!
-                                    .color)
-                          ],
+                    IgnorePointer(
+                      ignoring: true,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutePaths.ChangeCardPin);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(24),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Text(
+                                S.of(context).changeCardPin,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColor.gray1),
+                              )),
+                              AppSvg.asset(AssetUtils.rightChevron,
+                                  width: 20, height: 20, color: AppColor.gray1)
+                            ],
+                          ),
                         ),
                       ),
                     ),

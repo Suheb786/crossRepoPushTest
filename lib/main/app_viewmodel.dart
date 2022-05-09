@@ -276,19 +276,16 @@ class AppViewModel extends BaseViewModel {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
-  // void getToken() async {
-  //   if (_isolate != null) {
-  //     return;
-  //   }
-  //   _receivePort = ReceivePort();
-  //   _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
-  //   _receivePort.listen(_handleMessage, onDone: () {
-  //     print('Done');
-  //   });
-  // }
+  void getToken() async {
+    if (_isolate != null) {
+      return;
+    }
+    _receivePort = ReceivePort();
+    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
+    _receivePort.listen(_handleMessage, onDone: () {});
+  }
 
   void _handleMessage(dynamic data) {
-    print('data $data');
     _callGetToken();
   }
 
@@ -315,13 +312,12 @@ class AppViewModel extends BaseViewModel {
   //   }
   // }
   //
-  // void stopRefreshToken() {
-  //   if (_isolate != null) {
-  //     print('inside stop token');
-  //     _isolate!.kill(priority: 0);
-  //     _isolate = null;
-  //   }
-  // }
+  void stopRefreshToken() {
+    if (_isolate != null) {
+      _isolate!.kill(priority: 0);
+      _isolate = null;
+    }
+  }
 
   void _callGetToken() {
     _getTokenRequest.add(GetTokenUseCaseParams());
