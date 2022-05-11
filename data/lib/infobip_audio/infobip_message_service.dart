@@ -1,4 +1,4 @@
-import 'package:data/entity/remote/user/user_entity.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
@@ -14,7 +14,7 @@ class InfobipMessageService {
   Future<bool> initPlatformState() async {
     await InfobipMobilemessaging.init(
       Configuration(
-        applicationCode: InfobipUtilsConstants.APPLICATION_CODE,
+        applicationCode: KeyHelper.INFOBIP_APPLICATION_CODE,
         inAppChatEnabled: true,
         androidSettings: AndroidSettings(
             firebaseSenderId: InfobipUtilsConstants.FIREBASE_SENDER_ID),

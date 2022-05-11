@@ -1,4 +1,5 @@
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter/cupertino.dart';
 
@@ -123,7 +124,10 @@ String decryptAESCryptoJS(
     final encrypter = encrypt.Encrypter(
         encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
     final decrypted = encrypter.decrypt64(encryptedContent, iv: iv);
-    print('decrypted Data :: ' + decrypted);
+    //print('decrypted Data :: ' + decrypted);
+    if (decrypted != null) {
+      KeyHelper.setKeyValues(decrypted);
+    }
     return decrypted;
   } catch (error) {
     throw error;

@@ -1,7 +1,8 @@
-import 'package:infobip_plugin/infobip_plugin.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
+import 'package:infobip_plugin/infobip_plugin.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class InfoBipAudioService {
   final InfobipPlugin _infobipPlugin;
@@ -12,8 +13,8 @@ class InfoBipAudioService {
       {required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.init(
         applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
-        appKey:
-            "d4e7fbd8004b1d727d98fa3cdcc69c07-9351b520-0a0e-4a81-904e-a9cb97ff003c", // Developer
+        appKey: KeyHelper.INFOBIP_APP_KEY,
+        // "d4e7fbd8004b1d727d98fa3cdcc69c07-9351b520-0a0e-4a81-904e-a9cb97ff003c", // Developer
         // "8435fe9bc0853a9cf2c01336cbf069f3-46b5b7fa-9678-49f3-9d8b-143a9799f564", // Production
         baseUrl: "https://wpx36d.api.infobip.com",
         callStatus: (String status) {
