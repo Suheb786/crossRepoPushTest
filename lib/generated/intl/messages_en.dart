@@ -456,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
+            "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon."),
         "creditCardSettings":
             MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardStatementError": MessageLookupByLibrary.simpleMessage(
