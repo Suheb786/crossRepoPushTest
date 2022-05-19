@@ -1217,5 +1217,6 @@
   "getCreditCardNowDesc": "Your application has been approved. Time to get your card ready!",
   "applicationRejectedByEngagementTeam": "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.",
   "agentNotAvailable": "Engagement team is currently not available, please try later",
-  "youCanAddMoney": "You can add money to your account and start using your virtual Yellow Sun debit card immediately."
+  "youCanAddMoney": "You can add money to your account and start using your virtual Yellow Sun debit card immediately.",
+  "creditCardServicesUnavailable": "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon."
 }
