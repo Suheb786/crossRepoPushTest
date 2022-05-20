@@ -145,6 +145,7 @@ import 'package:data/entity/remote/user/confirm_application_data_get/confirm_app
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
@@ -731,7 +732,7 @@ abstract class ApiService {
       @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
 
   @POST("/AppVersion/currentversionPEV1")
-  Future<HttpResponse<ResponseEntity>> checkVersionUpdate(
+  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
       @Body() CheckVersionUpdateRequest request);
 
   @POST("/CardTracking/GetSupCardApplications")

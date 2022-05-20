@@ -19,6 +19,7 @@ final loginViewModelProvider =
       ref.read(sendOtpTokenEmailOtpUseCaseProvider),
       ref.read(sendOtpTokenDeviceChangeUseCaseProvider),
       ref.read(checkVersionUpdateUseCaseProvider),
-      ref.read(currentUserUseCaseProvider),ref.read(
-      generateKeyPairUseCaseProvider)),
+      ref.read(currentUserUseCaseProvider),
+      ref.read(generateKeyPairUseCaseProvider),
+      ref.read(infobipMessagePluginUseCaseProvider)),
 );

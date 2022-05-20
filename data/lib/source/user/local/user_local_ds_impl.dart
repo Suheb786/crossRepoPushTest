@@ -8,8 +8,8 @@ import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/db/floor/app_database.dart';
 import 'package:data/db/floor/floor_db_service.dart';
-import 'package:data/entity/local/base/scanner_helper.dart';
 import 'package:data/entity/local/user_db_entity.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/error/local_error.dart';
@@ -76,9 +76,9 @@ class UserLocalDSImpl extends UserLocalDS {
           RecognizerCollection([idRecognizer]),
           settings,
           Platform.isIOS
-              ? ScannerHelper.IOS_BLINK_ID
+              ? KeyHelper.IOS_BLINK_ID
               : Platform.isAndroid
-                  ? ScannerHelper.ANDROID_BLINK_ID
+                  ? KeyHelper.ANDROID_BLINK_ID
                   : "");
 
       if (results.length == 0)
