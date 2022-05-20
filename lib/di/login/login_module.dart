@@ -15,7 +15,6 @@ final loginViewModelProvider =
       ref.read(iphoneLoginUseCaseProvider),
       ref.read(checkBioMetricSupportUseCaseProvider),
       ref.read(authenticateBioMetricUseCaseProvider),
-      ref.read(saveUserUseCaseProvider),
       ref.read(sendOtpTokenEmailOtpUseCaseProvider),
       ref.read(sendOtpTokenDeviceChangeUseCaseProvider),
       ref.read(checkVersionUpdateUseCaseProvider),

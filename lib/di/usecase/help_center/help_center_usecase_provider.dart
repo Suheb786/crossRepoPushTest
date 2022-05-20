@@ -1,5 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/infobip_audio/call_duration_usecase.dart';
+import 'package:domain/usecase/infobip_audio/depersonalize_user_usecase.dart';
 import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/hangup_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
@@ -57,6 +58,13 @@ final infobipMessagePluginUseCaseProvider =
 ///[SaveUserUseCase] provider
 final saveUserUseCaseProvider = Provider.autoDispose<SaveUserUseCase>(
   (ref) => SaveUserUseCase(ref.read(infobipMessagingRepositoryProvider)),
+);
+
+///[DepersonalizeUserUseCase] provider
+final depersonalizeUserUseCaseProvider =
+    Provider.autoDispose<DepersonalizeUserUseCase>(
+  (ref) =>
+      DepersonalizeUserUseCase(ref.read(infobipMessagingRepositoryProvider)),
 );
 
 ///[ShowChatUseCase] provider
