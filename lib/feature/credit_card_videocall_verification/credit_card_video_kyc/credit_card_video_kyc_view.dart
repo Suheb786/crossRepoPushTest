@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_video_kyc/credit_card_video_kyc_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -61,6 +62,9 @@ class CreditCardVideoKycPageView
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
+                    ProviderScope.containerOf(context)
+                        .read(appViewModel)
+                        .stopRefreshToken();
                     Navigator.pushNamed(
                       context,
                       RoutePaths.CreditCardVideoCallComplete,

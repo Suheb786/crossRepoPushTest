@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -75,10 +76,11 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        print('status---->${data.data!.status}');
+                        ProviderScope.containerOf(context)
+                            .read(appViewModel)
+                            .stopRefreshToken();
                         switch (data.data!.status) {
                           case VideoKycStatusEnum.APPROVED:
-                            print('approved');
                             Navigator.pop(context, true);
                             // Future.delayed(Duration(milliseconds: 500), () {
                             //

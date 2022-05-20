@@ -40,6 +40,8 @@ class DashboardDataEntity
   final bool? somethingWrong;
   @JsonKey(name: "debitCardSomethingWrong")
   final bool? debitCardSomethingWrong;
+  @JsonKey(name: "isCreditCard")
+  final bool? isCreditCard;
 
   // @JsonKey(name: "debitDeliveredDatetime")
   // final dynamic? debitDeliveredDatetime;
@@ -55,6 +57,7 @@ class DashboardDataEntity
     this.mobileCode: "",
     this.somethingWrong: false,
     this.debitCardSomethingWrong: false,
+    this.isCreditCard: true,
     // this.debitCardActivated,
     // this.isApplied,
     // this.isDebitDelivered,
@@ -86,6 +89,7 @@ class DashboardDataEntity
         mobileNumber: this.mobileNumber,
         somethingWrong: this.somethingWrong,
         debitCardSomethingWrong: this.debitCardSomethingWrong ?? false,
-        mobileCode: this.mobileCode);
+        mobileCode: this.mobileCode,
+        isCreditCard: this.isCreditCard ?? true);
   }
 }

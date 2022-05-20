@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -11995,6 +11996,16 @@ class S {
     return Intl.message(
       'You can add money to your account and start using your virtual Yellow Sun debit card immediately.',
       name: 'youCanAddMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon.`
+  String get creditCardServicesUnavailable {
+    return Intl.message(
+      'Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon.',
+      name: 'creditCardServicesUnavailable',
       desc: '',
       args: [],
     );

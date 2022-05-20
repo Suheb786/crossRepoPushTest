@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -457,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
+            "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon."),
         "creditCardSettings":
             MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardStatementError": MessageLookupByLibrary.simpleMessage(
