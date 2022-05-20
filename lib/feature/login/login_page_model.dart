@@ -8,8 +8,6 @@ import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
-import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
-import 'package:domain/usecase/infobip_audio/depersonalize_user_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
