@@ -120,8 +120,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - Flutter (1.0.0)
-  - flutter_3des (0.0.1):
-    - Flutter
   - flutter_jailbreak_detection (1.0.0):
     - DTTJailbreakDetection
     - Flutter
@@ -234,7 +232,6 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
-  - flutter_3des (from `.symlinks/plugins/flutter_3des/ios`)
   - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
@@ -310,8 +307,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
     :path: Flutter
-  flutter_3des:
-    :path: ".symlinks/plugins/flutter_3des/ios"
   flutter_jailbreak_detection:
     :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
@@ -384,7 +379,6 @@ SPEC CHECKSUMS:
   FirebasePerformance: c40a3bfe5ed9e91f2ab4851d1aa8e0f2f3ca19cf
   FirebaseRemoteConfig: 39462033ba6fe7979eb49499f40f07feaa016b0a
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_3des: b3e82de7e7b4a0b0328b00101418ae0b1c74df63
   flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5

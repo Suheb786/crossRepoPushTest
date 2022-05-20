@@ -69,4 +69,15 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
       }
     });
   }
+
+  @override
+  Either<NetworkError, bool> depersonalizeUser() {
+    var depersonalizeUserResult = _infobipMessageDs.depersonalizeUser();
+    if (!depersonalizeUserResult) {
+      return Left(
+          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+    } else {
+      return Right(true);
+    }
+  }
 }
