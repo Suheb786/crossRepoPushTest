@@ -5,6 +5,7 @@ import 'package:data/entity/remote/user/biometric_login/get_cipher_response_enti
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/current_version/current_version_response_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
@@ -160,7 +161,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
       {String mobileNo, String mobileCode});
 
-  Future<HttpResponse<ResponseEntity>> checkVersionUpdate({String? clear});
+  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
+      {String? clear});
 }
 
 abstract class UserLocalDS {

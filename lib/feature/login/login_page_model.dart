@@ -7,8 +7,7 @@ import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.d
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
-import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
-import 'package:domain/usecase/infobip_audio/depersonalize_user_usecase.dart';
+import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
@@ -41,6 +40,7 @@ class LoginViewModel extends BasePageViewModel {
   final CheckVersionUpdateUseCase _checkVersionUpdateUseCase;
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
+  final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -175,6 +175,10 @@ class LoginViewModel extends BasePageViewModel {
   Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
       _generateKeyPairResponse.stream;
 
+  ///register infopib message service
+  PublishSubject<InfobipMessagePluginUseCaseParams>
+      _initInfobipMessageRequestSubject = PublishSubject();
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
@@ -187,7 +191,8 @@ class LoginViewModel extends BasePageViewModel {
       this._sendOtpTokeDeviceChangeOtpUseCase,
       this._checkVersionUpdateUseCase,
       this._getCurrentUserUseCase,
-      this._generateKeyPairUseCase) {
+      this._generateKeyPairUseCase,
+      this._infobipMessagePluginUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -341,6 +346,12 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _initInfobipMessageRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _infobipMessagePluginUseCase.execute(params: value);
+      }).asFlow().listen((event) {});
+    });
+
     //getCipher();
   }
 
@@ -412,6 +423,11 @@ class LoginViewModel extends BasePageViewModel {
 
   void generateKeyPair() {
     _generateKeyPairRequest.safeAdd(GenerateKeyPairUseCaseParams());
+  }
+
+  void initInfobipMessagePlugin() async {
+    _initInfobipMessageRequestSubject
+        .safeAdd(InfobipMessagePluginUseCaseParams());
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:flutter/cupertino.dart';
 
 final _keyHelper = RsaKeyHelper();
 
@@ -36,9 +38,6 @@ final _keyHelper = RsaKeyHelper();
 ///RSA encryption
 Future<String> encryptData(
     {String? content, String? publicKey, String? privateKey}) async {
-  // if (_publicKey == null || _privateKey == null) {
-  //   //await loadKeys();
-  // }
   print('public Key--->$publicKey');
   print('public Key--->$privateKey');
 
@@ -47,7 +46,6 @@ Future<String> encryptData(
       privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
       encoding: encrypt.RSAEncoding.PKCS1));
   return Future.value(encrypter.encrypt(content!).base64);
-  // RSAEncoding.PKCS1
 }
 
 String signedData({required String userId, required String privateKey}) {
@@ -61,6 +59,7 @@ String decryptData({String? content, String? publicKey, String? privateKey}) {
       encoding: encrypt.RSAEncoding.PKCS1));
   return encrypter.decrypt64(content!);
 }
+
 //
 //
 // //
@@ -113,17 +112,23 @@ String decryptData({String? content, String? publicKey, String? privateKey}) {
 // // }
 // //
 // // ///Decrypting response
-// // ///AES decryption
-// // String decryptAESCryptoJS(String encrypted, String passphrase) {
-// //   try {
-// //     var key = encrypt.Key(encrypt.Key.fromUtf8(passphrase).bytes);
-// //     var iv = encrypt.IV(encrypt.Key.fromUtf8(passphrase).bytes);
-// //     final encrypter = encrypt.Encrypter(
-// //         encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
-// //     final decrypted = encrypter.decrypt64(encrypted, iv: iv);
-// //     print('decrypted : ' + decrypted);
-// //     return decrypted;
-// //   } catch (error) {
-// //     throw error;
-// //   }
-// // }
+
+///AES decryption of currentVersionPE content
+String decryptAESCryptoJS(
+    {required String encryptedContent, required String decryptionKey}) {
+  debugPrint('EncryptedContent---->$encryptedContent}');
+  debugPrint('key---->$decryptionKey}');
+  try {
+    var key = encrypt.Key(encrypt.Key.fromUtf8(decryptionKey).bytes);
+    var iv = encrypt.IV(encrypt.Key.fromUtf8(decryptionKey).bytes);
+    final encrypter = encrypt.Encrypter(
+        encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
+    final decrypted = encrypter.decrypt64(encryptedContent, iv: iv);
+    if (decrypted != null) {
+      KeyHelper.setKeyValues(decrypted);
+    }
+    return decrypted;
+  } catch (error) {
+    throw error;
+  }
+}
