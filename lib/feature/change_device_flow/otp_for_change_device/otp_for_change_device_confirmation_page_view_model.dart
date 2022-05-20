@@ -1,5 +1,7 @@
 import 'package:domain/usecase/device_change/resend_otp_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/verify_device_change_otp_usecase.dart';
+import 'package:domain/usecase/infobip_audio/depersonalize_user_usecase.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -16,6 +18,9 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
 
   ///countdown controller
   late CountdownTimerController countDownController;
+
+  final DepersonalizeUserUseCase _depersonalizeUserUseCase;
+  final SaveUserUseCase _saveUserUseCase;
 
   TextEditingController otpController = TextEditingController();
 
@@ -48,8 +53,20 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
+      PublishSubject();
+  PublishSubject<DepersonalizeUserUseCaseParams>
+      _depersonalizeUserRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _depersonalizeUserResponseSubject =
+      PublishSubject();
   OtpForChangeDeviceConfirmationPageViewModel(
-      this._verifyDeviceChangeOtpUseCase, this._resendOtpDeviceChangeUseCase) {
+    this._verifyDeviceChangeOtpUseCase,
+    this._resendOtpDeviceChangeUseCase,
+    this._depersonalizeUserUseCase,
+    this._saveUserUseCase,
+  ) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -81,6 +98,22 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _depersonalizeUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _depersonalizeUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _depersonalizeUserResponseSubject.safeAdd(event);
+      });
+    });
+
+    _saveUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _saveuserResponseSubject.safeAdd(event);
+      });
+    });
   }
 
   void validateOtp() {
@@ -90,6 +123,14 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
 
   void resendOtp() {
     _resendOtpRequest.safeAdd(ResendOtpDeviceChangeUseCaseParams());
+  }
+
+  void saveUserData() {
+    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
+  }
+
+  void depersonalizeUserData() {
+    _depersonalizeUserRequestSubject.safeAdd(DepersonalizeUserUseCaseParams());
   }
 
   listenForSmsCode() async {

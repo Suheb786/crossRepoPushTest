@@ -21,4 +21,9 @@ class InfobipMessageDSImpl with InfobipMessageLocalDs {
   Future<bool> saveUser(UserData userData) {
     return _infobipAudioService.saveUser(userData: userData);
   }
+
+  @override
+  bool depersonalizeUser() {
+    return _infobipAudioService.depersonalizeUser();
+  }
 }

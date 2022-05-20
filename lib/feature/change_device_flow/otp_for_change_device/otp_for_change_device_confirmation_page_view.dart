@@ -96,6 +96,8 @@ class OtpForChangeDeviceConfirmationPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          model.depersonalizeUserData();
+                          model.saveUserData();
                           Navigator.pushReplacementNamed(
                               context, RoutePaths.ChangeDeviceSuccess);
                         } else if (data.status == Status.ERROR) {

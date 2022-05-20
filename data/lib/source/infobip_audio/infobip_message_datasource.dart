@@ -4,4 +4,5 @@ abstract class InfobipMessageLocalDs {
   Future<bool> initInfobipMessage();
   Future<bool> showChat();
   Future<bool> saveUser(UserData userData);
+  bool depersonalizeUser();
 }
