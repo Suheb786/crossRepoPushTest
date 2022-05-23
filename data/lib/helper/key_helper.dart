@@ -22,7 +22,7 @@ class KeyHelper {
     var mapContent = Map<String, dynamic>();
     if (content != null) {
       mapContent = jsonDecode(content);
-      //print('mapContent--->$mapContent');
+      print('mapContent--->$mapContent');
       CARD_DECRYPTION_KEY = mapContent['dynamicObject']['CardKey'];
       PIN_BLOCK_KEY = mapContent['dynamicObject']['PinblockKey'];
       ANDROID_BLINK_ID = mapContent['dynamicObject']['AndroidKey'];

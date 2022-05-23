@@ -11,10 +11,6 @@ import 'package:string_validator/string_validator.dart';
 import 'package:tuple/tuple.dart';
 
 class EncryptDecryptHelper {
-  // static List<int> cardKey =
-  //     hex.decode('0123456789ABCDEFFEDCBA98765432100123456789ABCDEF');
-  // static List<int> pinKey = hex.decode('AB9B545DAEC2ABC74FB90D15CE04B997');
-
   EncryptDecryptHelper._();
 
   static String decryptCard({required String cardNo}) {
@@ -45,12 +41,13 @@ class EncryptDecryptHelper {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     try {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
-      data['data'] = dataPair.item2;
 
       ///encrypted data
-      data['data1'] = dataPair.item1;
+      data['data'] = dataPair.item2;
 
       /// encrypted key
+      data['data1'] = dataPair.item1;
+
       print("Request to encrypt " + jsonEncode(request));
       print('Encrypted key ' + dataPair.item1.toString());
       print('Encrypted request ' + dataPair.item2.toString());

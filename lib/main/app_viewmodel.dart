@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -264,7 +265,7 @@ class AppViewModel extends BaseViewModel {
     //     print('Message also contained a notification: ${message.notification}');
     //   }
     // });
-    initInfobipMessagePlugin();
+    //initInfobipMessagePlugin();
   }
 
   initInfobipMessagePlugin() async {
@@ -276,19 +277,16 @@ class AppViewModel extends BaseViewModel {
     _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
-  // void getToken() async {
-  //   if (_isolate != null) {
-  //     return;
-  //   }
-  //   _receivePort = ReceivePort();
-  //   _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
-  //   _receivePort.listen(_handleMessage, onDone: () {
-  //     print('Done');
-  //   });
-  // }
+  void getToken() async {
+    if (_isolate != null) {
+      return;
+    }
+    _receivePort = ReceivePort();
+    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
+    _receivePort.listen(_handleMessage, onDone: () {});
+  }
 
   void _handleMessage(dynamic data) {
-    print('data $data');
     _callGetToken();
   }
 
@@ -315,13 +313,12 @@ class AppViewModel extends BaseViewModel {
   //   }
   // }
   //
-  // void stopRefreshToken() {
-  //   if (_isolate != null) {
-  //     print('inside stop token');
-  //     _isolate!.kill(priority: 0);
-  //     _isolate = null;
-  //   }
-  // }
+  void stopRefreshToken() {
+    if (_isolate != null) {
+      _isolate!.kill(priority: 0);
+      _isolate = null;
+    }
+  }
 
   void _callGetToken() {
     _getTokenRequest.add(GetTokenUseCaseParams());

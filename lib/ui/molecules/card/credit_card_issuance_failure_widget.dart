@@ -6,9 +6,13 @@ import 'package:neo_bank/utils/asset_utils.dart';
 class CreditCardIssuanceFailureWidget extends StatelessWidget {
   final double? fontSize;
   final bool isSmallDevices;
+  final IssuanceType type;
 
   CreditCardIssuanceFailureWidget(
-      {this.fontSize, this.isSmallDevices: false, Key? key})
+      {this.fontSize,
+      this.isSmallDevices: false,
+      this.type: IssuanceType.failure,
+      Key? key})
       : super(key: key);
 
   @override
@@ -25,6 +29,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
           margin: EdgeInsets.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
               image: AssetImage(AssetUtils.creditBlurCard),
@@ -40,7 +45,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  S.of(context).creditCardIssuanceFailure,
+                  getLabel(type, context),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
@@ -54,4 +59,15 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
       ),
     );
   }
+
+  String getLabel(IssuanceType type, BuildContext context) {
+    switch (type) {
+      case IssuanceType.failure:
+        return S.of(context).creditCardIssuanceFailure;
+      case IssuanceType.service_unavailable:
+        return S.of(context).creditCardServicesUnavailable;
+    }
+  }
 }
+
+enum IssuanceType { failure, service_unavailable }

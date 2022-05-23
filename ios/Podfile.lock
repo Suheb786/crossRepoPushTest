@@ -178,7 +178,7 @@ PODS:
     - AFNetworking
     - Flutter
     - InfobipRTC
-  - InfobipRTC (1.4.31):
+  - InfobipRTC (1.4.27):
     - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
@@ -221,6 +221,8 @@ PODS:
   - TOCropViewController (2.6.1)
   - url_launcher_ios (0.0.1):
     - Flutter
+  - wakelock (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
@@ -255,6 +257,7 @@ DEPENDENCIES:
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
   trunk:
@@ -353,6 +356,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/syncfusion_flutter_pdfviewer/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
+  wakelock:
+    :path: ".symlinks/plugins/wakelock/ios"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -396,7 +401,7 @@ SPEC CHECKSUMS:
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
   infobip_mobilemessaging: eb1cab90dcea9199c25769e4653b957416e179c3
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
-  InfobipRTC: 9ed1698add5d74133c57e30dd25117fd0c7c8d69
+  InfobipRTC: db1de3be81d0f33f659278499470e87184076e17
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
@@ -416,7 +421,8 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
+  wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 54b0ce3705f0fb34c832e24ebeb86ac61b0dfd5e
 
 COCOAPODS: 1.10.1

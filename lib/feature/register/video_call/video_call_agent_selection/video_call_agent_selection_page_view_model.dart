@@ -40,8 +40,8 @@ class VideoCallAgentSelectionPageViewModel extends BasePageViewModel {
 
   PublishSubject<RequestCallUseCaseParams> _requestCallRequest =
       PublishSubject();
-  PublishSubject<Resource<RequestCallStatus>> _requestCallResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<RequestCallStatus>> _requestCallResponse =
+      BehaviorSubject();
 
   Stream<Resource<RequestCallStatus>> get requestCallStream =>
       _requestCallResponse.stream;

@@ -109,9 +109,9 @@ class EngagementTeamDialogView extends StatelessWidget {
                     onTap: () {
                       // if (value?.data != null && value!.data!) {
 
-                      ProviderScope.containerOf(context)
-                          .read(appViewModel)
-                          .saveUserData();
+                      // ProviderScope.containerOf(context)
+                      //     .read(appViewModel)
+                      //     .saveUserData();
                       model!.showChat();
                       // }
                     },
