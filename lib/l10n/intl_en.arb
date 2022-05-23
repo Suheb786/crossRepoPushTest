@@ -1218,8 +1218,7 @@
   "applicationRejectedByEngagementTeam": "Our Engagement Team are unable to approve your application as it does not meet Blink’s Terms & Conditions.",
   "agentNotAvailable": "Engagement team is currently not available, please try later",
   "youCanAddMoney": "You can add money to your account and start using your virtual Yellow Sun debit card immediately.",
-  "creditCardServicesUnavailable": "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon."
-  "agentNotAvailable": "Sorry we could not connect your call with an available agent, please reach back to our team again.",
+  "creditCardServicesUnavailable": "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon.",
   "requestViaQR": "Request via QR",
   "selectAccount": "Select Account",
   "savingAccount": "Savings Account {accountNo}",

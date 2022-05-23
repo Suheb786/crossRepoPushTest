@@ -345,8 +345,8 @@ class CreditCardSettingsPageView
                             },
                             title: S.of(context).convertPurchaseToInstallments,
                             tileIcon: AssetUtils.chart,
-                            isEnabled: true,
-                            isNotify: false,
+                            isEnabled: false,
+                            isNotify: true,
                           ),
                         ),
                         IgnorePointer(

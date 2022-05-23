@@ -8750,20 +8750,20 @@ class S {
     );
   }
 
-  /// `Must less than Primary limit`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)`
   String get lessThanPrimary {
     return Intl.message(
-      'Must less than Primary limit',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)',
       name: 'lessThanPrimary',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Nationality`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)`
   String get invalidNationality {
     return Intl.message(
-      'Invalid Nationality',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)',
       name: 'invalidNationality',
       desc: '',
       args: [],
@@ -11080,10 +11080,10 @@ class S {
     );
   }
 
-  /// `Invalid Gender for virtual agent correct values are M|F`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)`
   String get invalidGenderValue {
     return Intl.message(
-      'Invalid Gender for virtual agent correct values are M|F',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)',
       name: 'invalidGenderValue',
       desc: '',
       args: [],
@@ -11980,11 +11980,31 @@ class S {
     );
   }
 
-  /// `Sorry we could not connect your call with an available agent, please reach back to our team again.`
+  /// `Engagement team is currently not available, please try later`
   String get agentNotAvailable {
     return Intl.message(
-      'Sorry we could not connect your call with an available agent, please reach back to our team again.',
+      'Engagement team is currently not available, please try later',
       name: 'agentNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add money to your account and start using your virtual Yellow Sun debit card immediately.`
+  String get youCanAddMoney {
+    return Intl.message(
+      'You can add money to your account and start using your virtual Yellow Sun debit card immediately.',
+      name: 'youCanAddMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon.`
+  String get creditCardServicesUnavailable {
+    return Intl.message(
+      'Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon.',
+      name: 'creditCardServicesUnavailable',
       desc: '',
       args: [],
     );

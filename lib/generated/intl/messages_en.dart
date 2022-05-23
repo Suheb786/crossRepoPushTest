@@ -138,7 +138,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
-            "Sorry we could not connect your call with an available agent, please reach back to our team again."),
+            "Engagement team is currently not available, please try later"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
         "agreeData": MessageLookupByLibrary.simpleMessage("and "),
@@ -502,6 +502,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
+            "Credit card applications are temporarily unavailable, we are working hard to meet existing demand and will be back soon."),
         "creditCardSettings":
             MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardStatementError": MessageLookupByLibrary.simpleMessage(
@@ -1216,7 +1218,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidFourDigit": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
-            "Invalid Gender for virtual agent correct values are M|F"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdCardCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -1260,8 +1262,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter name as per tax return"),
         "invalidNationalIdCard": MessageLookupByLibrary.simpleMessage(
             "We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100."),
-        "invalidNationality":
-            MessageLookupByLibrary.simpleMessage("Invalid Nationality"),
+        "invalidNationality": MessageLookupByLibrary.simpleMessage(
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
@@ -1361,7 +1363,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
-            "Must less than Primary limit"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)"),
         "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
             "Let’s create your new\nCliQ ID"),
         "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
@@ -2351,6 +2353,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
                 "You are accepting a money\nrequest via QR"),
+        "youCanAddMoney": MessageLookupByLibrary.simpleMessage(
+            "You can add money to your account and start using your virtual Yellow Sun debit card immediately."),
         "youCanChangeCardDetailsInSettings":
             MessageLookupByLibrary.simpleMessage(
                 "You can change the above details in the card settings "),
