@@ -52,9 +52,15 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
           firstName: user.firstName!,
           lastName: user.lastName!,
           externalUserId: user.cifNumber,
-          emails: [user.email.toString()],
-          customAttributes: {"accountNumber": user.accountNumber.toString()},
-          phones: [user.mobileCode.toString() + user.mobile.toString()]));
+          emails: [
+            user.email.toString()
+          ],
+          customAttributes: {
+            "accountNumber": user.accountNumber.toString()
+          },
+          phones: [
+            user.mobileCode!.substring(2).toString() + user.mobile.toString()
+          ]));
       if (!saveUserResult) {
         return Left(
             NetworkError(httpError: 1501, cause: Exception(), message: ''));
@@ -62,5 +68,16 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
         return Right(true);
       }
     });
+  }
+
+  @override
+  Either<NetworkError, bool> depersonalizeUser() {
+    var depersonalizeUserResult = _infobipMessageDs.depersonalizeUser();
+    if (!depersonalizeUserResult) {
+      return Left(
+          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+    } else {
+      return Right(true);
+    }
   }
 }

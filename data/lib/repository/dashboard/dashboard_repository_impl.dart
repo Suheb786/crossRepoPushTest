@@ -4,6 +4,7 @@ import 'package:data/source/dashboard/dashboard_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/dashboard/get_atms/get_atms_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
+import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 
 class DashboardRepositoryImpl extends DashboardRepository {
@@ -35,14 +36,14 @@ class DashboardRepositoryImpl extends DashboardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getPlaceholder(
+  Future<Either<NetworkError, GetPlaceholderResponse>> getPlaceholder(
       {int? placeholderId}) async {
     final result = await safeApiCall(
       _remoteDs.getPlaceholder(placeholderId: placeholderId),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 }

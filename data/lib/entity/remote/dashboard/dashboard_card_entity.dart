@@ -60,6 +60,8 @@ class DashboardCardEntity
   final String? callStatus;
   @JsonKey(name: "isCallPending")
   final bool? isCallPending;
+  @JsonKey(name: "parentId")
+  final String? parentId;
 
   DashboardCardEntity(
       {this.name: "",
@@ -86,7 +88,8 @@ class DashboardCardEntity
       this.cardStatus: "",
       this.minimumSettlement: 0,
       this.callStatus: "",
-      this.isCallPending: false});
+      this.isCallPending: false,
+      this.parentId: ""});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
@@ -129,6 +132,7 @@ class DashboardCardEntity
         cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
         minimumSettlement: this.minimumSettlement ?? 0,
         callStatus: this.callStatus!.fromCreditCardCallStatusValue(),
-        isCallPending: this.isCallPending ?? false);
+        isCallPending: this.isCallPending ?? false,
+        parentId: this.parentId ?? '');
   }
 }

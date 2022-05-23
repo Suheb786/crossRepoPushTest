@@ -6,7 +6,10 @@ import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
+import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
+import 'package:domain/model/dashboard/get_placeholder/placeholder_data.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
+import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
@@ -31,6 +34,9 @@ import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final GetDashboardDataUseCase _getDashboardDataUseCase;
+
+  final GetPlaceholderUseCase _getPlaceholderUseCase;
+
   final SwiperController pageController = SwiperController();
   ScrollController scrollController = ScrollController();
   PageController appSwiperController = PageController(viewportFraction: 0.8);
@@ -49,6 +55,9 @@ class AppHomeViewModel extends BasePageViewModel {
 
   Stream<PageController> get pageControllerStream =>
       _pageControllerSubject.stream;
+
+  BehaviorSubject<bool> _showRequestMoneyPopUpSubject =
+      BehaviorSubject.seeded(false);
 
   bool showBody = true;
   bool isShowBalenceUpdatedToast = false;
@@ -125,7 +134,33 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<bool> get showSubSubscriptionPopUpStream =>
       _showSubSubscriptionPopUpStream.stream;
 
-  AppHomeViewModel(this._getDashboardDataUseCase) {
+  /// get placeholder request
+
+  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest =
+      PublishSubject();
+
+  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse =
+      BehaviorSubject();
+
+  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream =>
+      _getPlaceHolderResponse.stream;
+
+  PlaceholderData timelinePlaceholderData = PlaceholderData();
+
+  /// get request money placeholder request
+  PublishSubject<GetPlaceholderUseCaseParams>
+      _getRequestMoneyPlaceHolderRequest = PublishSubject();
+
+  BehaviorSubject<Resource<GetPlaceholderResponse>>
+      _getRequestMoneyPlaceHolderResponse = BehaviorSubject();
+
+  Stream<Resource<GetPlaceholderResponse>>
+      get getRequestMoneyPlaceHolderStream =>
+          _getRequestMoneyPlaceHolderResponse.stream;
+
+  PlaceholderData requestMoneyPlaceholderData = PlaceholderData();
+
+  AppHomeViewModel(this._getDashboardDataUseCase, this._getPlaceholderUseCase) {
     isShowBalenceUpdatedToast = false;
     _getDashboardDataRequest.listen((value) {
       RequestManager(value,
@@ -138,6 +173,7 @@ class AppHomeViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          getTimelinePlaceholder();
           if (isShowBalenceUpdatedToast) {
             showSuccessToast("Your account balance is successfully updated.");
             isShowBalenceUpdatedToast = false;
@@ -145,6 +181,44 @@ class AppHomeViewModel extends BasePageViewModel {
           dashboardDataContent = event.data!.dashboardDataContent!;
           _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
           getDashboardPages(event.data!.dashboardDataContent!);
+        }
+      });
+    });
+
+    _getPlaceHolderRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPlaceHolderResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          triggerRequestMoneyPopup();
+          // showErrorState();
+          // showToastWithError(event.appError!);
+          timeLineArguments.placeholderData = timelinePlaceholderData;
+        } else if (event.status == Status.SUCCESS) {
+          triggerRequestMoneyPopup();
+          timelinePlaceholderData = event.data!.data!;
+          timeLineArguments.placeholderData = event.data!.data;
+        }
+      });
+    });
+
+    _getRequestMoneyPlaceHolderRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPlaceholderUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getRequestMoneyPlaceHolderResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+        } else if (event.status == Status.SUCCESS) {
+          showRequestMoneyPopUp(false);
+          if (event.data!.data!.status ?? false) {
+            requestMoneyPlaceholderData = event.data!.data!;
+            _requestMoneyRequest.safeAdd(true);
+          }
         }
       });
     });
@@ -187,6 +261,7 @@ class AppHomeViewModel extends BasePageViewModel {
       if (dashboardDataContent.somethingWrong ?? false) {
         pages.add(CreditCardIssuanceFailureWidget(
           isSmallDevices: isSmallDevices,
+          type: IssuanceType.failure,
         ));
 
         ///adding cardType
@@ -203,7 +278,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
               ));
 
-              ///time line list arguments set
+              ///time line list  arguments set
               timeLineListArguments.add(TimeLineListArguments(
                   cardCardActivated: creditCard.creditCardActivatedDate ?? '',
                   cardDeliveredDatetime:
@@ -219,66 +294,91 @@ class AppHomeViewModel extends BasePageViewModel {
                   cardType: CardType.CREDIT,
                   swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
             } else {
-              if (creditCard.primarySecondaryCard ==
-                  PrimarySecondaryCardEnum.SECONDARY) {
+              if (!(dashboardDataContent.isCreditCard ?? true)) {
+                pages.add(CreditCardIssuanceFailureWidget(
+                  isSmallDevices: isSmallDevices,
+                  type: IssuanceType.service_unavailable,
+                ));
+
+                ///adding cardType
+                cardTypeList.add(TimeLineSwipeUpArgs(
+                    cardType: CardType.CREDIT,
+                    swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
-                if (creditCard.isCallPending ?? false) {
-                  pages.add(CreditCardApplicationUnderReviewWidget(
-                    isSmallDevices: isSmallDevices,
-                  ));
-                  cardTypeList.add(TimeLineSwipeUpArgs(
-                      cardType: CardType.CREDIT,
-                      swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                if (creditCard.primarySecondaryCard ==
+                    PrimarySecondaryCardEnum.SECONDARY) {
                 } else {
-                  switch (creditCard.callStatus) {
-                    case CreditCardCallStatusEnum.APPROVED:
-                      pages.add(GetCreditCardNowWidget(
-                        isSmallDevices: isSmallDevices,
-                        key: ValueKey('credit#GetCreditCardNowWidget#'),
-                      ));
-                      cardTypeList.add(TimeLineSwipeUpArgs(
-                          cardType: CardType.CREDIT,
-                          swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                      break;
+                  if (creditCard.isCallPending ?? false) {
+                    pages.add(CreditCardApplicationUnderReviewWidget(
+                      isSmallDevices: isSmallDevices,
+                    ));
+                    cardTypeList.add(TimeLineSwipeUpArgs(
+                        cardType: CardType.CREDIT,
+                        swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                  } else {
+                    switch (creditCard.callStatus) {
+                      case CreditCardCallStatusEnum.APPROVED:
+                        pages.add(GetCreditCardNowWidget(
+                          isSmallDevices: isSmallDevices,
+                          key: ValueKey('credit#GetCreditCardNowWidget#'),
+                        ));
+                        cardTypeList.add(TimeLineSwipeUpArgs(
+                            cardType: CardType.CREDIT,
+                            swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                        break;
 
-                    case CreditCardCallStatusEnum.DROP:
-                    case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
-                      pages.add(VerifyCreditCardVideoCallWidget(
-                        isSmallDevices: isSmallDevices,
-                        creditCard: creditCard,
-                      ));
+                      case CreditCardCallStatusEnum.DROP:
+                      case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
+                        pages.add(VerifyCreditCardVideoCallWidget(
+                          isSmallDevices: isSmallDevices,
+                          creditCard: creditCard,
+                        ));
 
-                      ///adding cardType
-                      cardTypeList.add(TimeLineSwipeUpArgs(
-                          cardType: CardType.CREDIT,
-                          swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
-                      break;
+                        ///adding cardType
+                        cardTypeList.add(TimeLineSwipeUpArgs(
+                            cardType: CardType.CREDIT,
+                            swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                        break;
 
-                    case CreditCardCallStatusEnum.REJECTED:
-                      break;
+                      case CreditCardCallStatusEnum.REJECTED:
+                        break;
 
-                    default:
-                      pages.add(ResumeCreditCardApplicationView(
-                        isSmallDevices: isSmallDevices,
-                      ));
+                      default:
+                        pages.add(ResumeCreditCardApplicationView(
+                          isSmallDevices: isSmallDevices,
+                        ));
 
-                      ///adding cardType
-                      cardTypeList.add(TimeLineSwipeUpArgs(
-                          cardType: CardType.CREDIT,
-                          swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                        ///adding cardType
+                        cardTypeList.add(TimeLineSwipeUpArgs(
+                            cardType: CardType.CREDIT,
+                            swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+                    }
                   }
                 }
               }
             }
           });
         } else {
-          pages.add(ApplyCreditCardWidget(
-            isSmallDevices: isSmallDevices,
-          ));
+          if (!(dashboardDataContent.isCreditCard ?? true)) {
+            pages.add(CreditCardIssuanceFailureWidget(
+              isSmallDevices: isSmallDevices,
+              type: IssuanceType.service_unavailable,
+            ));
 
-          ///adding cardType
-          cardTypeList.add(TimeLineSwipeUpArgs(
-              cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+            ///adding cardType
+            cardTypeList.add(TimeLineSwipeUpArgs(
+                cardType: CardType.CREDIT,
+                swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          } else {
+            pages.add(ApplyCreditCardWidget(
+              isSmallDevices: isSmallDevices,
+            ));
+
+            ///adding cardType
+            cardTypeList.add(TimeLineSwipeUpArgs(
+                cardType: CardType.CREDIT,
+                swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+          }
         }
       }
 
@@ -496,12 +596,26 @@ class AppHomeViewModel extends BasePageViewModel {
   //   _sentMoneyRequest.safeAdd(true);
   // }
 
+  ///request money timeline placeholder
   void triggerRequestMoneyPopup() {
-    _requestMoneyRequest.safeAdd(true);
+    if (_showRequestMoneyPopUpSubject.value) {
+      _getRequestMoneyPlaceHolderRequest
+          .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 4));
+    }
   }
 
   void triggerSubscriptionPopUp() {
     _showSubSubscriptionPopUpStream.safeAdd(true);
+  }
+
+  ///timeline placeholder
+  void getTimelinePlaceholder() {
+    _getPlaceHolderRequest
+        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 5));
+  }
+
+  void showRequestMoneyPopUp(bool value) {
+    _showRequestMoneyPopUpSubject.safeAdd(value);
   }
 
   @override
@@ -509,6 +623,9 @@ class AppHomeViewModel extends BasePageViewModel {
     _currentStep.close();
     _showTimeLineSubject.close();
     _pageControllerSubject.close();
+    _getPlaceHolderRequest.close();
+    _getPlaceHolderResponse.close();
+    _showRequestMoneyPopUpSubject.close();
     super.dispose();
   }
 }

@@ -13,8 +13,7 @@ class AddMoneyOptionSelectorPage
 }
 
 class AddMoneyOptionSelectorPageState extends BaseStatefulPage<
-    AddMoneyOptionSelectorViewModel,
-    AddMoneyOptionSelectorPage> {
+    AddMoneyOptionSelectorViewModel, AddMoneyOptionSelectorPage> {
   @override
   ProviderBase provideBase() {
     return addMoneyOptionSelectorViewModelProvider;
@@ -22,14 +21,12 @@ class AddMoneyOptionSelectorPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColorDark;
+    return Theme.of(context).primaryColorDark;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      AddMoneyOptionSelectorViewModel model) {
+  Widget buildView(
+      BuildContext context, AddMoneyOptionSelectorViewModel model) {
     return AddMoneyOptionSelectorPageView(provideBase());
   }
 }

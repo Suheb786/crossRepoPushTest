@@ -11,8 +11,8 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
+import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
-import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -222,19 +222,25 @@ class CreditCardSettingsPageView
                                 },
                               );
                             }),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isNotify: true,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.manageDebitLimit,
-                                  arguments: ManageCardLimitsArguments(
-                                      cardType: CardType.CREDIT));
-                            },
-                            title: S.of(context).manageCardLimits,
-                            tileIcon: AssetUtils.settingBars,
-                          ),
+                        SettingTile(
+                          isNotify: false,
+                          isEnabled: true,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCreditCardLimits,
+                                arguments: ManageCreditCardLimitsArguments(
+                                    secureCode: model
+                                            .creditCardSettingsArguments
+                                            .creditCard
+                                            .cardCode ??
+                                        '',
+                                    creditDeliveredDatetime: model
+                                        .creditCardSettingsArguments
+                                        .creditCard
+                                        .creditDeliveredDatetime));
+                          },
+                          title: S.of(context).manageCardLimits,
+                          tileIcon: AssetUtils.settingBars,
                         ),
                         IgnorePointer(
                           child: SettingTile(
@@ -250,17 +256,19 @@ class CreditCardSettingsPageView
                             tileIcon: AssetUtils.cardShield,
                           ),
                         ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.ViewDebitCardSubscription,
-                                arguments: ViewDebitCardSubscriptionArguments(
-                                    cardType: CardType.CREDIT));
-                          },
-                          title: S.of(context).viewCardSubscription,
-                          tileIcon: AssetUtils.cardSubscription,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ViewDebitCardSubscription,
+                                  arguments: ViewDebitCardSubscriptionArguments(
+                                      cardType: CardType.CREDIT));
+                            },
+                            title: S.of(context).viewCardSubscription,
+                            tileIcon: AssetUtils.cardSubscription,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
                         AppStreamBuilder<
                                 Resource<
@@ -317,51 +325,60 @@ class CreditCardSettingsPageView
                                 tileIcon: AssetUtils.cardIcon,
                               );
                             }),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.ChangeCreditLimit);
-                          },
-                          title: S.of(context).changeCreditLimit,
-                          tileIcon: AssetUtils.add,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ChangeCreditLimit);
+                            },
+                            title: S.of(context).changeCreditLimit,
+                            tileIcon: AssetUtils.add,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context,
-                                RoutePaths.ConvertPurchaseToInstallments);
-                          },
-                          title: S.of(context).convertPurchaseToInstallments,
-                          tileIcon: AssetUtils.chart,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(context,
+                                  RoutePaths.ConvertPurchaseToInstallments);
+                            },
+                            title: S.of(context).convertPurchaseToInstallments,
+                            tileIcon: AssetUtils.chart,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.DcChangeLinkedMobileNumber,
-                                arguments: DCChangeLinkedMobileNumberArguments(
-                                    cardType: CardType.CREDIT,
-                                    tokenizedPan: model
-                                        .creditCardSettingsArguments
-                                        .creditCard
-                                        .cardCode));
-                          },
-                          title: S.of(context).changeLinkedMobileNumber,
-                          tileIcon: AssetUtils.mobile,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(context,
+                                  RoutePaths.DcChangeLinkedMobileNumber,
+                                  arguments:
+                                      DCChangeLinkedMobileNumberArguments(
+                                          cardType: CardType.CREDIT,
+                                          tokenizedPan: model
+                                              .creditCardSettingsArguments
+                                              .creditCard
+                                              .cardCode));
+                            },
+                            title: S.of(context).changeLinkedMobileNumber,
+                            tileIcon: AssetUtils.mobile,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.ChangeCountryRestriction);
-                          },
-                          title: S.of(context).changeCountryRestriction,
-                          tileIcon: AssetUtils.globe,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ChangeCountryRestriction);
+                            },
+                            title: S.of(context).changeCountryRestriction,
+                            tileIcon: AssetUtils.globe,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
                         SettingTile(
                           onTap: () {
@@ -377,53 +394,57 @@ class CreditCardSettingsPageView
                           isEnabled: true,
                           isNotify: false,
                         ),
-                        SettingTile(
-                          onTap: () {
-                            InformationDialog.show(context,
-                                image: AssetUtils.cardCancelIcon,
-                                title: S.of(context).reportCardIssue,
-                                descriptionWidget: Text(
-                                  S.of(context).reportStolenLostCardDesc,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_brown),
-                                ), onSelected: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                  context, RoutePaths.RenewCreditCard);
-                            }, onDismissed: () {
-                              Navigator.pop(context);
-                            });
-                          },
-                          title: S.of(context).reportCardIssue,
-                          tileIcon: AssetUtils.report,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              InformationDialog.show(context,
+                                  image: AssetUtils.cardCancelIcon,
+                                  title: S.of(context).reportCardIssue,
+                                  descriptionWidget: Text(
+                                    S.of(context).reportStolenLostCardDesc,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_brown),
+                                  ), onSelected: () {
+                                Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, RoutePaths.RenewCreditCard);
+                              }, onDismissed: () {
+                                Navigator.pop(context);
+                              });
+                            },
+                            title: S.of(context).reportCardIssue,
+                            tileIcon: AssetUtils.report,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
-                        SettingTile(
-                          onTap: () {
-                            InformationDialog.show(context,
-                                image: AssetUtils.cardCancelIcon,
-                                title: S.of(context).reportCardIssue,
-                                descriptionWidget: Text(
-                                  S.of(context).reportStolenLostCardDesc,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_brown),
-                                ), onSelected: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                  context, RoutePaths.RenewCreditCard);
-                            }, onDismissed: () {
-                              Navigator.pop(context);
-                            });
-                          },
-                          title: S.of(context).replaceDamageCard,
-                          tileIcon: AssetUtils.damageCard,
-                          isEnabled: true,
-                          isNotify: false,
+                        IgnorePointer(
+                          child: SettingTile(
+                            onTap: () {
+                              InformationDialog.show(context,
+                                  image: AssetUtils.cardCancelIcon,
+                                  title: S.of(context).reportCardIssue,
+                                  descriptionWidget: Text(
+                                    S.of(context).reportStolenLostCardDesc,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_brown),
+                                  ), onSelected: () {
+                                Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, RoutePaths.RenewCreditCard);
+                              }, onDismissed: () {
+                                Navigator.pop(context);
+                              });
+                            },
+                            title: S.of(context).replaceDamageCard,
+                            tileIcon: AssetUtils.damageCard,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
                         IgnorePointer(
                           child: AppStreamBuilder<Resource<bool>>(

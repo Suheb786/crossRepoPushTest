@@ -71,7 +71,8 @@ final placeholderViewModelProvider =
 
 final appHomeViewModelProvider =
     ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider)),
+  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider),
+      ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -141,7 +142,8 @@ final debitCardTimeLineViewModelProvider = ChangeNotifierProvider.autoDispose
 ///add money option selector view model
 final addMoneyOptionSelectorViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
-  (ref) => AddMoneyOptionSelectorViewModel(),
+  (ref) =>
+      AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 ///locate pin page view model

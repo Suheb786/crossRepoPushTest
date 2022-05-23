@@ -5,6 +5,7 @@ import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/dashboard/placeholder/get_placeholder_request_entity.dart';
+import 'package:data/entity/remote/dashboard/placeholder/placeholder_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/dashboard/dashboard_datasource.dart';
@@ -30,7 +31,7 @@ class DashboardRemoteDsImpl extends DashboardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getPlaceholder(
+  Future<HttpResponse<PlaceholderResponseEntity>> getPlaceholder(
       {int? placeholderId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getPlaceholder(GetPlaceholderRequestEntity(

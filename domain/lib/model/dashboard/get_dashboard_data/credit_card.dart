@@ -28,7 +28,8 @@ class CreditCard {
       this.cardStatus: FreezeCardStatusEnum.NONE,
       this.minimumSettlement: 0,
       this.callStatus: CreditCardCallStatusEnum.NONE,
-      this.isCallPending: false});
+      this.isCallPending: false,
+      this.parentId: ""});
 
   String? name;
   String? cardNumber;
@@ -48,6 +49,7 @@ class CreditCard {
   bool? isApplied;
   bool? isCompleted;
   String? cardId;
+  String? parentId;
   bool? isSupCard;
   String? cardCode;
   String? nextPaymentDate;

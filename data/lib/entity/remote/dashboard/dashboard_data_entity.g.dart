@@ -25,6 +25,7 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) {
     mobileCode: json['mobileCode'] as String?,
     somethingWrong: json['somethingWrong'] as bool?,
     debitCardSomethingWrong: json['debitCardSomethingWrong'] as bool?,
+    isCreditCard: json['isCreditCard'] as bool?,
     debitCard: (json['debitCard'] as List<dynamic>?)
         ?.map(
             (e) => DashboardDebitCardEntity.fromJson(e as Map<String, dynamic>))
@@ -44,4 +45,5 @@ Map<String, dynamic> _$DashboardDataEntityToJson(
       'blinkWasBorn': instance.blinkBornDate?.toIso8601String(),
       'somethingWrong': instance.somethingWrong,
       'debitCardSomethingWrong': instance.debitCardSomethingWrong,
+      'isCreditCard': instance.isCreditCard,
     };

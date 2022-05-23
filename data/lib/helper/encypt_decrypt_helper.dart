@@ -5,20 +5,18 @@ import 'dart:typed_data';
 import 'package:convert/convert.dart';
 import 'package:dart_des/dart_des.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/helper/key_helper.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:string_validator/string_validator.dart';
 import 'package:tuple/tuple.dart';
 
 class EncryptDecryptHelper {
-  static List<int> cardKey =
-      hex.decode('0123456789ABCDEFFEDCBA98765432100123456789ABCDEF');
-  static List<int> pinKey = hex.decode('AB9B545DAEC2ABC74FB90D15CE04B997');
-
   EncryptDecryptHelper._();
 
   static String decryptCard({required String cardNo}) {
     final List<int> decrypted;
-    DES3 desECB = DES3(key: cardKey, mode: DESMode.ECB);
+    DES3 desECB =
+        DES3(key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY), mode: DESMode.ECB);
     decrypted = desECB.decrypt(
         isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
     return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
@@ -33,7 +31,8 @@ class EncryptDecryptHelper {
     String finalBlock = (int.tryParse(blockPart1, radix: 16)! ^
             int.tryParse(blockPart2, radix: 16)!)
         .toRadixString(16);
-    DES3 desECB = DES3(key: pinKey, mode: DESMode.ECB);
+    DES3 desECB =
+        DES3(key: hex.decode(KeyHelper.PIN_BLOCK_KEY), mode: DESMode.ECB);
     encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
     return hex.encode(encrypted).substring(0, 16).toUpperCase();
   }
@@ -42,8 +41,13 @@ class EncryptDecryptHelper {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     try {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
-      data['data'] = dataPair.item2; ///encrypted data
-      data['data1'] = dataPair.item1; /// encrypted key
+
+      ///encrypted data
+      data['data'] = dataPair.item2;
+
+      /// encrypted key
+      data['data1'] = dataPair.item1;
+
       print("Request to encrypt " + jsonEncode(request));
       print('Encrypted key ' + dataPair.item1.toString());
       print('Encrypted request ' + dataPair.item2.toString());

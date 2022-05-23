@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page_view_model.dart';
 import 'package:neo_bank/feature/card_delivery/confirm_pin/confirm_pin_page_view_model.dart';
@@ -55,7 +56,8 @@ final confirmPinViewModelProvider =
 ///visa card view model provider
 final visaCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<VisaCardPageViewModel>(
-  (ref) => VisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
+  (ref) => VisaCardPageViewModel(ref.read(cardIssuanceCaseProvider),
+      ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 ///card ready success view model provider

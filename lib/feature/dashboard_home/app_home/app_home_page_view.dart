@@ -1418,7 +1418,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
             context: context,
             barrierDismissible: false,
             builder: (context) =>
-                popUpWidget(context, AssetUtils.requestedOffer));
+                popUpWidget(context, model.requestMoneyPlaceholderData.image));
       }
     });
 
@@ -1432,7 +1432,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     // });
   }
 
-  Widget popUpWidget(BuildContext context, String image) {
+  Widget popUpWidget(BuildContext context, dynamic image) {
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -1441,14 +1441,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
           children: [
             const SizedBox(height: 30),
             Container(
-              height: 530,
+              // height: 530,
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Image.asset(
+              child: Image.memory(
                 image,
                 fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 16),
             GestureDetector(
               onTap: () {
                 Navigator.pop(context);

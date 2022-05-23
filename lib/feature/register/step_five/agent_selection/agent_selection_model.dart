@@ -51,8 +51,8 @@ class AgentSelectionViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///User Status response holder
-  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
+      BehaviorSubject();
 
   ///User Status stream
   Stream<Resource<CustomerStatus>> get customerStatusStream =>

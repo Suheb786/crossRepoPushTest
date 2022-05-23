@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/account/check_existing_call_status.dart';
 import 'package:flutter/material.dart';
@@ -56,28 +58,53 @@ class VideoCallInformationPageView
                                 .page ==
                             0.0) {
                           if (details.primaryVelocity!.isNegative) {
-                            Map<Permission, PermissionStatus> statuses = await [
-                              Permission.camera,
-                              Permission.microphone,
-                              //Permission.bluetooth
-                            ].request();
+                            if (Platform.isAndroid) {
+                              Map<Permission, PermissionStatus> statuses =
+                                  await [
+                                Permission.camera,
+                                Permission.microphone,
+                                Permission.bluetooth,
+                                Permission.bluetoothConnect
+                              ].request();
 
-                            if (statuses[Permission.camera] ==
-                                        PermissionStatus.permanentlyDenied ||
-                                    statuses[Permission.microphone] ==
-                                        PermissionStatus.permanentlyDenied
-                                // ||
-                                // statuses[Permission.bluetooth] ==
-                                //     PermissionStatus.permanentlyDenied
-                                ) {
-                              openAppSettings();
+                              if (statuses[Permission.camera] ==
+                                      PermissionStatus.permanentlyDenied ||
+                                  statuses[Permission.microphone] ==
+                                      PermissionStatus.permanentlyDenied ||
+                                  statuses[Permission.bluetooth] ==
+                                      PermissionStatus.permanentlyDenied ||
+                                  statuses[Permission.bluetoothConnect] ==
+                                      PermissionStatus.permanentlyDenied) {
+                                openAppSettings();
+                              } else {
+                                Future.delayed(Duration(milliseconds: 100), () {
+                                  ProviderScope.containerOf(context)
+                                      .read(videoCallViewModelProvider)
+                                      .nextPage();
+                                  // .next();
+                                });
+                              }
+                            } else if (Platform.isIOS) {
+                              Map<Permission, PermissionStatus> statuses =
+                                  await [
+                                Permission.camera,
+                                Permission.microphone,
+                              ].request();
+
+                              if (statuses[Permission.camera] ==
+                                      PermissionStatus.permanentlyDenied ||
+                                  statuses[Permission.microphone] ==
+                                      PermissionStatus.permanentlyDenied) {
+                                openAppSettings();
+                              } else {
+                                Future.delayed(Duration(milliseconds: 100), () {
+                                  ProviderScope.containerOf(context)
+                                      .read(videoCallViewModelProvider)
+                                      .nextPage();
+                                  // .next();
+                                });
+                              }
                             }
-                            Future.delayed(Duration(milliseconds: 100), () {
-                              ProviderScope.containerOf(context)
-                                  .read(videoCallViewModelProvider)
-                                  .nextPage();
-                              // .next();
-                            });
                           }
                         }
                       },

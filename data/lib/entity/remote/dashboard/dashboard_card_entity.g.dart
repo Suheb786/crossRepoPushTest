@@ -33,6 +33,7 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
     minimumSettlement: json['minimumSettlement'] as num?,
     callStatus: json['callStatus'] as String?,
     isCallPending: json['isCallPending'] as bool?,
+    parentId: json['parentId'] as String?,
   );
 }
 
@@ -64,4 +65,5 @@ Map<String, dynamic> _$DashboardCardEntityToJson(
       'minimumSettlement': instance.minimumSettlement,
       'callStatus': instance.callStatus,
       'isCallPending': instance.isCallPending,
+      'parentId': instance.parentId,
     };

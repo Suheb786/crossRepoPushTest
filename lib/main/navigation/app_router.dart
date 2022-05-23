@@ -64,6 +64,7 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart'
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_credit_card_limits/manage_credit_card_limits_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page.dart';
@@ -446,6 +447,10 @@ class AppRouter {
       case RoutePaths.manageDebitLimit:
         return CustomRoute.createRoute(ManageDebitCardLimitsPage(
             settings.arguments as ManageCardLimitsArguments));
+
+      case RoutePaths.ManageCreditCardLimits:
+        return CustomRoute.createRoute(ManageCreditCardLimitsPage(
+            settings.arguments as ManageCreditCardLimitsArguments));
 
       case RoutePaths.ChangeCardPin:
         return CupertinoPageRoute(

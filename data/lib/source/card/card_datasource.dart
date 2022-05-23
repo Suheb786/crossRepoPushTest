@@ -9,6 +9,7 @@ import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
+import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
@@ -43,6 +44,9 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
       {required String? tokenizedPan});
+
+  Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
+      {required String? secureCode});
 
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       {String? monthYear, String? cardId});
@@ -94,7 +98,7 @@ abstract class CardRemoteDs {
       {num? atmWithdrawal,
       num? merchantsPayments,
       num? onlinePurchase,
-      num? contactLessPayments,
+      String? secureCode,
       bool? isAtmWithdrawal,
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,

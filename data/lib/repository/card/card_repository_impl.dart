@@ -11,6 +11,7 @@ import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart'
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
+import 'package:domain/model/credit_card/get_credit_card_limit_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
@@ -302,7 +303,7 @@ class CardRepositoryImpl extends CardRepository {
   @override
   Future<Either<NetworkError, bool>> updateCreditCardLimits(
       {num? atmWithdrawal,
-      num? contactLessPayments,
+      String? secureCode,
       bool? isAtmWithdrawal,
       bool? isContactLessPayments,
       bool? isMerchantsPayments,
@@ -314,7 +315,7 @@ class CardRepositoryImpl extends CardRepository {
           atmWithdrawal: atmWithdrawal,
           merchantsPayments: merchantsPayments,
           onlinePurchase: onlinePurchase,
-          contactLessPayments: contactLessPayments,
+          secureCode: secureCode,
           isAtmWithdrawal: isAtmWithdrawal,
           isMerchantsPayments: isMerchantsPayments,
           isOnlinePurchase: isOnlinePurchase,
@@ -331,6 +332,18 @@ class CardRepositoryImpl extends CardRepository {
       {required String? tokenizedPan}) async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardLimit(tokenizedPan: tokenizedPan),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, GetCreditCardLimitResponse>> getCreditCardLimit(
+      {required String? secureCode}) async {
+    final result = await safeApiCall(
+      _remoteDs.getCreditCardLimit(secureCode: secureCode),
     );
     return result!.fold(
       (l) => Left(l),

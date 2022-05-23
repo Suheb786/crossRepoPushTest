@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -153,7 +154,12 @@ class ManageLimitsWidget extends StatelessWidget {
                                 child: TextFormField(
                                   controller: model.controller,
                                   textAlign: TextAlign.end,
-                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                  ],
+                                  keyboardType: TextInputType.numberWithOptions(
+                                      decimal: false),
                                   textInputAction: TextInputAction.done,
                                   readOnly: readOnly,
                                   cursorColor: Theme.of(context)

@@ -9,30 +9,30 @@ part of 'credit_card_limits_update_request_entity.dart';
 CreditCardSLimitsUpdateRequestEntity
     _$CreditCardSLimitsUpdateRequestEntityFromJson(Map<String, dynamic> json) {
   return CreditCardSLimitsUpdateRequestEntity(
-    getToken: json['getToken'] as bool?,
-    atmWithdrawal: json['atmWithdrawal'] as num?,
-    merchantsPayments: json['merchantsPayments'] as num?,
-    onlinePurchase: json['onlinePurchase'] as num?,
-    contactLessPayments: json['contactLessPayments'] as num?,
-    isAtmWithdrawal: json['isAtmWithdrawal'] as bool?,
-    isMerchantsPayments: json['isMerchantsPayments'] as bool?,
-    isOnlinePurchase: json['isOnlinePurchase'] as bool?,
-    isContactLessPayments: json['isContactLessPayments'] as bool?,
-    baseData: json['baseClass'] as Map<String, dynamic>?,
+    getToken: json['GetToken'] as bool?,
+    atmWithdrawal: json['ATMLimit'] as num?,
+    merchantsPayments: json['MerchantLimit'] as num?,
+    onlinePurchase: json['OnlinePurchaseLimit'] as num?,
+    isAtmWithdrawal: json['ATM'] as bool?,
+    isMerchantsPayments: json['Merchant'] as bool?,
+    isOnlinePurchase: json['OnlinePurchase'] as bool?,
+    isContactLessPayments: json['ContactLessPayment'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>?,
+    secureCode: json['SecureCode'] as String?,
   );
 }
 
 Map<String, dynamic> _$CreditCardSLimitsUpdateRequestEntityToJson(
         CreditCardSLimitsUpdateRequestEntity instance) =>
     <String, dynamic>{
-      'getToken': instance.getToken,
-      'atmWithdrawal': instance.atmWithdrawal,
-      'merchantsPayments': instance.merchantsPayments,
-      'onlinePurchase': instance.onlinePurchase,
-      'contactLessPayments': instance.contactLessPayments,
-      'isAtmWithdrawal': instance.isAtmWithdrawal,
-      'isMerchantsPayments': instance.isMerchantsPayments,
-      'isOnlinePurchase': instance.isOnlinePurchase,
-      'isContactLessPayments': instance.isContactLessPayments,
-      'baseClass': instance.baseData,
+      'OnlinePurchase': instance.isOnlinePurchase,
+      'OnlinePurchaseLimit': instance.onlinePurchase,
+      'ATM': instance.isAtmWithdrawal,
+      'ATMLimit': instance.atmWithdrawal,
+      'Merchant': instance.isMerchantsPayments,
+      'MerchantLimit': instance.merchantsPayments,
+      'ContactLessPayment': instance.isContactLessPayments,
+      'SecureCode': instance.secureCode,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

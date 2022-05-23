@@ -10,6 +10,7 @@ import 'package:domain/usecase/dashboard/download_card_transaction_usecase.dart'
 import 'package:domain/usecase/dashboard/get_atms_usecase.dart';
 import 'package:domain/usecase/dashboard/get_card_usecase.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
+import 'package:domain/usecase/dashboard/get_placeholder_usecase.dart';
 import 'package:domain/usecase/dashboard/my_account_usecase.dart';
 import 'package:domain/usecase/dashboard/my_debit_card_usecase.dart';
 import 'package:domain/usecase/dashboard/placeholder_usecase.dart';
@@ -92,4 +93,10 @@ final getAtmUseCaseProvider = Provider.autoDispose<GetAtmsUseCase>(
 final getDashboardDataUseCaseProvider =
     Provider.autoDispose<GetDashboardDataUseCase>(
   (ref) => GetDashboardDataUseCase(ref.read(dashboardRepositoryProvider)),
+);
+
+///[GetPlaceholderUseCase] provider
+final getPlaceHolderUseCaseProvider =
+    Provider.autoDispose<GetPlaceholderUseCase>(
+  (ref) => GetPlaceholderUseCase(ref.read(dashboardRepositoryProvider)),
 );
