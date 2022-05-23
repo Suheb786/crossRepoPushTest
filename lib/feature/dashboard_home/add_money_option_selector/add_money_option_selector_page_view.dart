@@ -192,18 +192,23 @@ class AddMoneyOptionSelectorPageView
                               return (snapshot.data!.data!.status ?? false)
                                   ? Padding(
                                       padding: EdgeInsets.only(top: 0),
-                                      child: Container(
-                                        height: 120,
+                                      child: Image.memory(
+                                        snapshot.data!.data!.image,
+                                        fit: BoxFit.fill,
+                                      )
+                                      /*Container(
+                                        //height: 120,
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
                                                 image: Image.memory(snapshot
                                                         .data!.data!.image)
                                                     .image,
-                                                fit: BoxFit.contain),
+                                                fit: BoxFit.fill),
                                             borderRadius:
                                                 BorderRadius.circular(16)),
-                                      ),
+                                      )*/
+                                      ,
                                     )
                                   : Container();
                             default:

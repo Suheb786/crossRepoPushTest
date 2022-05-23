@@ -594,7 +594,12 @@ class DebitCardTimeLinePageView
                     false
                 ? Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: Container(
+                    child: Image.memory(
+                      model.timeLineArguments.timeLineArguments.placeholderData!
+                          .image,
+                      fit: BoxFit.fill,
+                    )
+                    /*Container(
                       height: 150,
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -604,7 +609,8 @@ class DebitCardTimeLinePageView
                                   .image,
                               fit: BoxFit.contain),
                           borderRadius: BorderRadius.circular(16)),
-                    ),
+                    )*/
+                    ,
                   )
                 : Container(),
             Spacer(),

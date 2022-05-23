@@ -25,9 +25,12 @@ class RequestAmountFromContactSuccessPageView
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
                 .getDashboardData();
+            /*ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .triggerRequestMoneyPopup(); */
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
-                .triggerRequestMoneyPopup();
+                .showRequestMoneyPopUp(true);
           }
         },
         child: Padding(

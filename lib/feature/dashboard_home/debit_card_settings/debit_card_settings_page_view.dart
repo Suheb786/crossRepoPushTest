@@ -278,19 +278,25 @@ class DebitCardSettingsPageView
                           title: S.of(context).requestSupplementarycard,
                           tileIcon: AssetUtils.cardIcon,
                         ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.DcChangeLinkedMobileNumber,
-                                arguments: DCChangeLinkedMobileNumberArguments(
-                                    cardType: CardType.DEBIT,
-                                    tokenizedPan: model
-                                        .debitCardSettingsArguments
-                                        .debitCard
-                                        .code));
-                          },
-                          title: S.of(context).changeLinkedMobileNumber,
-                          tileIcon: AssetUtils.mobile,
+                        IgnorePointer(
+                          ignoring: true,
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(context,
+                                  RoutePaths.DcChangeLinkedMobileNumber,
+                                  arguments:
+                                      DCChangeLinkedMobileNumberArguments(
+                                          cardType: CardType.DEBIT,
+                                          tokenizedPan: model
+                                              .debitCardSettingsArguments
+                                              .debitCard
+                                              .code));
+                            },
+                            title: S.of(context).changeLinkedMobileNumber,
+                            tileIcon: AssetUtils.mobile,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
                         ),
                         SettingTile(
                           onTap: () {},

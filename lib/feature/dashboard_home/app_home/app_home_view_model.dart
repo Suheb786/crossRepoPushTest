@@ -56,6 +56,9 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<PageController> get pageControllerStream =>
       _pageControllerSubject.stream;
 
+  BehaviorSubject<bool> _showRequestMoneyPopUpSubject =
+      BehaviorSubject.seeded(false);
+
   bool showBody = true;
   bool isShowBalenceUpdatedToast = false;
 
@@ -190,10 +193,12 @@ class AppHomeViewModel extends BasePageViewModel {
         updateLoader();
         _getPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          triggerRequestMoneyPopup();
           // showErrorState();
           // showToastWithError(event.appError!);
           timeLineArguments.placeholderData = timelinePlaceholderData;
         } else if (event.status == Status.SUCCESS) {
+          triggerRequestMoneyPopup();
           timelinePlaceholderData = event.data!.data!;
           timeLineArguments.placeholderData = event.data!.data;
         }
@@ -209,6 +214,7 @@ class AppHomeViewModel extends BasePageViewModel {
         _getRequestMoneyPlaceHolderResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
         } else if (event.status == Status.SUCCESS) {
+          showRequestMoneyPopUp(false);
           if (event.data!.data!.status ?? false) {
             requestMoneyPlaceholderData = event.data!.data!;
             _requestMoneyRequest.safeAdd(true);
@@ -566,8 +572,10 @@ class AppHomeViewModel extends BasePageViewModel {
 
   ///request money timeline placeholder
   void triggerRequestMoneyPopup() {
-    _getRequestMoneyPlaceHolderRequest
-        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 4));
+    if (_showRequestMoneyPopUpSubject.value) {
+      _getRequestMoneyPlaceHolderRequest
+          .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 4));
+    }
   }
 
   void triggerSubscriptionPopUp() {
@@ -580,6 +588,10 @@ class AppHomeViewModel extends BasePageViewModel {
         .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 5));
   }
 
+  void showRequestMoneyPopUp(bool value) {
+    _showRequestMoneyPopUpSubject.safeAdd(value);
+  }
+
   @override
   void dispose() {
     _currentStep.close();
@@ -587,6 +599,7 @@ class AppHomeViewModel extends BasePageViewModel {
     _pageControllerSubject.close();
     _getPlaceHolderRequest.close();
     _getPlaceHolderResponse.close();
+    _showRequestMoneyPopUpSubject.close();
     super.dispose();
   }
 }
