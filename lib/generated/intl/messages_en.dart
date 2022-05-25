@@ -146,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please agree to terms and conditions."),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+        "ahwalFailed": MessageLookupByLibrary.simpleMessage("Ahwal Failed"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
         "allTransaction":
@@ -1302,8 +1303,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select Reason of Unavailability"),
         "invalidReferenceNumber":
             MessageLookupByLibrary.simpleMessage("Enter reference number"),
+        "invalidRelation":
+            MessageLookupByLibrary.simpleMessage("Invalid Relation"),
         "invalidRelationship":
             MessageLookupByLibrary.simpleMessage("Select relationship"),
+        "invalidRelationshipAPI":
+            MessageLookupByLibrary.simpleMessage("Invalid RelationShip"),
         "invalidRequestedAmount":
             MessageLookupByLibrary.simpleMessage("Invalid requested amount"),
         "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
@@ -1706,6 +1711,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Preparing your card..."),
         "primaryCardNotActive": MessageLookupByLibrary.simpleMessage(
             "Please activate your primary Rebellious Red credit card to process your request."),
+        "primaryCreditCardHoldIdNotMatchGroom":
+            MessageLookupByLibrary.simpleMessage(
+                "Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo"),
+        "primaryDebitCardIdNotMatchWithMotherFather":
+            MessageLookupByLibrary.simpleMessage(
+                "Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo"),
+        "primaryDebitCreditCardHolderNotMatchMotherFather":
+            MessageLookupByLibrary.simpleMessage(
+                "Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo"),
+        "primaryIdNotMatchWithGroom": MessageLookupByLibrary.simpleMessage(
+            "Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo"),
         "primaryLoanAccListNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
         "primaryNotComplete":
@@ -1807,6 +1823,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while registering user to vkey"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+        "relationNull":
+            MessageLookupByLibrary.simpleMessage("Relation is null"),
+        "relationShipNull":
+            MessageLookupByLibrary.simpleMessage("RelationShip is null"),
         "relationShipWithPepCaps":
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationship": MessageLookupByLibrary.simpleMessage("Relationship"),
@@ -2053,12 +2073,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
+        "suppIdNotMatchWIthMotherFather": MessageLookupByLibrary.simpleMessage(
+            "Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo"),
         "supplementaryCardApplicationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "supplementaryCardStep2Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "supplementaryCardStep3Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "supplementaryCreditCardHolderIdNotMatchMotherFather":
+            MessageLookupByLibrary.simpleMessage(
+                "Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo"),
         "supplementaryDebitcardSuccessDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately."),
         "suspendId": MessageLookupByLibrary.simpleMessage("Suspend ID"),
