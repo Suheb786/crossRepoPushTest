@@ -1046,6 +1046,29 @@ class ErrorParser {
         return localisedHelper.placeholderIdNull;
       case ErrorType.PRIMARY_NOT_COMPLETE:
         return localisedHelper.primaryNotComplete;
+      case ErrorType.RELATION_NULL:
+        return localisedHelper.relationNull;
+      case ErrorType.AHWAL_FAILED:
+        return localisedHelper.ahwalFailed;
+      case ErrorType.INVALID_RELATION:
+        return localisedHelper.invalidRelation;
+      case ErrorType.PRIMARY_ID_NOT_MATCH_GROOM:
+        return localisedHelper.primaryIdNotMatchWithGroom;
+      case ErrorType.SEC_ID_NOT_MATCH_FATHER_MOTHER:
+        return localisedHelper.suppIdNotMatchWIthMotherFather;
+      case ErrorType.PRIMARY_DEBIT_CARD_NOT_MATCH_WITH_FATHER_MOTHER:
+        return localisedHelper.primaryDebitCardIdNotMatchWithMotherFather;
+      case ErrorType.RELATIONSHIP_NULL:
+        return localisedHelper.relationShipNull;
+      case ErrorType.INVALID_RELATIONSHIP_API:
+        return localisedHelper.invalidRelationshipAPI;
+      case ErrorType.PRIM_CREDIT_CARD_ID_NOT_MATCH_GROOM:
+        return localisedHelper.primaryCreditCardHoldIdNotMatchGroom;
+      case ErrorType.SUPP_CREDIT_HOLDER_ID_NOT_MATCH_FATHER_MOTHER:
+        return localisedHelper
+            .supplementaryCreditCardHolderIdNotMatchMotherFather;
+      case ErrorType.PRIM_DEBIT_CREDIT_CARD_ID_NOT_MATCH_MOTHER_FATHER:
+        return localisedHelper.primaryDebitCreditCardHolderNotMatchMotherFather;
 
       default:
         return "";

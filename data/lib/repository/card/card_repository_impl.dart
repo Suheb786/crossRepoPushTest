@@ -16,6 +16,7 @@ import 'package:domain/model/dashboard/transactions/get_transactions_response.da
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/repository/card/card_repository.dart';
+import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 
 class CardRepositoryImpl extends CardRepository {
   final CardRemoteDs _remoteDs;
@@ -601,6 +602,17 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> updateSettlement({required params}) async {
     final result =
         await safeApiCall(_remoteDs.updateSettlement(params: params));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> reportLostStolenCC(
+      {required ReportLostStolenCCUseCaseParams params}) async {
+    final result =
+        await safeApiCall(_remoteDs.reportLostStolenCC(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),

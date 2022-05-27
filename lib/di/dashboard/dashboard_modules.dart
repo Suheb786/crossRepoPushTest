@@ -196,7 +196,8 @@ final creditCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
       ref.read(unFreezeCreditCardUseCaseProvider),
       ref.read(cancelCreditCardUseCaseProvider),
       args,
-      ref.read(getSupplementaryCreditCardApplicationUseCaseProvider)),
+      ref.read(getSupplementaryCreditCardApplicationUseCaseProvider),
+      ref.read(reportLostStolenCCUseCaseProvider)),
 );
 
 /// check rescheduled video call
@@ -229,7 +230,7 @@ final changeCardPaymentPageViewModelProvider =
 final changeCardSettlementPercentagePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<
         ChangeCardSettlementPercentagePageViewModel>(
-          (ref) => ChangeCardSettlementPercentagePageViewModel(
+  (ref) => ChangeCardSettlementPercentagePageViewModel(
       ref.read(updateSettlementUseCaseProvider)),
 );
 

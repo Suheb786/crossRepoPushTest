@@ -13,6 +13,7 @@ import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_respo
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/dc_change_linked_mobile_number/dc_enter_otp_usecase.dart';
 import 'package:domain/usecase/update_settlement/update_settlement_usecase.dart';
@@ -183,4 +184,7 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> updateSettlement(
       {required UpdateSettlementUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> reportLostStolenCC(
+      {ReportLostStolenCCUseCaseParams params});
 }

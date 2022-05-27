@@ -158,13 +158,22 @@ class EnterNewPinForCardPageView
                                                 );
                                               }),
                                         ),
-                                        Text(
-                                          S.of(context).swipeDownToCancel,
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                              color: AppColor.gray),
-                                        )
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Center(
+                                            child: Text(
+                                              S.of(context).backToCardSettings,
+                                              style: TextStyle(
+                                                color: AppColor.brightBlue,
+                                                letterSpacing: 1,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ],

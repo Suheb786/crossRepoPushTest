@@ -1357,6 +1357,58 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.NO_PLACEHOLDER_FOUND);
 
+          case "err-301":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.AHWAL_FAILED);
+
+          case "err-302":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_RELATION);
+
+          case "err-303":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PRIMARY_ID_NOT_MATCH_GROOM);
+
+          case "err-304":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SEC_ID_NOT_MATCH_FATHER_MOTHER);
+
+          case "err-305":
+            return AppError(
+                cause: cause,
+                error: error,
+                type:
+                    ErrorType.PRIMARY_DEBIT_CARD_NOT_MATCH_WITH_FATHER_MOTHER);
+
+          case "err-306":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_RELATIONSHIP_API);
+
+          case "err-307":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.PRIM_CREDIT_CARD_ID_NOT_MATCH_GROOM);
+
+          case "err-308":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.SUPP_CREDIT_HOLDER_ID_NOT_MATCH_FATHER_MOTHER);
+
+          case "err-309":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType
+                    .PRIM_DEBIT_CREDIT_CARD_ID_NOT_MATCH_MOTHER_FATHER);
+
           case "err-150":
             return AppError(
                 cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
@@ -2114,6 +2166,14 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.PLACEHOLDER_ID_NULL);
+
+          case "err-0008":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.RELATION_NULL);
+
+          case "err-0009":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.RELATIONSHIP_NULL);
 
           default:
             return AppError(

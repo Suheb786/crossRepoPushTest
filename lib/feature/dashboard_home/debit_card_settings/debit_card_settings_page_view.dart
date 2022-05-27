@@ -329,7 +329,7 @@ class DebitCardSettingsPageView
                                       ), onSelected: () {
                                     Navigator.pop(context);
                                     model.reportStolenLostCard(
-                                        status: 'LO',
+                                        status: 'TE',
                                         reasonValue: "Lost or Stolen",
                                         tokenizedPlan: model
                                             .debitCardSettingsArguments
@@ -439,6 +439,7 @@ class DebitCardSettingsPageView
                           padding: const EdgeInsets.symmetric(horizontal: 63.0),
                           child: Text(
                             S.of(context).actionComeToYouSoon,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.bold,

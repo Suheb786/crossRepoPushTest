@@ -44,6 +44,12 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
   }
 
   @override
+  void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
   Widget buildView(BuildContext context, LoginViewModel model) {
     return LoginPageView(provideBase());
   }

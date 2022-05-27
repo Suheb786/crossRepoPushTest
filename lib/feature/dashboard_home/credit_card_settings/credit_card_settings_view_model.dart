@@ -2,6 +2,7 @@ import 'package:domain/model/card/supplementary_credit_card/supplementary_credit
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
+import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
@@ -18,6 +19,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final CancelCreditCardUseCase _cancelCreditCardUseCase;
   final GetSupplementaryCreditCardApplicationUseCase
       _getSupplementaryCreditCardApplicationUseCase;
+  final ReportLostStolenCCUseCase _reportLostStolenCCUseCase;
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
@@ -64,12 +66,33 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
       get getSupplementaryCreditCardApplicationStream =>
           _getSupplementaryCreditCardApplicationResponseSubject.stream;
 
+  ///report Lost stolen cc use case
+  PublishSubject<ReportLostStolenCCUseCaseParams>
+      _reportLostStolenCCRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _reportLostStolenCCResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<bool>> get reportLostStolenCCStream =>
+      _reportLostStolenCCResponseSubject.stream;
+
+  ///report damaged cc use case
+  PublishSubject<ReportLostStolenCCUseCaseParams>
+      _reportDamagedCCRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _reportDamagedCCResponseSubject =
+      PublishSubject();
+
+  Stream<Resource<bool>> get reportDamagedCCStream =>
+      _reportDamagedCCResponseSubject.stream;
+
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
       this._unFreezeCreditCardUseCase,
       this._cancelCreditCardUseCase,
       this.creditCardSettingsArguments,
-      this._getSupplementaryCreditCardApplicationUseCase) {
+      this._getSupplementaryCreditCardApplicationUseCase,
+      this._reportLostStolenCCUseCase) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value,
               createCall: () => _freezeCreditCardUseCase.execute(params: value))
@@ -131,6 +154,34 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _reportLostStolenCCRequestSubject.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _reportLostStolenCCUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _reportLostStolenCCResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _reportDamagedCCRequestSubject.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _reportLostStolenCCUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _reportDamagedCCResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void toggleFreezeCardStatus(bool value) {
@@ -172,6 +223,20 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
     _getSupplementaryCreditCardApplicationRequestSubject.safeAdd(
         GetSupplementaryCreditCardApplicationUseCaseParams(
             primaryCard: creditCardSettingsArguments.creditCard.cardId));
+  }
+
+  void reportLostStolenCC() {
+    _reportLostStolenCCRequestSubject.safeAdd(ReportLostStolenCCUseCaseParams(
+        cardCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        panGenerationMode: "N",
+        replacementReason: "0003"));
+  }
+
+  void reportDamagedCC() {
+    _reportDamagedCCRequestSubject.safeAdd(ReportLostStolenCCUseCaseParams(
+        cardCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
+        panGenerationMode: "N",
+        replacementReason: "0001"));
   }
 
   @override

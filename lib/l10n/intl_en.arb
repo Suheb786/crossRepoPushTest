@@ -1307,5 +1307,16 @@
   "replaceDamagedCard": "Replace damaged card",
   "reportDamagedCard": "Report damaged card",
   "noPlaceholderFound": "No Placeholder Record Found against this Id",
-  "placeholderIdNull": "PlaceHolder Id is null"
+  "placeholderIdNull": "PlaceHolder Id is null",
+  "relationNull": "Relation is null",
+  "ahwalFailed": "Ahwal Failed",
+  "invalidRelation": "Invalid Relation",
+  "primaryIdNotMatchWithGroom": "Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo",
+  "suppIdNotMatchWIthMotherFather": "Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo",
+  "primaryDebitCardIdNotMatchWithMotherFather": "Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo",
+  "relationShipNull": "RelationShip is null",
+  "invalidRelationshipAPI": "Invalid RelationShip",
+  "primaryCreditCardHoldIdNotMatchGroom": "Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo",
+  "supplementaryCreditCardHolderIdNotMatchMotherFather": "Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo",
+  "primaryDebitCreditCardHolderNotMatchMotherFather": "Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo"
 }

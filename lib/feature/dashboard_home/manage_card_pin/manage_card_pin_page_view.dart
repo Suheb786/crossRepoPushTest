@@ -118,28 +118,29 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       },
                     ),
                     AppDivider(),
-                    IgnorePointer(
-                      ignoring: true,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.ChangeCardPin);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(24),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                S.of(context).changeCardPin,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.gray1),
-                              )),
-                              AppSvg.asset(AssetUtils.rightChevron,
-                                  width: 20, height: 20, color: AppColor.gray1)
-                            ],
-                          ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              S.of(context).changeCardPin,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )),
+                            AppSvg.asset(AssetUtils.rightChevron,
+                                width: 20,
+                                height: 20,
+                                color: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyText1!
+                                    .color)
+                          ],
                         ),
                       ),
                     ),

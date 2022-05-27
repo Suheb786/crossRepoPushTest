@@ -12859,6 +12859,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Relation is null`
+  String get relationNull {
+    return Intl.message(
+      'Relation is null',
+      name: 'relationNull',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ahwal Failed`
+  String get ahwalFailed {
+    return Intl.message(
+      'Ahwal Failed',
+      name: 'ahwalFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Relation`
+  String get invalidRelation {
+    return Intl.message(
+      'Invalid Relation',
+      name: 'invalidRelation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo`
+  String get primaryIdNotMatchWithGroom {
+    return Intl.message(
+      'Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo',
+      name: 'primaryIdNotMatchWithGroom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  String get suppIdNotMatchWIthMotherFather {
+    return Intl.message(
+      'Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      name: 'suppIdNotMatchWIthMotherFather',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  String get primaryDebitCardIdNotMatchWithMotherFather {
+    return Intl.message(
+      'Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      name: 'primaryDebitCardIdNotMatchWithMotherFather',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RelationShip is null`
+  String get relationShipNull {
+    return Intl.message(
+      'RelationShip is null',
+      name: 'relationShipNull',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid RelationShip`
+  String get invalidRelationshipAPI {
+    return Intl.message(
+      'Invalid RelationShip',
+      name: 'invalidRelationshipAPI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo`
+  String get primaryCreditCardHoldIdNotMatchGroom {
+    return Intl.message(
+      'Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo',
+      name: 'primaryCreditCardHoldIdNotMatchGroom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  String get supplementaryCreditCardHolderIdNotMatchMotherFather {
+    return Intl.message(
+      'Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      name: 'supplementaryCreditCardHolderIdNotMatchMotherFather',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo`
+  String get primaryDebitCreditCardHolderNotMatchMotherFather {
+    return Intl.message(
+      'Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo',
+      name: 'primaryDebitCreditCardHolderNotMatchMotherFather',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
