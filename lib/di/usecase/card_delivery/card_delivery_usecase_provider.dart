@@ -31,6 +31,7 @@ import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dar
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/relationship_with_card_holder_usecase.dart';
+import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_two_usecase.dart';
@@ -220,3 +221,8 @@ final supplementaryCreditCardStepThreeUseCaseProvider =
 final getCreditCardLimitUseCaseProvider =
     Provider.autoDispose<GetCreditCardLimitUseCase>(
         (ref) => GetCreditCardLimitUseCase(ref.read(cardRepositoryProvider)));
+
+///[ReportLostStolenCCUseCase] provider
+final reportLostStolenCCUseCaseProvider =
+    Provider.autoDispose<ReportLostStolenCCUseCase>(
+        (ref) => ReportLostStolenCCUseCase(ref.read(cardRepositoryProvider)));

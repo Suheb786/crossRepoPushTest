@@ -39,6 +39,7 @@ import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response
 import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
+import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_request_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/card/unblock_debit_card_pin_request.dart';
@@ -51,6 +52,7 @@ import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:retrofit/dio.dart';
 
 class CardRemoteDsImpl extends CardRemoteDs {
@@ -590,5 +592,17 @@ class CardRemoteDsImpl extends CardRemoteDs {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardLimit(CreditCardLimitRequestEntity(
         secureCode: secureCode, getToken: true, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> reportLostStolenCC(
+      {ReportLostStolenCCUseCaseParams? params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.reportLostStolenCC(ReportStolenCCRequestEntity(
+        cardCode: params!.cardCode,
+        panGenerationMode: params.panGenerationMode,
+        replaceReason: params.replacementReason,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 }

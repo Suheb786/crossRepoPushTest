@@ -349,7 +349,11 @@ class LoginViewModel extends BasePageViewModel {
     _initInfobipMessageRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _infobipMessagePluginUseCase.execute(params: value);
-      }).asFlow().listen((event) {});
+      }).asFlow().listen((event) {
+        if(event.status==Status.SUCCESS){
+          print('infobip registered successfully');
+        }
+      });
     });
 
     //getCipher();

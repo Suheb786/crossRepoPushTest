@@ -8,6 +8,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
@@ -394,58 +395,82 @@ class CreditCardSettingsPageView
                           isEnabled: true,
                           isNotify: false,
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            onTap: () {
-                              InformationDialog.show(context,
-                                  image: AssetUtils.cardCancelIcon,
-                                  title: S.of(context).reportCardIssue,
-                                  descriptionWidget: Text(
-                                    S.of(context).reportStolenLostCardDesc,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.dark_brown),
-                                  ), onSelected: () {
-                                Navigator.pop(context);
+                        AppStreamBuilder<Resource<bool>>(
+                            stream: model.reportLostStolenCCStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
                                 Navigator.pushNamed(
-                                    context, RoutePaths.RenewCreditCard);
-                              }, onDismissed: () {
-                                Navigator.pop(context);
-                              });
+                                    context, RoutePaths.CreditCardApplySuccess,
+                                    arguments: CreditCardApplySuccessArguments(
+                                        creditSuccessState: CreditSuccessState
+                                            .Applied_Success));
+                              }
                             },
-                            title: S.of(context).reportCardIssue,
-                            tileIcon: AssetUtils.report,
-                            isEnabled: false,
-                            isNotify: true,
-                          ),
-                        ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            onTap: () {
-                              InformationDialog.show(context,
-                                  image: AssetUtils.cardCancelIcon,
-                                  title: S.of(context).reportCardIssue,
-                                  descriptionWidget: Text(
-                                    S.of(context).reportStolenLostCardDesc,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.dark_brown),
-                                  ), onSelected: () {
-                                Navigator.pop(context);
+                            dataBuilder: (context, snapshot) {
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardCancelIcon,
+                                      title: S.of(context).reportCardIssue,
+                                      descriptionWidget: Text(
+                                        S.of(context).reportStolenLostCardDesc,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.dark_brown),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    // Navigator.pushNamed(
+                                    //     context, RoutePaths.RenewCreditCard);
+                                    model.reportLostStolenCC();
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                title: S.of(context).reportCardIssue,
+                                tileIcon: AssetUtils.report,
+                                isEnabled: true,
+                                isNotify: false,
+                              );
+                            }),
+                        AppStreamBuilder<Resource<bool>>(
+                            stream: model.reportDamagedCCStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
                                 Navigator.pushNamed(
-                                    context, RoutePaths.RenewCreditCard);
-                              }, onDismissed: () {
-                                Navigator.pop(context);
-                              });
+                                    context, RoutePaths.CreditCardApplySuccess,
+                                    arguments: CreditCardApplySuccessArguments(
+                                        creditSuccessState: CreditSuccessState
+                                            .Applied_Success));
+                              }
                             },
-                            title: S.of(context).replaceDamageCard,
-                            tileIcon: AssetUtils.damageCard,
-                            isEnabled: false,
-                            isNotify: true,
-                          ),
-                        ),
+                            dataBuilder: (context, snapshot) {
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardCancelIcon,
+                                      title: S.of(context).reportCardIssue,
+                                      descriptionWidget: Text(
+                                        S.of(context).reportStolenLostCardDesc,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.dark_brown),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    model.reportDamagedCC();
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                title: S.of(context).replaceDamageCard,
+                                tileIcon: AssetUtils.damageCard,
+                                isEnabled: true,
+                                isNotify: false,
+                              );
+                            }),
                         IgnorePointer(
                           child: AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
