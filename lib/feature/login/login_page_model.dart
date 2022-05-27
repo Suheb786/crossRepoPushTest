@@ -21,6 +21,7 @@ import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -350,7 +351,8 @@ class LoginViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () {
         return _infobipMessagePluginUseCase.execute(params: value);
       }).asFlow().listen((event) {
-        if(event.status==Status.SUCCESS){
+        if (event.status == Status.SUCCESS) {
+          AppConstantsUtils.isInfobipRegistered = true;
           print('infobip registered successfully');
         }
       });
@@ -430,8 +432,10 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void initInfobipMessagePlugin() async {
-    _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams());
+    if (!AppConstantsUtils.isInfobipRegistered) {
+      _initInfobipMessageRequestSubject
+          .safeAdd(InfobipMessagePluginUseCaseParams());
+    }
   }
 
   @override

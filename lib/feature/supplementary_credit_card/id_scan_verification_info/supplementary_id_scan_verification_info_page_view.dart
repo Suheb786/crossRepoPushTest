@@ -108,23 +108,23 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                                     ),
                                     Column(
                                       children: [
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Text(
-                                            S.of(context).uploadIdInstead,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 1,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 56,
-                                        ),
+                                        // InkWell(
+                                        //   onTap: () {},
+                                        //   child: Text(
+                                        //     S.of(context).uploadIdInstead,
+                                        //     style: TextStyle(
+                                        //         fontSize: 14,
+                                        //         fontWeight: FontWeight.w600,
+                                        //         letterSpacing: 1,
+                                        //         color: Theme.of(context)
+                                        //             .accentTextTheme
+                                        //             .bodyText1!
+                                        //             .color),
+                                        //   ),
+                                        // ),
+                                        // SizedBox(
+                                        //   height: 56,
+                                        // ),
                                         AnimatedButton(
                                           buttonText:
                                               S.of(context).swipeToProceed,
