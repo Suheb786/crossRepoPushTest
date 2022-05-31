@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12860,110 +12861,110 @@ class S {
     );
   }
 
-  /// `Relation is null`
+  /// `Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)`
   String get relationNull {
     return Intl.message(
-      'Relation is null',
+      'Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)',
       name: 'relationNull',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ahwal Failed`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-301)`
   String get ahwalFailed {
     return Intl.message(
-      'Ahwal Failed',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-301)',
       name: 'ahwalFailed',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid Relation`
+  /// `Invalid relationship! Please ensure that the supplemntary cardholder is your spouse, child or parent.(Err-302)`
   String get invalidRelation {
     return Intl.message(
-      'Invalid Relation',
+      'Invalid relationship! Please ensure that the supplemntary cardholder is your spouse, child or parent.(Err-302)',
       name: 'invalidRelation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-303) `
   String get primaryIdNotMatchWithGroom {
     return Intl.message(
-      'Primary Debit Card Holder National Number Not Match with BrideNatNo or GroomnatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-303) ',
       name: 'primaryIdNotMatchWithGroom',
       desc: '',
       args: [],
     );
   }
 
-  /// `Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-304)`
   String get suppIdNotMatchWIthMotherFather {
     return Intl.message(
-      'Supplementary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-304)',
       name: 'suppIdNotMatchWIthMotherFather',
       desc: '',
       args: [],
     );
   }
 
-  /// `Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-305)`
   String get primaryDebitCardIdNotMatchWithMotherFather {
     return Intl.message(
-      'Primary Debit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-305)',
       name: 'primaryDebitCardIdNotMatchWithMotherFather',
       desc: '',
       args: [],
     );
   }
 
-  /// `RelationShip is null`
+  /// `Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0009)`
   String get relationShipNull {
     return Intl.message(
-      'RelationShip is null',
+      'Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0009)',
       name: 'relationShipNull',
       desc: '',
       args: [],
     );
   }
 
-  /// `Invalid RelationShip`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-306) `
   String get invalidRelationshipAPI {
     return Intl.message(
-      'Invalid RelationShip',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-306) ',
       name: 'invalidRelationshipAPI',
       desc: '',
       args: [],
     );
   }
 
-  /// `Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-307) `
   String get primaryCreditCardHoldIdNotMatchGroom {
     return Intl.message(
-      'Primary Credit Card Holder National Number Not Match with BrideNatNo or GroomnatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-307) ',
       name: 'primaryCreditCardHoldIdNotMatchGroom',
       desc: '',
       args: [],
     );
   }
 
-  /// `Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-308) `
   String get supplementaryCreditCardHolderIdNotMatchMotherFather {
     return Intl.message(
-      'Supplementary Credit Card Holder National Number Not Match with MotherNatno or FatherNatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-308) ',
       name: 'supplementaryCreditCardHolderIdNotMatchMotherFather',
       desc: '',
       args: [],
     );
   }
 
-  /// `Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo`
+  /// `Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) `
   String get primaryDebitCreditCardHolderNotMatchMotherFather {
     return Intl.message(
-      'Primary Debit Credit Holder National Number Not Match with MotherNatno or FatherNatNo',
+      'Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) ',
       name: 'primaryDebitCreditCardHolderNotMatchMotherFather',
       desc: '',
       args: [],
