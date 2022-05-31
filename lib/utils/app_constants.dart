@@ -18,4 +18,6 @@ class AppConstantsUtils {
       "https://play.google.com/store/apps/details?id=com.blink.cbt";
 
   static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
+
+  static bool isInfobipRegistered = false;
 }
