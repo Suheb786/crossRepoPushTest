@@ -47,6 +47,7 @@ class App extends ConsumerWidget {
                 supportedLocales: S.delegate.supportedLocales,
                 onGenerateTitle: (context) => S.of(context).appName,
                 debugShowCheckedModeBanner: false,
+                locale: Locale("ar"),
                 initialRoute: RoutePaths.Splash,
                 theme: theme,
                 onGenerateRoute: AppRouter.generateRoute);

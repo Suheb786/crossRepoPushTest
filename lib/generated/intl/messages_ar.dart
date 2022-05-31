@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a ar locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -17,7 +17,7 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'ar';
 
   static String m0(additionalIncomeList) =>
       "Add. Income \n${additionalIncomeList}";
@@ -638,7 +638,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "edrawApiGotWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while EDraw API get wrong"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
-        "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
+        "emailAddress":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "emailAddressSmall":
             MessageLookupByLibrary.simpleMessage("Email Address"),
         "emailAddressUpdated": MessageLookupByLibrary.simpleMessage(
@@ -763,8 +764,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter missing information."),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
             "Enter below details to reset your password"),
-        "enterLoginDetails":
-            MessageLookupByLibrary.simpleMessage("Enter your login details"),
+        "enterLoginDetails": MessageLookupByLibrary.simpleMessage(
+            " أدخل معلومات تسجيل الدخول الخاصة بك\n"),
         "enterMailingAddress":
             MessageLookupByLibrary.simpleMessage("Enter mailing address"),
         "enterNewCardPinAndConfirmPin": MessageLookupByLibrary.simpleMessage(
@@ -962,7 +963,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPasswordError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password?"),
+            MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر؟"),
         "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
             "You can unfreeze and activate your card at anytime."),
         "freezeCreditCardError": MessageLookupByLibrary.simpleMessage(
@@ -1610,7 +1611,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otpRequestedManyTime": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
-        "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة السر"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
         "passwordDialogHeader":
@@ -1674,7 +1675,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please agree to the term and condition"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
-        "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseEnter": MessageLookupByLibrary.simpleMessage("لﺎﺧدا ﻰﺟﺮﻳ"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
         "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
@@ -2107,7 +2108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeToViewMap":
             MessageLookupByLibrary.simpleMessage("Swipe to view map"),
         "swipeUpToJoinOurCommunity": MessageLookupByLibrary.simpleMessage(
-            "مرر للأعلى للانضمام لمجتمعنا"),
+            "Swipe up to join our community"),
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(

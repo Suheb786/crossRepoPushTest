@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -5081,10 +5080,10 @@ class S {
     );
   }
 
-  /// `Swipe up to join our community`
+  /// `مرر للأعلى للانضمام لمجتمعنا`
   String get swipeUpToJoinOurCommunity {
     return Intl.message(
-      'Swipe up to join our community',
+      'مرر للأعلى للانضمام لمجتمعنا',
       name: 'swipeUpToJoinOurCommunity',
       desc: '',
       args: [],
@@ -12978,6 +12977,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
     ];
   }
 
