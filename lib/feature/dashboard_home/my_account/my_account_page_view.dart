@@ -40,28 +40,28 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
               //   }
               // },
               child: Container(
-                margin: EdgeInsets.all(15),
+                margin: EdgeInsetsDirectional.all(15),
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).primaryColorDark,
-                  margin: EdgeInsets.zero,
+                  margin: EdgeInsetsDirectional.zero,
                   shadowColor:
                       Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(AssetUtils.zigzagRed),
-                        alignment: Alignment.topRight,
-                        scale: isSmallDevices ? 1.3 : 1,
-                      ),
+                          image: AssetImage(AssetUtils.zigzagRed),
+                          alignment: AlignmentDirectional.topEnd,
+                          scale: isSmallDevices ? 1.3 : 1,
+                          matchTextDirection: true),
                     ),
                     child: LayoutBuilder(builder: (context, constraints) {
                       return Padding(
-                          padding:
-                              EdgeInsets.only(left: isSmallDevices ? 20 : 27.0),
+                          padding: EdgeInsetsDirectional.only(
+                              start: isSmallDevices ? 20 : 27.0),
                           child: ConstrainedBox(
                             constraints: BoxConstraints(
                                 minWidth: constraints.maxWidth,
@@ -78,7 +78,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //   children: [
                                   //     Expanded(
                                   //       child: Padding(
-                                  //         padding: EdgeInsets.only(top: 30.0),
+                                  //         padding: EdgeInsetsDirectional.only(top: 30.0),
                                   //         child: Column(
                                   //           crossAxisAlignment:
                                   //               CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 66),
+                                  //                   EdgeInsetsDirectional.only(top: 66),
                                   //               child: Text(
                                   //                 cardData!.account!
                                   //                             .accountTitle !=
@@ -112,7 +112,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 23),
+                                  //                   EdgeInsetsDirectional.only(top: 23),
                                   //               child: Row(
                                   //                 crossAxisAlignment:
                                   //                     CrossAxisAlignment.center,
@@ -130,7 +130,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //                                   context)
                                   //                               .accentColor)),
                                   //                   Padding(
-                                  //                     padding: EdgeInsets.only(
+                                  //                     padding: EdgeInsetsDirectional.only(
                                   //                         top: 5, left: 5.0),
                                   //                     child: Text("JOD",
                                   //                         style: TextStyle(
@@ -149,7 +149,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 4),
+                                  //                   EdgeInsetsDirectional.only(top: 4),
                                   //               child: Text(
                                   //                 S
                                   //                     .of(context)
@@ -171,7 +171,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //   ],
                                   // ),
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: EdgeInsetsDirectional.only(
                                         top: isSmallDevices ? 21 : 30.0),
                                     child: Column(
                                       crossAxisAlignment:
@@ -187,7 +187,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                   .accentColor),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: EdgeInsetsDirectional.only(
                                             top: isSmallDevices ? 40 : 66,
                                           ),
                                           child: Text(
@@ -205,7 +205,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 23),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 23),
                                           child: Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
@@ -222,9 +223,10 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       color: Theme.of(context)
                                                           .accentColor)),
                                               Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 5, left: 5.0),
-                                                child: Text("JOD",
+                                                padding:
+                                                    EdgeInsetsDirectional.only(
+                                                        top: 5, start: 5.0),
+                                                child: Text(S.of(context).JOD,
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -255,7 +257,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 4),
                                           child: Text(
                                             S.of(context).availableBalance,
                                             style: TextStyle(
@@ -271,7 +274,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 29),
+                                    padding:
+                                        EdgeInsetsDirectional.only(top: 29),
                                     child: Row(
                                       children: [
                                         Text(
@@ -295,7 +299,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                             'Account No. Copied'));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 8),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 8),
                                             child: AppSvg.asset(
                                               AssetUtils.copy,
                                             ),
@@ -305,7 +310,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsetsDirectional.only(top: 5),
                                     child: Text(
                                       S.of(context).accountNo,
                                       style: TextStyle(
@@ -317,8 +322,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 20, right: 25),
+                                    padding: EdgeInsetsDirectional.only(
+                                        top: 20, end: 25),
                                     child: Row(
                                       children: [
                                         Text(
@@ -340,7 +345,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         msg: 'IBAN Copied'));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 8),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 8),
                                             child:
                                                 AppSvg.asset(AssetUtils.copy),
                                           ),
@@ -349,7 +355,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 6),
+                                    padding: EdgeInsetsDirectional.only(top: 6),
                                     child: Text(
                                       S.of(context).iban,
                                       style: TextStyle(
@@ -362,7 +368,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   ),
                                   Spacer(),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 15.0),
+                                    padding:
+                                        EdgeInsetsDirectional.only(top: 15.0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -404,8 +411,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 model, context, account);
                                           },
                                           child: Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 33.0),
+                                            padding: EdgeInsetsDirectional.only(
+                                                end: 33.0),
                                             child: AppSvg.asset(
                                                 AssetUtils.share,
                                                 color: Theme.of(context)
@@ -435,7 +442,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 children: [
                   AppSvg.asset(AssetUtils.swipeUp),
                   Padding(
-                    padding: EdgeInsets.only(top: 6),
+                    padding: EdgeInsetsDirectional.only(top: 6),
                     child: Text(
                       S.of(context).swipeUpToViewTransaction,
                       style: TextStyle(

@@ -19,7 +19,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -32,10 +32,10 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage(AssetUtils.creditBlurCard),
-              fit: BoxFit.fill,
-              scale: isSmallDevices ? 1.3 : 1,
-            )),
+                    image: AssetImage(AssetUtils.creditBlurCard),
+                    fit: BoxFit.fill,
+                    scale: isSmallDevices ? 1.3 : 1,
+                    matchTextDirection: true)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

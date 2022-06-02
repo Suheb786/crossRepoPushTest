@@ -5080,10 +5080,10 @@ class S {
     );
   }
 
-  /// `مرر للأعلى للانضمام لمجتمعنا`
+  /// `Swipe up to join our community`
   String get swipeUpToJoinOurCommunity {
     return Intl.message(
-      'مرر للأعلى للانضمام لمجتمعنا',
+      'Swipe up to join our community',
       name: 'swipeUpToJoinOurCommunity',
       desc: '',
       args: [],

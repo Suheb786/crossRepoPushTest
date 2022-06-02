@@ -59,9 +59,9 @@ class DebitCardTimeLinePageView
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 5, top: 5),
+                    padding: EdgeInsetsDirectional.only(start: 5, top: 5),
                     child: Text(
-                      "JOD",
+                      S.of(context).JOD,
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
@@ -124,18 +124,21 @@ class DebitCardTimeLinePageView
                                                 ? AppSvg.asset(
                                                     AssetUtils
                                                         .timelineEndUpdated,
+                                                    matchTextDirection: true,
                                                     height: 103)
                                                 : AppSvg.asset(
                                                     AssetUtils.timeline2Updated,
+                                                    matchTextDirection: true,
                                                     height: 103),
                                             AppSvg.asset(
                                                 AssetUtils.timeline1Updated,
+                                                matchTextDirection: true,
                                                 height: 103)
                                           ],
                                         ),
                                       ),
-                                      Positioned(
-                                        left: -15,
+                                      PositionedDirectional(
+                                        start: -15,
                                         child: Container(
                                           padding: EdgeInsets.only(bottom: 40),
                                           child: model
@@ -315,10 +318,10 @@ class DebitCardTimeLinePageView
                                                 ),
                                         ),
                                       ),
-                                      Positioned(
-                                        left: 30,
+                                      PositionedDirectional(
+                                        start: 30,
                                         top: 170,
-                                        right: 0,
+                                        end: 0,
                                         child: Container(
                                             padding:
                                                 EdgeInsets.only(bottom: 40),
@@ -398,9 +401,9 @@ class DebitCardTimeLinePageView
                                 Container(
                                     height: 220,
                                     child: AppSvg.asset(AssetUtils.timelinec1,
-                                        height: 103)),
-                                Positioned(
-                                  left: -15,
+                                        matchTextDirection: true, height: 103)),
+                                PositionedDirectional(
+                                  start: -15,
                                   child: Container(
                                       padding: EdgeInsets.only(bottom: 40),
                                       child: Column(
@@ -435,9 +438,9 @@ class DebitCardTimeLinePageView
                                         ],
                                       )),
                                 ),
-                                Positioned(
+                                PositionedDirectional(
                                   top: 170,
-                                  right: -10,
+                                  end: -10,
                                   child: Container(
                                       padding: EdgeInsets.only(bottom: 40),
                                       child: Column(
@@ -488,9 +491,9 @@ class DebitCardTimeLinePageView
                             Container(
                                 height: 220,
                                 child: AppSvg.asset(AssetUtils.timelineEnd,
-                                    height: 105)),
-                            Positioned(
-                              left: -15,
+                                    matchTextDirection: true, height: 105)),
+                            PositionedDirectional(
+                              start: -15,
                               child: Container(
                                   padding: EdgeInsets.only(bottom: 40),
                                   child: Column(
@@ -525,9 +528,9 @@ class DebitCardTimeLinePageView
                                     ],
                                   )),
                             ),
-                            Positioned(
+                            PositionedDirectional(
                               top: 170,
-                              right: -10,
+                              end: -10,
                               child: Container(
                                   padding: EdgeInsets.only(bottom: 40),
                                   child: Column(
@@ -562,7 +565,7 @@ class DebitCardTimeLinePageView
                                     ],
                                   )),
                             ),
-                            Positioned(
+                            PositionedDirectional(
                               top: 57,
                               child: Container(
                                 //padding: EdgeInsets.only(right: 20),
@@ -573,9 +576,9 @@ class DebitCardTimeLinePageView
                                     color: Theme.of(context).canvasColor),
                               ),
                             ),
-                            Positioned(
+                            PositionedDirectional(
                               top: 139,
-                              right: -15,
+                              end: -15,
                               child: Container(
                                 //padding: EdgeInsets.only(right: 20),
                                 height: 22.78,
@@ -634,7 +637,7 @@ class DebitCardTimeLinePageView
                             topLeft: Radius.circular(16),
                             topRight: Radius.circular(16))),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 22, left: 27),
+                      padding: EdgeInsetsDirectional.only(top: 22, start: 27),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -642,15 +645,24 @@ class DebitCardTimeLinePageView
                                   model.timeLineArguments.cardType ==
                                       CardType.ACCOUNT
                               ? AppSvg.asset(AssetUtils.blink_updated_logo,
-                                  height: 34, width: 72)
+                                  height: 34,
+                                  width: 72,
+                                  matchTextDirection: true)
                               : AppSvg.asset(AssetUtils.blinkBlack,
-                                  height: 34, width: 72),
+                                  height: 34,
+                                  width: 72,
+                                  matchTextDirection: true),
                         ],
                       ),
                     ),
                   ),
                 ),
-                Positioned(top: -3, child: AppSvg.asset(AssetUtils.swipeUp)),
+                PositionedDirectional(
+                    top: -3,
+                    child: AppSvg.asset(
+                      AssetUtils.swipeUp,
+                      matchTextDirection: true,
+                    )),
               ],
             ),
           ],

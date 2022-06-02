@@ -109,22 +109,25 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       ),
                                     ),
                                   ),
-                                  SmoothPageIndicator(
-                                    controller: model.controller,
-                                    count: 2,
-                                    effect: ScrollingDotsEffect(
-                                      activeStrokeWidth: 2.6,
-                                      activeDotScale: 1.3,
-                                      activeDotColor:
-                                          Theme.of(context).primaryColorDark,
-                                      dotColor: Theme.of(context)
-                                          .primaryColorDark
-                                          .withOpacity(0.6),
-                                      maxVisibleDots: 5,
-                                      radius: 8,
-                                      spacing: 10,
-                                      dotHeight: 10,
-                                      dotWidth: 10,
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: SmoothPageIndicator(
+                                      controller: model.controller,
+                                      count: 2,
+                                      effect: ScrollingDotsEffect(
+                                        activeStrokeWidth: 2.6,
+                                        activeDotScale: 1.3,
+                                        activeDotColor:
+                                            Theme.of(context).primaryColorDark,
+                                        dotColor: Theme.of(context)
+                                            .primaryColorDark
+                                            .withOpacity(0.6),
+                                        maxVisibleDots: 5,
+                                        radius: 8,
+                                        spacing: 10,
+                                        dotHeight: 10,
+                                        dotWidth: 10,
+                                      ),
                                     ),
                                   ),
                                 ],

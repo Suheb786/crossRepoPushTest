@@ -113,7 +113,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             .primaryColorDark)),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5, left: 5.0),
-                                  child: Text("JOD",
+                                  child: Text(S.of(context).JOD,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
@@ -160,7 +160,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                         return SizedBox();
                                                       }
                                                       return DashboardSwiper(
-                                                        pages: pagesList,
+                                                        pages: pagesList!
+                                                            .reversed
+                                                            .toList(),
                                                         appSwiperController: model
                                                             .appSwiperController,
                                                         pageController: model

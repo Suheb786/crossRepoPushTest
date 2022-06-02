@@ -266,47 +266,56 @@ class RequestAmountFromContactPageView
                         Padding(
                           padding:
                               EdgeInsets.only(top: 27, left: 24, right: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    AutoSizeText(
-                                      model.currentPinValue,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 40,
-                                          fontFamily: 'Montserrat',
-                                          color: AppColor.black),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ///TODO:set direction according to language
+                                Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Expanded(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        AutoSizeText(
+                                          model.currentPinValue,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 40,
+                                              fontFamily: 'Montserrat',
+                                              color: AppColor.black),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.only(top: 15, left: 4),
+                                          child: Text(
+                                            S.of(context).JOD,
+                                            style: TextStyle(
+                                                color: AppColor.verLightGray4,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 15, left: 4),
-                                      child: Text(
-                                        "JOD",
-                                        style: TextStyle(
-                                            color: AppColor.verLightGray4,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    model.clearValue();
-                                  },
-                                  child: AppSvg.asset(AssetUtils.backspaceBlue),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      model.clearValue();
+                                    },
+                                    child:
+                                        AppSvg.asset(AssetUtils.backspaceBlue),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
@@ -339,7 +348,7 @@ class RequestAmountFromContactPageView
                               Padding(
                                 padding: EdgeInsets.only(left: 4.0, top: 2),
                                 child: Text(
-                                  "JOD",
+                                  S.of(context).JOD,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12,
@@ -459,31 +468,35 @@ class RequestAmountFromContactPageView
                         //   ),
                         // )
                         Expanded(
-                          child: NumericKeyboard(
-                              onKeyboardTap: (value) {
-                                model.changeValue(value);
-                              },
-                              textColor: Colors.black,
-                              rightButtonFn: () {
-                                model.requestFromNewRecipient(context);
-                              },
-                              leftIcon: Icon(
-                                Icons.circle,
-                                color: AppColor.black,
-                                size: 5,
-                              ),
-                              rightWidget: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xFF3CB4E5),
-                                child: Center(
-                                  child: AppSvg.asset(AssetUtils.next),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: NumericKeyboard(
+                                onKeyboardTap: (value) {
+                                  model.changeValue(value);
+                                },
+                                textColor: Colors.black,
+                                rightButtonFn: () {
+                                  model.requestFromNewRecipient(context);
+                                },
+                                leftIcon: Icon(
+                                  Icons.circle,
+                                  color: AppColor.black,
+                                  size: 5,
                                 ),
-                              ),
-                              leftButtonFn: () {
-                                print('left button clicked');
-                                model.changeValue(".");
-                              },
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                                rightWidget: CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Color(0xFF3CB4E5),
+                                  child: Center(
+                                    child: AppSvg.asset(AssetUtils.next),
+                                  ),
+                                ),
+                                leftButtonFn: () {
+                                  print('left button clicked');
+                                  model.changeValue(".");
+                                },
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly),
+                          ),
                         )
                       ],
                     );

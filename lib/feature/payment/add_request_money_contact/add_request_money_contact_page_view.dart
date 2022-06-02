@@ -54,7 +54,8 @@ class AddRequestMoneyContactPageView
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                                padding: EdgeInsets.only(top: 30, left: 27),
+                                padding: EdgeInsetsDirectional.only(
+                                    top: 30, start: 27),
                                 child: Text(S.of(context).requestMoney,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
@@ -64,36 +65,43 @@ class AddRequestMoneyContactPageView
                             beneficiaries!.length > 0
                                 ? Column(
                                     children: [
-                                      GridView.builder(
-                                        itemCount: 9,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 0.8,
-                                                mainAxisSpacing: 6),
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.only(
-                                            top: 22, right: 28, left: 27),
-                                        itemBuilder: (context, index) {
-                                          if (index >= beneficiaries!.length) {
-                                            return PaymentBeneficiaryEmptyWidget();
-                                          }
-                                          return PaymentBeneficiaryWidget(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .RequestAmountFromContact,
-                                                  arguments:
-                                                      beneficiaries![index]);
-                                            },
-                                            transferEnum: TransferEnum.request,
-                                            beneficiary: beneficiaries![index],
-                                          );
-                                        },
+                                      Directionality(
+                                        textDirection: TextDirection.ltr,
+                                        child: GridView.builder(
+                                          itemCount: 9,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 0.8,
+                                                  mainAxisSpacing: 6),
+                                          shrinkWrap: true,
+                                          padding: EdgeInsets.only(
+                                              top: 22, right: 28, left: 27),
+                                          itemBuilder: (context, index) {
+                                            if (index >=
+                                                beneficiaries!.length) {
+                                              return PaymentBeneficiaryEmptyWidget();
+                                            }
+                                            return PaymentBeneficiaryWidget(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    RoutePaths
+                                                        .RequestAmountFromContact,
+                                                    arguments:
+                                                        beneficiaries![index]);
+                                              },
+                                              transferEnum:
+                                                  TransferEnum.request,
+                                              beneficiary:
+                                                  beneficiaries![index],
+                                            );
+                                          },
+                                        ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(bottom: 29.0),
+                                        padding: EdgeInsetsDirectional.only(
+                                            bottom: 29.0),
                                         child: Visibility(
                                           visible: beneficiaries!.length >= 9,
                                           child: InkWell(

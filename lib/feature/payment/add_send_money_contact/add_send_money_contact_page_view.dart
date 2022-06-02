@@ -54,7 +54,8 @@ class AddSendMoneyContactPageView
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                                padding: EdgeInsets.only(top: 30, left: 27),
+                                padding: EdgeInsetsDirectional.only(
+                                    top: 30, start: 27),
                                 child: Text(S.of(context).sendMoney,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
@@ -63,33 +64,38 @@ class AddSendMoneyContactPageView
                             beneficiaries!.length > 0
                                 ? Column(
                                     children: [
-                                      GridView.builder(
-                                        itemCount: 9,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 0.8,
-                                                mainAxisSpacing: 6),
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.only(
-                                            top: 22, right: 28, left: 27),
-                                        itemBuilder: (context, index) {
-                                          if (index >= beneficiaries!.length) {
-                                            return PaymentBeneficiaryEmptyWidget();
-                                          }
-                                          return PaymentBeneficiaryWidget(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .SendAmountToContact,
-                                                  arguments:
-                                                      beneficiaries![index]);
-                                            },
-                                            transferEnum: TransferEnum.send,
-                                            beneficiary: beneficiaries![index],
-                                          );
-                                        },
+                                      Directionality(
+                                        textDirection: TextDirection.ltr,
+                                        child: GridView.builder(
+                                          itemCount: 9,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 0.8,
+                                                  mainAxisSpacing: 6),
+                                          shrinkWrap: true,
+                                          padding: EdgeInsets.only(
+                                              top: 22, right: 28, left: 27),
+                                          itemBuilder: (context, index) {
+                                            if (index >=
+                                                beneficiaries!.length) {
+                                              return PaymentBeneficiaryEmptyWidget();
+                                            }
+                                            return PaymentBeneficiaryWidget(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    RoutePaths
+                                                        .SendAmountToContact,
+                                                    arguments:
+                                                        beneficiaries![index]);
+                                              },
+                                              transferEnum: TransferEnum.send,
+                                              beneficiary:
+                                                  beneficiaries![index],
+                                            );
+                                          },
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(bottom: 29.0),

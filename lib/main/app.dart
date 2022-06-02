@@ -42,7 +42,8 @@ class App extends ConsumerWidget {
                 localizationsDelegates: [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
                 ],
                 supportedLocales: S.delegate.supportedLocales,
                 onGenerateTitle: (context) => S.of(context).appName,

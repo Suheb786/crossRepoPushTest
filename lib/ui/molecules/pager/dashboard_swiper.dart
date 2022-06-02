@@ -62,7 +62,7 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
         // }
         return Transform(
           // angle: pi * value,
-          transform: Matrix4.skewX(-value * 1.5),
+          transform: Matrix4.skewX(value * 1.5),
           child: widget.pages![index],
         );
       },

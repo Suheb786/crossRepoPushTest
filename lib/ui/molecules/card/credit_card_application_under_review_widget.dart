@@ -15,7 +15,7 @@ class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -29,6 +29,7 @@ class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
                 image: DecorationImage(
               image: AssetImage(AssetUtils.zigzagBackground),
               fit: BoxFit.cover,
+              matchTextDirection: true,
               scale: isSmallDevices ? 1.3 : 1,
             )),
             child: Column(
@@ -36,13 +37,15 @@ class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 23, right: 23, left: 23),
+                  padding: const EdgeInsetsDirectional.only(
+                      top: 23, end: 23, start: 23),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo,
                       height: isSmallDevices ? 26 : 33.64,
                       width: isSmallDevices ? 52 : 72),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: isSmallDevices ? 20 : 58),
+                  padding:
+                      EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
                   child: Align(
                     alignment: Alignment.center,
                     child: AppSvg.asset(AssetUtils.cardCircle,
@@ -50,9 +53,10 @@ class CreditCardApplicationUnderReviewWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 10, left: 28, right: 28),
+                    padding:
+                        EdgeInsetsDirectional.only(top: 10, start: 28, end: 28),
                     child: Align(
-                      alignment: Alignment.center,
+                      alignment: AlignmentDirectional.center,
                       child: Text(
                         S.of(context).creditCardApplicationUnderReviewDesc,
                         textAlign: TextAlign.center,

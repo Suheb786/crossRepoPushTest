@@ -53,7 +53,7 @@ class _AppSwiperState extends State<AppSwiper> {
           value = (index * 0.01).clamp(-1, 1);
         }
         return Transform.rotate(
-            angle: pi * value,
+            angle: pi * -value,
             // transform: Matrix4.skewX(-value * 1.5),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
