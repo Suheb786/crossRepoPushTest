@@ -398,7 +398,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2205201;
+				CURRENT_PROJECT_VERSION = 2205311;
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -584,8 +584,6 @@
 					"\"package_info\"",
 					"-framework",
 					"\"package_info_plus\"",
-					"-framework",
-					"\"path_provider\"",
 					"-framework",
 					"\"permission_handler\"",
 					"-framework",
@@ -725,7 +723,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2205201;
+				CURRENT_PROJECT_VERSION = 2205311;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
@@ -913,8 +911,6 @@
 					"-framework",
 					"\"package_info_plus\"",
 					"-framework",
-					"\"path_provider\"",
-					"-framework",
 					"\"permission_handler\"",
 					"-framework",
 					"\"r_get_ip\"",
@@ -947,7 +943,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2205201;
+				CURRENT_PROJECT_VERSION = 2205311;
 				DEVELOPMENT_TEAM = A3X6F85765;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -1133,8 +1129,6 @@
 					"\"package_info\"",
 					"-framework",
 					"\"package_info_plus\"",
-					"-framework",
-					"\"path_provider\"",
 					"-framework",
 					"\"permission_handler\"",
 					"-framework",
