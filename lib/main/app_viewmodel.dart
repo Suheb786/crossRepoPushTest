@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
-
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -24,6 +24,15 @@ class AppViewModel extends BaseViewModel {
   // static Timer? tokenTimer;
 
   AppTheme get appTheme => _appTheme;
+
+  Locale _currentLocale = Locale('en');
+
+  Locale get currentLocale => _currentLocale;
+
+  void toggleLocale(LanguageEnum locale) {
+    _currentLocale = Locale(locale.toString());
+    notifyListeners();
+  }
 
   ThemeData get themeData {
     switch (_appTheme) {

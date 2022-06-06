@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -9,6 +10,7 @@ import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
@@ -56,8 +58,69 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: AppStreamBuilder<LanguageEnum>(
+                            stream: model.selectedLanguageStream,
+                            initialData: LanguageEnum.ENGLISH,
+                            dataBuilder: (context, selectedLanguage) {
+                              return Align(
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.only(
+                                      top: 64, end: 40),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 16, /*vertical: 8.5*/
+                                    ),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(200),
+                                        border: Border.all(
+                                            color:
+                                                Theme.of(context).accentColor,
+                                            width: 1)),
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<LanguageEnum>(
+                                        value: selectedLanguage,
+                                        items: model.language
+                                            .map((LanguageEnum e) =>
+                                                DropdownMenuItem(
+                                                    value: e,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .only(end: 12),
+                                                      child: Text(
+                                                        e.fromLanguage(),
+                                                        style: TextStyle(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentColor,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14),
+                                                      ),
+                                                    )))
+                                            .toList(),
+                                        onChanged: (value) {
+                                          model.setLanguage(value!);
+                                          ProviderScope.containerOf(context)
+                                              .read(appViewModel)
+                                              .toggleLocale(value);
+                                        },
+                                        dropdownColor:
+                                            Theme.of(context).primaryColor,
+                                        icon: AppSvg.asset(AssetUtils.dropDown),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                      ),
                       Padding(
-                        padding: EdgeInsets.only(top: 112.0),
+                        padding: EdgeInsets.only(top: 40.0),
                         child: AppSvg.asset(
                           AssetUtils.blinkLogo,
                           width: 195,
