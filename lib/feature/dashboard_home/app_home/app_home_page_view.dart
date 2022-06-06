@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
@@ -25,6 +24,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
@@ -161,9 +161,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                         return SizedBox();
                                                       }
                                                       return DashboardSwiper(
-                                                        pages: pagesList!
-                                                            .reversed
-                                                            .toList(),
+                                                        pages: StringUtils
+                                                                .isDirectionRTL(
+                                                                    context)
+                                                            ? pagesList!
+                                                                .reversed
+                                                                .toList()
+                                                            : pagesList,
                                                         appSwiperController: model
                                                             .appSwiperController,
                                                         pageController: model

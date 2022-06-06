@@ -50,7 +50,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     },
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        ///TODO:
                         if (currentStep == 0) {
                           Navigator.pushNamed(context, RoutePaths.SendMoney);
                         } else {

@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DashboardSwiper extends StatefulWidget {
   final List? pages;
@@ -62,7 +63,9 @@ class _DashboardSwiperState extends State<DashboardSwiper> {
         // }
         return Transform(
           // angle: pi * value,
-          transform: Matrix4.skewX(value * 1.5),
+          transform: StringUtils.isDirectionRTL(context)
+              ? Matrix4.skewX(value * 1.5)
+              : Matrix4.skewX(-value * 1.5),
           child: widget.pages![index],
         );
       },

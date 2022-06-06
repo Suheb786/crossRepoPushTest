@@ -232,9 +232,10 @@ class SendAmountToContactPageView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ///TODO: set accoording to language
                     Directionality(
-                      textDirection: TextDirection.rtl,
+                      textDirection: StringUtils.isDirectionRTL(context)
+                          ? TextDirection.rtl
+                          : TextDirection.ltr,
                       child: Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

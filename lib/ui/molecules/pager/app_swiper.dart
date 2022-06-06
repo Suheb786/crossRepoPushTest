@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AppSwiper extends StatefulWidget {
   final List? pages;
@@ -53,7 +54,8 @@ class _AppSwiperState extends State<AppSwiper> {
           value = (index * 0.01).clamp(-1, 1);
         }
         return Transform.rotate(
-            angle: pi * -value,
+            angle:
+                StringUtils.isDirectionRTL(context) ? pi * -value : pi * value,
             // transform: Matrix4.skewX(-value * 1.5),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
