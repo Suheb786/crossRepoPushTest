@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EnterNewPinForCardPageView
     extends BasePageViewWidget<EnterNewPinForCardPageViewModel> {
@@ -71,13 +72,24 @@ class EnterNewPinForCardPageView
                       dataBuilder: (context, isOtpVerified) {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              FocusScope.of(context).unfocus();
-                              model.enterNewPinForCard(
-                                  ProviderScope.containerOf(context)
-                                      .read(changeCardPinViewModelProvider)
-                                      .changeCardPinArguments
-                                      .cardType!);
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                FocusScope.of(context).unfocus();
+                                model.enterNewPinForCard(
+                                    ProviderScope.containerOf(context)
+                                        .read(changeCardPinViewModelProvider)
+                                        .changeCardPinArguments
+                                        .cardType!);
+                              }
+                            } else {
+                              if (details.primaryVelocity!.isNegative) {
+                                FocusScope.of(context).unfocus();
+                                model.enterNewPinForCard(
+                                    ProviderScope.containerOf(context)
+                                        .read(changeCardPinViewModelProvider)
+                                        .changeCardPinArguments
+                                        .cardType!);
+                              }
                             }
                           },
                           child: Card(

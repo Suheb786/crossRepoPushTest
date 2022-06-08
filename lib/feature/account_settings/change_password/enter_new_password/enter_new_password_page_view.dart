@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EnterNewPasswordPageView
     extends BasePageViewWidget<EnterNewPasswordPageViewModel> {
@@ -69,8 +70,14 @@ class EnterNewPasswordPageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.createPassword();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.createPassword();
+                            }
+                          } else {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.createPassword();
+                            }
                           }
                         },
                         child: Card(

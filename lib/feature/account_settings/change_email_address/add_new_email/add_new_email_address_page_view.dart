@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AddNewEmailAddressPageView
     extends BasePageViewWidget<AddNewEmailAddressPageViewModel> {
@@ -53,8 +54,14 @@ class AddNewEmailAddressPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     FocusScope.of(context).unfocus();
-                    if (details.primaryVelocity!.isNegative) {
-                      model.changeEmail();
+                    if (StringUtils.isDirectionRTL(context)) {
+                      if (!details.primaryVelocity!.isNegative) {
+                        model.changeEmail();
+                      }
+                    } else {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.changeEmail();
+                      }
                     }
                   },
                   child: Card(

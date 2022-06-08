@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoCallInformationPageView
@@ -57,53 +58,13 @@ class VideoCallInformationPageView
                                 .appSwiperController
                                 .page ==
                             0.0) {
-                          if (details.primaryVelocity!.isNegative) {
-                            if (Platform.isAndroid) {
-                              Map<Permission, PermissionStatus> statuses =
-                                  await [
-                                Permission.camera,
-                                Permission.microphone,
-                                Permission.bluetooth,
-                                Permission.bluetoothConnect
-                              ].request();
-
-                              if (statuses[Permission.camera] ==
-                                      PermissionStatus.permanentlyDenied ||
-                                  statuses[Permission.microphone] ==
-                                      PermissionStatus.permanentlyDenied ||
-                                  statuses[Permission.bluetooth] ==
-                                      PermissionStatus.permanentlyDenied ||
-                                  statuses[Permission.bluetoothConnect] ==
-                                      PermissionStatus.permanentlyDenied) {
-                                openAppSettings();
-                              } else {
-                                Future.delayed(Duration(milliseconds: 100), () {
-                                  ProviderScope.containerOf(context)
-                                      .read(videoCallViewModelProvider)
-                                      .nextPage();
-                                  // .next();
-                                });
-                              }
-                            } else if (Platform.isIOS) {
-                              Map<Permission, PermissionStatus> statuses =
-                                  await [
-                                Permission.camera,
-                                Permission.microphone,
-                              ].request();
-
-                              if (statuses[Permission.camera] ==
-                                      PermissionStatus.permanentlyDenied ||
-                                  statuses[Permission.microphone] ==
-                                      PermissionStatus.permanentlyDenied) {
-                                openAppSettings();
-                              } else {
-                                Future.delayed(Duration(milliseconds: 100), () {
-                                  ProviderScope.containerOf(context)
-                                      .read(videoCallViewModelProvider)
-                                      .nextPage();
-                                  // .next();
-                                });
-                              }
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              checkPermission(context);
+                            }
+                          } else {
+                            if (details.primaryVelocity!.isNegative) {
+                              checkPermission(context);
                             }
                           }
                         }
@@ -204,5 +165,51 @@ class VideoCallInformationPageView
             );
           }),
     );
+  }
+
+  checkPermission(BuildContext context) async {
+    if (Platform.isAndroid) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.camera,
+        Permission.microphone,
+        Permission.bluetooth,
+        Permission.bluetoothConnect
+      ].request();
+
+      if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
+          statuses[Permission.microphone] ==
+              PermissionStatus.permanentlyDenied ||
+          statuses[Permission.bluetooth] ==
+              PermissionStatus.permanentlyDenied ||
+          statuses[Permission.bluetoothConnect] ==
+              PermissionStatus.permanentlyDenied) {
+        openAppSettings();
+      } else {
+        Future.delayed(Duration(milliseconds: 100), () {
+          ProviderScope.containerOf(context)
+              .read(videoCallViewModelProvider)
+              .nextPage();
+          // .next();
+        });
+      }
+    } else if (Platform.isIOS) {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.camera,
+        Permission.microphone,
+      ].request();
+
+      if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
+          statuses[Permission.microphone] ==
+              PermissionStatus.permanentlyDenied) {
+        openAppSettings();
+      } else {
+        Future.delayed(Duration(milliseconds: 100), () {
+          ProviderScope.containerOf(context)
+              .read(videoCallViewModelProvider)
+              .nextPage();
+          // .next();
+        });
+      }
+    }
   }
 }

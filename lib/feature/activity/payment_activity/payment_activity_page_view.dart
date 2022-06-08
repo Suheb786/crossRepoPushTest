@@ -20,14 +20,26 @@ class PaymentActivityPageView
     return Center(
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {
+          if (StringUtils.isDirectionRTL(context)) {
+            if (!details.primaryVelocity!.isNegative) {
+            } else {
+              ProviderScope.containerOf(context)
+                  .read(activityHomeViewModelProvider)
+                  .appSwiperController
+                  .previousPage(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linear);
+            }
           } else {
-            ProviderScope.containerOf(context)
-                .read(activityHomeViewModelProvider)
-                .appSwiperController
-                .previousPage(
-                    duration: Duration(milliseconds: 600),
-                    curve: Curves.linear);
+            if (details.primaryVelocity!.isNegative) {
+            } else {
+              ProviderScope.containerOf(context)
+                  .read(activityHomeViewModelProvider)
+                  .appSwiperController
+                  .previousPage(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linear);
+            }
           }
         },
         child: Card(
@@ -36,10 +48,10 @@ class PaymentActivityPageView
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).canvasColor,
-          margin: EdgeInsets.zero,
+          margin: EdgeInsetsDirectional.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
-            padding: EdgeInsets.only(top: 30, left: 24, right: 24),
+            padding: EdgeInsetsDirectional.only(top: 30, start: 24, end: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,7 +80,7 @@ class PaymentActivityPageView
                                 shrinkWrap: true,
                                 itemBuilder: (mContext, index) {
                                   return Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: EdgeInsetsDirectional.only(
                                         top: index == 0 ? 0 : 23,
                                         bottom: index ==
                                                 transaction.data!.length - 1
@@ -105,7 +117,8 @@ class PaymentActivityPageView
                                         ),
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 11),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 11),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -153,8 +166,8 @@ class PaymentActivityPageView
                                                 //       fontSize: 12),
                                                 // ),
                                                 Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 6),
+                                                  padding: EdgeInsetsDirectional
+                                                      .only(top: 6),
                                                   child: Container(
                                                     padding:
                                                         EdgeInsets.symmetric(

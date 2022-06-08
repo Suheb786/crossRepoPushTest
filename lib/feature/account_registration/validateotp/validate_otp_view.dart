@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
   ValidateOtpPageView(ProviderBase model) : super(model);
@@ -73,12 +74,19 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                   .page ==
                               2.0) {
                             FocusScope.of(context).unfocus();
-                            if (details.primaryVelocity!.isNegative) {
-                              model.validateOtp();
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (details.primaryVelocity!.isNegative) {
+                              } else {
+                                model.validateOtp();
+                              }
                             } else {
-                              // ProviderScope.containerOf(context)
-                              //     .read(accountRegistrationViewModelProvider)
-                              //     .previousPage();
+                              if (details.primaryVelocity!.isNegative) {
+                                model.validateOtp();
+                              } else {
+                                // ProviderScope.containerOf(context)
+                                //     .read(accountRegistrationViewModelProvider)
+                                //     .previousPage();
+                              }
                             }
                           }
                         },

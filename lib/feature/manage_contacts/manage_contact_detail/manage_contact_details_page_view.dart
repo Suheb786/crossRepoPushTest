@@ -25,7 +25,7 @@ class ManageContactDetailsPageView
       children: [
         Expanded(
           child: Card(
-            margin: EdgeInsets.only(left: 24, right: 24, bottom: 40),
+            margin: EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
             child: Stack(
               children: [
                 SingleChildScrollView(
@@ -231,7 +231,7 @@ class ManageContactDetailsPageView
                         //   return Container(
                         //       height: 16,
                         //       width: 16,
-                        //       padding: EdgeInsets.only(right: 8),
+                        //       padding: EdgeInsetsDirectional.only(right: 8),
                         //       child: AppSvg.asset(AssetUtils.downArrow,
                         //           color: AppColor.dark_gray_1));
                         // },
@@ -266,7 +266,7 @@ class ManageContactDetailsPageView
                           return Container(
                               height: 16,
                               width: 16,
-                              padding: EdgeInsets.only(right: 8),
+                              padding: EdgeInsetsDirectional.only(right: 8),
                               child: AppSvg.asset(AssetUtils.downArrow,
                                   color: AppColor.dark_gray_1));
                         },*/
@@ -287,7 +287,8 @@ class ManageContactDetailsPageView
                               model.deleteBeneficiary();
                             },
                             child: Padding(
-                              padding: EdgeInsets.only(top: 45, bottom: 11),
+                              padding: EdgeInsetsDirectional.only(
+                                  top: 45, bottom: 11),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

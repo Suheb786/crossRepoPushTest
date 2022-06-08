@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaUSRelevantW9PageView
     extends BasePageViewWidget<FatcaUSRelevantW9PageViewModel> {
@@ -61,16 +62,22 @@ class FatcaUSRelevantW9PageView
                                 .page ==
                             4.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSRelevantW9Details();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW9Details();
+                            }
                           } else {
-                            ///Don't allow user to go back
-                            // Future.delayed(Duration(milliseconds: 500), () {
-                            //   ProviderScope.containerOf(context)
-                            //       .read(registerStepFourViewModelProvider)
-                            //       .moveToPage(0);
-                            //   // .move(0,animation:false);
-                            // });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW9Details();
+                            } else {
+                              ///Don't allow user to go back
+                              // Future.delayed(Duration(milliseconds: 500), () {
+                              //   ProviderScope.containerOf(context)
+                              //       .read(registerStepFourViewModelProvider)
+                              //       .moveToPage(0);
+                              //   // .move(0,animation:false);
+                              // });
+                            }
                           }
                         }
                       },

@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaUSW8TaxPayersDetailsPageView
     extends BasePageViewWidget<FatcaUSW8TaxPayersDetailsPageViewModel> {
@@ -66,15 +67,28 @@ class FatcaUSW8TaxPayersDetailsPageView
                                 .page ==
                             3.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSW8TaxPayersDetails();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW8TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           } else {
-                            Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .previousPage();
-                              // .previous();
-                            });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW8TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           }
                         }
                       },

@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class IdVerificationInfoView
     extends BasePageViewWidget<IdVerificationInfoViewModel> {
@@ -167,9 +168,17 @@ class IdVerificationInfoView
                                                   .appSwiperController
                                                   .page ==
                                               0.0) {
-                                            if (details
-                                                .primaryVelocity!.isNegative) {
-                                              model.idVerificationInfo();
+                                            if (StringUtils.isDirectionRTL(
+                                                context)) {
+                                              if (!details.primaryVelocity!
+                                                  .isNegative) {
+                                                model.idVerificationInfo();
+                                              }
+                                            } else {
+                                              if (details.primaryVelocity!
+                                                  .isNegative) {
+                                                model.idVerificationInfo();
+                                              }
                                             }
                                           }
                                         },

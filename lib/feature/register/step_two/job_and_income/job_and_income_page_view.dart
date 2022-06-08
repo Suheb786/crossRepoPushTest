@@ -29,6 +29,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class JobAndIncomePageView
     extends BasePageViewWidget<JobAndIncomePageViewModel> {
@@ -69,8 +70,14 @@ class JobAndIncomePageView
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
                   FocusScope.of(context).unfocus();
-                  if (details.primaryVelocity!.isNegative) {
-                    model.validateJobAndIncomeDetails();
+                  if (StringUtils.isDirectionRTL(context)) {
+                    if (!details.primaryVelocity!.isNegative) {
+                      model.validateJobAndIncomeDetails();
+                    }
+                  } else {
+                    if (details.primaryVelocity!.isNegative) {
+                      model.validateJobAndIncomeDetails();
+                    }
                   }
                 },
                 child: Card(

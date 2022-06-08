@@ -64,6 +64,7 @@ class ContactListWidget extends StatelessWidget {
                 child: AppSvg.asset(AssetUtils.rightChevron,
                     width: 18,
                     height: 18,
+                    matchTextDirection: true,
                     color: Theme.of(context)
                         .inputDecorationTheme
                         .hintStyle!

@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AddNewMobileNumberPageView
     extends BasePageViewWidget<AddNewMobileNumberPageViewModel> {
@@ -59,8 +60,14 @@ class AddNewMobileNumberPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     FocusScope.of(context).unfocus();
-                    if (details.primaryVelocity!.isNegative) {
-                      model.changeMobileNumber();
+                    if (StringUtils.isDirectionRTL(context)) {
+                      if (!details.primaryVelocity!.isNegative) {
+                        model.changeMobileNumber();
+                      }
+                    } else {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.changeMobileNumber();
+                      }
                     }
                   },
                   child: Card(

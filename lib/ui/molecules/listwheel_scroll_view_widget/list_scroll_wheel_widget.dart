@@ -22,7 +22,7 @@ class ListScrollWheelListWidget extends StatelessWidget {
         onTap?.call();
       },
       child: Container(
-        padding: EdgeInsets.only(top: 23, left: 32, bottom: 21),
+        padding: EdgeInsetsDirectional.only(top: 23, start: 32, bottom: 21),
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,

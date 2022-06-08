@@ -193,6 +193,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                         ),
                       ),
                     ),
+
                     Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 16.0),

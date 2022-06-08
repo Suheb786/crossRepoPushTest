@@ -36,7 +36,8 @@ class AccountSettingPageView
         children: [
           Expanded(
             child: Card(
-              margin: EdgeInsets.only(left: 24, right: 24, bottom: 40),
+              margin:
+                  EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 child: AppStreamBuilder<Resource<ProfileInfoResponse>>(
@@ -226,8 +227,8 @@ class AccountSettingPageView
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 32.0, bottom: 16),
+                                            padding: const EdgeInsetsDirectional
+                                                .only(top: 32.0, bottom: 16),
                                             child: Container(
                                               height: 1,
                                               color: Theme.of(context)
@@ -255,8 +256,8 @@ class AccountSettingPageView
                                             },
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16.0, bottom: 16),
+                                            padding: const EdgeInsetsDirectional
+                                                .only(top: 16.0, bottom: 16),
                                             child: Container(
                                               height: 1,
                                               color: Theme.of(context)
@@ -276,8 +277,8 @@ class AccountSettingPageView
                                             },
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16.0, bottom: 16),
+                                            padding: const EdgeInsetsDirectional
+                                                .only(top: 16.0, bottom: 16),
                                             child: Container(
                                               height: 1,
                                               color: Theme.of(context)
@@ -293,8 +294,8 @@ class AccountSettingPageView
                                             },
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16.0, bottom: 16),
+                                            padding: const EdgeInsetsDirectional
+                                                .only(top: 16.0, bottom: 16),
                                             child: Container(
                                               height: 1,
                                               color: Theme.of(context)

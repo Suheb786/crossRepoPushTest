@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
   AddNumberPageView(ProviderBase model) : super(model);
@@ -69,12 +70,22 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               .page ==
                           0.0) {
                         FocusScope.of(context).unfocus();
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validateNumber();
+                        if (StringUtils.isDirectionRTL(context)) {
+                          if (details.primaryVelocity!.isNegative) {
+                            ProviderScope.containerOf(context)
+                                .read(accountRegistrationViewModelProvider)
+                                .previousPage();
+                          } else {
+                            model.validateNumber();
+                          }
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(accountRegistrationViewModelProvider)
-                              .previousPage();
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validateNumber();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(accountRegistrationViewModelProvider)
+                                .previousPage();
+                          }
                         }
                       }
                     },

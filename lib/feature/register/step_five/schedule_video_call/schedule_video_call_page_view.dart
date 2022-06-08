@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class ScheduleVideoCallPageView
@@ -76,15 +77,30 @@ class ScheduleVideoCallPageView
                                     .page ==
                                 3.0) {
                               FocusScope.of(context).unfocus();
-                              if (details.primaryVelocity!.isNegative) {
-                                model.validateScheduleVideoCallDetails();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.validateScheduleVideoCallDetails();
+                                } else {
+                                  Future.delayed(Duration(milliseconds: 500),
+                                      () {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerStepFiveViewModelProvider)
+                                        .moveToPage(1);
+                                    // .move(1, animation: false);
+                                  });
+                                }
                               } else {
-                                Future.delayed(Duration(milliseconds: 500), () {
-                                  ProviderScope.containerOf(context)
-                                      .read(registerStepFiveViewModelProvider)
-                                      .moveToPage(1);
-                                  // .move(1, animation: false);
-                                });
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.validateScheduleVideoCallDetails();
+                                } else {
+                                  Future.delayed(Duration(milliseconds: 500),
+                                      () {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerStepFiveViewModelProvider)
+                                        .moveToPage(1);
+                                    // .move(1, animation: false);
+                                  });
+                                }
                               }
                             }
                           },

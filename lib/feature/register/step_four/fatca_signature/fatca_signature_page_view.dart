@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaSignaturePageView
     extends BasePageViewWidget<FatcaSignaturePageViewModel> {
@@ -86,31 +87,38 @@ class FatcaSignaturePageView
                                           .appSwiperController
                                           .page ==
                                       7.0) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      model.setFatcaResponse(context);
+                                    if (StringUtils.isDirectionRTL(context)) {
+                                      if (!details
+                                          .primaryVelocity!.isNegative) {
+                                        model.setFatcaResponse(context);
+                                      }
                                     } else {
-                                      ///back navigation from signature screen
-                                      // ProviderScope.containerOf(context)
-                                      //             .read(
-                                      //                 registerStepFourViewModelProvider)
-                                      //             .taxPayerType ==
-                                      //         TaxPayerTypeEnum.W8
-                                      //     ? Future.delayed(
-                                      //         Duration(milliseconds: 500), () {
-                                      //         ProviderScope.containerOf(context)
-                                      //             .read(
-                                      //                 registerStepFourViewModelProvider)
-                                      //             .registrationStepFourPageController
-                                      //             .move(3, animation: false);
-                                      //       })
-                                      //     : Future.delayed(
-                                      //         Duration(milliseconds: 500), () {
-                                      //         ProviderScope.containerOf(context)
-                                      //             .read(
-                                      //                 registerStepFourViewModelProvider)
-                                      //             .registrationStepFourPageController
-                                      //             .move(6, animation: false);
-                                      //       });
+                                      if (details.primaryVelocity!.isNegative) {
+                                        model.setFatcaResponse(context);
+                                      } else {
+                                        ///back navigation from signature screen
+                                        // ProviderScope.containerOf(context)
+                                        //             .read(
+                                        //                 registerStepFourViewModelProvider)
+                                        //             .taxPayerType ==
+                                        //         TaxPayerTypeEnum.W8
+                                        //     ? Future.delayed(
+                                        //         Duration(milliseconds: 500), () {
+                                        //         ProviderScope.containerOf(context)
+                                        //             .read(
+                                        //                 registerStepFourViewModelProvider)
+                                        //             .registrationStepFourPageController
+                                        //             .move(3, animation: false);
+                                        //       })
+                                        //     : Future.delayed(
+                                        //         Duration(milliseconds: 500), () {
+                                        //         ProviderScope.containerOf(context)
+                                        //             .read(
+                                        //                 registerStepFourViewModelProvider)
+                                        //             .registrationStepFourPageController
+                                        //             .move(6, animation: false);
+                                        //       });
+                                      }
                                     }
                                   }
                                 },
