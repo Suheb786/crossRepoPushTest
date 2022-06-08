@@ -353,7 +353,6 @@ class LoginViewModel extends BasePageViewModel {
       }).asFlow().listen((event) {
         if (event.status == Status.SUCCESS) {
           AppConstantsUtils.isInfobipRegistered = true;
-          print('infobip registered successfully');
         }
       });
     });
