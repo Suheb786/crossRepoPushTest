@@ -161,13 +161,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                         return SizedBox();
                                                       }
                                                       return DashboardSwiper(
-                                                        pages: StringUtils
+                                                        pages: /*StringUtils
                                                                 .isDirectionRTL(
                                                                     context)
                                                             ? pagesList!
                                                                 .reversed
                                                                 .toList()
-                                                            : pagesList,
+                                                            :*/ pagesList,
                                                         appSwiperController: model
                                                             .appSwiperController,
                                                         pageController: model

@@ -28,7 +28,7 @@ class CardTransactionPageView
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: EdgeInsets.only(top: 52),
+        padding: EdgeInsetsDirectional.only(top: 52),
         child: GestureDetector(
           onVerticalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
@@ -92,7 +92,7 @@ class CardTransactionPageView
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: EdgeInsetsDirectional.only(top: 35),
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -101,7 +101,7 @@ class CardTransactionPageView
                             topRight: Radius.circular(16),
                             topLeft: Radius.circular(16))),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 8),
+                      padding: EdgeInsetsDirectional.only(top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -115,8 +115,8 @@ class CardTransactionPageView
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                            padding: EdgeInsetsDirectional.only(
+                                top: 24.0, start: 24, end: 38),
                             child: Row(
                               children: [
                                 Expanded(
@@ -129,14 +129,16 @@ class CardTransactionPageView
                                         model.onSearchTextChanged(text),
                                     suffixIcon: (value, data) {
                                       return Padding(
-                                          padding: EdgeInsets.only(left: 19),
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 19),
                                           child: AppSvg.asset(AssetUtils.search,
                                               height: 16, width: 16));
                                     },
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 24),
+                                  padding:
+                                      EdgeInsetsDirectional.only(start: 24),
                                   child: InkWell(
                                       onTap: () {
                                         FilterTransactionDialog.show(
@@ -166,8 +168,8 @@ class CardTransactionPageView
                                 return Visibility(
                                   visible: textList!.length > 0,
                                   child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 21, left: 24, right: 24),
+                                    padding: EdgeInsetsDirectional.only(
+                                        top: 21, start: 24, end: 24),
                                     child: Container(
                                       height: 40,
                                       child: ListView.builder(
@@ -176,8 +178,8 @@ class CardTransactionPageView
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, index) {
                                           return Padding(
-                                            padding: EdgeInsets.only(
-                                                left: index == 0 ? 0 : 9),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: index == 0 ? 0 : 9),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
@@ -196,8 +198,9 @@ class CardTransactionPageView
                                                             .accentColor),
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 9),
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .only(start: 9),
                                                     child: InkWell(
                                                       onTap: () {
                                                         model.updateSearchList(
@@ -226,8 +229,8 @@ class CardTransactionPageView
                               dataBuilder: (context, transaction) {
                                 return Expanded(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 24, right: 24),
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 24, end: 24),
                                     child: transaction!.data!
                                                 .transactionResponse!.length >
                                             0
@@ -254,7 +257,7 @@ class CardTransactionPageView
                               }),
                           // Padding(
                           //   padding:
-                          //       EdgeInsets.only(top: 24, left: 24, right: 24),
+                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
                           //   child: Column(
                           //     crossAxisAlignment: CrossAxisAlignment.start,
                           //     children: [
@@ -266,7 +269,7 @@ class CardTransactionPageView
                           //         ),
                           //       ),
                           //       Padding(
-                          //         padding: EdgeInsets.only(top: 16),
+                          //         padding: EdgeInsetsDirectional.only(top: 16),
                           //         child: Card(
                           //           shape: RoundedRectangleBorder(
                           //               borderRadius:
@@ -277,7 +280,7 @@ class CardTransactionPageView
                           //               .cardTheme
                           //               .copyWith(color: AppColor.white)
                           //               .color,
-                          //           margin: EdgeInsets.zero,
+                          //           margin: EdgeInsetsDirectional.zero,
                           //           shadowColor:
                           //               AppColor.black.withOpacity(0.32),
                           //           child: Container(
@@ -285,8 +288,8 @@ class CardTransactionPageView
                           //             child: Column(
                           //               children: [
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -310,7 +313,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -353,12 +356,12 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -382,7 +385,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -425,12 +428,12 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -454,7 +457,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -497,14 +500,14 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
+                          //                   padding: EdgeInsetsDirectional.only(
                           //                       top: 17,
-                          //                       left: 24,
-                          //                       right: 24,
+                          //                       start: 24,
+                          //                       end: 24,
                           //                       bottom: 17),
                           //                   child: Row(
                           //                     mainAxisAlignment:
@@ -529,7 +532,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -581,7 +584,7 @@ class CardTransactionPageView
                           // ),
                           // Padding(
                           //   padding:
-                          //       EdgeInsets.only(top: 24, left: 24, right: 24),
+                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
                           //   child: Column(
                           //     crossAxisAlignment: CrossAxisAlignment.start,
                           //     children: [
@@ -593,7 +596,7 @@ class CardTransactionPageView
                           //         ),
                           //       ),
                           //       Padding(
-                          //         padding: EdgeInsets.only(top: 16),
+                          //         padding: EdgeInsetsDirectional.only(top: 16),
                           //         child: Card(
                           //           shape: RoundedRectangleBorder(
                           //               borderRadius:
@@ -604,7 +607,7 @@ class CardTransactionPageView
                           //               .cardTheme
                           //               .copyWith(color: AppColor.white)
                           //               .color,
-                          //           margin: EdgeInsets.zero,
+                          //           margin: EdgeInsetsDirectional.zero,
                           //           shadowColor:
                           //               AppColor.black.withOpacity(0.32),
                           //           child: Container(
@@ -612,8 +615,8 @@ class CardTransactionPageView
                           //             child: Column(
                           //               children: [
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -637,7 +640,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -680,12 +683,12 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -709,7 +712,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -752,12 +755,12 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -781,7 +784,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -824,14 +827,14 @@ class CardTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
+                          //                   padding: EdgeInsetsDirectional.only(
                           //                       top: 17,
-                          //                       left: 24,
-                          //                       right: 24,
+                          //                       start: 24,
+                          //                       end: 24,
                           //                       bottom: 17),
                           //                   child: Row(
                           //                     mainAxisAlignment:
@@ -856,7 +859,7 @@ class CardTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",

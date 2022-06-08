@@ -25,7 +25,7 @@ class AppViewModel extends BaseViewModel {
 
   AppTheme get appTheme => _appTheme;
 
-  Locale _currentLocale = Locale('en');
+  Locale _currentLocale = Locale('ar');
 
   Locale get currentLocale => _currentLocale;
 

@@ -8,7 +8,7 @@ import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.da
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -82,51 +82,44 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                   Expanded(
                                     child: Padding(
                                       padding: EdgeInsets.only(top: 4),
-                                      child: Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          PaymentSwiper(
-                                            pages: [
-                                              AddSendMoneyContactPage(
-                                                  beneficiaries:
-                                                      model.smBeneficiaries),
-                                              AddRequestMoneyContactPage(
-                                                  beneficiaries:
-                                                      model.rtpBeneficiaries),
-                                              Container()
-                                            ],
-                                            pageController:
-                                                model.pageController,
-                                            onIndexChanged: (index) {
-                                              model.updatePage(index);
-                                              model.updatePageControllerStream(
-                                                  index);
-                                            },
-                                            currentStep: currentStep,
-                                          ),
+                                      child: AppSwiper(
+                                        appSwiperController:
+                                            model.appSwiperController,
+                                        pages: [
+                                          AddSendMoneyContactPage(
+                                              beneficiaries:
+                                                  model.smBeneficiaries),
+                                          AddRequestMoneyContactPage(
+                                              beneficiaries:
+                                                  model.rtpBeneficiaries),
+                                          Container()
                                         ],
+                                        pageController: model.pageController,
+                                        onIndexChanged: (index) {
+                                          model.updatePage(index);
+                                          model.updatePageControllerStream(
+                                              index);
+                                        },
+                                        currentStep: currentStep,
                                       ),
                                     ),
                                   ),
-                                  Directionality(
-                                    textDirection: TextDirection.ltr,
-                                    child: SmoothPageIndicator(
-                                      controller: model.controller,
-                                      count: 2,
-                                      effect: ScrollingDotsEffect(
-                                        activeStrokeWidth: 2.6,
-                                        activeDotScale: 1.3,
-                                        activeDotColor:
-                                            Theme.of(context).primaryColorDark,
-                                        dotColor: Theme.of(context)
-                                            .primaryColorDark
-                                            .withOpacity(0.6),
-                                        maxVisibleDots: 5,
-                                        radius: 8,
-                                        spacing: 10,
-                                        dotHeight: 10,
-                                        dotWidth: 10,
-                                      ),
+                                  SmoothPageIndicator(
+                                    controller: model.controller,
+                                    count: 2,
+                                    effect: ScrollingDotsEffect(
+                                      activeStrokeWidth: 2.6,
+                                      activeDotScale: 1.3,
+                                      activeDotColor:
+                                          Theme.of(context).primaryColorDark,
+                                      dotColor: Theme.of(context)
+                                          .primaryColorDark
+                                          .withOpacity(0.6),
+                                      maxVisibleDots: 5,
+                                      radius: 8,
+                                      spacing: 10,
+                                      dotHeight: 10,
+                                      dotWidth: 10,
                                     ),
                                   ),
                                 ],

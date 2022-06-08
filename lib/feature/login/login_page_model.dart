@@ -45,9 +45,9 @@ class LoginViewModel extends BasePageViewModel {
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
   final TextEditingController emailController =
-      TextEditingController(text: 'dev1502@gmail.com');
+      TextEditingController(text: 'mydemo14@gmail.com');
   final TextEditingController passwordController =
-      TextEditingController(text: 'Asdf@1234');
+      TextEditingController(text: 'Asdf@123');
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey =
       GlobalKey(debugLabel: "login_email");
