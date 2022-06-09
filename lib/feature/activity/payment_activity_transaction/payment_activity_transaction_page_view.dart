@@ -21,7 +21,7 @@ class PaymentActivityTransactionPageView
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: EdgeInsets.only(top: 52),
+        padding: EdgeInsetsDirectional.only(top: 52),
         child: GestureDetector(
           onVerticalDragUpdate: (details) {
             if (details.primaryDelta!.isNegative) {
@@ -42,7 +42,7 @@ class PaymentActivityTransactionPageView
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: EdgeInsetsDirectional.only(top: 35),
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class PaymentActivityTransactionPageView
                             topRight: Radius.circular(16),
                             topLeft: Radius.circular(16))),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 8),
+                      padding: EdgeInsetsDirectional.only(top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -65,8 +65,8 @@ class PaymentActivityTransactionPageView
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                            padding: EdgeInsetsDirectional.only(
+                                top: 24.0, start: 24, end: 38),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -90,7 +90,8 @@ class PaymentActivityTransactionPageView
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left: 12),
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 12),
                                           child:
                                               AppSvg.asset(AssetUtils.dropDown),
                                         )
@@ -102,7 +103,8 @@ class PaymentActivityTransactionPageView
                                       initialData: 'Last 30 days',
                                       dataBuilder: (mContext, paymentPeriod) {
                                         return Padding(
-                                          padding: EdgeInsets.only(left: 8),
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 8),
                                           child: InkWell(
                                             onTap: () {
                                               PaymentActivityFilterDialog.show(
@@ -134,8 +136,9 @@ class PaymentActivityTransactionPageView
                                                             FontWeight.w600),
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 12),
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .only(start: 12),
                                                     child: AppSvg.asset(
                                                         AssetUtils.dropDown),
                                                   )
@@ -151,8 +154,8 @@ class PaymentActivityTransactionPageView
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsets.only(top: 28, left: 24, right: 24),
+                              padding: EdgeInsetsDirectional.only(
+                                  top: 28, start: 24, end: 24),
                               child: AppStreamBuilder<
                                       Resource<PaymentActivityResponse>>(
                                   stream:

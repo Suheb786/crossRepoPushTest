@@ -183,8 +183,8 @@ class AddNewMobileNumberPageView
                                                           height: 16,
                                                           width: 16,
                                                           margin:
-                                                              EdgeInsets.only(
-                                                                  right: 8),
+                                                              EdgeInsetsDirectional
+                                                                  .only(end: 8),
                                                           child: AppSvg.asset(
                                                               AssetUtils
                                                                   .downArrow,
