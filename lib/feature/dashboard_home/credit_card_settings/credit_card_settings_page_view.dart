@@ -279,38 +279,36 @@ class CreditCardSettingsPageView
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                if (data.status == Status.SUCCESS) {
-                                  if (data
-                                      .data!.cardApplicationContent!.isEmpty) {
-                                    ProviderScope.containerOf(context)
-                                            .read(appHomeViewModelProvider)
-                                            .currentCreditCard =
-                                        model.creditCardSettingsArguments
-                                            .creditCard;
-                                    Navigator.pushNamed(context,
-                                        RoutePaths.SupplementaryCreditCard);
-                                    // ProviderScope.containerOf(context)
-                                    //     .read(
-                                    //         relationShipWithCardHolderViewModelProvider)
-                                    //     .getCreditCardRelationship(
-                                    //         cardId: model
-                                    //                 .creditCardSettingsArguments
-                                    //                 .creditCard
-                                    //                 .cardId ??
-                                    //             '');
-                                  } else {
-                                    Navigator.pushReplacementNamed(
-                                        context,
-                                        RoutePaths
-                                            .SupplementaryCreditCardActivationStatus,
-                                        arguments:
-                                            SupplementaryCreditCardActivationArguments(
-                                                primaryCardId: model
-                                                        .creditCardSettingsArguments
-                                                        .creditCard
-                                                        .cardId ??
-                                                    ''));
-                                  }
+                                if (data
+                                    .data!.cardApplicationContent!.isEmpty) {
+                                  ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .currentCreditCard =
+                                      model.creditCardSettingsArguments
+                                          .creditCard;
+                                  Navigator.pushNamed(context,
+                                      RoutePaths.SupplementaryCreditCard);
+                                  // ProviderScope.containerOf(context)
+                                  //     .read(
+                                  //         relationShipWithCardHolderViewModelProvider)
+                                  //     .getCreditCardRelationship(
+                                  //         cardId: model
+                                  //                 .creditCardSettingsArguments
+                                  //                 .creditCard
+                                  //                 .cardId ??
+                                  //             '');
+                                } else {
+                                  Navigator.pushReplacementNamed(
+                                      context,
+                                      RoutePaths
+                                          .SupplementaryCreditCardActivationStatus,
+                                      arguments:
+                                          SupplementaryCreditCardActivationArguments(
+                                              primaryCardId: model
+                                                      .creditCardSettingsArguments
+                                                      .creditCard
+                                                      .cardId ??
+                                                  ''));
                                 }
                               }
                             },
