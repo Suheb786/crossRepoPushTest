@@ -1,7 +1,6 @@
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
-import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
@@ -76,6 +75,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     this._apiService,
     this._deviceInfoHelper,
     this._userLocalDS,
+
     // this._cryptoUtil
   );
 
@@ -408,10 +408,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<ResponseEntity>> enableBiometric() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = userDBEntity!.transform();
+    User? user = await _userLocalDS.getCurrentUser();
     return _apiService.enableBiometric(EnableBiometricRequestEntity(
-      publicKey: user.publicPEM,
+      publicKey: user!.publicPEM,
       cipher: await encryptData(
           content: user.id,
           publicKey: user.publicPEM,
@@ -448,11 +447,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> androidLogin(
       {required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = User();
+    User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
-    if (userDBEntity != null) {
-      user = userDBEntity.transform();
+    if (user != null) {
       //userId = user.id!;
       // print('user private key--->${user.privatePEM}');
       userId = await decryptData(
@@ -464,7 +461,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
+      signature:
+          await signedData(userId: userId, privateKey: user!.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }
@@ -473,11 +471,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
       {required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = User();
+    User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
-    if (userDBEntity != null) {
-      user = userDBEntity.transform();
+    if (user != null) {
       userId = await decryptData(
           content: user.id,
           publicKey: user.publicPEM,
@@ -487,7 +483,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
     return _apiService.iphoneLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
+      signature:
+          await signedData(userId: userId, privateKey: user!.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }

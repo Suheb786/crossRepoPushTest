@@ -267,7 +267,6 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         }
       });
     });
-    getCurrentUserStream();
     getProfileDetails();
   }
 

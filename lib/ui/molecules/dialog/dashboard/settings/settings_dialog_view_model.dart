@@ -85,7 +85,6 @@ class SettingsDialogViewModel extends BasePageViewModel {
       });
     });
     getProfileDetails();
-    getCurrentUserStream();
   }
 
   void updatePage(int index) {

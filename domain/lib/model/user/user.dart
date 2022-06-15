@@ -41,4 +41,48 @@ class User {
       this.applicationId: ""});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        token: json["token"],
+        id: json["id"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        email: json["email"],
+        mobile: json["mobile"],
+        mobileCode: json["mobileCode"],
+        isCurrent: json["isCurrent"],
+        refreshToken: json["refreshToken"],
+        tokenType: json["tokenType"],
+        expiredIn: json["expiredIn"],
+        isExisting: json["isExisting"],
+        publicPEM: json["publicPEM"],
+        privatePEM: json["privatePEM"],
+        cifNumber: json["cifNumber"],
+        accountNumber: json["accountNumber"],
+        newDevice: json["newDevice"],
+        isBiometricEnabled: json["isBiometricEnabled"],
+        applicationId: json["applicationId"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "token": token,
+        "id": id,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "mobile": mobile,
+        "mobileCode": mobileCode,
+        "isCurrent": isCurrent,
+        "refreshToken": refreshToken,
+        "tokenType": tokenType,
+        "expiredIn": expiredIn,
+        "isExisting": isExisting,
+        "publicPEM": publicPEM,
+        "privatePEM": privatePEM,
+        "cifNumber": cifNumber,
+        "accountNumber": accountNumber,
+        "newDevice": newDevice,
+        "isBiometricEnabled": isBiometricEnabled,
+        "applicationId": applicationId
+      };
 }

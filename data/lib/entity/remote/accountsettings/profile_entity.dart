@@ -39,9 +39,9 @@ class ProfileEntity
   @override
   ProfileInfoContent transform() {
     return ProfileInfoContent(
-        email: this.email,
-        mobileNumber: this.mobileNumber,
-        fullName: this.fullName,
+        email: this.email ?? '',
+        mobileNumber: this.mobileNumber ?? '',
+        fullName: this.fullName ?? '',
         biometric: this.biometric,
         profileImage: this.profileImage != null
             ? ImageUtils.dataFromBase64String(this.profileImage!)

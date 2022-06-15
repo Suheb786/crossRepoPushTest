@@ -37,8 +37,8 @@ class EnterCodeForChangeMobileNumberPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   model.saveUserData();
-                  Navigator.pop(context);
                   model.showSuccessToast(data.data!.data!.data!);
+                  Navigator.pop(context, true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }

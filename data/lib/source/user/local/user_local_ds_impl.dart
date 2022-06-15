@@ -10,15 +10,19 @@ import 'package:data/db/floor/app_database.dart';
 import 'package:data/db/floor/floor_db_service.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/helper/key_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/error/local_error.dart';
+import 'package:domain/model/user/user.dart';
 
 class UserLocalDSImpl extends UserLocalDS {
   final FloorDbService floorDbService;
   final BioMetricService _bioMetricService;
+  final SecureStorageHelper _secureStorageHelper;
 
-  UserLocalDSImpl(this.floorDbService, this._bioMetricService);
+  UserLocalDSImpl(
+      this.floorDbService, this._bioMetricService, this._secureStorageHelper);
 
   @override
   Future<Stream<UserDBEntity?>> listenCurrentUser() async {
@@ -30,26 +34,25 @@ class UserLocalDSImpl extends UserLocalDS {
   }
 
   @override
-  Future<UserDBEntity?> getCurrentUser() async {
-    UserDBEntity? userDBEntity =
-        await (await _getAppDatabase())!.userDao.getCurrentUser();
-    if (userDBEntity == null) {
+  Future<User?> getCurrentUser() async {
+    User? user = await _secureStorageHelper.getUserDataFromSecureStorage();
+    if (user == null) {
       throw AppLocalException(
         appLocalExceptionType: AppLocalExceptionType.NO_USER_FOUND,
       );
     }
 
-    return userDBEntity;
+    return user;
   }
 
   @override
   Future<bool> removeUser() async {
-    return (await (await _getAppDatabase())!.userDao.deleteUser());
+    return await _secureStorageHelper.clearUserData();
   }
 
   @override
-  Future<bool> saveCurrentUser(UserDBEntity userDBEntity) async {
-    return (await (await _getAppDatabase())!.userDao.insertUser(userDBEntity));
+  Future<bool> saveCurrentUser(User user) async {
+    return await _secureStorageHelper.saveUserToSecureStorage(user: user);
   }
 
   @override

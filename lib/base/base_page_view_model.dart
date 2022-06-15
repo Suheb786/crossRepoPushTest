@@ -1,12 +1,6 @@
 import 'package:domain/error/app_error.dart';
-import 'package:domain/model/user/user.dart';
-import 'package:domain/usecase/user/listen_current_user_usecase.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
-import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:neo_bank/utils/request_manager.dart';
-import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
 class BasePageViewModel extends BaseViewModel {
@@ -36,32 +30,7 @@ class BasePageViewModel extends BaseViewModel {
 
   bool _isLoading = false;
 
-  ListenCurrentUserUseCase? listenCurrentUserUseCase;
-
-  /// listen current user request holder
-  final PublishSubject<ListenCurrentUserUseCaseParams>
-      _listenCurrentUserRequestSubject = PublishSubject();
-
-  /// listen current user response holder
-  final PublishSubject<Resource<Stream<User>>>
-      _listenCurrentUserResponseSubject = PublishSubject();
-
-  ///listen current user response stream
-  Stream<Resource<Stream<User>>> get listenCurrentUserStream =>
-      _listenCurrentUserResponseSubject.stream;
-
-  BasePageViewModel() {
-    _listenCurrentUserRequestSubject.listen((listenCurrentUserUseCaseParams) {
-      listenCurrentUserUseCase =
-          ProviderContainer().read(listenCurrentUserUseCaseProvider);
-      RequestManager(listenCurrentUserUseCaseParams, createCall: () {
-        return listenCurrentUserUseCase!
-            .execute(params: listenCurrentUserUseCaseParams);
-      }).asFlow().listen((event) {
-        _listenCurrentUserResponseSubject.add(event);
-      });
-    });
-  }
+  BasePageViewModel() {}
 
   void showToastWithError(AppError error) {
     _error.sink.add(error);
@@ -82,13 +51,6 @@ class BasePageViewModel extends BaseViewModel {
 
   void notify() {
     notifyListeners();
-  }
-
-  ///get current user
-  void getCurrentUserStream() {
-    _listenCurrentUserRequestSubject.add(
-      ListenCurrentUserUseCaseParams(),
-    );
   }
 
   void showErrorState() {

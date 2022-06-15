@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/db/floor/utils/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
-import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
 import 'package:data/network/api_interceptor.dart';
@@ -77,7 +76,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result.fold(
       (l) => Left(l),
-      (r) => Right(r!.transform()),
+      (r) => Right(r!),
     );
   }
 
@@ -90,7 +89,7 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<Either<DatabaseError, User>> saveUser(User tokenUser) async {
     final result = await safeDbCall(
-      _localDS.saveCurrentUser(UserDBEntity().restore(tokenUser)),
+      _localDS.saveCurrentUser(tokenUser),
     );
     return result.fold(
       (l) => Left(l),

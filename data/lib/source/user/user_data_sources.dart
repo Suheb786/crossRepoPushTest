@@ -27,6 +27,7 @@ import 'package:domain/model/user/confirm_application_data_get/country_residence
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class UserRemoteDS {
@@ -168,11 +169,11 @@ abstract class UserRemoteDS {
 abstract class UserLocalDS {
   Future<Stream<UserDBEntity?>> listenCurrentUser();
 
-  Future<UserDBEntity?> getCurrentUser();
+  Future<User?> getCurrentUser();
 
   Future<bool> removeUser();
 
-  Future<bool> saveCurrentUser(UserDBEntity userDBEntity);
+  Future<bool> saveCurrentUser(User user);
 
   Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
       scanUserDocument();

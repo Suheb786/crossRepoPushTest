@@ -2,6 +2,7 @@ import 'package:data/db/floor/database_properties.dart';
 import 'package:data/db/floor/floor_db_service.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/infobip_audio/infobip_audio_service.dart';
 import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
@@ -43,8 +44,8 @@ final bioMetricSourceProvider = Provider<BioMetricService>(
 );
 
 var userLocalDSProvider = Provider<UserLocalDS>(
-  (ref) => UserLocalDSImpl(
-      ref.read(floorAppDatabase), ref.read(bioMetricSourceProvider)),
+  (ref) => UserLocalDSImpl(ref.read(floorAppDatabase),
+      ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
 );
 
 var deviceInfoPluginProvider = Provider<DeviceInfoPlugin>(
@@ -106,3 +107,7 @@ final infobipMessagingServiceProvider =
 
 final infobipMessagingDatasourceProvider = Provider<InfobipMessageLocalDs>(
     (ref) => InfobipMessageDSImpl(ref.read(infobipMessagingServiceProvider)));
+
+final secureStorageProvider = Provider<SecureStorageHelper>(
+  (ref) => SecureStorageHelper(),
+);
