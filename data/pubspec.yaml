@@ -26,7 +26,6 @@ dependencies:
   domain:
     path: ../domain
   pretty_dio_logger: ^1.1.1
-  floor: ^1.1.0
   country_calling_code_picker: ^2.0.0
   device_info: ^2.0.2
   intl: ^0.17.0
@@ -57,4 +56,3 @@ dev_dependencies:
   retrofit_generator: ^2.0.0
   json_serializable: ^4.1.0
   source_gen: ^1.0.0
-  floor_generator: ^1.1.0

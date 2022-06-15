@@ -24,7 +24,6 @@ import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
-import 'package:domain/usecase/user/listen_current_user_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
@@ -181,14 +180,6 @@ final enableBiometricUseCaseProvider =
 final getComboValuesUseCaseProvider =
     Provider.autoDispose<GetComboValuesUseCase>(
   (ref) => GetComboValuesUseCase(
-    ref.read(userRepoProvider),
-  ),
-);
-
-/// listen current user use case provider
-final listenCurrentUserUseCaseProvider =
-    Provider.autoDispose<ListenCurrentUserUseCase>(
-  (ref) => ListenCurrentUserUseCase(
     ref.read(userRepoProvider),
   ),
 );

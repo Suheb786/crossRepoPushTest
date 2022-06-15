@@ -6,9 +6,6 @@ import 'package:blinkid_flutter/recognizer.dart';
 import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
-import 'package:data/db/floor/app_database.dart';
-import 'package:data/db/floor/floor_db_service.dart';
-import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
@@ -17,21 +14,10 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/user.dart';
 
 class UserLocalDSImpl extends UserLocalDS {
-  final FloorDbService floorDbService;
   final BioMetricService _bioMetricService;
   final SecureStorageHelper _secureStorageHelper;
 
-  UserLocalDSImpl(
-      this.floorDbService, this._bioMetricService, this._secureStorageHelper);
-
-  @override
-  Future<Stream<UserDBEntity?>> listenCurrentUser() async {
-    return (await _getAppDatabase())!.userDao.listenCurrentUser();
-  }
-
-  Future<AppDatabase?> _getAppDatabase() {
-    return floorDbService.db;
-  }
+  UserLocalDSImpl(this._bioMetricService, this._secureStorageHelper);
 
   @override
   Future<User?> getCurrentUser() async {

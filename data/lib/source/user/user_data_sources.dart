@@ -1,6 +1,5 @@
 import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
-import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
@@ -167,8 +166,6 @@ abstract class UserRemoteDS {
 }
 
 abstract class UserLocalDS {
-  Future<Stream<UserDBEntity?>> listenCurrentUser();
-
   Future<User?> getCurrentUser();
 
   Future<bool> removeUser();

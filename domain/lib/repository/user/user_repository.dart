@@ -25,9 +25,6 @@ import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
 
 abstract class UserRepository {
-  /// Listen current user stream
-  Future<Either<DatabaseError, Stream<User>>> listenCurrentUser();
-
   /// Get current user
   Future<Either<DatabaseError, User>> getCurrentUser();
 

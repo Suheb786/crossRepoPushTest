@@ -1,5 +1,3 @@
-import 'package:data/db/floor/database_properties.dart';
-import 'package:data/db/floor/floor_db_service.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
 import 'package:data/helper/secure_storage_helper.dart';
@@ -27,12 +25,6 @@ import 'package:infobip_plugin/infobip_plugin.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
-final floorAppDatabase = Provider<FloorDbService>(
-  (ref) => FloorDbService(
-    DatabaseProperties.DB_NAME,
-  ),
-);
-
 final localAuthenticationProvider = Provider<LocalAuthentication>(
   (ref) => LocalAuthentication(),
 );
@@ -44,7 +36,7 @@ final bioMetricSourceProvider = Provider<BioMetricService>(
 );
 
 var userLocalDSProvider = Provider<UserLocalDS>(
-  (ref) => UserLocalDSImpl(ref.read(floorAppDatabase),
+  (ref) => UserLocalDSImpl(
       ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
 );
 

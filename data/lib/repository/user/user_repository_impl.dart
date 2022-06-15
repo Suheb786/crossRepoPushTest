@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:data/db/exception/app_local_exception.dart';
-import 'package:data/db/floor/utils/safe_db_call.dart';
+import 'package:data/db/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
@@ -47,26 +47,6 @@ class UserRepositoryImpl extends UserRepository {
     this._dio,
   ) {
     _dio.interceptors.add(ApiInterceptor(this, _dio));
-  }
-
-  @override
-  Future<Either<DatabaseError, Stream<User>>> listenCurrentUser() async {
-    final result = await safeDbCall(
-      _localDS.listenCurrentUser(),
-    );
-    return result.fold(
-      (l) {
-        print("left error is ${l.cause}");
-        return Left(l);
-      },
-      (r) {
-        return Right(
-          r.map(
-            (currentUser) => currentUser!.transform(),
-          ),
-        );
-      },
-    );
   }
 
   @override
