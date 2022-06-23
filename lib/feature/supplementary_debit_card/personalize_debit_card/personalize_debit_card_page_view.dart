@@ -38,11 +38,11 @@ class PersonalizeDebitCardPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushReplacementNamed(
-                                context, RoutePaths.DebitCardReplacement,
-                                arguments: DebitCardReplacementArguments(
-                                    isPinSet: true,
-                                    type: DebitReplacementEnum.Supplementary));
+                            // Navigator.pushReplacementNamed(
+                            //     context, RoutePaths.DebitCardReplacement,
+                            //     arguments: DebitCardReplacementArguments(
+                            //         isPinSet: true,
+                            //         type: DebitReplacementEnum.Supplementary));
                           }
                         },
                         dataBuilder: (context, data) {

@@ -110,6 +110,7 @@ import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_
 import 'package:neo_bank/feature/supplementary_credit_card_activation_status/supplementary_credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
@@ -720,6 +721,13 @@ class AppRouter {
             builder: (context) => ConvertPurchaseToInstallmentsPage(),
             settings:
                 RouteSettings(name: RoutePaths.ConvertPurchaseToInstallments));
+
+      case RoutePaths.SupplementaryDebitCardPinSet:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryDebitCardPinSetPage(
+                settings.arguments as SupplementaryDebitCardPinSetArguments),
+            settings:
+                RouteSettings(name: RoutePaths.SupplementaryDebitCardPinSet));
 
       default:
         return CupertinoPageRoute(

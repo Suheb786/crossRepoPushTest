@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_p
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page_view_model.dart';
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view_model.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/confirm_pin/supp_confirm_pin_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/create_pin/supp_create_pin_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/visa_card/supp_pin_set_visa_card_page_view_model.dart';
 
 ///debit card replacement view model provider
 final debitCardReplacementViewModelProvider =
@@ -40,4 +44,29 @@ final cardReplacementSuccessViewModelProvider =
         DebitCardReplacementSuccessPageViewModel,
         DebitCardReplacementArguments>(
   (ref, args) => DebitCardReplacementSuccessPageViewModel(args),
+);
+
+///supp debit card set pin view model provider
+final suppDebitCardPinSetViewModelProvider = ChangeNotifierProvider.autoDispose<
+    SupplementaryDebitCardPinSetPageViewModel>(
+  (ref) => SupplementaryDebitCardPinSetPageViewModel(),
+);
+
+///supp pin set view model provider
+final suppPinSetVisaCardModelProvider =
+    ChangeNotifierProvider.autoDispose<SuppPinSetVisaCardPageViewModel>(
+  (ref) => SuppPinSetVisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
+);
+
+///supp create pin  view model provider
+final suppCreatePinModelProvider =
+    ChangeNotifierProvider.autoDispose<SuppCreatePinPageViewModel>(
+  (ref) => SuppCreatePinPageViewModel(ref.read(createPinUseCaseProvider)),
+);
+
+///supp confirm pin  view model provider
+final suppConfirmPinModelProvider =
+    ChangeNotifierProvider.autoDispose<SuppConfirmPinPageViewModel>(
+  (ref) => SuppConfirmPinPageViewModel(
+      ref.read(confirmReplacementPinUseCaseProvider)),
 );
