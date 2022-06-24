@@ -187,4 +187,9 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> reportLostStolenCC(
       {required ReportLostStolenCCUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> removeOrReApplySupplementaryDebitCard(
+      {required String status,
+      required String tokenizedPan,
+      required bool reApply});
 }

@@ -618,4 +618,23 @@ class CardRepositoryImpl extends CardRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+ 
+
+   @override
+  Future<Either<NetworkError, bool>> removeOrReApplySupplementaryDebitCard(
+      {required String status,
+      required String tokenizedPan,
+      required bool reApply}) async {
+    final result = await safeApiCall(
+      _remoteDs.removeOrReApplySupplementaryDebitCard(
+          status: status,
+          tokenizedPan: tokenizedPan,
+          reApply: reApply),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

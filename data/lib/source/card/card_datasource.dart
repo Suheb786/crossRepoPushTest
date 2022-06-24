@@ -187,4 +187,9 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> reportLostStolenCC(
       {ReportLostStolenCCUseCaseParams params});
+
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
+      {required String status,
+      required String tokenizedPan,
+      required bool reApply});
 }

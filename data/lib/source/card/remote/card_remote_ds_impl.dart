@@ -28,6 +28,7 @@ import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
+import 'package:data/entity/remote/card/debit_supplementary/remove_or_reapply_supplementary_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
@@ -604,5 +605,20 @@ class CardRemoteDsImpl extends CardRemoteDs {
         replaceReason: params.replacementReason,
         getToken: true,
         baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
+      {required String status,
+      required String tokenizedPan,
+      required bool reApply}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.removeOrReApplySupplementaryDebitCard(
+        RemoveOrReApplySupplementaryDebitCardRequestEnity(
+            baseData: baseData.toJson(),
+            getToken: true,
+            status: status,
+            tokenizedPan: tokenizedPan,
+            reApply: reApply));
   }
 }
