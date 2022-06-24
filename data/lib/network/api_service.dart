@@ -69,6 +69,7 @@ import 'package:data/entity/remote/card/dc_change_linked_mobile_number/dc_change
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
+import 'package:data/entity/remote/card/debit_supplementary/remove_or_reapply_supplementary_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
@@ -803,4 +804,10 @@ abstract class ApiService {
   @POST("/CardTracking/ReportLostCC")
   Future<HttpResponse<ResponseEntity>> reportLostStolenCC(
       @Body() ReportStolenCCRequestEntity reportStolenCCRequestEntity);
+
+  @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
+      @Body()
+          RemoveOrReApplySupplementaryDebitCardRequestEnity
+              removeOrReApplySupplementaryDebitCardRequestEnity);
 }
