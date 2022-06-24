@@ -14,25 +14,19 @@ class DebitCardReplacementSuccessPageView
   DebitCardReplacementSuccessPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, DebitCardReplacementSuccessPageViewModel model) {
+  Widget build(BuildContext context, DebitCardReplacementSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          if (model.debitCardReplacementArguments.type ==
-              DebitReplacementEnum.Normal) {
+          if (model.debitCardReplacementArguments.type == DebitReplacementEnum.Normal) {
             Navigator.of(context)..pop();
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .getDashboardData();
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           } else {
             Navigator.of(context)
               ..pop
               ..pop()
               ..pop();
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .getDashboardData();
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           }
         }
       },
@@ -54,8 +48,7 @@ class DebitCardReplacementSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.4),
+                            color: Theme.of(context).accentColor.withOpacity(0.4),
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -66,8 +59,8 @@ class DebitCardReplacementSuccessPageView
                                 color: Theme.of(context).primaryColor,
                               ),
                               child: Center(
-                                  child: AppSvg.asset(AssetUtils.right,
-                                      color: Theme.of(context).accentColor)),
+                                  child:
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                             ),
                           ),
                         ],
@@ -91,8 +84,7 @@ class DebitCardReplacementSuccessPageView
                             height: 24,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
@@ -113,10 +105,8 @@ class DebitCardReplacementSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
-                    borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                   SizedBox(
                     height: 5,
@@ -129,10 +119,7 @@ class DebitCardReplacementSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color,
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
                         ),

@@ -10,14 +10,13 @@ class SuppCreatePinPage extends BasePage<SuppCreatePinPageViewModel> {
   SuppCreatePinPageState createState() => SuppCreatePinPageState();
 }
 
-class SuppCreatePinPageState
-    extends BaseStatefulPage<SuppCreatePinPageViewModel, SuppCreatePinPage>
+class SuppCreatePinPageState extends BaseStatefulPage<SuppCreatePinPageViewModel, SuppCreatePinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   SuppCreatePinPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
-    return createReplacementPinViewModelProvider;
+    return suppCreatePinModelProvider;
   }
 
   @override

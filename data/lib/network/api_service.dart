@@ -706,7 +706,7 @@ abstract class ApiService {
       @Body() GetCallStatusRequest request);
 
   @POST("/DebitCard/RequestSuplementaryDebitCard")
-  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+  Future<HttpResponse<CardIssuanceResponseEntity>> applyDebitSupplementaryCard(
       @Body()
           ApplyDebitSupplementaryCardRequest
               applyDebitSupplementaryCardRequest);

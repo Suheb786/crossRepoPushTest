@@ -13,8 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class SuppCreatePinPageView
-    extends BasePageViewWidget<SuppCreatePinPageViewModel> {
+class SuppCreatePinPageView extends BasePageViewWidget<SuppCreatePinPageViewModel> {
   SuppCreatePinPageView(ProviderBase model) : super(model);
 
   @override
@@ -34,9 +33,7 @@ class SuppCreatePinPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(debitCardReplacementViewModelProvider)
-                      .nextPage();
+                  ProviderScope.containerOf(context).read(suppDebitCardPinSetViewModelProvider).nextPage();
                   // .next(animation: true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
@@ -46,7 +43,7 @@ class SuppCreatePinPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
-                            .read(debitCardReplacementViewModelProvider)
+                            .read(suppDebitCardPinSetViewModelProvider)
                             .appSwiperController
                             .page ==
                         1.0) {
@@ -55,7 +52,7 @@ class SuppCreatePinPageView
                         model.validatePin();
                       } else {
                         ProviderScope.containerOf(context)
-                            .read(debitCardReplacementViewModelProvider)
+                            .read(suppDebitCardPinSetViewModelProvider)
                             .previousPage();
                         // .previous(animation: true);
                       }
@@ -64,8 +61,7 @@ class SuppCreatePinPageView
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -74,8 +70,7 @@ class SuppCreatePinPageView
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth:
-                                      MediaQuery.of(context).size.width / 6.4,
+                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);
@@ -93,8 +88,7 @@ class SuppCreatePinPageView
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

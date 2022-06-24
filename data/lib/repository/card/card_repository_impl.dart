@@ -417,7 +417,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
+  Future<Either<NetworkError, CardIssuanceDetails>> applyDebitSupplementaryCard(
       {required ScannedDocumentInformation scannedDocumentInformation,
       required String relation,
       required String nickName}) async {
@@ -429,7 +429,7 @@ class CardRepositoryImpl extends CardRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/card_delivery/apply_supplementary_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
@@ -16,38 +17,31 @@ class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
 
   TextEditingController nicknameController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> nicknameKey =
-      GlobalKey(debugLabel: "nickname");
+  final GlobalKey<AppTextFieldState> nicknameKey = GlobalKey(debugLabel: "nickname");
 
   /// personalize debit card request subject holder
-  PublishSubject<PersonalizeDebitCardUseCaseParams>
-      _personalizeDebitCardRequest = PublishSubject();
+  PublishSubject<PersonalizeDebitCardUseCaseParams> _personalizeDebitCardRequest = PublishSubject();
 
   /// personalize debit card response subject holder
-  PublishSubject<Resource<bool>> _personalizeDebitCardResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _personalizeDebitCardResponse = PublishSubject();
 
-  Stream<Resource<bool>> get personalizeDebitCardResponseStream =>
-      _personalizeDebitCardResponse.stream;
+  Stream<Resource<bool>> get personalizeDebitCardResponseStream => _personalizeDebitCardResponse.stream;
 
   /// apply supplementary debit card request subject holder
-  PublishSubject<ApplySupplementaryDebitCardUseCaseParams>
-      _applySupplementaryDebitCardRequest = PublishSubject();
-
-  /// apply supplementary debit card response subject holder
-  PublishSubject<Resource<bool>> _applySupplementaryDebitCardResponse =
+  PublishSubject<ApplySupplementaryDebitCardUseCaseParams> _applySupplementaryDebitCardRequest =
       PublishSubject();
 
+  /// apply supplementary debit card response subject holder
+  PublishSubject<Resource<CardIssuanceDetails>> _applySupplementaryDebitCardResponse = PublishSubject();
+
   ///apply supplementary debit card response stream
-  Stream<Resource<bool>> get applySupplementaryDebitCardResponseStream =>
+  Stream<Resource<CardIssuanceDetails>> get applySupplementaryDebitCardResponseStream =>
       _applySupplementaryDebitCardResponse.stream;
 
-  PersonalizeDebitCardPageViewModel(this._personalizeDebitCardUseCase,
-      this._applySupplementaryDebitCardUseCase) {
+  PersonalizeDebitCardPageViewModel(
+      this._personalizeDebitCardUseCase, this._applySupplementaryDebitCardUseCase) {
     _personalizeDebitCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _personalizeDebitCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _personalizeDebitCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -60,9 +54,7 @@ class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
     });
 
     _applySupplementaryDebitCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _applySupplementaryDebitCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _applySupplementaryDebitCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -76,17 +68,16 @@ class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
   }
 
   void personalizeDebitCard() {
-    _personalizeDebitCardRequest.safeAdd(
-        PersonalizeDebitCardUseCaseParams(nickname: nicknameController.text));
+    _personalizeDebitCardRequest
+        .safeAdd(PersonalizeDebitCardUseCaseParams(nickname: nicknameController.text));
   }
 
-  void applySupplementaryDebitCard(String relationship,
-      ScannedDocumentInformation scannedDocumentInformation) {
-    _applySupplementaryDebitCardRequest.safeAdd(
-        ApplySupplementaryDebitCardUseCaseParams(
-            nickName: nicknameController.text,
-            relationship: relationship,
-            scannedDocumentInformation: scannedDocumentInformation));
+  void applySupplementaryDebitCard(
+      String relationship, ScannedDocumentInformation scannedDocumentInformation) {
+    _applySupplementaryDebitCardRequest.safeAdd(ApplySupplementaryDebitCardUseCaseParams(
+        nickName: nicknameController.text,
+        relationship: relationship,
+        scannedDocumentInformation: scannedDocumentInformation));
   }
 
   @override

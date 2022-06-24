@@ -21,28 +21,23 @@ import 'package:domain/usecase/update_settlement/update_settlement_usecase.dart'
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
 
-  Future<Either<NetworkError, bool>> setCardPin(
-      String currentPin, String cardNUmber);
+  Future<Either<NetworkError, bool>> setCardPin(String currentPin, String cardNUmber);
 
   Future<Either<NetworkError, bool>> confirmCardDelivery();
 
-  Future<Either<NetworkError, GetTransactionsResponse>>
-      getDebitCardTransactions({num? noOfDays});
+  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays});
 
-  Future<Either<NetworkError, GetTransactionsResponse>>
-      getCreditCardTransactions({required String cardId, num? noOfDays});
+  Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
+      {required String cardId, num? noOfDays});
 
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery(
-      {String? cardId, String? cardDigit});
+  Future<Either<NetworkError, bool>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
 
-  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
-      String monthYear);
+  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear);
 
   Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
       String monthYear, String? cardId);
 
-  Future<Either<NetworkError, bool>> requestCreditCard(
-      {required String cardId});
+  Future<Either<NetworkError, bool>> requestCreditCard({required String cardId});
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getCreditYears();
 
@@ -56,26 +51,17 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> creditCardPinUnblock();
 
-  Future<Either<NetworkError, bool>> freezeDebitCard(
-      {String? status, String? tokenizedPan});
+  Future<Either<NetworkError, bool>> freezeDebitCard({String? status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> unFreezeDebitCard(
-      {String? status, String? tokenizedPan});
+  Future<Either<NetworkError, bool>> unFreezeDebitCard({String? status, String? tokenizedPan});
 
   Future<Either<NetworkError, bool>> cancelDebitCard(
-      {String reason,
-      String status,
-      String? tokenizedPan,
-      String? cancellationReason});
+      {String reason, String status, String? tokenizedPan, String? cancellationReason});
 
   Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {required String pin,
-      required String otp,
-      required String tokenizedPan,
-      required String cardNumber});
+      {required String pin, required String otp, required String tokenizedPan, required String cardNumber});
 
-  Future<Either<NetworkError, bool>> unblockDebitCardPin(
-      {String status, required String pin});
+  Future<Either<NetworkError, bool>> unblockDebitCardPin({String status, required String pin});
 
   Future<Either<NetworkError, bool>> updateDebitCardLimits({
     num atmWithdrawal,
@@ -99,29 +85,22 @@ abstract class CardRepository {
       num merchantsPayments,
       num onlinePurchase});
 
-  Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit(
-      {required String? tokenizedPan});
+  Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit({required String? tokenizedPan});
 
-  Future<Either<NetworkError, GetCreditCardLimitResponse>> getCreditCardLimit(
-      {required String? secureCode});
+  Future<Either<NetworkError, GetCreditCardLimitResponse>> getCreditCardLimit({required String? secureCode});
 
   Future<Either<NetworkError, GetCardApplicationResponse>> getCardApplication();
 
-  Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues(
-      {String accountId});
+  Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues({String accountId});
 
   Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
-      {String minimumSettlement,
-      String nickName,
-      num loanValueId,
-      num creditLimit});
+      {String minimumSettlement, String nickName, num loanValueId, num creditLimit});
 
-  Future<Either<NetworkError, bool>> linkCardStep(
-      {required String cardId, required String accountNumber});
+  Future<Either<NetworkError, bool>> linkCardStep({required String cardId, required String accountNumber});
 
   Future<Either<NetworkError, bool>> changePinVerify();
 
-  Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
+  Future<Either<NetworkError, CardIssuanceDetails>> applyDebitSupplementaryCard(
       {required ScannedDocumentInformation scannedDocumentInformation,
       required String relation,
       required String nickName});
@@ -129,62 +108,54 @@ abstract class CardRepository {
   Future<Either<NetworkError, SupplementaryCreditCardApplicationResponse>>
       getSupplementaryCreditCardApplication({required String primaryCard});
 
-  Future<Either<NetworkError, SupplementaryCreditCardResponse>>
-      supplementaryCreditCardRequest(
-          {required String primaryCardId,
-          required String relationship,
-          dynamic doi,
-          required String type,
-          required String fullName,
-          required String firstName,
-          required String middleName,
-          required String familyName,
-          required String idNumber,
-          required String dob,
-          required String doe,
-          required String gender,
-          required String documentCode,
-          required String issuer,
-          required String nationality,
-          required String documentNumber,
-          required String optionalData1,
-          required String optionalData2,
-          required String mrtDraw,
-          required String frontCardImage,
-          required String backCardImage,
-          required String nickName,
-          required bool sameLimit,
-          required num limit});
+  Future<Either<NetworkError, SupplementaryCreditCardResponse>> supplementaryCreditCardRequest(
+      {required String primaryCardId,
+      required String relationship,
+      dynamic doi,
+      required String type,
+      required String fullName,
+      required String firstName,
+      required String middleName,
+      required String familyName,
+      required String idNumber,
+      required String dob,
+      required String doe,
+      required String gender,
+      required String documentCode,
+      required String issuer,
+      required String nationality,
+      required String documentNumber,
+      required String optionalData1,
+      required String optionalData2,
+      required String mrtDraw,
+      required String frontCardImage,
+      required String backCardImage,
+      required String nickName,
+      required bool sameLimit,
+      required num limit});
 
   Future<Either<NetworkError, bool>> supplementaryCreditCardStepTwo(
       {required String primaryCardId, required String secondaryCardId});
 
   Future<Either<NetworkError, bool>> supplementaryCreditCardStepThree(
-      {required String primaryCardId,
-      required String secondaryCardId,
-      required String accountNumber});
+      {required String primaryCardId, required String secondaryCardId, required String accountNumber});
 
-  Future<Either<NetworkError, CreditCardRelationshipResponse>>
-      getCreditCardRelationShipList({required String cardId});
+  Future<Either<NetworkError, CreditCardRelationshipResponse>> getCreditCardRelationShipList(
+      {required String cardId});
 
-  Future<Either<NetworkError, bool>> callStatusUpdate(
-      {String? cardId, String? status});
+  Future<Either<NetworkError, bool>> callStatusUpdate({String? cardId, String? status});
 
   Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumberVerify(
       {required DcEnterNewMobileNumberUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber(
-      {required DcEnterOtpUseCaseParams params});
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber({required DcEnterOtpUseCaseParams params});
 
   Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumberVerify(
       {required DcEnterNewMobileNumberUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber(
-      {required DcEnterOtpUseCaseParams params});
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber({required DcEnterOtpUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> updateSettlement(
-      {required UpdateSettlementUseCaseParams params});
+  Future<Either<NetworkError, bool>> updateSettlement({required UpdateSettlementUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> reportLostStolenCC(
-      {required ReportLostStolenCCUseCaseParams params});
+  Future<Either<NetworkError, bool>> reportLostStolenCC({required ReportLostStolenCCUseCaseParams params});
 }

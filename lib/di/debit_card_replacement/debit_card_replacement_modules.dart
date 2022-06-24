@@ -3,9 +3,9 @@ import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider
 import 'package:neo_bank/di/usecase/debit_card_replacement/debit_card_replacement_usecase_provider.dart';
 import 'package:neo_bank/feature/debit_card_replacement/confirm_pin/confirm_replacement_pin_page_view_model.dart';
 import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page_view_model.dart';
-import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page_view_model.dart';
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view_model.dart';
+import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_pin_set/confirm_pin/supp_confirm_pin_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_pin_set/create_pin/supp_create_pin_page_view_model.dart';
@@ -42,7 +42,7 @@ final confirmReplacementPinViewModelProvider =
 final cardReplacementSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose.family<
         DebitCardReplacementSuccessPageViewModel,
-        DebitCardReplacementArguments>(
+        DebitCardReplacementSuccessPageArgs>(
   (ref, args) => DebitCardReplacementSuccessPageViewModel(args),
 );
 
@@ -55,7 +55,7 @@ final suppDebitCardPinSetViewModelProvider = ChangeNotifierProvider.autoDispose<
 ///supp pin set view model provider
 final suppPinSetVisaCardModelProvider =
     ChangeNotifierProvider.autoDispose<SuppPinSetVisaCardPageViewModel>(
-  (ref) => SuppPinSetVisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
+  (ref) => SuppPinSetVisaCardPageViewModel(),
 );
 
 ///supp create pin  view model provider

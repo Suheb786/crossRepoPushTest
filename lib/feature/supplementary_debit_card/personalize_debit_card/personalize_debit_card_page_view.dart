@@ -1,10 +1,11 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
-import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/personalize_debit_card/personalize_debit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -14,8 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class PersonalizeDebitCardPageView
-    extends BasePageViewWidget<PersonalizeDebitCardPageViewModel> {
+class PersonalizeDebitCardPageView extends BasePageViewWidget<PersonalizeDebitCardPageViewModel> {
   PersonalizeDebitCardPageView(ProviderBase model) : super(model);
 
   @override
@@ -33,16 +33,14 @@ class PersonalizeDebitCardPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<Resource<CardIssuanceDetails>>(
                         stream: model.applySupplementaryDebitCardResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            // Navigator.pushReplacementNamed(
-                            //     context, RoutePaths.DebitCardReplacement,
-                            //     arguments: DebitCardReplacementArguments(
-                            //         isPinSet: true,
-                            //         type: DebitReplacementEnum.Supplementary));
+                            Navigator.pushReplacementNamed(context, RoutePaths.SupplementaryDebitCardPinSet,
+                                arguments: SupplementaryDebitCardPinSetArguments(
+                                    cardNo: data.data!.cardNumber, nameOnCard: data.data!.cardHolderName));
                           }
                         },
                         dataBuilder: (context, data) {
@@ -53,13 +51,11 @@ class PersonalizeDebitCardPageView
                                 if (data.status == Status.SUCCESS) {
                                   model.applySupplementaryDebitCard(
                                       ProviderScope.containerOf(context)
-                                          .read(
-                                              relationShipWithCardHolderDebitViewModelProvider)
+                                          .read(relationShipWithCardHolderDebitViewModelProvider)
                                           .relationshipController
                                           .text,
                                       ProviderScope.containerOf(context)
-                                          .read(
-                                              supplementaryDebitIdScanInfoViewModelProvider)
+                                          .read(supplementaryDebitIdScanInfoViewModelProvider)
                                           .scannedDocumentInformation);
                                 }
                               },
@@ -67,8 +63,7 @@ class PersonalizeDebitCardPageView
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
                                     if (ProviderScope.containerOf(context)
-                                            .read(
-                                                supplementaryDebitCardViewModelProvider)
+                                            .read(supplementaryDebitCardViewModelProvider)
                                             .appSwiperController
                                             .page ==
                                         2.0) {
@@ -76,8 +71,7 @@ class PersonalizeDebitCardPageView
                                         model.personalizeDebitCard();
                                       } else {
                                         ProviderScope.containerOf(context)
-                                            .read(
-                                                supplementaryDebitCardViewModelProvider)
+                                            .read(supplementaryDebitCardViewModelProvider)
                                             .previousPage();
                                         // .previous();
                                       }
@@ -85,27 +79,19 @@ class PersonalizeDebitCardPageView
                                   },
                                   child: Card(
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 32, horizontal: 24),
+                                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           SingleChildScrollView(
                                             child: Column(
                                               children: [
                                                 AppTextField(
-                                                  labelText: S
-                                                      .of(context)
-                                                      .nickName
-                                                      .toUpperCase(),
-                                                  hintText:
-                                                      S.of(context).optional,
-                                                  controller:
-                                                      model.nicknameController,
+                                                  labelText: S.of(context).nickName.toUpperCase(),
+                                                  hintText: S.of(context).optional,
+                                                  controller: model.nicknameController,
                                                   key: model.nicknameKey,
                                                 ),
                                               ],
@@ -113,8 +99,7 @@ class PersonalizeDebitCardPageView
                                           ),
                                           Center(
                                             child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
+                                              buttonText: S.of(context).swipeToProceed,
                                             ),
                                           ),
                                         ],

@@ -10,11 +10,10 @@ class SuppConfirmPinPage extends BasePage<SuppConfirmPinPageViewModel> {
   SuppConfirmPinPageState createState() => SuppConfirmPinPageState();
 }
 
-class SuppConfirmPinPageState
-    extends BaseStatefulPage<SuppConfirmPinPageViewModel, SuppConfirmPinPage> {
+class SuppConfirmPinPageState extends BaseStatefulPage<SuppConfirmPinPageViewModel, SuppConfirmPinPage> {
   @override
   ProviderBase provideBase() {
-    return confirmReplacementPinViewModelProvider;
+    return suppConfirmPinModelProvider;
   }
 
   @override

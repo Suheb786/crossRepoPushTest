@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_modules.dart';
 import 'package:neo_bank/feature/debit_card_replacement/confirm_pin/confirm_replacement_pin_page_view_model.dart';
+import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -14,8 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class ConfirmReplacementPinPageView
-    extends BasePageViewWidget<ConfirmReplacementPinPageViewModel> {
+class ConfirmReplacementPinPageView extends BasePageViewWidget<ConfirmReplacementPinPageViewModel> {
   ConfirmReplacementPinPageView(ProviderBase model) : super(model);
 
   @override
@@ -35,11 +35,12 @@ class ConfirmReplacementPinPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(
-                      context, RoutePaths.DebitCardReplacementSuccess,
-                      arguments: ProviderScope.containerOf(context)
-                          .read(debitCardReplacementViewModelProvider)
-                          .debitCardReplacementArguments);
+                  Navigator.pushReplacementNamed(context, RoutePaths.DebitCardReplacementSuccess,
+                      arguments: DebitCardReplacementSuccessPageArgs(
+                          type: ProviderScope.containerOf(context)
+                              .read(debitCardReplacementViewModelProvider)
+                              .debitCardReplacementArguments
+                              .type));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -74,8 +75,7 @@ class ConfirmReplacementPinPageView
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -84,8 +84,7 @@ class ConfirmReplacementPinPageView
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth:
-                                      MediaQuery.of(context).size.width / 6.4,
+                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);
@@ -103,8 +102,7 @@ class ConfirmReplacementPinPageView
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),
