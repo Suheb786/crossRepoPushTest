@@ -48,7 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountBalance":
             MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
         "accountDetails":
@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountHolderName":
             MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-010)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-010)"),
         "accountInquiryWentWrong61": MessageLookupByLibrary.simpleMessage(
             "An error occurred while trying to get your account information. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Activating your supplementary credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "addBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "addCallError": MessageLookupByLibrary.simpleMessage(
@@ -146,7 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeTermsCondition": MessageLookupByLibrary.simpleMessage(
             "Please agree to terms and conditions."),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "ahwalFailed": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-301)"),
         "alias": MessageLookupByLibrary.simpleMessage("Alias"),
@@ -276,13 +276,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
         "businessRulesNotImplementedAgainstCompanyId":
             MessageLookupByLibrary.simpleMessage(
-                "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-028)"),
+                "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "callRecordNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "callScheduled":
             MessageLookupByLibrary.simpleMessage("Call scheduled!"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
@@ -319,7 +319,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardLater":
             MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
         "cardLoanAccNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
@@ -454,7 +454,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
             "A supplementary card with the same details already exists. Please check and try again."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-095)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-095)"),
         "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
             "I\'m trying to control my expenses in other ways"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
@@ -465,7 +465,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "countryOfCitizenship":
             MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "createCliqId": MessageLookupByLibrary.simpleMessage("Create CliQ ID"),
         "createNewCliqId":
             MessageLookupByLibrary.simpleMessage("CREATE NEW cliq ID"),
@@ -478,7 +478,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your new password"),
         "creatingAccountError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-022)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-022)"),
         "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
             "Creating your credit card limit"),
         "creatingShippmentError": MessageLookupByLibrary.simpleMessage(
@@ -496,7 +496,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Your application is being reviewed. You’ll be notified soon."),
         "creditCardDataNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "creditCardDelivered":
             MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
         "creditCardDeliveredQ":
@@ -591,7 +591,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
         "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
         "deviceNotSupported":
@@ -618,7 +618,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-081)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-081)"),
         "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
             "I don\'t need my card anymore"),
         "downloadStatement":
@@ -812,23 +812,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorCreatingWorkSpace": MessageLookupByLibrary.simpleMessage(
             "Error while creating Workspace"),
         "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorDecryptCard":
             MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
         "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
             "Error while getting EURONET Customer Card Details"),
         "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-072)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-072)"),
         "errorGettingCardInfo": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-097)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-097)"),
         "errorInGetCardInfoNet": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorInMessage":
             MessageLookupByLibrary.simpleMessage("Error in manage so api"),
         "errorModelNotCorrect": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-mode)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-mode)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
@@ -836,9 +836,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorSettingPinEuronet": MessageLookupByLibrary.simpleMessage(
             "Error while setting your Pin, please try again"),
         "errorUpdatingAccount": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-073)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-073)"),
         "errorUpdatingCardStatusRuleEngine": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorUpdatingCategory": MessageLookupByLibrary.simpleMessage(
             "Error while updating category"),
         "errorUpdatingCategoryCif": MessageLookupByLibrary.simpleMessage(
@@ -862,18 +862,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileGetStatus":
             MessageLookupByLibrary.simpleMessage("Error While Get Status"),
         "errorWhileGettingAccountBS": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorWhileGettingAccountCloseOtp":
             MessageLookupByLibrary.simpleMessage(
                 "Error While Getting Account Close Otp."),
         "errorWhileGettingAccountDetailsA2A": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
         "errorWhileGettingRetailCIF": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-009)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-009)"),
         "errorWhileGettingXCSCustomerDetails":
             MessageLookupByLibrary.simpleMessage(
                 "Error while getting XCS Customer Card Details"),
@@ -886,7 +886,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
             "Error While Process Loan Request."),
         "errorWhileRTPA2A": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
         "errorWhileUnblockPinNI": MessageLookupByLibrary.simpleMessage(
@@ -953,7 +953,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fingerPrintNotFound": MessageLookupByLibrary.simpleMessage(
             "Biometric not found, please log in using your email and password"),
         "firebaseConnectionIssue": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "flipBack": MessageLookupByLibrary.simpleMessage("Flip back"),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -991,7 +991,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getAccountByAliasError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-021)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-021)"),
         "getAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getAllowedCountriesError": MessageLookupByLibrary.simpleMessage(
@@ -1117,9 +1117,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
             "Make sure you\'re in a bright place"),
         "imageNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-080)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-080)"),
         "imageNull": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "inValidCreditLimit": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "inValidLoanValueId": MessageLookupByLibrary.simpleMessage(
@@ -1161,18 +1161,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidBusinessType":
             MessageLookupByLibrary.simpleMessage("Select Business Type"),
         "invalidCardId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-093)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-093)"),
         "invalidCitizenship":
             MessageLookupByLibrary.simpleMessage("Enter citizenship"),
         "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
         "invalidCountry":
             MessageLookupByLibrary.simpleMessage("Select Country"),
         "invalidCreditCardId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "invalidCurrentPass": MessageLookupByLibrary.simpleMessage(
             "The password you entered is incorrect. Please try again or click on \"Forgot password?\" to change your password."),
         "invalidCustomerId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "invalidDOB":
             MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
         "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
@@ -1219,9 +1219,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidForeignIdNumber": MessageLookupByLibrary.simpleMessage(
             "Please Enter Foreign Tax Identifying Number"),
         "invalidFourDigit": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-094)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-094)"),
         "invalidGenderValue": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-124)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-124)"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdCardCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -1235,7 +1235,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidIncomeType":
             MessageLookupByLibrary.simpleMessage("Enter income type"),
         "invalidIssuerCountry": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-024)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-024)"),
         "invalidIssuingDate":
             MessageLookupByLibrary.simpleMessage("Select Issuing Date"),
         "invalidIssuingPlace":
@@ -1266,7 +1266,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidNationalIdCard": MessageLookupByLibrary.simpleMessage(
             "We were unable to verify the ID card. Please scan again or contact our Engagement Team on 06-5200100."),
         "invalidNationality": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-154)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-154)"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
@@ -1292,11 +1292,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPreferredTime":
             MessageLookupByLibrary.simpleMessage("Select time"),
         "invalidPrimaryId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "invalidProductId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-011)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-011)"),
         "invalidProductShortCode": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-015)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-015)"),
         "invalidProvisionClaim": MessageLookupByLibrary.simpleMessage(
             "Enter provision claim article and paragraph"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
@@ -1317,12 +1317,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidScheduleTime": MessageLookupByLibrary.simpleMessage(
             "Please select a valid date in the future"),
         "invalidSignatureNetwork": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-074)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-074)"),
         "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
             "Enter social security number"),
         "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
         "invalidSupplementaryCardId": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "invalidTaxCountry":
             MessageLookupByLibrary.simpleMessage("Select tax country"),
         "invalidTaxPayer":
@@ -1349,7 +1349,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
             "Please enter if only the business name is different from the name above"),
         "isoNationalityNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-087)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-087)"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
         "issuingSuppCreditCard": MessageLookupByLibrary.simpleMessage(
@@ -1366,11 +1366,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "joinedBlink":
             MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-153)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-153)"),
         "letsCreateNewCliqId": MessageLookupByLibrary.simpleMessage(
             "Let’s create your new\nCliQ ID"),
         "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
@@ -1390,7 +1390,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
         "loanAccountListNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-098)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-098)"),
         "loanNotActive":
             MessageLookupByLibrary.simpleMessage("Loan Account Is Not Active"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
@@ -1530,7 +1530,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-071)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":
@@ -1538,7 +1538,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "Something wrong with your Yellow Sun debit card information. Please contact our Engagement Team from the app or call 06-5200100."),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-090)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-090)"),
         "noDueAmount": MessageLookupByLibrary.simpleMessage("No due Amount"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("Service is Unavailable"),
@@ -1547,7 +1547,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
             "No Placeholder Record Found against this Id"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-086)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-086)"),
         "noSignatureFound": MessageLookupByLibrary.simpleMessage(
             "It seems your signature on the FATCA form is missing. Please check that you provided the signature or contact or Engagement Team for help 06-5200100."),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
@@ -1557,7 +1557,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAllowedToOpenAccount": MessageLookupByLibrary.simpleMessage(
             "You cannot proceed with this request. Please contact our Engagement Team on 06-5200100 for more information."),
         "notRegisteredBank": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-059)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-059)"),
         "notSetUpCountryRestrictionYet": MessageLookupByLibrary.simpleMessage(
             "You have not set up any country restrictions yet"),
         "notVerified": MessageLookupByLibrary.simpleMessage("Not Verified"),
@@ -1635,7 +1635,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("Payment Period"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
@@ -1725,7 +1725,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "primaryIdNotMatchWithGroom": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-303) "),
         "primaryLoanAccListNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("primary not complete"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
@@ -1749,7 +1749,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileSettings":
             MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
         "profileStatusNotFound": MessageLookupByLibrary.simpleMessage(
-            "It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-56200100."),
+            "It seems some information is missing. Please check and try again or contact our Engagement Team from the app or call 06-5200100."),
         "proofOfAddress":
             MessageLookupByLibrary.simpleMessage("Proof of Address"),
         "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
@@ -1784,7 +1784,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeDetails":
             MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeDetailsNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeOfAccountOpening":
@@ -1824,7 +1824,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "registeringUserToVKeyError": MessageLookupByLibrary.simpleMessage(
             "Error while registering user to vkey"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "Invalid relationship! Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -1910,7 +1910,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "residentCountrySmall":
             MessageLookupByLibrary.simpleMessage("Resident Country"),
         "residentInfoNotFound": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-012)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-012)"),
         "response1Required": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some of the required FATCA information. Please check again and ensure all information is provided."),
         "response2Required": MessageLookupByLibrary.simpleMessage(
@@ -1932,7 +1932,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-054)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-054)"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
@@ -1942,19 +1942,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "Save your earnings digitally and securely"),
         "savingAccount": m4,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingIdCardError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingJobDetailsError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingProfileStatusError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingW8FormError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingW9FormError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage(
             "Something wrong, scan ID again"),
         "scanIdToProceedFurther": MessageLookupByLibrary.simpleMessage(
@@ -1997,7 +1997,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Your attempt to send money was unsuccessful."),
@@ -2020,7 +2020,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setContactLessZeroError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later. "),
         "settingContactLessError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-100)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-100)"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "settlementPercentage":
             MessageLookupByLibrary.simpleMessage("Settlement Percentages"),
@@ -2194,9 +2194,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "transactionType":
             MessageLookupByLibrary.simpleMessage("Transaction Type"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. "),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. "),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
@@ -2217,7 +2217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "unauthorize": MessageLookupByLibrary.simpleMessage(
-            "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-u)"),
+            "Oops! We are unable to authorize you. User might not be registered or something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-u)"),
         "unblockCardPin":
             MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "unblockCreditCardPinError": MessageLookupByLibrary.simpleMessage(
@@ -2262,7 +2262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadDocumentsSmall":
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "uploadFatcaSignatureError": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100."),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "uploadIdInstead":
             MessageLookupByLibrary.simpleMessage("Upload ID instead"),
         "uploadSignature":
@@ -2355,7 +2355,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
         "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-56200100. (Err-014)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-014)"),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
