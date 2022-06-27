@@ -533,10 +533,21 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
-      {required String status,
-      required String tokenizedPan,
-      required bool reApply}) async {
+  Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardWithResponse(
+      {required String status, required String tokenizedPan, required bool reApply}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.removeOrReApplySupplementaryDebitCardwithResponse(
+        RemoveOrReApplySupplementaryDebitCardRequestEnity(
+            baseData: baseData.toJson(),
+            getToken: true,
+            status: status,
+            tokenizedPan: tokenizedPan,
+            reApply: reApply));
+  }
+
+  @override
+  Future<HttpResponse<bool>> removeOrReApplySupplementaryDebitCard(
+      {required String status, required String tokenizedPan, required bool reApply}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.removeOrReApplySupplementaryDebitCard(
         RemoveOrReApplySupplementaryDebitCardRequestEnity(

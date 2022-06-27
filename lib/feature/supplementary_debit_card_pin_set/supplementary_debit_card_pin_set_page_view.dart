@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/debit_card_replacement/confirm_pin/confirm_replacement_pin_page.dart';
-import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page.dart';
-import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/confirm_pin/supp_confirm_pin_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/create_pin/supp_create_pin_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/visa_card/supp_pin_set_visa_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -15,11 +15,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 class SupplementaryDebitCardPinSetPageView
     extends BasePageViewWidget<SupplementaryDebitCardPinSetPageViewModel> {
-  final pages = [
-    ReplacementVisaCardPage(),
-    CreateReplacementPinPage(),
-    ConfirmReplacementPinPage()
-  ];
+  final pages = [SuppPinSetVisaCardPage(), SuppCreatePinPage(), SuppConfirmPinPage()];
 
   SupplementaryDebitCardPinSetPageView(ProviderBase model) : super(model);
 
@@ -41,17 +37,13 @@ class SupplementaryDebitCardPinSetPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).primaryColorDark,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.3)),
                 );
               },
             ),
@@ -73,8 +65,7 @@ class SupplementaryDebitCardPinSetPageView
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                          top: 8.0, bottom: 32, left: 24, right: 24),
+                      padding: EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

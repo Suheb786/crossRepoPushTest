@@ -24,8 +24,7 @@ class CardRepositoryImpl extends CardRepository {
   CardRepositoryImpl(this._remoteDs);
 
   @override
-  Future<Either<NetworkError, CardIssuanceDetails>>
-      getCardIssuanceDetails() async {
+  Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails() async {
     final result = await safeApiCall(
       _remoteDs.getCardIssuanceDetails(),
     );
@@ -36,8 +35,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> setCardPin(
-      String pin, String cardNumber) async {
+  Future<Either<NetworkError, bool>> setCardPin(String pin, String cardNumber) async {
     final result = await safeApiCall(
       _remoteDs.setCardPin(pin, cardNumber),
     );
@@ -59,8 +57,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetTransactionsResponse>>
-      getDebitCardTransactions({num? noOfDays}) async {
+  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions({num? noOfDays}) async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardTransactions(noOfDays: noOfDays),
     );
@@ -71,8 +68,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetTransactionsResponse>>
-      getCreditCardTransactions({required String cardId, num? noOfDays}) async {
+  Future<Either<NetworkError, GetTransactionsResponse>> getCreditCardTransactions(
+      {required String cardId, num? noOfDays}) async {
     final result = await safeApiCall(
       _remoteDs.getCreditCardTransactions(cardId: cardId, noOfDays: noOfDays),
     );
@@ -83,8 +80,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery(
-      {String? cardId, String? cardDigit}) async {
+  Future<Either<NetworkError, bool>> confirmCreditCardDelivery({String? cardId, String? cardDigit}) async {
     final result = await safeApiCall(
       _remoteDs.confirmCreditCardDelivery(cardId: cardId, cardDigit: cardDigit),
     );
@@ -95,8 +91,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
-      String monthYear) async {
+  Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(String monthYear) async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardStatement(monthYear: monthYear),
     );
@@ -141,8 +136,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> requestCreditCard(
-      {required String cardId}) async {
+  Future<Either<NetworkError, bool>> requestCreditCard({required String cardId}) async {
     final result = await safeApiCall(
       _remoteDs.requestCreditCard(cardId: cardId),
     );
@@ -186,8 +180,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unFreezeCreditCard(
-      {String? cardId}) async {
+  Future<Either<NetworkError, bool>> unFreezeCreditCard({String? cardId}) async {
     final result = await safeApiCall(
       _remoteDs.unFreezeCreditCard(cardId: cardId!),
     );
@@ -199,16 +192,10 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> cancelDebitCard(
-      {String? reason,
-      String? status,
-      String? tokenizedPan,
-      String? cancellationReason}) async {
+      {String? reason, String? status, String? tokenizedPan, String? cancellationReason}) async {
     final result = await safeApiCall(
       _remoteDs.cancelDebitCard(
-          reason: reason,
-          status: status,
-          tokenizedPan: tokenizedPan,
-          cancellationReason: cancellationReason),
+          reason: reason, status: status, tokenizedPan: tokenizedPan, cancellationReason: cancellationReason),
     );
     return result!.fold(
       (l) => Left(l),
@@ -217,8 +204,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> freezeDebitCard(
-      {String? status, String? tokenizedPan}) async {
+  Future<Either<NetworkError, bool>> freezeDebitCard({String? status, String? tokenizedPan}) async {
     final result = await safeApiCall(
       _remoteDs.freezeDebitCard(status: status, tokenizedPan: tokenizedPan),
     );
@@ -229,8 +215,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unFreezeDebitCard(
-      {String? status, String? tokenizedPan}) async {
+  Future<Either<NetworkError, bool>> unFreezeDebitCard({String? status, String? tokenizedPan}) async {
     final result = await safeApiCall(
       _remoteDs.unFreezeDebitCard(status: status, tokenizedPan: tokenizedPan),
     );
@@ -247,11 +232,7 @@ class CardRepositoryImpl extends CardRepository {
       required String cardNumber,
       required String tokenizedPan}) async {
     final result = await safeApiCall(
-      _remoteDs.changeDebitCardPin(
-          pin: pin,
-          tokenizedPan: tokenizedPan,
-          otp: otp,
-          cardNumber: cardNumber),
+      _remoteDs.changeDebitCardPin(pin: pin, tokenizedPan: tokenizedPan, otp: otp, cardNumber: cardNumber),
     );
     return result!.fold(
       (l) => Left(l),
@@ -260,8 +241,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unblockDebitCardPin(
-      {String? status, required String pin}) async {
+  Future<Either<NetworkError, bool>> unblockDebitCardPin({String? status, required String pin}) async {
     final result = await safeApiCall(
       _remoteDs.unblockDebitCardPin(pin: pin, status: status!),
     );
@@ -353,8 +333,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetCardApplicationResponse>>
-      getCardApplication() async {
+  Future<Either<NetworkError, GetCardApplicationResponse>> getCardApplication() async {
     final result = await safeApiCall(
       _remoteDs.getCardApplication(),
     );
@@ -365,8 +344,7 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues(
-      {String? accountId}) async {
+  Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues({String? accountId}) async {
     final result = await safeApiCall(
       _remoteDs.getLoanValues(accountId: accountId),
     );
@@ -378,10 +356,7 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
-      {String? minimumSettlement,
-      String? nickName,
-      num? loanValueId,
-      num? creditLimit}) async {
+      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit}) async {
     final result = await safeApiCall(_remoteDs.processLoanRequest(
         minimumSettlement: minimumSettlement,
         nickName: nickName,
@@ -423,9 +398,7 @@ class CardRepositoryImpl extends CardRepository {
       required String nickName}) async {
     final result = await safeApiCall(
       _remoteDs.applyDebitSupplementaryCard(
-          scannedDocumentInformation: scannedDocumentInformation,
-          relation: relation,
-          nickName: nickName),
+          scannedDocumentInformation: scannedDocumentInformation, relation: relation, nickName: nickName),
     );
     return result!.fold(
       (l) => Left(l),
@@ -435,8 +408,7 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, SupplementaryCreditCardApplicationResponse>>
-      getSupplementaryCreditCardApplication(
-          {required String primaryCard}) async {
+      getSupplementaryCreditCardApplication({required String primaryCard}) async {
     final result = await safeApiCall(
       _remoteDs.getSupplementaryCreditCardApplication(primaryCard: primaryCard),
     );
@@ -447,32 +419,31 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, SupplementaryCreditCardResponse>>
-      supplementaryCreditCardRequest(
-          {required String primaryCardId,
-          required String relationship,
-          dynamic doi,
-          required String type,
-          required String fullName,
-          required String firstName,
-          required String middleName,
-          required String familyName,
-          required String idNumber,
-          required String dob,
-          required String doe,
-          required String gender,
-          required String documentCode,
-          required String issuer,
-          required String nationality,
-          required String documentNumber,
-          required String optionalData1,
-          required String optionalData2,
-          required String mrtDraw,
-          required String frontCardImage,
-          required String backCardImage,
-          required String nickName,
-          required bool sameLimit,
-          required num limit}) async {
+  Future<Either<NetworkError, SupplementaryCreditCardResponse>> supplementaryCreditCardRequest(
+      {required String primaryCardId,
+      required String relationship,
+      dynamic doi,
+      required String type,
+      required String fullName,
+      required String firstName,
+      required String middleName,
+      required String familyName,
+      required String idNumber,
+      required String dob,
+      required String doe,
+      required String gender,
+      required String documentCode,
+      required String issuer,
+      required String nationality,
+      required String documentNumber,
+      required String optionalData1,
+      required String optionalData2,
+      required String mrtDraw,
+      required String frontCardImage,
+      required String backCardImage,
+      required String nickName,
+      required bool sameLimit,
+      required num limit}) async {
     final result = await safeApiCall(
       _remoteDs.supplementaryCreditCardRequest(
           primaryCardId: primaryCardId,
@@ -519,13 +490,9 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> supplementaryCreditCardStepThree(
-      {required String primaryCardId,
-      required String secondaryCardId,
-      required String accountNumber}) async {
+      {required String primaryCardId, required String secondaryCardId, required String accountNumber}) async {
     final result = await safeApiCall(_remoteDs.supplementaryCreditCardStepThree(
-        primaryCardId: primaryCardId,
-        secondaryCardId: secondaryCardId,
-        accountNumber: accountNumber));
+        primaryCardId: primaryCardId, secondaryCardId: secondaryCardId, accountNumber: accountNumber));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -533,10 +500,9 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, CreditCardRelationshipResponse>>
-      getCreditCardRelationShipList({required String cardId}) async {
-    final result = await safeApiCall(
-        _remoteDs.getCreditCardRelationShipList(cardId: cardId));
+  Future<Either<NetworkError, CreditCardRelationshipResponse>> getCreditCardRelationShipList(
+      {required String cardId}) async {
+    final result = await safeApiCall(_remoteDs.getCreditCardRelationShipList(cardId: cardId));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -544,10 +510,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> callStatusUpdate(
-      {String? cardId, String? status}) async {
-    final result = await safeApiCall(
-        _remoteDs.callStatusUpdate(cardId: cardId, status: status));
+  Future<Either<NetworkError, bool>> callStatusUpdate({String? cardId, String? status}) async {
+    final result = await safeApiCall(_remoteDs.callStatusUpdate(cardId: cardId, status: status));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -555,10 +519,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumberVerify(
-      {required params}) async {
-    final result = await safeApiCall(
-        _remoteDs.dcChangeLinkedMobileNumberVerify(params: params));
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumberVerify({required params}) async {
+    final result = await safeApiCall(_remoteDs.dcChangeLinkedMobileNumberVerify(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -566,10 +528,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber(
-      {required params}) async {
-    final result =
-        await safeApiCall(_remoteDs.dcChangeLinkedMobileNumber(params: params));
+  Future<Either<NetworkError, bool>> dcChangeLinkedMobileNumber({required params}) async {
+    final result = await safeApiCall(_remoteDs.dcChangeLinkedMobileNumber(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -577,10 +537,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumberVerify(
-      {required params}) async {
-    final result = await safeApiCall(
-        _remoteDs.ccChangeLinkedMobileNumberVerify(params: params));
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumberVerify({required params}) async {
+    final result = await safeApiCall(_remoteDs.ccChangeLinkedMobileNumberVerify(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -588,10 +546,8 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber(
-      {required params}) async {
-    final result =
-        await safeApiCall(_remoteDs.ccChangeLinkedMobileNumber(params: params));
+  Future<Either<NetworkError, bool>> ccChangeLinkedMobileNumber({required params}) async {
+    final result = await safeApiCall(_remoteDs.ccChangeLinkedMobileNumber(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -600,8 +556,7 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> updateSettlement({required params}) async {
-    final result =
-        await safeApiCall(_remoteDs.updateSettlement(params: params));
+    final result = await safeApiCall(_remoteDs.updateSettlement(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
@@ -611,26 +566,32 @@ class CardRepositoryImpl extends CardRepository {
   @override
   Future<Either<NetworkError, bool>> reportLostStolenCC(
       {required ReportLostStolenCCUseCaseParams params}) async {
-    final result =
-        await safeApiCall(_remoteDs.reportLostStolenCC(params: params));
+    final result = await safeApiCall(_remoteDs.reportLostStolenCC(params: params));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
     );
   }
 
- 
+  @override
+  Future<Either<NetworkError, CardIssuanceDetails>> removeOrReApplySupplementaryDebitCardWithResponse(
+      {required String status, required String tokenizedPan, required bool reApply}) async {
+    final result = await safeApiCall(
+      _remoteDs.removeOrReApplySupplementaryDebitCardWithResponse(
+          status: status, tokenizedPan: tokenizedPan, reApply: reApply),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
 
-   @override
+  @override
   Future<Either<NetworkError, bool>> removeOrReApplySupplementaryDebitCard(
-      {required String status,
-      required String tokenizedPan,
-      required bool reApply}) async {
+      {required String status, required String tokenizedPan, required bool reApply}) async {
     final result = await safeApiCall(
       _remoteDs.removeOrReApplySupplementaryDebitCard(
-          status: status,
-          tokenizedPan: tokenizedPan,
-          reApply: reApply),
+          status: status, tokenizedPan: tokenizedPan, reApply: reApply),
     );
     return result!.fold(
       (l) => Left(l),

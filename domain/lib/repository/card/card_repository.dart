@@ -157,11 +157,11 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> updateSettlement({required UpdateSettlementUseCaseParams params});
 
-  Future<Either<NetworkError, bool>> reportLostStolenCC(
-      {required ReportLostStolenCCUseCaseParams params});
+  Future<Either<NetworkError, bool>> reportLostStolenCC({required ReportLostStolenCCUseCaseParams params});
+
+  Future<Either<NetworkError, CardIssuanceDetails>> removeOrReApplySupplementaryDebitCardWithResponse(
+      {required String status, required String tokenizedPan, required bool reApply});
 
   Future<Either<NetworkError, bool>> removeOrReApplySupplementaryDebitCard(
-      {required String status,
-      required String tokenizedPan,
-      required bool reApply});
+      {required String status, required String tokenizedPan, required bool reApply});
 }

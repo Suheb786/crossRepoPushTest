@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
 import 'package:domain/error/app_error.dart';
+import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -12,6 +13,7 @@ import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_debit_card_pin_set_page.dart';
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -333,52 +335,91 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     PrimarySecondaryEnum.SECONDARY,
                               );
                             }),
-                        AppStreamBuilder<Resource<bool>>(
-                          initialData: Resource.none(),
-                          stream: model.cancelCardResponseStream,
-                          onData: (data) {
-                            if (data.status == Status.SUCCESS) {
-                              if (model.needsReplacement) {
-                                Navigator.pushReplacementNamed(context, RoutePaths.DebitCardReplacement,
-                                    arguments: DebitCardReplacementArguments(
-                                        isPinSet: true, type: DebitReplacementEnum.Normal));
-                              } else {
-                                Navigator.pop(context, true);
+                        AppStreamBuilder<Resource<CardIssuanceDetails>>(
+                            stream: model.removeOrReapplySuppDebitCardWithResponseStream,
+                            initialData: Resource.none(),
+                            onData: (reapplyWithResponse) {
+                              if (reapplyWithResponse.status == Status.SUCCESS) {
+                                Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCardPinSet,
+                                    arguments: SupplementaryDebitCardPinSetArguments(
+                                        type: DebitReplacementEnum.Supplementary,
+                                        nameOnCard: reapplyWithResponse.data!.cardHolderName,
+                                        cardNo: reapplyWithResponse.data!.cardNumber));
                               }
-                            }
-                          },
-                          dataBuilder: (context, data) {
-                            return SettingTile(
-                              onTap: () {
-                                CardCancelDialog.show(
-                                  context,
-                                  onSelected: (reasonValue, needsReplacement) {
-                                    model.needsReplacement = needsReplacement;
-                                    Navigator.pop(context);
-                                    model.cancelCard(
-                                        status: 'TE',
-                                        reasonValue: reasonValue,
-                                        tokenizedPlan: model.debitCardSettingsArguments.debitCard.code,
-                                        cancellationReason: reasonValue);
+                            },
+                            dataBuilder: (context, removeOrReapplyCardResponse) {
+                              return AppStreamBuilder<Resource<bool>>(
+                                  stream: model.removeOrReapplySuppDebitCardStream,
+                                  initialData: Resource.none(),
+                                  onData: (reapply) {
+                                    if (reapply.status == Status.SUCCESS) {
+                                      Navigator.pop(context, true);
+                                    }
                                   },
-                                  onDismissed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  onError: (AppError error) {
-                                    model.showToastWithError(error);
-                                  },
-                                  reasons: [
-                                    "I don’t need my card anymore.",
-                                    "I'am dissatisfied with service.",
-                                    "There are too many declined trx’s"
-                                  ],
-                                );
-                              },
-                              title: S.of(context).cancelThisCard,
-                              tileIcon: AssetUtils.cancelCard,
-                            );
-                          },
-                        ),
+                                  dataBuilder: (context, removeOrReapplyCardResponse) {
+                                    return AppStreamBuilder<Resource<bool>>(
+                                      initialData: Resource.none(),
+                                      stream: model.cancelCardResponseStream,
+                                      onData: (data) {
+                                        if (data.status == Status.SUCCESS) {
+                                          if (model.needsReplacement) {
+                                            Navigator.pushReplacementNamed(
+                                                context, RoutePaths.DebitCardReplacement,
+                                                arguments: DebitCardReplacementArguments(
+                                                    isPinSet: true, type: DebitReplacementEnum.Normal));
+                                          } else {
+                                            Navigator.pop(context, true);
+                                          }
+                                        }
+                                      },
+                                      dataBuilder: (context, data) {
+                                        return SettingTile(
+                                          onTap: () {
+                                            CardCancelDialog.show(
+                                              context,
+                                              onSelected: (reasonValue, needsReplacement) {
+                                                model.needsReplacement = needsReplacement;
+                                                Navigator.pop(context);
+                                                if (model.debitCardSettingsArguments.debitCard
+                                                        .primarySecondaryCard ==
+                                                    PrimarySecondaryEnum.PRIMARY) {
+                                                  model.cancelCard(
+                                                      status: 'TE',
+                                                      reasonValue: reasonValue,
+                                                      tokenizedPlan:
+                                                          model.debitCardSettingsArguments.debitCard.code,
+                                                      cancellationReason: reasonValue);
+                                                } else if (model.debitCardSettingsArguments.debitCard
+                                                        .primarySecondaryCard ==
+                                                    PrimarySecondaryEnum.SECONDARY) {
+                                                  if (needsReplacement) {
+                                                    model.removeOrReapplySuppDebitCardWithResponse(
+                                                        needsReplacement);
+                                                  } else {
+                                                    model.removeOrReapplySuppDebitCard(needsReplacement);
+                                                  }
+                                                }
+                                              },
+                                              onDismissed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              onError: (AppError error) {
+                                                model.showToastWithError(error);
+                                              },
+                                              reasons: [
+                                                "I don’t need my card anymore.",
+                                                "I'am dissatisfied with service.",
+                                                "There are too many declined trx’s"
+                                              ],
+                                            );
+                                          },
+                                          title: S.of(context).cancelThisCard,
+                                          tileIcon: AssetUtils.cancelCard,
+                                        );
+                                      },
+                                    );
+                                  });
+                            }),
                         SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 63.0),

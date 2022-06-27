@@ -87,7 +87,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
                                     isPinSet: isPinSet, type: DebitReplacementEnum.Normal))
                             : Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCardPinSet,
                                 arguments: SupplementaryDebitCardPinSetArguments(
-                                    type: DebitReplacementEnum.Supplementary,
+                                    type: DebitReplacementEnum.Normal,
                                     nameOnCard: cardHolderName,
                                     cardNo: cardNo));
                       },
