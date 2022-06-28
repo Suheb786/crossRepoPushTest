@@ -1318,5 +1318,7 @@
   "invalidRelationshipAPI": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-306) ",
   "primaryCreditCardHoldIdNotMatchGroom": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-307) ",
   "supplementaryCreditCardHolderIdNotMatchMotherFather": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-308) ",
-  "primaryDebitCreditCardHolderNotMatchMotherFather": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) "
+  "primaryDebitCreditCardHolderNotMatchMotherFather": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) ",
+  "noDataFoundInFI": "No data Found in Financial Institutions",
+  "noSuppUserDetailsFound": "No Supplimentary User Details Found"
 }

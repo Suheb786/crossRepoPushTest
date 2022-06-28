@@ -2441,18 +2441,20 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<bool>> removeOrReApplySupplementaryDebitCard(
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
       removeOrReApplySupplementaryDebitCardRequestEnity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(removeOrReApplySupplementaryDebitCardRequestEnity.toJson());
-    final _result = await _dio.fetch<bool>(_setStreamType<HttpResponse<bool>>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/DebitCard/RemoveOrReApplySuppDebitCard',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(
+                    _dio.options, '/DebitCard/RemoveOrReApplySuppDebitCard',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

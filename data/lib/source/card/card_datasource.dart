@@ -162,6 +162,6 @@ abstract class CardRemoteDs {
   Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardWithResponse(
       {required String status, required String tokenizedPan, required bool reApply});
 
-  Future<HttpResponse<bool>> removeOrReApplySupplementaryDebitCard(
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
       {required String status, required String tokenizedPan, required bool reApply});
 }

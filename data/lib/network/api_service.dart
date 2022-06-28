@@ -735,7 +735,7 @@ abstract class ApiService {
               removeOrReApplySupplementaryDebitCardRequestEnity);
 
   @POST("/DebitCard/RemoveOrReApplySuppDebitCard")
-  Future<HttpResponse<bool>> removeOrReApplySupplementaryDebitCard(
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
       @Body()
           RemoveOrReApplySupplementaryDebitCardRequestEnity
               removeOrReApplySupplementaryDebitCardRequestEnity);

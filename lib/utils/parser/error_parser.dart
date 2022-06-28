@@ -5,8 +5,7 @@ import 'package:neo_bank/generated/l10n.dart';
 class ErrorParser {
   ErrorParser._();
 
-  static String getLocalisedStringError(
-      {AppError? error, required S localisedHelper}) {
+  static String getLocalisedStringError({AppError? error, required S localisedHelper}) {
     switch (error?.type) {
       case ErrorType.IOEXCEPTION:
         return localisedHelper.genericError;
@@ -1065,10 +1064,13 @@ class ErrorParser {
       case ErrorType.PRIM_CREDIT_CARD_ID_NOT_MATCH_GROOM:
         return localisedHelper.primaryCreditCardHoldIdNotMatchGroom;
       case ErrorType.SUPP_CREDIT_HOLDER_ID_NOT_MATCH_FATHER_MOTHER:
-        return localisedHelper
-            .supplementaryCreditCardHolderIdNotMatchMotherFather;
+        return localisedHelper.supplementaryCreditCardHolderIdNotMatchMotherFather;
       case ErrorType.PRIM_DEBIT_CREDIT_CARD_ID_NOT_MATCH_MOTHER_FATHER:
         return localisedHelper.primaryDebitCreditCardHolderNotMatchMotherFather;
+      case ErrorType.NO_DATA_FOUND_IN_FINANCIAL_INSTITUTION:
+        return localisedHelper.noDataFoundInFI;
+      case ErrorType.NO_SUPP_USER_DETAILS_FOUND:
+        return localisedHelper.noSuppUserDetailsFound;
 
       default:
         return "";
