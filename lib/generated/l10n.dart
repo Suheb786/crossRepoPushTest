@@ -12969,6 +12969,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No data Found in Financial Institutions`
+  String get noDataFoundInFI {
+    return Intl.message(
+      'No data Found in Financial Institutions',
+      name: 'noDataFoundInFI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Supplimentary User Details Found`
+  String get noSuppUserDetailsFound {
+    return Intl.message(
+      'No Supplimentary User Details Found',
+      name: 'noSuppUserDetailsFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

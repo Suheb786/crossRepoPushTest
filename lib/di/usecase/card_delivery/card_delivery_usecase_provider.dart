@@ -31,6 +31,8 @@ import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dar
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/relationship_with_card_holder_usecase.dart';
+import 'package:domain/usecase/card_delivery/remove_or_reapply_supp_debit_card_with_response_usecase.dart';
+import 'package:domain/usecase/card_delivery/remove_or_reapply_supplementary_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
@@ -40,189 +42,166 @@ import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CreatePinUseCase] provider
-final createPinUseCaseProvider =
-    Provider.autoDispose<CreatePinUseCase>((ref) => CreatePinUseCase());
+final createPinUseCaseProvider = Provider.autoDispose<CreatePinUseCase>((ref) => CreatePinUseCase());
 
 ///[ConfirmPinUseCase] provider
-final confirmPinUseCaseProvider = Provider.autoDispose<ConfirmPinUseCase>(
-    (ref) => ConfirmPinUseCase(ref.read(cardRepositoryProvider)));
+final confirmPinUseCaseProvider =
+    Provider.autoDispose<ConfirmPinUseCase>((ref) => ConfirmPinUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CardIssuanceUseCase] provider
-final cardIssuanceCaseProvider = Provider.autoDispose<CardIssuanceUseCase>(
-    (ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));
+final cardIssuanceCaseProvider =
+    Provider.autoDispose<CardIssuanceUseCase>((ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ConfirmCardDeliveryUseCase] provider
-final debitCardConfirmDeliveryCaseProvider =
-    Provider.autoDispose<ConfirmCardDeliveryUseCase>(
-        (ref) => ConfirmCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
+final debitCardConfirmDeliveryCaseProvider = Provider.autoDispose<ConfirmCardDeliveryUseCase>(
+    (ref) => ConfirmCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetDebitCardTransactionsUseCase] provider
-final debitCardTransactionUseCaseProvider =
-    Provider.autoDispose<GetDebitCardTransactionsUseCase>((ref) =>
-        GetDebitCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
+final debitCardTransactionUseCaseProvider = Provider.autoDispose<GetDebitCardTransactionsUseCase>(
+    (ref) => GetDebitCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCreditCardTransactionsUseCase] provider
-final creditCardTransactionUseCaseProvider =
-    Provider.autoDispose<GetCreditCardTransactionsUseCase>((ref) =>
-        GetCreditCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
+final creditCardTransactionUseCaseProvider = Provider.autoDispose<GetCreditCardTransactionsUseCase>(
+    (ref) => GetCreditCardTransactionsUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ConfirmCreditCardDeliveryUseCase] provider
-final confirmCreditCardDeliveryUseCaseProvider =
-    Provider.autoDispose<ConfirmCreditCardDeliveryUseCase>((ref) =>
-        ConfirmCreditCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
+final confirmCreditCardDeliveryUseCaseProvider = Provider.autoDispose<ConfirmCreditCardDeliveryUseCase>(
+    (ref) => ConfirmCreditCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCardStatementUseCase] provider
-final cardStatementUseCaseProvider =
-    Provider.autoDispose<GetCardStatementUseCase>(
-        (ref) => GetCardStatementUseCase(ref.read(cardRepositoryProvider)));
+final cardStatementUseCaseProvider = Provider.autoDispose<GetCardStatementUseCase>(
+    (ref) => GetCardStatementUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCreditCardStatementUseCase] provider
-final creditCardStatementUseCaseProvider =
-    Provider.autoDispose<GetCreditCardStatementUseCase>((ref) =>
-        GetCreditCardStatementUseCase(ref.read(cardRepositoryProvider)));
+final creditCardStatementUseCaseProvider = Provider.autoDispose<GetCreditCardStatementUseCase>(
+    (ref) => GetCreditCardStatementUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetDebitYearsUseCase] provider
 final getDebitYearsUseCaseProvider = Provider.autoDispose<GetDebitYearsUseCase>(
     (ref) => GetDebitYearsUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCreditYearsUseCase] provider
-final getCreditYearsUseCaseProvider =
-    Provider.autoDispose<GetCreditYearsUseCase>(
-        (ref) => GetCreditYearsUseCase(ref.read(cardRepositoryProvider)));
+final getCreditYearsUseCaseProvider = Provider.autoDispose<GetCreditYearsUseCase>(
+    (ref) => GetCreditYearsUseCase(ref.read(cardRepositoryProvider)));
 
 ///[FreezeCreditCardUseCase] provider
-final freezeCreditCardUseCaseProvider =
-    Provider.autoDispose<FreezeCreditCardUseCase>(
-        (ref) => FreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
+final freezeCreditCardUseCaseProvider = Provider.autoDispose<FreezeCreditCardUseCase>(
+    (ref) => FreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
 
 ///[UnFreezeCreditCardUseCase] provider
-final unFreezeCreditCardUseCaseProvider =
-    Provider.autoDispose<UnFreezeCreditCardUseCase>(
-        (ref) => UnFreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
+final unFreezeCreditCardUseCaseProvider = Provider.autoDispose<UnFreezeCreditCardUseCase>(
+    (ref) => UnFreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CancelCreditCardUseCase] provider
-final cancelCreditCardUseCaseProvider =
-    Provider.autoDispose<CancelCreditCardUseCase>(
-        (ref) => CancelCreditCardUseCase(ref.read(cardRepositoryProvider)));
+final cancelCreditCardUseCaseProvider = Provider.autoDispose<CancelCreditCardUseCase>(
+    (ref) => CancelCreditCardUseCase(ref.read(cardRepositoryProvider)));
 
 ///[UnblockDebitCardPinUseCase] provider
-final unBlockDebitCardUseCaseProvider =
-    Provider.autoDispose<UnblockDebitCardPinUseCase>(
-        (ref) => UnblockDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
+final unBlockDebitCardUseCaseProvider = Provider.autoDispose<UnblockDebitCardPinUseCase>(
+    (ref) => UnblockDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CreditCardPinUnblockUseCase] provider
-final unBlockCreditCardUseCaseProvider =
-    Provider.autoDispose<CreditCardPinUnblockUseCase>(
-        (ref) => CreditCardPinUnblockUseCase(ref.read(cardRepositoryProvider)));
+final unBlockCreditCardUseCaseProvider = Provider.autoDispose<CreditCardPinUnblockUseCase>(
+    (ref) => CreditCardPinUnblockUseCase(ref.read(cardRepositoryProvider)));
 
 ///[DebitCardLimitsUpdateUseCase] provider
-final debitCardLimitsUpdateUseCaseProvider =
-    Provider.autoDispose<DebitCardLimitsUpdateUseCase>((ref) =>
-        DebitCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
+final debitCardLimitsUpdateUseCaseProvider = Provider.autoDispose<DebitCardLimitsUpdateUseCase>(
+    (ref) => DebitCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
 
 ///[DebitCardLimitUseCase] provider
-final debitCardLimitUseCaseProvider =
-    Provider.autoDispose<DebitCardLimitUseCase>(
-        (ref) => DebitCardLimitUseCase(ref.read(cardRepositoryProvider)));
+final debitCardLimitUseCaseProvider = Provider.autoDispose<DebitCardLimitUseCase>(
+    (ref) => DebitCardLimitUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CreditCardLimitsUpdateUseCase] provider
-final creditCardLimitsUpdateUseCaseProvider =
-    Provider.autoDispose<CreditCardLimitsUpdateUseCase>((ref) =>
-        CreditCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
+final creditCardLimitsUpdateUseCaseProvider = Provider.autoDispose<CreditCardLimitsUpdateUseCase>(
+    (ref) => CreditCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
 
 ///[OtpForChangeCardPinUseCase] provider
 final otpForChangeCardPinUseCaseProvider =
-    Provider.autoDispose<OtpForChangeCardPinUseCase>(
-        (ref) => OtpForChangeCardPinUseCase());
+    Provider.autoDispose<OtpForChangeCardPinUseCase>((ref) => OtpForChangeCardPinUseCase());
 
 ///[EnterNewPinForCardUseCase] provider
-final enterNewPinForCardUseCaseProvider =
-    Provider.autoDispose<EnterNewPinForCardUseCase>(
-        (ref) => EnterNewPinForCardUseCase(ref.read(cardRepositoryProvider)));
+final enterNewPinForCardUseCaseProvider = Provider.autoDispose<EnterNewPinForCardUseCase>(
+    (ref) => EnterNewPinForCardUseCase(ref.read(cardRepositoryProvider)));
 
 ///[RelationshipWithCardholderUseCase] provider
 final relationshipWithCardHolderUseCaseProvider =
-    Provider.autoDispose<RelationshipWithCardholderUseCase>(
-        (ref) => RelationshipWithCardholderUseCase());
+    Provider.autoDispose<RelationshipWithCardholderUseCase>((ref) => RelationshipWithCardholderUseCase());
 
 ///[PersonalizeCreditCardUseCase] provider
 final personalizeCreditCardUseCaseProvider =
-    Provider.autoDispose<PersonalizeCreditCardUseCase>(
-        (ref) => PersonalizeCreditCardUseCase());
+    Provider.autoDispose<PersonalizeCreditCardUseCase>((ref) => PersonalizeCreditCardUseCase());
 
 ///[PersonalizeDebitCardUseCase] provider
 final personalizeDebitCardUseCaseProvider =
-    Provider.autoDispose<PersonalizeDebitCardUseCase>(
-        (ref) => PersonalizeDebitCardUseCase());
+    Provider.autoDispose<PersonalizeDebitCardUseCase>((ref) => PersonalizeDebitCardUseCase());
 
 ///[GetCardApplicationUseCase] provider
-final getCardApplicationUseCaseProvider =
-    Provider.autoDispose<GetCardApplicationUseCase>(
-        (ref) => GetCardApplicationUseCase(ref.read(cardRepositoryProvider)));
+final getCardApplicationUseCaseProvider = Provider.autoDispose<GetCardApplicationUseCase>(
+    (ref) => GetCardApplicationUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetLoanValueUseCase] provider
-final getLoanValueUseCaseProvider = Provider.autoDispose<GetLoanValueUseCase>(
-    (ref) => GetLoanValueUseCase(ref.read(cardRepositoryProvider)));
+final getLoanValueUseCaseProvider =
+    Provider.autoDispose<GetLoanValueUseCase>((ref) => GetLoanValueUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CreditCardRequestUseCase] provider
-final creditCardRequestUseCaseProvider =
-    Provider.autoDispose<CreditCardRequestUseCase>(
-        (ref) => CreditCardRequestUseCase(ref.read(cardRepositoryProvider)));
+final creditCardRequestUseCaseProvider = Provider.autoDispose<CreditCardRequestUseCase>(
+    (ref) => CreditCardRequestUseCase(ref.read(cardRepositoryProvider)));
 
 ///[LinkCardStepUseCase] provider
-final linkCardStepUseCaseProvider = Provider.autoDispose<LinkCardStepUseCase>(
-    (ref) => LinkCardStepUseCase(ref.read(cardRepositoryProvider)));
+final linkCardStepUseCaseProvider =
+    Provider.autoDispose<LinkCardStepUseCase>((ref) => LinkCardStepUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ChangeDebitCardPinUseCase] provider
-final changeDebitPinUseCaseProvider =
-    Provider.autoDispose<ChangeDebitCardPinUseCase>(
-        (ref) => ChangeDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
+final changeDebitPinUseCaseProvider = Provider.autoDispose<ChangeDebitCardPinUseCase>(
+    (ref) => ChangeDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ChangeDebitPinVerifyUseCase] provider
-final changeDebitPinVerifyUseCaseProvider =
-    Provider.autoDispose<ChangeDebitPinVerifyUseCase>(
-        (ref) => ChangeDebitPinVerifyUseCase(ref.read(cardRepositoryProvider)));
+final changeDebitPinVerifyUseCaseProvider = Provider.autoDispose<ChangeDebitPinVerifyUseCase>(
+    (ref) => ChangeDebitPinVerifyUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ApplySupplementaryDebitCardUseCase] provider
-final applySupplementaryDebitUseCaseProvider =
-    Provider.autoDispose<ApplySupplementaryDebitCardUseCase>((ref) =>
-        ApplySupplementaryDebitCardUseCase(ref.read(cardRepositoryProvider)));
+final applySupplementaryDebitUseCaseProvider = Provider.autoDispose<ApplySupplementaryDebitCardUseCase>(
+    (ref) => ApplySupplementaryDebitCardUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCreditCardRelationshipListUseCase] provider
-final getCreditCardRelationshipUseCaseProvider =
-    Provider.autoDispose<GetCreditCardRelationshipListUseCase>((ref) =>
-        GetCreditCardRelationshipListUseCase(ref.read(cardRepositoryProvider)));
+final getCreditCardRelationshipUseCaseProvider = Provider.autoDispose<GetCreditCardRelationshipListUseCase>(
+    (ref) => GetCreditCardRelationshipListUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetSupplementaryCreditCardApplicationUseCase] provider
 final getSupplementaryCreditCardApplicationUseCaseProvider =
-    Provider.autoDispose<GetSupplementaryCreditCardApplicationUseCase>((ref) =>
-        GetSupplementaryCreditCardApplicationUseCase(
-            ref.read(cardRepositoryProvider)));
+    Provider.autoDispose<GetSupplementaryCreditCardApplicationUseCase>(
+        (ref) => GetSupplementaryCreditCardApplicationUseCase(ref.read(cardRepositoryProvider)));
 
 ///[SupplementaryCreditCardRequestUseCase] provider
 final supplementaryCreditCardRequestUseCaseProvider =
-    Provider.autoDispose<SupplementaryCreditCardRequestUseCase>((ref) =>
-        SupplementaryCreditCardRequestUseCase(
-            ref.read(cardRepositoryProvider)));
+    Provider.autoDispose<SupplementaryCreditCardRequestUseCase>(
+        (ref) => SupplementaryCreditCardRequestUseCase(ref.read(cardRepositoryProvider)));
 
 ///[SupplementaryCreditCardStepTwoUseCase] provider
 final supplementaryCreditCardStepTwoUseCaseProvider =
-    Provider.autoDispose<SupplementaryCreditCardStepTwoUseCase>((ref) =>
-        SupplementaryCreditCardStepTwoUseCase(
-            ref.read(cardRepositoryProvider)));
+    Provider.autoDispose<SupplementaryCreditCardStepTwoUseCase>(
+        (ref) => SupplementaryCreditCardStepTwoUseCase(ref.read(cardRepositoryProvider)));
 
 ///[SupplementaryCreditCardStepThreeUseCase] provider
 final supplementaryCreditCardStepThreeUseCaseProvider =
-    Provider.autoDispose<SupplementaryCreditCardStepThreeUseCase>((ref) =>
-        SupplementaryCreditCardStepThreeUseCase(
-            ref.read(cardRepositoryProvider)));
+    Provider.autoDispose<SupplementaryCreditCardStepThreeUseCase>(
+        (ref) => SupplementaryCreditCardStepThreeUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetCreditCardLimitUseCase] provider
-final getCreditCardLimitUseCaseProvider =
-    Provider.autoDispose<GetCreditCardLimitUseCase>(
-        (ref) => GetCreditCardLimitUseCase(ref.read(cardRepositoryProvider)));
+final getCreditCardLimitUseCaseProvider = Provider.autoDispose<GetCreditCardLimitUseCase>(
+    (ref) => GetCreditCardLimitUseCase(ref.read(cardRepositoryProvider)));
 
 ///[ReportLostStolenCCUseCase] provider
-final reportLostStolenCCUseCaseProvider =
-    Provider.autoDispose<ReportLostStolenCCUseCase>(
-        (ref) => ReportLostStolenCCUseCase(ref.read(cardRepositoryProvider)));
+final reportLostStolenCCUseCaseProvider = Provider.autoDispose<ReportLostStolenCCUseCase>(
+    (ref) => ReportLostStolenCCUseCase(ref.read(cardRepositoryProvider)));
+
+///[RemoveOrReapplySupplementaryDebitCardUseCase] provider
+final removeOrReapplySuppDebitUseCaseProvider =
+    Provider.autoDispose<RemoveOrReapplySupplementaryDebitCardUseCase>(
+        (ref) => RemoveOrReapplySupplementaryDebitCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[RemoveOrReapplySuppDebitCardWithResponseUseCase] provider
+final removeOrReapplySuppDebitWithResponseUseCaseProvider =
+    Provider.autoDispose<RemoveOrReapplySuppDebitCardWithResponseUseCase>(
+        (ref) => RemoveOrReapplySuppDebitCardWithResponseUseCase(ref.read(cardRepositoryProvider)));

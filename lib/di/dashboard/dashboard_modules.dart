@@ -43,8 +43,7 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dial
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
-final dashboardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
+final dashboardViewModelProvider = ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(
       ref.read(logoutUseCaseProvider),
       ref.read(checkBioMetricSupportUseCaseProvider),
@@ -53,108 +52,88 @@ final dashboardViewModelProvider =
       ref.read(enableBiometricUseCaseProvider)),
 );
 
-final biometricLoginViewModelProvider =
-    ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
-  (ref) =>
-      BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
+final biometricLoginViewModelProvider = ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
+  (ref) => BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
 );
 
-final getCreditCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<GetCreditCardViewModel>(
+final getCreditCardViewModelProvider = ChangeNotifierProvider.autoDispose<GetCreditCardViewModel>(
   (ref) => GetCreditCardViewModel(ref.read(getCardUseCaseProvider)),
 );
 
-final placeholderViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
+final placeholderViewModelProvider = ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
   (ref) => PlaceholderViewModel(ref.read(placeholderUseCaseProvider)),
 );
 
-final appHomeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider),
-      ref.read(getPlaceHolderUseCaseProvider)),
+final appHomeViewModelProvider = ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
+  (ref) =>
+      AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider), ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 final filterTransactionDialogViewModelProvier =
     ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
         (ref) => FilterTransactionDialogViewModel());
 
-final myAccountViewModelProvider =
-    ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
+final myAccountViewModelProvider = ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
   (ref) => MyAccountViewModel(ref.read(myAccountUseCaseProvider)),
 );
 
-final myDebitCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<MyDebitCardViewModel>(
+final myDebitCardViewModelProvider = ChangeNotifierProvider.autoDispose<MyDebitCardViewModel>(
   (ref) => MyDebitCardViewModel(ref.read(myDebitCardUseCaseProvider)),
 );
 
-final cardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DebitCardDeliveredViewModel, TimeLineListArguments>(
-  (ref, args) => DebitCardDeliveredViewModel(
-      ref.read(debitCardConfirmDeliveryCaseProvider), args),
+final cardDeliveredViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<DebitCardDeliveredViewModel, TimeLineListArguments>(
+  (ref, args) => DebitCardDeliveredViewModel(ref.read(debitCardConfirmDeliveryCaseProvider), args),
 );
 
 final debitCardVerificationSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
-  (ref) => DebitCardVerificationSuccessViewModel(
-      ref.read(debitCardVerificationSuccessUseCaseProvider)),
+  (ref) => DebitCardVerificationSuccessViewModel(ref.read(debitCardVerificationSuccessUseCaseProvider)),
 );
 
-final cardTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
+final cardTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<CardTransactionViewModel, GetCreditCardTransactionArguments>(
   (ref, args) => CardTransactionViewModel(
-      ref.read(creditCardTransactionUseCaseProvider),
-      ref.read(getCreditYearsUseCaseProvider),
-      args),
+      ref.read(creditCardTransactionUseCaseProvider), ref.read(getCreditYearsUseCaseProvider), args),
 );
 
-final creditCardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<CreditCardDeliveredViewModel, TimeLineListArguments>(
-  (ref, args) => CreditCardDeliveredViewModel(
-      ref.read(confirmCreditCardDeliveryUseCaseProvider), args),
+final creditCardDeliveredViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<CreditCardDeliveredViewModel, TimeLineListArguments>(
+  (ref, args) => CreditCardDeliveredViewModel(ref.read(confirmCreditCardDeliveryUseCaseProvider), args),
 );
 
 final creditCardVerificationSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreditCardVerificationSuccessViewModel>(
-  (ref) => CreditCardVerificationSuccessViewModel(
-      ref.read(creditCardVerificationSuccessUseCaseProvider)),
+  (ref) => CreditCardVerificationSuccessViewModel(ref.read(creditCardVerificationSuccessUseCaseProvider)),
 );
 
-final accountTransactionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
-  (ref) => AccountTransactionViewModel(
-      ref.read(accountTransactionUseCaseProvider),
-      ref.read(debitCardTransactionUseCaseProvider),
-      ref.read(getDebitYearsUseCaseProvider)),
+final accountTransactionViewModelProvider = ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
+  (ref) => AccountTransactionViewModel(ref.read(accountTransactionUseCaseProvider),
+      ref.read(debitCardTransactionUseCaseProvider), ref.read(getDebitYearsUseCaseProvider)),
 );
 
 final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(
   (ref) => HomeViewModel(),
 );
 
-final debitCardTimeLineViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DebitCardTimeLineViewModel, TimeLinePageArguments>(
-  (ref, args) => DebitCardTimeLineViewModel(
-      ref.read(debitCardTimeLineUseCaseProvider), args),
+final debitCardTimeLineViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<DebitCardTimeLineViewModel, TimeLinePageArguments>(
+  (ref, args) => DebitCardTimeLineViewModel(ref.read(debitCardTimeLineUseCaseProvider), args),
 );
 
 ///add money option selector view model
 final addMoneyOptionSelectorViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
-  (ref) =>
-      AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
+  (ref) => AddMoneyOptionSelectorViewModel(ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 ///locate pin page view model
-final locatePinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
+final locatePinViewModelProvider = ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
   (ref) => LocateATMPageViewModel(ref.read(getAtmUseCaseProvider)),
 );
 
 ///settings dialog view model
-final settingsDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
+final settingsDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
   (ref) => SettingsDialogViewModel(
     ref.read(logoutUseCaseProvider),
     ref.read(getProfileInfoUseCaseProvider),
@@ -165,8 +144,8 @@ final downloadTransactionDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<DownloadTransactionDialogViewModel>(
         (ref) => DownloadTransactionDialogViewModel());
 
-final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DownloadTransactionViewModel, DownloadStatementArguments>(
+final downloadTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<DownloadTransactionViewModel, DownloadStatementArguments>(
   (
     ref,
     args,
@@ -179,18 +158,20 @@ final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 /// DEBIT CArd Settings
-final debitCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DebitCardSettingsViewModel, DebitCardSettingsArguments>(
+final debitCardSettingsViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<DebitCardSettingsViewModel, DebitCardSettingsArguments>(
   (ref, args) => DebitCardSettingsViewModel(
       ref.read(freezeDebitCardUseCaseProvider),
       ref.read(unFreezeDebitCardUseCaseProvider),
       ref.read(cancelDebitCardUseCaseProvider),
-      args),
+      args,
+      ref.read(removeOrReapplySuppDebitUseCaseProvider),
+      ref.read(removeOrReapplySuppDebitWithResponseUseCaseProvider)),
 );
 
 /// Credit CArd Settings
-final creditCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<CreditCardSettingsViewModel, CreditCardSettingsArguments>(
+final creditCardSettingsViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<CreditCardSettingsViewModel, CreditCardSettingsArguments>(
   (ref, args) => CreditCardSettingsViewModel(
       ref.read(freezeCreditCardUseCaseProvider),
       ref.read(unFreezeCreditCardUseCaseProvider),
@@ -201,11 +182,9 @@ final creditCardSettingsViewModelProvider = ChangeNotifierProvider.autoDispose
 );
 
 /// check rescheduled video call
-final checkRescheduledVideoCallViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        CheckScheduledVideoCallPageViewModel, CheckVideoCallScheduledArguments>(
-  (ref, args) => CheckScheduledVideoCallPageViewModel(
-      ref.read(logoutUseCaseProvider), args),
+final checkRescheduledVideoCallViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CheckScheduledVideoCallPageViewModel, CheckVideoCallScheduledArguments>(
+  (ref, args) => CheckScheduledVideoCallPageViewModel(ref.read(logoutUseCaseProvider), args),
 );
 
 ///change country restriction page view model
@@ -228,15 +207,12 @@ final changeCardPaymentPageViewModelProvider =
 
 ///change card settlement percentage page view model
 final changeCardSettlementPercentagePageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<
-        ChangeCardSettlementPercentagePageViewModel>(
-  (ref) => ChangeCardSettlementPercentagePageViewModel(
-      ref.read(updateSettlementUseCaseProvider)),
+    ChangeNotifierProvider.autoDispose<ChangeCardSettlementPercentagePageViewModel>(
+  (ref) => ChangeCardSettlementPercentagePageViewModel(ref.read(updateSettlementUseCaseProvider)),
 );
 
 ///renew credit card page view model
-final renewCreditCardPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RenewCreditCardPageViewModel>(
+final renewCreditCardPageViewModelProvider = ChangeNotifierProvider.autoDispose<RenewCreditCardPageViewModel>(
   (ref) => RenewCreditCardPageViewModel(),
 );
 
@@ -248,7 +224,6 @@ final changeCreditLimitPageViewModelProvider =
 
 ///convert purchase to installments page view model
 final convertPurchaseToInstallmentsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<
-        ConvertPurchaseToInstallmentsPageViewModel>(
+    ChangeNotifierProvider.autoDispose<ConvertPurchaseToInstallmentsPageViewModel>(
   (ref) => ConvertPurchaseToInstallmentsPageViewModel(),
 );

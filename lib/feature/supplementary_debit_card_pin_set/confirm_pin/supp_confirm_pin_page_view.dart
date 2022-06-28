@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_modules.dart';
-import 'package:neo_bank/feature/debit_card_replacement/confirm_pin/confirm_replacement_pin_page_view_model.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_pin_set/confirm_pin/supp_confirm_pin_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -15,8 +15,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class ConfirmReplacementPinPageView extends BasePageViewWidget<ConfirmReplacementPinPageViewModel> {
-  ConfirmReplacementPinPageView(ProviderBase model) : super(model);
+class SuppConfirmPinPageView extends BasePageViewWidget<SuppConfirmPinPageViewModel> {
+  SuppConfirmPinPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -38,8 +38,8 @@ class ConfirmReplacementPinPageView extends BasePageViewWidget<ConfirmReplacemen
                   Navigator.pushReplacementNamed(context, RoutePaths.DebitCardReplacementSuccess,
                       arguments: DebitCardReplacementSuccessPageArgs(
                           type: ProviderScope.containerOf(context)
-                              .read(debitCardReplacementViewModelProvider)
-                              .debitCardReplacementArguments
+                              .read(suppDebitCardPinSetViewModelProvider)
+                              .arguments!
                               .type));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
@@ -49,24 +49,21 @@ class ConfirmReplacementPinPageView extends BasePageViewWidget<ConfirmReplacemen
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (ProviderScope.containerOf(context)
-                            .read(debitCardReplacementViewModelProvider)
+                            .read(suppDebitCardPinSetViewModelProvider)
                             .appSwiperController
                             .page ==
                         2.0) {
                       FocusScope.of(context).unfocus();
                       if (details.primaryVelocity!.isNegative) {
-                        print(
-                            'currentPin--->${ProviderScope.containerOf(context).read(createReplacementPinViewModelProvider).currentPin}');
                         model.validatePin(
+                            ProviderScope.containerOf(context).read(suppCreatePinModelProvider).currentPin,
                             ProviderScope.containerOf(context)
-                                .read(createReplacementPinViewModelProvider)
-                                .currentPin,
-                            ProviderScope.containerOf(context)
-                                .read(replacementVisaCardViewModelProvider)
-                                .cardNumber!);
+                                .read(suppDebitCardPinSetViewModelProvider)
+                                .arguments!
+                                .cardNo);
                       } else {
                         ProviderScope.containerOf(context)
-                            .read(debitCardReplacementViewModelProvider)
+                            .read(suppDebitCardPinSetViewModelProvider)
                             .previousPage();
                         // .previous(animation: true);
                       }

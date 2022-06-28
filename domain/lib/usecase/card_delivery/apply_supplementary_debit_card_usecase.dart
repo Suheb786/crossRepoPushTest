@@ -1,19 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ApplySupplementaryDebitCardUseCase extends BaseUseCase<NetworkError,
-    ApplySupplementaryDebitCardUseCaseParams, bool> {
+class ApplySupplementaryDebitCardUseCase
+    extends BaseUseCase<NetworkError, ApplySupplementaryDebitCardUseCaseParams, CardIssuanceDetails> {
   final CardRepository _repository;
 
   ApplySupplementaryDebitCardUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
+  Future<Either<NetworkError, CardIssuanceDetails>> execute(
       {required ApplySupplementaryDebitCardUseCaseParams params}) {
     return _repository.applyDebitSupplementaryCard(
         nickName: params.nickName,
@@ -28,9 +29,7 @@ class ApplySupplementaryDebitCardUseCaseParams extends Params {
   final ScannedDocumentInformation scannedDocumentInformation;
 
   ApplySupplementaryDebitCardUseCaseParams(
-      {required this.nickName,
-      required this.relationship,
-      required this.scannedDocumentInformation});
+      {required this.nickName, required this.relationship, required this.scannedDocumentInformation});
 
   @override
   Either<AppError, bool> verify() {
