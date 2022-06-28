@@ -46,10 +46,8 @@ class LoginViewModel extends BasePageViewModel {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final ScrollController scrollController = ScrollController();
-  final GlobalKey<AppTextFieldState> emailKey =
-      GlobalKey(debugLabel: "login_email");
-  final GlobalKey<AppTextFieldState> passwordKey =
-      GlobalKey(debugLabel: "login_password");
+  final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");
+  final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "login_password");
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
@@ -62,123 +60,100 @@ class LoginViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///kyc status request
-  PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest =
-      PublishSubject();
+  PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest = PublishSubject();
 
   ///kyc status response
-  PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse =
-      PublishSubject();
+  PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse = PublishSubject();
 
   ///kyc status response stream
-  Stream<Resource<CheckKycResponse>> get kycStatusStream =>
-      _kycStatusResponse.stream;
+  Stream<Resource<CheckKycResponse>> get kycStatusStream => _kycStatusResponse.stream;
 
   ///get cipher usecase
   PublishSubject<GetCipherUseCaseParams> _getCipherRequest = PublishSubject();
 
-  PublishSubject<Resource<GetCipherResponse>> _getCipherResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetCipherResponse>> _getCipherResponse = PublishSubject();
 
-  Stream<Resource<GetCipherResponse>> get getCipherStream =>
-      _getCipherResponse.stream;
+  Stream<Resource<GetCipherResponse>> get getCipherStream => _getCipherResponse.stream;
 
   BehaviorSubject<bool> _fingerPrintShowRequest = BehaviorSubject.seeded(false);
 
   Stream<bool> get fingerPrintShowStream => _fingerPrintShowRequest.stream;
 
   ///android login
-  PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest =
-      PublishSubject();
+  PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _androidLoginResponse = PublishSubject();
 
   Stream<Resource<bool>> get androidLoginStream => _androidLoginResponse.stream;
 
   ///iphone login
-  PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest =
-      PublishSubject();
+  PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest = PublishSubject();
 
   PublishSubject<Resource<User>> _iphoneLoginResponse = PublishSubject();
 
   Stream<Resource<User>> get iphoneLoginStream => _iphoneLoginResponse.stream;
 
   /// check whether biometric is supported or not request
-  PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
-      PublishSubject();
+  PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest = PublishSubject();
 
   /// check whether biometric is supported or not response
   BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
 
   /// check whether biometric is supported or not response stream
-  Stream<Resource<bool>> get checkBioMetricStream =>
-      _checkBioMetricResponse.stream;
+  Stream<Resource<bool>> get checkBioMetricStream => _checkBioMetricResponse.stream;
 
   /// authenticate using biometric request
-  PublishSubject<AuthenticateBioMetricUseCaseParams>
-      _authenticateBioMetricRequest = PublishSubject();
+  PublishSubject<AuthenticateBioMetricUseCaseParams> _authenticateBioMetricRequest = PublishSubject();
 
   /// authenticate using biometric response
-  PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _authenticateBioMetricResponse = PublishSubject();
 
   /// authenticate using biometric response stream
-  Stream<Resource<bool>> get authenticateBioMetricStream =>
-      _authenticateBioMetricResponse.stream;
+  Stream<Resource<bool>> get authenticateBioMetricStream => _authenticateBioMetricResponse.stream;
 
   /// send otp email request
-  PublishSubject<SendOtpTokenEmailOtpUseCaseParams> _sendOtpTokenEmailRequest =
-      PublishSubject();
+  PublishSubject<SendOtpTokenEmailOtpUseCaseParams> _sendOtpTokenEmailRequest = PublishSubject();
 
   /// send otp mobile request
-  PublishSubject<SendOtpTokeDeviceChangeOtpUseCaseParams>
-      _sendOtpTokenMobileRequest = PublishSubject();
+  PublishSubject<SendOtpTokeDeviceChangeOtpUseCaseParams> _sendOtpTokenMobileRequest = PublishSubject();
 
   /// send otp mobile response
   PublishSubject<Resource<bool>> _sendOtpTokenMobileResponse = PublishSubject();
 
   /// send otp mobile response stream
-  Stream<Resource<bool>> get sendOtpTokenMobileStream =>
-      _sendOtpTokenMobileResponse.stream;
+  Stream<Resource<bool>> get sendOtpTokenMobileStream => _sendOtpTokenMobileResponse.stream;
 
   String mobileNumber = '';
   String mobileCode = '';
   String applicationId = '';
 
   ///version update
-  PublishSubject<CheckVersionUpdateUseCaseParams> _checkVersionUpdateRequest =
-      PublishSubject();
+  PublishSubject<CheckVersionUpdateUseCaseParams> _checkVersionUpdateRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _checkVersionUpdateResponse = PublishSubject();
 
-  Stream<Resource<bool>> get checkVersionUpdateStream =>
-      _checkVersionUpdateResponse.stream;
+  Stream<Resource<bool>> get checkVersionUpdateStream => _checkVersionUpdateResponse.stream;
 
   /// current user request holder subject
-  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject =
-      PublishSubject();
+  final PublishSubject<GetCurrentUserUseCaseParams> _currentUserRequestSubject = PublishSubject();
 
   /// current user response holder subject
-  final PublishSubject<Resource<User>> _currentUserResponseSubject =
-      PublishSubject();
+  final PublishSubject<Resource<User>> _currentUserResponseSubject = PublishSubject();
 
   /// current user response holder stream
   Stream<Resource<User>> get currentUser => _currentUserResponseSubject.stream;
 
   /// generate key pair request
-  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
-      PublishSubject();
+  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest = PublishSubject();
 
   /// generate key pair response
-  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
-      PublishSubject();
+  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse = PublishSubject();
 
   /// generate key pair response stream
-  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
-      _generateKeyPairResponse.stream;
+  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream => _generateKeyPairResponse.stream;
 
   ///register infopib message service
-  PublishSubject<InfobipMessagePluginUseCaseParams>
-      _initInfobipMessageRequestSubject = PublishSubject();
+  PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
   LoginViewModel(
       this._loginUseCase,
@@ -195,10 +170,7 @@ class LoginViewModel extends BasePageViewModel {
       this._generateKeyPairUseCase,
       this._infobipMessagePluginUseCase) {
     _loginRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _loginUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _loginUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _loginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -215,8 +187,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _kycStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _kycStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _kycStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -229,8 +200,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _getCipherRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCipherUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCipherUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         //updateLoader();
@@ -242,8 +212,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _androidLoginRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _androidLoginUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _androidLoginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -255,8 +224,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _iphoneLoginRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _iphoneLoginUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _iphoneLoginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -286,9 +254,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _sendOtpTokenEmailRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _sendOtpTokenEmailOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _sendOtpTokenEmailOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -301,9 +267,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _sendOtpTokenMobileRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _sendOtpTokeDeviceChangeOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _sendOtpTokeDeviceChangeOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -315,9 +279,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _checkVersionUpdateRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkVersionUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkVersionUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         //updateLoader();
@@ -334,8 +296,7 @@ class LoginViewModel extends BasePageViewModel {
     });
 
     _generateKeyPairRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _generateKeyPairUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _generateKeyPairUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -369,8 +330,7 @@ class LoginViewModel extends BasePageViewModel {
   /// Authenticate before set the biometric
   void authenticateBioMetric({String title: "", String localisedReason: ""}) {
     _authenticateBioMetricRequest.safeAdd(
-      AuthenticateBioMetricUseCaseParams(
-          title: title, localisedReason: localisedReason),
+      AuthenticateBioMetricUseCaseParams(title: title, localisedReason: localisedReason),
     );
   }
 
@@ -379,8 +339,7 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void validateEmail() {
-    _loginRequest.safeAdd(LoginUseCaseParams(
-        email: emailController.text, password: passwordController.text));
+    _loginRequest.safeAdd(LoginUseCaseParams(email: emailController.text, password: passwordController.text));
   }
 
   void checkKycStatus() {
@@ -408,8 +367,7 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void sendOtpTokenMobile() {
-    _sendOtpTokenMobileRequest
-        .safeAdd(SendOtpTokeDeviceChangeOtpUseCaseParams());
+    _sendOtpTokenMobileRequest.safeAdd(SendOtpTokeDeviceChangeOtpUseCaseParams());
   }
 
   void getCipher() {
@@ -417,8 +375,7 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void checkVersionUpdate({String? clear}) {
-    _checkVersionUpdateRequest
-        .safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
+    _checkVersionUpdateRequest.safeAdd(CheckVersionUpdateUseCaseParams(clear: clear!));
   }
 
   ///get current user
@@ -432,8 +389,7 @@ class LoginViewModel extends BasePageViewModel {
 
   void initInfobipMessagePlugin() async {
     if (!AppConstantsUtils.isInfobipRegistered) {
-      _initInfobipMessageRequestSubject
-          .safeAdd(InfobipMessagePluginUseCaseParams());
+      _initInfobipMessageRequestSubject.safeAdd(InfobipMessagePluginUseCaseParams());
     }
   }
 

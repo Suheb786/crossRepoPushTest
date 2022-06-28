@@ -16,7 +16,11 @@ class RelationshipWithCardholderDebitPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> relationshipKey =
       GlobalKey(debugLabel: "relationship");
 
-  List<String> relationship = ["Parent", "Child", "Spouse", "Sibling"];
+  List<String> relationship = [
+    "Parent",
+    "Child",
+    "Spouse", /*"Sibling"*/
+  ];
 
   /// relationship with card holder request subject holder
   PublishSubject<RelationshipWithCardholderUseCaseParams>

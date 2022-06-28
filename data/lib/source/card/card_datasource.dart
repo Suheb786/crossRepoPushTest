@@ -22,38 +22,31 @@ import 'package:retrofit/retrofit.dart';
 abstract class CardRemoteDs {
   Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails();
 
-  Future<HttpResponse<ResponseEntity>> setCardPin(
-      String pin, String cardNumber);
+  Future<HttpResponse<ResponseEntity>> setCardPin(String pin, String cardNumber);
 
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
 
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
-      {String? cardId, String? cardDigit});
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery({String? cardId, String? cardDigit});
 
-  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
-      {num? noOfDays});
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions({num? noOfDays});
 
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       {required String cardId, num? noOfDays});
 
-  Future<HttpResponse<ResponseEntity>> requestCreditCard(
-      {required String cardId});
+  Future<HttpResponse<ResponseEntity>> requestCreditCard({required String cardId});
 
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears();
 
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears();
 
-  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
-      {required String? tokenizedPan});
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit({required String? tokenizedPan});
 
-  Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit(
-      {required String? secureCode});
+  Future<HttpResponse<GetCreditCardLimitResponseEntity>> getCreditCardLimit({required String? secureCode});
 
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       {String? monthYear, String? cardId});
 
-  Future<HttpResponse<AccountCardStatementResponseEntity>>
-      getDebitCardStatement({String monthYear});
+  Future<HttpResponse<AccountCardStatementResponseEntity>> getDebitCardStatement({String monthYear});
 
   Future<HttpResponse<ResponseEntity>> freezeCreditCard({String cardId});
 
@@ -64,25 +57,16 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock();
 
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      {String? reason,
-      String? status,
-      String? tokenizedPan,
-      String? cancellationReason});
+      {String? reason, String? status, String? tokenizedPan, String? cancellationReason});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
-      {String? status, String? tokenizedPan});
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard({String? status, String? tokenizedPan});
 
-  Future<HttpResponse<ResponseEntity>> freezeDebitCard(
-      {String? status, String? tokenizedPan});
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard({String? status, String? tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      {required String pin,
-      required String otp,
-      required String tokenizedPan,
-      required String cardNumber});
+      {required String pin, required String otp, required String tokenizedPan, required String cardNumber});
 
-  Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      {required String pin, required String status});
+  Future<HttpResponse<ResponseEntity>> unblockDebitCardPin({required String pin, required String status});
 
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
       {num? atmWithdrawal,
@@ -107,21 +91,16 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication();
 
-  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
-      {String? accountId});
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues({String? accountId});
 
   Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
-      {String? minimumSettlement,
-      String? nickName,
-      num? loanValueId,
-      num? creditLimit});
+      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit});
 
-  Future<HttpResponse<ResponseEntity>> linkCardStep(
-      {String cardId, String accountNumber});
+  Future<HttpResponse<ResponseEntity>> linkCardStep({String cardId, String accountNumber});
 
   Future<HttpResponse<ResponseEntity>> changePinVerify();
 
-  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+  Future<HttpResponse<CardIssuanceResponseEntity>> applyDebitSupplementaryCard(
       {required ScannedDocumentInformation scannedDocumentInformation,
       required String relation,
       required String nickName});
@@ -129,62 +108,60 @@ abstract class CardRemoteDs {
   Future<HttpResponse<SupplementaryCreditCardApplicationResponseEntity>>
       getSupplementaryCreditCardApplication({required String primaryCard});
 
-  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>>
-      supplementaryCreditCardRequest(
-          {required String primaryCardId,
-          required String relationship,
-          dynamic doi,
-          required String type,
-          required String fullName,
-          required String firstName,
-          required String middleName,
-          required String familyName,
-          required String idNumber,
-          required String dob,
-          required String doe,
-          required String gender,
-          required String documentCode,
-          required String issuer,
-          required String nationality,
-          required String documentNumber,
-          required String optionalData1,
-          required String optionalData2,
-          required String mrtDraw,
-          required String frontCardImage,
-          required String backCardImage,
-          required String nickName,
-          required bool sameLimit,
-          required num limit});
+  Future<HttpResponse<SupplementaryCreditCardRequestResponseEntity>> supplementaryCreditCardRequest(
+      {required String primaryCardId,
+      required String relationship,
+      dynamic doi,
+      required String type,
+      required String fullName,
+      required String firstName,
+      required String middleName,
+      required String familyName,
+      required String idNumber,
+      required String dob,
+      required String doe,
+      required String gender,
+      required String documentCode,
+      required String issuer,
+      required String nationality,
+      required String documentNumber,
+      required String optionalData1,
+      required String optionalData2,
+      required String mrtDraw,
+      required String frontCardImage,
+      required String backCardImage,
+      required String nickName,
+      required bool sameLimit,
+      required num limit});
 
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepTwo(
       {required String primaryCardId, required String secondaryCardId});
 
   Future<HttpResponse<ResponseEntity>> supplementaryCreditCardStepThree(
-      {required String primaryCardId,
-      required String secondaryCardId,
-      required String accountNumber});
+      {required String primaryCardId, required String secondaryCardId, required String accountNumber});
 
-  Future<HttpResponse<CreditCardRelationshipResponseEntity>>
-      getCreditCardRelationShipList({required String cardId});
+  Future<HttpResponse<CreditCardRelationshipResponseEntity>> getCreditCardRelationShipList(
+      {required String cardId});
 
-  Future<HttpResponse<ResponseEntity>> callStatusUpdate(
-      {String? cardId, String? status});
+  Future<HttpResponse<ResponseEntity>> callStatusUpdate({String? cardId, String? status});
 
   Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumberVerify(
       {required DcEnterNewMobileNumberUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber(
-      {required DcEnterOtpUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> dcChangeLinkedMobileNumber({required DcEnterOtpUseCaseParams params});
 
   Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumberVerify(
       {required DcEnterNewMobileNumberUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber(
-      {required DcEnterOtpUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> ccChangeLinkedMobileNumber({required DcEnterOtpUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> updateSettlement(
-      {required UpdateSettlementUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> updateSettlement({required UpdateSettlementUseCaseParams params});
 
-  Future<HttpResponse<ResponseEntity>> reportLostStolenCC(
-      {ReportLostStolenCCUseCaseParams params});
+  Future<HttpResponse<ResponseEntity>> reportLostStolenCC({ReportLostStolenCCUseCaseParams params});
+
+  Future<HttpResponse<CardIssuanceResponseEntity>> removeOrReApplySupplementaryDebitCardWithResponse(
+      {required String status, required String tokenizedPan, required bool reApply});
+
+  Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
+      {required String status, required String tokenizedPan, required bool reApply});
 }

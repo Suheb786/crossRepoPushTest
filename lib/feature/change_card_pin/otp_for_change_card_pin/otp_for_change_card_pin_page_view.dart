@@ -6,7 +6,6 @@ import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -18,8 +17,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class OtpForChangeCardPinPageView
-    extends BasePageViewWidget<OtpForChangeCardPinPageViewModel> {
+class OtpForChangeCardPinPageView extends BasePageViewWidget<OtpForChangeCardPinPageViewModel> {
   OtpForChangeCardPinPageView(ProviderBase model) : super(model);
 
   @override
@@ -39,8 +37,7 @@ class OtpForChangeCardPinPageView
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.ChangeCardPinSuccess,
+                    Navigator.pushNamed(context, RoutePaths.ChangeCardPinSuccess,
                         arguments: ChangeCardPinSuccessArguments(
                             cardType: ProviderScope.containerOf(context)
                                 .read(changeCardPinViewModelProvider)
@@ -63,21 +60,19 @@ class OtpForChangeCardPinPageView
                                 CardType.DEBIT
                             ? model.changeDebitCardPin(
                                 cardNumber: ProviderScope.containerOf(context)
-                                    .read(appHomeViewModelProvider)
-                                    .dashboardDataContent
-                                    .debitCard!
-                                    .first
-                                    .cardNumber!,
+                                        .read(changeCardPinViewModelProvider)
+                                        .changeCardPinArguments
+                                        .cardNumber ??
+                                    '',
                                 pin: ProviderScope.containerOf(context)
                                     .read(enterNewCardPinViewModelProvider)
                                     .confirmPinController
                                     .text,
                                 tokenizedPan: ProviderScope.containerOf(context)
-                                    .read(appHomeViewModelProvider)
-                                    .dashboardDataContent
-                                    .debitCard!
-                                    .first
-                                    .code!)
+                                        .read(changeCardPinViewModelProvider)
+                                        .changeCardPinArguments
+                                        .tokenizedPan ??
+                                    '')
                             : () {};
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
@@ -105,11 +100,9 @@ class OtpForChangeCardPinPageView
                         child: Card(
                           margin: EdgeInsets.zero,
                           child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 32, horizontal: 24),
+                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   SingleChildScrollView(
                                     physics: ClampingScrollPhysics(),
@@ -133,12 +126,8 @@ class OtpForChangeCardPinPageView
                                         endTime: model.endTime,
                                         textStyle: TextStyle(
                                             fontSize: 16,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color!),
-                                        widgetBuilder:
-                                            (context, currentTimeRemaining) {
+                                            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                        widgetBuilder: (context, currentTimeRemaining) {
                                           return currentTimeRemaining == null
                                               ? TextButton(
                                                   onPressed: () {
@@ -148,8 +137,7 @@ class OtpForChangeCardPinPageView
                                                     'Resend Code',
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
                                                             .bodyText1!
@@ -160,8 +148,7 @@ class OtpForChangeCardPinPageView
                                                       '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                   style: TextStyle(
                                                       fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                                      fontWeight: FontWeight.w600,
                                                       color: Theme.of(context)
                                                           .accentTextTheme
                                                           .bodyText1!
@@ -179,9 +166,7 @@ class OtpForChangeCardPinPageView
                                                 visible: isValid!,
                                                 child: AnimatedButton(
                                                   buttonHeight: 50,
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
+                                                  buttonText: S.of(context).swipeToProceed,
                                                 ),
                                               );
                                             }),
