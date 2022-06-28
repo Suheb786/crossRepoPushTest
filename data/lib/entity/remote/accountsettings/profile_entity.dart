@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'profile_entity.g.dart';
 
 @JsonSerializable()
-class ProfileEntity
-    extends BaseLayerDataTransformer<ProfileEntity, ProfileInfoContent> {
+class ProfileEntity extends BaseLayerDataTransformer<ProfileEntity, ProfileInfoContent> {
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "mobileNumber")
@@ -18,16 +17,18 @@ class ProfileEntity
   final String? profileImage;
   @JsonKey(name: "fullName")
   final String? fullName;
+  @JsonKey(name: "mobileCode")
+  final String? mobileCode;
 
   ProfileEntity(
       {this.email: "",
       this.mobileNumber: "",
       this.biometric: false,
       this.fullName: "",
-      this.profileImage: ""});
+      this.profileImage: "",
+      this.mobileCode: ""});
 
-  factory ProfileEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProfileEntityFromJson(json);
+  factory ProfileEntity.fromJson(Map<String, dynamic> json) => _$ProfileEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileEntityToJson(this);
 
@@ -41,10 +42,9 @@ class ProfileEntity
     return ProfileInfoContent(
         email: this.email ?? '',
         mobileNumber: this.mobileNumber ?? '',
+        mobileCode: this.mobileCode ?? '',
         fullName: this.fullName ?? '',
         biometric: this.biometric,
-        profileImage: this.profileImage != null
-            ? ImageUtils.dataFromBase64String(this.profileImage!)
-            : '');
+        profileImage: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : '');
   }
 }

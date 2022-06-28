@@ -13,6 +13,7 @@ ProfileEntity _$ProfileEntityFromJson(Map<String, dynamic> json) {
     biometric: json['biometric'] as bool?,
     fullName: json['fullName'] as String?,
     profileImage: json['profileImage'] as String?,
+    mobileCode: json['mobileCode'] as String?,
   );
 }
 
@@ -23,4 +24,5 @@ Map<String, dynamic> _$ProfileEntityToJson(ProfileEntity instance) =>
       'biometric': instance.biometric,
       'profileImage': instance.profileImage,
       'fullName': instance.fullName,
+      'mobileCode': instance.mobileCode,
     };

@@ -20,8 +20,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class AccountSettingPageView
-    extends BasePageViewWidget<AccountSettingPageViewModel> {
+class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewModel> {
   AccountSettingPageView(ProviderBase model) : super(model);
 
   @override
@@ -60,8 +59,7 @@ class AccountSettingPageView
                                     if (data.status == Status.SUCCESS) {
                                       Navigator.pop(context);
                                       model.getProfileDetails();
-                                      model.showSuccessToast(
-                                          'Profile Image deleted.');
+                                      model.showSuccessToast('Profile Image deleted.');
                                       model.selectedProfile = '';
                                       model.addImage(model.selectedProfile);
                                     }
@@ -74,20 +72,16 @@ class AccountSettingPageView
                                       onData: (data) {
                                         if (data.status == Status.SUCCESS) {
                                           model.addImage(model.selectedProfile);
-                                          model.showSuccessToast(S
-                                              .of(context)
-                                              .profilePhotoUpdated);
+                                          model.showSuccessToast(S.of(context).profilePhotoUpdated);
                                           model.getProfileDetails();
                                         }
                                       },
                                       dataBuilder: (context, dataUpload) {
                                         return AppStreamBuilder<String>(
-                                          stream:
-                                              model.uploadProfilePhotoStream,
+                                          stream: model.uploadProfilePhotoStream,
                                           initialData: '',
                                           onData: (data) {
-                                            if (data != null &&
-                                                data.isNotEmpty) {
+                                            if (data != null && data.isNotEmpty) {
                                               model.selectedProfile = data;
                                               //model.addImage(data);
                                               _cropImage(data, model, context);
@@ -102,85 +96,55 @@ class AccountSettingPageView
                                               dataBuilder: (context, image) {
                                                 return InkWell(
                                                     onTap: () {
-                                                      ChooseProfileWidget.show(
-                                                          context,
-                                                          onCameraTap: () {
+                                                      ChooseProfileWidget.show(context, onCameraTap: () {
                                                         Navigator.pop(context);
-                                                        model
-                                                            .uploadProfilePhoto(
-                                                                DocumentTypeEnum
-                                                                    .CAMERA);
+                                                        model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
                                                       }, onGalleryTap: () {
                                                         Navigator.pop(context);
-                                                        model.uploadProfilePhoto(
-                                                            DocumentTypeEnum
-                                                                .PICK_IMAGE);
+                                                        model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
                                                       }, onRemoveTap: () {
                                                         model.deleteProfileImage(
-                                                            profileData
-                                                                .data!
-                                                                .content!
-                                                                .profileImage);
+                                                            profileData.data!.content!.profileImage);
                                                       }, onCancelled: () {
                                                         Navigator.pop(context);
-                                                      },
-                                                          title: S
-                                                              .of(context)
-                                                              .pleaseSelectYourAction);
+                                                      }, title: S.of(context).pleaseSelectYourAction);
                                                     },
                                                     child: CircleAvatar(
-                                                      backgroundColor:
-                                                          Theme.of(context)
-                                                              .primaryColor,
+                                                      backgroundColor: Theme.of(context).primaryColor,
                                                       radius: 48,
                                                       child: CircleAvatar(
                                                         radius: 48,
                                                         child: image!.isEmpty
-                                                            ? ((profileData
-                                                                    .data!
-                                                                    .content!
-                                                                    .profileImage
+                                                            ? ((profileData.data!.content!.profileImage
                                                                     .toString()
                                                                     .isNotEmpty)
                                                                 ? CircleAvatar(
                                                                     radius: 48,
-                                                                    backgroundImage:
-                                                                        Image
-                                                                            .memory(
+                                                                    backgroundImage: Image.memory(
                                                                       profileData
-                                                                          .data!
-                                                                          .content!
-                                                                          .profileImage!,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                                          .data!.content!.profileImage!,
+                                                                      fit: BoxFit.cover,
                                                                     ).image,
                                                                   )
                                                                 : CircleAvatar(
                                                                     radius: 48,
                                                                     backgroundColor:
-                                                                        Theme.of(context)
-                                                                            .primaryColor,
+                                                                        Theme.of(context).primaryColor,
                                                                     child: Text(
                                                                       StringUtils.getFirstInitials(profileData
-                                                                          .data!
-                                                                          .content!
-                                                                          .fullName),
+                                                                          .data!.content!.fullName),
                                                                       style: TextStyle(
-                                                                          fontWeight: FontWeight
-                                                                              .w700,
-                                                                          fontSize:
-                                                                              18,
+                                                                          fontWeight: FontWeight.w700,
+                                                                          fontSize: 18,
                                                                           color:
                                                                               Theme.of(context).accentColor),
                                                                     ),
                                                                   ))
                                                             : CircleAvatar(
                                                                 radius: 48,
-                                                                backgroundImage:
-                                                                    Image.file(
+                                                                backgroundImage: Image.file(
                                                                   File(image),
-                                                                  fit: BoxFit
-                                                                      .cover,
+                                                                  fit: BoxFit.cover,
                                                                 ).image,
                                                               ),
                                                       ),
@@ -201,15 +165,11 @@ class AccountSettingPageView
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context)
-                                          .inputDecorationTheme
-                                          .hintStyle!
-                                          .color),
+                                      color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 32.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 32.0, bottom: 16),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -218,26 +178,22 @@ class AccountSettingPageView
                               AccountSettingWidget(
                                 image: AssetUtils.email,
                                 title: S.of(context).emailAddressSmall,
-                                subtitle: (profileData
-                                            .data!.content!.email!.isNotEmpty ||
-                                        profileData.data!.content!.email !=
-                                            null)
+                                subtitle: (profileData.data!.content!.email!.isNotEmpty ||
+                                        profileData.data!.content!.email != null)
                                     ? profileData.data!.content!.email
                                     : '-',
                                 onTap: () async {
-                                  var isSuccess = await Navigator.pushNamed(
-                                      context, RoutePaths.ChangeEmailAddress);
+                                  var isSuccess =
+                                      await Navigator.pushNamed(context, RoutePaths.ChangeEmailAddress);
                                   if (isSuccess != null) {
-                                    Future.delayed(Duration(milliseconds: 500),
-                                        () {
+                                    Future.delayed(Duration(milliseconds: 500), () {
                                       model.getProfileDetails();
                                     });
                                   }
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 16.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -247,22 +203,21 @@ class AccountSettingPageView
                                 image: AssetUtils.mobile,
                                 title: S.of(context).mobileNumber,
                                 subtitle:
-                                    profileData.data!.content!.mobileNumber,
+                                    "${profileData.data!.content!.mobileCode != null ? (profileData.data!.content!.mobileCode!.isNotEmpty ? profileData.data!.content!.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                        " ${profileData.data!.content!.mobileNumber}",
                                 onTap: () async {
-                                  var isSuccess = await Navigator.pushNamed(
-                                      context, RoutePaths.ChangeMobileNumber);
+                                  var isSuccess =
+                                      await Navigator.pushNamed(context, RoutePaths.ChangeMobileNumber);
 
                                   if (isSuccess != null) {
-                                    Future.delayed(Duration(milliseconds: 500),
-                                        () {
+                                    Future.delayed(Duration(milliseconds: 500), () {
                                       model.getProfileDetails();
                                     });
                                   }
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 16.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -272,13 +227,11 @@ class AccountSettingPageView
                                 image: AssetUtils.password,
                                 title: S.of(context).changePassword,
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutePaths.ChangePassword);
+                                  Navigator.pushNamed(context, RoutePaths.ChangePassword);
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 16.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -290,16 +243,13 @@ class AccountSettingPageView
                                   onData: (data) {
                                     if (data.status == Status.SUCCESS) {
                                       model.updateSwitchValue(false);
-                                      model.showSuccessToast(S
-                                          .of(context)
-                                          .biometricLoginDeactivated);
+                                      model.showSuccessToast(S.of(context).biometricLoginDeactivated);
                                     }
                                   },
                                   dataBuilder: (context, keyPairResponse) {
                                     return AppStreamBuilder<bool>(
                                       stream: model.switchValue,
-                                      initialData:
-                                          profileData.data!.content!.biometric!,
+                                      initialData: profileData.data!.content!.biometric!,
                                       dataBuilder: (context, isActive) {
                                         return AppStreamBuilder<Resource<bool>>(
                                           stream: model.enableBiometricStream,
@@ -307,94 +257,64 @@ class AccountSettingPageView
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
                                               model.updateSwitchValue(true);
-                                              model.showSuccessToast(S
-                                                  .of(context)
-                                                  .biometricLoginActivated);
-                                            } else if (data.status ==
-                                                Status.ERROR) {
+                                              model.showSuccessToast(S.of(context).biometricLoginActivated);
+                                            } else if (data.status == Status.ERROR) {
                                               model.updateSwitchValue(false);
                                             }
                                           },
-                                          dataBuilder:
-                                              (context, isBiometricEnabled) {
-                                            return AppStreamBuilder<
-                                                Resource<
-                                                    GenerateKeyPairResponse>>(
+                                          dataBuilder: (context, isBiometricEnabled) {
+                                            return AppStreamBuilder<Resource<GenerateKeyPairResponse>>(
                                               initialData: Resource.none(),
-                                              stream:
-                                                  model.generateKeyPairStream,
+                                              stream: model.generateKeyPairStream,
                                               onData: (data) {
-                                                if (data.status ==
-                                                    Status.SUCCESS) {
+                                                if (data.status == Status.SUCCESS) {
                                                   model.enableBiometric();
                                                 }
                                               },
-                                              dataBuilder:
-                                                  (context, keyPairResponse) {
-                                                return AppStreamBuilder<
-                                                    Resource<bool>>(
-                                                  stream: model
-                                                      .authenticateBioMetricStream,
+                                              dataBuilder: (context, keyPairResponse) {
+                                                return AppStreamBuilder<Resource<bool>>(
+                                                  stream: model.authenticateBioMetricStream,
                                                   initialData: Resource.none(),
                                                   onData: (data) {
-                                                    if (data.status ==
-                                                        Status.SUCCESS) {
-                                                      print(
-                                                          'authenticated success');
+                                                    if (data.status == Status.SUCCESS) {
+                                                      print('authenticated success');
                                                       if (data.data!) {
                                                         model.generateKeyPair();
                                                       }
                                                     }
                                                   },
-                                                  dataBuilder: (context,
-                                                      biometricAuthenticated) {
-                                                    return AppStreamBuilder<
-                                                        Resource<bool>>(
-                                                      stream: model
-                                                          .checkBioMetricStream,
-                                                      initialData:
-                                                          Resource.none(),
+                                                  dataBuilder: (context, biometricAuthenticated) {
+                                                    return AppStreamBuilder<Resource<bool>>(
+                                                      stream: model.checkBioMetricStream,
+                                                      initialData: Resource.none(),
                                                       onData: (data) {
-                                                        if (data.status ==
-                                                            Status.SUCCESS) {
+                                                        if (data.status == Status.SUCCESS) {
                                                           print('success');
                                                           model.authenticateBioMetric(
-                                                              title: S
-                                                                  .of(context)
-                                                                  .enableBiometricLoginTitle,
-                                                              localisedReason: Platform
-                                                                      .isAndroid
+                                                              title: S.of(context).enableBiometricLoginTitle,
+                                                              localisedReason: Platform.isAndroid
                                                                   ? S
-                                                                      .of(
-                                                                          context)
+                                                                      .of(context)
                                                                       .enableBiometricLoginDescriptionAndroid
                                                                   : S
                                                                       .of(context)
                                                                       .enableBiometricLoginDescriptionIos);
                                                         }
                                                       },
-                                                      dataBuilder: (context,
-                                                          isAvailable) {
+                                                      dataBuilder: (context, isAvailable) {
                                                         return BiometricSwitchWidget(
                                                           onToggle: (value) {
                                                             if (value) {
-                                                              model
-                                                                  .checkBiometric();
+                                                              model.checkBiometric();
                                                             } else if (!value) {
-                                                              model
-                                                                  .disableFingerPrint();
+                                                              model.disableFingerPrint();
                                                             }
                                                           },
                                                           isActive: isActive,
-                                                          title: S
-                                                              .of(context)
-                                                              .biometricLogin,
-                                                          image: AssetUtils
-                                                              .biometric,
-                                                          inActiveText:
-                                                              S.of(context).no,
-                                                          activeText:
-                                                              S.of(context).yes,
+                                                          title: S.of(context).biometricLogin,
+                                                          image: AssetUtils.biometric,
+                                                          inActiveText: S.of(context).no,
+                                                          activeText: S.of(context).yes,
                                                         );
                                                       },
                                                     );
@@ -465,8 +385,7 @@ class AccountSettingPageView
     );
   }
 
-  void _cropImage(String data, AccountSettingPageViewModel model,
-      BuildContext context) async {
+  void _cropImage(String data, AccountSettingPageViewModel model, BuildContext context) async {
     File? cropped = await ImageCropper.cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,
