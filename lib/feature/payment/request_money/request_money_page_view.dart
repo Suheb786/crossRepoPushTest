@@ -36,7 +36,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
           dataBuilder: (context, data) {
             return GestureDetector(
               onVerticalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {} else {
+                if (details.primaryVelocity!.isNegative) {
+                } else {
                   Navigator.pop(context);
                 }
               },
@@ -54,9 +55,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                             height: 50,
                             width: 281,
                             decoration: BoxDecoration(
-                              color: Theme
-                                  .of(context)
-                                  .canvasColor,
+                              color: Theme.of(context).canvasColor,
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(16),
                                 bottomRight: Radius.circular(16),
@@ -72,9 +71,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 6.0),
                                 child: Text(
-                                  S
-                                      .of(context)
-                                      .backToPayments,
+                                  S.of(context).backToPayments,
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
@@ -90,11 +87,9 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   Padding(
                     padding: EdgeInsets.only(top: 80),
                     child: Text(
-                      S
-                          .of(context)
-                          .requestMoney,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 18),
+                      S.of(context).requestMoney,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Padding(
@@ -119,7 +114,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 15, left: 4),
                                 child: Text(
-                                  "JOD",
+                                  S.of(context).JOD,
                                   style: TextStyle(
                                       color: AppColor.verLightGray4,
                                       fontSize: 16,
@@ -143,9 +138,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   Padding(
                     padding: EdgeInsets.only(top: 49),
                     child: Text(
-                      S
-                          .of(context)
-                          .accountBalance,
+                      S.of(context).accountBalance,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 10,
@@ -171,7 +164,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                         Padding(
                           padding: EdgeInsets.only(left: 4.0, top: 2),
                           child: Text(
-                            "JOD",
+                            S.of(context).JOD,
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 12,
@@ -182,36 +175,38 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     ),
                   ),
                   Expanded(
-                    child: NumericKeyboard(
-                        onKeyboardTap: (value) {
-                          model.changeValue(value);
-                        },
-                        textColor: Colors.black,
-                        rightButtonFn: () {
-                          model.requestMoney();
-                        },
-                        leftIcon: Icon(
-                          Icons.circle,
-                          color: AppColor.black,
-                          size: 5,
-                        ),
-                        rightWidget: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Color(0xFF3CB4E5),
-                          child: Center(
-                            child: AppSvg.asset(AssetUtils.next),
+                    child: Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: NumericKeyboard(
+                          onKeyboardTap: (value) {
+                            model.changeValue(value);
+                          },
+                          textColor: Colors.black,
+                          rightButtonFn: () {
+                            model.requestMoney();
+                          },
+                          leftIcon: Icon(
+                            Icons.circle,
+                            color: AppColor.black,
+                            size: 5,
                           ),
-                        ),
-                        leftButtonFn: () {
-                          model.changeValue(".");
-                        },
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                          rightWidget: CircleAvatar(
+                            radius: 30,
+                            backgroundColor: Color(0xFF3CB4E5),
+                            child: Center(
+                              child: AppSvg.asset(AssetUtils.next),
+                            ),
+                          ),
+                          leftButtonFn: () {
+                            model.changeValue(".");
+                          },
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                    ),
                   )
                 ],
               ),
             );
-          }
-      ),
+          }),
     );
   }
 }

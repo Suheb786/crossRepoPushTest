@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class OtpForChangeCardPinPageView extends BasePageViewWidget<OtpForChangeCardPinPageViewModel> {
   OtpForChangeCardPinPageView(ProviderBase model) : super(model);
@@ -87,13 +88,24 @@ class OtpForChangeCardPinPageView extends BasePageViewWidget<OtpForChangeCardPin
                                   .page ==
                               1.0) {
                             FocusScope.of(context).unfocus();
-                            if (details.primaryVelocity!.isNegative) {
-                              model.validateOtp();
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                model.validateOtp();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(changeCardPinViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              }
                             } else {
-                              ProviderScope.containerOf(context)
-                                  .read(changeCardPinViewModelProvider)
-                                  .previousPage();
-                              // .previous();
+                              if (details.primaryVelocity!.isNegative) {
+                                model.validateOtp();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(changeCardPinViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              }
                             }
                           }
                         },

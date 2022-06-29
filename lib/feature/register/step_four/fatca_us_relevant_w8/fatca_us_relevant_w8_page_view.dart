@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class FatcaUSRelevantW8PageView
@@ -62,16 +63,22 @@ class FatcaUSRelevantW8PageView
                                 .page ==
                             1.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSRelevantW8Details();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW8Details();
+                            }
                           } else {
-                            ///Don't allow user to go back
-                            // Future.delayed(Duration(milliseconds: 500), () {
-                            //   ProviderScope.containerOf(context)
-                            //       .read(registerStepFourViewModelProvider)
-                            //       .previousPage();
-                            //   // .previous();
-                            // });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW8Details();
+                            } else {
+                              ///Don't allow user to go back
+                              // Future.delayed(Duration(milliseconds: 500), () {
+                              //   ProviderScope.containerOf(context)
+                              //       .read(registerStepFourViewModelProvider)
+                              //       .previousPage();
+                              //   // .previous();
+                              // });
+                            }
                           }
                         }
                       },

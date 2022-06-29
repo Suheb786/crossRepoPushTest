@@ -42,11 +42,13 @@ class App extends ConsumerWidget {
                 localizationsDelegates: [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
                 ],
                 supportedLocales: S.delegate.supportedLocales,
                 onGenerateTitle: (context) => S.of(context).appName,
                 debugShowCheckedModeBanner: false,
+                locale: _appViewModel.currentLocale,
                 initialRoute: RoutePaths.Splash,
                 theme: theme,
                 onGenerateRoute: AppRouter.generateRoute);

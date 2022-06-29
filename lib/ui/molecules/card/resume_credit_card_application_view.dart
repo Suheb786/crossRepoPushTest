@@ -14,7 +14,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -26,13 +26,13 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage(AssetUtils.zigzagBackground),
-              fit: BoxFit.cover,
-              scale: isSmallDevices ? 1.3 : 1,
-            )),
+                    image: AssetImage(AssetUtils.zigzagBackground),
+                    fit: BoxFit.cover,
+                    scale: isSmallDevices ? 1.3 : 1,
+                    matchTextDirection: true)),
             child: Container(
-              padding:
-                  EdgeInsets.only(top: 22, bottom: 40, left: 24, right: 24),
+              padding: EdgeInsetsDirectional.only(
+                  top: 22, bottom: 40, start: 24, end: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

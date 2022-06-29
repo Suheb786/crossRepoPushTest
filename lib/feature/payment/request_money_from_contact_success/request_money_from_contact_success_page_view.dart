@@ -72,7 +72,7 @@ class RequestAmountFromContactSuccessPageView
                       Padding(
                         padding: EdgeInsets.only(top: 8, left: 5.0),
                         child: Text(
-                          "JOD",
+                          S.of(context).JOD,
                           style: TextStyle(
                               color: Theme.of(context)
                                   .primaryColorDark

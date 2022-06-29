@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
@@ -83,9 +84,16 @@ class SetCreditLimitPageView
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             FocusScope.of(context).unfocus();
-                            if (details.primaryVelocity!.isNegative) {
-                              model.setCreditLimit(loanValue!
-                                  .data!.getLoanValuesContent!.loanValueId!);
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                model.setCreditLimit(loanValue!
+                                    .data!.getLoanValuesContent!.loanValueId!);
+                              }
+                            } else {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.setCreditLimit(loanValue!
+                                    .data!.getLoanValuesContent!.loanValueId!);
+                              }
                             }
                           },
                           child: Card(

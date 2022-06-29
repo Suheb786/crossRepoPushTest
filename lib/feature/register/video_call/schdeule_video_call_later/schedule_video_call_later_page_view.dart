@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class ScheduleVideoCallLaterPageView
@@ -168,23 +169,45 @@ class ScheduleVideoCallLaterPageView
                                                   2.0) {
                                                 FocusScope.of(context)
                                                     .unfocus();
-                                                if (details.primaryVelocity!
-                                                    .isNegative) {
-                                                  model
-                                                      .validateScheduleVideoCallDetails();
+                                                if (StringUtils.isDirectionRTL(
+                                                    context)) {
+                                                  if (!details.primaryVelocity!
+                                                      .isNegative) {
+                                                    model
+                                                        .validateScheduleVideoCallDetails();
+                                                  } else {
+                                                    Future.delayed(
+                                                        Duration(
+                                                            milliseconds: 500),
+                                                        () {
+                                                      ProviderScope.containerOf(
+                                                              context)
+                                                          .read(
+                                                              videoCallViewModelProvider)
+                                                          .moveToPage(0);
+                                                      // .move(0,
+                                                      //     animation: false);
+                                                    });
+                                                  }
                                                 } else {
-                                                  Future.delayed(
-                                                      Duration(
-                                                          milliseconds: 500),
-                                                      () {
-                                                    ProviderScope.containerOf(
-                                                            context)
-                                                        .read(
-                                                            videoCallViewModelProvider)
-                                                        .moveToPage(0);
-                                                    // .move(0,
-                                                    //     animation: false);
-                                                  });
+                                                  if (details.primaryVelocity!
+                                                      .isNegative) {
+                                                    model
+                                                        .validateScheduleVideoCallDetails();
+                                                  } else {
+                                                    Future.delayed(
+                                                        Duration(
+                                                            milliseconds: 500),
+                                                        () {
+                                                      ProviderScope.containerOf(
+                                                              context)
+                                                          .read(
+                                                              videoCallViewModelProvider)
+                                                          .moveToPage(0);
+                                                      // .move(0,
+                                                      //     animation: false);
+                                                    });
+                                                  }
                                                 }
                                               }
                                             },

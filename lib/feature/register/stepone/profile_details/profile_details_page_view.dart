@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ProfileDetailsPageView
     extends BasePageViewWidget<ProfileDetailsPageViewModel> {
@@ -70,13 +71,24 @@ class ProfileDetailsPageView
                                     .page ==
                                 3.0) {
                               FocusScope.of(context).unfocus();
-                              if (details.primaryVelocity!.isNegative) {
-                                model.validateTextFields();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.validateTextFields();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(registerStepOneViewModelProvider)
+                                      .previousPage();
+                                  // .previous();
+                                }
                               } else {
-                                ProviderScope.containerOf(context)
-                                    .read(registerStepOneViewModelProvider)
-                                    .previousPage();
-                                // .previous();
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.validateTextFields();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(registerStepOneViewModelProvider)
+                                      .previousPage();
+                                  // .previous();
+                                }
                               }
                             }
                           },

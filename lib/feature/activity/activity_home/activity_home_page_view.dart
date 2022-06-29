@@ -24,7 +24,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
     return GestureDetector(
       onVerticalDragEnd: (details) {},
       child: Padding(
-        padding: EdgeInsets.only(bottom: 47),
+        padding: EdgeInsetsDirectional.only(bottom: 47),
         child: AppStreamBuilder<Resource<List<PaymentActivityData>>>(
             stream: model.paymentActivityListStream,
             initialData: Resource.none(),
@@ -51,13 +51,13 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                     },
                     behavior: HitTestBehavior.translucent,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 75),
+                      padding: EdgeInsetsDirectional.only(top: 75),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           AppSvg.asset(AssetUtils.book),
                           Padding(
-                            padding: EdgeInsets.only(top: 9),
+                            padding: EdgeInsetsDirectional.only(top: 9),
                             child: Text(
                               S.of(context).activity,
                               style: TextStyle(
@@ -66,19 +66,20 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 30),
+                              padding: EdgeInsetsDirectional.only(top: 30),
                               child: Column(
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: 4),
+                                      padding:
+                                          EdgeInsetsDirectional.only(top: 4),
                                       child: Stack(
                                         alignment: Alignment.center,
                                         fit: StackFit.expand,
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 20.0),
+                                            padding: EdgeInsetsDirectional.only(
+                                                bottom: 20.0),
                                             child: AppSwiper(
                                               appSwiperController:
                                                   model.appSwiperController,
@@ -110,7 +111,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                                       AssetUtils.swipeUp),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.only(top: 2),
+                                                        EdgeInsetsDirectional
+                                                            .only(top: 2),
                                                     child: Text(
                                                       "Swipe to view more",
                                                       style: TextStyle(
@@ -130,7 +132,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsetsDirectional.only(top: 5),
                                     child: SmoothPageIndicator(
                                       controller: model.controller,
                                       count: 2,

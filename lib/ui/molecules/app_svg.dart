@@ -17,6 +17,7 @@ class AppSvg {
       Color? color,
       alignment = Alignment.center,
       BlendMode colorBlendMode = BlendMode.srcIn,
+      bool matchTextDirection = false,
       String? semanticsLabel}) {
     if (kIsWeb) {
       return Consumer(
@@ -31,6 +32,7 @@ class AppSvg {
           fit: fit,
           color: color,
           alignment: alignment,
+          matchTextDirection: matchTextDirection,
         ),
       );
     }
@@ -47,6 +49,7 @@ class AppSvg {
           color: color,
           alignment: alignment,
           colorBlendMode: colorBlendMode,
+          matchTextDirection: matchTextDirection,
           semanticsLabel: semanticsLabel),
     );
   }

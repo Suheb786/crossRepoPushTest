@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EnterCodeForChangeMobileNumberPageView
     extends BasePageViewWidget<EnterCodeForChangeMobileNumberPageViewModel> {
@@ -52,20 +53,38 @@ class EnterCodeForChangeMobileNumberPageView
                             .page ==
                         1.0) {
                       FocusScope.of(context).unfocus();
-                      if (details.primaryVelocity!.isNegative) {
-                        model.validateOtp(
-                            mobile: ProviderScope.containerOf(context)
-                                .read(addNewMobileNumberViewModelProvider)
-                                .mobileNumber,
-                            mobileCode: ProviderScope.containerOf(context)
-                                .read(addNewMobileNumberViewModelProvider)
-                                .countryData
-                                .phoneCode!);
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.validateOtp(
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(changeMobileNumberViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(changeMobileNumberViewModelProvider)
-                            .previousPage();
-                        // .previous(animation: true);
+                        if (details.primaryVelocity!.isNegative) {
+                          model.validateOtp(
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(changeMobileNumberViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       }
                     }
                   },

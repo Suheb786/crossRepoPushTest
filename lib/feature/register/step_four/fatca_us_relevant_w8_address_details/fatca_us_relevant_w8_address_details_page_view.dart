@@ -24,6 +24,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaUSRelevantW8AddressDetailsPageView
     extends BasePageViewWidget<FatcaUSRelevantW8AddressDetailsPageViewModel> {
@@ -80,18 +81,36 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                             .page ==
                                         2.0) {
                                       FocusScope.of(context).unfocus();
-                                      if (details.primaryVelocity!.isNegative) {
-                                        model
-                                            .validateFatcaUSRelevantW8AddressDetails();
+                                      if (StringUtils.isDirectionRTL(context)) {
+                                        if (!details
+                                            .primaryVelocity!.isNegative) {
+                                          model
+                                              .validateFatcaUSRelevantW8AddressDetails();
+                                        } else {
+                                          Future.delayed(
+                                              Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    registerStepFourViewModelProvider)
+                                                .previousPage();
+                                            // .previous();
+                                          });
+                                        }
                                       } else {
-                                        Future.delayed(
-                                            Duration(milliseconds: 500), () {
-                                          ProviderScope.containerOf(context)
-                                              .read(
-                                                  registerStepFourViewModelProvider)
-                                              .previousPage();
-                                          // .previous();
-                                        });
+                                        if (details
+                                            .primaryVelocity!.isNegative) {
+                                          model
+                                              .validateFatcaUSRelevantW8AddressDetails();
+                                        } else {
+                                          Future.delayed(
+                                              Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    registerStepFourViewModelProvider)
+                                                .previousPage();
+                                            // .previous();
+                                          });
+                                        }
                                       }
                                     }
                                   },

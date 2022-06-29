@@ -15,7 +15,7 @@ class GetCreditCardNowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -27,22 +27,24 @@ class GetCreditCardNowWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage(AssetUtils.zigzagBackground),
-              fit: BoxFit.cover,
-              scale: isSmallDevices ? 1.3 : 1,
-            )),
+                    image: AssetImage(AssetUtils.zigzagBackground),
+                    fit: BoxFit.cover,
+                    scale: isSmallDevices ? 1.3 : 1,
+                    matchTextDirection: true)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 23, right: 23, left: 23),
+                  padding: const EdgeInsetsDirectional.only(
+                      top: 23, end: 23, start: 23),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo,
                       height: isSmallDevices ? 26 : 33.64,
                       width: isSmallDevices ? 52 : 72),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: isSmallDevices ? 20 : 58),
+                  padding:
+                      EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
                   child: Align(
                     alignment: Alignment.center,
                     child: AppSvg.asset(AssetUtils.cardCircle,

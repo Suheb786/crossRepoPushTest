@@ -13,6 +13,8 @@ import 'package:rxdart/rxdart.dart';
 class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
 
+  PageController appSwiperController = PageController(viewportFraction: 0.8);
+
   GetBeneficiaryUseCase _getBeneficiaryUseCase;
 
   PageController controller =

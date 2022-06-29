@@ -28,7 +28,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -73,11 +73,11 @@ class ApplyDebitCardWidget extends StatelessWidget {
                       ),
                     )),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: EdgeInsetsDirectional.only(
                       top: isSmallDevice ? 50 : 88,
                       // bottom: isSmallDevice ? 30 : 50,
-                      left: isSmallDevice ? 34 : 24,
-                      right: isSmallDevice ? 34 : 24),
+                      start: isSmallDevice ? 34 : 24,
+                      end: isSmallDevice ? 34 : 24),
                   child: Center(
                     child: InkWell(
                       onTap: () {

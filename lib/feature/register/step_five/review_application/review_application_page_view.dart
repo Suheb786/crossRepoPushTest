@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ReviewApplicationPageView
     extends BasePageViewWidget<ReviewApplicationPageViewModel> {
@@ -168,9 +169,17 @@ class ReviewApplicationPageView
                                                     .appSwiperController
                                                     .page ==
                                                 0.0) {
-                                              if (details.primaryVelocity!
-                                                  .isNegative) {
-                                                model.validateReviewDetails();
+                                              if (StringUtils.isDirectionRTL(
+                                                  context)) {
+                                                if (!details.primaryVelocity!
+                                                    .isNegative) {
+                                                  model.validateReviewDetails();
+                                                }
+                                              } else {
+                                                if (details.primaryVelocity!
+                                                    .isNegative) {
+                                                  model.validateReviewDetails();
+                                                }
                                               }
                                             }
                                           },

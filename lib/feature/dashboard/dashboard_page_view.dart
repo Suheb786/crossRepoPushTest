@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   DashboardPageView(ProviderBase model) : super(model);
@@ -26,9 +27,16 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   Widget build(BuildContext context, model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        if (details.primaryDelta!.isNegative) {
-          Navigator.pushReplacementNamed(context, RoutePaths.Registration,
-              arguments: RegisterPageParams());
+        if (StringUtils.isDirectionRTL(context)) {
+          if (!details.primaryDelta!.isNegative) {
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration,
+                arguments: RegisterPageParams());
+          }
+        } else {
+          if (details.primaryDelta!.isNegative) {
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration,
+                arguments: RegisterPageParams());
+          }
         }
       },
       child: Container(
@@ -44,7 +52,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: AppSvg.asset(AssetUtils.swiggleHello),
+                    child: AppSvg.asset(AssetUtils.swiggleHello,
+                        matchTextDirection: true),
                   ),
                   SizedBox(
                     height: 40,

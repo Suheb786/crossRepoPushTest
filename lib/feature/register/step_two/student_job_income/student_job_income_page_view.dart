@@ -19,6 +19,7 @@ import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.d
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../di/register/register_modules.dart';
 
@@ -59,8 +60,14 @@ class StudentJobIncomePageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.jobIncomeDetails();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.jobIncomeDetails();
+                            }
+                          } else {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.jobIncomeDetails();
+                            }
                           }
                         },
                         child: Card(

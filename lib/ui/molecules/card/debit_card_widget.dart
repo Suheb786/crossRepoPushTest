@@ -44,7 +44,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
             alignment: Alignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsetsDirectional.all(15),
                 child: Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
@@ -53,12 +53,12 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                   color: widget.debitCard.cardStatus == FreezeCardStatusEnum.F
                       ? AppColor.paleYellow
                       : Theme.of(context).canvasColor,
-                  margin: EdgeInsets.zero,
+                  margin: EdgeInsetsDirectional.zero,
                   shadowColor:
                       Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 27.0,
+                    padding: EdgeInsetsDirectional.only(
+                      start: 27.0,
                       top: widget.isSmallDevice ? 21 : 30.0,
                     ),
                     child: Column(
@@ -81,7 +81,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 ? Container(
                                     height: 45,
                                     alignment: Alignment.center,
-                                    padding: EdgeInsets.only(right: 23.0),
+                                    padding:
+                                        EdgeInsetsDirectional.only(end: 23.0),
                                     child: Text(
                                       S.of(context).cardFrozen,
                                       style: TextStyle(
@@ -117,7 +118,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       height: 45,
                                       alignment: Alignment.center,
                                       child: Padding(
-                                        padding: EdgeInsets.only(right: 23.0),
+                                        padding: EdgeInsetsDirectional.only(
+                                            end: 23.0),
                                         child: Text(
                                           S.of(context).flipCard,
                                           style: TextStyle(
@@ -139,16 +141,16 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Align(
-                              alignment: Alignment.centerLeft,
+                              alignment: AlignmentDirectional.centerStart,
                               child: Padding(
-                                padding: EdgeInsets.only(top: 12),
+                                padding: EdgeInsetsDirectional.only(top: 12),
                                 child: AppSvg.asset(AssetUtils.blinkBlack),
                               ),
                             ),
                             Align(
-                              alignment: Alignment.centerLeft,
+                              alignment: AlignmentDirectional.centerStart,
                               child: Padding(
-                                padding: EdgeInsets.only(top: 20),
+                                padding: EdgeInsetsDirectional.only(top: 20),
                                 child: Text(
                                   widget.debitCard.accountTitle ?? '',
                                   style: TextStyle(
@@ -161,16 +163,18 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              top: widget.isSmallDevice ? 10 : 50),
+                          padding: EdgeInsetsDirectional.only(
+                            top: widget.isSmallDevice ? 10 : 50,
+                          ),
                           child: Align(
-                            alignment: Alignment.centerRight,
+                            alignment: AlignmentDirectional.centerEnd,
                             child: AppSvg.asset(AssetUtils.zigzagCircle,
-                                height: widget.isSmallDevice ? 117 : 156),
+                                height: widget.isSmallDevice ? 117 : 156,
+                                matchTextDirection: true),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: EdgeInsetsDirectional.only(
                               top: widget.isSmallDevice ? 10 : 40,
                               bottom: widget.isSmallDevice ? 30 : 50),
                           child: Row(
@@ -218,7 +222,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   }
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.only(right: 33.0),
+                                  padding:
+                                      EdgeInsetsDirectional.only(end: 33.0),
                                   child: AppSvg.asset(AssetUtils.settingsRed,
                                       color: Theme.of(context)
                                           .accentTextTheme
@@ -263,18 +268,18 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
           ),
         ),
         back: Padding(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsetsDirectional.all(15),
           child: Card(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 2,
             color: Theme.of(context).canvasColor,
-            margin: EdgeInsets.zero,
+            margin: EdgeInsetsDirectional.zero,
             shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
             child: Padding(
-              padding:
-                  EdgeInsets.only(left: 29.0, top: 38, right: 25, bottom: 30),
+              padding: EdgeInsetsDirectional.only(
+                  start: 29.0, top: 38, end: 25, bottom: 30),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -320,8 +325,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     ],
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(top: widget.isSmallDevice ? 50 : 63),
+                    padding: EdgeInsetsDirectional.only(
+                        top: widget.isSmallDevice ? 50 : 63),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -338,7 +343,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 10),
+                          padding: EdgeInsetsDirectional.only(start: 10),
                           child: InkWell(
                               onTap: () {
                                 Clipboard.setData(ClipboardData(
@@ -353,7 +358,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 4),
+                    padding: EdgeInsetsDirectional.only(top: 4),
                     child: Text(
                       S.of(context).cardNumber,
                       style: TextStyle(
@@ -363,7 +368,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 21),
+                    padding: EdgeInsetsDirectional.only(top: 21),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -378,7 +383,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 4),
+                              padding: EdgeInsetsDirectional.only(top: 4),
                               child: Text(
                                 S.of(context).expiryDate,
                                 style: TextStyle(
@@ -403,7 +408,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 4),
+                              padding: EdgeInsetsDirectional.only(top: 4),
                               child: Text(
                                 S.of(context).cvv,
                                 style: TextStyle(
@@ -439,7 +444,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsetsDirectional.only(top: 8),
                     child: Text(
                       S.of(context).linkedAccountNumber,
                       style: TextStyle(

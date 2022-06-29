@@ -28,7 +28,7 @@ class AccountTransactionPageView
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: EdgeInsets.only(top: 52),
+        padding: EdgeInsetsDirectional.only(top: 52),
         child: GestureDetector(
           onVerticalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
@@ -86,7 +86,7 @@ class AccountTransactionPageView
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: EdgeInsetsDirectional.only(top: 35),
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class AccountTransactionPageView
                             topRight: Radius.circular(16),
                             topLeft: Radius.circular(16))),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 8),
+                      padding: EdgeInsetsDirectional.only(top: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,8 +109,8 @@ class AccountTransactionPageView
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                            padding: EdgeInsetsDirectional.only(
+                                top: 24.0, start: 24, end: 38),
                             child: Row(
                               children: [
                                 Expanded(
@@ -123,14 +123,16 @@ class AccountTransactionPageView
                                         model.onSearchTextChanged(text),
                                     suffixIcon: (value, data) {
                                       return Padding(
-                                          padding: EdgeInsets.only(left: 19),
+                                          padding: EdgeInsetsDirectional.only(
+                                              start: 19),
                                           child: AppSvg.asset(AssetUtils.search,
                                               height: 16, width: 16));
                                     },
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 24),
+                                  padding:
+                                      EdgeInsetsDirectional.only(start: 24),
                                   child: InkWell(
                                       onTap: () {
                                         FilterTransactionDialog.show(
@@ -156,8 +158,8 @@ class AccountTransactionPageView
                                 return Visibility(
                                   visible: textList!.length > 0,
                                   child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 21, left: 24, right: 24),
+                                    padding: EdgeInsetsDirectional.only(
+                                        top: 21, start: 24, end: 24),
                                     child: Container(
                                       height: 40,
                                       child: ListView.builder(
@@ -166,8 +168,8 @@ class AccountTransactionPageView
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, index) {
                                           return Padding(
-                                            padding: EdgeInsets.only(
-                                                left: index == 0 ? 0 : 9),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: index == 0 ? 0 : 9),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
@@ -186,8 +188,9 @@ class AccountTransactionPageView
                                                             .accentColor),
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 9),
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .only(start: 9),
                                                     child: InkWell(
                                                       onTap: () {
                                                         model.updateSearchList(
@@ -216,8 +219,8 @@ class AccountTransactionPageView
                               dataBuilder: (context, transaction) {
                                 return Expanded(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 24, right: 24),
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 24, end: 24),
                                     // child: model.searchTransactionList.length > 0
                                     //     ? GroupedListView<TransactionItem, String>(
                                     //         scrollDirection: Axis.vertical,
@@ -225,7 +228,7 @@ class AccountTransactionPageView
                                     //         order: GroupedListOrder.DESC,
                                     //         shrinkWrap: true,
                                     //         primary: false,
-                                    //         padding: EdgeInsets.zero,
+                                    //         padding: EdgeInsetsDirectional.zero,
                                     //         floatingHeader: false,
                                     //         groupBy: (TransactionItem element) {
                                     //           return element.createdAt!;
@@ -235,7 +238,7 @@ class AccountTransactionPageView
                                     //               color:
                                     //                   Theme.of(context).accentColor,
                                     //               child: Padding(
-                                    //                 padding: EdgeInsets.only(
+                                    //                 padding: EdgeInsetsDirectional.only(
                                     //                     top: 16, bottom: 16),
                                     //                 child: Text(
                                     //                   element.createdAt!,
@@ -250,10 +253,10 @@ class AccountTransactionPageView
                                     //             child: Column(
                                     //               children: [
                                     //                 Padding(
-                                    //                   padding: EdgeInsets.only(
+                                    //                   padding: EdgeInsetsDirectional.only(
                                     //                       top: 17,
-                                    //                       left: 17,
-                                    //                       right: 17),
+                                    //                       start: 17,
+                                    //                       end: 17),
                                     //                   child: Row(
                                     //                     mainAxisAlignment:
                                     //                         MainAxisAlignment
@@ -279,7 +282,7 @@ class AccountTransactionPageView
                                     //                             ),
                                     //                             Padding(
                                     //                               padding:
-                                    //                                   EdgeInsets.only(
+                                    //                                   EdgeInsetsDirectional.only(
                                     //                                       top: 4),
                                     //                               child: Text(
                                     //                                 element.time!,
@@ -329,7 +332,7 @@ class AccountTransactionPageView
                                     //                 ),
                                     //                 Padding(
                                     //                   padding:
-                                    //                       EdgeInsets.only(top: 4),
+                                    //                       EdgeInsetsDirectional.only(top: 4),
                                     //                   child: Divider(),
                                     //                 )
                                     //               ],
@@ -342,7 +345,7 @@ class AccountTransactionPageView
                                     //         order: GroupedListOrder.DESC,
                                     //         shrinkWrap: true,
                                     //         primary: false,
-                                    //         padding: EdgeInsets.zero,
+                                    //         padding: EdgeInsetsDirectional.zero,
                                     //         floatingHeader: false,
                                     //         groupBy: (TransactionItem element) {
                                     //           return element.createdAt!;
@@ -352,7 +355,7 @@ class AccountTransactionPageView
                                     //               color:
                                     //                   Theme.of(context).accentColor,
                                     //               child: Padding(
-                                    //                 padding: EdgeInsets.only(
+                                    //                 padding: EdgeInsetsDirectional.only(
                                     //                     top: 16, bottom: 16),
                                     //                 child: Text(
                                     //                   element.createdAt!,
@@ -367,10 +370,10 @@ class AccountTransactionPageView
                                     //             child: Column(
                                     //               children: [
                                     //                 Padding(
-                                    //                   padding: EdgeInsets.only(
+                                    //                   padding: EdgeInsetsDirectional.only(
                                     //                       top: 17,
-                                    //                       left: 17,
-                                    //                       right: 17),
+                                    //                       start: 17,
+                                    //                       end: 17),
                                     //                   child: Row(
                                     //                     mainAxisAlignment:
                                     //                         MainAxisAlignment
@@ -396,7 +399,7 @@ class AccountTransactionPageView
                                     //                             ),
                                     //                             Padding(
                                     //                               padding:
-                                    //                                   EdgeInsets.only(
+                                    //                                   EdgeInsetsDirectional.only(
                                     //                                       top: 4),
                                     //                               child: Text(
                                     //                                 element.time!,
@@ -446,7 +449,7 @@ class AccountTransactionPageView
                                     //                 ),
                                     //                 Padding(
                                     //                   padding:
-                                    //                       EdgeInsets.only(top: 4),
+                                    //                       EdgeInsetsDirectional.only(top: 4),
                                     //                   child: Divider(),
                                     //                 )
                                     //               ],
@@ -479,7 +482,7 @@ class AccountTransactionPageView
                               }),
                           // Padding(
                           //   padding:
-                          //       EdgeInsets.only(top: 24, left: 24, right: 24),
+                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
                           //   child: Column(
                           //     crossAxisAlignment: CrossAxisAlignment.start,
                           //     children: [
@@ -491,7 +494,7 @@ class AccountTransactionPageView
                           //         ),
                           //       ),
                           //       Padding(
-                          //         padding: EdgeInsets.only(top: 16),
+                          //         padding: EdgeInsetsDirectional.only(top: 16),
                           //         child: Card(
                           //           shape: RoundedRectangleBorder(
                           //               borderRadius:
@@ -502,7 +505,7 @@ class AccountTransactionPageView
                           //               .cardTheme
                           //               .copyWith(color: AppColor.white)
                           //               .color,
-                          //           margin: EdgeInsets.zero,
+                          //           margin: EdgeInsetsDirectional.zero,
                           //           shadowColor:
                           //               AppColor.black.withOpacity(0.32),
                           //           child: Container(
@@ -510,8 +513,8 @@ class AccountTransactionPageView
                           //             child: Column(
                           //               children: [
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -535,7 +538,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -578,12 +581,12 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -607,7 +610,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -650,12 +653,12 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -679,7 +682,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -722,14 +725,14 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
+                          //                   padding: EdgeInsetsDirectional.only(
                           //                       top: 17,
-                          //                       left: 24,
-                          //                       right: 24,
+                          //                       start: 24,
+                          //                       end: 24,
                           //                       bottom: 17),
                           //                   child: Row(
                           //                     mainAxisAlignment:
@@ -754,7 +757,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -806,7 +809,7 @@ class AccountTransactionPageView
                           // ),
                           // Padding(
                           //   padding:
-                          //       EdgeInsets.only(top: 24, left: 24, right: 24),
+                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
                           //   child: Column(
                           //     crossAxisAlignment: CrossAxisAlignment.start,
                           //     children: [
@@ -818,7 +821,7 @@ class AccountTransactionPageView
                           //         ),
                           //       ),
                           //       Padding(
-                          //         padding: EdgeInsets.only(top: 16),
+                          //         padding: EdgeInsetsDirectional.only(top: 16),
                           //         child: Card(
                           //           shape: RoundedRectangleBorder(
                           //               borderRadius:
@@ -829,7 +832,7 @@ class AccountTransactionPageView
                           //               .cardTheme
                           //               .copyWith(color: AppColor.white)
                           //               .color,
-                          //           margin: EdgeInsets.zero,
+                          //           margin: EdgeInsetsDirectional.zero,
                           //           shadowColor:
                           //               AppColor.black.withOpacity(0.32),
                           //           child: Container(
@@ -837,8 +840,8 @@ class AccountTransactionPageView
                           //             child: Column(
                           //               children: [
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -862,7 +865,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -905,12 +908,12 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -934,7 +937,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -977,12 +980,12 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
-                          //                       top: 17, left: 24, right: 24),
+                          //                   padding: EdgeInsetsDirectional.only(
+                          //                       top: 17, start: 24, end: 24),
                           //                   child: Row(
                           //                     mainAxisAlignment:
                           //                         MainAxisAlignment
@@ -1006,7 +1009,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -1049,14 +1052,14 @@ class AccountTransactionPageView
                           //                   ),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(top: 16),
+                          //                   padding: EdgeInsetsDirectional.only(top: 16),
                           //                   child: Divider(),
                           //                 ),
                           //                 Padding(
-                          //                   padding: EdgeInsets.only(
+                          //                   padding: EdgeInsetsDirectional.only(
                           //                       top: 17,
-                          //                       left: 24,
-                          //                       right: 24,
+                          //                       start: 24,
+                          //                       end: 24,
                           //                       bottom: 17),
                           //                   child: Row(
                           //                     mainAxisAlignment:
@@ -1081,7 +1084,7 @@ class AccountTransactionPageView
                           //                           ),
                           //                           Padding(
                           //                             padding:
-                          //                                 EdgeInsets.only(
+                          //                                 EdgeInsetsDirectional.only(
                           //                                     top: 4),
                           //                             child: Text(
                           //                               "8:32PM",
@@ -1153,7 +1156,7 @@ class TimeLineHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsetsDirectional.all(16),
       color: AppColor.soft_red,
       child: Text(
         header!,

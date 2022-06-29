@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
@@ -43,8 +44,10 @@ class LoginViewModel extends BasePageViewModel {
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: 'mydemo14@gmail.com');
+  final TextEditingController passwordController =
+      TextEditingController(text: 'Asdf@123');
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "login_password");
@@ -154,6 +157,18 @@ class LoginViewModel extends BasePageViewModel {
 
   ///register infopib message service
   PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
+
+  List<LanguageEnum> language = [
+    LanguageEnum.ENGLISH,
+    LanguageEnum.ARABIC,
+  ];
+
+  /// selected language
+  BehaviorSubject<LanguageEnum> _selectedLanguage =
+      BehaviorSubject.seeded(LanguageEnum.ENGLISH);
+
+  /// selected language stream
+  Stream<LanguageEnum> get selectedLanguageStream => _selectedLanguage.stream;
 
   LoginViewModel(
       this._loginUseCase,
@@ -391,6 +406,10 @@ class LoginViewModel extends BasePageViewModel {
     if (!AppConstantsUtils.isInfobipRegistered) {
       _initInfobipMessageRequestSubject.safeAdd(InfobipMessagePluginUseCaseParams());
     }
+  }
+
+  void setLanguage(LanguageEnum language) {
+    _selectedLanguage.safeAdd(language);
   }
 
   @override

@@ -176,7 +176,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          "JOD",
+                                          S.of(context).JOD,
                                           style: TextStyle(
                                               color: Theme.of(context)
                                                   .accentColor
@@ -297,7 +297,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       Padding(
                                         padding: EdgeInsets.only(left: 5.0),
                                         child: Text(
-                                          "JOD",
+                                          S.of(context).JOD,
                                           style: TextStyle(
                                               color: Theme.of(context)
                                                   .accentColor
@@ -606,7 +606,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             width: 4,
                           ),
                           Text(
-                            'JOD',
+                            S.of(context).JOD,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: widget.isSmallDevice ? 8 : 10,
@@ -652,7 +652,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             width: 4,
                           ),
                           Text(
-                            'JOD',
+                            S.of(context).JOD,
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: widget.isSmallDevice ? 8 : 10,

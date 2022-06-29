@@ -24,6 +24,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
@@ -113,7 +114,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             .primaryColorDark)),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5, left: 5.0),
-                                  child: Text("JOD",
+                                  child: Text(S.of(context).JOD,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
@@ -160,7 +161,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                         return SizedBox();
                                                       }
                                                       return DashboardSwiper(
-                                                        pages: pagesList,
+                                                        pages: /*StringUtils
+                                                                .isDirectionRTL(
+                                                                    context)
+                                                            ? pagesList!
+                                                                .reversed
+                                                                .toList()
+                                                            :*/ pagesList,
                                                         appSwiperController: model
                                                             .appSwiperController,
                                                         pageController: model

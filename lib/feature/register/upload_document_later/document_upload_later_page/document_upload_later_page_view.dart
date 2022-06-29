@@ -27,6 +27,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DocumentUploadLaterPageView
     extends BasePageViewWidget<DocumentUploadLaterPageViewModel> {
@@ -121,10 +122,20 @@ class DocumentUploadLaterPageView
                                             dataBuilder: (context, data) {
                                               return GestureDetector(
                                                 onHorizontalDragEnd: (details) {
-                                                  if (details.primaryVelocity!
-                                                      .isNegative) {
-                                                    model.validateDocuments();
-                                                  } else {}
+                                                  if (StringUtils
+                                                      .isDirectionRTL(
+                                                          context)) {
+                                                    if (!details
+                                                        .primaryVelocity!
+                                                        .isNegative) {
+                                                      model.validateDocuments();
+                                                    } else {}
+                                                  } else {
+                                                    if (details.primaryVelocity!
+                                                        .isNegative) {
+                                                      model.validateDocuments();
+                                                    } else {}
+                                                  }
                                                 },
                                                 child: Card(
                                                   child: Padding(

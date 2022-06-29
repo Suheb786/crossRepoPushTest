@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class UploadDocumentsPageView
     extends BasePageViewWidget<UploadDocumentsPageViewModel> {
@@ -129,23 +130,50 @@ class UploadDocumentsPageView
                                                           .appSwiperController
                                                           .page ==
                                                       4.0) {
-                                                    if (details.primaryVelocity!
-                                                        .isNegative) {
-                                                      model.validateDocuments();
+                                                    if (StringUtils
+                                                        .isDirectionRTL(
+                                                            context)) {
+                                                      if (!details
+                                                          .primaryVelocity!
+                                                          .isNegative) {
+                                                        model
+                                                            .validateDocuments();
+                                                      } else {
+                                                        Future.delayed(
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500), () {
+                                                          ProviderScope
+                                                                  .containerOf(
+                                                                      context)
+                                                              .read(
+                                                                  registerStepFiveViewModelProvider)
+                                                              .moveToPage(0);
+                                                          // .move(0,
+                                                          //     animation: false);
+                                                        });
+                                                      }
                                                     } else {
-                                                      Future.delayed(
-                                                          Duration(
-                                                              milliseconds:
-                                                                  500), () {
-                                                        ProviderScope
-                                                                .containerOf(
-                                                                    context)
-                                                            .read(
-                                                                registerStepFiveViewModelProvider)
-                                                            .moveToPage(0);
-                                                        // .move(0,
-                                                        //     animation: false);
-                                                      });
+                                                      if (details
+                                                          .primaryVelocity!
+                                                          .isNegative) {
+                                                        model
+                                                            .validateDocuments();
+                                                      } else {
+                                                        Future.delayed(
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500), () {
+                                                          ProviderScope
+                                                                  .containerOf(
+                                                                      context)
+                                                              .read(
+                                                                  registerStepFiveViewModelProvider)
+                                                              .moveToPage(0);
+                                                          // .move(0,
+                                                          //     animation: false);
+                                                        });
+                                                      }
                                                     }
                                                   }
                                                 },
