@@ -70,8 +70,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                             padding: EdgeInsets.only(top: 9),
                             child: Text(
                               S.of(context).payments,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 18),
+                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                             ),
                           ),
                           Expanded(
@@ -83,22 +82,16 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     child: Padding(
                                       padding: EdgeInsets.only(top: 4),
                                       child: AppSwiper(
-                                        appSwiperController:
-                                            model.appSwiperController,
+                                        appSwiperController: model.appSwiperController,
                                         pages: [
-                                          AddSendMoneyContactPage(
-                                              beneficiaries:
-                                                  model.smBeneficiaries),
-                                          AddRequestMoneyContactPage(
-                                              beneficiaries:
-                                                  model.rtpBeneficiaries),
+                                          AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
+                                          AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
                                           Container()
                                         ],
                                         pageController: model.pageController,
                                         onIndexChanged: (index) {
                                           model.updatePage(index);
-                                          model.updatePageControllerStream(
-                                              index);
+                                          model.updatePageControllerStream(index);
                                         },
                                         currentStep: currentStep,
                                       ),
@@ -110,11 +103,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     effect: ScrollingDotsEffect(
                                       activeStrokeWidth: 2.6,
                                       activeDotScale: 1.3,
-                                      activeDotColor:
-                                          Theme.of(context).primaryColorDark,
-                                      dotColor: Theme.of(context)
-                                          .primaryColorDark
-                                          .withOpacity(0.6),
+                                      activeDotColor: Theme.of(context).primaryColorDark,
+                                      dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
                                       maxVisibleDots: 5,
                                       radius: 8,
                                       spacing: 10,

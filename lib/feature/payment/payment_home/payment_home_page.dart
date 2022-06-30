@@ -20,8 +20,7 @@ class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
   PaymentHomePageState createState() => PaymentHomePageState();
 }
 
-class PaymentHomePageState
-    extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage>
+class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
@@ -31,7 +30,7 @@ class PaymentHomePageState
   @override
   Widget? buildBottomNavigationBar() {
     return Padding(
-      padding: EdgeInsets.only(bottom: 24),
+      padding: EdgeInsets.only(bottom: 0),
       child: ConvexAppBar(
         elevation: 0,
         style: TabStyle.fixedCircle,
@@ -46,18 +45,14 @@ class PaymentHomePageState
               child: Container(
                 height: 80,
                 width: 80,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorDark,
-                    shape: BoxShape.circle),
+                decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
                 child: Center(
                   child: AppSvg.asset(AssetUtils.logoWhite),
                 ),
               ),
             ),
           ),
-          TabItem(
-              icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
-              title: " "),
+          TabItem(icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)), title: " "),
         ],
         initialActiveIndex: 0,
         onTap: (i) {
@@ -92,6 +87,19 @@ class PaymentHomePageState
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);
+  }
+
+  @override
+  void onModelReady(PaymentHomeViewModel model) {
+    //model.updatePageControllerStream(widget.navigationType == NavigationType.DASHBOARD ? 0 : 1);
+    model.controller = PageController(
+        viewportFraction: 0.8,
+        keepPage: true,
+        initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1);
+    model.appSwiperController = PageController(
+        initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1, viewportFraction: 0.8);
+
+    super.onModelReady(model);
   }
 
   @override

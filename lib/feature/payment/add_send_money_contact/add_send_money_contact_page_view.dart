@@ -53,105 +53,102 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                   margin: EdgeInsets.zero,
                   shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsetsDirectional.only(top: 30, start: 27),
-                              child: Text(S.of(context).sendMoney,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color: Theme.of(context).accentColor))),
-                          beneficiaries!.length > 0
-                              ? Column(
-                                  children: [
-                                    Directionality(
-                                      textDirection: TextDirection.ltr,
-                                      child: GridView.builder(
-                                        itemCount: 9,
-                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
-                                        shrinkWrap: true,
-                                        padding: EdgeInsetsDirectional.only(top: 22, end: 28, start: 27),
-                                        itemBuilder: (context, index) {
-                                          if (index >= beneficiaries!.length) {
-                                            return PaymentBeneficiaryEmptyWidget();
-                                          }
-                                          return PaymentBeneficiaryWidget(
-                                            onTap: () {
-                                              Navigator.pushNamed(context, RoutePaths.SendAmountToContact,
-                                                  arguments: beneficiaries![index]);
-                                            },
-                                            transferEnum: TransferEnum.send,
-                                            beneficiary: beneficiaries![index],
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(bottom: 29.0),
-                                      child: Visibility(
-                                        visible: beneficiaries!.length >= 9,
-                                        child: InkWell(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: EdgeInsetsDirectional.only(top: 30, start: 27),
+                            child: Text(S.of(context).sendMoney,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    color: Theme.of(context).accentColor))),
+                        beneficiaries!.length > 0
+                            ? Column(
+                                children: [
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: GridView.builder(
+                                      itemCount: 9,
+                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
+                                      shrinkWrap: true,
+                                      padding: EdgeInsetsDirectional.only(top: 22, end: 28, start: 27),
+                                      itemBuilder: (context, index) {
+                                        if (index >= beneficiaries!.length) {
+                                          return PaymentBeneficiaryEmptyWidget();
+                                        }
+                                        return PaymentBeneficiaryWidget(
                                           onTap: () {
-                                            Navigator.pushNamed(context, RoutePaths.AllContact,
-                                                arguments: AllContactArguments(
-                                                    beneficiaryList: beneficiaries ?? []));
+                                            Navigator.pushNamed(context, RoutePaths.SendAmountToContact,
+                                                arguments: beneficiaries![index]);
                                           },
-                                          child: Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                              height: 36,
-                                              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context).accentColor,
-                                                  borderRadius: BorderRadius.circular(20)),
-                                              child: Text(
-                                                S.of(context).seeAllContacts,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color:
-                                                        Theme.of(context).accentTextTheme.bodyText1!.color),
-                                              ),
+                                          transferEnum: TransferEnum.send,
+                                          beneficiary: beneficiaries![index],
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 29.0),
+                                    child: Visibility(
+                                      visible: beneficiaries!.length >= 9,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(context, RoutePaths.AllContact,
+                                              arguments:
+                                                  AllContactArguments(beneficiaryList: beneficiaries ?? []));
+                                        },
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            height: 36,
+                                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                                            decoration: BoxDecoration(
+                                                color: Theme.of(context).accentColor,
+                                                borderRadius: BorderRadius.circular(20)),
+                                            child: Text(
+                                              S.of(context).seeAllContacts,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                )
-                              : Column(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 90),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: AppSvg.asset(AssetUtils.profileCircle),
-                                      ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 12),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          S.of(context).addSendContact,
-                                          maxLines: 3,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Theme.of(context).accentColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                  )
+                                ],
+                              )
+                            : Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 90),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: AppSvg.asset(AssetUtils.profileCircle),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 12, start: 24, end: 24),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        S.of(context).addSendContact,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Theme.of(context).accentColor,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                )
-                        ],
-                      ),
+                                  ),
+                                ],
+                              )
+                      ],
                     ),
                   )),
             ),

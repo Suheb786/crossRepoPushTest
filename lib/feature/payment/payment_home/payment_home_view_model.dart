@@ -17,44 +17,37 @@ class PaymentHomeViewModel extends BasePageViewModel {
 
   GetBeneficiaryUseCase _getBeneficiaryUseCase;
 
-  PageController controller =
-      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
+  PageController controller = PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
   PublishSubject<PageController> _pageControllerSubject = PublishSubject();
 
-  Stream<PageController> get pageControllerStream =>
-      _pageControllerSubject.stream;
+  Stream<PageController> get pageControllerStream => _pageControllerSubject.stream;
 
-  PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest =
-      PublishSubject();
+  PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetBeneficiaryListResponse>>
-      _getBeneficiaryResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse = BehaviorSubject();
 
   List<Beneficiary> smBeneficiaries = [];
 
   List<Beneficiary> rtpBeneficiaries = [];
 
-  Stream<Resource<GetBeneficiaryListResponse>> get beneficiaryResponse =>
-      _getBeneficiaryResponse.stream;
+  Stream<Resource<GetBeneficiaryListResponse>> get beneficiaryResponse => _getBeneficiaryResponse.stream;
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
 
   void updatePageControllerStream(int index) {
-    controller = PageController(
-        initialPage: index, viewportFraction: 0.8, keepPage: true);
+    controller = PageController(initialPage: index, viewportFraction: 0.8, keepPage: true);
     _pageControllerSubject.safeAdd(controller);
   }
 
   PaymentHomeViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getBeneficiaryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         print("in add request money constructor");

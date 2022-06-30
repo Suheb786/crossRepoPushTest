@@ -78,384 +78,389 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
             SizedBox(
               height: 20,
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 60),
-              child: model.timeLineArguments.timeLineArguments.timelineListArguments.length > 0
-                  ? Row(
-                      children: [
-                        Container(
-                          height: 220,
-                          child: ListView.builder(
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Stack(
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      Container(
-                                        height: 220,
-                                        child: Row(
-                                          children: [
-                                            index == 0
-                                                ? AppSvg.asset(AssetUtils.timelineEndUpdated,
-                                                    matchTextDirection: true, height: 103)
-                                                : AppSvg.asset(AssetUtils.timeline2Updated,
-                                                    matchTextDirection: true, height: 103),
-                                            AppSvg.asset(AssetUtils.timeline1Updated,
-                                                matchTextDirection: true, height: 103)
-                                          ],
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 60),
+                child: model.timeLineArguments.timeLineArguments.timelineListArguments.length > 0
+                    ? Row(
+                        children: [
+                          Container(
+                            height: 220,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Stack(
+                                      clipBehavior: Clip.none,
+                                      children: [
+                                        Container(
+                                          height: 220,
+                                          child: Row(
+                                            children: [
+                                              index == 0
+                                                  ? AppSvg.asset(AssetUtils.timelineEndUpdated,
+                                                      matchTextDirection: true, height: 103)
+                                                  : AppSvg.asset(AssetUtils.timeline2Updated,
+                                                      matchTextDirection: true, height: 103),
+                                              AppSvg.asset(AssetUtils.timeline1Updated,
+                                                  matchTextDirection: true, height: 103)
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      PositionedDirectional(
-                                        start: -15,
-                                        child: Container(
-                                          padding: EdgeInsets.only(bottom: 40),
-                                          child: model.timeLineArguments.timeLineArguments
-                                                      .timelineListArguments[index].isCardDelivered ??
-                                                  false
-                                              ? Column(
-                                                  children: [
-                                                    Text(
-                                                      model.timeLineArguments.timeLineArguments
-                                                                  .timelineListArguments[index].cardType ==
-                                                              CardType.DEBIT
-                                                          ? S.of(context).debitCardDelivered
-                                                          : S.of(context).creditCardDelivered,
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 12, fontWeight: FontWeight.w600),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      model
-                                                              .timeLineArguments
-                                                              .timeLineArguments
-                                                              .timelineListArguments[index]
-                                                              .cardDeliveredDatetime!
-                                                              .isNotEmpty
-                                                          ? TimeUtils.getFormattedDateForTransaction(model
-                                                              .timeLineArguments
-                                                              .timeLineArguments
-                                                              .timelineListArguments[index]
-                                                              .cardDeliveredDatetime
-                                                              .toString())
-                                                          : '-',
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Theme.of(context)
-                                                              .inputDecorationTheme
-                                                              .hintStyle!
-                                                              .color,
-                                                          fontWeight: FontWeight.w600),
-                                                    ),
-                                                  ],
-                                                )
-                                              : Column(
-                                                  children: [
-                                                    Text(
-                                                      model.timeLineArguments.timeLineArguments
-                                                                  .timelineListArguments[index].cardType ==
-                                                              CardType.DEBIT
-                                                          ? S.of(context).debitCardDeliveredQ
-                                                          : S.of(context).creditCardDeliveredQ,
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontWeight: FontWeight.w600, fontSize: 12),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(top: 5),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          if (model.timeLineArguments.timeLineArguments
-                                                                  .timelineListArguments[index].cardType ==
-                                                              CardType.CREDIT) {
-                                                            var result = await Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        CreditCardDeliveredPage(
-                                                                          creditCard: model
-                                                                              .timeLineArguments
-                                                                              .timeLineArguments
-                                                                              .timelineListArguments[index],
-                                                                        )));
-                                                            if (result != null) {
-                                                              ProviderScope.containerOf(context)
-                                                                  .read(appHomeViewModelProvider)
-                                                                  .getDashboardData();
+                                        PositionedDirectional(
+                                          start: -15,
+                                          child: Container(
+                                            padding: EdgeInsets.only(bottom: 40),
+                                            child: model.timeLineArguments.timeLineArguments
+                                                        .timelineListArguments[index].isCardDelivered ??
+                                                    false
+                                                ? Column(
+                                                    children: [
+                                                      Text(
+                                                        model.timeLineArguments.timeLineArguments
+                                                                    .timelineListArguments[index].cardType ==
+                                                                CardType.DEBIT
+                                                            ? S.of(context).debitCardDelivered
+                                                            : S.of(context).creditCardDelivered,
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 12, fontWeight: FontWeight.w600),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Text(
+                                                        model
+                                                                .timeLineArguments
+                                                                .timeLineArguments
+                                                                .timelineListArguments[index]
+                                                                .cardDeliveredDatetime!
+                                                                .isNotEmpty
+                                                            ? TimeUtils.getFormattedDateForTransaction(model
+                                                                .timeLineArguments
+                                                                .timeLineArguments
+                                                                .timelineListArguments[index]
+                                                                .cardDeliveredDatetime
+                                                                .toString())
+                                                            : '-',
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: Theme.of(context)
+                                                                .inputDecorationTheme
+                                                                .hintStyle!
+                                                                .color,
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Column(
+                                                    children: [
+                                                      Text(
+                                                        model.timeLineArguments.timeLineArguments
+                                                                    .timelineListArguments[index].cardType ==
+                                                                CardType.DEBIT
+                                                            ? S.of(context).debitCardDeliveredQ
+                                                            : S.of(context).creditCardDeliveredQ,
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.w600, fontSize: 12),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(top: 5),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            if (model.timeLineArguments.timeLineArguments
+                                                                    .timelineListArguments[index].cardType ==
+                                                                CardType.CREDIT) {
+                                                              var result = await Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          CreditCardDeliveredPage(
+                                                                            creditCard: model
+                                                                                .timeLineArguments
+                                                                                .timeLineArguments
+                                                                                .timelineListArguments[index],
+                                                                          )));
+                                                              if (result != null) {
+                                                                ProviderScope.containerOf(context)
+                                                                    .read(appHomeViewModelProvider)
+                                                                    .getDashboardData();
+                                                              }
+                                                            } else {
+                                                              var result = await Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          DebitCardDeliveredPage(
+                                                                            debitCard: model
+                                                                                .timeLineArguments
+                                                                                .timeLineArguments
+                                                                                .timelineListArguments[index],
+                                                                          )));
+                                                              if (result != null) {
+                                                                print('$result');
+                                                                ProviderScope.containerOf(context)
+                                                                    .read(appHomeViewModelProvider)
+                                                                    .getDashboardData();
+                                                              }
                                                             }
-                                                          } else {
-                                                            var result = await Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        DebitCardDeliveredPage(
-                                                                          debitCard: model
-                                                                              .timeLineArguments
-                                                                              .timeLineArguments
-                                                                              .timelineListArguments[index],
-                                                                        )));
-                                                            if (result != null) {
-                                                              print('$result');
-                                                              ProviderScope.containerOf(context)
-                                                                  .read(appHomeViewModelProvider)
-                                                                  .getDashboardData();
-                                                            }
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          padding: EdgeInsets.symmetric(
-                                                              horizontal: 8, vertical: 2),
-                                                          decoration: BoxDecoration(
-                                                              color: Theme.of(context).accentColor,
-                                                              borderRadius: BorderRadius.circular(14),
-                                                              border: Border.all(
+                                                          },
+                                                          child: Container(
+                                                            padding: EdgeInsets.symmetric(
+                                                                horizontal: 8, vertical: 2),
+                                                            decoration: BoxDecoration(
+                                                                color: Theme.of(context).accentColor,
+                                                                borderRadius: BorderRadius.circular(14),
+                                                                border: Border.all(
+                                                                    color: Theme.of(context)
+                                                                        .accentTextTheme
+                                                                        .bodyText1!
+                                                                        .color!)),
+                                                            child: Text(
+                                                              S.of(context).confirm,
+                                                              style: TextStyle(
                                                                   color: Theme.of(context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
-                                                                      .color!)),
-                                                          child: Text(
-                                                            S.of(context).confirm,
-                                                            style: TextStyle(
-                                                                color: Theme.of(context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color,
-                                                                fontSize: 12,
-                                                                fontWeight: FontWeight.w600),
+                                                                      .color,
+                                                                  fontSize: 12,
+                                                                  fontWeight: FontWeight.w600),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
+                                                      )
+                                                    ],
+                                                  ),
+                                          ),
                                         ),
-                                      ),
-                                      PositionedDirectional(
-                                        start: 30,
-                                        top: 170,
-                                        end: 0,
-                                        child: Container(
-                                            padding: EdgeInsets.only(bottom: 40),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  model.timeLineArguments.timeLineArguments
-                                                              .timelineListArguments[index].cardType ==
-                                                          CardType.DEBIT
-                                                      ? S.of(context).debitCardActivated
-                                                      : S.of(context).creditCardActivated,
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  model
-                                                          .timeLineArguments
-                                                          .timeLineArguments
-                                                          .timelineListArguments[index]
-                                                          .cardCardActivated!
-                                                          .isNotEmpty
-                                                      ? TimeUtils.getFormattedDateForTransaction(model
-                                                          .timeLineArguments
-                                                          .timeLineArguments
-                                                          .timelineListArguments[index]
-                                                          .cardCardActivated
-                                                          .toString())
-                                                      : "-",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Theme.of(context)
-                                                          .inputDecorationTheme
-                                                          .hintStyle!
-                                                          .color,
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ],
-                                            )),
-                                      ),
-                                    ],
+                                        PositionedDirectional(
+                                          start: 30,
+                                          top: 170,
+                                          end: 0,
+                                          child: Container(
+                                              padding: EdgeInsets.only(bottom: 40),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    model.timeLineArguments.timeLineArguments
+                                                                .timelineListArguments[index].cardType ==
+                                                            CardType.DEBIT
+                                                        ? S.of(context).debitCardActivated
+                                                        : S.of(context).creditCardActivated,
+                                                    textAlign: TextAlign.center,
+                                                    style:
+                                                        TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    model
+                                                            .timeLineArguments
+                                                            .timeLineArguments
+                                                            .timelineListArguments[index]
+                                                            .cardCardActivated!
+                                                            .isNotEmpty
+                                                        ? TimeUtils.getFormattedDateForTransaction(model
+                                                            .timeLineArguments
+                                                            .timeLineArguments
+                                                            .timelineListArguments[index]
+                                                            .cardCardActivated
+                                                            .toString())
+                                                        : "-",
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Theme.of(context)
+                                                            .inputDecorationTheme
+                                                            .hintStyle!
+                                                            .color,
+                                                        fontWeight: FontWeight.w600),
+                                                  ),
+                                                ],
+                                              )),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                              shrinkWrap: true,
+                              itemCount:
+                                  model.timeLineArguments.timeLineArguments.timelineListArguments.length,
+                              scrollDirection: Axis.horizontal,
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Container(
+                                      height: 220,
+                                      child: AppSvg.asset(AssetUtils.timelinec1,
+                                          matchTextDirection: true, height: 103)),
+                                  PositionedDirectional(
+                                    start: -15,
+                                    child: Container(
+                                        padding: EdgeInsets.only(bottom: 40),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              S.of(context).joinedBlink,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              TimeUtils.getFormattedDateForTransaction(model
+                                                  .timeLineArguments.timeLineArguments.youJoinedBlink
+                                                  .toString()), //'4th Jan',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color:
+                                                      Theme.of(context).inputDecorationTheme.hintStyle!.color,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
+                                        )),
+                                  ),
+                                  PositionedDirectional(
+                                    top: 170,
+                                    end: -10,
+                                    child: Container(
+                                        padding: EdgeInsets.only(bottom: 40),
+                                        child: Column(
+                                          children: [
+                                            Text(
+                                              S.of(context).blinkBorn,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              TimeUtils.getFormattedDateForTransaction(model
+                                                  .timeLineArguments.timeLineArguments.blinkWasBorn
+                                                  .toString()),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color:
+                                                      Theme.of(context).inputDecorationTheme.hintStyle!.color,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
+                                        )),
                                   ),
                                 ],
-                              );
-                            },
-                            shrinkWrap: true,
-                            itemCount: model.timeLineArguments.timeLineArguments.timelineListArguments.length,
-                            scrollDirection: Axis.horizontal,
+                              ),
+                            ],
                           ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Container(
-                                    height: 220,
-                                    child: AppSvg.asset(AssetUtils.timelinec1,
-                                        matchTextDirection: true, height: 103)),
-                                PositionedDirectional(
-                                  start: -15,
-                                  child: Container(
-                                      padding: EdgeInsets.only(bottom: 40),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            S.of(context).joinedBlink,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            TimeUtils.getFormattedDateForTransaction(model
-                                                .timeLineArguments.timeLineArguments.youJoinedBlink
-                                                .toString()), //'4th Jan',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color:
-                                                    Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                                PositionedDirectional(
-                                  top: 170,
-                                  end: -10,
-                                  child: Container(
-                                      padding: EdgeInsets.only(bottom: 40),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            S.of(context).blinkBorn,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            TimeUtils.getFormattedDateForTransaction(model
-                                                .timeLineArguments.timeLineArguments.blinkWasBorn
-                                                .toString()),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color:
-                                                    Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                                height: 220,
-                                child: AppSvg.asset(AssetUtils.timelineEnd,
-                                    matchTextDirection: true, height: 105)),
-                            PositionedDirectional(
-                              start: -15,
-                              child: Container(
-                                  padding: EdgeInsets.only(bottom: 40),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        S.of(context).joinedBlink,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        TimeUtils.getFormattedDateForTransaction(model
-                                            .timeLineArguments.timeLineArguments.youJoinedBlink
-                                            .toString()), //'4th Jan',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                            PositionedDirectional(
-                              top: 170,
-                              end: -10,
-                              child: Container(
-                                  padding: EdgeInsets.only(bottom: 40),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        S.of(context).blinkBorn,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        TimeUtils.getFormattedDateForTransaction(model
-                                            .timeLineArguments.timeLineArguments.blinkWasBorn
-                                            .toString()),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                            PositionedDirectional(
-                              top: 57,
-                              child: Container(
-                                //padding: EdgeInsets.only(right: 20),
-                                height: 22.78,
-                                width: 22.78,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle, color: Theme.of(context).canvasColor),
+                        ],
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                  height: 220,
+                                  child: AppSvg.asset(AssetUtils.timelineEnd,
+                                      matchTextDirection: true, height: 105)),
+                              PositionedDirectional(
+                                start: -15,
+                                child: Container(
+                                    padding: EdgeInsets.only(bottom: 40),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          S.of(context).joinedBlink,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          TimeUtils.getFormattedDateForTransaction(model
+                                              .timeLineArguments.timeLineArguments.youJoinedBlink
+                                              .toString()), //'4th Jan',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    )),
                               ),
-                            ),
-                            PositionedDirectional(
-                              top: 139,
-                              end: -15,
-                              child: Container(
-                                //padding: EdgeInsets.only(right: 20),
-                                height: 22.78,
-                                width: 22.78,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle, color: Theme.of(context).canvasColor),
+                              PositionedDirectional(
+                                top: 170,
+                                end: -10,
+                                child: Container(
+                                    padding: EdgeInsets.only(bottom: 40),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          S.of(context).blinkBorn,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          TimeUtils.getFormattedDateForTransaction(model
+                                              .timeLineArguments.timeLineArguments.blinkWasBorn
+                                              .toString()),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    )),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                              PositionedDirectional(
+                                top: 57,
+                                child: Container(
+                                  //padding: EdgeInsets.only(right: 20),
+                                  height: 22.78,
+                                  width: 22.78,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle, color: Theme.of(context).canvasColor),
+                                ),
+                              ),
+                              PositionedDirectional(
+                                top: 139,
+                                end: -15,
+                                child: Container(
+                                  //padding: EdgeInsets.only(right: 20),
+                                  height: 22.78,
+                                  width: 22.78,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle, color: Theme.of(context).canvasColor),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+              ),
             ),
             model.timeLineArguments.timeLineArguments.placeholderData!.status ?? false
                 ? Padding(

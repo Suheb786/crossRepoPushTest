@@ -14,12 +14,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class AddRequestMoneyContactPageView
-    extends BasePageViewWidget<AddRequestMoneyContactViewModel> {
+class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyContactViewModel> {
   final List<Beneficiary>? beneficiaries;
 
-  AddRequestMoneyContactPageView(ProviderBase model, this.beneficiaries)
-      : super(model);
+  AddRequestMoneyContactPageView(ProviderBase model, this.beneficiaries) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -36,151 +34,121 @@ class AddRequestMoneyContactPageView
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
-                        .previousPage(
-                            duration: Duration(milliseconds: 600),
-                            curve: Curves.linear);
+                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
                   }
                 } else {
                   if (!(details.primaryVelocity!.isNegative)) {
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
-                        .previousPage(
-                            duration: Duration(milliseconds: 600),
-                            curve: Curves.linear);
+                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
                   }
                 }
               },
               child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).canvasColor,
                   margin: EdgeInsets.zero,
-                  shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  top: 30, start: 27),
-                              child: Text(S.of(context).requestMoney,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                      color:
-                                          Theme.of(context).primaryColorDark))),
-                          beneficiaries!.length > 0
-                              ? Column(
-                                  children: [
-                                    Directionality(
-                                      textDirection: TextDirection.ltr,
-                                      child: GridView.builder(
-                                        itemCount: 9,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 0.8,
-                                                mainAxisSpacing: 6),
-                                        shrinkWrap: true,
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: 22, end: 28, start: 27),
-                                        itemBuilder: (context, index) {
-                                          if (index >= beneficiaries!.length) {
-                                            return PaymentBeneficiaryEmptyWidget();
-                                          }
-                                          return PaymentBeneficiaryWidget(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .RequestAmountFromContact,
-                                                  arguments:
-                                                      beneficiaries![index]);
-                                            },
-                                            transferEnum: TransferEnum.request,
-                                            beneficiary: beneficiaries![index],
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                          bottom: 29.0),
-                                      child: Visibility(
-                                        visible: beneficiaries!.length >= 9,
-                                        child: InkWell(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: EdgeInsetsDirectional.only(top: 30, start: 27),
+                            child: Text(S.of(context).requestMoney,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                    color: Theme.of(context).primaryColorDark))),
+                        beneficiaries!.length > 0
+                            ? Column(
+                                children: [
+                                  Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: GridView.builder(
+                                      itemCount: 9,
+                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
+                                      shrinkWrap: true,
+                                      padding: EdgeInsetsDirectional.only(top: 22, end: 28, start: 27),
+                                      itemBuilder: (context, index) {
+                                        if (index >= beneficiaries!.length) {
+                                          return PaymentBeneficiaryEmptyWidget();
+                                        }
+                                        return PaymentBeneficiaryWidget(
                                           onTap: () {
-                                            Navigator.pushNamed(
-                                                context, RoutePaths.AllContact,
-                                                arguments: AllContactArguments(
-                                                    beneficiaryList:
-                                                        beneficiaries ?? []));
+                                            Navigator.pushNamed(context, RoutePaths.RequestAmountFromContact,
+                                                arguments: beneficiaries![index]);
                                           },
-                                          child: Align(
-                                            alignment: Alignment.center,
-                                            child: Container(
-                                              height: 36,
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 8, horizontal: 14),
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              child: Text(
-                                                S.of(context).seeAllContacts,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color),
-                                              ),
+                                          transferEnum: TransferEnum.request,
+                                          beneficiary: beneficiaries![index],
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.only(bottom: 29.0),
+                                    child: Visibility(
+                                      visible: beneficiaries!.length >= 9,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(context, RoutePaths.AllContact,
+                                              arguments:
+                                                  AllContactArguments(beneficiaryList: beneficiaries ?? []));
+                                        },
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            height: 36,
+                                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                                            decoration: BoxDecoration(
+                                                color: Theme.of(context).accentColor,
+                                                borderRadius: BorderRadius.circular(20)),
+                                            child: Text(
+                                              S.of(context).seeAllContacts,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                )
-                              : Column(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 90),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: AppSvg.asset(
-                                            AssetUtils.profileCircle),
-                                      ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 12),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          S.of(context).addRequestMoney,
-                                          maxLines: 3,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            color: Theme.of(context)
-                                                .primaryColorDark,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                  )
+                                ],
+                              )
+                            : Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 90),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: AppSvg.asset(AssetUtils.profileCircle),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 12),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        S.of(context).addRequestMoney,
+                                        maxLines: 3,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Theme.of(context).primaryColorDark,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                )
-                        ],
-                      ),
+                                  ),
+                                ],
+                              )
+                      ],
                     ),
                   )),
             ),
@@ -194,10 +162,7 @@ class AddRequestMoneyContactPageView
                   padding: EdgeInsets.only(top: 6),
                   child: Text(
                     S.of(context).swipeToRequest,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        color: AppColor.dark_gray_1),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
                   ),
                 )
               ],
