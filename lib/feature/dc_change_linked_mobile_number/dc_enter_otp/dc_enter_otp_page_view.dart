@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
   DcEnterOtpPageView(ProviderBase model) : super(model);
@@ -36,8 +37,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushNamed(
-                      context, RoutePaths.DcChangeMobileNumberSuccess,
+                  Navigator.pushNamed(context, RoutePaths.DcChangeMobileNumberSuccess,
                       arguments: DCChangeLinkedMobileNumberArguments(
                           cardType: ProviderScope.containerOf(context)
                               .read(dcChangeLinkedMobileNumberViewModelProvider)
@@ -55,39 +55,62 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                             .appSwiperController
                             .page ==
                         1.0) {
-                      if (details.primaryVelocity!.isNegative) {
-                        FocusScope.of(context).unfocus();
-                        model.enterOtp(
-                            ProviderScope.containerOf(context)
-                                .read(
-                                    dcChangeLinkedMobileNumberViewModelProvider)
-                                .arguments!
-                                .tokenizedPan,
-                            ProviderScope.containerOf(context)
-                                .read(dcEnterNewMobileNumberViewModelProvider)
-                                .mobileNumberController
-                                .text,
-                            ProviderScope.containerOf(context)
-                                .read(dcEnterNewMobileNumberViewModelProvider)
-                                .countryData
-                                .phoneCode,
-                            ProviderScope.containerOf(context)
-                                .read(
-                                    dcChangeLinkedMobileNumberViewModelProvider)
-                                .arguments!
-                                .cardType);
+                      FocusScope.of(context).unfocus();
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.enterOtp(
+                              ProviderScope.containerOf(context)
+                                  .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                  .arguments!
+                                  .tokenizedPan,
+                              ProviderScope.containerOf(context)
+                                  .read(dcEnterNewMobileNumberViewModelProvider)
+                                  .mobileNumberController
+                                  .text,
+                              ProviderScope.containerOf(context)
+                                  .read(dcEnterNewMobileNumberViewModelProvider)
+                                  .countryData
+                                  .phoneCode,
+                              ProviderScope.containerOf(context)
+                                  .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                  .arguments!
+                                  .cardType);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(dcChangeLinkedMobileNumberViewModelProvider)
+                              .previousPage();
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(dcChangeLinkedMobileNumberViewModelProvider)
-                            .previousPage();
+                        if (details.primaryVelocity!.isNegative) {
+                          model.enterOtp(
+                              ProviderScope.containerOf(context)
+                                  .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                  .arguments!
+                                  .tokenizedPan,
+                              ProviderScope.containerOf(context)
+                                  .read(dcEnterNewMobileNumberViewModelProvider)
+                                  .mobileNumberController
+                                  .text,
+                              ProviderScope.containerOf(context)
+                                  .read(dcEnterNewMobileNumberViewModelProvider)
+                                  .countryData
+                                  .phoneCode,
+                              ProviderScope.containerOf(context)
+                                  .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                  .arguments!
+                                  .cardType);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(dcChangeLinkedMobileNumberViewModelProvider)
+                              .previousPage();
+                        }
                       }
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -114,12 +137,8 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontSize: 16,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  widgetBuilder:
-                                      (context, currentTimeRemaining) {
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
@@ -129,20 +148,14 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                               'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
                                                 fontSize: 14,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );
                                   },
                                 ),
@@ -156,8 +169,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                           visible: isValid!,
                                           child: AnimatedButton(
                                             buttonHeight: 50,
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                           ),
                                         );
                                       }),

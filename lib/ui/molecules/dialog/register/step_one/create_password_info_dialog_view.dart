@@ -7,8 +7,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class CreatePasswordInfoDialogView extends StatelessWidget {
   final Function? onDismissed;
 
-  const CreatePasswordInfoDialogView({Key? key, this.onDismissed})
-      : super(key: key);
+  const CreatePasswordInfoDialogView({Key? key, this.onDismissed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
       insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 56, top: 204),
       child: Padding(
-        padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 32.0),
+        padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24.0, top: 32.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,18 +24,12 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).passwordDialogHeader,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.gray_black),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColor.gray_black),
                 ),
                 SizedBox(height: 32),
                 Text(
                   S.of(context).passwordDialogContent,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: AppColor.gray_black,
-                      fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 14, color: AppColor.gray_black, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
@@ -49,8 +42,7 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
                 padding: EdgeInsets.all(16),
                 height: 57,
                 width: 57,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: AppColor.dark_violet_4),
+                decoration: BoxDecoration(shape: BoxShape.circle, color: AppColor.dark_violet_4),
                 child: AppSvg.asset(AssetUtils.tick),
               ),
             )

@@ -76,13 +76,11 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 4.0, top: 2),
+                          padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                           child: Text(
-                            "JOD",
+                            S.of(context).JOD,
                             style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                                color: AppColor.verLightGray4),
+                                fontWeight: FontWeight.w700, fontSize: 14, color: AppColor.verLightGray4),
                           ),
                         ),
                       ],
@@ -109,28 +107,21 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                       _shareImage(model, context);
                     },
                     child: Padding(
-                      padding: EdgeInsets.only(top: 34, left: 24, right: 24),
+                      padding: EdgeInsetsDirectional.only(top: 34, start: 24, end: 24),
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!)),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                            border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               S.of(context).shareQr,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                             ),
-                            AppSvg.asset(AssetUtils.share,
-                                color: Theme.of(context).primaryColorDark)
+                            AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
                           ],
                         ),
                       ),
@@ -147,13 +138,9 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                         width: 57,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         child: Center(
-                          child: AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
+                          child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                         ),
                       ),
                     ),
@@ -169,22 +156,20 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
 
   void _shareImage(QrScreenPageViewModel model, BuildContext context) async {
     try {
-      RenderRepaintBoundary boundary = model.globalKey.currentContext!
-          .findRenderObject() as RenderRepaintBoundary;
+      RenderRepaintBoundary boundary =
+          model.globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
 
       ///TODO:check directory
       final directory = (await getExternalStorageDirectory())!.path;
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData!.buffer.asUint8List();
       File imgFile = new File('$directory/QR.png');
       imgFile.writeAsBytes(pngBytes);
       final RenderBox box = context.findRenderObject() as RenderBox;
       Share.shareFiles([imgFile.path],
           subject: 'QR',
-          text:
-              'Scan QR or click on link below to pay JOD 20 to Zein Malhas\n\n blinkURL',
+          text: 'Scan QR or click on link below to pay JOD 20 to Zein Malhas\n\n blinkURL',
           sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
     } catch (e) {
       print(e);

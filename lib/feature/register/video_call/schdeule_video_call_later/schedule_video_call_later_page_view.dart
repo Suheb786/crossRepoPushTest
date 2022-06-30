@@ -26,8 +26,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
-class ScheduleVideoCallLaterPageView
-    extends BasePageViewWidget<ScheduleVideoCallLaterPageViewModel> {
+class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCallLaterPageViewModel> {
   ScheduleVideoCallLaterPageView(ProviderBase model) : super(model);
 
   @override
@@ -59,16 +58,12 @@ class ScheduleVideoCallLaterPageView
                               initialData: Resource.none(),
                               onData: (getAccountData) {
                                 if (getAccountData.status == Status.SUCCESS) {
-                                  model.createAccount(
-                                      getAccountData
-                                          .data!.content!.accountDetails!,
-                                      getAccountData
-                                          .data!.content!.customerInformation!);
+                                  model.createAccount(getAccountData.data!.content!.accountDetails!,
+                                      getAccountData.data!.content!.customerInformation!);
                                 }
                               },
                               dataBuilder: (context, data) {
-                                return AppStreamBuilder<
-                                        Resource<CustomerStatus>>(
+                                return AppStreamBuilder<Resource<CustomerStatus>>(
                                     initialData: Resource.none(),
                                     stream: model.customerStatusStream,
                                     onData: (userStatus) {
@@ -120,20 +115,11 @@ class ScheduleVideoCallLaterPageView
 
                                        */
                                       if (userStatus.status == Status.SUCCESS) {
-                                        Navigator.pushReplacementNamed(context,
-                                            RoutePaths.VideoKYCScheduled,
-                                            arguments:
-                                                VideoCallScheduledArguments(
-                                                    applicationId: userStatus
-                                                            .data!
-                                                            .applicationId ??
-                                                        "",
-                                                    date: model
-                                                        .preferredDateController
-                                                        .text,
-                                                    time: model
-                                                        .preferredTimeController
-                                                        .text));
+                                        Navigator.pushReplacementNamed(context, RoutePaths.VideoKYCScheduled,
+                                            arguments: VideoCallScheduledArguments(
+                                                applicationId: userStatus.data!.applicationId ?? "",
+                                                date: model.preferredDateController.text,
+                                                time: model.preferredTimeController.text));
                                       }
                                     },
                                     dataBuilder: (context, userStatus) {
@@ -143,10 +129,8 @@ class ScheduleVideoCallLaterPageView
                                         onData: (data) {
                                           if (data.status == Status.SUCCESS) {
                                             model.checkUserStatus();
-                                          } else if (data.status ==
-                                              Status.ERROR) {
-                                            model.showToastWithError(
-                                                data.appError!);
+                                          } else if (data.status == Status.ERROR) {
+                                            model.showToastWithError(data.appError!);
                                           }
 
                                           // if (data.status == Status.SUCCESS) {
@@ -160,49 +144,31 @@ class ScheduleVideoCallLaterPageView
                                         dataBuilder: (context, response) {
                                           return GestureDetector(
                                             onHorizontalDragEnd: (details) {
-                                              if (ProviderScope.containerOf(
-                                                          context)
-                                                      .read(
-                                                          videoCallViewModelProvider)
+                                              if (ProviderScope.containerOf(context)
+                                                      .read(videoCallViewModelProvider)
                                                       .appSwiperController
                                                       .page ==
                                                   2.0) {
-                                                FocusScope.of(context)
-                                                    .unfocus();
-                                                if (StringUtils.isDirectionRTL(
-                                                    context)) {
-                                                  if (!details.primaryVelocity!
-                                                      .isNegative) {
-                                                    model
-                                                        .validateScheduleVideoCallDetails();
+                                                FocusScope.of(context).unfocus();
+                                                if (StringUtils.isDirectionRTL(context)) {
+                                                  if (!details.primaryVelocity!.isNegative) {
+                                                    model.validateScheduleVideoCallDetails();
                                                   } else {
-                                                    Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 500),
-                                                        () {
-                                                      ProviderScope.containerOf(
-                                                              context)
-                                                          .read(
-                                                              videoCallViewModelProvider)
+                                                    Future.delayed(Duration(milliseconds: 500), () {
+                                                      ProviderScope.containerOf(context)
+                                                          .read(videoCallViewModelProvider)
                                                           .moveToPage(0);
                                                       // .move(0,
                                                       //     animation: false);
                                                     });
                                                   }
                                                 } else {
-                                                  if (details.primaryVelocity!
-                                                      .isNegative) {
-                                                    model
-                                                        .validateScheduleVideoCallDetails();
+                                                  if (details.primaryVelocity!.isNegative) {
+                                                    model.validateScheduleVideoCallDetails();
                                                   } else {
-                                                    Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 500),
-                                                        () {
-                                                      ProviderScope.containerOf(
-                                                              context)
-                                                          .read(
-                                                              videoCallViewModelProvider)
+                                                    Future.delayed(Duration(milliseconds: 500), () {
+                                                      ProviderScope.containerOf(context)
+                                                          .read(videoCallViewModelProvider)
                                                           .moveToPage(0);
                                                       // .move(0,
                                                       //     animation: false);
@@ -213,158 +179,93 @@ class ScheduleVideoCallLaterPageView
                                             },
                                             child: Card(
                                               shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16)),
-                                              clipBehavior:
-                                                  Clip.antiAliasWithSaveLayer,
+                                                  borderRadius: BorderRadius.circular(16)),
+                                              clipBehavior: Clip.antiAliasWithSaveLayer,
                                               elevation: 2,
                                               color: Theme.of(context)
                                                   .cardTheme
-                                                  .copyWith(
-                                                      color: AppColor.white)
+                                                  .copyWith(color: AppColor.white)
                                                   .color,
                                               margin: EdgeInsets.zero,
-                                              shadowColor: Theme.of(context)
-                                                  .primaryColorDark
-                                                  .withOpacity(0.32),
+                                              shadowColor:
+                                                  Theme.of(context).primaryColorDark.withOpacity(0.32),
                                               child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 32,
-                                                      horizontal: 24),
+                                                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                                   child: Column(
                                                     children: [
                                                       Expanded(
-                                                        child:
-                                                            SingleChildScrollView(
-                                                          physics:
-                                                              ClampingScrollPhysics(),
+                                                        child: SingleChildScrollView(
+                                                          physics: ClampingScrollPhysics(),
                                                           child: Column(
                                                             children: [
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .preferredDate,
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseSelect,
-                                                                controller: model
-                                                                    .preferredDateController,
+                                                                labelText: S.of(context).preferredDate,
+                                                                hintText: S.of(context).pleaseSelect,
+                                                                controller: model.preferredDateController,
                                                                 readOnly: true,
-                                                                key: model
-                                                                    .preferredDateKey,
+                                                                key: model.preferredDateKey,
                                                                 onPressed: () {
-                                                                  DatePicker.show(
-                                                                      context,
-                                                                      initialDate:
-                                                                          model
-                                                                              .initialDate,
-                                                                      onSelected:
-                                                                          (date) {
-                                                                    model.preferredDateController
-                                                                            .text =
+                                                                  DatePicker.show(context,
+                                                                      initialDate: model.initialDate,
+                                                                      onSelected: (date) {
+                                                                    model.preferredDateController.text =
                                                                         TimeUtils.getFormattedDOB(
                                                                             date.toString());
-                                                                    model.initialDate =
-                                                                        date;
-                                                                    model
-                                                                        .isValid();
-                                                                    model.fetchAvailableTimeSlots(
-                                                                        TimeUtils.getFormattedDateForCheckPassword(
+                                                                    model.initialDate = date;
+                                                                    model.isValid();
+                                                                    model.fetchAvailableTimeSlots(TimeUtils
+                                                                        .getFormattedDateForCheckPassword(
                                                                             date.toString()));
-                                                                  }, onCancelled:
-                                                                          () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
-                                                                      title: S
-                                                                          .of(context)
-                                                                          .preferredDate);
+                                                                  }, onCancelled: () {
+                                                                    Navigator.pop(context);
+                                                                  }, title: S.of(context).preferredDate);
                                                                 },
-                                                                suffixIcon:
-                                                                    (value,
-                                                                        data) {
+                                                                suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height:
-                                                                          16,
+                                                                      height: 16,
                                                                       width: 16,
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal:
-                                                                              7),
-                                                                      child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .calendar,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark));
+                                                                      padding:
+                                                                          EdgeInsets.symmetric(horizontal: 7),
+                                                                      child: AppSvg.asset(AssetUtils.calendar,
+                                                                          color: Theme.of(context)
+                                                                              .primaryColorDark));
                                                                 },
                                                               ),
                                                               SizedBox(
                                                                 height: 16,
                                                               ),
                                                               AppStreamBuilder<
-                                                                  Resource<
-                                                                      List<
-                                                                          AvailableTimeSlots>>>(
-                                                                stream: model
-                                                                    .availableTimeSlots,
-                                                                initialData:
-                                                                    Resource
-                                                                        .none(),
-                                                                dataBuilder:
-                                                                    (context,
-                                                                        slots) {
+                                                                  Resource<List<AvailableTimeSlots>>>(
+                                                                stream: model.availableTimeSlots,
+                                                                initialData: Resource.none(),
+                                                                dataBuilder: (context, slots) {
                                                                   return AppTextField(
-                                                                    labelText: S
-                                                                        .of(context)
-                                                                        .preferredTime,
-                                                                    hintText: S
-                                                                        .of(context)
-                                                                        .pleaseSelect,
-                                                                    controller:
-                                                                        model
-                                                                            .preferredTimeController,
-                                                                    readOnly:
-                                                                        true,
-                                                                    key: model
-                                                                        .preferredTimeKey,
-                                                                    onPressed:
-                                                                        () {
-                                                                      ScheduleCallTimeDialog.show(
-                                                                          context,
+                                                                    labelText: S.of(context).preferredTime,
+                                                                    hintText: S.of(context).pleaseSelect,
+                                                                    controller: model.preferredTimeController,
+                                                                    readOnly: true,
+                                                                    key: model.preferredTimeKey,
+                                                                    onPressed: () {
+                                                                      ScheduleCallTimeDialog.show(context,
                                                                           title: S
-                                                                              .of(
-                                                                                  context)
+                                                                              .of(context)
                                                                               .preferredTimeSmall,
-                                                                          data: slots!.data ??
-                                                                              [],
-                                                                          onSelected:
-                                                                              (time) {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model
-                                                                            .preferredTimeController
-                                                                            .text = time
-                                                                                .slot ??
-                                                                            "";
-                                                                        model
-                                                                            .isValid();
-                                                                      }, onDismissed:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
+                                                                          data: slots!.data ?? [],
+                                                                          onSelected: (time) {
+                                                                        Navigator.pop(context);
+                                                                        model.preferredTimeController.text =
+                                                                            time.slot ?? "";
+                                                                        model.isValid();
+                                                                      }, onDismissed: () {
+                                                                        Navigator.pop(context);
                                                                       });
                                                                     },
-                                                                    suffixIcon:
-                                                                        (value,
-                                                                            data) {
+                                                                    suffixIcon: (value, data) {
                                                                       return Container(
-                                                                          height:
-                                                                              16,
-                                                                          width:
-                                                                              16,
-                                                                          padding: EdgeInsets.only(
-                                                                              right:
-                                                                                  8),
+                                                                          height: 16,
+                                                                          width: 16,
+                                                                          padding: EdgeInsetsDirectional.only(
+                                                                              end: 8),
                                                                           child: AppSvg.asset(
                                                                               AssetUtils.downArrow,
                                                                               color: AppColor.dark_gray_1));
@@ -373,10 +274,8 @@ class ScheduleVideoCallLaterPageView
                                                                 },
                                                               ),
                                                               SizedBox(
-                                                                height: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets
-                                                                    .bottom,
+                                                                height:
+                                                                    MediaQuery.of(context).viewInsets.bottom,
                                                               ),
                                                             ],
                                                           ),
@@ -384,25 +283,16 @@ class ScheduleVideoCallLaterPageView
                                                       ),
                                                       Center(
                                                         child: Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 8),
-                                                          child: AppStreamBuilder<
-                                                                  bool>(
-                                                              stream: model
-                                                                  .allFieldValidatorStream,
-                                                              initialData:
-                                                                  false,
-                                                              dataBuilder:
-                                                                  (context,
-                                                                      isValid) {
+                                                          padding: EdgeInsets.only(top: 8),
+                                                          child: AppStreamBuilder<bool>(
+                                                              stream: model.allFieldValidatorStream,
+                                                              initialData: false,
+                                                              dataBuilder: (context, isValid) {
                                                                 return (isValid!)
                                                                     ? AnimatedButton(
-                                                                        buttonText: S
-                                                                            .of(context)
-                                                                            .swipeToProceed,
-                                                                        buttonHeight:
-                                                                            50,
+                                                                        buttonText:
+                                                                            S.of(context).swipeToProceed,
+                                                                        buttonHeight: 50,
                                                                       )
                                                                     : Container();
                                                               }),

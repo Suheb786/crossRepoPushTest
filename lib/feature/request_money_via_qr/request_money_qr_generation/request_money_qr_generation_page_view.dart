@@ -11,9 +11,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class RequestMoneyQrGenerationPageView
-    extends BasePageViewWidget<RequestMoneyQrGenerationPageViewModel> {
+class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQrGenerationPageViewModel> {
   RequestMoneyQrGenerationPageView(ProviderBase model) : super(model);
 
   @override
@@ -44,8 +44,7 @@ class RequestMoneyQrGenerationPageView
                         decoration: BoxDecoration(
                             color: Theme.of(context).canvasColor,
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16),
-                                bottomRight: Radius.circular(16))),
+                                bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
                       ),
                       Positioned(
                           bottom: -8,
@@ -61,10 +60,7 @@ class RequestMoneyQrGenerationPageView
                   padding: EdgeInsets.only(top: 8),
                   child: Text(
                     S.of(context).backToPayments,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 12,
-                        color: AppColor.dark_gray_1),
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                   ),
                 ),
                 Padding(
@@ -80,47 +76,52 @@ class RequestMoneyQrGenerationPageView
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16, left: 24, right: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          model.currentPinValue,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 32,
-                              fontFamily: 'Montserrat',
-                              color: AppColor.black),
+              padding: EdgeInsetsDirectional.only(top: 16, start: 24, end: 24),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Directionality(
+                      textDirection:
+                          StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AutoSizeText(
+                              model.currentPinValue,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 32,
+                                  fontFamily: 'Montserrat',
+                                  color: AppColor.black),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(top: 15, start: 4),
+                              child: Text(
+                                S.of(context).JOD,
+                                style: TextStyle(
+                                    color: AppColor.verLightGray4, fontSize: 14, fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 15, left: 4),
-                          child: Text(
-                            "JOD",
-                            style: TextStyle(
-                                color: AppColor.verLightGray4,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {
-                        model.clearValue();
-                      },
-                      child: AppSvg.asset(AssetUtils.backspaceBlue),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          model.clearValue();
+                        },
+                        child: AppSvg.asset(AssetUtils.backspaceBlue),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Column(
@@ -129,10 +130,7 @@ class RequestMoneyQrGenerationPageView
                   padding: EdgeInsets.only(top: 24),
                   child: Text(
                     S.of(context).accountBalance,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 10,
-                        color: AppColor.dark_gray_1),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
                   ),
                 ),
                 Padding(
@@ -148,47 +146,46 @@ class RequestMoneyQrGenerationPageView
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 4.0, top: 2),
+                        padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                         child: Text(
-                          "JOD",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
-                              color: AppColor.gray1),
+                          S.of(context).JOD,
+                          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.gray1),
                         ),
                       ),
                     ],
                   ),
                 ),
-                NumericKeyboard(
-                    onKeyboardTap: (value) {
-                      model.changeValue(value);
-                    },
-                    textColor: Colors.black,
-                    rightButtonFn: () {
-                      ///TODO:don't show account selection here
-                      // AccountsDialog.show(context, onDismissed: () {
-                      //   Navigator.pop(context);
-                      // });
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.QRScreen);
-                    },
-                    leftIcon: Icon(
-                      Icons.circle,
-                      color: AppColor.black,
-                      size: 5,
-                    ),
-                    rightWidget: CircleAvatar(
-                      radius: 30,
-                      backgroundColor: AppColor.brightBlue,
-                      child: Center(
-                        child: AppSvg.asset(AssetUtils.next),
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: NumericKeyboard(
+                      onKeyboardTap: (value) {
+                        model.changeValue(value);
+                      },
+                      textColor: Colors.black,
+                      rightButtonFn: () {
+                        ///TODO:don't show account selection here
+                        // AccountsDialog.show(context, onDismissed: () {
+                        //   Navigator.pop(context);
+                        // });
+                        Navigator.pushReplacementNamed(context, RoutePaths.QRScreen);
+                      },
+                      leftIcon: Icon(
+                        Icons.circle,
+                        color: AppColor.black,
+                        size: 5,
                       ),
-                    ),
-                    leftButtonFn: () {
-                      model.changeValue(".");
-                    },
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                      rightWidget: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: AppColor.brightBlue,
+                        child: Center(
+                          child: AppSvg.asset(AssetUtils.next),
+                        ),
+                      ),
+                      leftButtonFn: () {
+                        model.changeValue(".");
+                      },
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                ),
               ],
             )
           ],

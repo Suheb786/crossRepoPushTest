@@ -13,8 +13,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class SendMoneyQrScanningPageView
-    extends BasePageViewWidget<SendMoneyQrScanningPageViewModel> {
+class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanningPageViewModel> {
   SendMoneyQrScanningPageView(ProviderBase model) : super(model);
 
   @override
@@ -26,10 +25,7 @@ class SendMoneyQrScanningPageView
         children: [
           Text(
             S.of(context).qrPayments,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 10,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -37,10 +33,7 @@ class SendMoneyQrScanningPageView
           Text(
             S.of(context).youAreAcceptingMoneyRequestViaQr,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -50,8 +43,7 @@ class SendMoneyQrScanningPageView
             child: GestureDetector(
               onHorizontalDragEnd: (details) {
                 if (details.primaryVelocity!.isNegative) {
-                  Navigator.pushNamed(
-                      context, RoutePaths.SendMoneyQrScanningSuccess);
+                  Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess);
                 }
               },
               child: Column(
@@ -82,32 +74,28 @@ class SendMoneyQrScanningPageView
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 4.0, top: 2),
+                              padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                               child: Text(
-                                "JOD",
+                                S.of(context).JOD,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14,
-                                    color: AppColor.verLightGray4),
+                                    fontWeight: FontWeight.w700, fontSize: 14, color: AppColor.verLightGray4),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 32, left: 24, right: 24),
+                        padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Name',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  color: AppColor.dark_gray_1),
+                                  fontWeight: FontWeight.w400, fontSize: 12, color: AppColor.dark_gray_1),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 4.0),
+                              padding: EdgeInsetsDirectional.only(start: 4.0),
                               child: Text(
                                 "Zein Malhas",
                                 style: TextStyle(
@@ -120,8 +108,7 @@ class SendMoneyQrScanningPageView
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(left: 24, top: 32, right: 24),
+                        padding: const EdgeInsetsDirectional.only(start: 24, top: 32, end: 24),
                         child: AppTextField(
                           labelText: S.of(context).payFrom.toUpperCase(),
                           hintText: S.of(context).pleaseSelect,
@@ -129,9 +116,7 @@ class SendMoneyQrScanningPageView
                           key: model.payFromKey,
                           readOnly: true,
                           onPressed: () {
-                            AccountsDialog.show(context,
-                                label: S.of(context).selectAccount,
-                                onDismissed: () {
+                            AccountsDialog.show(context, label: S.of(context).selectAccount, onDismissed: () {
                               Navigator.pop(context);
                             }, onSelected: (value) {
                               Navigator.pop(context);
@@ -161,8 +146,7 @@ class SendMoneyQrScanningPageView
                               padding: const EdgeInsets.only(top: 26.0),
                               child: Visibility(
                                 visible: isValid!,
-                                child: AnimatedButton(
-                                    buttonText: S.of(context).swipeToProceed),
+                                child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                               ),
                             );
                           }),
@@ -172,9 +156,7 @@ class SendMoneyQrScanningPageView
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
+                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),

@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SuppConfirmPinPageView extends BasePageViewWidget<SuppConfirmPinPageViewModel> {
   SuppConfirmPinPageView(ProviderBase model) : super(model);
@@ -54,18 +55,34 @@ class SuppConfirmPinPageView extends BasePageViewWidget<SuppConfirmPinPageViewMo
                             .page ==
                         2.0) {
                       FocusScope.of(context).unfocus();
-                      if (details.primaryVelocity!.isNegative) {
-                        model.validatePin(
-                            ProviderScope.containerOf(context).read(suppCreatePinModelProvider).currentPin,
-                            ProviderScope.containerOf(context)
-                                .read(suppDebitCardPinSetViewModelProvider)
-                                .arguments!
-                                .cardNo);
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.validatePin(
+                              ProviderScope.containerOf(context).read(suppCreatePinModelProvider).currentPin,
+                              ProviderScope.containerOf(context)
+                                  .read(suppDebitCardPinSetViewModelProvider)
+                                  .arguments!
+                                  .cardNo);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(suppDebitCardPinSetViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(suppDebitCardPinSetViewModelProvider)
-                            .previousPage();
-                        // .previous(animation: true);
+                        if (details.primaryVelocity!.isNegative) {
+                          model.validatePin(
+                              ProviderScope.containerOf(context).read(suppCreatePinModelProvider).currentPin,
+                              ProviderScope.containerOf(context)
+                                  .read(suppDebitCardPinSetViewModelProvider)
+                                  .arguments!
+                                  .cardNo);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(suppDebitCardPinSetViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       }
                     }
                   },

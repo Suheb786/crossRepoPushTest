@@ -9,8 +9,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class SendMoneyViaQrSuccessPageView
-    extends BasePageViewWidget<SendMoneyViaQrSuccessPageViewModel> {
+class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuccessPageViewModel> {
   SendMoneyViaQrSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -51,18 +50,14 @@ class SendMoneyViaQrSuccessPageView
                     "20.00",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 28),
+                        color: Theme.of(context).accentColor, fontWeight: FontWeight.w700, fontSize: 28),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8, left: 5.0),
+                    padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
                     child: Text(
-                      "JOD",
+                      S.of(context).JOD,
                       style: TextStyle(
-                          color: AppColor.very_light_red,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14),
+                          color: AppColor.very_light_red, fontWeight: FontWeight.w700, fontSize: 14),
                     ),
                   ),
                 ],
@@ -74,9 +69,7 @@ class SendMoneyViaQrSuccessPageView
                 S.of(context).sentTo,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24),
+                    color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
               ),
             ),
             Padding(
@@ -85,18 +78,15 @@ class SendMoneyViaQrSuccessPageView
                 "Zein Malhas",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14),
+                    color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 43, right: 24, left: 24),
+              padding: EdgeInsetsDirectional.only(top: 43, end: 24, start: 24),
               child: Container(
                 padding: EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.circular(16)),
+                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -125,20 +115,15 @@ class SendMoneyViaQrSuccessPageView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share,
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color),
+                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
                     Padding(
-                      padding: EdgeInsets.only(left: 11),
+                      padding: EdgeInsetsDirectional.only(start: 11),
                       child: Text(
                         S.of(context).shareMyReceipt,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     )
                   ],
@@ -156,9 +141,7 @@ class SendMoneyViaQrSuccessPageView
               child: Text(
                 S.of(context).toDashboard,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ),
           ],

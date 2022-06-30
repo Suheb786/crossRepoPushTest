@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ChangeCardSettlementPercentagePageView
     extends BasePageViewWidget<ChangeCardSettlementPercentagePageViewModel> {
@@ -30,10 +31,7 @@ class ChangeCardSettlementPercentagePageView
         children: [
           Text(
             S.of(context).changeLinkedAccount.toUpperCase(),
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 10,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -41,10 +39,7 @@ class ChangeCardSettlementPercentagePageView
           Text(
             S.of(context).selectNewPercentage,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -54,11 +49,9 @@ class ChangeCardSettlementPercentagePageView
                   stream: model.updateSettlementStream,
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.CreditCardApplySuccess,
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplySuccess,
                           arguments: CreditCardApplySuccessArguments(
-                              creditSuccessState: CreditSuccessState
-                                  .Settlement_Percentage_Changed));
+                              creditSuccessState: CreditSuccessState.Settlement_Percentage_Changed));
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -70,9 +63,15 @@ class ChangeCardSettlementPercentagePageView
                         padding: EdgeInsets.symmetric(vertical: 32),
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              model.updateSettlement();
-                            } else {}
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                model.updateSettlement();
+                              }
+                            } else {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.updateSettlement();
+                              } else {}
+                            }
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,8 +92,7 @@ class ChangeCardSettlementPercentagePageView
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
                                     child: AppDivider(
                                       color: AppColor.lightGrayishBlue,
                                       indent: 12,
@@ -102,44 +100,33 @@ class ChangeCardSettlementPercentagePageView
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 24),
+                                    padding: const EdgeInsets.symmetric(horizontal: 24),
                                     child: Row(
                                       children: [
                                         Container(
                                           padding: EdgeInsets.all(12),
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .backgroundColor,
+                                              color: Theme.of(context).backgroundColor,
                                               shape: BoxShape.circle),
                                           child: AppSvg.asset(
                                             AssetUtils.percentage,
-                                            color: Theme.of(context)
-                                                .primaryColorDark,
+                                            color: Theme.of(context).primaryColorDark,
                                           ),
                                         ),
                                         SizedBox(
                                           width: 8,
                                         ),
                                         Text(
-                                          model.arguments?.creditCard
-                                                      .minimumSettlement !=
-                                                  null
-                                              ? model.arguments!.creditCard
-                                                      .minimumSettlement
-                                                      .toString() +
-                                                  "%"
+                                          model.arguments?.creditCard.minimumSettlement != null
+                                              ? model.arguments!.creditCard.minimumSettlement.toString() + "%"
                                               : "",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
+                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                                         )
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16),
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
                                     child: AppDivider(
                                       color: AppColor.lightGrayishBlue,
                                       indent: 12,
@@ -147,30 +134,20 @@ class ChangeCardSettlementPercentagePageView
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 24),
+                                    padding: const EdgeInsets.symmetric(horizontal: 24),
                                     child: AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .newSettlementPercentage
-                                          .toUpperCase(),
+                                      labelText: S.of(context).newSettlementPercentage.toUpperCase(),
                                       hintText: S.of(context).pleaseSelect,
                                       readOnly: true,
-                                      controller:
-                                          model.settlementPercentageController,
+                                      controller: model.settlementPercentageController,
                                       key: model.settlementPercentageKey,
                                       onPressed: () {
-                                        RelationshipWithCardHolderDialog.show(
-                                            context,
-                                            title: S
-                                                .of(context)
-                                                .settlementPercentage,
-                                            relationSHipWithCardHolder:
-                                                model.percentageList,
+                                        RelationshipWithCardHolderDialog.show(context,
+                                            title: S.of(context).settlementPercentage,
+                                            relationSHipWithCardHolder: model.percentageList,
                                             onSelected: (value) {
                                           Navigator.pop(context);
-                                          model.settlementPercentageController
-                                              .text = value;
+                                          model.settlementPercentageController.text = value;
                                           model.validate();
                                         }, onDismissed: () {
                                           Navigator.pop(context);
@@ -180,9 +157,8 @@ class ChangeCardSettlementPercentagePageView
                                         return Container(
                                             height: 16,
                                             width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
+                                            padding: EdgeInsetsDirectional.only(end: 8),
+                                            child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
                                     ),
@@ -192,8 +168,7 @@ class ChangeCardSettlementPercentagePageView
                               Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 12.0),
+                                    padding: EdgeInsets.symmetric(vertical: 12.0),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
@@ -201,8 +176,7 @@ class ChangeCardSettlementPercentagePageView
                                           return Visibility(
                                             visible: isValid!,
                                             child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
+                                              buttonText: S.of(context).swipeToProceed,
                                             ),
                                           );
                                         }),

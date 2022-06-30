@@ -7,11 +7,10 @@ class PaymentBeneficiaryEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-            child: CircleAvatar(
+        CircleAvatar(
           radius: 32,
           backgroundColor: Theme.of(context).primaryColorDark.withOpacity(0.1),
-        )),
+        ),
         Padding(
           padding: EdgeInsets.only(top: 6),
           child: Text(

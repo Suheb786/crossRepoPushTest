@@ -34,8 +34,7 @@ class AnimatedButton extends StatefulWidget {
   _AnimatedButtonState createState() => _AnimatedButtonState();
 }
 
-class _AnimatedButtonState extends State<AnimatedButton>
-    with TickerProviderStateMixin {
+class _AnimatedButtonState extends State<AnimatedButton> with TickerProviderStateMixin {
   AnimationController? animationController;
   AnimationController? fadeAnimationController;
   Animation<double>? animation;
@@ -44,17 +43,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-        vsync: this,
-        duration: Duration(microseconds: widget.animationDuration!));
-    fadeAnimationController = AnimationController(
-        vsync: this,
-        duration: Duration(seconds: widget.fadeAnimationDuration!));
+    animationController =
+        AnimationController(vsync: this, duration: Duration(microseconds: widget.animationDuration!));
+    fadeAnimationController =
+        AnimationController(vsync: this, duration: Duration(seconds: widget.fadeAnimationDuration!));
     animation =
-        Tween<double>(begin: widget.animationBegin, end: widget.animationEnd)
-            .animate(animationController!);
-    fadeAnimation = Tween<double>(
-            begin: widget.fadeAnimationBegin, end: widget.fadeAnimationEnd)
+        Tween<double>(begin: widget.animationBegin, end: widget.animationEnd).animate(animationController!);
+    fadeAnimation = Tween<double>(begin: widget.fadeAnimationBegin, end: widget.fadeAnimationEnd)
         .animate(fadeAnimationController!);
     animationController!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -104,10 +99,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                       width: 2,
                       color: widget.borderColor != null
                           ? widget.borderColor!
-                          : Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!)),
+                          : Theme.of(context).accentTextTheme.bodyText1!.color!)),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -116,10 +108,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                     style: TextStyle(
                         color: widget.textColor != null
                             ? widget.textColor
-                            : Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!,
+                            : Theme.of(context).accentTextTheme.bodyText1!.color!,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
                     maxLines: 1,

@@ -7,24 +7,21 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AgentSelectionListWidget extends StatelessWidget {
   final Agent item;
 
-  const AgentSelectionListWidget({Key? key, required this.item})
-      : super(key: key);
+  const AgentSelectionListWidget({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 28, right: 20, top: 20, bottom: 20),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16), color: Colors.transparent),
+      padding: EdgeInsetsDirectional.only(start: 28, end: 20, top: 20, bottom: 20),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
         children: <Widget>[
           Container(
             height: 24,
             width: 24,
             decoration: BoxDecoration(shape: BoxShape.circle),
-            child: AppSvg.asset(item.icon ?? "",
-                color: item.isSelected! ? AppColor.black : AppColor.white),
+            child: AppSvg.asset(item.icon ?? "", color: item.isSelected! ? AppColor.black : AppColor.white),
           ),
           Expanded(
             child: Padding(
@@ -33,14 +30,11 @@ class AgentSelectionListWidget extends StatelessWidget {
                 item.agent ?? "",
                 softWrap: true,
                 maxLines: 2,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: item.isSelected! ? AppColor.black : AppColor.white),
+                style: TextStyle(fontSize: 14, color: item.isSelected! ? AppColor.black : AppColor.white),
               ),
             ),
           ),
-          Visibility(
-              visible: item.isSelected!, child: AppSvg.asset(AssetUtils.check))
+          Visibility(visible: item.isSelected!, child: AppSvg.asset(AssetUtils.check))
         ],
       ),
     );

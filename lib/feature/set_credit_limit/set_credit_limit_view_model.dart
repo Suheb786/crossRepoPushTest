@@ -33,40 +33,30 @@ class SetCreditLimitViewModel extends BasePageViewModel {
     _sliderValueSubject.safeAdd(value);
   }
 
-  final GlobalKey<AppTextFieldState> minimumSettlementKey =
-      GlobalKey(debugLabel: "minimumSettlement");
+  final GlobalKey<AppTextFieldState> minimumSettlementKey = GlobalKey(debugLabel: "minimumSettlement");
 
-  final GlobalKey<AppTextFieldState> nickNameKey =
-      GlobalKey(debugLabel: "nickName");
+  final GlobalKey<AppTextFieldState> nickNameKey = GlobalKey(debugLabel: "nickName");
 
-  PublishSubject<SetCreditLimitUseCaseParams> _setCreditLimitRequest =
-      PublishSubject();
+  PublishSubject<SetCreditLimitUseCaseParams> _setCreditLimitRequest = PublishSubject();
 
-  PublishSubject<Resource<ProcessLoanRequestResponse>> _setCreditLimitResponse =
-      PublishSubject();
+  PublishSubject<Resource<ProcessLoanRequestResponse>> _setCreditLimitResponse = PublishSubject();
 
-  Stream<Resource<ProcessLoanRequestResponse>> get setCreditLimitResponse =>
-      _setCreditLimitResponse.stream;
+  Stream<Resource<ProcessLoanRequestResponse>> get setCreditLimitResponse => _setCreditLimitResponse.stream;
 
   TextEditingController minimumSettlementController = TextEditingController();
 
   TextEditingController nickNameController = TextEditingController();
 
   ///get loan value
-  PublishSubject<GetLoanValueUseCaseParams> _getLoanValueRequest =
-      PublishSubject();
+  PublishSubject<GetLoanValueUseCaseParams> _getLoanValueRequest = PublishSubject();
 
-  PublishSubject<Resource<GetLoanValuesResponse>> _getLoanValueResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetLoanValuesResponse>> _getLoanValueResponse = PublishSubject();
 
-  Stream<Resource<GetLoanValuesResponse>> get getLoanValueResponse =>
-      _getLoanValueResponse.stream;
+  Stream<Resource<GetLoanValuesResponse>> get getLoanValueResponse => _getLoanValueResponse.stream;
 
-  SetCreditLimitViewModel(
-      this._setCreditLimitUseCase, this._getLoanValueUseCase) {
+  SetCreditLimitViewModel(this._setCreditLimitUseCase, this._getLoanValueUseCase) {
     _setCreditLimitRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _setCreditLimitUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _setCreditLimitUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -75,8 +65,7 @@ class SetCreditLimitViewModel extends BasePageViewModel {
     });
 
     _getLoanValueRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getLoanValueUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getLoanValueUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -85,11 +74,9 @@ class SetCreditLimitViewModel extends BasePageViewModel {
           updateSliderValue(SliderLimitValues(
               divisions: int.parse(event.data!.getLoanValuesContent!.step!),
               maxValue: event.data!.getLoanValuesContent!.maxLimit!.toDouble(),
-              minValue: double.parse(
-                  event.data!.getLoanValuesContent!.minimumLimit!)));
+              minValue: double.parse(event.data!.getLoanValuesContent!.minimumLimit!)));
 
-          updatevalue(double.parse(
-              event.data!.getLoanValuesContent!.maxLimit!.toString()));
+          updatevalue(double.parse(event.data!.getLoanValuesContent!.maxLimit!.toString()));
         }
       });
     });
@@ -126,6 +113,5 @@ class SliderLimitValues {
   final double? maxValue;
   final int? divisions;
 
-  SliderLimitValues(
-      {this.minValue: 0.0, this.maxValue: 0.0, this.divisions: 0});
+  SliderLimitValues({this.minValue: 0.0, this.maxValue: 0.0, this.divisions: 0});
 }

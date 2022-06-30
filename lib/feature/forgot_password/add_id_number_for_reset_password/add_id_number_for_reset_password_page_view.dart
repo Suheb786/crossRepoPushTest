@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AddIDNumberForResetPasswordPageView
@@ -42,18 +43,13 @@ class AddIDNumberForResetPasswordPageView
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context)
-                        .read(forgotPasswordViewModelProvider)
-                        .nationalId = model.nationalIdController.text;
-                    ProviderScope.containerOf(context)
-                        .read(forgotPasswordViewModelProvider)
-                        .email = model.emailController.text;
-                    ProviderScope.containerOf(context)
-                        .read(forgotPasswordViewModelProvider)
-                        .expiryDate = model.idExpiryDateController.text;
-                    ProviderScope.containerOf(context)
-                        .read(forgotPasswordViewModelProvider)
-                        .nextPage();
+                    ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nationalId =
+                        model.nationalIdController.text;
+                    ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).email =
+                        model.emailController.text;
+                    ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).expiryDate =
+                        model.idExpiryDateController.text;
+                    ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nextPage();
                     // .next();
                     print("successful");
                   } else if (data.status == Status.ERROR) {
@@ -64,15 +60,20 @@ class AddIDNumberForResetPasswordPageView
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       FocusScope.of(context).unfocus();
-                      if (details.primaryVelocity!.isNegative) {
-                        model.addIdNumberForResetPassword();
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.addIdNumberForResetPassword();
+                        }
+                      } else {
+                        if (details.primaryVelocity!.isNegative) {
+                          model.addIdNumberForResetPassword();
+                        }
                       }
                     },
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -100,8 +101,7 @@ class AddIDNumberForResetPasswordPageView
                                           hintText: S.of(context).pleaseEnter,
                                           inputType: TextInputType.text,
                                           inputAction: TextInputAction.done,
-                                          controller:
-                                              model.nationalIdController,
+                                          controller: model.nationalIdController,
                                           key: model.nationalIdKey,
                                           onChanged: (value) {
                                             model.validate();
@@ -115,8 +115,7 @@ class AddIDNumberForResetPasswordPageView
                                         inputType: TextInputType.text,
                                         inputAction: TextInputAction.done,
                                         readOnly: true,
-                                        controller:
-                                            model.idExpiryDateController,
+                                        controller: model.idExpiryDateController,
                                         key: model.idExpiryDateKey,
                                         onChanged: (value) {
                                           model.validate();
@@ -124,35 +123,24 @@ class AddIDNumberForResetPasswordPageView
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
                                               onTap: () {
-                                                DatePicker.show(context,
-                                                    initialDate:
-                                                        model.initialDate,
+                                                DatePicker.show(context, initialDate: model.initialDate,
                                                     onSelected: (date) {
-                                                  model.selectedExpiryDate =
-                                                      date.toString();
+                                                  model.selectedExpiryDate = date.toString();
                                                   model.initialDate = date;
-                                                  model.idExpiryDateController
-                                                          .text =
-                                                      TimeUtils
-                                                          .getFormattedDateForCheckPassword(
-                                                              date.toString());
+                                                  model.idExpiryDateController.text =
+                                                      TimeUtils.getFormattedDateForCheckPassword(
+                                                          date.toString());
                                                   model.validate();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
-                                                },
-                                                    title: S
-                                                        .of(context)
-                                                        .issuingDate);
+                                                }, title: S.of(context).issuingDate);
                                               },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark)));
+                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  child: AppSvg.asset(AssetUtils.calendar,
+                                                      color: Theme.of(context).primaryColorDark)));
                                         },
                                       ),
                                     ],
@@ -162,8 +150,7 @@ class AddIDNumberForResetPasswordPageView
                               Column(
                                 children: [
                                   Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(vertical: 16.0),
+                                    padding: EdgeInsets.symmetric(vertical: 16.0),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
@@ -171,8 +158,7 @@ class AddIDNumberForResetPasswordPageView
                                           return Visibility(
                                             visible: isValid!,
                                             child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
+                                              buttonText: S.of(context).swipeToProceed,
                                             ),
                                           );
                                         }),

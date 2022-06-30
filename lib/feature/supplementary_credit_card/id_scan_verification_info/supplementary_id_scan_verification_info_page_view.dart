@@ -16,15 +16,14 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
-    SupplementaryIdScanVerificationInfoPageViewModel> {
-  SupplementaryIdScanVerificationInfoPageView(ProviderBase model)
-      : super(model);
+class SupplementaryIdScanVerificationInfoPageView
+    extends BasePageViewWidget<SupplementaryIdScanVerificationInfoPageViewModel> {
+  SupplementaryIdScanVerificationInfoPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context,
-      SupplementaryIdScanVerificationInfoPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryIdScanVerificationInfoPageViewModel model) {
     return AppKeyBoardHide(
       child: Column(
         children: [
@@ -38,8 +37,7 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child:
-                        AppStreamBuilder<Resource<ScannedDocumentInformation>>(
+                    child: AppStreamBuilder<Resource<ScannedDocumentInformation>>(
                       stream: model.scanUserDocumentStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -48,8 +46,7 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                             model.scannedDocumentInformation = data.data!;
                             Future.delayed(Duration(milliseconds: 500), () {
                               ProviderScope.containerOf(context)
-                                  .read(
-                                      supplementaryCreditCardViewModelProvider)
+                                  .read(supplementaryCreditCardViewModelProvider)
                                   .nextPage();
                               // .next();
                             });
@@ -66,44 +63,46 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                           onHorizontalDragEnd: (details) {
                             int sensitivity = 8;
                             if (ProviderScope.containerOf(context)
-                                    .read(
-                                        supplementaryCreditCardViewModelProvider)
+                                    .read(supplementaryCreditCardViewModelProvider)
                                     .appSwiperController
                                     .page ==
                                 1.0) {
-                              if (details.primaryVelocity! < -sensitivity) {
-                                model.scanDocument();
-                              } else if (details.primaryVelocity! >
-                                  sensitivity) {
-                                ProviderScope.containerOf(context)
-                                    .read(
-                                        supplementaryCreditCardViewModelProvider)
-                                    .previousPage();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (details.primaryVelocity! < -sensitivity) {
+                                  ProviderScope.containerOf(context)
+                                      .read(supplementaryCreditCardViewModelProvider)
+                                      .previousPage();
+                                } else if (details.primaryVelocity! > sensitivity) {
+                                  model.scanDocument();
+                                }
+                              } else {
+                                if (details.primaryVelocity! < -sensitivity) {
+                                  model.scanDocument();
+                                } else if (details.primaryVelocity! > sensitivity) {
+                                  ProviderScope.containerOf(context)
+                                      .read(supplementaryCreditCardViewModelProvider)
+                                      .previousPage();
+                                }
                               }
                             }
                           },
                           child: Card(
                             child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Column(
                                       children: [
                                         InformationText(
                                             image: AssetUtils.sun,
-                                            title: S
-                                                .of(context)
-                                                .idVerificationPlaceInfo),
+                                            title: S.of(context).idVerificationPlaceInfo),
                                         SizedBox(
                                           height: 24,
                                         ),
                                         InformationText(
-                                            image: AssetUtils.scanIcon,
-                                            title: S.of(context).idScanInfo),
+                                            image: AssetUtils.scanIcon, title: S.of(context).idScanInfo),
                                       ],
                                     ),
                                     Column(
@@ -126,8 +125,7 @@ class SupplementaryIdScanVerificationInfoPageView extends BasePageViewWidget<
                                         //   height: 56,
                                         // ),
                                         AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
+                                          buttonText: S.of(context).swipeToProceed,
                                         ),
                                       ],
                                     )

@@ -18,7 +18,7 @@ class AdditionalIncomeSelectorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 28, left: 24, right: 24),
+      padding: EdgeInsetsDirectional.only(bottom: 28, start: 24, end: 24),
       child: InkWell(
         onTap: () {
           onTap?.call();
@@ -30,15 +30,9 @@ class AdditionalIncomeSelectorWidget extends StatelessWidget {
               width: 40,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: additionalIncome.isSelected
-                      ? AppColor.vividYellow
-                      : Colors.transparent,
+                  color: additionalIncome.isSelected ? AppColor.vividYellow : Colors.transparent,
                   border: Border.all(
-                      color: Theme.of(context)
-                          .inputDecorationTheme
-                          .enabledBorder!
-                          .borderSide
-                          .color,
+                      color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
                       width: 1)),
             ),
             SizedBox(
@@ -47,10 +41,8 @@ class AdditionalIncomeSelectorWidget extends StatelessWidget {
             Flexible(
               child: Text(
                 additionalIncome.type!,
-                style: TextStyle(
-                    color: textColor ?? AppColor.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600),
+                style:
+                    TextStyle(color: textColor ?? AppColor.black, fontSize: 14, fontWeight: FontWeight.w600),
               ),
             ),
           ],

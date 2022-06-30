@@ -21,9 +21,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class DcEnterNewMobileNumberPageView
-    extends BasePageViewWidget<DcEnterNewMobileNumberPageViewModel> {
+class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobileNumberPageViewModel> {
   DcEnterNewMobileNumberPageView(ProviderBase model) : super(model);
 
   @override
@@ -33,9 +33,7 @@ class DcEnterNewMobileNumberPageView
           stream: model.enterMobileStream,
           onData: (data) {
             if (data.status == Status.SUCCESS) {
-              ProviderScope.containerOf(context)
-                  .read(dcChangeLinkedMobileNumberViewModelProvider)
-                  .nextPage();
+              ProviderScope.containerOf(context).read(dcChangeLinkedMobileNumberViewModelProvider).nextPage();
             } else if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             }
@@ -58,62 +56,64 @@ class DcEnterNewMobileNumberPageView
                               .appSwiperController
                               .page ==
                           0.0) {
-                        if (details.primaryVelocity!.isNegative) {
-                          FocusScope.of(context).unfocus();
-                          model.validateMobile(
-                              ProviderScope.containerOf(context)
-                                  .read(
-                                      dcChangeLinkedMobileNumberViewModelProvider)
-                                  .arguments!
-                                  .tokenizedPan,
-                              ProviderScope.containerOf(context)
-                                  .read(
-                                      dcChangeLinkedMobileNumberViewModelProvider)
-                                  .arguments!
-                                  .cardType);
-                        } else {}
+                        if (StringUtils.isDirectionRTL(context)) {
+                          if (!details.primaryVelocity!.isNegative) {
+                            FocusScope.of(context).unfocus();
+                            model.validateMobile(
+                                ProviderScope.containerOf(context)
+                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                    .arguments!
+                                    .tokenizedPan,
+                                ProviderScope.containerOf(context)
+                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                    .arguments!
+                                    .cardType);
+                          } else {}
+                        } else {
+                          if (details.primaryVelocity!.isNegative) {
+                            FocusScope.of(context).unfocus();
+                            model.validateMobile(
+                                ProviderScope.containerOf(context)
+                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                    .arguments!
+                                    .tokenizedPan,
+                                ProviderScope.containerOf(context)
+                                    .read(dcChangeLinkedMobileNumberViewModelProvider)
+                                    .arguments!
+                                    .cardType);
+                          } else {}
+                        }
                       }
                     },
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           children: [
-                            AppStreamBuilder<
-                                Resource<AllowedCountryListResponse>>(
-                              initialData: Resource.success(
-                                  data: AllowedCountryListResponse()),
+                            AppStreamBuilder<Resource<AllowedCountryListResponse>>(
+                              initialData: Resource.success(data: AllowedCountryListResponse()),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   ProviderScope.containerOf(context)
-                                          .read(
-                                              accountRegistrationViewModelProvider)
-                                          .countryDataList =
-                                      data.data!.contentData!.countryData!;
+                                      .read(accountRegistrationViewModelProvider)
+                                      .countryDataList = data.data!.contentData!.countryData!;
                                 }
                               },
                               stream: model.getAllowedCountryStream,
                               dataBuilder: (context, country) {
                                 return AppStreamBuilder<CountryData>(
-                                  initialData: CountryData(
-                                      isoCode3: 'JOR', phoneCode: '962'),
+                                  initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
                                   stream: model.getSelectedCountryStream,
                                   dataBuilder: (context, selectedCountry) {
                                     return AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .newMobileNumber
-                                          .toUpperCase(),
+                                      labelText: S.of(context).newMobileNumber.toUpperCase(),
                                       hintText: S.of(context).mobileNumberHint,
                                       inputType: TextInputType.phone,
                                       inputAction: TextInputAction.done,
                                       inputFormatters: [
-                                        LengthLimitingTextInputFormatter(
-                                            model.countryData.mobileMax),
-                                        FilteringTextInputFormatter.allow(
-                                            RegExp(r'[0-9]')),
+                                        LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                       ],
                                       controller: model.mobileNumberController,
                                       key: model.mobileNumberKey,
@@ -124,25 +124,17 @@ class DcEnterNewMobileNumberPageView
                                         return InkWell(
                                           onTap: () {
                                             MobileNumberDialog.show(context,
-                                                title:
-                                                    S.of(context).mobileNumber,
-                                                selectedCountryData:
-                                                    model.countryData,
-                                                onSelected: (data) {
+                                                title: S.of(context).mobileNumber,
+                                                selectedCountryData: model.countryData, onSelected: (data) {
                                               Navigator.pop(context);
                                               model.countryData = data;
                                               model.setSelectedCountry(data);
                                             }, onDismissed: () {
                                               Navigator.pop(context);
                                             },
-                                                countryDataList:
-                                                    country!.status ==
-                                                            Status.SUCCESS
-                                                        ? country
-                                                            .data!
-                                                            .contentData!
-                                                            .countryData
-                                                        : []);
+                                                countryDataList: country!.status == Status.SUCCESS
+                                                    ? country.data!.contentData!.countryData
+                                                    : []);
                                           },
                                           child: Padding(
                                             padding: EdgeInsets.only(top: 8.0),
@@ -153,42 +145,31 @@ class DcEnterNewMobileNumberPageView
                                                   height: 16,
                                                   width: 16,
                                                   decoration: BoxDecoration(
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark,
+                                                    color: Theme.of(context).primaryColorDark,
                                                     shape: BoxShape.circle,
                                                   ),
-                                                  child: AppSvg.asset(selectedCountry!
-                                                              .isoCode3 !=
-                                                          null
+                                                  child: AppSvg.asset(selectedCountry!.isoCode3 != null
                                                       ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
                                                       : "assets/flags/jor.svg"),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
+                                                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                                                   child: Text(
-                                                    selectedCountry.phoneCode!
-                                                            .isNotEmpty
+                                                    selectedCountry.phoneCode!.isNotEmpty
                                                         ? '+${selectedCountry.phoneCode!}'
                                                         : "",
                                                     style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!
-                                                          .color,
+                                                      color: Theme.of(context).textTheme.bodyText1!.color,
                                                       fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                                      fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),
                                                 Container(
                                                     height: 16,
                                                     width: 16,
-                                                    margin: EdgeInsets.only(
-                                                        right: 8),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.downArrow,
+                                                    margin: EdgeInsetsDirectional.only(end: 8),
+                                                    child: AppSvg.asset(AssetUtils.downArrow,
                                                         color: Theme.of(context)
                                                             .primaryTextTheme
                                                             .bodyText1!
@@ -208,9 +189,7 @@ class DcEnterNewMobileNumberPageView
                               child: Text(
                                 S.of(context).changeMobileNumberInfo,
                                 style: TextStyle(
-                                    color: AppColor.dark_gray_1,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
+                                    color: AppColor.dark_gray_1, fontSize: 12, fontWeight: FontWeight.w600),
                               ),
                             ),
                             Spacer(),
@@ -223,8 +202,7 @@ class DcEnterNewMobileNumberPageView
                                     return Visibility(
                                       visible: isValid!,
                                       child: AnimatedButton(
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

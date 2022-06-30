@@ -8,8 +8,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/view_debit_card_subscription/view_debit_card_subscription_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class ViewDebitCardSubscriptionPageView
-    extends BasePageViewWidget<ViewDebitCardSubscriptionViewModel> {
+class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCardSubscriptionViewModel> {
   ViewDebitCardSubscriptionPageView(ProviderBase model) : super(model);
 
   @override
@@ -47,9 +46,8 @@ class ViewDebitCardSubscriptionPageView
                     height: double.infinity,
                     decoration: BoxDecoration(
                         color: Theme.of(context).accentColor,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16))),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
                       padding: EdgeInsets.only(top: 8),
                       child: Column(
@@ -60,38 +58,30 @@ class ViewDebitCardSubscriptionPageView
                               height: 4,
                               width: 64,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: AppColor.white_gray),
+                                  borderRadius: BorderRadius.circular(4), color: AppColor.white_gray),
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(top: 44.0, left: 24, right: 38),
+                            padding: EdgeInsetsDirectional.only(top: 44.0, start: 24, end: 38),
                             child: Row(
                               children: [
                                 Text(
                                   "6 " + S.of(context).subscription,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14),
+                                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                                 ),
                                 Spacer(),
                                 Row(
                                   children: [
                                     Text(
                                       "513.23",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: 2, top: 4),
+                                      padding: EdgeInsetsDirectional.only(start: 2, top: 4),
                                       child: Text(
                                         "JOD/YR",
                                         style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColor.gray1),
+                                            fontSize: 10, fontWeight: FontWeight.w600, color: AppColor.gray1),
                                       ),
                                     )
                                   ],
@@ -101,7 +91,7 @@ class ViewDebitCardSubscriptionPageView
                           ),
                           Expanded(
                             child: Padding(
-                                padding: EdgeInsets.only(left: 24, right: 24),
+                                padding: EdgeInsetsDirectional.only(start: 24, end: 24),
                                 child: ViewDebitCardSubscriptionWidget()),
                           ),
                         ],

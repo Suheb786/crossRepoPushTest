@@ -42,14 +42,10 @@ class CreditCardVideoCallInitiatePageView
                   Permission.bluetoothConnect
                 ].request();
 
-                if (statuses[Permission.camera] ==
-                        PermissionStatus.permanentlyDenied ||
-                    statuses[Permission.microphone] ==
-                        PermissionStatus.permanentlyDenied ||
-                    statuses[Permission.bluetooth] ==
-                        PermissionStatus.permanentlyDenied ||
-                    statuses[Permission.bluetoothConnect] ==
-                        PermissionStatus.permanentlyDenied) {
+                if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.microphone] == PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.bluetooth] == PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.bluetoothConnect] == PermissionStatus.permanentlyDenied) {
                   openAppSettings();
                 } else {
                   model.getAgoraCredentials();
@@ -60,10 +56,8 @@ class CreditCardVideoCallInitiatePageView
                   Permission.microphone,
                 ].request();
 
-                if (statuses[Permission.camera] ==
-                        PermissionStatus.permanentlyDenied ||
-                    statuses[Permission.microphone] ==
-                        PermissionStatus.permanentlyDenied) {
+                if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
+                    statuses[Permission.microphone] == PermissionStatus.permanentlyDenied) {
                   openAppSettings();
                 } else {
                   model.getAgoraCredentials();
@@ -71,14 +65,9 @@ class CreditCardVideoCallInitiatePageView
               }
             } else {
               model.showToastWithError(AppError(
-                  cause: Exception(),
-                  error: ErrorInfo(message: ''),
-                  type: ErrorType.AGENT_NOT_AVAILABLE));
-              Navigator.popUntil(
-                  context, ModalRoute.withName(RoutePaths.AppHome));
-              ProviderScope.containerOf(context)
-                  .read(appHomeViewModelProvider)
-                  .getDashboardData();
+                  cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AGENT_NOT_AVAILABLE));
+              Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+              ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
             }
           }
         },
@@ -92,17 +81,14 @@ class CreditCardVideoCallInitiatePageView
                       arguments: CreditCardVideKycCredentials(
                           token: data.data!.conferenceLink,
                           channelName: data.data!.callId,
-                          cardId: model.creditCardVideoCallInitiateArgs
-                                  .creditCard.cardId ??
-                              ''));
+                          cardId: model.creditCardVideoCallInitiateArgs.creditCard.cardId ?? ''));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
               },
               dataBuilder: (context, snapshot) {
                 return Padding(
-                  padding: EdgeInsets.only(
-                      top: 56.0, left: 24, right: 24, bottom: 36),
+                  padding: EdgeInsetsDirectional.only(top: 56.0, start: 24, end: 24, bottom: 36),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -111,9 +97,7 @@ class CreditCardVideoCallInitiatePageView
                             Navigator.pop(context);
                           },
                           child: AppSvg.asset(AssetUtils.leftArrow,
-                              color: Theme.of(context).accentColor,
-                              height: 24,
-                              width: 24)),
+                              color: Theme.of(context).accentColor, height: 24, width: 24)),
                       SizedBox(
                         height: 16,
                       ),
@@ -153,8 +137,7 @@ class CreditCardVideoCallInitiatePageView
                             Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 35.0, bottom: 24),
+                                  padding: const EdgeInsets.only(top: 35.0, bottom: 24),
                                   child: Container(
                                     // height: 78,
                                     // width: 78,
@@ -164,10 +147,7 @@ class CreditCardVideoCallInitiatePageView
                                       shape: BoxShape.circle,
                                     ),
                                     child: AppSvg.asset(AssetUtils.ccAgent,
-                                        width: 32,
-                                        height: 32,
-                                        color:
-                                            Theme.of(context).primaryColorDark),
+                                        width: 32, height: 32, color: Theme.of(context).primaryColorDark),
                                   ),
                                 ),
                                 Text(
@@ -176,18 +156,14 @@ class CreditCardVideoCallInitiatePageView
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
-                                      color:
-                                          Theme.of(context).primaryColorDark),
+                                      color: Theme.of(context).primaryColorDark),
                                 ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 24, right: 24, bottom: 32),
+                              padding: const EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 32),
                               child: Text(
-                                S
-                                    .of(context)
-                                    .thankYouForWaitingCallWillStartAutomatically,
+                                S.of(context).thankYouForWaitingCallWillStartAutomatically,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,

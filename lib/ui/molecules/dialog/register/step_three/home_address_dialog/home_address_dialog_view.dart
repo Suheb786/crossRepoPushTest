@@ -32,10 +32,8 @@ class HomeAddressDialogView extends StatelessWidget {
       providerBase: providerBase(),
       builder: (context, model, child) {
         return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-          insetPadding:
-              EdgeInsets.only(left: 24, right: 24, bottom: 56, top: 204),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+          insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 56, top: 204),
           child: GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity! > 0) {
@@ -46,9 +44,8 @@ class HomeAddressDialogView extends StatelessWidget {
               child: Column(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16)),
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
                     child: Container(
                         height: 344,
                         child: AppStreamBuilder<LatLng>(
@@ -57,9 +54,7 @@ class HomeAddressDialogView extends StatelessWidget {
                           onData: (data) {
                             if (data != null) {
                               model.mapController!.animateCamera(
-                                  CameraUpdate.newLatLngZoom(
-                                      LatLng(data.latitude, data.longitude),
-                                      12));
+                                  CameraUpdate.newLatLngZoom(LatLng(data.latitude, data.longitude), 12));
                             }
                           },
                           dataBuilder: (context, currentLocation) {
@@ -72,8 +67,7 @@ class HomeAddressDialogView extends StatelessWidget {
                               myLocationButtonEnabled: false,
                               zoomGesturesEnabled: true,
                               initialCameraPosition: CameraPosition(
-                                  target: LatLng(currentLocation!.latitude,
-                                      currentLocation.longitude),
+                                  target: LatLng(currentLocation!.latitude, currentLocation.longitude),
                                   zoom: 12),
                               onMapCreated: (GoogleMapController controller) {
                                 model.mapController = controller;
@@ -85,16 +79,12 @@ class HomeAddressDialogView extends StatelessWidget {
                               },
                               markers: {
                                 Marker(
-                                  markerId: MarkerId(LatLng(
-                                          currentLocation.latitude,
-                                          currentLocation.longitude)
-                                      .toString()),
+                                  markerId: MarkerId(
+                                      LatLng(currentLocation.latitude, currentLocation.longitude).toString()),
                                   draggable: true,
-                                  position: LatLng(currentLocation.latitude,
-                                      currentLocation.longitude),
+                                  position: LatLng(currentLocation.latitude, currentLocation.longitude),
                                   icon: model.pinPointMarker != null
-                                      ? BitmapDescriptor.fromBytes(
-                                          model.pinPointMarker)
+                                      ? BitmapDescriptor.fromBytes(model.pinPointMarker)
                                       : BitmapDescriptor.defaultMarker,
                                   //icon: BitmapDescriptor.defaultMarker
                                 )
@@ -107,13 +97,12 @@ class HomeAddressDialogView extends StatelessWidget {
                     height: 24,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 24, right: 24),
+                    padding: EdgeInsetsDirectional.only(start: 24, end: 24),
                     child: AppStreamBuilder<Resource<HomeAddress>>(
                         stream: model.currentAddressValidatorStream,
                         initialData: Resource.none(),
                         onData: (data) {
-                          model.addressController.text =
-                              data.data!.dropOffAreaText!;
+                          model.addressController.text = data.data!.dropOffAreaText!;
                         },
                         dataBuilder: (context, currentLocation) {
                           return AppTextField(
@@ -126,11 +115,9 @@ class HomeAddressDialogView extends StatelessWidget {
                               suffixIcon: (isValid, value) => Container(
                                     height: 20,
                                     width: 16,
-                                    padding: EdgeInsets.only(left: 4, top: 2),
-                                    child: AppSvg.asset(
-                                        AssetUtils.location_marker,
-                                        color:
-                                            Theme.of(context).primaryColorDark),
+                                    padding: EdgeInsetsDirectional.only(start: 4, top: 2),
+                                    child: AppSvg.asset(AssetUtils.location_marker,
+                                        color: Theme.of(context).primaryColorDark),
                                   ));
                         }),
                   ),
@@ -146,13 +133,8 @@ class HomeAddressDialogView extends StatelessWidget {
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color),
-                      child: AppSvg.asset(AssetUtils.tick,
-                          color: Theme.of(context).accentColor),
+                          shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
@@ -163,11 +145,9 @@ class HomeAddressDialogView extends StatelessWidget {
                           onDismissed?.call();
                         },
                         child: Text(
-                          "Swipe down to cancel",
+                          S.of(context).swipeDownToCancel,
                           style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.dark_gray_1),
+                              fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                         ),
                       ),
                     ),

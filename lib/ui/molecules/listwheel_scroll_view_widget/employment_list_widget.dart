@@ -6,12 +6,8 @@ class EmploymentListWidget extends StatelessWidget {
   final Color? widgetColor;
   final String label;
   final Function? onTap;
-  const EmploymentListWidget(
-      {Key? key,
-      required this.label,
-      this.onTap,
-      this.textColor,
-      this.widgetColor})
+
+  const EmploymentListWidget({Key? key, required this.label, this.onTap, this.textColor, this.widgetColor})
       : super(key: key);
 
   @override
@@ -21,14 +17,12 @@ class EmploymentListWidget extends StatelessWidget {
         onTap?.call();
       },
       child: Container(
-        padding: EdgeInsets.only(top: 20, left: 32),
+        padding: EdgeInsetsDirectional.only(top: 20, start: 32),
         height: 64,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: widgetColor),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Text(
           label,
-          style: TextStyle(
-              color: textColor, fontSize: 14, fontWeight: FontWeight.w600),
+          style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );

@@ -7,16 +7,14 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AllowedMobileNumberListWidget extends StatelessWidget {
   final CountryData item;
 
-  const AllowedMobileNumberListWidget({Key? key, required this.item})
-      : super(key: key);
+  const AllowedMobileNumberListWidget({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 24, right: 20, top: 16, bottom: 16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16), color: Colors.transparent),
+      padding: EdgeInsetsDirectional.only(start: 24, end: 20, top: 16, bottom: 16),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
         children: <Widget>[
           Container(
@@ -41,9 +39,7 @@ class AllowedMobileNumberListWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: item.isSelected
-                        ? Theme.of(context).primaryColorDark
-                        : AppColor.gray),
+                    color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
               ),
             ),
           ),

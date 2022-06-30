@@ -29,9 +29,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
       initialData: Resource.none(),
       onData: (data) {
         if (data.status == Status.SUCCESS) {
-          ProviderScope.containerOf(context)
-              .read(cardDeliveryViewModelProvider)
-              .cardNumber = data.data!.cardNumber;
+          ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider).cardNumber =
+              data.data!.cardNumber;
         }
       },
       dataBuilder: (context, data) {
@@ -43,9 +42,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                     .page ==
                 0.0) {
               if (data!.status == Status.SUCCESS) {
-                ProviderScope.containerOf(context)
-                    .read(cardDeliveryViewModelProvider)
-                    .nextPage();
+                ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider).nextPage();
                 // .next(animation: true);
               }
             }
@@ -77,13 +74,11 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                     model.cardController.toggleCard();
                                   },
                                   child: BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                        sigmaY: 15, sigmaX: 15),
+                                    filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
                                     child: Container(
                                       height: 60,
                                       width: 60,
-                                      child:
-                                          AppSvg.asset(AssetUtils.flipButton),
+                                      child: AppSvg.asset(AssetUtils.flipButton),
                                     ),
                                   )),
                             )
@@ -101,62 +96,43 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 18.52, bottom: 52),
+                                      padding: const EdgeInsets.only(top: 18.52, bottom: 52),
                                       child: Container(
                                         height: 42,
-                                        color:
-                                            Theme.of(context).primaryColorDark,
+                                        color: Theme.of(context).primaryColorDark,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 20.0),
+                                      padding: EdgeInsets.symmetric(horizontal: 20.0),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Flexible(
                                             child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 8.0),
+                                              padding: EdgeInsetsDirectional.only(end: 8.0),
                                               child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    data!.data
-                                                            ?.cardHolderName ??
-                                                        "-",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
+                                                    data!.data?.cardHolderName ?? "-",
+                                                    overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                        fontWeight: FontWeight.w700,
                                                         fontSize: 12,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark),
+                                                        color: Theme.of(context).primaryColorDark),
                                                   ),
                                                   Text(
-                                                    (data.data?.cardNumber !=
-                                                                null &&
-                                                            data
-                                                                .data!
-                                                                .cardNumber
-                                                                .isNotEmpty)
-                                                        ? StringUtils
-                                                            .getLastFourDigitOfCardNo(
-                                                                data.data!
-                                                                    .cardNumber)
+                                                    (data.data?.cardNumber != null &&
+                                                            data.data!.cardNumber.isNotEmpty)
+                                                        ? StringUtils.getLastFourDigitOfCardNo(
+                                                            data.data!.cardNumber)
                                                         : "XXXX",
                                                     maxLines: 1,
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                        fontWeight: FontWeight.w700,
                                                         fontSize: 10,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark),
+                                                        color: Theme.of(context).primaryColorDark),
                                                   ),
                                                 ],
                                               ),
@@ -167,17 +143,15 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: Alignment.centerRight,
+                                      alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 5.0, bottom: 15.2, right: 20),
+                                        padding: const EdgeInsetsDirectional.only(top: 5.0, bottom: 15.2, end: 20),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark),
+                                              color: Theme.of(context).primaryColorDark),
                                         ),
                                       ),
                                     ),
@@ -187,8 +161,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                 onTap: () {
                                   model.cardController.toggleCard();
                                 },
-                                child: AppSvg.asset(AssetUtils.flipButton,
-                                    width: 50, height: 50))
+                                child: AppSvg.asset(AssetUtils.flipButton, width: 50, height: 50))
                           ],
                         ),
                       ),
@@ -216,8 +189,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
         showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) =>
-                popUpWidget(context, model.onBoardingPlaceholderData.image));
+            builder: (context) => popUpWidget(context, model.onBoardingPlaceholderData.image));
       }
     });
   }

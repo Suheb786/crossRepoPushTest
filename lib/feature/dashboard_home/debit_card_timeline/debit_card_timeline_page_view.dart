@@ -14,26 +14,13 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
-class DebitCardTimeLinePageView
-    extends BasePageViewWidget<DebitCardTimeLineViewModel> {
+class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineViewModel> {
   DebitCardTimeLinePageView(ProviderBase model) : super(model);
   bool isGetCardClicked = false;
 
   @override
   Widget build(BuildContext context, model) {
     return GestureDetector(
-      // onVerticalDragEnd: (details) {
-      //   int sensitivity = 8;
-      //   if (details.primaryVelocity! > sensitivity) {
-      //     Navigator.pop(context, model.willPop());
-      //     print('down');
-      //   } else if (details.primaryVelocity! < -sensitivity) {
-      //     print('up');
-      //   }
-      //   // if (!details.primaryVelocity!.isNegative) {
-      //   //   Navigator.pop(context, model.willPop());
-      //   // }
-      // },
       onVerticalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.pop(context);
@@ -53,19 +40,15 @@ class DebitCardTimeLinePageView
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.timeLineArguments.timeLineArguments
-                            .availableBalance ??
-                        "0.000",
+                    model.timeLineArguments.timeLineArguments.availableBalance ?? "0.000",
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(start: 5, top: 5),
                     child: Text(
                       S.of(context).JOD,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                          color: AppColor.verLightGray4),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColor.verLightGray4),
                     ),
                   )
                 ],
@@ -75,22 +58,18 @@ class DebitCardTimeLinePageView
               padding: EdgeInsets.only(top: 24),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(
-                      context, RoutePaths.AddMoneyOptionSelector);
+                  Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                 },
                 child: Center(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     decoration: BoxDecoration(
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color,
+                        color: Theme.of(context).accentTextTheme.bodyText1!.color,
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
                       S.of(context).addMoney,
                       style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: Theme.of(context).accentColor),
+                          fontWeight: FontWeight.w600, fontSize: 12, color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -102,9 +81,7 @@ class DebitCardTimeLinePageView
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.symmetric(horizontal: 60),
-              child: model.timeLineArguments.timeLineArguments
-                          .timelineListArguments.length >
-                      0
+              child: model.timeLineArguments.timeLineArguments.timelineListArguments.length > 0
                   ? Row(
                       children: [
                         Container(
@@ -121,19 +98,12 @@ class DebitCardTimeLinePageView
                                         child: Row(
                                           children: [
                                             index == 0
-                                                ? AppSvg.asset(
-                                                    AssetUtils
-                                                        .timelineEndUpdated,
-                                                    matchTextDirection: true,
-                                                    height: 103)
-                                                : AppSvg.asset(
-                                                    AssetUtils.timeline2Updated,
-                                                    matchTextDirection: true,
-                                                    height: 103),
-                                            AppSvg.asset(
-                                                AssetUtils.timeline1Updated,
-                                                matchTextDirection: true,
-                                                height: 103)
+                                                ? AppSvg.asset(AssetUtils.timelineEndUpdated,
+                                                    matchTextDirection: true, height: 103)
+                                                : AppSvg.asset(AssetUtils.timeline2Updated,
+                                                    matchTextDirection: true, height: 103),
+                                            AppSvg.asset(AssetUtils.timeline1Updated,
+                                                matchTextDirection: true, height: 103)
                                           ],
                                         ),
                                       ),
@@ -141,35 +111,20 @@ class DebitCardTimeLinePageView
                                         start: -15,
                                         child: Container(
                                           padding: EdgeInsets.only(bottom: 40),
-                                          child: model
-                                                      .timeLineArguments
-                                                      .timeLineArguments
-                                                      .timelineListArguments[
-                                                          index]
-                                                      .isCardDelivered ??
+                                          child: model.timeLineArguments.timeLineArguments
+                                                      .timelineListArguments[index].isCardDelivered ??
                                                   false
                                               ? Column(
                                                   children: [
                                                     Text(
-                                                      model
-                                                                  .timeLineArguments
-                                                                  .timeLineArguments
-                                                                  .timelineListArguments[
-                                                                      index]
-                                                                  .cardType ==
+                                                      model.timeLineArguments.timeLineArguments
+                                                                  .timelineListArguments[index].cardType ==
                                                               CardType.DEBIT
-                                                          ? S
-                                                              .of(context)
-                                                              .debitCardDelivered
-                                                          : S
-                                                              .of(context)
-                                                              .creditCardDelivered,
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                          ? S.of(context).debitCardDelivered
+                                                          : S.of(context).creditCardDelivered,
+                                                      textAlign: TextAlign.center,
                                                       style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontSize: 12, fontWeight: FontWeight.w600),
                                                     ),
                                                     SizedBox(
                                                       height: 5,
@@ -178,138 +133,100 @@ class DebitCardTimeLinePageView
                                                       model
                                                               .timeLineArguments
                                                               .timeLineArguments
-                                                              .timelineListArguments[
-                                                                  index]
+                                                              .timelineListArguments[index]
                                                               .cardDeliveredDatetime!
                                                               .isNotEmpty
                                                           ? TimeUtils.getFormattedDateForTransaction(model
                                                               .timeLineArguments
                                                               .timeLineArguments
-                                                              .timelineListArguments[
-                                                                  index]
+                                                              .timelineListArguments[index]
                                                               .cardDeliveredDatetime
                                                               .toString())
                                                           : '-',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                      textAlign: TextAlign.center,
                                                       style: TextStyle(
                                                           fontSize: 12,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .hintStyle!
                                                               .color,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontWeight: FontWeight.w600),
                                                     ),
                                                   ],
                                                 )
                                               : Column(
                                                   children: [
                                                     Text(
-                                                      model
-                                                                  .timeLineArguments
-                                                                  .timeLineArguments
-                                                                  .timelineListArguments[
-                                                                      index]
-                                                                  .cardType ==
+                                                      model.timeLineArguments.timeLineArguments
+                                                                  .timelineListArguments[index].cardType ==
                                                               CardType.DEBIT
-                                                          ? S
-                                                              .of(context)
-                                                              .debitCardDeliveredQ
-                                                          : S
-                                                              .of(context)
-                                                              .creditCardDeliveredQ,
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                          ? S.of(context).debitCardDeliveredQ
+                                                          : S.of(context).creditCardDeliveredQ,
+                                                      textAlign: TextAlign.center,
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 12),
+                                                          fontWeight: FontWeight.w600, fontSize: 12),
                                                     ),
                                                     Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 5),
+                                                      padding: EdgeInsets.only(top: 5),
                                                       child: InkWell(
                                                         onTap: () async {
-                                                          if (model
-                                                                  .timeLineArguments
-                                                                  .timeLineArguments
-                                                                  .timelineListArguments[
-                                                                      index]
-                                                                  .cardType ==
+                                                          if (model.timeLineArguments.timeLineArguments
+                                                                  .timelineListArguments[index].cardType ==
                                                               CardType.CREDIT) {
-                                                            var result = await Navigator
-                                                                .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            CreditCardDeliveredPage(
-                                                                              creditCard: model.timeLineArguments.timeLineArguments.timelineListArguments[index],
-                                                                            )));
-                                                            if (result !=
-                                                                null) {
-                                                              ProviderScope
-                                                                      .containerOf(
-                                                                          context)
-                                                                  .read(
-                                                                      appHomeViewModelProvider)
+                                                            var result = await Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        CreditCardDeliveredPage(
+                                                                          creditCard: model
+                                                                              .timeLineArguments
+                                                                              .timeLineArguments
+                                                                              .timelineListArguments[index],
+                                                                        )));
+                                                            if (result != null) {
+                                                              ProviderScope.containerOf(context)
+                                                                  .read(appHomeViewModelProvider)
                                                                   .getDashboardData();
                                                             }
                                                           } else {
-                                                            var result = await Navigator
-                                                                .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            DebitCardDeliveredPage(
-                                                                              debitCard: model.timeLineArguments.timeLineArguments.timelineListArguments[index],
-                                                                            )));
-                                                            if (result !=
-                                                                null) {
+                                                            var result = await Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder: (context) =>
+                                                                        DebitCardDeliveredPage(
+                                                                          debitCard: model
+                                                                              .timeLineArguments
+                                                                              .timeLineArguments
+                                                                              .timelineListArguments[index],
+                                                                        )));
+                                                            if (result != null) {
                                                               print('$result');
-                                                              ProviderScope
-                                                                      .containerOf(
-                                                                          context)
-                                                                  .read(
-                                                                      appHomeViewModelProvider)
+                                                              ProviderScope.containerOf(context)
+                                                                  .read(appHomeViewModelProvider)
                                                                   .getDashboardData();
                                                             }
                                                           }
                                                         },
                                                         child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal: 8,
-                                                                  vertical: 2),
+                                                          padding: EdgeInsets.symmetric(
+                                                              horizontal: 8, vertical: 2),
                                                           decoration: BoxDecoration(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .accentColor,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          14),
+                                                              color: Theme.of(context).accentColor,
+                                                              borderRadius: BorderRadius.circular(14),
                                                               border: Border.all(
-                                                                  color: Theme.of(
-                                                                          context)
+                                                                  color: Theme.of(context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
                                                                       .color!)),
                                                           child: Text(
-                                                            S
-                                                                .of(context)
-                                                                .confirm,
+                                                            S.of(context).confirm,
                                                             style: TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
+                                                                color: Theme.of(context)
                                                                     .accentTextTheme
                                                                     .bodyText1!
                                                                     .color,
                                                                 fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                                fontWeight: FontWeight.w600),
                                                           ),
                                                         ),
                                                       ),
@@ -323,29 +240,17 @@ class DebitCardTimeLinePageView
                                         top: 170,
                                         end: 0,
                                         child: Container(
-                                            padding:
-                                                EdgeInsets.only(bottom: 40),
+                                            padding: EdgeInsets.only(bottom: 40),
                                             child: Column(
                                               children: [
                                                 Text(
-                                                  model
-                                                              .timeLineArguments
-                                                              .timeLineArguments
-                                                              .timelineListArguments[
-                                                                  index]
-                                                              .cardType ==
+                                                  model.timeLineArguments.timeLineArguments
+                                                              .timelineListArguments[index].cardType ==
                                                           CardType.DEBIT
-                                                      ? S
-                                                          .of(context)
-                                                          .debitCardActivated
-                                                      : S
-                                                          .of(context)
-                                                          .creditCardActivated,
+                                                      ? S.of(context).debitCardActivated
+                                                      : S.of(context).creditCardActivated,
                                                   textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                                 ),
                                                 SizedBox(
                                                   height: 5,
@@ -354,18 +259,15 @@ class DebitCardTimeLinePageView
                                                   model
                                                           .timeLineArguments
                                                           .timeLineArguments
-                                                          .timelineListArguments[
-                                                              index]
+                                                          .timelineListArguments[index]
                                                           .cardCardActivated!
                                                           .isNotEmpty
-                                                      ? TimeUtils
-                                                          .getFormattedDateForTransaction(model
-                                                              .timeLineArguments
-                                                              .timeLineArguments
-                                                              .timelineListArguments[
-                                                                  index]
-                                                              .cardCardActivated
-                                                              .toString())
+                                                      ? TimeUtils.getFormattedDateForTransaction(model
+                                                          .timeLineArguments
+                                                          .timeLineArguments
+                                                          .timelineListArguments[index]
+                                                          .cardCardActivated
+                                                          .toString())
                                                       : "-",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
@@ -374,8 +276,7 @@ class DebitCardTimeLinePageView
                                                           .inputDecorationTheme
                                                           .hintStyle!
                                                           .color,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                                      fontWeight: FontWeight.w600),
                                                 ),
                                               ],
                                             )),
@@ -386,8 +287,7 @@ class DebitCardTimeLinePageView
                               );
                             },
                             shrinkWrap: true,
-                            itemCount: model.timeLineArguments.timeLineArguments
-                                .timelineListArguments.length,
+                            itemCount: model.timeLineArguments.timeLineArguments.timelineListArguments.length,
                             scrollDirection: Axis.horizontal,
                           ),
                         ),
@@ -411,28 +311,20 @@ class DebitCardTimeLinePageView
                                           Text(
                                             S.of(context).joinedBlink,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                           ),
                                           SizedBox(
                                             height: 5,
                                           ),
                                           Text(
-                                            TimeUtils
-                                                .getFormattedDateForTransaction(
-                                                    model
-                                                        .timeLineArguments
-                                                        .timeLineArguments
-                                                        .youJoinedBlink
-                                                        .toString()), //'4th Jan',
+                                            TimeUtils.getFormattedDateForTransaction(model
+                                                .timeLineArguments.timeLineArguments.youJoinedBlink
+                                                .toString()), //'4th Jan',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .inputDecorationTheme
-                                                    .hintStyle!
-                                                    .color,
+                                                color:
+                                                    Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],
@@ -448,28 +340,20 @@ class DebitCardTimeLinePageView
                                           Text(
                                             S.of(context).blinkBorn,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600),
+                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                           ),
                                           SizedBox(
                                             height: 5,
                                           ),
                                           Text(
-                                            TimeUtils
-                                                .getFormattedDateForTransaction(
-                                                    model
-                                                        .timeLineArguments
-                                                        .timeLineArguments
-                                                        .blinkWasBorn
-                                                        .toString()),
+                                            TimeUtils.getFormattedDateForTransaction(model
+                                                .timeLineArguments.timeLineArguments.blinkWasBorn
+                                                .toString()),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .inputDecorationTheme
-                                                    .hintStyle!
-                                                    .color,
+                                                color:
+                                                    Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],
@@ -501,28 +385,19 @@ class DebitCardTimeLinePageView
                                       Text(
                                         S.of(context).joinedBlink,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
+                                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                       ),
                                       SizedBox(
                                         height: 5,
                                       ),
                                       Text(
-                                        TimeUtils
-                                            .getFormattedDateForTransaction(
-                                                model
-                                                    .timeLineArguments
-                                                    .timeLineArguments
-                                                    .youJoinedBlink
-                                                    .toString()), //'4th Jan',
+                                        TimeUtils.getFormattedDateForTransaction(model
+                                            .timeLineArguments.timeLineArguments.youJoinedBlink
+                                            .toString()), //'4th Jan',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color,
+                                            color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ],
@@ -538,28 +413,19 @@ class DebitCardTimeLinePageView
                                       Text(
                                         S.of(context).blinkBorn,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600),
+                                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                       ),
                                       SizedBox(
                                         height: 5,
                                       ),
                                       Text(
-                                        TimeUtils
-                                            .getFormattedDateForTransaction(
-                                                model
-                                                    .timeLineArguments
-                                                    .timeLineArguments
-                                                    .blinkWasBorn
-                                                    .toString()),
+                                        TimeUtils.getFormattedDateForTransaction(model
+                                            .timeLineArguments.timeLineArguments.blinkWasBorn
+                                            .toString()),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color,
+                                            color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ],
@@ -572,8 +438,7 @@ class DebitCardTimeLinePageView
                                 height: 22.78,
                                 width: 22.78,
                                 decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Theme.of(context).canvasColor),
+                                    shape: BoxShape.circle, color: Theme.of(context).canvasColor),
                               ),
                             ),
                             PositionedDirectional(
@@ -584,8 +449,7 @@ class DebitCardTimeLinePageView
                                 height: 22.78,
                                 width: 22.78,
                                 decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Theme.of(context).canvasColor),
+                                    shape: BoxShape.circle, color: Theme.of(context).canvasColor),
                               ),
                             ),
                           ],
@@ -593,13 +457,11 @@ class DebitCardTimeLinePageView
                       ],
                     ),
             ),
-            model.timeLineArguments.timeLineArguments.placeholderData!.status ??
-                    false
+            model.timeLineArguments.timeLineArguments.placeholderData!.status ?? false
                 ? Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: Image.memory(
-                      model.timeLineArguments.timeLineArguments.placeholderData!
-                          .image,
+                      model.timeLineArguments.timeLineArguments.placeholderData!.image,
                       fit: BoxFit.fill,
                     )
                     /*Container(
@@ -622,37 +484,33 @@ class DebitCardTimeLinePageView
               alignment: Alignment.topCenter,
               children: [
                 Center(
-                  child: Container(
-                    width: 281,
-                    height: 90,
-                    margin: EdgeInsets.only(top: 8),
-                    decoration: BoxDecoration(
-                        color: model.timeLineArguments.cardType ==
-                                CardType.CREDIT
-                            ? Theme.of(context).primaryColor
-                            : model.timeLineArguments.cardType == CardType.DEBIT
-                                ? Theme.of(context).canvasColor
-                                : Theme.of(context).primaryColorDark,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16))),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(top: 22, start: 27),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          model.timeLineArguments.cardType == CardType.CREDIT ||
-                                  model.timeLineArguments.cardType ==
-                                      CardType.ACCOUNT
-                              ? AppSvg.asset(AssetUtils.blink_updated_logo,
-                                  height: 34,
-                                  width: 72,
-                                  matchTextDirection: true)
-                              : AppSvg.asset(AssetUtils.blinkBlack,
-                                  height: 34,
-                                  width: 72,
-                                  matchTextDirection: true),
-                        ],
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Container(
+                      width: 281,
+                      height: 90,
+                      margin: EdgeInsets.only(top: 8),
+                      decoration: BoxDecoration(
+                          color: model.timeLineArguments.cardType == CardType.CREDIT
+                              ? Theme.of(context).primaryColor
+                              : model.timeLineArguments.cardType == CardType.DEBIT
+                                  ? Theme.of(context).canvasColor
+                                  : Theme.of(context).primaryColorDark,
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.only(top: 22, start: 27),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            model.timeLineArguments.cardType == CardType.CREDIT ||
+                                    model.timeLineArguments.cardType == CardType.ACCOUNT
+                                ? AppSvg.asset(AssetUtils.blink_updated_logo,
+                                    height: 34, width: 72, matchTextDirection: true)
+                                : AppSvg.asset(AssetUtils.blinkBlack,
+                                    height: 34, width: 72, matchTextDirection: true),
+                          ],
+                        ),
                       ),
                     ),
                   ),

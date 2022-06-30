@@ -13,8 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class SupplementaryDebitCardPageView
-    extends BasePageViewWidget<SupplementaryDebitCardPageViewModel> {
+class SupplementaryDebitCardPageView extends BasePageViewWidget<SupplementaryDebitCardPageViewModel> {
   final pages = [
     RelationshipWithCardholderDebitPage(),
     SupplementaryIdScanVerificationInfoDebitPage(),
@@ -41,17 +40,13 @@ class SupplementaryDebitCardPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).primaryColorDark,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.1)),
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.1)),
                 );
               },
             ),
@@ -68,18 +63,14 @@ class SupplementaryDebitCardPageView
                     Text(
                       currentStep == 2
                           ? S.of(context).applyDebitCard
-                          : S
-                              .of(context)
-                              .requestSupplementaryCard
-                              .toUpperCase(),
+                          : S.of(context).requestSupplementaryCard.toUpperCase(),
                       style: TextStyle(
                           color: Theme.of(context).primaryColorDark,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                          top: 8.0, bottom: 32, left: 24, right: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

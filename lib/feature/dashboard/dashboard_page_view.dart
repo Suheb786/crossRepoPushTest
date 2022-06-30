@@ -29,13 +29,11 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
       onHorizontalDragUpdate: (details) {
         if (StringUtils.isDirectionRTL(context)) {
           if (!details.primaryDelta!.isNegative) {
-            Navigator.pushReplacementNamed(context, RoutePaths.Registration,
-                arguments: RegisterPageParams());
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
           }
         } else {
           if (details.primaryDelta!.isNegative) {
-            Navigator.pushReplacementNamed(context, RoutePaths.Registration,
-                arguments: RegisterPageParams());
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
           }
         }
       },
@@ -52,8 +50,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: AppSvg.asset(AssetUtils.swiggleHello,
-                        matchTextDirection: true),
+                    child: AppSvg.asset(AssetUtils.swiggleHello, matchTextDirection: true),
                   ),
                   SizedBox(
                     height: 40,
@@ -63,9 +60,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     child: Text(
                       S.of(context).successfullyCreatedLoginAccount,
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).accentColor),
+                          fontSize: 20, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
                     ),
                   ),
                   SizedBox(
@@ -120,8 +115,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       }
                     },
                     dataBuilder: (context, bioMetricResponse) {
-                      return AppStreamBuilder<
-                          Resource<GenerateKeyPairResponse>>(
+                      return AppStreamBuilder<Resource<GenerateKeyPairResponse>>(
                         stream: model.generateKeyPairStream,
                         initialData: Resource.none(),
                         onData: (data) {
@@ -140,28 +134,20 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                               }
                             },
                             initialData: Resource.none(),
-                            dataBuilder: (context, data) =>
-                                AppStreamBuilder<Resource<bool>>(
+                            dataBuilder: (context, data) => AppStreamBuilder<Resource<bool>>(
                               stream: model.checkBioMetricStream,
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   if (data.data ?? false) {
-                                    BiometricLoginDialog.show(context,
-                                        mayBeLater: () {
+                                    BiometricLoginDialog.show(context, mayBeLater: () {
                                       Navigator.pop(context);
                                     }, enableBioMetric: () {
                                       model.authenticateBioMetric(
-                                          title: S
-                                              .of(context)
-                                              .enableBiometricLoginTitle,
+                                          title: S.of(context).enableBiometricLoginTitle,
                                           localisedReason: Platform.isAndroid
-                                              ? S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionAndroid
-                                              : S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionIos);
+                                              ? S.of(context).enableBiometricLoginDescriptionAndroid
+                                              : S.of(context).enableBiometricLoginDescriptionIos);
                                     });
                                   }
                                 }
@@ -186,9 +172,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 },
                 dataBuilder: (context, data) {

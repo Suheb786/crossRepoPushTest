@@ -25,7 +25,7 @@ class AccountSelectionWidget extends StatelessWidget {
         onTap?.call();
       },
       child: Container(
-        padding: EdgeInsets.only(left: 32),
+        padding: EdgeInsetsDirectional.only(start: 32),
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,

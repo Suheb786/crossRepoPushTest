@@ -8,9 +8,9 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class LinkBankAccountCliqIdPageView
-    extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
+class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCliqIdPageViewModel> {
   LinkBankAccountCliqIdPageView(ProviderBase model) : super(model);
 
   @override
@@ -26,14 +26,18 @@ class LinkBankAccountCliqIdPageView
                       .page ==
                   1.0) {
                 FocusScope.of(context).unfocus();
-                if (details.primaryVelocity!.isNegative) {
-                  ProviderScope.containerOf(context)
-                      .read(createCliqIdViewModelProvider)
-                      .nextPage();
+                if (StringUtils.isDirectionRTL(context)) {
+                  if (!details.primaryVelocity!.isNegative) {
+                    ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
+                  } else {
+                    ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
+                  }
                 } else {
-                  ProviderScope.containerOf(context)
-                      .read(createCliqIdViewModelProvider)
-                      .previousPage();
+                  if (details.primaryVelocity!.isNegative) {
+                    ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).nextPage();
+                  } else {
+                    ProviderScope.containerOf(context).read(createCliqIdViewModelProvider).previousPage();
+                  }
                 }
               }
             },
@@ -52,8 +56,7 @@ class LinkBankAccountCliqIdPageView
                         AddIncomeWidget(
                           label: S.of(context).addIncome,
                           onTap: () {
-                            AccountsDialog.show(context,
-                                label: S.of(context).addLinkAccount,
+                            AccountsDialog.show(context, label: S.of(context).addLinkAccount,
                                 onDismissed: () {
                               Navigator.pop(context);
                             }, onSelected: (value) {
@@ -63,8 +66,7 @@ class LinkBankAccountCliqIdPageView
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),
-                          child: AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed),
+                          child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                         )
                       ],
                     ),

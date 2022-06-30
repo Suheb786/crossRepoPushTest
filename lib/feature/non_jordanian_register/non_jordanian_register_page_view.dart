@@ -11,8 +11,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class NonJordanianRegisterPageView
-    extends BasePageViewWidget<NonJordanianRegisterPageViewModel> {
+class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegisterPageViewModel> {
   NonJordanianRegisterPageView(ProviderBase model) : super(model);
 
   final List pages = [NotifyPage(), BaseCardPage()];
@@ -34,16 +33,12 @@ class NonJordanianRegisterPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 1.2, 4),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 1.2, 4),
                       size: Size(MediaQuery.of(context).size.width / 1.2, 4),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeColor:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeColor: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -73,8 +68,7 @@ class NonJordanianRegisterPageView
                                 fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                                top: 8.0, bottom: 32, left: 24, right: 24),
+                            padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),

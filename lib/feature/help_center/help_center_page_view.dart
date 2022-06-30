@@ -49,8 +49,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                           initialData: InfobipCallStatusEnum.ON_RINGING,
                           onData: (value) {
                             if (value == InfobipCallStatusEnum.ON_ESTABLISHED) {
-                              Navigator.pushReplacementNamed(
-                                  context, RoutePaths.ActiveCallPage);
+                              Navigator.pushReplacementNamed(context, RoutePaths.ActiveCallPage);
                             }
                           },
                           dataBuilder: (context, currentStep) {
@@ -60,72 +59,52 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 36),
+                                        padding: EdgeInsets.symmetric(vertical: 36),
                                         child: Column(
                                           children: [
                                             Text(
                                               S.of(context).voiceChat,
                                               style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
+                                                  color: Theme.of(context).accentColor,
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 8.0,
-                                                  bottom: 32,
-                                                  left: 24,
-                                                  right: 24),
+                                              padding: EdgeInsetsDirectional.only(
+                                                  top: 8.0, bottom: 32, start: 24, end: 24),
                                               child: ShowUpAnimation(
                                                 key: ValueKey(currentStep),
-                                                delayStart:
-                                                    Duration(milliseconds: 50),
-                                                animationDuration:
-                                                    Duration(milliseconds: 750),
+                                                delayStart: Duration(milliseconds: 50),
+                                                animationDuration: Duration(milliseconds: 750),
                                                 curve: Curves.easeInOut,
                                                 direction: Direction.vertical,
                                                 offset: 0.5,
                                                 child: Text(
-                                                  S
-                                                      .of(context)
-                                                      .engagementTeamGettingReady,
+                                                  S.of(context).engagementTeamGettingReady,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
+                                                      color: Theme.of(context).accentColor,
                                                       fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                                      fontWeight: FontWeight.w600),
                                                 ),
                                               ),
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 24.0),
+                                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
                                                 child: Card(
                                                   shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              16)),
-                                                  clipBehavior: Clip
-                                                      .antiAliasWithSaveLayer,
+                                                      borderRadius: BorderRadius.circular(16)),
+                                                  clipBehavior: Clip.antiAliasWithSaveLayer,
                                                   elevation: 2,
                                                   color: Theme.of(context)
                                                       .cardTheme
-                                                      .copyWith(
-                                                          color: AppColor.white)
+                                                      .copyWith(color: AppColor.white)
                                                       .color,
                                                   margin: EdgeInsets.zero,
-                                                  shadowColor: AppColor.black
-                                                      .withOpacity(0.32),
+                                                  shadowColor: AppColor.black.withOpacity(0.32),
                                                   child: Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 24),
+                                                      padding: EdgeInsets.symmetric(horizontal: 24),
                                                       child: Column(
                                                         children: [
                                                           SizedBox(height: 59),
@@ -134,83 +113,51 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                               // model.onCallEstablish();
                                                             },
                                                             child: Align(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
+                                                              alignment: Alignment.center,
                                                               child: Container(
                                                                 height: 80.37,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                  color: AppColor
-                                                                      .vividYellow,
+                                                                decoration: BoxDecoration(
+                                                                  shape: BoxShape.circle,
+                                                                  color: AppColor.vividYellow,
                                                                 ),
                                                                 child: Center(
-                                                                    child: AppSvg.asset(
-                                                                        AssetUtils
-                                                                            .helpAgent)),
+                                                                    child:
+                                                                        AppSvg.asset(AssetUtils.helpAgent)),
                                                               ),
                                                             ),
                                                           ),
-                                                          SizedBox(
-                                                              height: 24.0),
+                                                          SizedBox(height: 24.0),
                                                           Text(
-                                                            S
-                                                                .of(context)
-                                                                .weWillConnectYou,
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            S.of(context).weWillConnectYou,
+                                                            textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .primaryColorDark,
+                                                                color: Theme.of(context).primaryColorDark,
                                                                 fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
+                                                                fontWeight: FontWeight.w600),
                                                           ),
-                                                          SizedBox(
-                                                              height: 24.0),
+                                                          SizedBox(height: 24.0),
                                                           Text(
-                                                            S
-                                                                .of(context)
-                                                                .thankYouForWaiting,
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            S.of(context).thankYouForWaiting,
+                                                            textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                color: AppColor
-                                                                    .very_dark_gray1,
+                                                                color: AppColor.very_dark_gray1,
                                                                 fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400),
+                                                                fontWeight: FontWeight.w400),
                                                           ),
                                                           Spacer(),
                                                           Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    bottom: 26),
+                                                            padding: const EdgeInsets.only(bottom: 26),
                                                             child: InkWell(
                                                               onTap: () {
-                                                                Navigator.pop(
-                                                                    context);
+                                                                Navigator.pop(context);
                                                               },
                                                               child: Center(
                                                                 child: Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .backToDashboard,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: AppColor
-                                                                        .brightBlue,
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
+                                                                  S.of(context).backToDashboard,
+                                                                  style: TextStyle(
+                                                                    color: AppColor.brightBlue,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w500,
                                                                   ),
                                                                 ),
                                                               ),

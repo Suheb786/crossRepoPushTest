@@ -8,8 +8,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class CliqIdCreationSuccessPageView
-    extends BasePageViewWidget<CliqIdCreationSuccessPageViewModel> {
+class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuccessPageViewModel> {
   CliqIdCreationSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -47,18 +46,15 @@ class CliqIdCreationSuccessPageView
                 S.of(context).cliqIdCreateSuccessFully,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 24),
+                    color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 40, right: 24, left: 24),
+              padding: EdgeInsetsDirectional.only(top: 40, end: 24, start: 24),
               child: Container(
                 padding: EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.circular(16)),
+                    color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -87,20 +83,15 @@ class CliqIdCreationSuccessPageView
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppSvg.asset(AssetUtils.share,
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color),
+                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).accentTextTheme.bodyText1!.color),
                     Padding(
-                      padding: EdgeInsets.only(left: 11),
+                      padding: EdgeInsetsDirectional.only(start: 11),
                       child: Text(
                         S.of(context).shareCliqId,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     )
                   ],
@@ -118,9 +109,7 @@ class CliqIdCreationSuccessPageView
               child: Text(
                 S.of(context).toManageCliq,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ),
           ],

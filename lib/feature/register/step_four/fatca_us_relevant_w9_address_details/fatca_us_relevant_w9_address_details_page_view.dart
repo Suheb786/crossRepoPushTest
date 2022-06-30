@@ -54,14 +54,12 @@ class FatcaUSRelevantW9AddressDetailsPageView
                           initialData: Resource.none(),
                           dataBuilder: (context, stateResponse) {
                             return AppStreamBuilder<Resource<bool>>(
-                              stream:
-                                  model.fatcaUSRelevantW9AddressDetailsStream,
+                              stream: model.fatcaUSRelevantW9AddressDetailsStream,
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   model.updateData(context);
-                                  Future.delayed(Duration(milliseconds: 500),
-                                      () {
+                                  Future.delayed(Duration(milliseconds: 500), () {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFourViewModelProvider)
                                         .nextPage();
@@ -75,38 +73,29 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
                                     if (ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepFourViewModelProvider)
+                                            .read(registerStepFourViewModelProvider)
                                             .appSwiperController
                                             .page ==
                                         5.0) {
                                       FocusScope.of(context).unfocus();
                                       if (StringUtils.isDirectionRTL(context)) {
-                                        if (!details
-                                            .primaryVelocity!.isNegative) {
-                                          model
-                                              .validateFatcaUSRelevantW9AddressDetails();
+                                        if (!details.primaryVelocity!.isNegative) {
+                                          model.validateFatcaUSRelevantW9AddressDetails();
                                         } else {
-                                          Future.delayed(
-                                              Duration(milliseconds: 500), () {
+                                          Future.delayed(Duration(milliseconds: 500), () {
                                             ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFourViewModelProvider)
+                                                .read(registerStepFourViewModelProvider)
                                                 .previousPage();
                                             // .previous();
                                           });
                                         }
                                       } else {
-                                        if (details
-                                            .primaryVelocity!.isNegative) {
-                                          model
-                                              .validateFatcaUSRelevantW9AddressDetails();
+                                        if (details.primaryVelocity!.isNegative) {
+                                          model.validateFatcaUSRelevantW9AddressDetails();
                                         } else {
-                                          Future.delayed(
-                                              Duration(milliseconds: 500), () {
+                                          Future.delayed(Duration(milliseconds: 500), () {
                                             ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFourViewModelProvider)
+                                                .read(registerStepFourViewModelProvider)
                                                 .previousPage();
                                             // .previous();
                                           });
@@ -115,33 +104,22 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                     }
                                   },
                                   child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16)),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     elevation: 2,
-                                    color: Theme.of(context)
-                                        .cardTheme
-                                        .copyWith(color: AppColor.white)
-                                        .color,
+                                    color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                                     margin: EdgeInsets.zero,
-                                    shadowColor:
-                                        AppColor.black.withOpacity(0.32),
+                                    shadowColor: AppColor.black.withOpacity(0.32),
                                     child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 32, horizontal: 24),
+                                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                         child: SingleChildScrollView(
                                           physics: ClampingScrollPhysics(),
                                           child: Column(
                                             children: [
                                               AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .addressInUnitedStates,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller:
-                                                    model.addressController,
+                                                labelText: S.of(context).addressInUnitedStates,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.addressController,
                                                 key: model.addressKey,
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
@@ -153,49 +131,32 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).state,
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                controller:
-                                                    model.stateController,
+                                                hintText: S.of(context).pleaseSelect,
+                                                controller: model.stateController,
                                                 key: model.stateKey,
                                                 readOnly: true,
                                                 onPressed: () {
                                                   StateCityDialog.show(context,
-                                                      title: S
-                                                          .of(context)
-                                                          .stateSmall,
-                                                      onDismissed: () {
+                                                      title: S.of(context).stateSmall, onDismissed: () {
                                                     Navigator.pop(context);
                                                   }, onSelected: (value) {
                                                     Navigator.pop(context);
-                                                    model.stateController.text =
-                                                        value.stateName!;
-                                                    model.cityController
-                                                        .clear();
-                                                    model.getCityList(
-                                                        value.countryId!,
-                                                        value.stateId!);
+                                                    model.stateController.text = value.stateName!;
+                                                    model.cityController.clear();
+                                                    model.getCityList(value.countryId!, value.stateId!);
                                                     model.isValid();
                                                   },
-                                                      stateCityTypeEnum:
-                                                          StateCityTypeEnum
-                                                              .STATE,
+                                                      stateCityTypeEnum: StateCityTypeEnum.STATE,
                                                       stateCityData:
-                                                          stateResponse!
-                                                              .data!
-                                                              .stateContent!
-                                                              .stateData!);
+                                                          stateResponse!.data!.stateContent!.stateData!);
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                               SizedBox(
@@ -203,73 +164,48 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).city,
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                controller:
-                                                    model.cityController,
+                                                hintText: S.of(context).pleaseSelect,
+                                                controller: model.cityController,
                                                 key: model.cityKey,
                                                 readOnly: true,
                                                 onPressed: () {
-                                                  if (model.stateController.text
-                                                      .isEmpty) {
-                                                    model.stateKey.currentState!
-                                                        .isValid = false;
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: ''),
-                                                            type: ErrorType
-                                                                .INVALID_STATE));
+                                                  if (model.stateController.text.isEmpty) {
+                                                    model.stateKey.currentState!.isValid = false;
+                                                    model.showToastWithError(AppError(
+                                                        cause: Exception(),
+                                                        error: ErrorInfo(message: ''),
+                                                        type: ErrorType.INVALID_STATE));
                                                   } else {
-                                                    StateCityDialog.show(
-                                                        context,
-                                                        title: S
-                                                            .of(context)
-                                                            .citySmall,
-                                                        onDismissed: () {
+                                                    StateCityDialog.show(context,
+                                                        title: S.of(context).citySmall, onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
                                                       Navigator.pop(context);
-                                                      model.cityController
-                                                              .text =
-                                                          value.cityName!;
-                                                      model.selectedAddressInUS =
-                                                          value;
+                                                      model.cityController.text = value.cityName!;
+                                                      model.selectedAddressInUS = value;
                                                       model.isValid();
                                                     },
-                                                        stateCityTypeEnum:
-                                                            StateCityTypeEnum
-                                                                .CITY,
+                                                        stateCityTypeEnum: StateCityTypeEnum.CITY,
                                                         stateCityData:
-                                                            cityResponse!
-                                                                .data!
-                                                                .cityContent!
-                                                                .stateData!);
+                                                            cityResponse!.data!.cityContent!.stateData!);
                                                   }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                               SizedBox(
                                                 height: 16,
                                               ),
                                               AppTextField(
-                                                labelText:
-                                                    S.of(context).postCode,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller:
-                                                    model.postCodeController,
+                                                labelText: S.of(context).postCode,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.postCodeController,
                                                 key: model.postCodeKey,
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
@@ -280,13 +216,9 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                 height: 16,
                                               ),
                                               AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .accountNumberOptional,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .accountNumberController,
+                                                labelText: S.of(context).accountNumberOptional,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.accountNumberController,
                                                 // labelIcon: () {
                                                 //   return InkWell(
                                                 //     onTap: () async {},
@@ -316,32 +248,22 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                 height: 16,
                                               ),
                                               AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .exemptPayeeOptional,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .exemptPayeeCodeNumberController,
+                                                labelText: S.of(context).exemptPayeeOptional,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.exemptPayeeCodeNumberController,
                                                 labelIcon: () {
                                                   return InkWell(
                                                     onTap: () async {
                                                       Navigator.pushNamed(
-                                                          context,
-                                                          RoutePaths
-                                                              .ExemptPayeeCode);
+                                                          context, RoutePaths.ExemptPayeeCode);
                                                     },
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5.0),
+                                                      padding: const EdgeInsetsDirectional.only(start: 5.0),
                                                       child: Container(
                                                           height: 14,
                                                           width: 14,
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.info,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          child: AppSvg.asset(AssetUtils.info,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .focusedBorder!
                                                                   .borderSide
@@ -349,8 +271,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     ),
                                                   );
                                                 },
-                                                key: model
-                                                    .exemptPayeeCodeNumberKey,
+                                                key: model.exemptPayeeCodeNumberKey,
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
                                                   model.isValid();
@@ -364,29 +285,21 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     .of(context)
                                                     .exemptionFromFatcaReportingCode
                                                     .toUpperCase(),
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .exemptFromFatcaReportingController,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.exemptFromFatcaReportingController,
                                                 labelIcon: () {
                                                   return InkWell(
                                                     onTap: () async {
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          RoutePaths
-                                                              .ExemptionFromFatcaReportingCode);
+                                                      Navigator.pushNamed(context,
+                                                          RoutePaths.ExemptionFromFatcaReportingCode);
                                                     },
                                                     child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5.0),
+                                                      padding: const EdgeInsetsDirectional.only(start: 5.0),
                                                       child: Container(
                                                           height: 14,
                                                           width: 14,
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.info,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          child: AppSvg.asset(AssetUtils.info,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .focusedBorder!
                                                                   .borderSide
@@ -394,58 +307,38 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     ),
                                                   );
                                                 },
-                                                key: model
-                                                    .exemptFromFatcaReportingKey,
+                                                key: model.exemptFromFatcaReportingKey,
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
                                                   model.isValid();
                                                 },
                                               ),
                                               AppStreamBuilder<bool>(
-                                                stream: model
-                                                    .additionalRequesterStream,
+                                                stream: model.additionalRequesterStream,
                                                 initialData: false,
-                                                dataBuilder:
-                                                    (context, isActive) {
+                                                dataBuilder: (context, isActive) {
                                                   return Column(
                                                     children: [
                                                       Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 26.0),
-                                                        child:
-                                                            AppSwitchLabelWidget(
-                                                          label: S
-                                                              .of(context)
-                                                              .additionalRequester,
-                                                          inActiveText:
-                                                              S.of(context).no,
-                                                          activeText:
-                                                              S.of(context).yes,
+                                                        padding: const EdgeInsets.symmetric(vertical: 26.0),
+                                                        child: AppSwitchLabelWidget(
+                                                          label: S.of(context).additionalRequester,
+                                                          inActiveText: S.of(context).no,
+                                                          activeText: S.of(context).yes,
                                                           onToggle: (value) {
                                                             if (!value) {
-                                                              model
-                                                                  .additionalRequesterStateController
+                                                              model.additionalRequesterStateController
                                                                   .clear();
-                                                              model
-                                                                  .additionalRequesterCityController
+                                                              model.additionalRequesterCityController.clear();
+                                                              model.additionalRequesterNameController.clear();
+                                                              model.additionalRequesterAddressController
                                                                   .clear();
-                                                              model
-                                                                  .additionalRequesterNameController
-                                                                  .clear();
-                                                              model
-                                                                  .additionalRequesterAddressController
-                                                                  .clear();
-                                                              model
-                                                                  .additionalRequesterPostCodeController
+                                                              model.additionalRequesterPostCodeController
                                                                   .clear();
                                                               model.selectedAdditionalRequester =
                                                                   StateCityData();
                                                             }
-                                                            model
-                                                                .updateSwitchValue(
-                                                                    value);
+                                                            model.updateSwitchValue(value);
                                                           },
                                                           isActive: isActive,
                                                         ),
@@ -455,229 +348,139 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                           child: Column(
                                                             children: [
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .requesterName
-                                                                    .toUpperCase(),
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseEnter,
-                                                                controller: model
-                                                                    .additionalRequesterNameController,
-                                                                key: model
-                                                                    .additionalRequesterNameKey,
-                                                                inputAction:
-                                                                    TextInputAction
-                                                                        .go,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  model
-                                                                      .isValid();
+                                                                labelText:
+                                                                    S.of(context).requesterName.toUpperCase(),
+                                                                hintText: S.of(context).pleaseEnter,
+                                                                controller:
+                                                                    model.additionalRequesterNameController,
+                                                                key: model.additionalRequesterNameKey,
+                                                                inputAction: TextInputAction.go,
+                                                                onChanged: (value) {
+                                                                  model.isValid();
                                                                 },
                                                               ),
                                                               SizedBox(
                                                                 height: 16,
                                                               ),
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .addressInUnitedStates,
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseEnter,
+                                                                labelText:
+                                                                    S.of(context).addressInUnitedStates,
+                                                                hintText: S.of(context).pleaseEnter,
                                                                 controller: model
                                                                     .additionalRequesterAddressController,
-                                                                key: model
-                                                                    .additionalRequesterAddressNameKey,
-                                                                inputAction:
-                                                                    TextInputAction
-                                                                        .go,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  model
-                                                                      .isValid();
+                                                                key: model.additionalRequesterAddressNameKey,
+                                                                inputAction: TextInputAction.go,
+                                                                onChanged: (value) {
+                                                                  model.isValid();
                                                                 },
                                                               ),
                                                               SizedBox(
                                                                 height: 16,
                                                               ),
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .state,
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseSelect,
-                                                                controller: model
-                                                                    .additionalRequesterStateController,
-                                                                key: model
-                                                                    .additionalRequesterStateKey,
+                                                                labelText: S.of(context).state,
+                                                                hintText: S.of(context).pleaseSelect,
+                                                                controller:
+                                                                    model.additionalRequesterStateController,
+                                                                key: model.additionalRequesterStateKey,
                                                                 readOnly: true,
                                                                 onPressed: () {
-                                                                  StateCityDialog.show(
-                                                                      context,
-                                                                      title: S
-                                                                          .of(
-                                                                              context)
-                                                                          .stateSmall,
-                                                                      onDismissed:
-                                                                          () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  }, onSelected:
-                                                                          (value) {
-                                                                    Navigator.pop(
-                                                                        context);
+                                                                  StateCityDialog.show(context,
+                                                                      title: S.of(context).stateSmall,
+                                                                      onDismissed: () {
+                                                                    Navigator.pop(context);
+                                                                  }, onSelected: (value) {
+                                                                    Navigator.pop(context);
                                                                     model.additionalRequesterStateController
-                                                                            .text =
-                                                                        value
-                                                                            .stateName!;
-                                                                    model
-                                                                        .additionalRequesterCityController
+                                                                        .text = value.stateName!;
+                                                                    model.additionalRequesterCityController
                                                                         .clear();
                                                                     model.getCityList(
-                                                                        value
-                                                                            .countryId!,
-                                                                        value
-                                                                            .stateId!);
-                                                                    model
-                                                                        .isValid();
+                                                                        value.countryId!, value.stateId!);
+                                                                    model.isValid();
                                                                   },
                                                                       stateCityTypeEnum:
-                                                                          StateCityTypeEnum
-                                                                              .STATE,
+                                                                          StateCityTypeEnum.STATE,
                                                                       stateCityData: stateResponse!
-                                                                          .data!
-                                                                          .stateContent!
-                                                                          .stateData!);
+                                                                          .data!.stateContent!.stateData!);
                                                                 },
-                                                                suffixIcon:
-                                                                    (value,
-                                                                        data) {
+                                                                suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height:
-                                                                          16,
+                                                                      height: 16,
                                                                       width: 16,
-                                                                      padding: EdgeInsets.only(
-                                                                          right:
-                                                                              8),
+                                                                      padding:
+                                                                          EdgeInsetsDirectional.only(end: 8),
                                                                       child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .downArrow,
-                                                                          color:
-                                                                              AppColor.dark_gray_1));
+                                                                          AssetUtils.downArrow,
+                                                                          color: AppColor.dark_gray_1));
                                                                 },
                                                               ),
                                                               SizedBox(
                                                                 height: 16,
                                                               ),
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .city,
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseSelect,
-                                                                controller: model
-                                                                    .additionalRequesterCityController,
-                                                                key: model
-                                                                    .additionalRequesterCityKey,
+                                                                labelText: S.of(context).city,
+                                                                hintText: S.of(context).pleaseSelect,
+                                                                controller:
+                                                                    model.additionalRequesterCityController,
+                                                                key: model.additionalRequesterCityKey,
                                                                 readOnly: true,
                                                                 onPressed: () {
-                                                                  if (model
-                                                                      .additionalRequesterStateController
-                                                                      .text
-                                                                      .isEmpty) {
-                                                                    model
-                                                                        .additionalRequesterStateKey
-                                                                        .currentState!
-                                                                        .isValid = false;
+                                                                  if (model.additionalRequesterStateController
+                                                                      .text.isEmpty) {
+                                                                    model.additionalRequesterStateKey
+                                                                        .currentState!.isValid = false;
                                                                     model.showToastWithError(AppError(
-                                                                        cause:
-                                                                            Exception(),
-                                                                        error: ErrorInfo(
-                                                                            message:
-                                                                                ''),
-                                                                        type: ErrorType
-                                                                            .INVALID_STATE));
+                                                                        cause: Exception(),
+                                                                        error: ErrorInfo(message: ''),
+                                                                        type: ErrorType.INVALID_STATE));
                                                                   } else {
-                                                                    StateCityDialog.show(
-                                                                        context,
-                                                                        title: S
-                                                                            .of(
-                                                                                context)
-                                                                            .citySmall,
-                                                                        onDismissed:
-                                                                            () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    }, onSelected:
-                                                                            (value) {
-                                                                      Navigator.pop(
-                                                                          context);
+                                                                    StateCityDialog.show(context,
+                                                                        title: S.of(context).citySmall,
+                                                                        onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, onSelected: (value) {
+                                                                      Navigator.pop(context);
                                                                       model.additionalRequesterCityController
-                                                                              .text =
-                                                                          value
-                                                                              .cityName!;
+                                                                          .text = value.cityName!;
                                                                       model.selectedAdditionalRequester =
                                                                           value;
-                                                                      model
-                                                                          .isValid();
+                                                                      model.isValid();
                                                                     },
                                                                         stateCityTypeEnum:
-                                                                            StateCityTypeEnum
-                                                                                .CITY,
+                                                                            StateCityTypeEnum.CITY,
                                                                         stateCityData: cityResponse!
-                                                                            .data!
-                                                                            .cityContent!
-                                                                            .stateData!);
+                                                                            .data!.cityContent!.stateData!);
                                                                   }
                                                                 },
-                                                                suffixIcon:
-                                                                    (value,
-                                                                        data) {
+                                                                suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height:
-                                                                          16,
+                                                                      height: 16,
                                                                       width: 16,
-                                                                      padding: EdgeInsets.only(
-                                                                          right:
-                                                                              8),
+                                                                      padding:
+                                                                          EdgeInsetsDirectional.only(end: 8),
                                                                       child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .downArrow,
-                                                                          color:
-                                                                              AppColor.dark_gray_1));
+                                                                          AssetUtils.downArrow,
+                                                                          color: AppColor.dark_gray_1));
                                                                 },
                                                               ),
                                                               SizedBox(
                                                                 height: 16,
                                                               ),
                                                               AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .postCode,
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseEnter,
+                                                                labelText: S.of(context).postCode,
+                                                                hintText: S.of(context).pleaseEnter,
                                                                 controller: model
                                                                     .additionalRequesterPostCodeController,
-                                                                key: model
-                                                                    .additionalRequesterPostCodeKey,
-                                                                inputAction:
-                                                                    TextInputAction
-                                                                        .go,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  model
-                                                                      .isValid();
+                                                                key: model.additionalRequesterPostCodeKey,
+                                                                inputAction: TextInputAction.go,
+                                                                onChanged: (value) {
+                                                                  model.isValid();
                                                                 },
                                                               ),
                                                               SizedBox(
-                                                                height: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets
-                                                                    .bottom,
+                                                                height:
+                                                                    MediaQuery.of(context).viewInsets.bottom,
                                                               ),
                                                             ],
                                                           ))
@@ -687,21 +490,15 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                               ),
                                               Center(
                                                 child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 32),
+                                                  padding: EdgeInsets.only(top: 32),
                                                   child: AppStreamBuilder<bool>(
-                                                      stream: model
-                                                          .allFieldValidatorStream,
+                                                      stream: model.allFieldValidatorStream,
                                                       initialData: false,
-                                                      dataBuilder:
-                                                          (context, isValid) {
+                                                      dataBuilder: (context, isValid) {
                                                         return (isValid!)
                                                             ? AnimatedButton(
-                                                                buttonText: S
-                                                                    .of(context)
-                                                                    .swipeToProceed,
-                                                                buttonHeight:
-                                                                    50,
+                                                                buttonText: S.of(context).swipeToProceed,
+                                                                buttonHeight: 50,
                                                               )
                                                             : Container();
                                                       }),

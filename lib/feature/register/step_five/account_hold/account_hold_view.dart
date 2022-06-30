@@ -27,26 +27,24 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 },
                 dataBuilder: (context, data) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 43, right: 30),
+                    padding: EdgeInsetsDirectional.only(top: 43, end: 30),
                     child: InkWell(
                       onTap: () {
                         model.logOutUser();
                       },
-                      child: AppSvg.asset(AssetUtils.logout),
+                      child: AppSvg.asset(AssetUtils.logout, matchTextDirection: true),
                     ),
                   );
                 },
@@ -76,20 +74,17 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
               height: 34,
             ),
             AccountReadyHeader(
-                title: S.of(context).oneFinalStop,
-                subTitle: S.of(context).yourApplicationInReviewNote),
+                title: S.of(context).oneFinalStop, subTitle: S.of(context).yourApplicationInReviewNote),
             SizedBox(
               height: 40,
             ),
             Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration:
+                  BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(16)),
               margin: EdgeInsets.symmetric(horizontal: 24),
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: AccountDetails(
-                  title: S.of(context).refNo,
-                  value: model.arguments.applicationId ?? "1234567890"),
+                  title: S.of(context).refNo, value: model.arguments.applicationId ?? "1234567890"),
             ),
           ],
         ));

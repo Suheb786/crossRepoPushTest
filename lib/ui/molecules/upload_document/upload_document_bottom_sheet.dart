@@ -24,7 +24,7 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
         child: Wrap(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 24, top: 32.0, bottom: 8.0),
+              padding: EdgeInsetsDirectional.only(start: 24, top: 32.0, bottom: 8.0),
               child: Text(
                 title ?? "",
                 style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -9,8 +10,7 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
   final AdditionalIncomeType? additionalIncomeSourceParams;
   final Function()? onTap;
 
-  const AdditionalIncomeSourceWidget(
-      {Key? key, this.additionalIncomeSourceParams, this.onTap})
+  const AdditionalIncomeSourceWidget({Key? key, this.additionalIncomeSourceParams, this.onTap})
       : super(key: key);
 
   @override
@@ -20,8 +20,7 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: AppColor.whiteGray, width: 1)),
+          borderRadius: BorderRadius.circular(8), border: Border.all(color: AppColor.whiteGray, width: 1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,25 +37,17 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                     softWrap: false,
                     maxLines: 5,
                     style: TextStyle(
-                        color: Theme
-                            .of(context)
-                            .primaryColorDark,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
+                        color: Theme.of(context).primaryColorDark, fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 ),
                 SizedBox(
                   height: 4,
                 ),
                 Text(
-                  '${'JOD'} ${additionalIncomeSourceParams!.totalIncome}',
+                  '${S.of(context).JOD} ${additionalIncomeSourceParams!.totalIncome}',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Theme
-                          .of(context)
-                          .primaryColorDark,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600),
+                      color: Theme.of(context).primaryColorDark, fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ],
             ),

@@ -104,8 +104,8 @@ class ChangeCreditLimitPageView
                                                 );
                                               }),
                                           Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 4, top: 5),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 4, top: 5),
                                             child: Text(
                                               "JOD",
                                               style: TextStyle(

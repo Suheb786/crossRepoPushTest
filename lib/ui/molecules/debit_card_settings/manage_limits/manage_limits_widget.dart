@@ -68,10 +68,7 @@ class ManageLimitsWidget extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: "Montserrat",
                                 color: noToggle
-                                    ? Theme.of(context)
-                                        .inputDecorationTheme
-                                        .hintStyle!
-                                        .color
+                                    ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                     : Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
@@ -101,12 +98,8 @@ class ManageLimitsWidget extends StatelessWidget {
                             inactiveText: S.of(context).no,
                             inactiveToggleColor: AppColor.lightGrayishMagenta,
                             inactiveTextFontWeight: FontWeight.w500,
-                            inactiveSwitchBorder:
-                                Border.all(color: AppColor.gray_2),
-                            activeColor: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!,
+                            inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                            activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
                             inactiveColor: Theme.of(context).accentColor,
                           ),
                         ),
@@ -133,18 +126,14 @@ class ManageLimitsWidget extends StatelessWidget {
                                   Text(
                                     S.of(context).dailyLimit,
                                     style: TextStyle(
-                                        color:
-                                            Theme.of(context).primaryColorDark,
+                                        color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12),
                                   ),
                                   Text(
                                     S.of(context).maximumLimit(maxAmount),
                                     style: TextStyle(
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .hintStyle!
-                                            .color,
+                                        color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 10),
                                   ),
@@ -155,55 +144,40 @@ class ManageLimitsWidget extends StatelessWidget {
                                   controller: model.controller,
                                   textAlign: TextAlign.end,
                                   inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                   ],
-                                  keyboardType: TextInputType.numberWithOptions(
-                                      decimal: false),
+                                  keyboardType: TextInputType.numberWithOptions(decimal: false),
                                   textInputAction: TextInputAction.done,
                                   readOnly: readOnly,
-                                  cursorColor: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
+                                  cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color),
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       isCollapsed: true,
                                       hintText: amountSet,
-                                      suffixIconConstraints:
-                                          BoxConstraints.tightForFinite(),
+                                      suffixIconConstraints: BoxConstraints.tightForFinite(),
                                       suffixIcon: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 5.0),
+                                        padding: const EdgeInsetsDirectional.only(start: 5.0),
                                         child: Text(
-                                          'JOD',
+                                          S.of(context).JOD,
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color,
+                                            color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                       )),
                                   onChanged: (value) {
-                                    if (int.parse(maxAmount) >
-                                        int.parse(value)) {
+                                    if (int.parse(maxAmount) > int.parse(value)) {
                                       model.showErrorToast();
                                     }
                                     onChange.call(value);
                                   },
                                   onFieldSubmitted: (value) {
-                                    if (int.parse(maxAmount) >
-                                        int.parse(value)) {
+                                    if (int.parse(maxAmount) > int.parse(value)) {
                                       model.showErrorToast();
                                     }
                                     onDone.call(value);

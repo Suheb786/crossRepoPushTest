@@ -13,8 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class CardDeliveryPageView
-    extends BasePageViewWidget<CardDeliveryPageViewModel> {
+class CardDeliveryPageView extends BasePageViewWidget<CardDeliveryPageViewModel> {
   final pages = [VisaCardPage(), CreatePinPage(), ConfirmPinPage()];
 
   CardDeliveryPageView(ProviderBase model) : super(model);
@@ -37,17 +36,13 @@ class CardDeliveryPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -64,13 +59,10 @@ class CardDeliveryPageView
                     Text(
                       S.of(context).debitCard,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                          color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                          top: 8.0, bottom: 32, left: 24, right: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

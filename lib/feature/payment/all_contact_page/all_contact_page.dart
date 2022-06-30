@@ -18,8 +18,7 @@ class AllContactPage extends BasePage<AllContactPageViewModel> {
   AllContactPageState createState() => AllContactPageState();
 }
 
-class AllContactPageState
-    extends BaseStatefulPage<AllContactPageViewModel, AllContactPage> {
+class AllContactPageState extends BaseStatefulPage<AllContactPageViewModel, AllContactPage> {
   @override
   ProviderBase provideBase() {
     return allContactsViewModelProvider.call(widget._arguments);
@@ -48,20 +47,18 @@ class AllContactPageState
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 24.0),
+                  padding: const EdgeInsetsDirectional.only(start: 24.0),
                   child: AppSvg.asset(AssetUtils.leftArrow,
-                      color: Theme.of(context).accentColor),
+                      matchTextDirection: true, color: Theme.of(context).accentColor),
                 ),
               ),
               Text(
                 S.of(context).manageContacts,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 18.0),
+                padding: const EdgeInsetsDirectional.only(end: 18.0),
                 child: Container(
                   width: 28,
                 ),

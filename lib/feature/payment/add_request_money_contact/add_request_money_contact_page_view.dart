@@ -87,8 +87,8 @@ class AddRequestMoneyContactPageView
                                                 childAspectRatio: 0.8,
                                                 mainAxisSpacing: 6),
                                         shrinkWrap: true,
-                                        padding: EdgeInsets.only(
-                                            top: 22, right: 28, left: 27),
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: 22, end: 28, start: 27),
                                         itemBuilder: (context, index) {
                                           if (index >= beneficiaries!.length) {
                                             return PaymentBeneficiaryEmptyWidget();

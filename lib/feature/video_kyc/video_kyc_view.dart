@@ -36,13 +36,10 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                   color: AppColor.white,
                   child: Center(
                       child: Lottie.asset(AssetUtils.loaderAnimation,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center,
-                          width: 60,
-                          height: 60)),
+                          fit: BoxFit.cover, alignment: Alignment.center, width: 60, height: 60)),
                 ),
           Align(
-            alignment: Alignment.topLeft,
+            alignment: AlignmentDirectional.topStart,
             child: Container(
               margin: EdgeInsets.all(22),
               child: ClipRRect(
@@ -55,9 +52,9 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
+          PositionedDirectional(
+            start: 0,
+            end: 0,
             bottom: 50,
             child: AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
@@ -65,9 +62,7 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 },
                 dataBuilder: (context, data) {
@@ -76,9 +71,7 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        ProviderScope.containerOf(context)
-                            .read(appViewModel)
-                            .stopRefreshToken();
+                        ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
                         switch (data.data!.status) {
                           case VideoKycStatusEnum.APPROVED:
                             Navigator.pop(context, true);

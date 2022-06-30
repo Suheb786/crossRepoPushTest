@@ -80,24 +80,17 @@ class AppViewModel extends BaseViewModel {
                 fontStyle: FontStyle.normal,
               )),
           textTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.brightBlue,
-              displayColor: AppColor.brightBlue),
-          accentTextTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.white,
-              displayColor: AppColor.white),
-          primaryTextTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.white,
-              displayColor: AppColor.white),
+              fontFamily: "Montserrat", bodyColor: AppColor.brightBlue, displayColor: AppColor.brightBlue),
+          accentTextTheme: _themeData.textTheme
+              .apply(fontFamily: "Montserrat", bodyColor: AppColor.white, displayColor: AppColor.white),
+          primaryTextTheme: _themeData.textTheme
+              .apply(fontFamily: "Montserrat", bodyColor: AppColor.white, displayColor: AppColor.white),
           iconTheme: IconThemeData(
             color: AppColor.white,
           ),
           indicatorColor: AppColor.white,
           buttonTheme: ButtonThemeData(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             textTheme: ButtonTextTheme.normal,
           ),
         );
@@ -115,8 +108,7 @@ class AppViewModel extends BaseViewModel {
                 color: AppColor.veryLightGray,
                 shadowColor: AppColor.black.withOpacity(0.24),
                 elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16))),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
             appBarTheme: AppBarTheme(
                 color: Colors.transparent,
                 elevation: 0,
@@ -138,25 +130,15 @@ class AppViewModel extends BaseViewModel {
                 filled: false,
                 border: InputBorder.none,
                 enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.000001,
-                        color: AppColor.gray1,
-                        style: BorderStyle.none)),
+                    borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.000001,
-                        color: AppColor.veryDarkGray1,
-                        style: BorderStyle.none)),
+                    borderSide:
+                        BorderSide(width: 0.000001, color: AppColor.veryDarkGray1, style: BorderStyle.none)),
                 errorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.000001,
-                        color: AppColor.strongRed,
-                        style: BorderStyle.none)),
+                    borderSide:
+                        BorderSide(width: 0.000001, color: AppColor.strongRed, style: BorderStyle.none)),
                 focusedErrorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                        width: 0.000001,
-                        color: AppColor.gray1,
-                        style: BorderStyle.none)),
+                    borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
                 isCollapsed: true,
                 errorStyle: TextStyle(
                   fontFamily: "Montserrat",
@@ -178,9 +160,7 @@ class AppViewModel extends BaseViewModel {
                 bodyColor: AppColor.veryDarkGray2,
                 displayColor: AppColor.veryDarkGray2),
             accentTextTheme: _themeData.textTheme.apply(
-                fontFamily: "Montserrat",
-                bodyColor: AppColor.brightBlue,
-                displayColor: AppColor.brightBlue),
+                fontFamily: "Montserrat", bodyColor: AppColor.brightBlue, displayColor: AppColor.brightBlue),
             primaryTextTheme: _themeData.textTheme.apply(
                 fontFamily: "Montserrat",
                 bodyColor: AppColor.very_dark_gray_black,
@@ -191,8 +171,7 @@ class AppViewModel extends BaseViewModel {
             errorColor: AppColor.vivid_red,
             indicatorColor: AppColor.veryDarkGray2,
             buttonTheme: ButtonThemeData(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
               textTheme: ButtonTextTheme.normal,
             ),
             splashColor: Colors.transparent,
@@ -212,17 +191,13 @@ class AppViewModel extends BaseViewModel {
   final SaveUserUseCase _saveUserUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
-  PublishSubject<InfobipMessagePluginUseCaseParams>
-      _initInfobipMessageRequestSubject = PublishSubject();
+  PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
-      PublishSubject();
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
-  static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
-      PublishSubject();
+  static PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject = PublishSubject();
 
   PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
@@ -230,17 +205,13 @@ class AppViewModel extends BaseViewModel {
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
-  Stream<Resource<bool>> get initInfobipMessageResponseStream =>
-      _initInfobipMessageResponseSubject.stream;
+  Stream<Resource<bool>> get initInfobipMessageResponseStream => _initInfobipMessageResponseSubject.stream;
 
-  Stream<Resource<bool>> get saveUserResponseStream =>
-      _saveuserResponseSubject.stream;
+  Stream<Resource<bool>> get saveUserResponseStream => _saveuserResponseSubject.stream;
 
-  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase,
-      this._saveUserUseCase) {
+  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase) {
     _getTokenRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getTokenUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.ERROR) {
@@ -278,8 +249,7 @@ class AppViewModel extends BaseViewModel {
   }
 
   initInfobipMessagePlugin() async {
-    _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams());
+    _initInfobipMessageRequestSubject.safeAdd(InfobipMessagePluginUseCaseParams());
   }
 
   void saveUserData() {

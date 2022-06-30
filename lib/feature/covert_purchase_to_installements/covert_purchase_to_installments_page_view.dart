@@ -84,7 +84,7 @@ class ConvertPurchaseToInstallmentsPageView
                                   fontSize: 24),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 5.0),
+                              padding: EdgeInsetsDirectional.only(start: 5.0),
                               child: Text(
                                 "JOD",
                                 style: TextStyle(

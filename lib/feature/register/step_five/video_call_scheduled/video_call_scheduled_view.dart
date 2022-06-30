@@ -14,8 +14,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class VideoCallScheduledView
-    extends BasePageViewWidget<VideoCallScheduledViewModel> {
+class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewModel> {
   VideoCallScheduledView(ProviderBase model) : super(model);
 
   @override
@@ -28,26 +27,24 @@ class VideoCallScheduledView
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
-              alignment: Alignment.centerRight,
+              alignment: AlignmentDirectional.centerEnd,
               child: AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 },
                 dataBuilder: (context, data) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 43, right: 30),
+                    padding: EdgeInsetsDirectional.only(top: 43, end: 30),
                     child: InkWell(
                       onTap: () {
                         model.logOutUser();
                       },
-                      child: AppSvg.asset(AssetUtils.logout),
+                      child: AppSvg.asset(AssetUtils.logout, matchTextDirection: true),
                     ),
                   );
                 },
@@ -76,37 +73,28 @@ class VideoCallScheduledView
             SizedBox(
               height: 34,
             ),
-            AccountReadyHeader(
-                title: S.of(context).callScheduled,
-                subTitle: S.of(context).callScheduledNote),
+            AccountReadyHeader(title: S.of(context).callScheduled, subTitle: S.of(context).callScheduledNote),
             SizedBox(
               height: 40,
             ),
             Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration:
+                  BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(16)),
               margin: EdgeInsets.symmetric(horizontal: 24),
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  AccountDetails(
-                      title: S.of(context).refNo,
-                      value: model.arguments.applicationId ?? "-"),
+                  AccountDetails(title: S.of(context).refNo, value: model.arguments.applicationId ?? "-"),
                   SizedBox(
                     height: 16,
                   ),
-                  AccountDetails(
-                      title: S.of(context).preferredDateSmall,
-                      value: model.arguments.date ?? "-"),
+                  AccountDetails(title: S.of(context).preferredDateSmall, value: model.arguments.date ?? "-"),
                   SizedBox(
                     height: 16,
                   ),
-                  AccountDetails(
-                      title: S.of(context).preferredTimeSmall,
-                      value: model.arguments.time ?? "-"),
+                  AccountDetails(title: S.of(context).preferredTimeSmall, value: model.arguments.time ?? "-"),
                 ],
               ),
             ),

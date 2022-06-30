@@ -31,8 +31,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class JobAndIncomePageView
-    extends BasePageViewWidget<JobAndIncomePageViewModel> {
+class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel> {
   JobAndIncomePageView(ProviderBase model) : super(model);
 
   @override
@@ -56,9 +55,7 @@ class JobAndIncomePageView
                   ProviderScope.containerOf(context)
                       .read(registerViewModelProvider)
                       .registrationStepsController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                      .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                 });
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);
@@ -83,23 +80,18 @@ class JobAndIncomePageView
                 child: Card(
                   child: Padding(
                     padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <=
-                                0
+                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                             ? 0
                             : MediaQuery.of(context).viewInsets.bottom - 48),
                     child: SingleChildScrollView(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       physics: ClampingScrollPhysics(),
                       child: Column(
                         children: [
                           Visibility(
-                            visible: model.employmentStatusEnum ==
-                                    EmploymentStatusEnum.FULL_TIME_EMPLOYEE ||
-                                model.employmentStatusEnum ==
-                                    EmploymentStatusEnum.PART_TIME_EMPLOYEE ||
-                                model.employmentStatusEnum ==
-                                    EmploymentStatusEnum.OTHER,
+                            visible: model.employmentStatusEnum == EmploymentStatusEnum.FULL_TIME_EMPLOYEE ||
+                                model.employmentStatusEnum == EmploymentStatusEnum.PART_TIME_EMPLOYEE ||
+                                model.employmentStatusEnum == EmploymentStatusEnum.OTHER,
                             child: Column(
                               children: [
                                 AppTextField(
@@ -142,41 +134,34 @@ class JobAndIncomePageView
                             ),
                           ),
                           Visibility(
-                            visible: model.employmentStatusEnum ==
-                                EmploymentStatusEnum.BUSINESS_OWNER,
+                            visible: model.employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER,
                             child: Column(
                               children: [
                                 AppTextField(
-                                  labelText:
-                                      S.of(context).businessType.toUpperCase(),
+                                  labelText: S.of(context).businessType.toUpperCase(),
                                   hintText: S.of(context).pleaseSelect,
                                   controller: model.businessTypeController,
                                   readOnly: true,
                                   key: model.businessTypeKey,
                                   onPressed: () {
                                     OccupationDialog.show(context,
-                                        employmentStatusEnum:
-                                            model.employmentStatusEnum,
-                                        title: S.of(context).businessType,
-                                        onDismissed: () {
+                                        employmentStatusEnum: model.employmentStatusEnum,
+                                        title: S.of(context).businessType, onDismissed: () {
                                       Navigator.pop(context);
                                     }, onSelected: (data) {
                                       Navigator.pop(context);
                                       model.businessTypeController.text = data;
                                       model.updateBusinessTypeOtherVisibility();
                                       model.isValid();
-                                    },
-                                        businessTypeList:
-                                            model.businessTypeList);
+                                    }, businessTypeList: model.businessTypeList);
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
                                         height: 16,
                                         width: 16,
-                                        padding: EdgeInsets.only(right: 8),
-                                        child: AppSvg.asset(
-                                            AssetUtils.downArrow,
-                                            color: AppColor.dark_gray_1));
+                                        padding: EdgeInsetsDirectional.only(end: 8),
+                                        child:
+                                            AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                                   },
                                 ),
                                 SizedBox(
@@ -196,8 +181,7 @@ class JobAndIncomePageView
                                     AppTextField(
                                       labelText: S.of(context).pleaseSpecify,
                                       hintText: S.of(context).pleaseEnter,
-                                      controller:
-                                          model.businessTypeOtherController,
+                                      controller: model.businessTypeOtherController,
                                       inputType: TextInputType.text,
                                       inputAction: TextInputAction.go,
                                       key: model.businessTypeOtherKey,
@@ -218,26 +202,20 @@ class JobAndIncomePageView
                             hintText: '',
                             controller: model.annualIncomeController,
                             key: model.annualIncomeKey,
-                            inputType:
-                                TextInputType.numberWithOptions(decimal: true),
+                            inputType: TextInputType.numberWithOptions(decimal: true),
                             inputAction: TextInputAction.done,
                             inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9.]')),
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                             ],
                             prefixIcon: () {
                               return Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, right: 8),
+                                padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyText1!
-                                          .color!),
+                                      color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
                                 ),
                               );
                             },
@@ -271,14 +249,12 @@ class JobAndIncomePageView
                             onPressed: () {
                               FocusScope.of(context).unfocus();
                               Future.delayed(Duration(milliseconds: 500), () {
-                                CountryDialog.show(context,
-                                    title: S.of(context).employerCountrySmall,
+                                CountryDialog.show(context, title: S.of(context).employerCountrySmall,
                                     onDismissed: () {
                                   Navigator.pop(context);
                                 }, onSelected: (value) {
                                   Navigator.pop(context);
-                                  model.updateEmployerCountry(
-                                      value.countryName!);
+                                  model.updateEmployerCountry(value.countryName!);
                                   model.isValid();
                                 });
                               });
@@ -287,9 +263,8 @@ class JobAndIncomePageView
                               return Container(
                                   height: 16,
                                   width: 16,
-                                  padding: EdgeInsets.only(right: 8),
-                                  child: AppSvg.asset(AssetUtils.downArrow,
-                                      color: AppColor.dark_gray_1));
+                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                             },
                           ),
                           SizedBox(
@@ -316,8 +291,7 @@ class JobAndIncomePageView
                             inputAction: TextInputAction.done,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(12),
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9]')),
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                             ],
                             controller: model.employerContactController,
                             key: model.employerContactKey,
@@ -334,9 +308,7 @@ class JobAndIncomePageView
                                 child: Column(
                                   children: [
                                     AppSwitchLabelWidget(
-                                      label: S
-                                          .of(context)
-                                          .doYouHaveAdditionalSourceOfIncome,
+                                      label: S.of(context).doYouHaveAdditionalSourceOfIncome,
                                       inActiveText: S.of(context).no,
                                       activeText: S.of(context).yes,
                                       onToggle: (value) {
@@ -346,155 +318,99 @@ class JobAndIncomePageView
                                     ),
                                     Visibility(
                                       visible: isActive!,
-                                      child: AppStreamBuilder<
-                                          List<AdditionalIncomeType>>(
-                                        stream: model
-                                            .additionalSourceIncomeListStream,
+                                      child: AppStreamBuilder<List<AdditionalIncomeType>>(
+                                        stream: model.additionalSourceIncomeListStream,
                                         initialData: [],
                                         dataBuilder: (context, dataList) {
                                           if (dataList!.isNotEmpty) {
                                             return ListView.builder(
                                                 itemCount: dataList.length + 1,
-                                                physics:
-                                                    ClampingScrollPhysics(),
+                                                physics: ClampingScrollPhysics(),
                                                 shrinkWrap: true,
                                                 itemBuilder: (context, index) {
-                                                  if (index ==
-                                                      dataList.length) {
+                                                  if (index == dataList.length) {
                                                     return AddIncomeWidget(
-                                                      label: S
-                                                          .of(context)
-                                                          .addIncome,
+                                                      label: S.of(context).addIncome,
                                                       onTap: () {
-                                                        AdditionalIncomeSourceDialog
-                                                            .show(context,
-                                                                onDismissed:
-                                                                    () {
-                                                          Navigator.pop(
-                                                              context);
+                                                        AdditionalIncomeSourceDialog.show(context,
+                                                            onDismissed: () {
+                                                          Navigator.pop(context);
                                                         }, onSelected: (value) {
-                                                          if (value.totalIncome!
-                                                              .isEmpty) {
+                                                          if (value.totalIncome!.isEmpty) {
                                                             model.showToastWithError(AppError(
-                                                                type: ErrorType
-                                                                    .EMPTY_INCOME,
-                                                                cause:
-                                                                    Exception(),
-                                                                error: ErrorInfo(
-                                                                    message:
-                                                                        '')));
-                                                          } else if (!(num
-                                                                  .parse(value
-                                                                      .totalIncome!) >
-                                                              0)) {
+                                                                type: ErrorType.EMPTY_INCOME,
+                                                                cause: Exception(),
+                                                                error: ErrorInfo(message: '')));
+                                                          } else if (!(num.parse(value.totalIncome!) > 0)) {
                                                             model.showToastWithError(AppError(
                                                                 type: ErrorType
                                                                     .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                                cause:
-                                                                    Exception(),
-                                                                error: ErrorInfo(
-                                                                    message:
-                                                                        '')));
+                                                                cause: Exception(),
+                                                                error: ErrorInfo(message: '')));
                                                           } else {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .addAdditionalIncomeList(
-                                                                    value);
+                                                            Navigator.pop(context);
+                                                            model.addAdditionalIncomeList(value);
                                                           }
                                                         });
                                                       },
                                                     );
                                                   }
                                                   return AdditionalIncomeSourceWidget(
-                                                    additionalIncomeSourceParams:
-                                                        dataList[index],
+                                                    additionalIncomeSourceParams: dataList[index],
                                                     onTap: () {
-                                                      model
-                                                          .removeAdditionalItem(
-                                                              index);
+                                                      model.removeAdditionalItem(index);
                                                     },
                                                   );
                                                 });
                                           } else {
                                             return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 16.0),
+                                              padding: const EdgeInsets.only(top: 16.0),
                                               child: AddIncomeWidget(
                                                 label: S.of(context).addIncome,
                                                 onTap: () {
                                                   InformationDialog.show(context,
-                                                      title: S
-                                                          .of(context)
-                                                          .additionalIncome,
-                                                      isSwipeToCancel: false,
-                                                      onSelected: () {
+                                                      title: S.of(context).additionalIncome,
+                                                      isSwipeToCancel: false, onSelected: () {
                                                     Navigator.pop(context);
-                                                    AdditionalIncomeSourceDialog
-                                                        .show(context,
-                                                            onDismissed: () {
+                                                    AdditionalIncomeSourceDialog.show(context,
+                                                        onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
-                                                      if (value.totalIncome!
-                                                          .isEmpty) {
-                                                        model.showToastWithError(
-                                                            AppError(
-                                                                type: ErrorType
-                                                                    .EMPTY_INCOME,
-                                                                cause:
-                                                                    Exception(),
-                                                                error: ErrorInfo(
-                                                                    message:
-                                                                        '')));
-                                                      } else if (!(num.parse(value
-                                                              .totalIncome!) >
-                                                          0)) {
-                                                        model.showToastWithError(
-                                                            AppError(
-                                                                type: ErrorType
-                                                                    .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                                cause:
-                                                                    Exception(),
-                                                                error: ErrorInfo(
-                                                                    message:
-                                                                        '')));
+                                                      if (value.totalIncome!.isEmpty) {
+                                                        model.showToastWithError(AppError(
+                                                            type: ErrorType.EMPTY_INCOME,
+                                                            cause: Exception(),
+                                                            error: ErrorInfo(message: '')));
+                                                      } else if (!(num.parse(value.totalIncome!) > 0)) {
+                                                        model.showToastWithError(AppError(
+                                                            type: ErrorType
+                                                                .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                            cause: Exception(),
+                                                            error: ErrorInfo(message: '')));
                                                       } else {
                                                         Navigator.pop(context);
-                                                        model
-                                                            .addAdditionalIncomeList(
-                                                                value);
+                                                        model.addAdditionalIncomeList(value);
                                                       }
                                                     });
                                                   },
                                                       descriptionWidget: Text.rich(TextSpan(
-                                                          text: S
-                                                              .of(context)
-                                                              .additionalIncomePopUpDesc1,
+                                                          text: S.of(context).additionalIncomePopUpDesc1,
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              fontWeight: FontWeight.w400,
                                                               fontSize: 14,
                                                               height: 1.4,
-                                                              color: Theme.of(
-                                                                      context)
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .focusedBorder!
                                                                   .borderSide
                                                                   .color),
                                                           children: [
                                                             TextSpan(
-                                                                text: S
-                                                                    .of(context)
-                                                                    .annual,
+                                                                text: S.of(context).annual,
                                                                 style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Theme.of(
-                                                                            context)
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 14,
+                                                                    color: Theme.of(context)
                                                                         .inputDecorationTheme
                                                                         .focusedBorder!
                                                                         .borderSide
@@ -505,11 +421,8 @@ class JobAndIncomePageView
                                                                         .of(context)
                                                                         .additionalIncomePopUpDesc2,
                                                                     style: TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
-                                                                        fontSize:
-                                                                            14,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: 14,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
                                                                             .focusedBorder!
@@ -539,8 +452,7 @@ class JobAndIncomePageView
                                   dataBuilder: (context, isValid) {
                                     return (isValid!)
                                         ? AnimatedButton(
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                             buttonHeight: 50,
                                           )
                                         : Container();

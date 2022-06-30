@@ -8,8 +8,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 class GetCreditCardNowWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const GetCreditCardNowWidget({Key? key, this.isSmallDevices: false})
-      : super(key: key);
+  const GetCreditCardNowWidget({Key? key, this.isSmallDevices: false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +16,7 @@ class GetCreditCardNowWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.all(15),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).primaryColor,
@@ -36,23 +34,19 @@ class GetCreditCardNowWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                      top: 23, end: 23, start: 23),
+                  padding: const EdgeInsetsDirectional.only(top: 23, end: 23, start: 23),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                      height: isSmallDevices ? 26 : 33.64,
-                      width: isSmallDevices ? 52 : 72),
+                      height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
+                  padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
                   child: Align(
                     alignment: Alignment.center,
-                    child: AppSvg.asset(AssetUtils.cardCircle,
-                        height: isSmallDevices ? 72 : 96),
+                    child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 10, left: 24, right: 24),
+                    padding: EdgeInsetsDirectional.only(top: 10, start: 24, end: 24),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -65,25 +59,20 @@ class GetCreditCardNowWidget extends StatelessWidget {
                       ),
                     )),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: EdgeInsetsDirectional.only(
                       top: isSmallDevices ? 50 : 88,
                       // bottom: isSmallDevices ? 30 : 50,
-                      left: isSmallDevices ? 34 : 24,
-                      right: isSmallDevices ? 34 : 24),
+                      start: isSmallDevices ? 34 : 24,
+                      end: isSmallDevices ? 34 : 24),
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.CreditCardActivationStatus);
+                        Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1
-                                ?.color,
+                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(

@@ -10,8 +10,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class CreditCardPayBackSuccessPageView
-    extends BasePageViewWidget<CreditCardPayBackSuccessViewModel> {
+class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayBackSuccessViewModel> {
   CreditCardPayBackSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -20,9 +19,7 @@ class CreditCardPayBackSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Column(
@@ -59,18 +56,14 @@ class CreditCardPayBackSuccessPageView
                       model.creditCardPayBackSuccessArguments.payBackAmount,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 32),
+                          color: Theme.of(context).accentColor, fontWeight: FontWeight.w700, fontSize: 32),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 8, left: 5.0),
+                      padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
                       child: Text(
-                        "JOD",
+                        S.of(context).JOD,
                         style: TextStyle(
-                            color: AppColor.very_light_red,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14),
+                            color: AppColor.very_light_red, fontWeight: FontWeight.w700, fontSize: 14),
                       ),
                     ),
                   ],
@@ -82,9 +75,7 @@ class CreditCardPayBackSuccessPageView
                   S.of(context).paidTo,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 24),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
                 ),
               ),
               Padding(
@@ -93,9 +84,7 @@ class CreditCardPayBackSuccessPageView
                   S.of(context).myCreditCard,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
                 ),
               ),
               Padding(
@@ -103,10 +92,7 @@ class CreditCardPayBackSuccessPageView
                 child: Text(
                   model.creditCardPayBackSuccessArguments.accountHolderName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColor.very_light_red,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
+                  style: TextStyle(color: AppColor.very_light_red, fontWeight: FontWeight.w600, fontSize: 12),
                 ),
               ),
               Visibility(
@@ -117,21 +103,15 @@ class CreditCardPayBackSuccessPageView
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppSvg.asset(AssetUtils.share,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color),
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       Padding(
-                        padding: EdgeInsets.only(left: 11),
+                        padding: EdgeInsetsDirectional.only(start: 11),
                         child: Text(
                           S.of(context).shareMyReceipt,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color),
+                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         ),
                       )
                     ],
@@ -152,9 +132,7 @@ class CreditCardPayBackSuccessPageView
                 child: Text(
                   S.of(context).toDashboard,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600),
+                      color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ),
               Visibility(
@@ -168,10 +146,7 @@ class CreditCardPayBackSuccessPageView
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     ),
                     Padding(
@@ -179,9 +154,7 @@ class CreditCardPayBackSuccessPageView
                       child: Text(
                         "0:07",
                         style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                       ),
                     ),
                   ],

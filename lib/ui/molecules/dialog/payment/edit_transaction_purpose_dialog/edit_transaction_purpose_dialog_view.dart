@@ -27,12 +27,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
   final String? purposeDetail;
 
   const EditTransactionPurposeDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.beneficiary,
-      this.type,
-      this.purposeDetail: "",
-      this.purpose});
+      {this.onDismissed, this.onSelected, this.beneficiary, this.type, this.purposeDetail: "", this.purpose});
 
   ProviderBase providerBase() {
     return editTransactionPurposeDialogViewModelProvider
@@ -44,13 +39,11 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
     return BaseWidget<EditTransactionPurposeDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
-            insetPadding:
-                EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.only(top: 32, left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
                 child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -69,7 +62,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 30),
                         child: Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: AlignmentDirectional.centerStart,
                           child: Text(
                             beneficiary!.fullName ?? '',
                             style: TextStyle(
@@ -82,7 +75,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 2),
                         child: Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: AlignmentDirectional.centerStart,
                           child: Text(
                             beneficiary!.iban ?? '',
                             style: TextStyle(
@@ -103,25 +96,19 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           key: model.purposeKey,
                           readOnly: true,
                           onPressed: () {
-                            if (model.purposeList != null &&
-                                model.purposeList!.isNotEmpty) {
-                              PurposeDialog.show(context,
-                                  purposeList: model.purposeList!,
-                                  onDismissed: () {
+                            if (model.purposeList != null && model.purposeList!.isNotEmpty) {
+                              PurposeDialog.show(context, purposeList: model.purposeList!, onDismissed: () {
                                 Navigator.pop(context);
                               }, onSelected: (value) {
                                 Navigator.pop(context);
                                 model.updatePurpose(value);
-                                model.updatePurposeDetailList(
-                                    value.purposeDetails!);
+                                model.updatePurposeDetailList(value.purposeDetails!);
                               });
                             }
                           },
                           suffixIcon: (enabled, value) {
                             return AppSvg.asset(AssetUtils.dropDown,
-                                color: AppColor.dark_gray_1,
-                                width: 16,
-                                height: 16);
+                                color: AppColor.dark_gray_1, width: 16, height: 16);
                           },
                         ),
                       ),
@@ -135,10 +122,8 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           key: model.purposeDetailKey,
                           readOnly: true,
                           onPressed: () {
-                            if (model.purposeDetailList != null &&
-                                model.purposeDetailList!.isNotEmpty) {
-                              PurposeDetailDialog.show(context,
-                                  purposeDetailList: model.purposeDetailList,
+                            if (model.purposeDetailList != null && model.purposeDetailList!.isNotEmpty) {
+                              PurposeDetailDialog.show(context, purposeDetailList: model.purposeDetailList,
                                   onDismissed: () {
                                 Navigator.pop(context);
                               }, onSelected: (value) {
@@ -149,9 +134,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           },
                           suffixIcon: (enabled, value) {
                             return AppSvg.asset(AssetUtils.dropDown,
-                                color: AppColor.dark_gray_1,
-                                width: 16,
-                                height: 16);
+                                color: AppColor.dark_gray_1, width: 16, height: 16);
                           },
                         ),
                       ),
@@ -159,10 +142,8 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         padding: EdgeInsets.only(top: 147),
                         child: InkWell(
                           onTap: () {
-                            if (model.purpose != null &&
-                                model.purposeDetail != null) {
-                              onSelected!
-                                  .call(model.purpose!, model.purposeDetail!);
+                            if (model.purpose != null && model.purposeDetail != null) {
+                              onSelected!.call(model.purpose!, model.purposeDetail!);
                             } else {
                               Navigator.pop(context);
                             }
@@ -173,12 +154,8 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                       ),
@@ -188,9 +165,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
+                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),
@@ -231,9 +206,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: AppColor.dark_brown,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(

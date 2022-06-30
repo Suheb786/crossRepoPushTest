@@ -60,9 +60,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.dark_gray_2),
+                                fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
                           ),
                         ),
                       ],
@@ -102,9 +100,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                color: AppColor.verLightGray4,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700),
+                                color: AppColor.verLightGray4, fontSize: 16, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -126,10 +122,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               padding: EdgeInsets.only(top: 49),
               child: Text(
                 S.of(context).accountBalance,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10,
-                    color: AppColor.dark_gray_1),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
@@ -152,10 +145,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                     padding: EdgeInsets.only(left: 4.0, top: 2),
                     child: Text(
                       S.of(context).JOD,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: AppColor.dark_gray_1),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                     ),
                   ),
                 ],
@@ -173,9 +164,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                       print("clicked");
                       if (double.parse(model.currentPinValue) <= 0) {
                         model.showToastWithError(AppError(
-                            cause: Exception(),
-                            error: ErrorInfo(message: ""),
-                            type: ErrorType.ZERO_AMOUNT));
+                            cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
                       } else if (double.parse(model.currentPinValue) >
                           double.parse(ProviderScope.containerOf(context)
                               .read(appHomeViewModelProvider)
@@ -187,8 +176,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                             error: ErrorInfo(message: ''),
                             type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
                       } else {
-                        Navigator.pushNamed(
-                            context, RoutePaths.PaymentToNewRecipient,
+                        Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient,
                             arguments: model.currentPinValue);
                       }
                     },

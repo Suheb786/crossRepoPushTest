@@ -37,13 +37,9 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
     return BaseWidget<AdditionIncomeSourceDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding:
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -63,8 +59,7 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               S.of(context).additionalIncome,
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -77,13 +72,11 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                             itemBuilder: (context, index) {
                               if (index == data!.data!.length) {
                                 return Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 24, right: 24, bottom: 24),
+                                  padding: const EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 24),
                                   child: AppTextField(
                                     labelText: S.of(context).totalAnnualIncome,
                                     hintText: '',
-                                    controller:
-                                        model.totalAnnualIncomeController,
+                                    controller: model.totalAnnualIncomeController,
                                     key: model.totalAnnualIncomeKey,
                                     inputType: TextInputType.number,
                                     inputAction: TextInputAction.done,
@@ -92,15 +85,13 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                                     labelColor: AppColor.very_dark_gray_black,
                                     prefixIcon: () {
                                       return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, right: 8),
+                                        padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_dark_gray_black),
+                                              color: AppColor.very_dark_gray_black),
                                         ),
                                       );
                                     },
@@ -153,10 +144,8 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             onSelected!.call(AdditionalIncomeType(
-                                additionalIncomeSource:
-                                    model.selectedAdditionalIncome!.type!,
-                                totalIncome:
-                                    model.totalAnnualIncomeController.text));
+                                additionalIncomeSource: model.selectedAdditionalIncome!.type!,
+                                totalIncome: model.totalAnnualIncomeController.text));
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -164,12 +153,8 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -178,9 +163,7 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.dark_gray_1),
+                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

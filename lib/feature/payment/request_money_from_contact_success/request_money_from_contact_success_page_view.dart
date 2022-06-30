@@ -20,17 +20,12 @@ class RequestAmountFromContactSuccessPageView
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
           if (details.primaryVelocity!.isNegative) {
-            Navigator.popUntil(
-                context, ModalRoute.withName(RoutePaths.AppHome));
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .getDashboardData();
+            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
             /*ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
                 .triggerRequestMoneyPopup(); */
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .showRequestMoneyPopUp(true);
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).showRequestMoneyPopUp(true);
           }
         },
         child: Padding(
@@ -41,8 +36,7 @@ class RequestAmountFromContactSuccessPageView
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    Image.asset(AssetUtils.line,
-                        color: Theme.of(context).accentColor.withOpacity(0.4)),
+                    Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
                     Align(
                       alignment: Alignment.center,
                       child: Container(
@@ -52,8 +46,7 @@ class RequestAmountFromContactSuccessPageView
                           color: Theme.of(context).primaryColor,
                         ),
                         child: Center(
-                            child: AppSvg.asset(AssetUtils.right,
-                                color: Theme.of(context).accentColor)),
+                            child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                       ),
                     ),
                   ],
@@ -66,17 +59,14 @@ class RequestAmountFromContactSuccessPageView
                       Text(
                         model.successValues[0],
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 28),
+                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 8, left: 5.0),
+                        padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
                         child: Text(
                           S.of(context).JOD,
                           style: TextStyle(
-                              color: Theme.of(context)
-                                  .primaryColorDark
-                                  .withOpacity(0.5),
+                              color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                               fontWeight: FontWeight.w700,
                               fontSize: 14),
                         ),
@@ -107,8 +97,7 @@ class RequestAmountFromContactSuccessPageView
                     model.successValues[2],
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color:
-                            Theme.of(context).primaryColorDark.withOpacity(0.5),
+                        color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w600,
                         fontSize: 12),
                   ),
@@ -120,8 +109,7 @@ class RequestAmountFromContactSuccessPageView
                     maxLines: 3,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color:
-                            Theme.of(context).primaryColorDark.withOpacity(0.5),
+                        color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w400,
                         fontSize: 14),
                   ),
@@ -130,10 +118,8 @@ class RequestAmountFromContactSuccessPageView
                   padding: EdgeInsets.only(top: 130),
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
-                    textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                 ),
                 InkWell(
@@ -145,10 +131,7 @@ class RequestAmountFromContactSuccessPageView
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color),
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
                     ),
                   ),
                 ),
@@ -163,10 +146,7 @@ class RequestAmountFromContactSuccessPageView
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color),
+                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         ),
                       ),
                       Padding(

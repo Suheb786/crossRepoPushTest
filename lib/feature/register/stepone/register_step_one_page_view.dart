@@ -13,16 +13,10 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class RegisterStepOnePageView
-    extends BasePageViewWidget<RegisterStepOneViewModel> {
+class RegisterStepOnePageView extends BasePageViewWidget<RegisterStepOneViewModel> {
   RegisterStepOnePageView(ProviderBase model) : super(model);
 
-  final pages = [
-    IdVerificationInfoPage(),
-    ConfirmDetailPage(),
-    EnterAddressPage(),
-    ProfileDetailsPage()
-  ];
+  final pages = [IdVerificationInfoPage(), ConfirmDetailPage(), EnterAddressPage(), ProfileDetailsPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -37,13 +31,10 @@ class RegisterStepOnePageView
               Text(
                 S.of(context).personalDetails,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -61,9 +52,7 @@ class RegisterStepOnePageView
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

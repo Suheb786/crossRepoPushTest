@@ -536,7 +536,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفضيل العميل غير موجود"),
         "customerService":
             MessageLookupByLibrary.simpleMessage("خدمة عملاء 24/7"),
-        "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "cvv": MessageLookupByLibrary.simpleMessage("رمز البطاقة"),
         "dailyLimit": MessageLookupByLibrary.simpleMessage("الحد اليومي"),
         "date": MessageLookupByLibrary.simpleMessage("تاريخ"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),

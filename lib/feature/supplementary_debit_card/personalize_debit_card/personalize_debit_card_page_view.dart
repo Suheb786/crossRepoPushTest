@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PersonalizeDebitCardPageView extends BasePageViewWidget<PersonalizeDebitCardPageViewModel> {
   PersonalizeDebitCardPageView(ProviderBase model) : super(model);
@@ -67,13 +68,24 @@ class PersonalizeDebitCardPageView extends BasePageViewWidget<PersonalizeDebitCa
                                             .appSwiperController
                                             .page ==
                                         2.0) {
-                                      if (details.primaryVelocity!.isNegative) {
-                                        model.personalizeDebitCard();
+                                      if (StringUtils.isDirectionRTL(context)) {
+                                        if (!details.primaryVelocity!.isNegative) {
+                                          model.personalizeDebitCard();
+                                        } else {
+                                          ProviderScope.containerOf(context)
+                                              .read(supplementaryDebitCardViewModelProvider)
+                                              .previousPage();
+                                          // .previous();
+                                        }
                                       } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(supplementaryDebitCardViewModelProvider)
-                                            .previousPage();
-                                        // .previous();
+                                        if (details.primaryVelocity!.isNegative) {
+                                          model.personalizeDebitCard();
+                                        } else {
+                                          ProviderScope.containerOf(context)
+                                              .read(supplementaryDebitCardViewModelProvider)
+                                              .previousPage();
+                                          // .previous();
+                                        }
                                       }
                                     }
                                   },

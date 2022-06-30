@@ -80,8 +80,8 @@ class DownloadTransactionPageView
                                   children: [
                                     statementResponse!.status == Status.SUCCESS
                                         ? Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 38, left: 24, right: 24),
+                                            padding: EdgeInsetsDirectional.only(
+                                                top: 38, start: 24, end: 24),
                                             child: Container(
                                               height: MediaQuery.of(context)
                                                       .size
@@ -121,8 +121,8 @@ class DownloadTransactionPageView
                                         }
                                       },
                                       child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 32, left: 48, right: 48),
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: 32, start: 48, end: 48),
                                         child: Container(
                                           height: 50,
                                           decoration: BoxDecoration(

@@ -16,16 +16,14 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SupplementaryIdScanVerificationInfoDebitPageView
-    extends BasePageViewWidget<
-        SupplementaryIdScanVerificationInfoDebitPageViewModel> {
-  SupplementaryIdScanVerificationInfoDebitPageView(ProviderBase model)
-      : super(model);
+    extends BasePageViewWidget<SupplementaryIdScanVerificationInfoDebitPageViewModel> {
+  SupplementaryIdScanVerificationInfoDebitPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context,
-      SupplementaryIdScanVerificationInfoDebitPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryIdScanVerificationInfoDebitPageViewModel model) {
     return AppKeyBoardHide(
       child: Column(
         children: [
@@ -39,8 +37,7 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child:
-                        AppStreamBuilder<Resource<ScannedDocumentInformation>>(
+                    child: AppStreamBuilder<Resource<ScannedDocumentInformation>>(
                       stream: model.scanUserDocumentStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -65,44 +62,48 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (ProviderScope.containerOf(context)
-                                    .read(
-                                        supplementaryDebitCardViewModelProvider)
+                                    .read(supplementaryDebitCardViewModelProvider)
                                     .appSwiperController
                                     .page ==
                                 1.0) {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.scanDocument();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.scanDocument();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(supplementaryDebitCardViewModelProvider)
+                                      .previousPage();
+                                  // .previous();
+                                }
                               } else {
-                                ProviderScope.containerOf(context)
-                                    .read(
-                                        supplementaryDebitCardViewModelProvider)
-                                    .previousPage();
-                                // .previous();
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.scanDocument();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(supplementaryDebitCardViewModelProvider)
+                                      .previousPage();
+                                  // .previous();
+                                }
                               }
                             }
                           },
                           child: Card(
                             child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Column(
                                       children: [
                                         InformationText(
                                             image: AssetUtils.sun,
-                                            title: S
-                                                .of(context)
-                                                .idVerificationPlaceInfo),
+                                            title: S.of(context).idVerificationPlaceInfo),
                                         SizedBox(
                                           height: 24,
                                         ),
                                         InformationText(
-                                            image: AssetUtils.scanIcon,
-                                            title: S.of(context).idScanInfo),
+                                            image: AssetUtils.scanIcon, title: S.of(context).idScanInfo),
                                       ],
                                     ),
                                     Visibility(
@@ -117,18 +118,14 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                             ),
                                           ),
                                           SizedBox(
                                             height: 56,
                                           ),
                                           AnimatedButton(
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                           ),
                                         ],
                                       ),

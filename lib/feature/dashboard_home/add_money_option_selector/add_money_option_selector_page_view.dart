@@ -18,8 +18,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:share_plus/share_plus.dart';
 
-class AddMoneyOptionSelectorPageView
-    extends BasePageViewWidget<AddMoneyOptionSelectorViewModel> {
+class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSelectorViewModel> {
   AddMoneyOptionSelectorPageView(ProviderBase model) : super(model);
 
   @override
@@ -31,23 +30,23 @@ class AddMoneyOptionSelectorPageView
         }
       },
       child: Container(
-        margin: EdgeInsets.only(top: 53, left: 29, right: 29),
+        margin: EdgeInsetsDirectional.only(top: 53, start: 29, end: 29),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
                     child: AppSvg.asset(AssetUtils.leftArrow,
-                        color: Theme.of(context).accentColor),
+                        matchTextDirection: true, color: Theme.of(context).accentColor),
                   )),
               Padding(
-                padding: EdgeInsets.only(left: 11, bottom: 53),
+                padding: EdgeInsetsDirectional.only(start: 11, bottom: 53),
                 child: Column(
                   children: [
                     Padding(
@@ -56,9 +55,7 @@ class AddMoneyOptionSelectorPageView
                         S.of(context).waysYocCanAddMoneyToAccount,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            fontSize: 20, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                       ),
                     ),
                     SizedBox(

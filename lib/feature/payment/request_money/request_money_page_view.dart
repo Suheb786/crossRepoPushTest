@@ -26,8 +26,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
           initialData: Resource.none(),
           onData: (data) {
             if (data.status == Status.SUCCESS) {
-              Navigator.pushNamed(
-                  context, RoutePaths.RequestPaymentFromNewRecipient,
+              Navigator.pushNamed(context, RoutePaths.RequestPaymentFromNewRecipient,
                   arguments: model.currentPinValue);
             } else if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
@@ -73,9 +72,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                 child: Text(
                                   S.of(context).backToPayments,
                                   style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.dark_gray_2),
+                                      fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
                                 ),
                               ),
                             ],
@@ -88,12 +85,11 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     padding: EdgeInsets.only(top: 80),
                     child: Text(
                       S.of(context).requestMoney,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 47, left: 24, right: 24),
+                    padding: EdgeInsetsDirectional.only(top: 47, start: 24, end: 24),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -112,7 +108,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                     color: AppColor.black),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 15, left: 4),
+                                padding: EdgeInsetsDirectional.only(top: 15, start: 4),
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
@@ -139,10 +135,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     padding: EdgeInsets.only(top: 49),
                     child: Text(
                       S.of(context).accountBalance,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 10,
-                          color: AppColor.dark_gray_1),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
                     ),
                   ),
                   Padding(
@@ -162,13 +156,11 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 4.0, top: 2),
+                          padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12,
-                                color: AppColor.dark_gray_1),
+                                fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                           ),
                         ),
                       ],

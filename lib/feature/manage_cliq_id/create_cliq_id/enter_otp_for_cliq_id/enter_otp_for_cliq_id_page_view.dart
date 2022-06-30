@@ -14,9 +14,9 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterOtpForCliqIdPageView
-    extends BasePageViewWidget<EnterOtpForCliqIdPageViewModel> {
+class EnterOtpForCliqIdPageView extends BasePageViewWidget<EnterOtpForCliqIdPageViewModel> {
   EnterOtpForCliqIdPageView(ProviderBase model) : super(model);
 
   @override
@@ -37,8 +37,7 @@ class EnterOtpForCliqIdPageView
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
                     if (data.data!) {
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.CliqIdCreationSuccess);
+                      Navigator.pushReplacementNamed(context, RoutePaths.CliqIdCreationSuccess);
                     }
                   }
                 },
@@ -51,20 +50,29 @@ class EnterOtpForCliqIdPageView
                               .page ==
                           2.0) {
                         FocusScope.of(context).unfocus();
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validateOtp();
+                        if (StringUtils.isDirectionRTL(context)) {
+                          if (!details.primaryVelocity!.isNegative) {
+                            model.validateOtp();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(createCliqIdViewModelProvider)
+                                .previousPage();
+                          }
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(createCliqIdViewModelProvider)
-                              .previousPage();
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validateOtp();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(createCliqIdViewModelProvider)
+                                .previousPage();
+                          }
                         }
                       }
                     },
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -90,12 +98,8 @@ class EnterOtpForCliqIdPageView
                                     endTime: model.endTime,
                                     textStyle: TextStyle(
                                         fontSize: 16,
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color!),
-                                    widgetBuilder:
-                                        (context, currentTimeRemaining) {
+                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                    widgetBuilder: (context, currentTimeRemaining) {
                                       return currentTimeRemaining == null
                                           ? TextButton(
                                               onPressed: () {},
@@ -104,10 +108,8 @@ class EnterOtpForCliqIdPageView
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
-                                                    color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color!),
+                                                    color:
+                                                        Theme.of(context).accentTextTheme.bodyText1!.color!),
                                               ))
                                           : Text(
                                               S.of(context).resendIn(
@@ -115,10 +117,7 @@ class EnterOtpForCliqIdPageView
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             );
                                     },
                                   ),
@@ -132,8 +131,7 @@ class EnterOtpForCliqIdPageView
                                             visible: isValid!,
                                             child: AnimatedButton(
                                               buttonHeight: 50,
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
+                                              buttonText: S.of(context).swipeToProceed,
                                             ),
                                           );
                                         }),

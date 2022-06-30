@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AppTiltCard extends StatelessWidget {
   final int? pageViewIndex;
@@ -29,20 +30,17 @@ class AppTiltCard extends StatelessWidget {
         transformAlignment: Alignment.center,
         transform: Matrix4.rotationZ(pageViewIndex! == currentPage!
             ? 0
-            : pageViewIndex! < currentPage!
-                ? -degree * (math.pi / 180)
-                : degree * (math.pi / 180)),
+            : StringUtils.isDirectionRTL(context)
+                ? (pageViewIndex! < currentPage! ? degree * (math.pi / 180) : -degree * (math.pi / 180))
+                : (pageViewIndex! < currentPage! ? -degree * (math.pi / 180) : degree * (math.pi / 180))),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 500),
           transform: Matrix4.diagonal3Values(
-              pageViewIndex! == currentPage! ? 1 : 1,
-              pageViewIndex! == currentPage! ? 1 : 1,
-              1.0),
+              pageViewIndex! == currentPage! ? 1 : 1, pageViewIndex! == currentPage! ? 1 : 1, 1.0),
           transformAlignment: Alignment.center,
           curve: Curves.easeIn,
           margin: EdgeInsets.only(
-              bottom: pageViewIndex! == currentPage! ? 10 : 20,
-              top: pageViewIndex! == currentPage! ? 0 : 5),
+              bottom: pageViewIndex! == currentPage! ? 10 : 20, top: pageViewIndex! == currentPage! ? 0 : 5),
           child: child!,
         ),
       ),

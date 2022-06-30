@@ -41,9 +41,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
               var event = {
                 "definitionId": "UserAccountDetails",
                 "properties": {
-                  "accountNumber": data
-                      .data!.getAccountDetailsContent!.data!.accountNumber
-                      .toString(),
+                  "accountNumber": data.data!.getAccountDetailsContent!.data!.accountNumber.toString(),
                 }
               };
               InfobipMobilemessaging.submitEventImmediately(event);
@@ -61,29 +59,24 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                             Visibility(
                               visible: model.arguments.isDocumentUploaded,
                               child: Align(
-                                alignment: Alignment.centerRight,
-                                child:
-                                    AppStreamBuilder<Resource<LogoutResponse>>(
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: AppStreamBuilder<Resource<LogoutResponse>>(
                                   stream: model.logoutStream,
                                   initialData: Resource.none(),
                                   onData: (response) {
                                     if (response.status == Status.SUCCESS) {
-                                      Navigator.pushNamedAndRemoveUntil(
-                                          context,
-                                          RoutePaths.OnBoarding,
-                                          ModalRoute.withName(
-                                              RoutePaths.Splash));
+                                      Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
+                                          ModalRoute.withName(RoutePaths.Splash));
                                     }
                                   },
                                   dataBuilder: (context, data) {
                                     return Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 43, right: 30),
+                                      padding: EdgeInsetsDirectional.only(top: 43, end: 30),
                                       child: InkWell(
                                         onTap: () {
                                           model.logOutUser();
                                         },
-                                        child: AppSvg.asset(AssetUtils.logout),
+                                        child: AppSvg.asset(AssetUtils.logout, matchTextDirection: true),
                                       ),
                                     );
                                   },
@@ -104,9 +97,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                         shape: BoxShape.circle,
                                         color: AppColor.vividYellow,
                                       ),
-                                      child: Center(
-                                          child:
-                                              AppSvg.asset(AssetUtils.right)),
+                                      child: Center(child: AppSvg.asset(AssetUtils.right)),
                                     ),
                                   ),
                                 ],
@@ -119,9 +110,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                 title: S.of(context).accountReadyMsg,
                                 subTitle: model.arguments.isDocumentUploaded
                                     ? S.of(context).uploadDocWithinTendays
-                                    : S
-                                        .of(context)
-                                        .yourFreeVirtualDebitCardHasBeenIssued),
+                                    : S.of(context).yourFreeVirtualDebitCardHasBeenIssued),
                             SizedBox(
                               height: 40,
                             ),
@@ -130,24 +119,18 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(16)),
                               margin: EdgeInsets.symmetric(horizontal: 24),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 24),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                               child: Column(
                                 children: [
                                   AccountDetails(
                                       title: S.of(context).accountNumber,
-                                      value: response
-                                          .data!
-                                          .getAccountDetailsContent!
-                                          .data!
-                                          .accountNumber),
+                                      value: response.data!.getAccountDetailsContent!.data!.accountNumber),
                                   SizedBox(
                                     height: 16,
                                   ),
                                   AccountDetails(
                                     title: S.of(context).iban,
-                                    value: response.data!
-                                        .getAccountDetailsContent!.data!.iban,
+                                    value: response.data!.getAccountDetailsContent!.data!.iban,
                                     showIcon: true,
                                   ),
                                 ],
@@ -188,8 +171,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                 case Status.LOADING:
                   return Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).accentColor),
+                      valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
                       strokeWidth: 2,
                     ),
                   );
