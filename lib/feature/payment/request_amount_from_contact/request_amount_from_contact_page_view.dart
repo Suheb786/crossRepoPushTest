@@ -20,8 +20,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class RequestAmountFromContactPageView
-    extends BasePageViewWidget<RequestAmountFromContactViewModel> {
+class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountFromContactViewModel> {
   RequestAmountFromContactPageView(ProviderBase model) : super(model);
 
   @override
@@ -34,13 +33,11 @@ class RequestAmountFromContactPageView
             if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             } else if (data.status == Status.SUCCESS) {
-              Navigator.pushNamed(
-                  context, RoutePaths.RequestAmountFromContactSuccess,
-                  arguments: [
-                    model.currentPinValue,
-                    data.data!.requestToPayContent!.dbtrName!,
-                    data.data!.requestToPayContent!.dbtrMcc!,
-                  ]);
+              Navigator.pushNamed(context, RoutePaths.RequestAmountFromContactSuccess, arguments: [
+                model.currentPinValue,
+                data.data!.requestToPayContent!.dbtrName!,
+                data.data!.requestToPayContent!.dbtrMcc!,
+              ]);
             }
           },
           dataBuilder: (context, value) {
@@ -51,8 +48,7 @@ class RequestAmountFromContactPageView
                   Navigator.pop(context);
                 }
               },
-              child: AppStreamBuilder<
-                      Resource<GetAccountByAliasContentResponse>>(
+              child: AppStreamBuilder<Resource<GetAccountByAliasContentResponse>>(
                   stream: model.getAccountByAliasResponseStream,
                   initialData: Resource.none(),
                   onData: (data) {
@@ -107,9 +103,7 @@ class RequestAmountFromContactPageView
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 24.0),
-                          child: model.beneficiary!.imageUrl
-                                  .toString()
-                                  .isNotEmpty
+                          child: model.beneficiary!.imageUrl.toString().isNotEmpty
                               ? CircleAvatar(
                                   radius: 32,
                                   backgroundImage: Image.memory(
@@ -119,11 +113,9 @@ class RequestAmountFromContactPageView
                                 )
                               : CircleAvatar(
                                   radius: 32,
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
+                                  backgroundColor: Theme.of(context).primaryColor,
                                   child: Text(
-                                    StringUtils.getFirstInitials(
-                                        model.beneficiary!.fullName),
+                                    StringUtils.getFirstInitials(model.beneficiary!.fullName),
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 20,
@@ -142,8 +134,7 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Text(
-                          (model.beneficiary!.nickName != null &&
-                                  model.beneficiary!.nickName!.isNotEmpty)
+                          (model.beneficiary!.nickName != null && model.beneficiary!.nickName!.isNotEmpty)
                               ? model.beneficiary!.nickName!
                               : model.beneficiary!.fullName!,
                           style: TextStyle(
@@ -152,57 +143,43 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.only(top: 16, right: 24, left: 24),
+                          padding: EdgeInsetsDirectional.only(top: 16, end: 24, start: 24),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Theme.of(context).accentColor,
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: AppColor.whiteGray)),
-                            padding: EdgeInsets.only(
-                                top: 14, bottom: 14, left: 26, right: 34),
+                            padding: EdgeInsetsDirectional.only(top: 14, bottom: 14, start: 26, end: 34),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   S.of(context).transactionPurpose,
                                   style: TextStyle(
-                                      color: AppColor.dark_gray_1,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                                      color: AppColor.dark_gray_1, fontSize: 10, fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 2),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       AppStreamBuilder<String>(
                                           stream: model.purposeStream,
-                                          initialData: (model.beneficiary!
-                                                          .purposeParentDetails !=
-                                                      null &&
-                                                  model
-                                                      .beneficiary!
-                                                      .purposeParentDetails!
-                                                      .isNotEmpty)
-                                              ? model.beneficiary!
-                                                  .purposeParentDetails!
+                                          initialData: (model.beneficiary!.purposeParentDetails != null &&
+                                                  model.beneficiary!.purposeParentDetails!.isNotEmpty)
+                                              ? model.beneficiary!.purposeParentDetails!
                                               : '',
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600),
+                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                             );
                                           }),
                                       Visibility(
                                         visible: true,
                                         child: InkWell(
                                           onTap: () {
-                                            EditTransactionPurposeDialog.show(
-                                                context, onDismissed: () {
+                                            EditTransactionPurposeDialog.show(context, onDismissed: () {
                                               Navigator.pop(context);
                                             }, onSelected: (value1, value2) {
                                               print("got value: $value1");
@@ -211,16 +188,11 @@ class RequestAmountFromContactPageView
                                               Navigator.pop(context);
                                             },
                                                 beneficiary: model.beneficiary,
-                                                purposeDetail: model
-                                                            .purposeDetail ==
-                                                        null
-                                                    ? model.beneficiary!
-                                                        .purposeDetails!
-                                                    : model
-                                                        .purposeDetail!.labelEn,
+                                                purposeDetail: model.purposeDetail == null
+                                                    ? model.beneficiary!.purposeDetails!
+                                                    : model.purposeDetail!.labelEn,
                                                 purpose: model.purpose == null
-                                                    ? model.beneficiary!
-                                                        .purposeParentDetails
+                                                    ? model.beneficiary!.purposeParentDetails
                                                     : model.purpose!.labelEn,
                                                 type: TransactionType.RTP);
                                           },
@@ -229,10 +201,7 @@ class RequestAmountFromContactPageView
                                             style: TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w700,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color),
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                           ),
                                         ),
                                       )
@@ -243,19 +212,14 @@ class RequestAmountFromContactPageView
                                   padding: EdgeInsets.only(top: 2),
                                   child: AppStreamBuilder<String>(
                                       stream: model.purposeDetailStream,
-                                      initialData: (model.beneficiary!
-                                                      .purposeDetails !=
-                                                  null &&
-                                              model.beneficiary!.purposeDetails!
-                                                  .isNotEmpty)
+                                      initialData: (model.beneficiary!.purposeDetails != null &&
+                                              model.beneficiary!.purposeDetails!.isNotEmpty)
                                           ? model.beneficiary!.purposeDetails!
                                           : '',
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600),
+                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                         );
                                       }),
                                 ),
@@ -264,49 +228,55 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.only(top: 27, left: 24, right: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    AutoSizeText(
-                                      model.currentPinValue,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 40,
-                                          fontFamily: 'Montserrat',
-                                          color: AppColor.black),
+                          padding: EdgeInsetsDirectional.only(top: 27, start: 24, end: 24),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Directionality(
+                                  textDirection: StringUtils.isDirectionRTL(context)
+                                      ? TextDirection.rtl
+                                      : TextDirection.ltr,
+                                  child: Expanded(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        AutoSizeText(
+                                          model.currentPinValue,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 40,
+                                              fontFamily: 'Montserrat',
+                                              color: AppColor.black),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsetsDirectional.only(top: 15, start: 4),
+                                          child: Text(
+                                            S.of(context).JOD,
+                                            style: TextStyle(
+                                                color: AppColor.verLightGray4,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 15, left: 4),
-                                      child: Text(
-                                        "JOD",
-                                        style: TextStyle(
-                                            color: AppColor.verLightGray4,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    model.clearValue();
-                                  },
-                                  child: AppSvg.asset(AssetUtils.backspaceBlue),
+                                Align(
+                                  alignment: AlignmentDirectional.centerEnd,
+                                  child: InkWell(
+                                    onTap: () {
+                                      model.clearValue();
+                                    },
+                                    child: AppSvg.asset(AssetUtils.backspaceBlue),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
@@ -314,9 +284,7 @@ class RequestAmountFromContactPageView
                           child: Text(
                             S.of(context).accountBalance,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 10,
-                                color: AppColor.dark_gray_1),
+                                fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
                           ),
                         ),
                         Padding(
@@ -339,11 +307,9 @@ class RequestAmountFromContactPageView
                               Padding(
                                 padding: EdgeInsets.only(left: 4.0, top: 2),
                                 child: Text(
-                                  "JOD",
+                                  S.of(context).JOD,
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 12,
-                                      color: AppColor.dark_gray_1),
+                                      fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                                 ),
                               ),
                             ],
@@ -459,31 +425,34 @@ class RequestAmountFromContactPageView
                         //   ),
                         // )
                         Expanded(
-                          child: NumericKeyboard(
-                              onKeyboardTap: (value) {
-                                model.changeValue(value);
-                              },
-                              textColor: Colors.black,
-                              rightButtonFn: () {
-                                model.requestFromNewRecipient(context);
-                              },
-                              leftIcon: Icon(
-                                Icons.circle,
-                                color: AppColor.black,
-                                size: 5,
-                              ),
-                              rightWidget: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xFF3CB4E5),
-                                child: Center(
-                                  child: AppSvg.asset(AssetUtils.next),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: NumericKeyboard(
+                                onKeyboardTap: (value) {
+                                  model.changeValue(value);
+                                },
+                                textColor: Colors.black,
+                                rightButtonFn: () {
+                                  model.requestFromNewRecipient(context);
+                                },
+                                leftIcon: Icon(
+                                  Icons.circle,
+                                  color: AppColor.black,
+                                  size: 5,
                                 ),
-                              ),
-                              leftButtonFn: () {
-                                print('left button clicked');
-                                model.changeValue(".");
-                              },
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                                rightWidget: CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Color(0xFF3CB4E5),
+                                  child: Center(
+                                    child: AppSvg.asset(AssetUtils.next),
+                                  ),
+                                ),
+                                leftButtonFn: () {
+                                  print('left button clicked');
+                                  model.changeValue(".");
+                                },
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                          ),
                         )
                       ],
                     );

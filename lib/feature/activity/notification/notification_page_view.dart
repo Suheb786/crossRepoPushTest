@@ -8,6 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
   NotificationPageView(ProviderBase model) : super(model);
@@ -17,14 +18,25 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
     return Center(
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {
-            ProviderScope.containerOf(context)
-                .read(activityHomeViewModelProvider)
-                .appSwiperController
-                .nextPage(
-                    duration: Duration(milliseconds: 600),
-                    curve: Curves.linear);
-          } else {}
+          if (StringUtils.isDirectionRTL(context)) {
+            if (!details.primaryVelocity!.isNegative) {
+              ProviderScope.containerOf(context)
+                  .read(activityHomeViewModelProvider)
+                  .appSwiperController
+                  .nextPage(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linear);
+            }
+          } else {
+            if (details.primaryVelocity!.isNegative) {
+              ProviderScope.containerOf(context)
+                  .read(activityHomeViewModelProvider)
+                  .appSwiperController
+                  .nextPage(
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linear);
+            } else {}
+          }
         },
         child: Card(
           shape:
@@ -33,10 +45,10 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
           elevation: 2,
           color:
               Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
-          margin: EdgeInsets.zero,
+          margin: EdgeInsetsDirectional.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Padding(
-            padding: EdgeInsets.only(top: 30, left: 24, right: 24),
+            padding: EdgeInsetsDirectional.only(top: 30, start: 24, end: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -58,7 +70,7 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                 shrinkWrap: true,
                                 itemCount: activities
                                     .data!.activityContent!.activities!.length,
-                                padding: EdgeInsets.only(top: 20),
+                                padding: EdgeInsetsDirectional.only(top: 20),
                                 itemBuilder: (context, index) {
                                   return Column(
                                     crossAxisAlignment:
@@ -75,7 +87,8 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                                     .primaryColor),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(left: 7),
+                                            padding: EdgeInsetsDirectional.only(
+                                                start: 7),
                                             child: Text(
                                               activities.data!.activityContent!
                                                   .activities![index].heading!,
@@ -87,8 +100,8 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                         ],
                                       ),
                                       Padding(
-                                        padding:
-                                            EdgeInsets.only(top: 6, bottom: 12),
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: 6, bottom: 12),
                                         child: Text(
                                           activities.data!.activityContent!
                                               .activities![index].description!,

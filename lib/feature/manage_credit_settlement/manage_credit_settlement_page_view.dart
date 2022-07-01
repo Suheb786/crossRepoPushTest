@@ -10,8 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class ManageCreditSettlementPageView
-    extends BasePageViewWidget<ManageCreditSettlementViewModel> {
+class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSettlementViewModel> {
   ManageCreditSettlementPageView(ProviderBase model) : super(model);
 
   @override
@@ -30,20 +29,18 @@ class ManageCreditSettlementPageView
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Text(
               S.of(context).manageSettlement,
-              style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14),
+              style:
+                  TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),
@@ -75,8 +72,7 @@ class ManageCreditSettlementPageView
                   IgnorePointer(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushReplacementNamed(
-                            context, RoutePaths.ChangeCardPayment);
+                        Navigator.pushReplacementNamed(context, RoutePaths.ChangeCardPayment);
                       },
                       child: Padding(
                         padding: EdgeInsets.all(24),
@@ -88,19 +84,13 @@ class ManageCreditSettlementPageView
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
-                                  color: Theme.of(context)
-                                          .inputDecorationTheme
-                                          .hintStyle!
-                                          .color ??
+                                  color: Theme.of(context).inputDecorationTheme.hintStyle!.color ??
                                       AppColor.gray1),
                             )),
                             AppSvg.asset(AssetUtils.rightChevron,
                                 width: 20,
                                 height: 20,
-                                color: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1!
-                                    .color)
+                                color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                           ],
                         ),
                       ),
@@ -109,8 +99,7 @@ class ManageCreditSettlementPageView
                   AppDivider(),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.ChangeCardSettlementPercentage,
+                      Navigator.pushReplacementNamed(context, RoutePaths.ChangeCardSettlementPercentage,
                           arguments: ChangeCardSettlementPercentageArguments(
                               creditCard: model.arguments!.creditCard));
                     },
@@ -121,16 +110,12 @@ class ManageCreditSettlementPageView
                           Expanded(
                               child: Text(
                             S.of(context).changeSettlementOptions,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 14),
+                            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                           )),
                           AppSvg.asset(AssetUtils.rightChevron,
                               width: 20,
                               height: 20,
-                              color: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyText1!
-                                  .color)
+                              color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                         ],
                       ),
                     ),

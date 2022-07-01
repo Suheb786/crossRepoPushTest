@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' as intl;
+
 class StringUtils {
   StringUtils._();
 
@@ -62,5 +65,11 @@ class StringUtils {
         : currentDate.month.toString();
     String minDueDate = '28/${month}';
     return minDueDate;
+  }
+
+  static bool isDirectionRTL(BuildContext context) {
+    debugPrint('current language--->${Localizations.localeOf(context).languageCode}');
+    return intl.Bidi.isRtlLanguage(
+        Localizations.localeOf(context).languageCode);
   }
 }

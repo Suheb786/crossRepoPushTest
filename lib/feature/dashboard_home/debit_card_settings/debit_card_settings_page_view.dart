@@ -33,7 +33,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 52),
+      padding: EdgeInsetsDirectional.only(top: 52),
       child: GestureDetector(
         onVerticalDragEnd: (details) {
           int sensitivity = 8;
@@ -71,7 +71,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 8),
+              padding: EdgeInsetsDirectional.only(top: 8),
               child: Text(
                 S.of(context).backToDashboard,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
@@ -100,7 +100,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(left: 8.0, bottom: 10),
+                                          padding: const EdgeInsetsDirectional.only(
+                                              start: 8.0, bottom: 10),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
                                               style: TextStyle(fontSize: 14, height: 1.7)),
                                         ),

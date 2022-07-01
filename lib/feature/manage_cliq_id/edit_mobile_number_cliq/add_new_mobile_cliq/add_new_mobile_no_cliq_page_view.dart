@@ -18,9 +18,9 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class AddNewMobileNumberCliqPageView
-    extends BasePageViewWidget<AddNewMobileNumberCliqPageViewModel> {
+class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumberCliqPageViewModel> {
   AddNewMobileNumberCliqPageView(ProviderBase model) : super(model);
 
   @override
@@ -40,9 +40,7 @@ class AddNewMobileNumberCliqPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(editMobileNoViewModelProvider)
-                      .nextPage();
+                  ProviderScope.containerOf(context).read(editMobileNoViewModelProvider).nextPage();
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -51,23 +49,27 @@ class AddNewMobileNumberCliqPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     FocusScope.of(context).unfocus();
-                    if (details.primaryVelocity!.isNegative) {
-                      model.changeMobileNumber();
+                    if (StringUtils.isDirectionRTL(context)) {
+                      if (!details.primaryVelocity!.isNegative) {
+                        model.changeMobileNumber();
+                      }
+                    } else {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.changeMobileNumber();
+                      }
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: SingleChildScrollView(
                                   physics: ClampingScrollPhysics(),
-                                  child: AppStreamBuilder<
-                                      Resource<AllowedCountryListResponse>>(
+                                  child: AppStreamBuilder<Resource<AllowedCountryListResponse>>(
                                     stream: model.getAllowedCountryStream,
                                     initialData: Resource.none(),
                                     dataBuilder: (context, country) {
@@ -76,19 +78,13 @@ class AddNewMobileNumberCliqPageView
                                         initialData: CountryData(),
                                         dataBuilder: (context, countryData) {
                                           return AppTextField(
-                                            labelText: S
-                                                .of(context)
-                                                .mobileNumber
-                                                .toUpperCase(),
-                                            hintText:
-                                                S.of(context).mobileNumberHint,
+                                            labelText: S.of(context).mobileNumber.toUpperCase(),
+                                            hintText: S.of(context).mobileNumberHint,
                                             inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(
-                                                  12),
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(r'[0-9]')),
+                                              LengthLimitingTextInputFormatter(12),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                             ],
                                             controller: model.mobileController,
                                             key: model.mobileKey,
@@ -98,83 +94,55 @@ class AddNewMobileNumberCliqPageView
                                             prefixIcon: () {
                                               return InkWell(
                                                 onTap: () {
-                                                  MobileNumberDialog.show(
-                                                      context,
-                                                      title: S
-                                                          .of(context)
-                                                          .mobileNumber,
-                                                      selectedCountryData:
-                                                          model.countryData,
+                                                  MobileNumberDialog.show(context,
+                                                      title: S.of(context).mobileNumber,
+                                                      selectedCountryData: model.countryData,
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;
-                                                    model.setSelectedCountry(
-                                                        data);
+                                                    model.setSelectedCountry(data);
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                      countryDataList: country!
-                                                          .data!
-                                                          .contentData!
-                                                          .countryData);
+                                                      countryDataList:
+                                                          country!.data!.contentData!.countryData);
                                                 },
                                                 child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8.0),
+                                                  padding: EdgeInsets.only(top: 8.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                                    mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
                                                       Container(
                                                         height: 16,
                                                         width: 16,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark,
-                                                          shape:
-                                                              BoxShape.circle,
+                                                        decoration: BoxDecoration(
+                                                          color: Theme.of(context).primaryColorDark,
+                                                          shape: BoxShape.circle,
                                                         ),
-                                                        child: AppSvg.asset(countryData!
-                                                                    .isoCode3 !=
-                                                                null
+                                                        child: AppSvg.asset(countryData!.isoCode3 != null
                                                             ? "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase()}.svg"
                                                             : "assets/flags/jor.svg"),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    8.0),
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0),
                                                         child: Text(
-                                                          countryData.phoneCode!
-                                                                  .isNotEmpty
+                                                          countryData.phoneCode!.isNotEmpty
                                                               ? '+${countryData.phoneCode!}'
                                                               : "",
                                                           style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText1!
-                                                                .color,
+                                                            color:
+                                                                Theme.of(context).textTheme.bodyText1!.color,
                                                             fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                            fontWeight: FontWeight.w600,
                                                           ),
                                                         ),
                                                       ),
                                                       Container(
                                                           height: 16,
                                                           width: 16,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  right: 8),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .downArrow,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          margin: EdgeInsetsDirectional.only(end: 8),
+                                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                                              color: Theme.of(context)
                                                                   .primaryTextTheme
                                                                   .bodyText1!
                                                                   .color))
@@ -199,8 +167,7 @@ class AddNewMobileNumberCliqPageView
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

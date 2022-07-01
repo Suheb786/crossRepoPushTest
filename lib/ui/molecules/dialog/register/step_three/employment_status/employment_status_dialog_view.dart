@@ -47,7 +47,7 @@ class EmploymentStatusDialogView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
+                          padding: const EdgeInsetsDirectional.only(top: 32.0),
                           child: Center(
                             child: Text(
                               S.of(context).employmentStatusSmall,
@@ -116,7 +116,7 @@ class EmploymentStatusDialogView extends StatelessWidget {
                                 model.employmentStatusList[currentIndex!]);
                           },
                           child: Container(
-                            padding: EdgeInsets.all(16),
+                            padding: EdgeInsetsDirectional.all(16),
                             height: 57,
                             width: 57,
                             decoration: BoxDecoration(
@@ -130,7 +130,8 @@ class EmploymentStatusDialogView extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                          padding: const EdgeInsetsDirectional.only(
+                              top: 8.0, bottom: 16),
                           child: Center(
                             child: Text(
                               S.of(context).swipeDownToCancel,

@@ -16,8 +16,8 @@ class CreditCardVideoKycPage extends BasePage<CreditCardVideoKycViewModel> {
   CreditCardVideoKycPageState createState() => CreditCardVideoKycPageState();
 }
 
-class CreditCardVideoKycPageState extends BaseStatefulPage<
-    CreditCardVideoKycViewModel, CreditCardVideoKycPage> {
+class CreditCardVideoKycPageState
+    extends BaseStatefulPage<CreditCardVideoKycViewModel, CreditCardVideoKycPage> {
   @override
   ProviderBase provideBase() {
     return creditCardVideoKycViewModelProvider.call(widget.credentials);
@@ -41,6 +41,5 @@ class CreditCardVideKycCredentials {
   final String token;
   final String cardId;
 
-  CreditCardVideKycCredentials(
-      {this.channelName: "", this.token: "", this.cardId: ""});
+  CreditCardVideKycCredentials({this.channelName: "", this.token: "", this.cardId: ""});
 }

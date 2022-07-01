@@ -10,8 +10,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class NotifySuccessPageView
-    extends BasePageViewWidget<NotifySuccessPageViewModel> {
+class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewModel> {
   NotifySuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -19,8 +18,8 @@ class NotifySuccessPageView
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-              ModalRoute.withName(RoutePaths.Splash));
+          Navigator.pushNamedAndRemoveUntil(
+              context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
         }
       },
       child: Container(
@@ -48,8 +47,7 @@ class NotifySuccessPageView
                                 shape: BoxShape.circle,
                                 color: AppColor.vividYellow,
                               ),
-                              child:
-                                  Center(child: AppSvg.asset(AssetUtils.right)),
+                              child: Center(child: AppSvg.asset(AssetUtils.right)),
                             ),
                           ),
                         ],
@@ -89,13 +87,10 @@ class NotifySuccessPageView
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).accentColor,
-                          borderRadius: BorderRadius.circular(16)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                      child: AccountDetails(
-                          title: S.of(context).refTitle,
-                          value: model.arguments.referenceNo),
+                          color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      child:
+                          AccountDetails(title: S.of(context).refTitle, value: model.arguments.referenceNo),
                     ),
                   ],
                 ),

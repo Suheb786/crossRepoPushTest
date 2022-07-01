@@ -8,23 +8,20 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class ClaimOfTaxTreatyBenefitsPage
-    extends BasePage<ClaimOfTaxTreatyBenefitsPageViewModel> {
+class ClaimOfTaxTreatyBenefitsPage extends BasePage<ClaimOfTaxTreatyBenefitsPageViewModel> {
   final ClaimOfTaxTreatyBenefitsArguments _taxTreatyBenefitsArguments;
 
   ClaimOfTaxTreatyBenefitsPage(this._taxTreatyBenefitsArguments);
 
   @override
-  ClaimOfTaxTreatyBenefitsPageState createState() =>
-      ClaimOfTaxTreatyBenefitsPageState();
+  ClaimOfTaxTreatyBenefitsPageState createState() => ClaimOfTaxTreatyBenefitsPageState();
 }
 
-class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
-    ClaimOfTaxTreatyBenefitsPageViewModel, ClaimOfTaxTreatyBenefitsPage> {
+class ClaimOfTaxTreatyBenefitsPageState
+    extends BaseStatefulPage<ClaimOfTaxTreatyBenefitsPageViewModel, ClaimOfTaxTreatyBenefitsPage> {
   @override
   ProviderBase provideBase() {
-    return claimOfTaxTreatyBenefitsViewModelProvider
-        .call(widget._taxTreatyBenefitsArguments);
+    return claimOfTaxTreatyBenefitsViewModelProvider.call(widget._taxTreatyBenefitsArguments);
   }
 
   @override
@@ -39,9 +36,9 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Flexible(
@@ -54,9 +51,7 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
             ),
             Padding(
@@ -80,8 +75,7 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ClaimOfTaxTreatyBenefitsPageViewModel model) {
+  Widget buildView(BuildContext context, ClaimOfTaxTreatyBenefitsPageViewModel model) {
     return ClaimOfTaxTreatyBenefitsPageView(provideBase());
   }
 }
@@ -89,8 +83,7 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
 class ClaimOfTaxTreatyBenefitsArguments {
   final StaticRouteContent staticRouteContent;
 
-  ClaimOfTaxTreatyBenefitsArguments(
-      {this.staticRouteContent: StaticRouteContent.TAX_TREATY_BENEFITS});
+  ClaimOfTaxTreatyBenefitsArguments({this.staticRouteContent: StaticRouteContent.TAX_TREATY_BENEFITS});
 }
 
 enum StaticRouteContent { TAX_TREATY_BENEFITS, CREDIT_BUREAU }

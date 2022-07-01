@@ -108,8 +108,8 @@ class ManageDebitCardLimitsPageView
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25),
                                     topRight: Radius.circular(25))),
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, bottom: 30, top: 5),
+                            padding: const EdgeInsetsDirectional.only(
+                                start: 30, end: 30, bottom: 30, top: 5),
                             child: Column(
                               children: [
                                 Container(

@@ -8,18 +8,15 @@ class FatcaOptionItemWidget extends StatelessWidget {
   final AdditionalDataDropDownData item;
   final bool showFlag;
 
-  const FatcaOptionItemWidget(
-      {Key? key, required this.item, this.showFlag: false})
-      : super(key: key);
+  const FatcaOptionItemWidget({Key? key, required this.item, this.showFlag: false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 24, right: 20, top: 16, bottom: 16),
+      padding: EdgeInsetsDirectional.only(start: 24, end: 20, top: 16, bottom: 16),
       width: double.infinity,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16), color: Colors.transparent),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
         children: [
           Visibility(
@@ -27,7 +24,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
             child: Container(
               height: 32,
               width: 32,
-              margin: EdgeInsets.only(right: 16),
+              margin: EdgeInsetsDirectional.only(end: 16),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Theme.of(context).primaryColorDark,
@@ -45,9 +42,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: item.isSelected
-                    ? Theme.of(context).primaryColorDark
-                    : AppColor.gray),
+                color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
           ),
         ],
       ),

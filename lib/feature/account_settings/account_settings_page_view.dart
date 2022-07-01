@@ -35,7 +35,8 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
         children: [
           Expanded(
             child: Card(
-              margin: EdgeInsets.only(left: 24, right: 24, bottom: 40),
+              margin:
+                  EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 child: AppStreamBuilder<Resource<ProfileInfoResponse>>(

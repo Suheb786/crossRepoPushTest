@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
-import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/help_center/help_center_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -31,10 +30,8 @@ class EngagementTeamDialogView extends StatelessWidget {
     return BaseWidget<EngagementTeamDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
-            insetPadding:
-                EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 340),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 340),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
                 if (details.primaryVelocity! > 0) {
@@ -50,15 +47,13 @@ class EngagementTeamDialogView extends StatelessWidget {
                     child: Center(
                       child: Text(
                         S.of(context).engagementTeam,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 32.0, left: 24.0, right: 24.0),
+                      padding: const EdgeInsetsDirectional.only(top: 32.0, start: 24.0, end: 24.0),
                       child: Text(
                         S.of(context).engagementTeamDescription,
                         style: TextStyle(
@@ -72,8 +67,7 @@ class EngagementTeamDialogView extends StatelessWidget {
                   SizedBox(height: 24),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.HelpCenter);
+                      Navigator.pushReplacementNamed(context, RoutePaths.HelpCenter);
                     },
                     child: Container(
                       height: 72,
@@ -93,8 +87,7 @@ class EngagementTeamDialogView extends StatelessWidget {
                               )),
                           Text(
                             S.of(context).voiceCall,
-                            style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w600),
+                            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
@@ -117,8 +110,7 @@ class EngagementTeamDialogView extends StatelessWidget {
                     },
                     child: Container(
                       height: 72,
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
+                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColor.brightBlue),
                           borderRadius: BorderRadius.circular(8)),
@@ -134,8 +126,7 @@ class EngagementTeamDialogView extends StatelessWidget {
                               )),
                           Text(
                             S.of(context).liveChat,
-                            style: TextStyle(
-                                fontSize: 14.0, fontWeight: FontWeight.w600),
+                            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
@@ -148,10 +139,8 @@ class EngagementTeamDialogView extends StatelessWidget {
                     child: Center(
                       child: Text(
                         S.of(context).swipeDownToCancel,
-                        style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.dark_gray_1),
+                        style:
+                            TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                       ),
                     ),
                   ),

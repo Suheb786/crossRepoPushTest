@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EnterOtpForMobileNumberCliqPageView
     extends BasePageViewWidget<EnterOtpForMobileNumberCliqPageViewModel> {
@@ -36,8 +37,7 @@ class EnterOtpForMobileNumberCliqPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pop(context);
-                  model.showSuccessToast(
-                      'CliQ ID Mobile Number has been updated');
+                  model.showSuccessToast('CliQ ID Mobile Number has been updated');
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -51,28 +51,45 @@ class EnterOtpForMobileNumberCliqPageView
                             .page ==
                         1.0) {
                       FocusScope.of(context).unfocus();
-                      if (details.primaryVelocity!.isNegative) {
-                        model.validateOtp(
-                            mobile: ProviderScope.containerOf(context)
-                                .read(addNewMobileNumberCliqViewModelProvider)
-                                .mobileNumber,
-                            mobileCode: ProviderScope.containerOf(context)
-                                .read(addNewMobileNumberCliqViewModelProvider)
-                                .countryData
-                                .phoneCode!);
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.validateOtp(
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(editMobileNoViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(editMobileNoViewModelProvider)
-                            .previousPage();
-                        // .previous(animation: true);
+                        if (details.primaryVelocity!.isNegative) {
+                          model.validateOtp(
+                              mobile: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .mobileNumber,
+                              mobileCode: ProviderScope.containerOf(context)
+                                  .read(addNewMobileNumberCliqViewModelProvider)
+                                  .countryData
+                                  .phoneCode!);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(editMobileNoViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       }
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -98,12 +115,8 @@ class EnterOtpForMobileNumberCliqPageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontSize: 16,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  widgetBuilder:
-                                      (context, currentTimeRemaining) {
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
@@ -114,10 +127,7 @@ class EnterOtpForMobileNumberCliqPageView
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
@@ -125,10 +135,7 @@ class EnterOtpForMobileNumberCliqPageView
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );
                                   },
                                 ),
@@ -142,8 +149,7 @@ class EnterOtpForMobileNumberCliqPageView
                                           visible: isValid!,
                                           child: AnimatedButton(
                                             buttonHeight: 50,
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                           ),
                                         );
                                       }),

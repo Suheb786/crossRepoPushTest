@@ -6,15 +6,13 @@ class CustomSwitch extends StatefulWidget {
   final ValueChanged<bool>? onChanged;
   final Color? activeColor;
 
-  const CustomSwitch({Key? key, this.value, this.onChanged, this.activeColor})
-      : super(key: key);
+  const CustomSwitch({Key? key, this.value, this.onChanged, this.activeColor}) : super(key: key);
 
   @override
   _CustomSwitchState createState() => _CustomSwitchState();
 }
 
-class _CustomSwitchState extends State<CustomSwitch>
-    with SingleTickerProviderStateMixin {
+class _CustomSwitchState extends State<CustomSwitch> with SingleTickerProviderStateMixin {
   Animation? _circleAnimation;
 
   AnimationController? _animationController;
@@ -23,14 +21,12 @@ class _CustomSwitchState extends State<CustomSwitch>
   void initState() {
     super.initState();
 
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 60));
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 60));
 
     _circleAnimation = AlignmentTween(
             begin: widget.value! ? Alignment.centerRight : Alignment.centerLeft,
             end: widget.value! ? Alignment.centerLeft : Alignment.centerRight)
-        .animate(CurvedAnimation(
-            parent: _animationController!, curve: Curves.linear));
+        .animate(CurvedAnimation(parent: _animationController!, curve: Curves.linear));
   }
 
   @override
@@ -54,9 +50,7 @@ class _CustomSwitchState extends State<CustomSwitch>
             }
 
             setState(() {
-              widget.value == false
-                  ? widget.onChanged!(true)
-                  : widget.onChanged!(false);
+              widget.value == false ? widget.onChanged!(true) : widget.onChanged!(false);
             });
           },
           child: Container(
@@ -68,23 +62,19 @@ class _CustomSwitchState extends State<CustomSwitch>
                     color: _circleAnimation!.value == Alignment.centerLeft
                         ? Colors.grey.withOpacity(0.5)
                         : widget.activeColor!),
-                color: _circleAnimation!.value == Alignment.centerLeft
-                    ? AppColor.white
-                    : widget.activeColor),
+                color: _circleAnimation!.value == Alignment.centerLeft ? AppColor.white : widget.activeColor),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 4.0, bottom: 4.0, right: 4.0, left: 4.0),
+              padding: const EdgeInsetsDirectional.only(top: 4.0, bottom: 4.0, end: 4.0, start: 4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   _circleAnimation!.value == Alignment.centerRight
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          padding: const EdgeInsetsDirectional.only(start: 4.0, end: 4.0),
                           child: Text(
                             'Yes',
                             style: TextStyle(
-                                color: _circleAnimation!.value ==
-                                        Alignment.centerLeft
+                                color: _circleAnimation!.value == Alignment.centerLeft
                                     ? Colors.grey
                                     : Colors.white70,
 
@@ -108,12 +98,11 @@ class _CustomSwitchState extends State<CustomSwitch>
                   ),
                   _circleAnimation!.value == Alignment.centerLeft
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 4.0, right: 5.0),
+                          padding: const EdgeInsetsDirectional.only(start: 4.0, end: 5.0),
                           child: Text(
                             'No',
                             style: TextStyle(
-                                color: _circleAnimation!.value ==
-                                        Alignment.centerLeft
+                                color: _circleAnimation!.value == Alignment.centerLeft
                                     ? Colors.grey
                                     : Colors.white70,
                                 fontWeight: FontWeight.normal,

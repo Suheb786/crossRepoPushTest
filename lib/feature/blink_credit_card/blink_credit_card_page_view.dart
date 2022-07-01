@@ -62,7 +62,7 @@ class BlinkCreditCardPageView
                             alignment: Alignment.topLeft)),
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.only(top: 55, left: 24),
+                        padding: EdgeInsetsDirectional.only(top: 55, start: 24),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -71,26 +71,30 @@ class BlinkCreditCardPageView
                                   Navigator.pop(context);
                                 },
                                 child: AppSvg.asset(AssetUtils.leftArrow,
-                                    height: 24, width: 24)),
+                                    matchTextDirection: true,
+                                    height: 24,
+                                    width: 24)),
                             SizedBox(
                               height: 16,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 62, right: 86),
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 62, end: 86),
                               child: Card(
                                 child: Container(
                                   height: 325,
                                   decoration: BoxDecoration(
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(12)),
-                                  padding: EdgeInsets.only(top: 29, bottom: 16),
+                                  padding: EdgeInsetsDirectional.only(
+                                      top: 29, bottom: 16),
                                   child: Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 29, right: 52),
+                                        padding: EdgeInsetsDirectional.only(
+                                            start: 29, end: 52),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -102,7 +106,8 @@ class BlinkCreditCardPageView
                                       ),
                                       Image.asset(AssetUtils.line_black_white),
                                       Padding(
-                                        padding: EdgeInsets.only(right: 15.0),
+                                        padding: EdgeInsetsDirectional.only(
+                                            end: 15.0),
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: AppSvg.asset(
@@ -118,7 +123,7 @@ class BlinkCreditCardPageView
                               height: 28,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(right: 24.0),
+                              padding: EdgeInsetsDirectional.only(end: 24.0),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -133,7 +138,8 @@ class BlinkCreditCardPageView
                               height: 24,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(right: 55.0, left: 31),
+                              padding: EdgeInsetsDirectional.only(
+                                  end: 55.0, start: 31),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -150,7 +156,8 @@ class BlinkCreditCardPageView
                               height: 48,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 25.0, right: 49),
+                              padding: EdgeInsetsDirectional.only(
+                                  start: 25.0, end: 49),
                               child: Row(
                                 children: [
                                   AppStreamBuilder<bool>(
@@ -292,8 +299,8 @@ class BlinkCreditCardPageView
                                   return Visibility(
                                     visible: value!,
                                     child: Padding(
-                                      padding: EdgeInsets.only(
-                                          right: 24, bottom: 28),
+                                      padding: EdgeInsetsDirectional.only(
+                                          end: 24, bottom: 28),
                                       child: Center(
                                         child: AnimatedButton(
                                           buttonText:

@@ -18,8 +18,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 import 'fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page.dart';
 import 'fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page.dart';
 
-class RegisterStepFourPageView
-    extends BasePageViewWidget<RegisterStepFourViewModel> {
+class RegisterStepFourPageView extends BasePageViewWidget<RegisterStepFourViewModel> {
   RegisterStepFourPageView(ProviderBase model) : super(model);
 
   final List<Widget> pages = [
@@ -46,13 +45,10 @@ class RegisterStepFourPageView
               Text(
                 S.of(context).otherDetails,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -74,9 +70,7 @@ class RegisterStepFourPageView
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

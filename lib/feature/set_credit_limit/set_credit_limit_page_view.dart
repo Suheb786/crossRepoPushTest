@@ -19,11 +19,11 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-class SetCreditLimitPageView
-    extends BasePageViewWidget<SetCreditLimitViewModel> {
+class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel> {
   SetCreditLimitPageView(ProviderBase model) : super(model);
 
   @override
@@ -38,11 +38,9 @@ class SetCreditLimitPageView
                 onData: (data) {
                   if (data.status == Status.ERROR) {
                     if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.CreditCardApplicationFailure,
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                           arguments: CreditCardApplicationFailureArguments(
-                              creditFailureState:
-                                  CreditFailureState.InEligible));
+                              creditFailureState: CreditFailureState.InEligible));
                     } else {
                       model.showToastWithError(data.appError!);
                     }
@@ -54,26 +52,18 @@ class SetCreditLimitPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.CreditCardApplySuccess,
+                          Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplySuccess,
                               arguments: CreditCardApplySuccessArguments(
-                                  creditSuccessState:
-                                      CreditSuccessState.Submitted));
+                                  creditSuccessState: CreditSuccessState.Submitted));
                         } else if (data.status == Status.ERROR) {
-                          if (data.appError!.type ==
-                              ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE) {
-                            model.minimumSettlementKey.currentState!.isValid =
-                                false;
+                          if (data.appError!.type == ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE) {
+                            model.minimumSettlementKey.currentState!.isValid = false;
                             model.showErrorState();
                             model.showToastWithError(data.appError!);
-                          } else if (data.appError!.type ==
-                              ErrorType.USER_NOT_ELIGIBLE) {
-                            Navigator.pushReplacementNamed(context,
-                                RoutePaths.CreditCardApplicationFailure,
-                                arguments:
-                                    CreditCardApplicationFailureArguments(
-                                        creditFailureState:
-                                            CreditFailureState.InEligible));
+                          } else if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                            Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
+                                arguments: CreditCardApplicationFailureArguments(
+                                    creditFailureState: CreditFailureState.InEligible));
                           } else {
                             model.showToastWithError(data.appError!);
                           }
@@ -83,92 +73,67 @@ class SetCreditLimitPageView
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             FocusScope.of(context).unfocus();
-                            if (details.primaryVelocity!.isNegative) {
-                              model.setCreditLimit(loanValue!
-                                  .data!.getLoanValuesContent!.loanValueId!);
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                model.setCreditLimit(loanValue!.data!.getLoanValuesContent!.loanValueId!);
+                              }
+                            } else {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.setCreditLimit(loanValue!.data!.getLoanValuesContent!.loanValueId!);
+                              }
                             }
                           },
                           child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
-                            color: Theme.of(context)
-                                .cardTheme
-                                .copyWith(color: AppColor.white)
-                                .color,
+                            color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                             margin: EdgeInsets.zero,
-                            shadowColor: Theme.of(context)
-                                .primaryColorDark
-                                .withOpacity(0.32),
+                            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom -
-                                                  50 <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48),
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                      ? 0
+                                      : MediaQuery.of(context).viewInsets.bottom - 48),
                               child: SingleChildScrollView(
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).accentColor),
+                                  decoration: BoxDecoration(color: Theme.of(context).accentColor),
                                   padding: EdgeInsets.only(top: 38),
                                   child: AppStreamBuilder<SliderLimitValues>(
                                       stream: model.sliderValueStream,
-                                      initialData: SliderLimitValues(
-                                          maxValue: 0.0,
-                                          minValue: 0.0,
-                                          divisions: 0),
-                                      dataBuilder:
-                                          (context, sliderLimitValues) {
+                                      initialData:
+                                          SliderLimitValues(maxValue: 0.0, minValue: 0.0, divisions: 0),
+                                      dataBuilder: (context, sliderLimitValues) {
                                         return Column(
                                           children: [
                                             Text(
                                               S.of(context).creditLimit,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 10),
+                                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
                                             ),
                                             SizedBox(
                                               height: 8,
                                             ),
                                             Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 AppStreamBuilder<double>(
                                                     stream: model.valueStream,
-                                                    initialData:
-                                                        sliderLimitValues!
-                                                            .minValue!,
-                                                    dataBuilder:
-                                                        (context, value) {
+                                                    initialData: sliderLimitValues!.minValue!,
+                                                    dataBuilder: (context, value) {
                                                       return Text(
-                                                        value!
-                                                            .toInt()
-                                                            .toString(),
+                                                        value!.toInt().toString(),
                                                         style: TextStyle(
-                                                            fontSize: 24,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700),
+                                                            fontSize: 24, fontWeight: FontWeight.w700),
                                                       );
                                                     }),
                                                 Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 4, top: 5),
+                                                  padding: EdgeInsetsDirectional.only(start: 4, top: 5),
                                                   child: Text(
-                                                    "JOD",
+                                                    S.of(context).JOD,
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        color: AppColor
-                                                            .verLightGray4),
+                                                        fontWeight: FontWeight.w700,
+                                                        color: AppColor.verLightGray4),
                                                   ),
                                                 )
                                               ],
@@ -177,56 +142,36 @@ class SetCreditLimitPageView
                                               height: 16,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24),
+                                              padding: EdgeInsets.symmetric(horizontal: 24),
                                               child: Container(
                                                 height: 48,
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                    color: Theme.of(context)
-                                                        .backgroundColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100)),
+                                                    color: Theme.of(context).backgroundColor,
+                                                    borderRadius: BorderRadius.circular(100)),
                                                 child: AppStreamBuilder<double>(
                                                     stream: model.valueStream,
-                                                    initialData:
-                                                        sliderLimitValues
-                                                            .minValue!,
-                                                    dataBuilder:
-                                                        (context, val) {
+                                                    initialData: sliderLimitValues.minValue!,
+                                                    dataBuilder: (context, val) {
                                                       return SfTheme(
                                                         data: SfThemeData(
                                                             sliderThemeData: SfSliderThemeData(
-                                                                activeTrackColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                activeTrackHeight:
-                                                                    0,
+                                                                activeTrackColor: Colors.transparent,
+                                                                activeTrackHeight: 0,
                                                                 thumbRadius: 20,
-                                                                inactiveTrackColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                thumbColor: Theme.of(
-                                                                        context)
+                                                                inactiveTrackColor: Colors.transparent,
+                                                                thumbColor: Theme.of(context)
                                                                     .accentTextTheme
                                                                     .bodyText1!
                                                                     .color)),
                                                         child: SfSlider(
-                                                          min: sliderLimitValues
-                                                              .minValue!,
-                                                          max: sliderLimitValues
-                                                              .maxValue!,
-                                                          stepSize:
-                                                              sliderLimitValues
-                                                                  .divisions!
-                                                                  .toDouble(),
+                                                          min: sliderLimitValues.minValue!,
+                                                          max: sliderLimitValues.maxValue!,
+                                                          stepSize: sliderLimitValues.divisions!.toDouble(),
                                                           value: val!,
                                                           onChanged: (value) {
-                                                            print(
-                                                                "got value : $value");
-                                                            model.updatevalue(
-                                                                value);
+                                                            print("got value : $value");
+                                                            model.updatevalue(value);
                                                           },
                                                         ),
                                                       );
@@ -237,27 +182,22 @@ class SetCreditLimitPageView
                                               height: 8,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
                                               child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Text(
-                                                    '${sliderLimitValues.minValue!} JOD',
+                                                    '${sliderLimitValues.minValue!} ${S.of(context).JOD}',
                                                     style: TextStyle(
                                                         color: AppColor.gray,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                         fontSize: 10),
                                                   ),
                                                   Text(
-                                                    "${'${sliderLimitValues.maxValue!}'} JOD",
+                                                    "${'${sliderLimitValues.maxValue!}'} ${S.of(context).JOD}",
                                                     style: TextStyle(
                                                         color: AppColor.gray,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                         fontSize: 10),
                                                   ),
                                                 ],
@@ -267,30 +207,19 @@ class SetCreditLimitPageView
                                               height: 24,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
                                               child: AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .minimumSettlement,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
+                                                labelText: S.of(context).minimumSettlement,
+                                                hintText: S.of(context).pleaseEnter,
                                                 readOnly: true,
                                                 key: model.minimumSettlementKey,
-                                                controller: model
-                                                    .minimumSettlementController,
+                                                controller: model.minimumSettlementController,
                                                 onPressed: () {
-                                                  RelationshipWithCardHolderDialog.show(
-                                                      context,
-                                                      title: S
-                                                          .of(context)
-                                                          .minimumSettlement,
-                                                      relationSHipWithCardHolder:
-                                                          model.percentageList,
+                                                  RelationshipWithCardHolderDialog.show(context,
+                                                      title: S.of(context).minimumSettlement,
+                                                      relationSHipWithCardHolder: model.percentageList,
                                                       onSelected: (value) {
-                                                    model
-                                                        .updatedMinimumSettlementValue(
-                                                            value);
+                                                    model.updatedMinimumSettlementValue(value);
                                                     Navigator.pop(context);
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
@@ -300,12 +229,9 @@ class SetCreditLimitPageView
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                             ),
@@ -313,40 +239,30 @@ class SetCreditLimitPageView
                                               height: 15,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
                                               child: AppTextField(
                                                 key: model.nickNameKey,
-                                                labelText:
-                                                    S.of(context).nickName,
-                                                hintText:
-                                                    S.of(context).optional,
-                                                controller:
-                                                    model.nickNameController,
+                                                labelText: S.of(context).nickName,
+                                                hintText: S.of(context).optional,
+                                                controller: model.nickNameController,
                                               ),
                                             ),
                                             SizedBox(
                                               height: 16,
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 16),
+                                              padding: const EdgeInsets.symmetric(vertical: 16),
                                               child: InkWell(
                                                 onTap: () {
                                                   Navigator.pop(context);
                                                 },
                                                 child: Center(
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .backToCardSettings,
+                                                    S.of(context).backToCardSettings,
                                                     style: TextStyle(
-                                                      color:
-                                                          AppColor.brightBlue,
+                                                      color: AppColor.brightBlue,
                                                       fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                      fontWeight: FontWeight.w500,
                                                     ),
                                                   ),
                                                 ),
@@ -356,16 +272,9 @@ class SetCreditLimitPageView
                                               height: 16,
                                             ),
                                             AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
-                                              borderColor: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color,
-                                              textColor: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color,
+                                              buttonText: S.of(context).swipeToProceed,
+                                              borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                              textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             ),
                                             SizedBox(height: 28),
                                           ],

@@ -202,7 +202,7 @@ class FatcaDropDownField extends StatelessWidget {
               return Container(
                   height: 16,
                   width: 16,
-                  padding: EdgeInsets.only(right: 8),
+                  padding: EdgeInsetsDirectional.only(end: 8),
                   child: AppSvg.asset(AssetUtils.downArrow,
                       color: AppColor.dark_gray_1));
             },

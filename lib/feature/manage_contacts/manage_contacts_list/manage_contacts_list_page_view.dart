@@ -31,7 +31,7 @@ class ManageContactListPageView
         children: [
           SizedBox(height: 24),
           // Container(
-          //   margin: EdgeInsets.only(top: 8, bottom: 24),
+          //   margin: EdgeInsetsDirectional.only(top: 8, bottom: 24),
           //   height: 4,
           //   width: 64,
           //   decoration: BoxDecoration(
@@ -56,7 +56,7 @@ class ManageContactListPageView
                 child: Container(
                     height: 16,
                     width: 16,
-                    padding: EdgeInsets.only(right: 8),
+                    padding: EdgeInsetsDirectional.only(end: 8),
                     child: AppSvg.asset(AssetUtils.search,
                         color: Theme.of(context).primaryColorDark)),
               );
@@ -126,7 +126,7 @@ class ManageContactListPageView
                               Container(
                                 height: 96,
                                 width: 96,
-                                margin: EdgeInsets.only(bottom: 12),
+                                margin: EdgeInsetsDirectional.only(bottom: 12),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
@@ -135,7 +135,7 @@ class ManageContactListPageView
                                             .hintStyle!
                                             .color!)),
                                 child: Container(
-                                    padding: EdgeInsets.all(32),
+                                    padding: EdgeInsetsDirectional.all(32),
                                     child: AppSvg.asset(AssetUtils.contacts)),
                               ),
                               Text(

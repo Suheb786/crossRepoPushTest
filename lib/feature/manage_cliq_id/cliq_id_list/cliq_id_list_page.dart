@@ -12,8 +12,7 @@ class CliqIdListPage extends BasePage<CliqIdListPageViewModel> {
   CliqIdListPageState createState() => CliqIdListPageState();
 }
 
-class CliqIdListPageState
-    extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
+class CliqIdListPageState extends BaseStatefulPage<CliqIdListPageViewModel, CliqIdListPage> {
   @override
   ProviderBase provideBase() {
     return cliqIdListViewModelProvider;
@@ -32,7 +31,7 @@ class CliqIdListPageState
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 18.0),
+                padding: const EdgeInsetsDirectional.only(start: 18.0),
                 child: Container(
                   width: 28,
                 ),
@@ -40,16 +39,14 @@ class CliqIdListPageState
               Text(
                 S.of(context).manageCliqId,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.CreateCliqId);
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 24.0),
+                  padding: const EdgeInsetsDirectional.only(end: 24.0),
                   child: Icon(Icons.add, color: Theme.of(context).accentColor),
                 ),
               ),

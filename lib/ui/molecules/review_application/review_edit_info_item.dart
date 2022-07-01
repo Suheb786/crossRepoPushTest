@@ -9,8 +9,7 @@ class ReviewEditInfoItem extends StatelessWidget {
   final String title;
   final Function()? onTap;
 
-  const ReviewEditInfoItem({Key? key, required this.title, this.onTap})
-      : super(key: key);
+  const ReviewEditInfoItem({Key? key, required this.title, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +26,15 @@ class ReviewEditInfoItem extends StatelessWidget {
           children: [
             Flexible(
               child: Padding(
-                padding: EdgeInsets.only(left: 24.0),
+                padding: EdgeInsetsDirectional.only(start: 24.0),
                 child: Container(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Text(
                       title,
                       softWrap: true,
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: AppColor.vivid_orange),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColor.vivid_orange),
                     ),
                   ),
                 ),
@@ -50,7 +47,7 @@ class ReviewEditInfoItem extends StatelessWidget {
                 onTap?.call();
               },
               child: Padding(
-                padding: EdgeInsets.only(right: 17),
+                padding: EdgeInsetsDirectional.only(end: 17),
                 child: Container(
                     height: 34,
                     width: 34,
@@ -59,8 +56,7 @@ class ReviewEditInfoItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child:
-                          AppSvg.asset(AssetUtils.edit, width: 16, height: 16),
+                      child: AppSvg.asset(AssetUtils.edit, width: 16, height: 16),
                     )),
               ),
             ),

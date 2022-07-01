@@ -10,8 +10,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class UploadDocumentsLaterPageView
-    extends BasePageViewWidget<UploadDocumentsLaterViewModel> {
+class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLaterViewModel> {
   UploadDocumentsLaterPageView(ProviderBase model) : super(model);
 
   final List<Widget> pages = [DocumentUploadLaterPage(), BaseCardPage()];
@@ -50,13 +49,10 @@ class UploadDocumentsLaterPageView
               Text(
                 S.of(context).uploadDocuments,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -68,9 +64,7 @@ class UploadDocumentsLaterPageView
                     S.of(context).pleaseUploadNecessaryInfo,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

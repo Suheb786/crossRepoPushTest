@@ -19,17 +19,14 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
       padding: EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
           color: Theme.of(context).accentColor,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
           Container(
             margin: EdgeInsets.only(top: 8, bottom: 24),
             height: 4,
             width: 64,
-            decoration: BoxDecoration(
-                color: AppColor.white_gray,
-                borderRadius: BorderRadius.circular(4)),
+            decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
           ),
           Expanded(
             child: Center(
@@ -46,41 +43,32 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                  color: Theme.of(context)
-                                      .inputDecorationTheme
-                                      .hintStyle!
-                                      .color!)),
+                                  color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
                           child: Container(
-                              padding: EdgeInsets.all(32),
-                              child: AppSvg.asset(AssetUtils.cliqLogo)),
+                              padding: EdgeInsets.all(32), child: AppSvg.asset(AssetUtils.cliqLogo)),
                         ),
                         Text(
                           S.of(context).NoCliqContactYet,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
                   ),
                   Align(
-                    alignment: Alignment.bottomCenter,
+                    alignment: AlignmentDirectional.bottomCenter,
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.CreateCliqId);
                       },
                       child: Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                        margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                         padding: EdgeInsets.all(18),
                         height: 56,
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1
-                              ?.color,
+                          color: Theme.of(context).accentTextTheme.bodyText1?.color,
                         ),
                         child: Center(
                           child: Text(S.of(context).createCliqId,

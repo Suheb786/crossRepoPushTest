@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/language_enum.dart';
+
 class User {
   String? token;
   String? id;
@@ -18,6 +20,7 @@ class User {
   String? cifNumber;
   String? accountNumber;
   String? applicationId;
+  LanguageEnum? selectedLanguage;
 
   User(
       {this.token,
@@ -38,7 +41,8 @@ class User {
       this.accountNumber,
       this.newDevice: false,
       this.isBiometricEnabled: false,
-      this.applicationId: ""});
+      this.applicationId: "",
+      this.selectedLanguage: LanguageEnum.ENGLISH});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 

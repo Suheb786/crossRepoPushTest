@@ -23,8 +23,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class SendAmountToContactPageView
-    extends BasePageViewWidget<SendAmountToContactViewModel> {
+class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContactViewModel> {
   SendAmountToContactPageView(ProviderBase model) : super(model);
 
   @override
@@ -69,9 +68,7 @@ class SendAmountToContactPageView
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.dark_gray_2),
+                                fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
                           ),
                         ),
                       ],
@@ -94,15 +91,11 @@ class SendAmountToContactPageView
                       radius: 28,
                       backgroundColor: Theme.of(context).canvasColor,
                       child: Text(
-                        StringUtils.getFirstInitials(
-                            model.beneficiary.fullName),
+                        StringUtils.getFirstInitials(model.beneficiary.fullName),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
-                            color: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).primaryTextTheme.bodyText1!.color),
                       ),
                     ),
             ),
@@ -117,8 +110,7 @@ class SendAmountToContactPageView
               ),
             ),
             Text(
-              (model.beneficiary.nickName != null &&
-                      model.beneficiary.nickName!.isNotEmpty)
+              (model.beneficiary.nickName != null && model.beneficiary.nickName!.isNotEmpty)
                   ? model.beneficiary.nickName!
                   : model.beneficiary.fullName!,
               style: TextStyle(
@@ -127,23 +119,20 @@ class SendAmountToContactPageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16, right: 24, left: 24),
+              padding: EdgeInsetsDirectional.only(top: 16, end: 24, start: 24),
               child: Container(
                 decoration: BoxDecoration(
                     color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
-                padding:
-                    EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
+                padding: EdgeInsetsDirectional.only(top: 14, bottom: 14, start: 26, end: 34),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       S.of(context).transactionPurpose,
-                      style: TextStyle(
-                          color: AppColor.dark_gray_1,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(color: AppColor.dark_gray_1, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 2),
@@ -152,27 +141,21 @@ class SendAmountToContactPageView
                         children: [
                           AppStreamBuilder<String>(
                               stream: model.purposeStream,
-                              initialData:
-                                  (model.beneficiary.purposeParentDetails !=
-                                              null &&
-                                          model.beneficiary
-                                              .purposeParentDetails!.isNotEmpty)
-                                      ? model.beneficiary.purposeParentDetails!
-                                      : '',
+                              initialData: (model.beneficiary.purposeParentDetails != null &&
+                                      model.beneficiary.purposeParentDetails!.isNotEmpty)
+                                  ? model.beneficiary.purposeParentDetails!
+                                  : '',
                               dataBuilder: (context, value) {
                                 return Text(
                                   value!,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                                 );
                               }),
                           Visibility(
                             visible: true,
                             child: InkWell(
                               onTap: () {
-                                EditTransactionPurposeDialog.show(context,
-                                    onDismissed: () {
+                                EditTransactionPurposeDialog.show(context, onDismissed: () {
                                   Navigator.pop(context);
                                 }, onSelected: (value1, value2) {
                                   print("got value: $value1");
@@ -194,10 +177,7 @@ class SendAmountToContactPageView
                                 style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color),
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color),
                               ),
                             ),
                           )
@@ -208,16 +188,14 @@ class SendAmountToContactPageView
                       padding: EdgeInsets.only(top: 2),
                       child: AppStreamBuilder<String>(
                           stream: model.purposeDetailStream,
-                          initialData: (model.beneficiary.purposeDetails !=
-                                      null &&
+                          initialData: (model.beneficiary.purposeDetails != null &&
                                   model.beneficiary.purposeDetails!.isNotEmpty)
                               ? model.beneficiary.purposeDetails!
                               : '',
                           dataBuilder: (context, value) {
                             return Text(
                               value!,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                             );
                           }),
                     ),
@@ -226,57 +204,59 @@ class SendAmountToContactPageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 27, left: 24, right: 24),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AutoSizeText(
-                          model.currentPinValue,
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40,
-                              fontFamily: 'Montserrat',
-                              color: AppColor.black),
+              padding: EdgeInsetsDirectional.only(top: 27, start: 24, end: 24),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Directionality(
+                      textDirection:
+                          StringUtils.isDirectionRTL(context) ? TextDirection.rtl : TextDirection.ltr,
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AutoSizeText(
+                              model.currentPinValue,
+                              textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40,
+                                  fontFamily: 'Montserrat',
+                                  color: AppColor.black),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.only(top: 15, start: 4),
+                              child: Text(
+                                S.of(context).JOD,
+                                style: TextStyle(
+                                    color: AppColor.verLightGray4, fontSize: 16, fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 15, left: 4),
-                          child: Text(
-                            "JOD",
-                            style: TextStyle(
-                                color: AppColor.verLightGray4,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      onTap: () {
-                        model.clearValue();
-                      },
-                      child: AppSvg.asset(AssetUtils.backspaceBlue),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          model.clearValue();
+                        },
+                        child: AppSvg.asset(AssetUtils.backspaceBlue),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 24),
               child: Text(
                 S.of(context).accountBalance,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10,
-                    color: AppColor.dark_gray_1),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
@@ -296,13 +276,11 @@ class SendAmountToContactPageView
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 4.0, top: 2),
+                    padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                     child: Text(
-                      "JOD",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: AppColor.dark_gray_1),
+                      S.of(context).JOD,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                     ),
                   ),
                 ],
@@ -313,8 +291,7 @@ class SendAmountToContactPageView
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.SendAmountToContactSuccess,
+                    Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
                     Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
@@ -327,49 +304,51 @@ class SendAmountToContactPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           print("check send money success");
-                          model.transfer(data
-                              .data!.checkSendMoneyContent!.transferResponse!);
+                          model.transfer(data.data!.checkSendMoneyContent!.transferResponse!);
                         }
                       },
                       dataBuilder: (context, checkSendMoneyResponse) {
                         return Expanded(
-                          child: NumericKeyboard(
-                              onKeyboardTap: (value) {
-                                model.changeValue(value);
-                              },
-                              textColor: Colors.black,
-                              rightButtonFn: () {
-                                if (double.parse(model.currentPinValue) <= 0) {
-                                  model.showToastWithError(AppError(
-                                      cause: Exception(),
-                                      error: ErrorInfo(message: ""),
-                                      type: ErrorType.ZERO_AMOUNT));
-                                } else if (model.beneficiary.purpose == null &&
-                                    model.purposeDetail == null) {
-                                  model.showToastWithError(AppError(
-                                      cause: Exception(),
-                                      error: ErrorInfo(message: ""),
-                                      type: ErrorType.EMPTY_PURPOSE_DETAIL));
-                                } else {
-                                  model.checkSendMoney();
-                                }
-                              },
-                              leftIcon: Icon(
-                                Icons.circle,
-                                color: AppColor.black,
-                                size: 5,
-                              ),
-                              rightWidget: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xFF3CB4E5),
-                                child: Center(
-                                  child: AppSvg.asset(AssetUtils.next),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: NumericKeyboard(
+                                onKeyboardTap: (value) {
+                                  model.changeValue(value);
+                                },
+                                textColor: Colors.black,
+                                rightButtonFn: () {
+                                  if (double.parse(model.currentPinValue) <= 0) {
+                                    model.showToastWithError(AppError(
+                                        cause: Exception(),
+                                        error: ErrorInfo(message: ""),
+                                        type: ErrorType.ZERO_AMOUNT));
+                                  } else if (model.beneficiary.purpose == null &&
+                                      model.purposeDetail == null) {
+                                    model.showToastWithError(AppError(
+                                        cause: Exception(),
+                                        error: ErrorInfo(message: ""),
+                                        type: ErrorType.EMPTY_PURPOSE_DETAIL));
+                                  } else {
+                                    model.checkSendMoney();
+                                  }
+                                },
+                                leftIcon: Icon(
+                                  Icons.circle,
+                                  color: AppColor.black,
+                                  size: 5,
                                 ),
-                              ),
-                              leftButtonFn: () {
-                                model.changeValue(".");
-                              },
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                                rightWidget: CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: Color(0xFF3CB4E5),
+                                  child: Center(
+                                    child: AppSvg.asset(AssetUtils.next),
+                                  ),
+                                ),
+                                leftButtonFn: () {
+                                  model.changeValue(".");
+                                },
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                          ),
                         );
                       });
                 })

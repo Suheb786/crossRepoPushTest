@@ -12,12 +12,10 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class DcChangeMobileNumberSuccessPageView
-    extends BasePageViewWidget<DcChangeMobileNumberSuccessViewModel> {
+class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMobileNumberSuccessViewModel> {
   final DCChangeLinkedMobileNumberArguments _arguments;
 
-  DcChangeMobileNumberSuccessPageView(ProviderBase model, this._arguments)
-      : super(model);
+  DcChangeMobileNumberSuccessPageView(ProviderBase model, this._arguments) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -25,9 +23,7 @@ class DcChangeMobileNumberSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Padding(
@@ -77,7 +73,7 @@ class DcChangeMobileNumberSuccessPageView
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 24.0, left: 40, right: 40),
+                  padding: EdgeInsetsDirectional.only(top: 24.0, start: 40, end: 40),
                   child: Text(
                     S.of(context).dcMobileNumberUpdated,
                     textAlign: TextAlign.center,
@@ -110,10 +106,7 @@ class DcChangeMobileNumberSuccessPageView
                       S.of(context).toDashboard,
                       style: TextStyle(
                           color: _arguments.cardType == CardType.DEBIT
-                              ? Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color
+                              ? Theme.of(context).accentTextTheme.bodyText1!.color
                               : Theme.of(context).accentColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),

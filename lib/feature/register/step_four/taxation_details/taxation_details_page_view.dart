@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_s
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class TaxationDetailsPageView
     extends BasePageViewWidget<TaxationDetailsPageViewModel> {
@@ -90,8 +91,14 @@ class TaxationDetailsPageView
                                     .page ==
                                 0.0) {
                               FocusScope.of(context).unfocus();
-                              if (details.primaryVelocity!.isNegative) {
-                                model.setFatcaQuestionResponse();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.setFatcaQuestionResponse();
+                                }
+                              } else {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.setFatcaQuestionResponse();
+                                }
                               }
                             }
                           },

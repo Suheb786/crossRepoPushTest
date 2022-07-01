@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
   CreatePasswordView(ProviderBase model) : super(model);
@@ -106,12 +107,25 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                     .page ==
                                 1.0) {
                               FocusScope.of(context).unfocus();
-                              if (details.primaryVelocity!.isNegative) {
-                                model.createPassword();
+
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (details.primaryVelocity!.isNegative) {
+                                  ProviderScope.containerOf(context)
+                                      .read(
+                                          accountRegistrationViewModelProvider)
+                                      .previousPage();
+                                } else {
+                                  model.createPassword();
+                                }
                               } else {
-                                ProviderScope.containerOf(context)
-                                    .read(accountRegistrationViewModelProvider)
-                                    .previousPage();
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.createPassword();
+                                } else {
+                                  ProviderScope.containerOf(context)
+                                      .read(
+                                          accountRegistrationViewModelProvider)
+                                      .previousPage();
+                                }
                               }
                             }
                           },

@@ -21,9 +21,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class FatcaUSW8TaxPayersDetailsPageView
-    extends BasePageViewWidget<FatcaUSW8TaxPayersDetailsPageViewModel> {
+class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxPayersDetailsPageViewModel> {
   FatcaUSW8TaxPayersDetailsPageView(ProviderBase model) : super(model);
 
   @override
@@ -66,69 +66,65 @@ class FatcaUSW8TaxPayersDetailsPageView
                                 .page ==
                             3.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSW8TaxPayersDetails();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW8TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           } else {
-                            Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .previousPage();
-                              // .previous();
-                            });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW8TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           }
                         }
                       },
                       child: Card(
                         child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            50 <=
-                                        0
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom -
-                                        48),
+                                    : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: SingleChildScrollView(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 32, horizontal: 24),
+                                    padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         AppTextField(
-                                          labelText:
-                                              S.of(context).whichTaxPayerAreYou,
+                                          labelText: S.of(context).whichTaxPayerAreYou,
                                           hintText: S.of(context).pleaseSelect,
-                                          controller:
-                                              model.taxPayerTypeController,
+                                          controller: model.taxPayerTypeController,
                                           key: model.taxPayerTypeKey,
                                           readOnly: true,
                                           onPressed: () {
                                             TaxPayerDialog.show(context,
-                                                taxPayerTypeEnum:
-                                                    TaxPayerTypeEnum.W8,
-                                                onDismissed: () {
+                                                taxPayerTypeEnum: TaxPayerTypeEnum.W8, onDismissed: () {
                                               Navigator.pop(context);
                                             }, onSelected: (value) {
                                               Navigator.pop(context);
                                               model.taxPayerVisibility(true);
-                                              model.updateTaxPayerTypeField(
-                                                  value);
-                                              model
-                                                  .identificationNumberController
-                                                  .clear();
-                                              model
-                                                  .foreignIdentificationNumberController
-                                                  .clear();
-                                              model.referenceNumberController
-                                                  .clear();
+                                              model.updateTaxPayerTypeField(value);
+                                              model.identificationNumberController.clear();
+                                              model.foreignIdentificationNumberController.clear();
+                                              model.referenceNumberController.clear();
                                               model.isValid();
                                             });
                                           },
@@ -136,20 +132,16 @@ class FatcaUSW8TaxPayersDetailsPageView
                                             return Container(
                                                 height: 16,
                                                 width: 16,
-                                                padding:
-                                                    EdgeInsets.only(right: 8),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow,
-                                                    color:
-                                                        AppColor.dark_gray_1));
+                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                    color: AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
                                           height: 16,
                                         ),
                                         AppStreamBuilder<bool>(
-                                            stream:
-                                                model.taxPayerVisibilityStream,
+                                            stream: model.taxPayerVisibilityStream,
                                             initialData: false,
                                             dataBuilder: (context, isActive) {
                                               return Visibility(
@@ -157,53 +149,37 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                 child: Column(
                                                   children: [
                                                     AppStreamBuilder<bool>(
-                                                      stream: model
-                                                          .identificationVisibilityStream,
+                                                      stream: model.identificationVisibilityStream,
                                                       initialData: true,
-                                                      dataBuilder:
-                                                          (context, isVisible) {
+                                                      dataBuilder: (context, isVisible) {
                                                         return (isVisible!)
                                                             ? AppTextField(
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .usIDNumber
-                                                                    .toUpperCase(),
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseEnter,
-                                                                controller: model
-                                                                    .identificationNumberController,
-                                                                key: model
-                                                                    .identificationNumberKey,
-                                                                inputAction:
-                                                                    TextInputAction
-                                                                        .go,
+                                                                labelText:
+                                                                    S.of(context).usIDNumber.toUpperCase(),
+                                                                hintText: S.of(context).pleaseEnter,
+                                                                controller:
+                                                                    model.identificationNumberController,
+                                                                key: model.identificationNumberKey,
+                                                                inputAction: TextInputAction.go,
                                                                 labelIcon: () {
                                                                   return Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            4.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      onTap:
-                                                                          () {
+                                                                    padding: const EdgeInsetsDirectional.only(
+                                                                        start: 4.0),
+                                                                    child: InkWell(
+                                                                      onTap: () {
                                                                         Navigator.pushNamed(
                                                                             context,
-                                                                            RoutePaths.UsTaxPayerIdentificationNo);
+                                                                            RoutePaths
+                                                                                .UsTaxPayerIdentificationNo);
                                                                       },
-                                                                      child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .info,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark),
+                                                                      child: AppSvg.asset(AssetUtils.info,
+                                                                          color: Theme.of(context)
+                                                                              .primaryColorDark),
                                                                     ),
                                                                   );
                                                                 },
-                                                                onChanged:
-                                                                    (value) {
-                                                                  model
-                                                                      .isValid();
+                                                                onChanged: (value) {
+                                                                  model.isValid();
                                                                 },
                                                               )
                                                             : AppTextField(
@@ -211,40 +187,27 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                                     .of(context)
                                                                     .foreignTaxIdNumber
                                                                     .toUpperCase(),
-                                                                hintText: S
-                                                                    .of(context)
-                                                                    .pleaseEnter,
+                                                                hintText: S.of(context).pleaseEnter,
                                                                 controller: model
                                                                     .foreignIdentificationNumberController,
-                                                                key: model
-                                                                    .foreignIdentificationNumberKey,
-                                                                inputAction:
-                                                                    TextInputAction
-                                                                        .go,
+                                                                key: model.foreignIdentificationNumberKey,
+                                                                inputAction: TextInputAction.go,
                                                                 labelIcon: () {
                                                                   return Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            4.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      onTap:
-                                                                          () {
+                                                                    padding: const EdgeInsetsDirectional.only(
+                                                                        start: 4.0),
+                                                                    child: InkWell(
+                                                                      onTap: () {
                                                                         ///TODO: create foreign identification info page
                                                                       },
-                                                                      child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .info,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark),
+                                                                      child: AppSvg.asset(AssetUtils.info,
+                                                                          color: Theme.of(context)
+                                                                              .primaryColorDark),
                                                                     ),
                                                                   );
                                                                 },
-                                                                onChanged:
-                                                                    (value) {
-                                                                  model
-                                                                      .isValid();
+                                                                onChanged: (value) {
+                                                                  model.isValid();
                                                                 },
                                                               );
                                                       },
@@ -253,36 +216,21 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                       height: 16,
                                                     ),
                                                     AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .referenceNumber,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseEnter,
-                                                      controller: model
-                                                          .referenceNumberController,
-                                                      key: model
-                                                          .referenceNumberKey,
-                                                      inputAction:
-                                                          TextInputAction.go,
+                                                      labelText: S.of(context).referenceNumber,
+                                                      hintText: S.of(context).pleaseEnter,
+                                                      controller: model.referenceNumberController,
+                                                      key: model.referenceNumberKey,
+                                                      inputAction: TextInputAction.go,
                                                       labelIcon: () {
                                                         return Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 4.0),
+                                                          padding: const EdgeInsets.only(left: 4.0),
                                                           child: InkWell(
                                                             onTap: () {
                                                               Navigator.pushNamed(
-                                                                  context,
-                                                                  RoutePaths
-                                                                      .ReferenceNumber);
+                                                                  context, RoutePaths.ReferenceNumber);
                                                             },
-                                                            child: AppSvg.asset(
-                                                                AssetUtils.info,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .primaryColorDark),
+                                                            child: AppSvg.asset(AssetUtils.info,
+                                                                color: Theme.of(context).primaryColorDark),
                                                           ),
                                                         );
                                                       },
@@ -299,24 +247,16 @@ class FatcaUSW8TaxPayersDetailsPageView
                                           initialData: false,
                                           dataBuilder: (context, isActive) {
                                             return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 24.0),
+                                              padding: const EdgeInsets.only(top: 24.0),
                                               child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   AppSwitchLabelWidget(
-                                                    label: S
-                                                        .of(context)
-                                                        .wantToClaimTaxTreatyBenefits,
-                                                    inActiveText:
-                                                        S.of(context).no,
-                                                    activeText:
-                                                        S.of(context).yes,
+                                                    label: S.of(context).wantToClaimTaxTreatyBenefits,
+                                                    inActiveText: S.of(context).no,
+                                                    activeText: S.of(context).yes,
                                                     onToggle: (value) {
-                                                      model
-                                                          .updateTaxTreatyBenefitsValue(
-                                                              value);
+                                                      model.updateTaxTreatyBenefitsValue(value);
                                                       model.isValid();
                                                     },
                                                     isActive: isActive,
@@ -327,27 +267,20 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                   InkWell(
                                                     onTap: () {
                                                       Navigator.pushNamed(
-                                                          context,
-                                                          RoutePaths
-                                                              .TaxTreatyBenefits,
+                                                          context, RoutePaths.TaxTreatyBenefits,
                                                           arguments: ClaimOfTaxTreatyBenefitsArguments(
                                                               staticRouteContent:
-                                                                  StaticRouteContent
-                                                                      .TAX_TREATY_BENEFITS));
+                                                                  StaticRouteContent.TAX_TREATY_BENEFITS));
                                                     },
                                                     child: Text(
-                                                      S
-                                                          .of(context)
-                                                          .whatIsTaxTreatyBenefits,
+                                                      S.of(context).whatIsTaxTreatyBenefits,
                                                       style: TextStyle(
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color,
                                                           fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontWeight: FontWeight.w600),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -362,76 +295,45 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                               .of(context)
                                                               .beneficialOwnerIsAResidenceOf
                                                               .toUpperCase(),
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseSelect,
-                                                          controller: model
-                                                              .beneficialCountryController,
-                                                          key: model
-                                                              .beneficialCountryKey,
+                                                          hintText: S.of(context).pleaseSelect,
+                                                          controller: model.beneficialCountryController,
+                                                          key: model.beneficialCountryKey,
                                                           readOnly: true,
                                                           onPressed: () {
-                                                            Future.delayed(
-                                                                Duration(
-                                                                    milliseconds:
-                                                                        200),
-                                                                () {
-                                                              CountryDialog.show(
-                                                                  context,
+                                                            Future.delayed(Duration(milliseconds: 200), () {
+                                                              CountryDialog.show(context,
                                                                   title: S
-                                                                      .of(
-                                                                          context)
+                                                                      .of(context)
                                                                       .beneficialOwnerIsAResidenceOf,
-                                                                  onDismissed:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              }, onSelected:
-                                                                      (value) {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.beneficialCountryController
-                                                                        .text =
-                                                                    value
-                                                                        .countryName!;
+                                                                  onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              }, onSelected: (value) {
+                                                                Navigator.pop(context);
+                                                                model.beneficialCountryController.text =
+                                                                    value.countryName!;
                                                                 model.isValid();
                                                               });
                                                             });
                                                           },
-                                                          suffixIcon:
-                                                              (value, data) {
+                                                          suffixIcon: (value, data) {
                                                             return Container(
                                                                 height: 16,
                                                                 width: 16,
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        right:
-                                                                            8),
-                                                                child: AppSvg.asset(
-                                                                    AssetUtils
-                                                                        .downArrow,
-                                                                    color: AppColor
-                                                                        .dark_gray_1));
+                                                                padding: EdgeInsets.only(right: 8),
+                                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                                    color: AppColor.dark_gray_1));
                                                           },
                                                         ),
                                                         SizedBox(
                                                           height: 16,
                                                         ),
                                                         AppTextField(
-                                                          labelText: S
-                                                              .of(context)
-                                                              .provisionClaim
-                                                              .toUpperCase(),
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseSelect,
-                                                          controller: model
-                                                              .provisionClaimController,
-                                                          key: model
-                                                              .provisionClaimKey,
-                                                          inputType:
-                                                              TextInputType
-                                                                  .text,
+                                                          labelText:
+                                                              S.of(context).provisionClaim.toUpperCase(),
+                                                          hintText: S.of(context).pleaseSelect,
+                                                          controller: model.provisionClaimController,
+                                                          key: model.provisionClaimKey,
+                                                          inputType: TextInputType.text,
                                                           onChanged: (value) {
                                                             model.isValid();
                                                           },
@@ -440,20 +342,12 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                           height: 16,
                                                         ),
                                                         AppTextField(
-                                                          labelText: S
-                                                              .of(context)
-                                                              .treatyClaimRate
-                                                              .toUpperCase(),
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseEnter,
-                                                          controller: model
-                                                              .treatyClaimRateController,
-                                                          key: model
-                                                              .treatyClaimRateKey,
-                                                          inputType:
-                                                              TextInputType
-                                                                  .text,
+                                                          labelText:
+                                                              S.of(context).treatyClaimRate.toUpperCase(),
+                                                          hintText: S.of(context).pleaseEnter,
+                                                          controller: model.treatyClaimRateController,
+                                                          key: model.treatyClaimRateKey,
+                                                          inputType: TextInputType.text,
                                                           onChanged: (value) {
                                                             model.isValid();
                                                           },
@@ -462,20 +356,11 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                           height: 16,
                                                         ),
                                                         AppTextField(
-                                                          labelText: S
-                                                              .of(context)
-                                                              .typeOfIncome
-                                                              .toUpperCase(),
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseEnter,
-                                                          controller: model
-                                                              .incomeTypeController,
-                                                          key: model
-                                                              .incomeTypeKey,
-                                                          inputAction:
-                                                              TextInputAction
-                                                                  .go,
+                                                          labelText: S.of(context).typeOfIncome.toUpperCase(),
+                                                          hintText: S.of(context).pleaseEnter,
+                                                          controller: model.incomeTypeController,
+                                                          key: model.incomeTypeKey,
+                                                          inputAction: TextInputAction.go,
                                                           onChanged: (value) {
                                                             model.isValid();
                                                           },
@@ -484,19 +369,11 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                           height: 16,
                                                         ),
                                                         AppTextField(
-                                                          labelText: S
-                                                              .of(context)
-                                                              .explanation,
-                                                          hintText: S
-                                                              .of(context)
-                                                              .pleaseEnter,
-                                                          controller: model
-                                                              .explanationController,
-                                                          key: model
-                                                              .explanationKey,
-                                                          inputAction:
-                                                              TextInputAction
-                                                                  .go,
+                                                          labelText: S.of(context).explanation,
+                                                          hintText: S.of(context).pleaseEnter,
+                                                          controller: model.explanationController,
+                                                          key: model.explanationKey,
+                                                          inputAction: TextInputAction.go,
                                                           onChanged: (value) {
                                                             model.isValid();
                                                           },
@@ -519,13 +396,10 @@ class FatcaUSW8TaxPayersDetailsPageView
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16.0, bottom: 32),
+                                        padding: const EdgeInsets.only(top: 16.0, bottom: 32),
                                         child: Visibility(
                                           visible: isValid!,
-                                          child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed),
+                                          child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                         ),
                                       );
                                     },

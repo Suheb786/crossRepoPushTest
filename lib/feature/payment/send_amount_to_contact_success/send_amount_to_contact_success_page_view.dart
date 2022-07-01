@@ -11,8 +11,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
-class SendAmountToContactSuccessPageView
-    extends BasePageViewWidget<SendAmountToContactSuccessViewModel> {
+class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountToContactSuccessViewModel> {
   SendAmountToContactSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -21,9 +20,7 @@ class SendAmountToContactSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           // ProviderScope.containerOf(context)
           //     .read(appHomeViewModelProvider)
           //     .triggerSentMoneyPopup();
@@ -60,18 +57,14 @@ class SendAmountToContactSuccessPageView
                       model.arguments.amount.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 28),
+                          color: Theme.of(context).accentColor, fontWeight: FontWeight.w700, fontSize: 28),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 8, left: 5.0),
                       child: Text(
-                        "JOD",
+                        S.of(context).JOD,
                         style: TextStyle(
-                            color: AppColor.very_light_red,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14),
+                            color: AppColor.very_light_red, fontWeight: FontWeight.w700, fontSize: 14),
                       ),
                     ),
                   ],
@@ -84,9 +77,7 @@ class SendAmountToContactSuccessPageView
                   maxLines: 3,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 24),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
                 ),
               ),
               Padding(
@@ -95,9 +86,7 @@ class SendAmountToContactSuccessPageView
                   model.arguments.name ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14),
+                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
                 ),
               ),
               Padding(
@@ -105,19 +94,15 @@ class SendAmountToContactSuccessPageView
                 child: Text(
                   model.arguments.iban ?? '',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: AppColor.very_light_red,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
+                  style: TextStyle(color: AppColor.very_light_red, fontWeight: FontWeight.w600, fontSize: 12),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 43, right: 24, left: 24),
+                padding: EdgeInsetsDirectional.only(top: 43, end: 24, start: 24),
                 child: Container(
                   padding: EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.circular(16)),
+                      color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
                   child: Column(
                     children: [
                       Row(
@@ -165,9 +150,7 @@ class SendAmountToContactSuccessPageView
                                   text:
                                       "${TimeUtils.getFormattedTimeForTransaction(model.arguments.transferDate.toString())}",
                                   style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.dark_gray_1),
+                                      fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_1),
                                 )
                               ]),
                             )
@@ -186,21 +169,15 @@ class SendAmountToContactSuccessPageView
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AppSvg.asset(AssetUtils.share,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color),
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       Padding(
-                        padding: EdgeInsets.only(left: 11),
+                        padding: EdgeInsetsDirectional.only(start: 11),
                         child: Text(
                           S.of(context).shareMyReceipt,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color),
+                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         ),
                       )
                     ],
@@ -222,9 +199,7 @@ class SendAmountToContactSuccessPageView
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
+                        color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -239,10 +214,7 @@ class SendAmountToContactSuccessPageView
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     ),
                     Padding(
@@ -250,9 +222,7 @@ class SendAmountToContactSuccessPageView
                       child: Text(
                         "0:07",
                         style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).accentColor),
+                            fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                       ),
                     ),
                   ],

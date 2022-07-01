@@ -17,9 +17,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class CreditCardPayBackPageView
-    extends BasePageViewWidget<CreditCardPayBackPageModel> {
+class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPageModel> {
   CreditCardPayBackPageView(ProviderBase model) : super(model);
 
   @override
@@ -36,12 +36,10 @@ class CreditCardPayBackPageView
             initialData: Resource.none(),
             onData: (data) {
               if (data.status == Status.SUCCESS) {
-                Navigator.pushNamed(
-                    context, RoutePaths.CreditCardPayBackSuccess,
+                Navigator.pushNamed(context, RoutePaths.CreditCardPayBackSuccess,
                     arguments: CreditCardPayBackSuccessArguments(
                         payBackAmount: model.currentPinValue,
-                        accountHolderName:
-                            model.payBackArguments.accountHolderName));
+                        accountHolderName: model.payBackArguments.accountHolderName));
               }
             },
             dataBuilder: (context, snapshot) {
@@ -57,8 +55,7 @@ class CreditCardPayBackPageView
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16),
-                                bottomRight: Radius.circular(16))),
+                                bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
                       ),
                       Positioned(
                           bottom: -8,
@@ -73,10 +70,8 @@ class CreditCardPayBackPageView
                     padding: EdgeInsets.only(top: 8),
                     child: Text(
                       S.of(context).backToDashboard,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                          color: AppColor.dark_gray_1),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
                     ),
                   ),
                   SizedBox(
@@ -87,73 +82,75 @@ class CreditCardPayBackPageView
                       children: [
                         Text(
                           S.of(context).payBack,
-                          style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20),
+                          style:
+                              TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w400, fontSize: 20),
                         ),
                         Text(
                           S.of(context).myCreditCard,
-                          style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20),
+                          style:
+                              TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w600, fontSize: 20),
                         ),
                         SizedBox(height: 32),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width /
-                                        4.5),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Flexible(
-                                      child: AutoSizeText(model.currentPinValue,
-                                          textAlign: TextAlign.center,
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 40,
-                                              fontFamily: 'Montserrat',
-                                              color: AppColor.black)),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  margin: EdgeInsetsDirectional.only(
+                                      start: MediaQuery.of(context).size.width / 4.5),
+                                  child: Directionality(
+                                    textDirection: StringUtils.isDirectionRTL(context)
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        Flexible(
+                                          child: AutoSizeText(model.currentPinValue,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 40,
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppColor.black)),
+                                        ),
+                                        SizedBox(
+                                          width: 4,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(bottom: 8.0),
+                                          child: Text(S.of(context).JOD,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14,
+                                                  fontFamily: 'Montserrat',
+                                                  color: AppColor.verLightGray4)),
+                                        ),
+                                      ],
                                     ),
-                                    SizedBox(
-                                      width: 4,
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 8.0),
-                                      child: Text("JOD",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 14,
-                                              fontFamily: 'Montserrat',
-                                              color: AppColor.verLightGray4)),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    model.updateValue();
-                                  },
-                                  child: Icon(
-                                    Icons.backspace,
-                                    color: Colors.blue,
-                                    size: 30,
-                                  )),
-                            ),
-                          ],
+                              Expanded(
+                                flex: 1,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      model.updateValue();
+                                    },
+                                    child: Icon(
+                                      Icons.backspace,
+                                      color: Colors.blue,
+                                      size: 30,
+                                    )),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -163,10 +160,8 @@ class CreditCardPayBackPageView
                             Container(
                               width: MediaQuery.of(context).size.width / 2.45,
                               padding: EdgeInsets.symmetric(vertical: 15),
-                              margin: EdgeInsets.only(
-                                  left:
-                                      MediaQuery.of(context).size.width / 13.5,
-                                  right: 10),
+                              margin: EdgeInsetsDirectional.only(
+                                  start: MediaQuery.of(context).size.width / 13.5, end: 10),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.blue),
                                   borderRadius: BorderRadius.circular(20)),
@@ -179,9 +174,7 @@ class CreditCardPayBackPageView
                                           fontSize: 10,
                                           fontFamily: 'Montserrat',
                                           color: AppColor.verLightGray4)),
-                                  Text(
-                                      model
-                                          .payBackArguments.minDuePayBackAmount,
+                                  Text(model.payBackArguments.minDuePayBackAmount,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
@@ -193,9 +186,8 @@ class CreditCardPayBackPageView
                             Container(
                               width: MediaQuery.of(context).size.width / 2.45,
                               padding: EdgeInsets.symmetric(vertical: 15),
-                              margin: EdgeInsets.only(
-                                  right:
-                                      MediaQuery.of(context).size.width / 13.5),
+                              margin:
+                                  EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.blue),
                                   borderRadius: BorderRadius.circular(20)),
@@ -243,7 +235,7 @@ class CreditCardPayBackPageView
                               SizedBox(
                                 width: 5,
                               ),
-                              Text("JOD",
+                              Text(S.of(context).JOD,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12,
@@ -252,56 +244,57 @@ class CreditCardPayBackPageView
                             ],
                           )),
                         ])),
-                        NumericKeyboard(
-                            onKeyboardTap: (value) {
-                              model.changeValue(value);
-                            },
-                            textColor: AppColor.black,
-                            rightButtonFn: () {
-                              // if (model.payBackArguments.minDuePayBackAmount ==
-                              //         '0.0' ||
-                              //     model.payBackArguments.totalMinDueAmount ==
-                              //         '0.0') {
-                              //   model.showToastWithError(AppError(
-                              //       cause: Exception(),
-                              //       error: ErrorInfo(message: ''),
-                              //       type: ErrorType.NO_DUE_AMOUNT));
-                              // } else
-                              // if (num.parse(model.currentPinValue) < 0) {
-                              //   model.showToastWithError(AppError(
-                              //       cause: Exception(),
-                              //       error: ErrorInfo(message: ''),
-                              //       type: ErrorType.ZERO_AMOUNT));
-                              // }
-                              // else {
-                              //   model.payBackCreditCard();
-                              // }
-                              if (num.parse(model.currentPinValue) >
-                                  num.parse(
-                                      model.payBackArguments.accountBalance)) {
-                                model.showToastWithError(AppError(
-                                    cause: Exception(),
-                                    error: ErrorInfo(message: ''),
-                                    type: ErrorType.INVALID_ACCOUNT_BALANCE));
-                              } else {
-                                model.payBackCreditCard();
-                              }
-                            },
-                            leftIcon: Icon(
-                              Icons.circle,
-                              color: AppColor.black,
-                              size: 5,
-                            ),
-                            rightWidget: CircleAvatar(
-                              radius: 30,
-                              backgroundColor: Color(0xFF3CB4E5),
-                              child:
-                                  Center(child: AppSvg.asset(AssetUtils.next)),
-                            ),
-                            leftButtonFn: () {
-                              model.changeValue('.');
-                            },
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: NumericKeyboard(
+                              onKeyboardTap: (value) {
+                                model.changeValue(value);
+                              },
+                              textColor: AppColor.black,
+                              rightButtonFn: () {
+                                // if (model.payBackArguments.minDuePayBackAmount ==
+                                //         '0.0' ||
+                                //     model.payBackArguments.totalMinDueAmount ==
+                                //         '0.0') {
+                                //   model.showToastWithError(AppError(
+                                //       cause: Exception(),
+                                //       error: ErrorInfo(message: ''),
+                                //       type: ErrorType.NO_DUE_AMOUNT));
+                                // } else
+                                // if (num.parse(model.currentPinValue) < 0) {
+                                //   model.showToastWithError(AppError(
+                                //       cause: Exception(),
+                                //       error: ErrorInfo(message: ''),
+                                //       type: ErrorType.ZERO_AMOUNT));
+                                // }
+                                // else {
+                                //   model.payBackCreditCard();
+                                // }
+                                if (num.parse(model.currentPinValue) >
+                                    num.parse(model.payBackArguments.accountBalance)) {
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ''),
+                                      type: ErrorType.INVALID_ACCOUNT_BALANCE));
+                                } else {
+                                  model.payBackCreditCard();
+                                }
+                              },
+                              leftIcon: Icon(
+                                Icons.circle,
+                                color: AppColor.black,
+                                size: 5,
+                              ),
+                              rightWidget: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xFF3CB4E5),
+                                child: Center(child: AppSvg.asset(AssetUtils.next)),
+                              ),
+                              leftButtonFn: () {
+                                model.changeValue('.');
+                              },
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                        ),
                       ],
                     ),
                   )

@@ -13,10 +13,9 @@ class CountryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 24, right: 20, top: 20, bottom: 20),
+      padding: EdgeInsetsDirectional.only(start: 24, end: 20, top: 20, bottom: 20),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: item.isSelected ? AppColor.very_light_gray : null),
+          borderRadius: BorderRadius.circular(16), color: item.isSelected ? AppColor.very_light_gray : null),
       child: Row(
         children: <Widget>[
           Container(
@@ -25,8 +24,7 @@ class CountryListItem extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: AssetImage(item.countryFlag ?? "",
-                          package: "country_calling_code_picker"),
+                      image: AssetImage(item.countryFlag ?? "", package: "country_calling_code_picker"),
                       fit: BoxFit.cover))),
           Expanded(
             child: Padding(
@@ -35,14 +33,11 @@ class CountryListItem extends StatelessWidget {
                 item.countryName ?? "",
                 softWrap: true,
                 maxLines: 2,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: item.isSelected ? AppColor.black : AppColor.white),
+                style: TextStyle(fontSize: 14, color: item.isSelected ? AppColor.black : AppColor.white),
               ),
             ),
           ),
-          Visibility(
-              visible: item.isSelected, child: AppSvg.asset(AssetUtils.check))
+          Visibility(visible: item.isSelected, child: AppSvg.asset(AssetUtils.check))
         ],
       ),
     );

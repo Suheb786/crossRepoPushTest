@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class VideoCallAgentSelectionPageView
     extends BasePageViewWidget<VideoCallAgentSelectionPageViewModel> {
@@ -141,23 +142,49 @@ class VideoCallAgentSelectionPageView
                                               .appSwiperController
                                               .page ==
                                           1.0) {
-                                        if (details.primaryDelta!.isNegative) {
-                                          ///don't allow user to go document page it will depend on customer status
-                                          // Future.delayed(Duration(milliseconds: 500), () {
-                                          //   ProviderScope.containerOf(context)
-                                          //       .read(registerStepFiveViewModelProvider)
-                                          //       .registrationStepFivePageController
-                                          //       .move(4, animation: false);
-                                          // });
+                                        if (StringUtils.isDirectionRTL(
+                                            context)) {
+                                          if (!details
+                                              .primaryDelta!.isNegative) {
+                                            ///don't allow user to go document page it will depend on customer status
+                                            // Future.delayed(Duration(milliseconds: 500), () {
+                                            //   ProviderScope.containerOf(context)
+                                            //       .read(registerStepFiveViewModelProvider)
+                                            //       .registrationStepFivePageController
+                                            //       .move(4, animation: false);
+                                            // });
+                                          } else {
+                                            Future.delayed(
+                                                Duration(milliseconds: 500),
+                                                () {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      videoCallViewModelProvider)
+                                                  .previousPage();
+                                              // .previous();
+                                            });
+                                          }
                                         } else {
-                                          Future.delayed(
-                                              Duration(milliseconds: 500), () {
-                                            ProviderScope.containerOf(context)
-                                                .read(
-                                                    videoCallViewModelProvider)
-                                                .previousPage();
-                                            // .previous();
-                                          });
+                                          if (details
+                                              .primaryDelta!.isNegative) {
+                                            ///don't allow user to go document page it will depend on customer status
+                                            // Future.delayed(Duration(milliseconds: 500), () {
+                                            //   ProviderScope.containerOf(context)
+                                            //       .read(registerStepFiveViewModelProvider)
+                                            //       .registrationStepFivePageController
+                                            //       .move(4, animation: false);
+                                            // });
+                                          } else {
+                                            Future.delayed(
+                                                Duration(milliseconds: 500),
+                                                () {
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                      videoCallViewModelProvider)
+                                                  .previousPage();
+                                              // .previous();
+                                            });
+                                          }
                                         }
                                       }
                                     },

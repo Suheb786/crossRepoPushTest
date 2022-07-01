@@ -28,10 +28,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
   final Function()? showError;
 
   ChangeMyNumberDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      required this.countryDataList,
-      this.showError});
+      {this.onDismissed, this.onSelected, required this.countryDataList, this.showError});
 
   ProviderBase providerBase() {
     return changeMyNumberDialogViewModelProvider;
@@ -43,13 +40,9 @@ class ChangeMyNumberDialogView extends StatelessWidget {
     return BaseWidget<ChangeMyNumberDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding:
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -58,8 +51,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                   },
                   child: AppKeyBoardHide(
                     child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -69,16 +61,13 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                             stream: model!.getSelectedCountryStream,
                             dataBuilder: (context, selectedCountry) {
                               return AppTextField(
-                                labelText:
-                                    S.of(context).mobileNumber.toUpperCase(),
+                                labelText: S.of(context).mobileNumber.toUpperCase(),
                                 hintText: S.of(context).mobileNumberHint,
                                 inputType: TextInputType.phone,
                                 inputAction: TextInputAction.done,
                                 inputFormatters: [
-                                  LengthLimitingTextInputFormatter(
-                                      model.countryData.mobileMax),
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp(r'[0-9]')),
+                                  LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                 ],
                                 controller: model.mobileNumberController,
                                 key: model.mobileNumberKey,
@@ -88,8 +77,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                     onTap: () {
                                       MobileNumberDialog.show(context,
                                           title: S.of(context).mobileNumber,
-                                          selectedCountryData: model
-                                              .countryData, onSelected: (data) {
+                                          selectedCountryData: model.countryData, onSelected: (data) {
                                         Navigator.pop(context);
                                         model.countryData = data;
                                         model.setSelectedCountry(data);
@@ -106,29 +94,21 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                             height: 16,
                                             width: 16,
                                             decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColorDark,
+                                              color: Theme.of(context).primaryColorDark,
                                               shape: BoxShape.circle,
                                             ),
-                                            child: AppSvg.asset(selectedCountry!
-                                                        .isoCode3 !=
-                                                    null
+                                            child: AppSvg.asset(selectedCountry!.isoCode3 != null
                                                 ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
                                                 : "assets/flags/jor.svg"),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 8.0),
+                                            padding: EdgeInsets.symmetric(horizontal: 8.0),
                                             child: Text(
-                                              selectedCountry
-                                                      .phoneCode!.isNotEmpty
+                                              selectedCountry.phoneCode!.isNotEmpty
                                                   ? '+${selectedCountry.phoneCode!}'
                                                   : "",
                                               style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyText1!
-                                                    .color,
+                                                color: Theme.of(context).textTheme.bodyText1!.color,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -137,13 +117,9 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                           Container(
                                               height: 16,
                                               width: 16,
-                                              margin: EdgeInsets.only(right: 8),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.downArrow,
-                                                  color: Theme.of(context)
-                                                      .primaryTextTheme
-                                                      .bodyText1!
-                                                      .color))
+                                              margin: EdgeInsetsDirectional.only(end: 8),
+                                              child: AppSvg.asset(AssetUtils.downArrow,
+                                                  color: Theme.of(context).primaryTextTheme.bodyText1!.color))
                                         ],
                                       ),
                                     ),
@@ -159,15 +135,13 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               if (model.mobileNumberController.text.isEmpty ||
-                                  model.mobileNumberController.text.length <
-                                      model.countryData.mobileMin!) {
+                                  model.mobileNumberController.text.length < model.countryData.mobileMin!) {
                                 model.showToastWithError(AppError(
                                     cause: Exception(),
                                     error: ErrorInfo(message: ''),
                                     type: ErrorType.INVALID_MOBILE));
                               } else {
-                                onSelected?.call(model.countryData,
-                                    model.mobileNumberController.text);
+                                onSelected?.call(model.countryData, model.mobileNumberController.text);
                               }
                             },
                             child: Container(
@@ -176,12 +150,8 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                               width: 57,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color!),
-                              child: AppSvg.asset(AssetUtils.tick,
-                                  color: Theme.of(context).accentColor),
+                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                              child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                             ),
                           ),
                           Padding(
@@ -190,9 +160,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                               child: Text(
                                 S.of(context).swipeDownToCancel,
                                 style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.dark_gray_1),
+                                    fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                               ),
                             ),
                           ),
@@ -204,8 +172,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
         onModelReady: (model) {
           if (!model.initialDataSet) {
             if (countryDataList.length > 0) {
-              model.countryData = countryDataList.firstWhere(
-                  (element) => element.isoCode3 == 'JOR',
+              model.countryData = countryDataList.firstWhere((element) => element.isoCode3 == 'JOR',
                   orElse: () => countryDataList.first);
               model.setSelectedCountry(model.countryData);
               model.initialDataSet = true;
@@ -234,9 +201,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: AppColor.dark_brown,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(

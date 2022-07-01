@@ -13,8 +13,8 @@ class TermsAndConditionPage extends BasePage<TermsAndConditionPageViewModel> {
   TermsAndConditionPageState createState() => TermsAndConditionPageState();
 }
 
-class TermsAndConditionPageState extends BaseStatefulPage<
-    TermsAndConditionPageViewModel, TermsAndConditionPage> {
+class TermsAndConditionPageState
+    extends BaseStatefulPage<TermsAndConditionPageViewModel, TermsAndConditionPage> {
   @override
   ProviderBase provideBase() {
     return termsAndConditionViewModelProvider;
@@ -32,26 +32,18 @@ class TermsAndConditionPageState extends BaseStatefulPage<
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Text(
-              S
-                  .of(context)
-                  .termsConditions,
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Theme
-                      .of(context)
-                      .accentColor),
+              S.of(context).termsConditions,
+              style:
+                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),
@@ -67,9 +59,7 @@ class TermsAndConditionPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

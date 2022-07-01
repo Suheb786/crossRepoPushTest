@@ -26,13 +26,11 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
         child: Wrap(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 24, top: 32.0, bottom: 8.0),
+              padding: EdgeInsetsDirectional.only(start: 24, top: 32.0, bottom: 8.0),
               child: Text(
                 title ?? "",
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).primaryColorDark),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).primaryColorDark),
               ),
             ),
             new ListTile(
@@ -43,9 +41,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 title: Text(
                   S.of(context).selectFromLibrary,
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).primaryColorDark),
+                      fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
                 ),
                 onTap: () {
                   onPhotoLibraryTap?.call();
@@ -55,23 +51,18 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               title: Text(
                 S.of(context).takePhoto,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryColorDark),
+                    fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onCameraTap?.call();
               },
             ),
             new ListTile(
-              leading: new Icon(Icons.highlight_remove_outlined,
-                  color: AppColor.gray),
+              leading: new Icon(Icons.highlight_remove_outlined, color: AppColor.gray),
               title: Text(
                 S.of(context).removePhoto,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryColorDark),
+                    fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onRemoveTap?.call();

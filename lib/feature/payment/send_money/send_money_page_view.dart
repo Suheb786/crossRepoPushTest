@@ -60,9 +60,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.dark_gray_2),
+                                fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
                           ),
                         ),
                       ],
@@ -100,11 +98,9 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                         Padding(
                           padding: EdgeInsets.only(top: 15, left: 4),
                           child: Text(
-                            "JOD",
+                            S.of(context).JOD,
                             style: TextStyle(
-                                color: AppColor.verLightGray4,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700),
+                                color: AppColor.verLightGray4, fontSize: 16, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -126,10 +122,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               padding: EdgeInsets.only(top: 49),
               child: Text(
                 S.of(context).accountBalance,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10,
-                    color: AppColor.dark_gray_1),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
@@ -151,61 +144,59 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   Padding(
                     padding: EdgeInsets.only(left: 4.0, top: 2),
                     child: Text(
-                      "JOD",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12,
-                          color: AppColor.dark_gray_1),
+                      S.of(context).JOD,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
                     ),
                   ),
                 ],
               ),
             ),
             Expanded(
-              child: NumericKeyboard(
-                  onKeyboardTap: (value) {
-                    model.changeValue(value);
-                  },
-                  textColor: Colors.black,
-                  rightButtonFn: () {
-                    print("clicked");
-                    if (double.parse(model.currentPinValue) <= 0) {
-                      model.showToastWithError(AppError(
-                          cause: Exception(),
-                          error: ErrorInfo(message: ""),
-                          type: ErrorType.ZERO_AMOUNT));
-                    } else if (double.parse(model.currentPinValue) >
-                        double.parse(ProviderScope.containerOf(context)
-                            .read(appHomeViewModelProvider)
-                            .dashboardDataContent
-                            .account!
-                            .availableBalance!)) {
-                      model.showToastWithError(AppError(
-                          cause: Exception(),
-                          error: ErrorInfo(message: ''),
-                          type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
-                    } else {
-                      Navigator.pushNamed(
-                          context, RoutePaths.PaymentToNewRecipient,
-                          arguments: model.currentPinValue);
-                    }
-                  },
-                  leftIcon: Icon(
-                    Icons.circle,
-                    color: AppColor.black,
-                    size: 5,
-                  ),
-                  rightWidget: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Color(0xFF3CB4E5),
-                    child: Center(
-                      child: AppSvg.asset(AssetUtils.next),
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: NumericKeyboard(
+                    onKeyboardTap: (value) {
+                      model.changeValue(value);
+                    },
+                    textColor: Colors.black,
+                    rightButtonFn: () {
+                      print("clicked");
+                      if (double.parse(model.currentPinValue) <= 0) {
+                        model.showToastWithError(AppError(
+                            cause: Exception(), error: ErrorInfo(message: ""), type: ErrorType.ZERO_AMOUNT));
+                      } else if (double.parse(model.currentPinValue) >
+                          double.parse(ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .dashboardDataContent
+                              .account!
+                              .availableBalance!)) {
+                        model.showToastWithError(AppError(
+                            cause: Exception(),
+                            error: ErrorInfo(message: ''),
+                            type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                      } else {
+                        Navigator.pushNamed(context, RoutePaths.PaymentToNewRecipient,
+                            arguments: model.currentPinValue);
+                      }
+                    },
+                    leftIcon: Icon(
+                      Icons.circle,
+                      color: AppColor.black,
+                      size: 5,
                     ),
-                  ),
-                  leftButtonFn: () {
-                    model.changeValue(".");
-                  },
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                    rightWidget: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Color(0xFF3CB4E5),
+                      child: Center(
+                        child: AppSvg.asset(AssetUtils.next),
+                      ),
+                    ),
+                    leftButtonFn: () {
+                      model.changeValue(".");
+                    },
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+              ),
             )
           ],
         ),

@@ -8,16 +8,13 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class UsTaxPayerIdentificationNumberPage
-    extends BasePage<UsTaxPayerIdentificationNumberPageViewModel> {
+class UsTaxPayerIdentificationNumberPage extends BasePage<UsTaxPayerIdentificationNumberPageViewModel> {
   @override
-  UsTaxPayerIdentificationNumberPageState createState() =>
-      UsTaxPayerIdentificationNumberPageState();
+  UsTaxPayerIdentificationNumberPageState createState() => UsTaxPayerIdentificationNumberPageState();
 }
 
 class UsTaxPayerIdentificationNumberPageState extends BaseStatefulPage<
-    UsTaxPayerIdentificationNumberPageViewModel,
-    UsTaxPayerIdentificationNumberPage> {
+    UsTaxPayerIdentificationNumberPageViewModel, UsTaxPayerIdentificationNumberPage> {
   @override
   ProviderBase provideBase() {
     return usTaxPayerIdentificationNumberViewModelProvider;
@@ -35,31 +32,23 @@ class UsTaxPayerIdentificationNumberPageState extends BaseStatefulPage<
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Flexible(
               child: Text(
-                S
-                    .of(context)
-                    .usTaxPayerIdentificationNumber,
+                S.of(context).usTaxPayerIdentificationNumber,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),
@@ -75,14 +64,11 @@ class UsTaxPayerIdentificationNumberPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      UsTaxPayerIdentificationNumberPageViewModel model) {
+  Widget buildView(BuildContext context, UsTaxPayerIdentificationNumberPageViewModel model) {
     return UsTaxPayerIdentificationNumberPageView(provideBase());
   }
 }

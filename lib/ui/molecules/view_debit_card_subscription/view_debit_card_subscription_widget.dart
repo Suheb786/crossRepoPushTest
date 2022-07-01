@@ -30,7 +30,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 14),
+                    padding: EdgeInsetsDirectional.only(start: 14),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -51,7 +51,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 2, top: 4),
+                                  padding: EdgeInsetsDirectional.only(start: 2, top: 4),
                                   child: Text(
                                     "JOD/YR",
                                     style: TextStyle(

@@ -24,6 +24,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaUSRelevantW8AddressDetailsPageView
     extends BasePageViewWidget<FatcaUSRelevantW8AddressDetailsPageViewModel> {
@@ -53,14 +54,12 @@ class FatcaUSRelevantW8AddressDetailsPageView
                           initialData: Resource.none(),
                           dataBuilder: (context, stateResponse) {
                             return AppStreamBuilder<Resource<bool>>(
-                              stream:
-                                  model.fatcaUSRelevantW8AddressDetailsStream,
+                              stream: model.fatcaUSRelevantW8AddressDetailsStream,
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   model.updateData(context);
-                                  Future.delayed(Duration(milliseconds: 500),
-                                      () {
+                                  Future.delayed(Duration(milliseconds: 500), () {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFourViewModelProvider)
                                         .nextPage();
@@ -74,55 +73,52 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                 return GestureDetector(
                                   onHorizontalDragEnd: (details) {
                                     if (ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepFourViewModelProvider)
+                                            .read(registerStepFourViewModelProvider)
                                             .appSwiperController
                                             .page ==
                                         2.0) {
                                       FocusScope.of(context).unfocus();
-                                      if (details.primaryVelocity!.isNegative) {
-                                        model
-                                            .validateFatcaUSRelevantW8AddressDetails();
+                                      if (StringUtils.isDirectionRTL(context)) {
+                                        if (!details.primaryVelocity!.isNegative) {
+                                          model.validateFatcaUSRelevantW8AddressDetails();
+                                        } else {
+                                          Future.delayed(Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(registerStepFourViewModelProvider)
+                                                .previousPage();
+                                            // .previous();
+                                          });
+                                        }
                                       } else {
-                                        Future.delayed(
-                                            Duration(milliseconds: 500), () {
-                                          ProviderScope.containerOf(context)
-                                              .read(
-                                                  registerStepFourViewModelProvider)
-                                              .previousPage();
-                                          // .previous();
-                                        });
+                                        if (details.primaryVelocity!.isNegative) {
+                                          model.validateFatcaUSRelevantW8AddressDetails();
+                                        } else {
+                                          Future.delayed(Duration(milliseconds: 500), () {
+                                            ProviderScope.containerOf(context)
+                                                .read(registerStepFourViewModelProvider)
+                                                .previousPage();
+                                            // .previous();
+                                          });
+                                        }
                                       }
                                     }
                                   },
                                   child: Card(
                                     child: Padding(
                                         padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context)
-                                                            .viewInsets
-                                                            .bottom -
-                                                        50 <=
-                                                    0
+                                            bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                                 ? 0
-                                                : MediaQuery.of(context)
-                                                        .viewInsets
-                                                        .bottom -
-                                                    48),
+                                                : MediaQuery.of(context).viewInsets.bottom - 48),
                                         child: SingleChildScrollView(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 32, horizontal: 24),
+                                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                           physics: ClampingScrollPhysics(),
                                           child: Column(
                                             children: [
                                               AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .permanentResidentAddressLine
-                                                    .toUpperCase(),
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .permanentAddressController,
+                                                labelText:
+                                                    S.of(context).permanentResidentAddressLine.toUpperCase(),
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.permanentAddressController,
                                                 key: model.permanentAddressKey,
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
@@ -133,38 +129,24 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                 height: 16,
                                               ),
                                               AppTextField(
-                                                labelText:
-                                                    S.of(context).country,
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                controller:
-                                                    model.countryController,
+                                                labelText: S.of(context).country,
+                                                hintText: S.of(context).pleaseSelect,
+                                                controller: model.countryController,
                                                 key: model.countryKey,
                                                 readOnly: true,
                                                 onPressed: () {
-                                                  FocusScope.of(context)
-                                                      .unfocus();
-                                                  Future.delayed(
-                                                      Duration(
-                                                          milliseconds: 200),
-                                                      () {
+                                                  FocusScope.of(context).unfocus();
+                                                  Future.delayed(Duration(milliseconds: 200), () {
                                                     CountryDialog.show(context,
-                                                        title: S
-                                                            .of(context)
-                                                            .taxCountrySmall,
+                                                        title: S.of(context).taxCountrySmall,
                                                         onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
                                                       Navigator.pop(context);
-                                                      model.countryController
-                                                              .text =
-                                                          value.countryName!;
-                                                      model.stateController
-                                                          .clear();
-                                                      model.cityController
-                                                          .clear();
-                                                      model.getStateList(
-                                                          value.isoCode3!);
+                                                      model.countryController.text = value.countryName!;
+                                                      model.stateController.clear();
+                                                      model.cityController.clear();
+                                                      model.getStateList(value.isoCode3!);
                                                       model.isValid();
                                                     });
                                                   });
@@ -173,12 +155,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                               SizedBox(
@@ -186,66 +165,40 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).state,
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                controller:
-                                                    model.stateController,
+                                                hintText: S.of(context).pleaseSelect,
+                                                controller: model.stateController,
                                                 key: model.stateKey,
                                                 readOnly: true,
                                                 onPressed: () {
-                                                  if (model.countryController
-                                                      .text.isEmpty) {
-                                                    model
-                                                        .countryKey
-                                                        .currentState!
-                                                        .isValid = false;
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: ''),
-                                                            type: ErrorType
-                                                                .INVALID_COUNTRY));
+                                                  if (model.countryController.text.isEmpty) {
+                                                    model.countryKey.currentState!.isValid = false;
+                                                    model.showToastWithError(AppError(
+                                                        cause: Exception(),
+                                                        error: ErrorInfo(message: ''),
+                                                        type: ErrorType.INVALID_COUNTRY));
                                                   } else {
-                                                    StateCityDialog.show(
-                                                        context,
-                                                        title: S
-                                                            .of(context)
-                                                            .stateSmall,
-                                                        onDismissed: () {
+                                                    StateCityDialog.show(context,
+                                                        title: S.of(context).stateSmall, onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
                                                       Navigator.pop(context);
-                                                      model.stateController
-                                                              .text =
-                                                          value.stateName!;
-                                                      model.cityController
-                                                          .clear();
-                                                      model.getCityList(
-                                                          value.countryId!,
-                                                          value.stateId!);
+                                                      model.stateController.text = value.stateName!;
+                                                      model.cityController.clear();
+                                                      model.getCityList(value.countryId!, value.stateId!);
                                                       model.isValid();
                                                     },
-                                                        stateCityTypeEnum:
-                                                            StateCityTypeEnum
-                                                                .STATE,
+                                                        stateCityTypeEnum: StateCityTypeEnum.STATE,
                                                         stateCityData:
-                                                            stateResponse!
-                                                                .data!
-                                                                .stateContent!
-                                                                .stateData!);
+                                                            stateResponse!.data!.stateContent!.stateData!);
                                                   }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                               SizedBox(
@@ -253,73 +206,48 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).city,
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                controller:
-                                                    model.cityController,
+                                                hintText: S.of(context).pleaseSelect,
+                                                controller: model.cityController,
                                                 key: model.cityKey,
                                                 readOnly: true,
                                                 onPressed: () {
-                                                  if (model.stateController.text
-                                                      .isEmpty) {
-                                                    model.stateKey.currentState!
-                                                        .isValid = false;
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: ''),
-                                                            type: ErrorType
-                                                                .INVALID_STATE));
+                                                  if (model.stateController.text.isEmpty) {
+                                                    model.stateKey.currentState!.isValid = false;
+                                                    model.showToastWithError(AppError(
+                                                        cause: Exception(),
+                                                        error: ErrorInfo(message: ''),
+                                                        type: ErrorType.INVALID_STATE));
                                                   } else {
-                                                    StateCityDialog.show(
-                                                        context,
-                                                        title: S
-                                                            .of(context)
-                                                            .citySmall,
-                                                        onDismissed: () {
+                                                    StateCityDialog.show(context,
+                                                        title: S.of(context).citySmall, onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
                                                       Navigator.pop(context);
-                                                      model.cityController
-                                                              .text =
-                                                          value.cityName!;
-                                                      model.permanentSelectedStateCity =
-                                                          value;
+                                                      model.cityController.text = value.cityName!;
+                                                      model.permanentSelectedStateCity = value;
                                                       model.isValid();
                                                     },
-                                                        stateCityTypeEnum:
-                                                            StateCityTypeEnum
-                                                                .CITY,
+                                                        stateCityTypeEnum: StateCityTypeEnum.CITY,
                                                         stateCityData:
-                                                            cityResponse!
-                                                                .data!
-                                                                .cityContent!
-                                                                .stateData!);
+                                                            cityResponse!.data!.cityContent!.stateData!);
                                                   }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
+                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                                          color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                               SizedBox(
                                                 height: 16,
                                               ),
                                               AppTextField(
-                                                labelText:
-                                                    S.of(context).postCode,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller:
-                                                    model.postCodeController,
+                                                labelText: S.of(context).postCode,
+                                                hintText: S.of(context).pleaseEnter,
+                                                controller: model.postCodeController,
                                                 key: model.postCodeKey,
                                                 inputType: TextInputType.number,
                                                 inputAction: TextInputAction.go,
@@ -328,48 +256,31 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                 },
                                               ),
                                               AppStreamBuilder<bool>(
-                                                stream: model
-                                                    .mailingAddressDifferentStream,
+                                                stream: model.mailingAddressDifferentStream,
                                                 initialData: false,
-                                                dataBuilder:
-                                                    (context, isActive) {
+                                                dataBuilder: (context, isActive) {
                                                   return Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 32.0),
+                                                    padding: const EdgeInsets.symmetric(vertical: 32.0),
                                                     child: Column(
                                                       children: [
                                                         AppSwitchLabelWidget(
                                                           label: S
                                                               .of(context)
                                                               .mailingAddressDifferentFromResidence,
-                                                          inActiveText:
-                                                              S.of(context).no,
-                                                          activeText:
-                                                              S.of(context).yes,
+                                                          inActiveText: S.of(context).no,
+                                                          activeText: S.of(context).yes,
                                                           onToggle: (value) {
                                                             if (!value) {
-                                                              model
-                                                                  .differentMailingStateController
+                                                              model.differentMailingStateController.clear();
+                                                              model.differentMailingCityController.clear();
+                                                              model.differentMailingCountryController.clear();
+                                                              model.differentMailingPostCodeController
                                                                   .clear();
-                                                              model
-                                                                  .differentMailingCityController
-                                                                  .clear();
-                                                              model
-                                                                  .differentMailingCountryController
-                                                                  .clear();
-                                                              model
-                                                                  .differentMailingPostCodeController
-                                                                  .clear();
-                                                              model
-                                                                  .differentMailingAddressController
-                                                                  .clear();
+                                                              model.differentMailingAddressController.clear();
                                                               model.mailingAddressDifferentSelectedStateCity =
                                                                   StateCityData();
                                                             }
-                                                            model
-                                                                .updateSwitchValue(
-                                                                    value);
+                                                            model.updateSwitchValue(value);
                                                             model.isValid();
                                                           },
                                                           isActive: isActive,
@@ -386,274 +297,173 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                                       .of(context)
                                                                       .mailingAddressLine
                                                                       .toUpperCase(),
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .pleaseEnter,
-                                                                  controller: model
-                                                                      .differentMailingAddressController,
-                                                                  key: model
-                                                                      .differentMailingAddressKey,
-                                                                  inputAction:
-                                                                      TextInputAction
-                                                                          .go,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    model
-                                                                        .isValid();
+                                                                  hintText: S.of(context).pleaseEnter,
+                                                                  controller:
+                                                                      model.differentMailingAddressController,
+                                                                  key: model.differentMailingAddressKey,
+                                                                  inputAction: TextInputAction.go,
+                                                                  onChanged: (value) {
+                                                                    model.isValid();
                                                                   },
                                                                 ),
                                                                 SizedBox(
                                                                   height: 16,
                                                                 ),
                                                                 AppTextField(
-                                                                  labelText: S
-                                                                      .of(context)
-                                                                      .country,
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .pleaseSelect,
-                                                                  controller: model
-                                                                      .differentMailingCountryController,
-                                                                  key: model
-                                                                      .differentMailingCountryKey,
-                                                                  readOnly:
-                                                                      true,
-                                                                  onPressed:
-                                                                      () {
-                                                                    FocusScope.of(
-                                                                            context)
-                                                                        .unfocus();
+                                                                  labelText: S.of(context).country,
+                                                                  hintText: S.of(context).pleaseSelect,
+                                                                  controller:
+                                                                      model.differentMailingCountryController,
+                                                                  key: model.differentMailingCountryKey,
+                                                                  readOnly: true,
+                                                                  onPressed: () {
+                                                                    FocusScope.of(context).unfocus();
                                                                     Future.delayed(
-                                                                        Duration(
-                                                                            milliseconds:
-                                                                                200),
-                                                                        () {
-                                                                      CountryDialog.show(
-                                                                          context,
+                                                                        Duration(milliseconds: 200), () {
+                                                                      CountryDialog.show(context,
                                                                           title:
                                                                               S.of(context).taxCountrySmall,
-                                                                          onDismissed:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      }, onSelected:
-                                                                              (value) {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model.differentMailingCountryController.text =
-                                                                            value.countryName!;
+                                                                          onDismissed: () {
+                                                                        Navigator.pop(context);
+                                                                      }, onSelected: (value) {
+                                                                        Navigator.pop(context);
                                                                         model
-                                                                            .differentMailingCityController
+                                                                            .differentMailingCountryController
+                                                                            .text = value.countryName!;
+                                                                        model.differentMailingCityController
                                                                             .clear();
-                                                                        model
-                                                                            .differentMailingStateController
+                                                                        model.differentMailingStateController
                                                                             .clear();
-                                                                        model.getStateList(
-                                                                            value.isoCode3!);
-                                                                        model
-                                                                            .isValid();
+                                                                        model.getStateList(value.isoCode3!);
+                                                                        model.isValid();
                                                                       });
                                                                     });
                                                                   },
-                                                                  suffixIcon:
-                                                                      (value,
-                                                                          data) {
+                                                                  suffixIcon: (value, data) {
                                                                     return Container(
-                                                                        height:
-                                                                            16,
-                                                                        width:
-                                                                            16,
-                                                                        padding: EdgeInsets.only(
-                                                                            right:
-                                                                                8),
+                                                                        height: 16,
+                                                                        width: 16,
+                                                                        padding: EdgeInsetsDirectional.only(
+                                                                            end: 8),
                                                                         child: AppSvg.asset(
-                                                                            AssetUtils
-                                                                                .downArrow,
-                                                                            color:
-                                                                                AppColor.dark_gray_1));
+                                                                            AssetUtils.downArrow,
+                                                                            color: AppColor.dark_gray_1));
                                                                   },
                                                                 ),
                                                                 SizedBox(
                                                                   height: 16,
                                                                 ),
                                                                 AppTextField(
-                                                                  labelText: S
-                                                                      .of(context)
-                                                                      .state,
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .pleaseSelect,
-                                                                  controller: model
-                                                                      .differentMailingStateController,
-                                                                  key: model
-                                                                      .differentMailingStateKey,
-                                                                  readOnly:
-                                                                      true,
-                                                                  onPressed:
-                                                                      () {
+                                                                  labelText: S.of(context).state,
+                                                                  hintText: S.of(context).pleaseSelect,
+                                                                  controller:
+                                                                      model.differentMailingStateController,
+                                                                  key: model.differentMailingStateKey,
+                                                                  readOnly: true,
+                                                                  onPressed: () {
                                                                     if (model
                                                                         .differentMailingCountryController
                                                                         .text
                                                                         .isEmpty) {
-                                                                      model
-                                                                          .differentMailingCountryKey
-                                                                          .currentState!
-                                                                          .isValid = false;
+                                                                      model.differentMailingCountryKey
+                                                                          .currentState!.isValid = false;
                                                                       model.showToastWithError(AppError(
-                                                                          cause:
-                                                                              Exception(),
-                                                                          error:
-                                                                              ErrorInfo(message: ''),
+                                                                          cause: Exception(),
+                                                                          error: ErrorInfo(message: ''),
                                                                           type: ErrorType.INVALID_COUNTRY));
                                                                     } else {
-                                                                      StateCityDialog.show(
-                                                                          context,
-                                                                          title:
-                                                                              S.of(context).stateSmall,
-                                                                          onDismissed:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      }, onSelected:
-                                                                              (value) {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model.differentMailingStateController.text =
-                                                                            value.stateName!;
-                                                                        model
-                                                                            .differentMailingCityController
+                                                                      StateCityDialog.show(context,
+                                                                          title: S.of(context).stateSmall,
+                                                                          onDismissed: () {
+                                                                        Navigator.pop(context);
+                                                                      }, onSelected: (value) {
+                                                                        Navigator.pop(context);
+                                                                        model.differentMailingStateController
+                                                                            .text = value.stateName!;
+                                                                        model.differentMailingCityController
                                                                             .clear();
                                                                         model.getCityList(
-                                                                            value.countryId!,
-                                                                            value.stateId!);
-                                                                        model
-                                                                            .isValid();
+                                                                            value.countryId!, value.stateId!);
+                                                                        model.isValid();
                                                                       },
-                                                                          stateCityTypeEnum: StateCityTypeEnum
-                                                                              .STATE,
-                                                                          stateCityData: stateResponse!
-                                                                              .data!
-                                                                              .stateContent!
-                                                                              .stateData!);
+                                                                          stateCityTypeEnum:
+                                                                              StateCityTypeEnum.STATE,
+                                                                          stateCityData: stateResponse!.data!
+                                                                              .stateContent!.stateData!);
                                                                     }
                                                                   },
-                                                                  suffixIcon:
-                                                                      (value,
-                                                                          data) {
+                                                                  suffixIcon: (value, data) {
                                                                     return Container(
-                                                                        height:
-                                                                            16,
-                                                                        width:
-                                                                            16,
-                                                                        padding: EdgeInsets.only(
-                                                                            right:
-                                                                                8),
+                                                                        height: 16,
+                                                                        width: 16,
+                                                                        padding: EdgeInsetsDirectional.only(
+                                                                            end: 8),
                                                                         child: AppSvg.asset(
-                                                                            AssetUtils
-                                                                                .downArrow,
-                                                                            color:
-                                                                                AppColor.dark_gray_1));
+                                                                            AssetUtils.downArrow,
+                                                                            color: AppColor.dark_gray_1));
                                                                   },
                                                                 ),
                                                                 SizedBox(
                                                                   height: 16,
                                                                 ),
                                                                 AppTextField(
-                                                                  labelText: S
-                                                                      .of(context)
-                                                                      .city,
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .pleaseSelect,
-                                                                  controller: model
-                                                                      .differentMailingCityController,
-                                                                  key: model
-                                                                      .differentMailingCityKey,
-                                                                  readOnly:
-                                                                      true,
-                                                                  onPressed:
-                                                                      () {
-                                                                    if (model
-                                                                        .differentMailingStateController
-                                                                        .text
-                                                                        .isEmpty) {
-                                                                      model
-                                                                          .differentMailingStateKey
-                                                                          .currentState!
-                                                                          .isValid = false;
+                                                                  labelText: S.of(context).city,
+                                                                  hintText: S.of(context).pleaseSelect,
+                                                                  controller:
+                                                                      model.differentMailingCityController,
+                                                                  key: model.differentMailingCityKey,
+                                                                  readOnly: true,
+                                                                  onPressed: () {
+                                                                    if (model.differentMailingStateController
+                                                                        .text.isEmpty) {
+                                                                      model.differentMailingStateKey
+                                                                          .currentState!.isValid = false;
                                                                       model.showToastWithError(AppError(
-                                                                          cause:
-                                                                              Exception(),
-                                                                          error:
-                                                                              ErrorInfo(message: ''),
+                                                                          cause: Exception(),
+                                                                          error: ErrorInfo(message: ''),
                                                                           type: ErrorType.INVALID_STATE));
                                                                     } else {
-                                                                      StateCityDialog.show(
-                                                                          context,
-                                                                          title:
-                                                                              S.of(context).citySmall,
-                                                                          onDismissed:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      }, onSelected:
-                                                                              (value) {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                        model.differentMailingCityController.text =
-                                                                            value.cityName!;
+                                                                      StateCityDialog.show(context,
+                                                                          title: S.of(context).citySmall,
+                                                                          onDismissed: () {
+                                                                        Navigator.pop(context);
+                                                                      }, onSelected: (value) {
+                                                                        Navigator.pop(context);
+                                                                        model.differentMailingCityController
+                                                                            .text = value.cityName!;
                                                                         model.mailingAddressDifferentSelectedStateCity =
                                                                             value;
-                                                                        model
-                                                                            .isValid();
+                                                                        model.isValid();
                                                                       },
-                                                                          stateCityTypeEnum: StateCityTypeEnum
-                                                                              .CITY,
+                                                                          stateCityTypeEnum:
+                                                                              StateCityTypeEnum.CITY,
                                                                           stateCityData: cityResponse!
-                                                                              .data!
-                                                                              .cityContent!
-                                                                              .stateData!);
+                                                                              .data!.cityContent!.stateData!);
                                                                     }
                                                                   },
-                                                                  suffixIcon:
-                                                                      (value,
-                                                                          data) {
+                                                                  suffixIcon: (value, data) {
                                                                     return Container(
-                                                                        height:
-                                                                            16,
-                                                                        width:
-                                                                            16,
-                                                                        padding: EdgeInsets.only(
-                                                                            right:
-                                                                                8),
+                                                                        height: 16,
+                                                                        width: 16,
+                                                                        padding: EdgeInsetsDirectional.only(
+                                                                            end: 8),
                                                                         child: AppSvg.asset(
-                                                                            AssetUtils
-                                                                                .downArrow,
-                                                                            color:
-                                                                                AppColor.dark_gray_1));
+                                                                            AssetUtils.downArrow,
+                                                                            color: AppColor.dark_gray_1));
                                                                   },
                                                                 ),
                                                                 SizedBox(
                                                                   height: 16,
                                                                 ),
                                                                 AppTextField(
-                                                                  labelText: S
-                                                                      .of(context)
-                                                                      .postCode,
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .pleaseEnter,
+                                                                  labelText: S.of(context).postCode,
+                                                                  hintText: S.of(context).pleaseEnter,
                                                                   controller: model
                                                                       .differentMailingPostCodeController,
-                                                                  key: model
-                                                                      .differentMailingPostCodeKey,
-                                                                  inputAction:
-                                                                      TextInputAction
-                                                                          .go,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    model
-                                                                        .isValid();
+                                                                  key: model.differentMailingPostCodeKey,
+                                                                  inputAction: TextInputAction.go,
+                                                                  onChanged: (value) {
+                                                                    model.isValid();
                                                                   },
                                                                 ),
                                                               ],
@@ -665,21 +475,15 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                               ),
                                               Center(
                                                 child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 24),
+                                                  padding: EdgeInsets.only(top: 24),
                                                   child: AppStreamBuilder<bool>(
-                                                      stream: model
-                                                          .allFieldValidatorStream,
+                                                      stream: model.allFieldValidatorStream,
                                                       initialData: false,
-                                                      dataBuilder:
-                                                          (context, isValid) {
+                                                      dataBuilder: (context, isValid) {
                                                         return (isValid!)
                                                             ? AnimatedButton(
-                                                                buttonText: S
-                                                                    .of(context)
-                                                                    .swipeToProceed,
-                                                                buttonHeight:
-                                                                    50,
+                                                                buttonText: S.of(context).swipeToProceed,
+                                                                buttonHeight: 50,
                                                               )
                                                             : Container();
                                                       }),

@@ -59,6 +59,7 @@ class AccountSettingWidget extends StatelessWidget {
               height: 24,
               width: 24,
               child: AppSvg.asset(AssetUtils.rightChevron,
+                  matchTextDirection: true,
                   color:
                       Theme.of(context).inputDecorationTheme.hintStyle!.color))
         ],

@@ -13,9 +13,7 @@ class ExemptPayeeCodePage extends BasePage<ExemptPayeeCodePageViewModel> {
   ExemptPayeeCodePageState createState() => ExemptPayeeCodePageState();
 }
 
-class ExemptPayeeCodePageState extends BaseStatefulPage<
-    ExemptPayeeCodePageViewModel,
-    ExemptPayeeCodePage> {
+class ExemptPayeeCodePageState extends BaseStatefulPage<ExemptPayeeCodePageViewModel, ExemptPayeeCodePage> {
   @override
   ProviderBase provideBase() {
     return exemptPayeeCodeViewModelProvider;
@@ -33,26 +31,18 @@ class ExemptPayeeCodePageState extends BaseStatefulPage<
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Text(
-              S
-                  .of(context)
-                  .exemptPayeeCode,
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Theme
-                      .of(context)
-                      .accentColor),
+              S.of(context).exemptPayeeCode,
+              style:
+                  TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),
@@ -68,9 +58,7 @@ class ExemptPayeeCodePageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

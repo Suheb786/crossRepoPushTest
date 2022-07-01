@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
@@ -22,50 +23,38 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    bool isSmallDevices = model.deviceSize.height <
-            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+    bool isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return AppKeyBoardHide(
       child: Center(
         child: Stack(
           alignment: Alignment.center,
           children: [
-            GestureDetector(
-              // onHorizontalDragEnd: (details) {
-              //   if (details.primaryVelocity!.isNegative) {
-              //     ProviderScope.containerOf(context)
-              //         .read(appHomeViewModelProvider)
-              //         .pageController
-              //         .next();
-              //   }
-              // },
+            Directionality(
+              textDirection: TextDirection.ltr,
               child: Container(
-                margin: EdgeInsets.all(15),
+                margin: EdgeInsetsDirectional.all(15),
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).primaryColorDark,
-                  margin: EdgeInsets.zero,
-                  shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  margin: EdgeInsetsDirectional.zero,
+                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(AssetUtils.zigzagRed),
-                        alignment: Alignment.topRight,
-                        scale: isSmallDevices ? 1.3 : 1,
-                      ),
+                          image: AssetImage(AssetUtils.zigzagRed),
+                          alignment: AlignmentDirectional.topEnd,
+                          scale: isSmallDevices ? 1.3 : 1,
+                          matchTextDirection: true),
                     ),
                     child: LayoutBuilder(builder: (context, constraints) {
                       return Padding(
-                          padding:
-                              EdgeInsets.only(left: isSmallDevices ? 20 : 27.0),
+                          padding: EdgeInsetsDirectional.only(start: isSmallDevices ? 20 : 27.0),
                           child: ConstrainedBox(
                             constraints: BoxConstraints(
-                                minWidth: constraints.maxWidth,
-                                minHeight: constraints.maxHeight),
+                                minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
                             child: IntrinsicHeight(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +67,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //   children: [
                                   //     Expanded(
                                   //       child: Padding(
-                                  //         padding: EdgeInsets.only(top: 30.0),
+                                  //         padding: EdgeInsetsDirectional.only(top: 30.0),
                                   //         child: Column(
                                   //           crossAxisAlignment:
                                   //               CrossAxisAlignment.start,
@@ -93,7 +82,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 66),
+                                  //                   EdgeInsetsDirectional.only(top: 66),
                                   //               child: Text(
                                   //                 cardData!.account!
                                   //                             .accountTitle !=
@@ -112,7 +101,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 23),
+                                  //                   EdgeInsetsDirectional.only(top: 23),
                                   //               child: Row(
                                   //                 crossAxisAlignment:
                                   //                     CrossAxisAlignment.center,
@@ -130,7 +119,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //                                   context)
                                   //                               .accentColor)),
                                   //                   Padding(
-                                  //                     padding: EdgeInsets.only(
+                                  //                     padding: EdgeInsetsDirectional.only(
                                   //                         top: 5, left: 5.0),
                                   //                     child: Text("JOD",
                                   //                         style: TextStyle(
@@ -149,7 +138,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //             ),
                                   //             Padding(
                                   //               padding:
-                                  //                   EdgeInsets.only(top: 4),
+                                  //                   EdgeInsetsDirectional.only(top: 4),
                                   //               child: Text(
                                   //                 S
                                   //                     .of(context)
@@ -171,75 +160,57 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                   //   ],
                                   // ),
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                        top: isSmallDevices ? 21 : 30.0),
+                                    padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 21 : 30.0),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           S.of(context).myAccount,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
-                                              fontSize:
-                                                  isSmallDevices ? 10 : 12,
-                                              color: Theme.of(context)
-                                                  .accentColor),
+                                              fontSize: isSmallDevices ? 10 : 12,
+                                              color: Theme.of(context).accentColor),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: EdgeInsetsDirectional.only(
                                             top: isSmallDevices ? 40 : 66,
                                           ),
                                           child: Text(
                                             account.accountTitle != null
-                                                ? account.accountTitle!
-                                                    .replaceAll(' ', '\n')
+                                                ? account.accountTitle!.replaceAll(' ', '\n')
                                                 : '',
                                             maxLines: 3,
                                             style: TextStyle(
-                                                fontSize:
-                                                    isSmallDevices ? 10 : 16,
+                                                fontSize: isSmallDevices ? 10 : 16,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentColor),
+                                                color: Theme.of(context).accentColor),
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 23),
+                                          padding: EdgeInsetsDirectional.only(top: 23),
                                           child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
                                               Text(account.availableBalance!,
                                                   style: TextStyle(
-                                                      fontSize: isSmallDevices
-                                                          ? 12
-                                                          : 20,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      color: Theme.of(context)
-                                                          .accentColor)),
+                                                      fontSize: isSmallDevices ? 12 : 20,
+                                                      fontWeight: FontWeight.w700,
+                                                      color: Theme.of(context).accentColor)),
                                               Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 5, left: 5.0),
-                                                child: Text("JOD",
+                                                padding: EdgeInsetsDirectional.only(top: 5, start: 5.0),
+                                                child: Text(S.of(context).JOD,
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                         fontSize: 10,
-                                                        color: Theme.of(context)
-                                                            .accentColor
-                                                            .withOpacity(0.4))),
+                                                        color:
+                                                            Theme.of(context).accentColor.withOpacity(0.4))),
                                               ),
                                               const SizedBox(width: 10),
                                               InkWell(
                                                 onTap: () {
-                                                  ProviderScope.containerOf(
-                                                          context)
-                                                      .read(
-                                                          appHomeViewModelProvider)
+                                                  ProviderScope.containerOf(context)
+                                                      .read(appHomeViewModelProvider)
                                                       .balenceUpdate();
                                                 },
                                                 child: Container(
@@ -247,55 +218,45 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     width: 14,
                                                     child: Image.asset(
                                                       AssetUtils.refresh,
-                                                      color:
-                                                          AppColor.brightBlue,
+                                                      color: AppColor.brightBlue,
                                                     )),
                                               ),
                                             ],
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: EdgeInsetsDirectional.only(top: 4),
                                           child: Text(
                                             S.of(context).availableBalance,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize:
-                                                    isSmallDevices ? 8 : 10,
-                                                color: Theme.of(context)
-                                                    .accentColor
-                                                    .withOpacity(0.4)),
+                                                fontSize: isSmallDevices ? 8 : 10,
+                                                color: Theme.of(context).accentColor.withOpacity(0.4)),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 29),
+                                    padding: EdgeInsetsDirectional.only(top: 29),
                                     child: Row(
                                       children: [
                                         Text(
                                           account.accountNo ?? '',
                                           maxLines: 2,
                                           style: TextStyle(
-                                              fontSize:
-                                                  isSmallDevices ? 10 : 12,
+                                              fontSize: isSmallDevices ? 10 : 12,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .accentColor),
+                                              color: Theme.of(context).accentColor),
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Clipboard.setData(ClipboardData(
-                                                    text: account.accountNo ??
-                                                        ''))
+                                            Clipboard.setData(ClipboardData(text: account.accountNo ?? ''))
                                                 .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg:
-                                                            'Account No. Copied'));
+                                                    Fluttertoast.showToast(msg: 'Account No. Copied'));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 8),
+                                            padding: EdgeInsetsDirectional.only(start: 8),
                                             child: AppSvg.asset(
                                               AssetUtils.copy,
                                             ),
@@ -305,118 +266,98 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 5),
+                                    padding: EdgeInsetsDirectional.only(top: 5),
                                     child: Text(
                                       S.of(context).accountNo,
                                       style: TextStyle(
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.4),
+                                          color: Theme.of(context).accentColor.withOpacity(0.4),
                                           fontSize: isSmallDevices ? 8 : 10,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 20, right: 25),
+                                    padding: EdgeInsetsDirectional.only(top: 20, end: 25),
                                     child: Row(
                                       children: [
                                         Text(
                                           account.iban!,
                                           style: TextStyle(
                                               overflow: TextOverflow.ellipsis,
-                                              color:
-                                                  Theme.of(context).accentColor,
+                                              color: Theme.of(context).accentColor,
                                               fontWeight: FontWeight.w600,
-                                              fontSize:
-                                                  isSmallDevices ? 9 : 12),
+                                              fontSize: isSmallDevices ? 9 : 12),
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Clipboard.setData(ClipboardData(
-                                                    text: account.iban ?? ''))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg: 'IBAN Copied'));
+                                            Clipboard.setData(ClipboardData(text: account.iban ?? ''))
+                                                .then((value) => Fluttertoast.showToast(msg: 'IBAN Copied'));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsets.only(left: 8),
-                                            child:
-                                                AppSvg.asset(AssetUtils.copy),
+                                            padding: EdgeInsetsDirectional.only(start: 8),
+                                            child: AppSvg.asset(AssetUtils.copy),
                                           ),
                                         )
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 6),
+                                    padding: EdgeInsetsDirectional.only(top: 6),
                                     child: Text(
                                       S.of(context).iban,
                                       style: TextStyle(
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.4),
+                                          color: Theme.of(context).accentColor.withOpacity(0.4),
                                           fontSize: isSmallDevices ? 8 : 10,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                   Spacer(),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 15.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context,
-                                                RoutePaths
-                                                    .AddMoneyOptionSelector);
-                                          },
-                                          child: Container(
-                                            height: 40,
-                                            width: 105,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color),
-                                            child: Center(
-                                              child: Text(
-                                                S.of(context).addMoney,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: isSmallDevices
-                                                        ? 10
-                                                        : 12,
-                                                    color: Theme.of(context)
-                                                        .accentColor),
+                                  Directionality(
+                                    textDirection: StringUtils.isDirectionRTL(context)
+                                        ? TextDirection.rtl
+                                        : TextDirection.ltr,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.only(
+                                        top: 15.0,
+                                        start: StringUtils.isDirectionRTL(context) ? 27 : 0,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              width: 105,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(20),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                              child: Center(
+                                                child: Text(
+                                                  S.of(context).addMoney,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: isSmallDevices ? 10 : 12,
+                                                      color: Theme.of(context).accentColor),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            _shareFiles(
-                                                model, context, account);
-                                          },
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 33.0),
-                                            child: AppSvg.asset(
-                                                AssetUtils.share,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color,
-                                                height: 24,
-                                                width: 24),
-                                          ),
-                                        )
-                                      ],
+                                          InkWell(
+                                            onTap: () {
+                                              _shareFiles(model, context, account);
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.only(right: 33.0),
+                                              child: AppSvg.asset(AssetUtils.share,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                  height: 24,
+                                                  width: 24),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   SizedBox(height: isSmallDevices ? 30 : 50),
@@ -435,7 +376,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 children: [
                   AppSvg.asset(AssetUtils.swipeUp),
                   Padding(
-                    padding: EdgeInsets.only(top: 6),
+                    padding: EdgeInsetsDirectional.only(top: 6),
                     child: Text(
                       S.of(context).swipeUpToViewTransaction,
                       style: TextStyle(
@@ -453,8 +394,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
     );
   }
 
-  void _shareFiles(
-      MyAccountViewModel model, BuildContext context, Account account) async {
+  void _shareFiles(MyAccountViewModel model, BuildContext context, Account account) async {
     final box = context.findRenderObject() as RenderBox?;
     await Share.share(
         'Hello! Here are my Blink account details: \n\n${account.accountTitle ?? ''} \n${account.iban ?? '-'}\n\nOpen your Blink account today.',

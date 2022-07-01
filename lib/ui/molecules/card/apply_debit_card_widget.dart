@@ -28,7 +28,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsetsDirectional.all(15),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -48,9 +48,11 @@ class ApplyDebitCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 23, right: 23, left: 23),
+                  padding: const EdgeInsetsDirectional.only(top: 23, end: 23, start: 23),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                      height: isSmallDevice ? 26 : 33.64, width: isSmallDevice ? 52 : 72),
+                      matchTextDirection: true,
+                      height: isSmallDevice ? 26 : 33.64,
+                      width: isSmallDevice ? 52 : 72),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: isSmallDevice ? 50 : 78),
@@ -60,7 +62,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: 12, left: 10, right: 10),
+                    padding: EdgeInsetsDirectional.only(top: 12, start: 10, end: 10),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -73,11 +75,11 @@ class ApplyDebitCardWidget extends StatelessWidget {
                       ),
                     )),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: EdgeInsetsDirectional.only(
                       top: isSmallDevice ? 50 : 88,
                       // bottom: isSmallDevice ? 30 : 50,
-                      left: isSmallDevice ? 34 : 24,
-                      right: isSmallDevice ? 34 : 24),
+                      start: isSmallDevice ? 34 : 24,
+                      end: isSmallDevice ? 34 : 24),
                   child: Center(
                     child: InkWell(
                       onTap: () {

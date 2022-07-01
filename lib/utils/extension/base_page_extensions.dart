@@ -24,7 +24,7 @@ extension PageExtensions on BaseStatefulPage {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsetsDirectional.all(16),
               decoration: BoxDecoration(
                   color: AppColor.dark_brown,
                   borderRadius: BorderRadius.circular(16)),
@@ -43,7 +43,8 @@ extension PageExtensions on BaseStatefulPage {
                               fontSize: 10),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          padding:
+                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
                                   // fontFamily: "Montserrat",
@@ -76,7 +77,7 @@ extension PageExtensions on BaseStatefulPage {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsetsDirectional.all(16),
               decoration: BoxDecoration(
                   color: AppColor.darkModerateLimeGreen,
                   borderRadius: BorderRadius.circular(16)),
@@ -87,16 +88,15 @@ extension PageExtensions on BaseStatefulPage {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S
-                              .of(context)
-                              .success,
+                          S.of(context).success,
                           style: TextStyle(
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
                               fontSize: 10),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          padding:
+                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
                                   color: AppColor.white,

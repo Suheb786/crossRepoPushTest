@@ -15,8 +15,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class CreditCardVideoKycPageView
-    extends BasePageViewWidget<CreditCardVideoKycViewModel> {
+class CreditCardVideoKycPageView extends BasePageViewWidget<CreditCardVideoKycViewModel> {
   CreditCardVideoKycPageView(ProviderBase model) : super(model);
 
   @override
@@ -34,13 +33,10 @@ class CreditCardVideoKycPageView
                   color: AppColor.white,
                   child: Center(
                       child: Lottie.asset(AssetUtils.loaderAnimation,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center,
-                          width: 60,
-                          height: 60)),
+                          fit: BoxFit.cover, alignment: Alignment.center, width: 60, height: 60)),
                 ),
           Align(
-            alignment: Alignment.topLeft,
+            alignment: AlignmentDirectional.topStart,
             child: Container(
               margin: EdgeInsets.all(22),
               child: ClipRRect(
@@ -53,18 +49,16 @@ class CreditCardVideoKycPageView
               ),
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
+          PositionedDirectional(
+            start: 0,
+            end: 0,
             bottom: 50,
             child: AppStreamBuilder<Resource<bool>>(
                 stream: model.callEndStatusUpdateStream,
                 initialData: Resource.none(),
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context)
-                        .read(appViewModel)
-                        .stopRefreshToken();
+                    ProviderScope.containerOf(context).read(appViewModel).stopRefreshToken();
                     Navigator.pushNamed(
                       context,
                       RoutePaths.CreditCardVideoCallComplete,

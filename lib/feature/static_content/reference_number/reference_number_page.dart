@@ -13,9 +13,7 @@ class ReferenceNumberPage extends BasePage<ReferenceNumberPageViewModel> {
   ReferenceNumberPageState createState() => ReferenceNumberPageState();
 }
 
-class ReferenceNumberPageState extends BaseStatefulPage<
-    ReferenceNumberPageViewModel,
-    ReferenceNumberPage> {
+class ReferenceNumberPageState extends BaseStatefulPage<ReferenceNumberPageViewModel, ReferenceNumberPage> {
   @override
   ProviderBase provideBase() {
     return referenceNumberViewModelProvider;
@@ -33,31 +31,23 @@ class ReferenceNumberPageState extends BaseStatefulPage<
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Flexible(
               child: Text(
-                S
-                    .of(context)
-                    .referenceNumberSmall,
+                S.of(context).referenceNumberSmall,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),
@@ -73,9 +63,7 @@ class ReferenceNumberPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

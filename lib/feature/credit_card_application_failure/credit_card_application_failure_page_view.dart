@@ -71,10 +71,10 @@ class CreditCardApplicationFailurePageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 top: 16,
-                left: 40,
-                right: 40,
+                start: 40,
+                end: 40,
               ),
               child: Text(
                   model.creditCardApplicationFailureArguments

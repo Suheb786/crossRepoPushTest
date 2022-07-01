@@ -23,6 +23,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
@@ -127,8 +128,14 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     .page ==
                                 1.0) {
                               FocusScope.of(context).unfocus();
-                              if (details.primaryVelocity!.isNegative) {
-                                model.confirmDetail();
+                              if (StringUtils.isDirectionRTL(context)) {
+                                if (!details.primaryVelocity!.isNegative) {
+                                  model.confirmDetail();
+                                }
+                              } else {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.confirmDetail();
+                                }
                               }
                             }
                           },
@@ -269,7 +276,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         return Container(
                                             height: 16,
                                             width: 16,
-                                            padding: EdgeInsets.only(right: 8),
+                                            padding: EdgeInsetsDirectional.only(end: 8),
                                             child: AppSvg.asset(
                                                 AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
@@ -487,7 +494,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         return Container(
                                             height: 16,
                                             width: 16,
-                                            padding: EdgeInsets.only(right: 8),
+                                            padding: EdgeInsetsDirectional.only(end: 8),
                                             child: AppSvg.asset(
                                                 AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));

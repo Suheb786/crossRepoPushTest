@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DcSettingConfirmPinPageView
     extends BasePageViewWidget<DcSettingConfirmPinPageViewModel> {
@@ -50,19 +51,34 @@ class DcSettingConfirmPinPageView
                             .page ==
                         2.0) {
                       FocusScope.of(context).unfocus();
-                      if (details.primaryVelocity!.isNegative) {
-                        print(
-                            'currentPin--->${ProviderScope.containerOf(context).read(dcSettingCreatePinViewModelProvider).currentPin}');
-                        model.validatePin(
-                            ProviderScope.containerOf(context)
-                                .read(dcSettingCreatePinViewModelProvider)
-                                .currentPin,
-                            context);
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.validatePin(
+                              ProviderScope.containerOf(context)
+                                  .read(dcSettingCreatePinViewModelProvider)
+                                  .currentPin,
+                              context);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(dcSettingCardDeliveryViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(dcSettingCardDeliveryViewModelProvider)
-                            .previousPage();
-                        // .previous(animation: true);
+                        if (details.primaryVelocity!.isNegative) {
+                          print(
+                              'currentPin--->${ProviderScope.containerOf(context).read(dcSettingCreatePinViewModelProvider).currentPin}');
+                          model.validatePin(
+                              ProviderScope.containerOf(context)
+                                  .read(dcSettingCreatePinViewModelProvider)
+                                  .currentPin,
+                              context);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(dcSettingCardDeliveryViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       }
                     }
                   },

@@ -46,8 +46,9 @@ class AccountSettingPageState
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
+                padding: EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
+                    matchTextDirection: true,
                     color: Theme.of(context).accentColor),
               ),
             ),
@@ -59,7 +60,7 @@ class AccountSettingPageState
                   color: Theme.of(context).accentColor),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
                 width: 28,
               ),

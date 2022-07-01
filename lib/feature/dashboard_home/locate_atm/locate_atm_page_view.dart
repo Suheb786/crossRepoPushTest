@@ -30,26 +30,21 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
           onPanelClosed: () {
             model.panelOpen(false);
           },
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(16), topLeft: Radius.circular(16)),
+          borderRadius: BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16)),
           panel: Column(
             children: [
               Container(
                 margin: EdgeInsets.only(top: 8, bottom: 16),
                 height: 4,
                 width: 64,
-                decoration: BoxDecoration(
-                    color: AppColor.white_gray,
-                    borderRadius: BorderRadius.circular(4)),
+                decoration: BoxDecoration(color: AppColor.white_gray, borderRadius: BorderRadius.circular(4)),
               ),
               AppStreamBuilder<bool>(
                 stream: model.panelOpenStream,
                 initialData: false,
                 dataBuilder: (context, isOpen) {
                   return Text(
-                    !isOpen!
-                        ? S.of(context).swipeToViewList
-                        : S.of(context).swipeToViewMap,
+                    !isOpen! ? S.of(context).swipeToViewList : S.of(context).swipeToViewMap,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
@@ -68,22 +63,18 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                         color: Theme.of(context).accentColor,
                         boxShadow: [
                           BoxShadow(
-                            color: Theme.of(context)
-                                .primaryColorDark
-                                .withOpacity(0.08),
+                            color: Theme.of(context).primaryColorDark.withOpacity(0.08),
                             blurRadius: 20.0,
                           )
                         ],
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16))),
+                        borderRadius:
+                            BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
                     child: atmResponse!.data!.atmContentData!.length > 0
                         ? ListView.builder(
                             padding: EdgeInsets.symmetric(vertical: 20),
                             itemBuilder: (context, index) {
                               return LocateATMListWidget(
-                                atmContentData:
-                                    atmResponse.data!.atmContentData![index],
+                                atmContentData: atmResponse.data!.atmContentData![index],
                                 onTap: () {},
                               );
                             },
@@ -98,8 +89,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
             ],
           ),
           body: ClipRRect(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
             child: Stack(
               children: [
                 AppStreamBuilder<Set<Marker>>(
@@ -115,8 +105,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                         compassEnabled: false,
                         myLocationButtonEnabled: false,
                         zoomGesturesEnabled: true,
-                        initialCameraPosition: CameraPosition(
-                            target: LatLng(32.010532, 35.867756), zoom: 15),
+                        initialCameraPosition: CameraPosition(target: LatLng(32.010532, 35.867756), zoom: 15),
                         onMapCreated: (GoogleMapController controller) {
                           model.mapController = controller;
                           model.setPinPointMarker();
@@ -125,10 +114,10 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                         markers: markerResponse);
                   },
                 ),
-                Positioned(
+                PositionedDirectional(
                   bottom: 120,
-                  left: 32,
-                  right: 32,
+                  start: 32,
+                  end: 32,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -138,10 +127,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                         padding: EdgeInsets.all(14),
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         child: AppSvg.asset(AssetUtils.pinMarker),
                       ),
                       SizedBox(
@@ -151,8 +137,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                         padding: EdgeInsets.symmetric(vertical: 14),
                         height: 40,
                         decoration: BoxDecoration(
-                            color:
-                                AppColor.light_grayish_violet.withOpacity(0.8),
+                            color: AppColor.light_grayish_violet.withOpacity(0.8),
                             borderRadius: BorderRadius.circular(8)),
                         child: Center(
                           child: Text(

@@ -14,9 +14,9 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ChangeCardPaymentAccountPageView
-    extends BasePageViewWidget<ChangeCardPaymentAccountPageViewModel> {
+class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaymentAccountPageViewModel> {
   ChangeCardPaymentAccountPageView(ProviderBase model) : super(model);
 
   @override
@@ -28,10 +28,7 @@ class ChangeCardPaymentAccountPageView
         children: [
           Text(
             S.of(context).changeLinkedAccount.toUpperCase(),
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 10,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -39,10 +36,7 @@ class ChangeCardPaymentAccountPageView
           Text(
             S.of(context).selectAccountToPayCreditCard,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -53,13 +47,19 @@ class ChangeCardPaymentAccountPageView
               padding: EdgeInsets.symmetric(vertical: 32),
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                    Navigator.pushReplacementNamed(
-                        context, RoutePaths.CreditCardApplySuccess,
-                        arguments: CreditCardApplySuccessArguments(
-                            creditSuccessState:
-                                CreditSuccessState.Settlement_Account_Changed));
-                  } else {}
+                  if (StringUtils.isDirectionRTL(context)) {
+                    if (!details.primaryVelocity!.isNegative) {
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplySuccess,
+                          arguments: CreditCardApplySuccessArguments(
+                              creditSuccessState: CreditSuccessState.Settlement_Account_Changed));
+                    }
+                  } else {
+                    if (details.primaryVelocity!.isNegative) {
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplySuccess,
+                          arguments: CreditCardApplySuccessArguments(
+                              creditSuccessState: CreditSuccessState.Settlement_Account_Changed));
+                    } else {}
+                  }
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,8 +94,7 @@ class ChangeCardPaymentAccountPageView
                               Container(
                                 padding: EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).backgroundColor,
-                                    shape: BoxShape.circle),
+                                    color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
                                 child: AppSvg.asset(
                                   AssetUtils.dollarSvg,
                                   color: Theme.of(context).primaryColorDark,
@@ -109,16 +108,12 @@ class ChangeCardPaymentAccountPageView
                                 children: [
                                   Text(
                                     'Savings Account',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400),
+                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                                   ),
                                   Text(
                                     '5669 4900 2111',
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.gray),
+                                        fontSize: 10, fontWeight: FontWeight.w600, color: AppColor.gray),
                                   )
                                 ],
                               )
@@ -136,17 +131,13 @@ class ChangeCardPaymentAccountPageView
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: AppTextField(
-                            labelText: S
-                                .of(context)
-                                .newSettlementAccount
-                                .toUpperCase(),
+                            labelText: S.of(context).newSettlementAccount.toUpperCase(),
                             hintText: S.of(context).pleaseSelect,
                             readOnly: true,
                             controller: model.settlementAccountController,
                             key: model.settlementAccountKey,
                             onPressed: () {
-                              AccountsDialog.show(context,
-                                  label: S.of(context).newSettlementAccount,
+                              AccountsDialog.show(context, label: S.of(context).newSettlementAccount,
                                   onDismissed: () {
                                 Navigator.pop(context);
                               }, onSelected: (value) {
@@ -159,9 +150,8 @@ class ChangeCardPaymentAccountPageView
                               return Container(
                                   height: 16,
                                   width: 16,
-                                  padding: EdgeInsets.only(right: 8),
-                                  child: AppSvg.asset(AssetUtils.downArrow,
-                                      color: AppColor.dark_gray_1));
+                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                             },
                           ),
                         ),

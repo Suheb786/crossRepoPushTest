@@ -19,11 +19,11 @@ import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.d
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../di/register/register_modules.dart';
 
-class StudentJobIncomePageView
-    extends BasePageViewWidget<StudentJobIncomePageViewModel> {
+class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageViewModel> {
   StudentJobIncomePageView(ProviderBase model) : super(model);
 
   @override
@@ -49,9 +49,7 @@ class StudentJobIncomePageView
                           ProviderScope.containerOf(context)
                               .read(registerViewModelProvider)
                               .registrationStepsController
-                              .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                              .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                         });
                       }
                     },
@@ -59,34 +57,30 @@ class StudentJobIncomePageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.jobIncomeDetails();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.jobIncomeDetails();
+                            }
+                          } else {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.jobIncomeDetails();
+                            }
                           }
                         },
                         child: Card(
                           child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom -
-                                                  50 <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48),
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                      ? 0
+                                      : MediaQuery.of(context).viewInsets.bottom - 48),
                               child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    AppStreamBuilder<
-                                        List<AdditionalIncomeType>>(
-                                      stream: model
-                                          .additionalSourceIncomeListStream,
+                                    AppStreamBuilder<List<AdditionalIncomeType>>(
+                                      stream: model.additionalSourceIncomeListStream,
                                       initialData: [],
                                       dataBuilder: (context, dataList) {
                                         if (dataList!.isNotEmpty) {
@@ -98,52 +92,35 @@ class StudentJobIncomePageView
                                               itemBuilder: (context, index) {
                                                 if (index == dataList.length) {
                                                   return AddIncomeWidget(
-                                                    label:
-                                                        S.of(context).addIncome,
+                                                    label: S.of(context).addIncome,
                                                     onTap: () {
-                                                      AdditionalIncomeSourceDialog
-                                                          .show(context,
-                                                              onDismissed: () {
+                                                      AdditionalIncomeSourceDialog.show(context,
+                                                          onDismissed: () {
                                                         Navigator.pop(context);
                                                       }, onSelected: (value) {
-                                                        if (value.totalIncome!
-                                                            .isEmpty) {
+                                                        if (value.totalIncome!.isEmpty) {
                                                           model.showToastWithError(AppError(
-                                                              type: ErrorType
-                                                                  .EMPTY_INCOME,
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message:
-                                                                      '')));
-                                                        } else if (!(num.parse(value
-                                                                .totalIncome!) >
-                                                            0)) {
+                                                              type: ErrorType.EMPTY_INCOME,
+                                                              cause: Exception(),
+                                                              error: ErrorInfo(message: '')));
+                                                        } else if (!(num.parse(value.totalIncome!) > 0)) {
                                                           model.showToastWithError(AppError(
                                                               type: ErrorType
                                                                   .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message:
-                                                                      '')));
+                                                              cause: Exception(),
+                                                              error: ErrorInfo(message: '')));
                                                         } else {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .addAdditionalIncomeList(
-                                                                  value);
+                                                          Navigator.pop(context);
+                                                          model.addAdditionalIncomeList(value);
                                                         }
                                                       });
                                                     },
                                                   );
                                                 }
                                                 return AdditionalIncomeSourceWidget(
-                                                  additionalIncomeSourceParams:
-                                                      dataList[index],
+                                                  additionalIncomeSourceParams: dataList[index],
                                                   onTap: () {
-                                                    model.removeAdditionalItem(
-                                                        index);
+                                                    model.removeAdditionalItem(index);
                                                   },
                                                 );
                                               });
@@ -152,88 +129,59 @@ class StudentJobIncomePageView
                                             label: S.of(context).addIncome,
                                             onTap: () {
                                               InformationDialog.show(context,
-                                                  title: S
-                                                      .of(context)
-                                                      .additionalIncome,
-                                                  isSwipeToCancel: false,
-                                                  onSelected: () {
+                                                  title: S.of(context).additionalIncome,
+                                                  isSwipeToCancel: false, onSelected: () {
                                                 Navigator.pop(context);
-                                                AdditionalIncomeSourceDialog
-                                                    .show(context,
-                                                        onDismissed: () {
+                                                AdditionalIncomeSourceDialog.show(context, onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
-                                                  if (value
-                                                      .totalIncome!.isEmpty) {
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            type: ErrorType
-                                                                .EMPTY_INCOME,
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: '')));
-                                                  } else if (!(num.parse(
-                                                          value.totalIncome!) >
-                                                      0)) {
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            type: ErrorType
-                                                                .INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: '')));
+                                                  if (value.totalIncome!.isEmpty) {
+                                                    model.showToastWithError(AppError(
+                                                        type: ErrorType.EMPTY_INCOME,
+                                                        cause: Exception(),
+                                                        error: ErrorInfo(message: '')));
+                                                  } else if (!(num.parse(value.totalIncome!) > 0)) {
+                                                    model.showToastWithError(AppError(
+                                                        type:
+                                                            ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME_VALUE,
+                                                        cause: Exception(),
+                                                        error: ErrorInfo(message: '')));
                                                   } else {
                                                     Navigator.pop(context);
-                                                    model
-                                                        .addAdditionalIncomeList(
-                                                            value);
+                                                    model.addAdditionalIncomeList(value);
                                                   }
                                                 });
                                               },
                                                   descriptionWidget: Text.rich(TextSpan(
-                                                      text: S
-                                                          .of(context)
-                                                          .additionalIncomePopUpDesc1,
+                                                      text: S.of(context).additionalIncomePopUpDesc1,
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w400,
+                                                          fontWeight: FontWeight.w400,
                                                           fontSize: 14,
                                                           height: 1.4,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .focusedBorder!
                                                               .borderSide
                                                               .color),
                                                       children: [
                                                         TextSpan(
-                                                            text: S
-                                                                .of(context)
-                                                                .annual,
+                                                            text: S.of(context).annual,
                                                             style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                fontWeight: FontWeight.w600,
                                                                 fontSize: 14,
-                                                                color: Theme.of(
-                                                                        context)
+                                                                color: Theme.of(context)
                                                                     .inputDecorationTheme
                                                                     .focusedBorder!
                                                                     .borderSide
                                                                     .color),
                                                             children: [
                                                               TextSpan(
-                                                                text: S
-                                                                    .of(context)
-                                                                    .additionalIncomePopUpDesc2,
+                                                                text:
+                                                                    S.of(context).additionalIncomePopUpDesc2,
                                                                 style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Theme.of(
-                                                                            context)
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: 14,
+                                                                    color: Theme.of(context)
                                                                         .inputDecorationTheme
                                                                         .focusedBorder!
                                                                         .borderSide
@@ -253,12 +201,8 @@ class StudentJobIncomePageView
                                         return Visibility(
                                           visible: data!,
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed),
+                                            padding: const EdgeInsets.only(top: 8.0),
+                                            child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                           ),
                                         );
                                       },

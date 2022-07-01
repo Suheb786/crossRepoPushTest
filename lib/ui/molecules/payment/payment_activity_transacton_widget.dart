@@ -10,8 +10,7 @@ import 'package:neo_bank/utils/time_utils.dart';
 class PaymentActivityTransactionWidget extends StatelessWidget {
   final PaymentActivityContent? transactions;
 
-  const PaymentActivityTransactionWidget({Key? key, this.transactions})
-      : super(key: key);
+  const PaymentActivityTransactionWidget({Key? key, this.transactions}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       children: [
         Text(
           // TimeUtils.getFormattedDateForTransaction(transactions!.label!),
-          transactions!.rtpDate!.day.toString() +
-              " " +
-              DateFormat.MMMM().format(transactions!.rtpDate!),
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).primaryColorDark),
+          transactions!.rtpDate!.day.toString() + " " + DateFormat.MMMM().format(transactions!.rtpDate!),
+          style:
+              TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Theme.of(context).primaryColorDark),
         ),
         Card(
           margin: EdgeInsets.only(top: 16, bottom: 32),
@@ -40,14 +35,12 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                   Container(
                       height: 50,
                       width: 50,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor),
+                      decoration:
+                          BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
                         child: Text(
                           transactions!.data![index].name!.split(" ").length > 1
-                              ? StringUtils.getFirstInitials(
-                                  transactions!.data![index].name!)
+                              ? StringUtils.getFirstInitials(transactions!.data![index].name!)
                               : "",
                           style: TextStyle(
                               color: Theme.of(context).accentColor,
@@ -57,7 +50,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                       )),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 14),
+                      padding: EdgeInsetsDirectional.only(start: 14),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -79,37 +72,29 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       fontSize: 12,
                                       overflow: TextOverflow.ellipsis,
                                       fontWeight: FontWeight.w400,
-                                      color:
-                                          Theme.of(context).primaryColorDark),
+                                      color: Theme.of(context).primaryColorDark),
                                   children: [
                                     TextSpan(
-                                        text:
-                                            " ${transactions!.data![index].amount} JOD",
+                                        text: " ${transactions!.data![index].amount} JOD",
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme.of(context)
-                                                .primaryColorDark),
+                                            color: Theme.of(context).primaryColorDark),
                                         children: [
                                           TextSpan(
                                               text: S.of(context).from,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark),
+                                                  color: Theme.of(context).primaryColorDark),
                                               children: [
                                                 TextSpan(
-                                                  text:
-                                                      " ${transactions!.data![index].name}",
+                                                  text: " ${transactions!.data![index].name}",
                                                   style: TextStyle(
                                                       fontSize: 12,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
+                                                      overflow: TextOverflow.ellipsis,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Theme.of(context).primaryColorDark),
                                                 )
                                               ])
                                         ])
@@ -120,30 +105,22 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   TimeUtils.getFormattedTimeForTransaction(
-                                      transactions!.data![index].rtpDate
-                                          .toString()),
+                                      transactions!.data![index].rtpDate.toString()),
                                   style: TextStyle(
-                                      color: AppColor.gray1,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600),
+                                      color: AppColor.gray1, fontSize: 12, fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 9),
+                                  padding: EdgeInsetsDirectional.only(start: 9),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 2),
+                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                     decoration: BoxDecoration(
-                                        color: getColor(
-                                            transactions!.data![index].status!),
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
+                                        color: getColor(transactions!.data![index].status!),
+                                        borderRadius: BorderRadius.circular(100)),
                                     child: Center(
                                       child: Text(
-                                        transactions!.data![index].status!
-                                            .toString(),
+                                        transactions!.data![index].status!.toString(),
                                         style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).accentColor,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12),
                                       ),

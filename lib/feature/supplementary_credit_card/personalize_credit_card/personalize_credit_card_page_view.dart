@@ -19,9 +19,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class PersonalizeCreditCardPageView
-    extends BasePageViewWidget<PersonalizeCreditCardPageViewModel> {
+class PersonalizeCreditCardPageView extends BasePageViewWidget<PersonalizeCreditCardPageViewModel> {
   PersonalizeCreditCardPageView(ProviderBase model) : super(model);
 
   @override
@@ -39,21 +39,14 @@ class PersonalizeCreditCardPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<
-                            Resource<SupplementaryCreditCardResponse>>(
+                    child: AppStreamBuilder<Resource<SupplementaryCreditCardResponse>>(
                         stream: model.supplementaryCreditCardResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(
-                                context,
-                                RoutePaths
-                                    .SupplementaryCreditCardActivationStatus,
-                                arguments:
-                                    SupplementaryCreditCardActivationArguments(
-                                        primaryCardId:
-                                            data.data!.content!.primaryId ??
-                                                ''));
+                            Navigator.pushNamed(context, RoutePaths.SupplementaryCreditCardActivationStatus,
+                                arguments: SupplementaryCreditCardActivationArguments(
+                                    primaryCardId: data.data!.content!.primaryId ?? ''));
                           }
                         },
                         dataBuilder: (context, snapshot) {
@@ -63,33 +56,23 @@ class PersonalizeCreditCardPageView
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   model.supplementaryCreditCardRequest(
-                                      primaryId: ProviderScope.containerOf(
-                                                  context)
-                                              .read(
-                                                  supplementaryCreditCardViewModelProvider)
+                                      primaryId: ProviderScope.containerOf(context)
+                                              .read(supplementaryCreditCardViewModelProvider)
                                               .creditCard
                                               .parentId ??
                                           '',
-                                      relationShip: ProviderScope.containerOf(
-                                              context)
-                                          .read(
-                                              relationShipWithCardHolderViewModelProvider)
+                                      relationShip: ProviderScope.containerOf(context)
+                                          .read(relationShipWithCardHolderViewModelProvider)
                                           .relationshipController
                                           .text,
-                                      scannedDocumentInformation: ProviderScope
-                                              .containerOf(context)
-                                          .read(
-                                              supplementaryIdScanInfoViewModelProvider)
+                                      scannedDocumentInformation: ProviderScope.containerOf(context)
+                                          .read(supplementaryIdScanInfoViewModelProvider)
                                           .scannedDocumentInformation);
                                 } else if (data.status == Status.ERROR) {
-                                  if (data.appError!.type ==
-                                      ErrorType.SELECT_MINIMUM_SETTLEMENT) {
-                                    model.minimumSettlementKey.currentState!
-                                        .isValid = false;
-                                  } else if (data.appError!.type ==
-                                      ErrorType.SELECT_CREDIT_LIMIT_SETTINGS) {
-                                    model.creditLimitSettingsKey.currentState!
-                                        .isValid = false;
+                                  if (data.appError!.type == ErrorType.SELECT_MINIMUM_SETTLEMENT) {
+                                    model.minimumSettlementKey.currentState!.isValid = false;
+                                  } else if (data.appError!.type == ErrorType.SELECT_CREDIT_LIMIT_SETTINGS) {
+                                    model.creditLimitSettingsKey.currentState!.isValid = false;
                                   }
                                   model.showToastWithError(data.appError!);
                                 }
@@ -99,102 +82,76 @@ class PersonalizeCreditCardPageView
                                   onHorizontalDragEnd: (details) {
                                     int sensitivity = 8;
                                     if (ProviderScope.containerOf(context)
-                                            .read(
-                                                supplementaryCreditCardViewModelProvider)
+                                            .read(supplementaryCreditCardViewModelProvider)
                                             .appSwiperController
                                             .page ==
                                         2.0) {
                                       FocusScope.of(context).unfocus();
-                                      if (details.primaryVelocity! <
-                                          -sensitivity) {
-                                        model.personalizeCreditCard();
-                                      } else if (details.primaryVelocity! >
-                                          sensitivity) {
-                                        ProviderScope.containerOf(context)
-                                            .read(
-                                                supplementaryCreditCardViewModelProvider)
-                                            .previousPage();
+                                      if (StringUtils.isDirectionRTL(context)) {
+                                        if (details.primaryVelocity! < -sensitivity) {
+                                          ProviderScope.containerOf(context)
+                                              .read(supplementaryCreditCardViewModelProvider)
+                                              .previousPage();
+                                        } else if (details.primaryVelocity! > sensitivity) {
+                                          model.personalizeCreditCard();
+                                        }
+                                      } else {
+                                        if (details.primaryVelocity! < -sensitivity) {
+                                          model.personalizeCreditCard();
+                                        } else if (details.primaryVelocity! > sensitivity) {
+                                          ProviderScope.containerOf(context)
+                                              .read(supplementaryCreditCardViewModelProvider)
+                                              .previousPage();
+                                        }
                                       }
                                     }
                                   },
                                   child: Card(
                                     child: Padding(
                                       padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context)
-                                                          .viewInsets
-                                                          .bottom -
-                                                      50 <=
-                                                  0
+                                          bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                               ? 0
-                                              : MediaQuery.of(context)
-                                                      .viewInsets
-                                                      .bottom -
-                                                  48),
+                                              : MediaQuery.of(context).viewInsets.bottom - 48),
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 32, horizontal: 24),
+                                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: SingleChildScrollView(
-                                                physics:
-                                                    ClampingScrollPhysics(),
+                                                physics: ClampingScrollPhysics(),
                                                 child: Column(
                                                   children: [
                                                     AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .creditLimitSettings
-                                                          .toUpperCase(),
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseSelect,
+                                                      labelText:
+                                                          S.of(context).creditLimitSettings.toUpperCase(),
+                                                      hintText: S.of(context).pleaseSelect,
                                                       readOnly: true,
-                                                      controller: model
-                                                          .creditLimitSettingsController,
+                                                      controller: model.creditLimitSettingsController,
                                                       onPressed: () {
-                                                        RelationshipWithCardHolderDialog.show(
-                                                            context,
+                                                        RelationshipWithCardHolderDialog.show(context,
                                                             onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
+                                                          Navigator.pop(context);
                                                         }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .updateCreditLimitSettingValue(
-                                                                  value,
-                                                                  context);
+                                                          Navigator.pop(context);
+                                                          model.updateCreditLimitSettingValue(value, context);
                                                           model.validate();
                                                         },
-                                                            title: S
-                                                                .of(context)
-                                                                .creditLimitSettings,
+                                                            title: S.of(context).creditLimitSettings,
                                                             relationSHipWithCardHolder:
-                                                                model
-                                                                    .creditLimitsSettings);
+                                                                model.creditLimitsSettings);
                                                       },
-                                                      suffixIcon:
-                                                          (value, data) {
+                                                      suffixIcon: (value, data) {
                                                         return Container(
                                                             height: 16,
                                                             width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow,
-                                                                color: AppColor
-                                                                    .dark_gray_1));
+                                                            padding: EdgeInsets.only(right: 8),
+                                                            child: AppSvg.asset(AssetUtils.downArrow,
+                                                                color: AppColor.dark_gray_1));
                                                       },
-                                                      key: model
-                                                          .creditLimitSettingsKey,
+                                                      key: model.creditLimitSettingsKey,
                                                     ),
                                                     SizedBox(
                                                       height: 16,
@@ -244,95 +201,65 @@ class PersonalizeCreditCardPageView
                                                     //   height: 16,
                                                     // ),
                                                     AppStreamBuilder<bool>(
-                                                        stream: model
-                                                            .minimumPayBackStream,
+                                                        stream: model.minimumPayBackStream,
                                                         initialData: true,
-                                                        dataBuilder: (context,
-                                                            readOnly) {
+                                                        dataBuilder: (context, readOnly) {
                                                           return AppTextField(
                                                             labelText: S
                                                                 .of(context)
                                                                 .minimumSettlements
                                                                 .toUpperCase(),
-                                                            hintText: S
-                                                                .of(context)
-                                                                .pleaseSelect,
-                                                            textFieldBorderColor: readOnly ??
-                                                                    false
-                                                                ? Theme.of(
-                                                                        context)
+                                                            hintText: S.of(context).pleaseSelect,
+                                                            textFieldBorderColor: readOnly ?? false
+                                                                ? Theme.of(context)
                                                                     .textSelectionTheme
                                                                     .selectionColor!
-                                                                    .withOpacity(
-                                                                        0.1)
-                                                                : Theme.of(
-                                                                        context)
+                                                                    .withOpacity(0.1)
+                                                                : Theme.of(context)
                                                                     .inputDecorationTheme
                                                                     .enabledBorder!
                                                                     .borderSide
                                                                     .color,
                                                             readOnly: true,
-                                                            controller: model
-                                                                .minimumSettlementController,
-                                                            onPressed:
-                                                                readOnly ??
-                                                                        false
-                                                                    ? () {}
-                                                                    : () {
-                                                                        RelationshipWithCardHolderDialog.show(
-                                                                            context,
-                                                                            onDismissed:
-                                                                                () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                        }, onSelected:
-                                                                                (value) {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          model.minimumSettlementController.text =
-                                                                              value;
-                                                                          model
-                                                                              .validate();
-                                                                        },
-                                                                            title:
-                                                                                S.of(context).minimumSettlements,
-                                                                            relationSHipWithCardHolder: model.minimumSettlements);
-                                                                      },
-                                                            suffixIcon:
-                                                                (value, data) {
-                                                              return readOnly ??
-                                                                      false
+                                                            controller: model.minimumSettlementController,
+                                                            onPressed: readOnly ?? false
+                                                                ? () {}
+                                                                : () {
+                                                                    RelationshipWithCardHolderDialog.show(
+                                                                        context, onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, onSelected: (value) {
+                                                                      Navigator.pop(context);
+                                                                      model.minimumSettlementController.text =
+                                                                          value;
+                                                                      model.validate();
+                                                                    },
+                                                                        title:
+                                                                            S.of(context).minimumSettlements,
+                                                                        relationSHipWithCardHolder:
+                                                                            model.minimumSettlements);
+                                                                  },
+                                                            suffixIcon: (value, data) {
+                                                              return readOnly ?? false
                                                                   ? Container()
                                                                   : Container(
-                                                                      height:
-                                                                          16,
+                                                                      height: 16,
                                                                       width: 16,
-                                                                      padding: EdgeInsets.only(
-                                                                          right:
-                                                                              8),
+                                                                      padding: EdgeInsets.only(right: 8),
                                                                       child: AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .downArrow,
-                                                                          color:
-                                                                              AppColor.dark_gray_1));
+                                                                          AssetUtils.downArrow,
+                                                                          color: AppColor.dark_gray_1));
                                                             },
-                                                            key: model
-                                                                .minimumSettlementKey,
+                                                            key: model.minimumSettlementKey,
                                                           );
                                                         }),
                                                     SizedBox(
                                                       height: 16,
                                                     ),
                                                     AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .nickName
-                                                          .toUpperCase(),
-                                                      hintText: S
-                                                          .of(context)
-                                                          .optional,
-                                                      controller: model
-                                                          .nickNameController,
+                                                      labelText: S.of(context).nickName.toUpperCase(),
+                                                      hintText: S.of(context).optional,
+                                                      controller: model.nickNameController,
                                                       key: model.nickNameKey,
                                                     ),
                                                   ],
@@ -341,17 +268,13 @@ class PersonalizeCreditCardPageView
                                             ),
                                             Center(
                                               child: AppStreamBuilder<bool>(
-                                                  stream:
-                                                      model.showButtonStream,
+                                                  stream: model.showButtonStream,
                                                   initialData: false,
-                                                  dataBuilder:
-                                                      (context, isValid) {
+                                                  dataBuilder: (context, isValid) {
                                                     return Visibility(
                                                       visible: isValid!,
                                                       child: AnimatedButton(
-                                                        buttonText: S
-                                                            .of(context)
-                                                            .swipeToProceed,
+                                                        buttonText: S.of(context).swipeToProceed,
                                                       ),
                                                     );
                                                   }),

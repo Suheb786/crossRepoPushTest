@@ -39,8 +39,8 @@ class SettingTile extends StatelessWidget {
                   AppSvg.asset(tileIcon),
                   Visibility(
                     visible: isNotify,
-                    child: Positioned(
-                      right: 0,
+                    child: PositionedDirectional(
+                      end: 0,
                       top: 0,
                       child: Container(
                         width: 8,
@@ -48,8 +48,7 @@ class SettingTile extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppColor.brightRed,
-                            border:
-                                Border.all(width: 1, color: AppColor.white)),
+                            border: Border.all(width: 1, color: AppColor.white)),
                       ),
                     ),
                   )
@@ -62,11 +61,7 @@ class SettingTile extends StatelessWidget {
                       style: TextStyle(
                         color: isEnabled
                             ? Theme.of(context).primaryColorDark
-                            : Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color ??
-                                AppColor.gray1,
+                            : Theme.of(context).inputDecorationTheme.hintStyle!.color ?? AppColor.gray1,
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),

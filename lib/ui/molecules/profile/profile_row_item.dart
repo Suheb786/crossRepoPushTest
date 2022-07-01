@@ -50,15 +50,12 @@ class ProfileRowItem extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1!
-                                .color!,
+                            color: Theme.of(context).primaryTextTheme.bodyText1!.color!,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10.0),
+                        padding: EdgeInsetsDirectional.only(start: 10.0),
                         child: FlutterSwitch(
                           value: isActive!,
                           onToggle: (value) {
@@ -77,12 +74,8 @@ class ProfileRowItem extends StatelessWidget {
                           inactiveText: inactiveText,
                           inactiveToggleColor: AppColor.lightGrayishMagenta,
                           inactiveTextFontWeight: FontWeight.w500,
-                          inactiveSwitchBorder:
-                              Border.all(color: AppColor.gray_2),
-                          activeColor: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!,
+                          inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                          activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
                           inactiveColor: Theme.of(context).accentColor,
                         ),
                       ),

@@ -29,7 +29,7 @@ class CreditCardVideoCallCompletePageView
         }
       },
       child: Padding(
-        padding: EdgeInsets.only(top: 56.0, left: 24, right: 24, bottom: 36),
+        padding: EdgeInsetsDirectional.only(top: 56.0, start: 24, end: 24, bottom: 36),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

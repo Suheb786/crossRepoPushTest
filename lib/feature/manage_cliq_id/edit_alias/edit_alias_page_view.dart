@@ -15,16 +15,13 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 56.0, left: 24, right: 24, bottom: 36),
+      padding: EdgeInsetsDirectional.only(top: 56.0, start: 24, end: 24, bottom: 36),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             S.of(context).editCliqId,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 10,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -32,10 +29,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
           Text(
             S.of(context).editYourAlias,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: Theme.of(context).accentColor),
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -52,8 +46,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                   Column(
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsets.only(left: 24, top: 32, right: 24),
+                        padding: const EdgeInsetsDirectional.only(start: 24, top: 32, end: 24),
                         child: AppTextField(
                           labelText: S.of(context).alias.toUpperCase(),
                           hintText: S.of(context).pleaseEnter,
@@ -78,8 +71,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                               padding: const EdgeInsets.only(top: 26.0),
                               child: Visibility(
                                 visible: isValid!,
-                                child: AnimatedButton(
-                                    buttonText: S.of(context).swipeToProceed),
+                                child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                               ),
                             );
                           }),
@@ -89,9 +81,7 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
+                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),

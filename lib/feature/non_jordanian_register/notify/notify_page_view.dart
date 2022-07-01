@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
   NotifyPageView(ProviderBase model) : super(model);
@@ -40,11 +41,9 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.NotifySuccess,
+                          Navigator.pushReplacementNamed(context, RoutePaths.NotifySuccess,
                               arguments: NotifySuccessArguments(
-                                  referenceNo: data.data!
-                                      .registerInterestContent!.referenceNo!));
+                                  referenceNo: data.data!.registerInterestContent!.referenceNo!));
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }
@@ -53,27 +52,27 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             FocusScope.of(context).unfocus();
-                            if (details.primaryVelocity!.isNegative) {
-                              model.notifyDetails();
+                            if (StringUtils.isDirectionRTL(context)) {
+                              if (!details.primaryVelocity!.isNegative) {
+                                model.notifyDetails();
+                              }
+                            } else {
+                              if (details.primaryVelocity!.isNegative) {
+                                model.notifyDetails();
+                              }
                             }
                           },
                           child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
-                            color: Theme.of(context)
-                                .cardTheme
-                                .copyWith(color: AppColor.white)
-                                .color,
+                            color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                             margin: EdgeInsets.zero,
                             shadowColor: AppColor.black.withOpacity(0.32),
                             child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     AppTextField(
                                       labelText: S.of(context).emailAddress,
@@ -87,9 +86,7 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                       },
                                     ),
                                     SizedBox(
-                                      height: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom,
+                                      height: MediaQuery.of(context).viewInsets.bottom,
                                     ),
                                     AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
@@ -98,8 +95,7 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                           return Visibility(
                                             visible: isValid!,
                                             child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
+                                              buttonText: S.of(context).swipeToProceed,
                                             ),
                                           );
                                         }),

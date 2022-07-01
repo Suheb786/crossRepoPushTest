@@ -16,10 +16,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
-class FatcaUSRelevantW8PageView
-    extends BasePageViewWidget<FatcaUSRelevantW8PageViewModel> {
+class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8PageViewModel> {
   FatcaUSRelevantW8PageView(ProviderBase model) : super(model);
 
   @override
@@ -44,9 +44,7 @@ class FatcaUSRelevantW8PageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
-                            .read(registerStepFourViewModelProvider)
-                            .nextPage();
+                        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).nextPage();
                         // .next();
                       });
                     } else if (data.status == Status.ERROR) {
@@ -62,35 +60,34 @@ class FatcaUSRelevantW8PageView
                                 .page ==
                             1.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSRelevantW8Details();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW8Details();
+                            }
                           } else {
-                            ///Don't allow user to go back
-                            // Future.delayed(Duration(milliseconds: 500), () {
-                            //   ProviderScope.containerOf(context)
-                            //       .read(registerStepFourViewModelProvider)
-                            //       .previousPage();
-                            //   // .previous();
-                            // });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSRelevantW8Details();
+                            } else {
+                              ///Don't allow user to go back
+                              // Future.delayed(Duration(milliseconds: 500), () {
+                              //   ProviderScope.containerOf(context)
+                              //       .read(registerStepFourViewModelProvider)
+                              //       .previousPage();
+                              //   // .previous();
+                              // });
+                            }
                           }
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
                         margin: EdgeInsets.zero,
-                        color: Theme.of(context)
-                            .cardTheme
-                            .copyWith(color: AppColor.white)
-                            .color,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
+                        color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+                        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -100,12 +97,9 @@ class FatcaUSRelevantW8PageView
                                     child: Column(
                                       children: [
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .nameAsPerIncomeTaxReturn,
+                                          labelText: S.of(context).nameAsPerIncomeTaxReturn,
                                           hintText: S.of(context).pleaseEnter,
-                                          controller: model
-                                              .nameAsPerTaxReturnController,
+                                          controller: model.nameAsPerTaxReturnController,
                                           key: model.nameAsPerTaxReturnKey,
                                           inputAction: TextInputAction.go,
                                           onChanged: (value) {
@@ -118,49 +112,38 @@ class FatcaUSRelevantW8PageView
                                         AppTextField(
                                           labelText: S.of(context).dateOfBirth,
                                           hintText: S.of(context).pleaseEnter,
-                                          controller:
-                                              model.dateOfBirthController,
+                                          controller: model.dateOfBirthController,
                                           inputType: TextInputType.datetime,
                                           inputAction: TextInputAction.go,
                                           key: model.dateOfBirthKey,
                                           readOnly: true,
                                           onPressed: () {
-                                            DatePicker.show(context,
-                                                initialDate: model.initialDate,
+                                            DatePicker.show(context, initialDate: model.initialDate,
                                                 onSelected: (date) {
                                               model.initialDate = date;
                                               model.dateOfBirthController.text =
-                                                  TimeUtils.getFormattedDate(
-                                                      date.toString());
+                                                  TimeUtils.getFormattedDate(date.toString());
                                               model.isValid();
                                             }, onCancelled: () {
                                               Navigator.pop(context);
-                                            },
-                                                title:
-                                                    S.of(context).dateOfBirth);
+                                            }, title: S.of(context).dateOfBirth);
                                           },
                                           suffixIcon: (value, data) {
                                             return Container(
                                                 height: 16,
                                                 width: 16,
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 7),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.calendar,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark));
+                                                padding: EdgeInsets.symmetric(horizontal: 7),
+                                                child: AppSvg.asset(AssetUtils.calendar,
+                                                    color: Theme.of(context).primaryColorDark));
                                           },
                                         ),
                                         SizedBox(
                                           height: 16,
                                         ),
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .countryOfCitizenship,
+                                          labelText: S.of(context).countryOfCitizenship,
                                           hintText: S.of(context).pleaseEnter,
-                                          controller: model
-                                              .countryOfCitizenshipController,
+                                          controller: model.countryOfCitizenshipController,
                                           inputType: TextInputType.text,
                                           inputAction: TextInputAction.go,
                                           key: model.countryOfCitizenshipKey,
@@ -169,9 +152,7 @@ class FatcaUSRelevantW8PageView
                                           },
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
+                                          height: MediaQuery.of(context).viewInsets.bottom,
                                         ),
                                       ],
                                     ),
@@ -186,9 +167,7 @@ class FatcaUSRelevantW8PageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
+                                                  buttonText: S.of(context).swipeToProceed,
                                                   buttonHeight: 50,
                                                 )
                                               : Container();

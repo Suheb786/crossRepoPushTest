@@ -15,9 +15,9 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterOTPForResetPasswordPageView
-    extends BasePageViewWidget<EnterOTPForResetPasswordPageViewModel> {
+class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForResetPasswordPageViewModel> {
   EnterOTPForResetPasswordPageView(ProviderBase model) : super(model);
 
   @override
@@ -50,21 +50,31 @@ class EnterOTPForResetPasswordPageView
                             .appSwiperController
                             .page ==
                         2.0) {
-                      if (details.primaryVelocity!.isNegative) {
-                        model.validateOtp(context);
+                      if (StringUtils.isDirectionRTL(context)) {
+                        if (!details.primaryVelocity!.isNegative) {
+                          model.validateOtp(context);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(forgotPasswordViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       } else {
-                        ProviderScope.containerOf(context)
-                            .read(forgotPasswordViewModelProvider)
-                            .previousPage();
-                        // .previous(animation: true);
+                        if (details.primaryVelocity!.isNegative) {
+                          model.validateOtp(context);
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(forgotPasswordViewModelProvider)
+                              .previousPage();
+                          // .previous(animation: true);
+                        }
                       }
                     }
                   },
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -83,12 +93,8 @@ class EnterOTPForResetPasswordPageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontSize: 16,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  widgetBuilder:
-                                      (context, currentTimeRemaining) {
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
@@ -98,20 +104,14 @@ class EnterOTPForResetPasswordPageView
                                               'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
                                                 fontSize: 14,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );
                                   },
                                 ),
@@ -125,8 +125,7 @@ class EnterOTPForResetPasswordPageView
                                           visible: isValid!,
                                           child: AnimatedButton(
                                             buttonHeight: 50,
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                           ),
                                         );
                                       }),

@@ -17,6 +17,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaUSW9TaxPayersDetailsPageView
     extends BasePageViewWidget<FatcaUSW9TaxPayersDetailsPageViewModel> {
@@ -62,15 +63,28 @@ class FatcaUSW9TaxPayersDetailsPageView
                                 .page ==
                             6.0) {
                           FocusScope.of(context).unfocus();
-                          if (details.primaryVelocity!.isNegative) {
-                            model.validateFatcaUSW9TaxPayersDetails();
+                          if (StringUtils.isDirectionRTL(context)) {
+                            if (!details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW9TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           } else {
-                            Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .previousPage();
-                              // .previous();
-                            });
+                            if (details.primaryVelocity!.isNegative) {
+                              model.validateFatcaUSW9TaxPayersDetails();
+                            } else {
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .previousPage();
+                                // .previous();
+                              });
+                            }
                           }
                         }
                       },
@@ -131,7 +145,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                                 height: 16,
                                                 width: 16,
                                                 padding:
-                                                    EdgeInsets.only(right: 8),
+                                                    EdgeInsetsDirectional.only(end: 8),
                                                 child: AppSvg.asset(
                                                     AssetUtils.downArrow,
                                                     color:

@@ -27,10 +27,10 @@ class DebitCardErrorWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage(AssetUtils.debitBlurWidget),
-              fit: BoxFit.fill,
-              scale: isSmallDevices ? 1.3 : 1,
-            )),
+                    image: AssetImage(AssetUtils.debitBlurWidget),
+                    fit: BoxFit.fill,
+                    scale: isSmallDevices ? 1.3 : 1,
+                    matchTextDirection: true)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

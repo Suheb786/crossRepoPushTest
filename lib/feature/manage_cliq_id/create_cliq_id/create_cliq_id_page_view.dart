@@ -14,13 +14,8 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import 'link_bank_account_cliqId/link_bank_account_cliqId_page.dart';
 
-class CreateCliqIdPageView
-    extends BasePageViewWidget<CreateCliqIdPageViewModel> {
-  final pages = [
-    CliqIdTypeSelectionPage(),
-    LinkBankAccountCliqIdPage(),
-    EnterOtpForCliqIdPage()
-  ];
+class CreateCliqIdPageView extends BasePageViewWidget<CreateCliqIdPageViewModel> {
+  final pages = [CliqIdTypeSelectionPage(), LinkBankAccountCliqIdPage(), EnterOtpForCliqIdPage()];
 
   CreateCliqIdPageView(ProviderBase model) : super(model);
 
@@ -42,17 +37,13 @@ class CreateCliqIdPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -69,16 +60,11 @@ class CreateCliqIdPageView
                     Text(
                       S.of(context).createNewCliqId.toUpperCase(),
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                          color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(
-                          top: 8.0,
-                          bottom: currentStep == 2 ? 0 : 32,
-                          left: 24,
-                          right: 24),
+                      padding: EdgeInsetsDirectional.only(
+                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),

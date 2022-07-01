@@ -1,14 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -72,8 +70,8 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                             //     ],
                             //   ),
                             // ),
-                            Positioned(
-                              right: 16,
+                            PositionedDirectional(
+                              end: 16,
                               top: 40,
                               child: IconButton(
                                   onPressed: () {
@@ -93,9 +91,9 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                             //     ),
                             //   ),
                             // ),
-                            Positioned(
-                              left: 0,
-                              right: 0,
+                            PositionedDirectional(
+                              start: 0,
+                              end: 0,
                               bottom: 0,
                               child: Container(
                                 decoration: BoxDecoration(
@@ -114,9 +112,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                     ),
                                     SizedBox(height: 8),
                                     Text(
-                                      S
-                                          .of(context)
-                                          .makeSureYourFaceFitsTheFrame,
+                                      S.of(context).makeSureYourFaceFitsTheFrame,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 14,
@@ -128,8 +124,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                         onTap: () {
                                           model.takePicture();
                                         },
-                                        child:
-                                            AppSvg.asset(AssetUtils.capture)),
+                                        child: AppSvg.asset(AssetUtils.capture)),
                                     SizedBox(height: 20),
                                   ],
                                 ),

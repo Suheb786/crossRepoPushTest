@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurposeOfAccountOpeningPageView
     extends BasePageViewWidget<PurposeOfAccountOpeningPageViewModel> {
@@ -61,13 +62,19 @@ class PurposeOfAccountOpeningPageView
                     return GestureDetector(
                       onHorizontalDragEnd: (details) {
                         FocusScope.of(context).unfocus();
-                        if (details.primaryVelocity!.isNegative) {
-                          model.validatePurposeOfAccountOpening();
+                        if (StringUtils.isDirectionRTL(context)) {
+                          if (!details.primaryVelocity!.isNegative) {
+                            model.validatePurposeOfAccountOpening();
+                          }
+                        } else {
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validatePurposeOfAccountOpening();
+                          }
                         }
                       },
                       child: Card(
                         child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: EdgeInsetsDirectional.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom -
                                           50 <=
                                       0
@@ -103,7 +110,8 @@ class PurposeOfAccountOpeningPageView
                                     return Container(
                                         height: 16,
                                         width: 16,
-                                        padding: EdgeInsets.only(right: 8),
+                                        padding:
+                                            EdgeInsetsDirectional.only(end: 8),
                                         child: AppSvg.asset(
                                             AssetUtils.downArrow,
                                             color: AppColor.dark_gray_1));
@@ -146,7 +154,7 @@ class PurposeOfAccountOpeningPageView
                                             );
                                           },
                                           physics: ClampingScrollPhysics(),
-                                          padding: EdgeInsets.only(
+                                          padding: EdgeInsetsDirectional.only(
                                               top: 16, bottom: 8),
                                           itemCount: expectedTransactions!
                                               .data!.length,
@@ -169,8 +177,8 @@ class PurposeOfAccountOpeningPageView
                                   inputAction: TextInputAction.done,
                                   prefixIcon: () {
                                     return Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 8),
+                                      padding: const EdgeInsetsDirectional.only(
+                                          top: 8.0, end: 8),
                                       child: Text(
                                         S.of(context).JOD,
                                         style: TextStyle(
@@ -207,8 +215,9 @@ class PurposeOfAccountOpeningPageView
                                     inputAction: TextInputAction.done,
                                     prefixIcon: () {
                                       return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, right: 8),
+                                        padding:
+                                            const EdgeInsetsDirectional.only(
+                                                top: 8.0, end: 8),
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
@@ -227,7 +236,7 @@ class PurposeOfAccountOpeningPageView
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 24),
+                                  padding: EdgeInsetsDirectional.only(top: 24),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.allFieldValidatorStream,
                                       initialData: false,

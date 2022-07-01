@@ -40,14 +40,15 @@ class ChangeMobileNumberPageView
               Visibility(
                 visible: currentStep == 0,
                 child: Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: InkWell(
                     onTap: () {
                       Navigator.pop(context);
                     },
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 24.0),
+                      padding: const EdgeInsetsDirectional.only(start: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
+                          matchTextDirection: true,
                           color: Theme.of(context).accentColor),
                     ),
                   ),
@@ -66,11 +67,11 @@ class ChangeMobileNumberPageView
                                 fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: EdgeInsetsDirectional.only(
                                 top: 8.0,
                                 bottom: currentStep == 1 ? 0 : 32,
-                                left: 24,
-                                right: 24),
+                                start: 24,
+                                end: 24),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),

@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   DashboardPageView(ProviderBase model) : super(model);
@@ -26,9 +27,14 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   Widget build(BuildContext context, model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        if (details.primaryDelta!.isNegative) {
-          Navigator.pushReplacementNamed(context, RoutePaths.Registration,
-              arguments: RegisterPageParams());
+        if (StringUtils.isDirectionRTL(context)) {
+          if (!details.primaryDelta!.isNegative) {
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
+          }
+        } else {
+          if (details.primaryDelta!.isNegative) {
+            Navigator.pushReplacementNamed(context, RoutePaths.Registration, arguments: RegisterPageParams());
+          }
         }
       },
       child: Container(
@@ -44,7 +50,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: AppSvg.asset(AssetUtils.swiggleHello),
+                    child: AppSvg.asset(AssetUtils.swiggleHello, matchTextDirection: true),
                   ),
                   SizedBox(
                     height: 40,
@@ -54,9 +60,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     child: Text(
                       S.of(context).successfullyCreatedLoginAccount,
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).accentColor),
+                          fontSize: 20, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
                     ),
                   ),
                   SizedBox(
@@ -111,8 +115,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       }
                     },
                     dataBuilder: (context, bioMetricResponse) {
-                      return AppStreamBuilder<
-                          Resource<GenerateKeyPairResponse>>(
+                      return AppStreamBuilder<Resource<GenerateKeyPairResponse>>(
                         stream: model.generateKeyPairStream,
                         initialData: Resource.none(),
                         onData: (data) {
@@ -131,28 +134,20 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                               }
                             },
                             initialData: Resource.none(),
-                            dataBuilder: (context, data) =>
-                                AppStreamBuilder<Resource<bool>>(
+                            dataBuilder: (context, data) => AppStreamBuilder<Resource<bool>>(
                               stream: model.checkBioMetricStream,
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
                                   if (data.data ?? false) {
-                                    BiometricLoginDialog.show(context,
-                                        mayBeLater: () {
+                                    BiometricLoginDialog.show(context, mayBeLater: () {
                                       Navigator.pop(context);
                                     }, enableBioMetric: () {
                                       model.authenticateBioMetric(
-                                          title: S
-                                              .of(context)
-                                              .enableBiometricLoginTitle,
+                                          title: S.of(context).enableBiometricLoginTitle,
                                           localisedReason: Platform.isAndroid
-                                              ? S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionAndroid
-                                              : S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionIos);
+                                              ? S.of(context).enableBiometricLoginDescriptionAndroid
+                                              : S.of(context).enableBiometricLoginDescriptionIos);
                                     });
                                   }
                                 }
@@ -177,9 +172,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 onData: (response) {
                   if (response.status == Status.SUCCESS) {
                     Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                   }
                 },
                 dataBuilder: (context, data) {
