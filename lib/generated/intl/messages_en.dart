@@ -338,6 +338,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Card subscriptions"),
         "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
             "While frozen, your card can\'t be used for any transactions."),
+        "category": MessageLookupByLibrary.simpleMessage("Category"),
         "changeCallStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "changeCardPaymentAccount":
@@ -947,6 +948,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "Almost there, just a few\nmore questions"),
+        "filterVouchers":
+            MessageLookupByLibrary.simpleMessage("Filter Vouchers"),
         "findOutMore": MessageLookupByLibrary.simpleMessage("Find out more"),
         "fingerPrintAlreadyExistForDevice": MessageLookupByLibrary.simpleMessage(
             "Biometric already exists for this device, please log in using your email and password"),
@@ -1448,6 +1451,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "manageSettlement":
             MessageLookupByLibrary.simpleMessage("Manage settlement"),
+        "maxPrice": MessageLookupByLibrary.simpleMessage("Max. Price"),
         "maximumAccountOpeningExceed": MessageLookupByLibrary.simpleMessage(
             "You have reached the maximum number of accounts permitted. Unfortunately, you cannot open a new account."),
         "maximumAgeOfUser":
@@ -1460,6 +1464,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDue": MessageLookupByLibrary.simpleMessage("Min. Due"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
+        "minPrice": MessageLookupByLibrary.simpleMessage("Min. Price"),
         "minimumSettlement":
             MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
         "minimumSettlements":
@@ -1710,6 +1715,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
         "preferredDateSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Date"),
+        "preferredRegion":
+            MessageLookupByLibrary.simpleMessage("Preferred Region"),
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
@@ -1902,6 +1909,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendIn": m3,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "resetFilter": MessageLookupByLibrary.simpleMessage("Reset Filter"),
         "residenceCountryNotFound": MessageLookupByLibrary.simpleMessage(
             "Residence country not found. Please choose another country or contact our Engagement Team for help 06-5200100."),
         "residentCity": MessageLookupByLibrary.simpleMessage("Resident City"),

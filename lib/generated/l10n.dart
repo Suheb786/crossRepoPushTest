@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12985,6 +12986,66 @@ class S {
     return Intl.message(
       'No Supplimentary User Details Found',
       name: 'noSuppUserDetailsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Region`
+  String get preferredRegion {
+    return Intl.message(
+      'Preferred Region',
+      name: 'preferredRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Price`
+  String get minPrice {
+    return Intl.message(
+      'Min. Price',
+      name: 'minPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max. Price`
+  String get maxPrice {
+    return Intl.message(
+      'Max. Price',
+      name: 'maxPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Vouchers`
+  String get filterVouchers {
+    return Intl.message(
+      'Filter Vouchers',
+      name: 'filterVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Filter`
+  String get resetFilter {
+    return Intl.message(
+      'Reset Filter',
+      name: 'resetFilter',
       desc: '',
       args: [],
     );
