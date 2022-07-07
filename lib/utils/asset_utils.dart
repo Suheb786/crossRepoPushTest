@@ -6,6 +6,7 @@ class AssetUtils {
   static const String drawable = "assets/drawable/";
   static const String flags = "assets/flags/";
   static const String _animation = "assets/animation/";
+  static const String evouchers = "assets/svg/evouchers_images/";
 
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
@@ -108,13 +109,11 @@ class AssetUtils {
   static const String personCircle = svg + "person_circle.svg";
   static const String cardFreeze = svg + "card_freeze.svg";
   static const String cardCancelIcon = svg + "cancel_card_icon.svg";
-  static const String supplementaryCardIcon =
-      svg + "supplementary_card_icon.svg";
+  static const String supplementaryCardIcon = svg + "supplementary_card_icon.svg";
   static const String reportIssueIcon = svg + "report_issue_icon.svg";
   static const String freezeIcon = svg + "freeze_icon.svg";
   static const String changeMobileNoIcon = svg + "change_mobile_no_icon.svg";
-  static const String changeLinkedAccountIcon =
-      svg + "change_linked_account_icon.svg";
+  static const String changeLinkedAccountIcon = svg + "change_linked_account_icon.svg";
   static const String cardPinIcon = svg + "card_pin_icon.svg";
   static const String cardLimitsIcon = svg + "card_limits_icon.svg";
   static const String cancelIcon = svg + "cancel_icon.svg";

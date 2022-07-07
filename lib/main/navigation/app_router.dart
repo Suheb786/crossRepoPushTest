@@ -51,6 +51,7 @@ import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_delive
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_ready/dc_setting_card_ready_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
+import 'package:neo_bank/feature/evouchers/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_page.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
@@ -124,43 +125,36 @@ class AppRouter {
     switch (settings.name) {
       case RoutePaths.Splash:
         return CupertinoPageRoute(
-            builder: (context) => SplashPage(),
-            settings: RouteSettings(name: RoutePaths.Splash));
+            builder: (context) => SplashPage(), settings: RouteSettings(name: RoutePaths.Splash));
 
       case RoutePaths.Login:
         return CupertinoPageRoute(
-            builder: (context) => LoginPage(),
-            settings: RouteSettings(name: RoutePaths.Login));
+            builder: (context) => LoginPage(), settings: RouteSettings(name: RoutePaths.Login));
 
       case RoutePaths.OnBoarding:
         return CupertinoPageRoute(
-            builder: (context) => OnBoardingPage(),
-            settings: RouteSettings(name: RoutePaths.OnBoarding));
+            builder: (context) => OnBoardingPage(), settings: RouteSettings(name: RoutePaths.OnBoarding));
 
       case RoutePaths.Registration:
         return CupertinoPageRoute(
-            builder: (context) =>
-                RegisterPage(settings.arguments as RegisterPageParams),
+            builder: (context) => RegisterPage(settings.arguments as RegisterPageParams),
             settings: RouteSettings(name: RoutePaths.Registration));
 
       case RoutePaths.AccountReady:
         return CupertinoPageRoute(
-            builder: (context) =>
-                AccountReadyPage(settings.arguments as AccountReadyArguments),
+            builder: (context) => AccountReadyPage(settings.arguments as AccountReadyArguments),
             settings: RouteSettings(name: RoutePaths.AccountReady));
 
       case RoutePaths.NotifySuccess:
         return CupertinoPageRoute(
             builder: (context) => NotifySuccessPage(
-                  notifySuccessArguments:
-                      settings.arguments as NotifySuccessArguments,
+                  notifySuccessArguments: settings.arguments as NotifySuccessArguments,
                 ),
             settings: RouteSettings(name: RoutePaths.NotifySuccess));
 
       case RoutePaths.AccountRegistration:
         return CupertinoPageRoute(
-            builder: (context) => AccountRegistrationPage(
-                settings.arguments as AccountRegistrationParams),
+            builder: (context) => AccountRegistrationPage(settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
 
       case RoutePaths.ProductSelector:
@@ -175,8 +169,7 @@ class AppRouter {
 
       case RoutePaths.Dashboard:
         return CupertinoPageRoute(
-            builder: (context) => DashboardPage(),
-            settings: RouteSettings(name: RoutePaths.Dashboard));
+            builder: (context) => DashboardPage(), settings: RouteSettings(name: RoutePaths.Dashboard));
 
       case RoutePaths.TermsAndCondition:
         return CupertinoPageRoute(
@@ -187,23 +180,19 @@ class AppRouter {
         // return CupertinoPageRoute(
         //     builder: (context) => AddMoneyOptionSelectorPage(),
         //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
-        return CustomRoute.createRoute(AddMoneyOptionSelectorPage(),
-            reverse: true);
+        return CustomRoute.createRoute(AddMoneyOptionSelectorPage(), reverse: true);
 
       case RoutePaths.LocateATM:
         return CupertinoPageRoute(
-            builder: (context) => LocateATMPage(),
-            settings: RouteSettings(name: RoutePaths.LocateATM));
+            builder: (context) => LocateATMPage(), settings: RouteSettings(name: RoutePaths.LocateATM));
 
       case RoutePaths.AppHome:
         return CupertinoPageRoute(
-            builder: (context) => AppHomePage(),
-            settings: RouteSettings(name: RoutePaths.AppHome));
+            builder: (context) => AppHomePage(), settings: RouteSettings(name: RoutePaths.AppHome));
 
       case RoutePaths.Capture:
         return CupertinoPageRoute(
-            builder: (context) => CapturePage(),
-            settings: RouteSettings(name: RoutePaths.Capture));
+            builder: (context) => CapturePage(), settings: RouteSettings(name: RoutePaths.Capture));
 
       case RoutePaths.FatcaCertification:
         return CupertinoPageRoute(
@@ -218,14 +207,12 @@ class AppRouter {
       case RoutePaths.ExemptionFromFatcaReportingCode:
         return CupertinoPageRoute(
             builder: (context) => ExemptionFromFatcaReportingCodePage(),
-            settings: RouteSettings(
-                name: RoutePaths.ExemptionFromFatcaReportingCode));
+            settings: RouteSettings(name: RoutePaths.ExemptionFromFatcaReportingCode));
 
       case RoutePaths.UsTaxPayerIdentificationNo:
         return CupertinoPageRoute(
             builder: (context) => UsTaxPayerIdentificationNumberPage(),
-            settings:
-                RouteSettings(name: RoutePaths.UsTaxPayerIdentificationNo));
+            settings: RouteSettings(name: RoutePaths.UsTaxPayerIdentificationNo));
 
       case RoutePaths.ReferenceNumber:
         return CupertinoPageRoute(
@@ -234,14 +221,13 @@ class AppRouter {
 
       case RoutePaths.TaxTreatyBenefits:
         return CupertinoPageRoute(
-            builder: (context) => ClaimOfTaxTreatyBenefitsPage(
-                settings.arguments as ClaimOfTaxTreatyBenefitsArguments),
+            builder: (context) =>
+                ClaimOfTaxTreatyBenefitsPage(settings.arguments as ClaimOfTaxTreatyBenefitsArguments),
             settings: RouteSettings(name: RoutePaths.TaxTreatyBenefits));
 
       case RoutePaths.CardDelivery:
         return CupertinoPageRoute(
-            builder: (context) => CardDeliveryPage(),
-            settings: RouteSettings(name: RoutePaths.CardDelivery));
+            builder: (context) => CardDeliveryPage(), settings: RouteSettings(name: RoutePaths.CardDelivery));
 
       case RoutePaths.CardReadySuccess:
         return CupertinoPageRoute(
@@ -270,8 +256,7 @@ class AppRouter {
 
       case RoutePaths.MyDocuments:
         return CupertinoPageRoute(
-            builder: (context) => MyDocumentsPage(),
-            settings: RouteSettings(name: RoutePaths.MyDocuments));
+            builder: (context) => MyDocumentsPage(), settings: RouteSettings(name: RoutePaths.MyDocuments));
 
       case RoutePaths.ManageContactsList:
         return CupertinoPageRoute(
@@ -280,55 +265,49 @@ class AppRouter {
 
       case RoutePaths.ManageContactsDetail:
         return CupertinoPageRoute(
-            builder: (context) =>
-                ManageContactDetailsPage(settings.arguments as Beneficiary),
+            builder: (context) => ManageContactDetailsPage(settings.arguments as Beneficiary),
             settings: RouteSettings(name: RoutePaths.ManageContactsDetail));
 
       case RoutePaths.DownloadTransaction:
         return CupertinoPageRoute(
-            builder: (context) => DownloadTransactionPage(
-                settings.arguments as DownloadStatementArguments),
+            builder: (context) => DownloadTransactionPage(settings.arguments as DownloadStatementArguments),
             settings: RouteSettings(name: RoutePaths.DownloadTransaction));
 
       case RoutePaths.CardTransaction:
-        return CustomRoute.createRoute(CardTransactionPage(
-            settings.arguments as GetCreditCardTransactionArguments));
+        return CustomRoute.createRoute(
+            CardTransactionPage(settings.arguments as GetCreditCardTransactionArguments));
 
       case RoutePaths.AccountTransaction:
         return CustomRoute.createRoute(AccountTransactionPage());
 
       case RoutePaths.CreditCardDelivered:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardDeliveredPage(
-                creditCard: settings.arguments as TimeLineListArguments),
+            builder: (context) =>
+                CreditCardDeliveredPage(creditCard: settings.arguments as TimeLineListArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardDeliveredPage(
-                debitCard: settings.arguments as TimeLineListArguments),
+            builder: (context) =>
+                DebitCardDeliveredPage(debitCard: settings.arguments as TimeLineListArguments),
             settings: RouteSettings(name: RoutePaths.DebitCardDelivered));
 
       case RoutePaths.CreditCardVerificationSuccess:
         return CupertinoPageRoute(
             builder: (context) => CreditCardVerificationSuccessPage(),
-            settings:
-                RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
+            settings: RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
 
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(
             builder: (context) => DebitCardVerificationSuccessPage(),
-            settings:
-                RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
+            settings: RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       case RoutePaths.PaymentHome:
-        return CustomRoute.createRoute(PaymentHomePage(
-            navigationType: settings.arguments as NavigationType));
+        return CustomRoute.createRoute(PaymentHomePage(navigationType: settings.arguments as NavigationType));
 
       case RoutePaths.ActivityHome:
         return CupertinoPageRoute(
-            builder: (context) => ActivityHomePage(),
-            settings: RouteSettings(name: RoutePaths.ActivityHome));
+            builder: (context) => ActivityHomePage(), settings: RouteSettings(name: RoutePaths.ActivityHome));
 
       case RoutePaths.RequestMoneyFailure:
         return CupertinoPageRoute(
@@ -341,20 +320,18 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
 
       case RoutePaths.RequestAmountFromContact:
-        return CustomRoute.createRoute(RequestAmountFromContactPage(
-            beneficiary: settings.arguments as Beneficiary));
+        return CustomRoute.createRoute(
+            RequestAmountFromContactPage(beneficiary: settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(
-            SendAmountToContactPage(settings.arguments as Beneficiary));
+        return CustomRoute.createRoute(SendAmountToContactPage(settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
             builder: (context) => SendAmountToContactSuccessPage(
                   arguments: settings.arguments as TransferSuccessContent,
                 ),
-            settings:
-                RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
+            settings: RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
 
       case RoutePaths.SendMoney:
         return CustomRoute.createRoute(SendMoneyPage());
@@ -367,91 +344,79 @@ class AppRouter {
             builder: (context) => RequestAmountFromContactSuccessPage(
                   successValues: settings.arguments as List<String>,
                 ),
-            settings: RouteSettings(
-                name: RoutePaths.RequestAmountFromContactSuccess));
+            settings: RouteSettings(name: RoutePaths.RequestAmountFromContactSuccess));
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => RequestPaymentFromNewRecipientPage(
-                requestValue: settings.arguments as String),
-            settings:
-                RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
+            builder: (context) =>
+                RequestPaymentFromNewRecipientPage(requestValue: settings.arguments as String),
+            settings: RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(
-                sendValue: settings.arguments as String),
+            builder: (context) => PaymentToNewRecipientPage(sendValue: settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.VideoKyc:
         return CupertinoPageRoute(
-            builder: (context) => VideoKycPage(
-                credentials: settings.arguments as VideKycCredentials),
+            builder: (context) => VideoKycPage(credentials: settings.arguments as VideKycCredentials),
             settings: RouteSettings(name: RoutePaths.VideoKyc));
 
       case RoutePaths.VideoKYCScheduled:
         return CupertinoPageRoute(
-            builder: (context) => VideoCallScheduledPage(
-                settings.arguments as VideoCallScheduledArguments),
+            builder: (context) => VideoCallScheduledPage(settings.arguments as VideoCallScheduledArguments),
             settings: RouteSettings(name: RoutePaths.VideoKYCScheduled));
 
       case RoutePaths.DebitCardSettings:
-        return CustomRoute.createRoute(DebitCardSettingsPage(
-            settings.arguments as DebitCardSettingsArguments));
+        return CustomRoute.createRoute(
+            DebitCardSettingsPage(settings.arguments as DebitCardSettingsArguments));
 
       case RoutePaths.CreditCardSettings:
-        return CustomRoute.createRoute(CreditCardSettingsPage(
-            settings.arguments as CreditCardSettingsArguments));
+        return CustomRoute.createRoute(
+            CreditCardSettingsPage(settings.arguments as CreditCardSettingsArguments));
 
       case RoutePaths.HelpCenter:
         return CupertinoPageRoute(
-            builder: (context) => HelpCenterPage(),
-            settings: RouteSettings(name: RoutePaths.HelpCenter));
+            builder: (context) => HelpCenterPage(), settings: RouteSettings(name: RoutePaths.HelpCenter));
 
       case RoutePaths.ActiveCallPage:
         return CupertinoPageRoute(
-            builder: (context) => ActiveCallPage(),
-            settings: RouteSettings(name: RoutePaths.ActiveCallPage));
+            builder: (context) => ActiveCallPage(), settings: RouteSettings(name: RoutePaths.ActiveCallPage));
 
       case RoutePaths.CallEndedPage:
         return CupertinoPageRoute(
-            builder: (context) => CallEndedPage(),
-            settings: RouteSettings(name: RoutePaths.CallEndedPage));
+            builder: (context) => CallEndedPage(), settings: RouteSettings(name: RoutePaths.CallEndedPage));
 
       case RoutePaths.ManageCardPin:
         return CustomRoute.createRoute(
-          ManageCardPinPage(
-              manageCardPinArguments:
-                  settings.arguments as ManageCardPinArguments),
+          ManageCardPinPage(manageCardPinArguments: settings.arguments as ManageCardPinArguments),
         );
 
       case RoutePaths.CardPinUnBlockSuccess:
         return CupertinoPageRoute(
             builder: (context) => CardPinUnBlockSuccessPage(
-                manageCardPinArguments:
-                    settings.arguments as ManageCardPinArguments),
+                manageCardPinArguments: settings.arguments as ManageCardPinArguments),
             settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
 
       case RoutePaths.DebitCardReplacement:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardReplacementPage(
-                settings.arguments as DebitCardReplacementArguments),
+            builder: (context) =>
+                DebitCardReplacementPage(settings.arguments as DebitCardReplacementArguments),
             settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
 
       case RoutePaths.DebitCardReplacementSuccess:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardReplacementSuccessPage(
-                settings.arguments as DebitCardReplacementSuccessPageArgs),
-            settings:
-                RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
+            builder: (context) =>
+                DebitCardReplacementSuccessPage(settings.arguments as DebitCardReplacementSuccessPageArgs),
+            settings: RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
 
       case RoutePaths.manageDebitLimit:
-        return CustomRoute.createRoute(ManageDebitCardLimitsPage(
-            settings.arguments as ManageCardLimitsArguments));
+        return CustomRoute.createRoute(
+            ManageDebitCardLimitsPage(settings.arguments as ManageCardLimitsArguments));
 
       case RoutePaths.ManageCreditCardLimits:
-        return CustomRoute.createRoute(ManageCreditCardLimitsPage(
-            settings.arguments as ManageCreditCardLimitsArguments));
+        return CustomRoute.createRoute(
+            ManageCreditCardLimitsPage(settings.arguments as ManageCreditCardLimitsArguments));
 
       case RoutePaths.ChangeCardPin:
         return CupertinoPageRoute(
@@ -460,8 +425,8 @@ class AppRouter {
 
       case RoutePaths.ChangeCardPinSuccess:
         return CupertinoPageRoute(
-            builder: (context) => ChangeCardPinSuccessPage(
-                settings.arguments as ChangeCardPinSuccessArguments),
+            builder: (context) =>
+                ChangeCardPinSuccessPage(settings.arguments as ChangeCardPinSuccessArguments),
             settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
 
       case RoutePaths.SupplementaryCreditCard:
@@ -472,8 +437,7 @@ class AppRouter {
       case RoutePaths.SupplementaryCreditCardReady:
         return CupertinoPageRoute(
             builder: (context) => SupplementaryCreditCardReadyPage(),
-            settings:
-                RouteSettings(name: RoutePaths.SupplementaryCreditCardReady));
+            settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardReady));
 
       case RoutePaths.SupplementaryDebitCard:
         return CupertinoPageRoute(
@@ -482,20 +446,18 @@ class AppRouter {
 
       case RoutePaths.SupplementaryCardInReview:
         return CupertinoPageRoute(
-            builder: (context) => SupplementaryCardInReviewPage(
-                settings.arguments as SupplementaryCardInReviewArguments),
-            settings:
-                RouteSettings(name: RoutePaths.SupplementaryCardInReview));
+            builder: (context) =>
+                SupplementaryCardInReviewPage(settings.arguments as SupplementaryCardInReviewArguments),
+            settings: RouteSettings(name: RoutePaths.SupplementaryCardInReview));
 
       case RoutePaths.BlinkCreditCard:
         return CustomRoute.createRoute(BlinkCreditCardPage());
 
       case RoutePaths.CreditCardApplicationFailure:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardApplicationFailurePage(
-                settings.arguments as CreditCardApplicationFailureArguments),
-            settings:
-                RouteSettings(name: RoutePaths.CreditCardApplicationFailure));
+            builder: (context) =>
+                CreditCardApplicationFailurePage(settings.arguments as CreditCardApplicationFailureArguments),
+            settings: RouteSettings(name: RoutePaths.CreditCardApplicationFailure));
 
       case RoutePaths.ApplyCreditCardHome:
         return CupertinoPageRoute(
@@ -504,8 +466,7 @@ class AppRouter {
 
       case RoutePaths.AccountHold:
         return CupertinoPageRoute(
-            builder: (context) =>
-                AccountHoldPage(settings.arguments as AccountHoldArguments),
+            builder: (context) => AccountHoldPage(settings.arguments as AccountHoldArguments),
             settings: RouteSettings(name: RoutePaths.AccountHold));
 
       case RoutePaths.ForgotPassword:
@@ -516,13 +477,12 @@ class AppRouter {
       case RoutePaths.CreditCardActivationStatus:
         return CupertinoPageRoute(
             builder: (context) => CreditCardActivationStatusPage(),
-            settings:
-                RouteSettings(name: RoutePaths.CreditCardActivationStatus));
+            settings: RouteSettings(name: RoutePaths.CreditCardActivationStatus));
 
       case RoutePaths.CreditCardApplySuccess:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardApplySuccessPage(
-                settings.arguments as CreditCardApplySuccessArguments),
+            builder: (context) =>
+                CreditCardApplySuccessPage(settings.arguments as CreditCardApplySuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardApplySuccess));
 
       case RoutePaths.ResetPasswordSuccess:
@@ -548,68 +508,58 @@ class AppRouter {
       case RoutePaths.SupplementaryDebitCardSuccess:
         return CupertinoPageRoute(
             builder: (context) => SupplementaryDebitCardSuccessPage(),
-            settings:
-                RouteSettings(name: RoutePaths.SupplementaryDebitCardSuccess));
+            settings: RouteSettings(name: RoutePaths.SupplementaryDebitCardSuccess));
 
       case RoutePaths.CreditCardPayBack:
         return CustomRoute.createRoute(
-          CreditCardPayBackPage(
-              settings.arguments as CreditCardPayBackArguments),
+          CreditCardPayBackPage(settings.arguments as CreditCardPayBackArguments),
         );
 
       case RoutePaths.CreditCardPayBackSuccess:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardPayBackSuccessPage(
-                settings.arguments as CreditCardPayBackSuccessArguments),
+            builder: (context) =>
+                CreditCardPayBackSuccessPage(settings.arguments as CreditCardPayBackSuccessArguments),
             settings: RouteSettings(name: RoutePaths.CreditCardPayBackSuccess));
 
       case RoutePaths.VideoCall:
         return CupertinoPageRoute(
-            builder: (context) => VideoCallPage(),
-            settings: RouteSettings(name: RoutePaths.VideoCall));
+            builder: (context) => VideoCallPage(), settings: RouteSettings(name: RoutePaths.VideoCall));
 
       case RoutePaths.CheckScheduledVideoCall:
         return CupertinoPageRoute(
-            builder: (context) => CheckScheduledVideoCallPage(
-                settings.arguments as CheckVideoCallScheduledArguments),
+            builder: (context) =>
+                CheckScheduledVideoCallPage(settings.arguments as CheckVideoCallScheduledArguments),
             settings: RouteSettings(name: RoutePaths.CheckScheduledVideoCall));
 
       case RoutePaths.TimeLinePage:
-        return CustomRoute.createRoute(
-            DebitCardTimeLinePage(settings.arguments as TimeLinePageArguments));
+        return CustomRoute.createRoute(DebitCardTimeLinePage(settings.arguments as TimeLinePageArguments));
 
       case RoutePaths.SupplementaryCreditCardActivationStatus:
         return CupertinoPageRoute(
             builder: (context) => SupplementaryCreditCardActivationStatusPage(
-                settings.arguments
-                    as SupplementaryCreditCardActivationArguments),
-            settings: RouteSettings(
-                name: RoutePaths.SupplementaryCreditCardActivationStatus));
+                settings.arguments as SupplementaryCreditCardActivationArguments),
+            settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardActivationStatus));
 
       case RoutePaths.AllContact:
         return CupertinoPageRoute(
-            builder: (context) =>
-                AllContactPage(settings.arguments as AllContactArguments),
+            builder: (context) => AllContactPage(settings.arguments as AllContactArguments),
             settings: RouteSettings(name: RoutePaths.AllContact));
 
       case RoutePaths.CreditCardVideoCallInitiate:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardVideoCallInitiatePage(
-                settings.arguments as CreditCardVideoCallInitiateArgs),
-            settings:
-                RouteSettings(name: RoutePaths.CreditCardVideoCallInitiate));
+            builder: (context) =>
+                CreditCardVideoCallInitiatePage(settings.arguments as CreditCardVideoCallInitiateArgs),
+            settings: RouteSettings(name: RoutePaths.CreditCardVideoCallInitiate));
 
       case RoutePaths.CreditCardVideoCallComplete:
         return CupertinoPageRoute(
             builder: (context) => CreditCardVideoCallCompletePage(),
-            settings:
-                RouteSettings(name: RoutePaths.CreditCardVideoCallComplete));
+            settings: RouteSettings(name: RoutePaths.CreditCardVideoCallComplete));
 
       case RoutePaths.CreditCardVideoKyc:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardVideoKycPage(
-                credentials:
-                    settings.arguments as CreditCardVideKycCredentials),
+            builder: (context) =>
+                CreditCardVideoKycPage(credentials: settings.arguments as CreditCardVideKycCredentials),
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
       case RoutePaths.RequestMoneyQrGeneration:
@@ -617,8 +567,7 @@ class AppRouter {
 
       case RoutePaths.QRScreen:
         return CupertinoPageRoute(
-            builder: (context) => QrScreenPage(),
-            settings: RouteSettings(name: RoutePaths.QRScreen));
+            builder: (context) => QrScreenPage(), settings: RouteSettings(name: RoutePaths.QRScreen));
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(
@@ -628,18 +577,15 @@ class AppRouter {
       case RoutePaths.SendMoneyQrScanningSuccess:
         return CupertinoPageRoute(
             builder: (context) => SendMoneyViaQrSuccessPage(),
-            settings:
-                RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
+            settings: RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
 
       case RoutePaths.CliqIdList:
         return CupertinoPageRoute(
-            builder: (context) => CliqIdListPage(),
-            settings: RouteSettings(name: RoutePaths.CliqIdList));
+            builder: (context) => CliqIdListPage(), settings: RouteSettings(name: RoutePaths.CliqIdList));
 
       case RoutePaths.CreateCliqId:
         return CupertinoPageRoute(
-            builder: (context) => CreateCliqIdPage(),
-            settings: RouteSettings(name: RoutePaths.CreateCliqId));
+            builder: (context) => CreateCliqIdPage(), settings: RouteSettings(name: RoutePaths.CreateCliqId));
 
       case RoutePaths.CliqIdCreationSuccess:
         return CupertinoPageRoute(
@@ -648,8 +594,7 @@ class AppRouter {
 
       case RoutePaths.EditAlias:
         return CupertinoPageRoute(
-            builder: (context) => EditAliasPage(),
-            settings: RouteSettings(name: RoutePaths.EditAlias));
+            builder: (context) => EditAliasPage(), settings: RouteSettings(name: RoutePaths.EditAlias));
 
       case RoutePaths.EditMobileNoCliq:
         return CupertinoPageRoute(
@@ -664,8 +609,7 @@ class AppRouter {
       case RoutePaths.ManageCreditSettlement:
         return CupertinoPageRoute(
             builder: (context) => ManageCreditSettlementPage(
-                manageCreditSettlementArguments:
-                    settings.arguments as ManageCreditSettlementArguments),
+                manageCreditSettlementArguments: settings.arguments as ManageCreditSettlementArguments),
             settings: RouteSettings(name: RoutePaths.ManageCreditSettlement));
 
       case RoutePaths.ChangeCardPayment:
@@ -676,18 +620,17 @@ class AppRouter {
       case RoutePaths.ChangeCardSettlementPercentage:
         return CupertinoPageRoute(
             builder: (context) => ChangeCardSettlementPercentagePage(
-                changeCardSettlementPercentageArguments: settings.arguments
-                    as ChangeCardSettlementPercentageArguments),
-            settings:
-                RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
+                changeCardSettlementPercentageArguments:
+                    settings.arguments as ChangeCardSettlementPercentageArguments),
+            settings: RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
 
       case RoutePaths.ViewDebitCardSubscription:
-        return CustomRoute.createRoute(ViewDebitCardSubscriptionPage(
-            settings.arguments as ViewDebitCardSubscriptionArguments));
+        return CustomRoute.createRoute(
+            ViewDebitCardSubscriptionPage(settings.arguments as ViewDebitCardSubscriptionArguments));
 
       case RoutePaths.DcChangeLinkedMobileNumber:
-        return CustomRoute.createRoute(DcChangeLinkedMobileNumberPage(
-            settings.arguments as DCChangeLinkedMobileNumberArguments));
+        return CustomRoute.createRoute(
+            DcChangeLinkedMobileNumberPage(settings.arguments as DCChangeLinkedMobileNumberArguments));
 
       case RoutePaths.DcSettingCardDelivery:
         return CupertinoPageRoute(
@@ -701,10 +644,9 @@ class AppRouter {
 
       case RoutePaths.DcChangeMobileNumberSuccess:
         return CupertinoPageRoute(
-            builder: (context) => DcChangeMobileNumberSuccessPage(
-                settings.arguments as DCChangeLinkedMobileNumberArguments),
-            settings:
-                RouteSettings(name: RoutePaths.DcChangeMobileNumberSuccess));
+            builder: (context) =>
+                DcChangeMobileNumberSuccessPage(settings.arguments as DCChangeLinkedMobileNumberArguments),
+            settings: RouteSettings(name: RoutePaths.DcChangeMobileNumberSuccess));
 
       case RoutePaths.RenewCreditCard:
         return CupertinoPageRoute(
@@ -719,15 +661,18 @@ class AppRouter {
       case RoutePaths.ConvertPurchaseToInstallments:
         return CupertinoPageRoute(
             builder: (context) => ConvertPurchaseToInstallmentsPage(),
-            settings:
-                RouteSettings(name: RoutePaths.ConvertPurchaseToInstallments));
+            settings: RouteSettings(name: RoutePaths.ConvertPurchaseToInstallments));
 
       case RoutePaths.SupplementaryDebitCardPinSet:
         return CupertinoPageRoute(
-            builder: (context) => SupplementaryDebitCardPinSetPage(
-                settings.arguments as SupplementaryDebitCardPinSetArguments),
-            settings:
-                RouteSettings(name: RoutePaths.SupplementaryDebitCardPinSet));
+            builder: (context) =>
+                SupplementaryDebitCardPinSetPage(settings.arguments as SupplementaryDebitCardPinSetArguments),
+            settings: RouteSettings(name: RoutePaths.SupplementaryDebitCardPinSet));
+
+      case RoutePaths.EVouchersListing:
+        return CupertinoPageRoute(
+            builder: (context) => EVoucherCategoryListingPage(),
+            settings: RouteSettings(name: RoutePaths.EVouchersListing));
 
       default:
         return CupertinoPageRoute(
