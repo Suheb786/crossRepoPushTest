@@ -365,6 +365,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+  flutter_gallery_3d:
+    dependency: "direct main"
+    description:
+      name: flutter_gallery_3d
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   flutter_jailbreak_detection:
     dependency: transitive
     description:

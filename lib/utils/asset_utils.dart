@@ -226,4 +226,18 @@ class AssetUtils {
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
+
+
+//Evoucher png
+static const String apple_music = drawable + "apple_music.png";
+static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
+static const String favourite_brand = drawable + "favourite_brand.png";
+static const String top_brand_adidas = drawable + "top_brand_adidas.png";
+static const String browser_category_shopping_icon = drawable + "browser_category_shopping_icon.png";
+
+
+//Evoucher svg
+
+// static const String favourite_brand = svg + "favourite_brand.svg";
+
 }

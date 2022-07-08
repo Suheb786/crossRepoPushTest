@@ -12989,6 +12989,86 @@ class S {
       args: [],
     );
   }
+
+  /// `eVouchers`
+  String get eVouchers {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy Vouchers`
+  String get buyVouchers {
+    return Intl.message(
+      'Buy Vouchers',
+      name: 'buyVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Vouchers`
+  String get myVouchers {
+    return Intl.message(
+      'My Vouchers',
+      name: 'myVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e-Vouchers are here!`
+  String get eVouchersAreHere {
+    return Intl.message(
+      'e-Vouchers are here!',
+      name: 'eVouchersAreHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing voucher`
+  String get processingVoucher {
+    return Intl.message(
+      'Processing voucher',
+      name: 'processingVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.`
+  String get eVoucherLandingDialogDescption {
+    return Intl.message(
+      'You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.',
+      name: 'eVoucherLandingDialogDescption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get eVoucherSearchLabel {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'eVoucherSearchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`
+  String get eVoucherDetailDescption {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
+      name: 'eVoucherDetailDescption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

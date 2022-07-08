@@ -133,4 +133,7 @@ class RoutePaths {
   static const String ManageCreditCardLimits = "/manageCreditCardLimits";
   static const String SupplementaryDebitCardPinSet =
       "/supplementaryDebitCardPinSet";
+
+      static const String Evoucher = "/evoucher";
+      static const String EvoucherDetail = "/evoucherDetail";
 }

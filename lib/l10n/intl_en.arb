@@ -1320,5 +1320,14 @@
   "supplementaryCreditCardHolderIdNotMatchMotherFather": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-308) ",
   "primaryDebitCreditCardHolderNotMatchMotherFather": "Invalid relationship. Please ensure that the supplementary cardholder is your spouse, child or parent.(Err-309) ",
   "noDataFoundInFI": "No data Found in Financial Institutions",
-  "noSuppUserDetailsFound": "No Supplimentary User Details Found"
+  "noSuppUserDetailsFound": "No Supplimentary User Details Found",
+  "eVouchers": "eVouchers",
+  "buyVouchers": "Buy Vouchers",
+  "myVouchers": "My Vouchers",
+  "eVouchersAreHere":"e-Vouchers are here!",
+  "processingVoucher":"Processing voucher",
+  "eVoucherLandingDialogDescption":"You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.",
+  "eVoucherSearchLabel":"What are you looking for?",
+  "eVoucherDetailDescption":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."
+  
 }
