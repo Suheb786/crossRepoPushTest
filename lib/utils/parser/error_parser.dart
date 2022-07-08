@@ -1071,6 +1071,12 @@ class ErrorParser {
         return localisedHelper.noDataFoundInFI;
       case ErrorType.NO_SUPP_USER_DETAILS_FOUND:
         return localisedHelper.noSuppUserDetailsFound;
+      case ErrorType.SELECT_ACCOUNT:
+        return localisedHelper.selectAccount;
+      case ErrorType.SELECT_AMOUNT:
+        return localisedHelper.selectAMount;
+      case ErrorType.SELECT_REGION:
+        return localisedHelper.selectRegion;
 
       default:
         return "";

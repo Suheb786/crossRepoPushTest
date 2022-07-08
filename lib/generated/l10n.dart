@@ -13050,6 +13050,106 @@ class S {
       args: [],
     );
   }
+
+  /// `EVOUCHERS`
+  String get eVouchers {
+    return Intl.message(
+      'EVOUCHERS',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your preferred\nregion and amount`
+  String get selectPreferredRegionAmount {
+    return Intl.message(
+      'Select your preferred\nregion and amount',
+      name: 'selectPreferredRegionAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howWouldLikeToPay {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howWouldLikeToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGION`
+  String get region {
+    return Intl.message(
+      'REGION',
+      name: 'region',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VALUE`
+  String get value {
+    return Intl.message(
+      'VALUE',
+      name: 'value',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to {String}`
+  String backToCategory(Object String) {
+    return Intl.message(
+      'Back to $String',
+      name: 'backToCategory',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Select Region`
+  String get selectRegion {
+    return Intl.message(
+      'Select Region',
+      name: 'selectRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Amount`
+  String get selectAMount {
+    return Intl.message(
+      'Select Amount',
+      name: 'selectAMount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchased for`
+  String get purchasedFor {
+    return Intl.message(
+      'Purchased for',
+      name: 'purchasedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to View Voucher`
+  String get toViewVoucher {
+    return Intl.message(
+      'to View Voucher',
+      name: 'toViewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

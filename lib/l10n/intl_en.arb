@@ -1326,5 +1326,15 @@
   "minPrice": "Min. Price",
   "maxPrice": "Max. Price",
   "filterVouchers": "Filter Vouchers",
-  "resetFilter": "Reset Filter"
+  "resetFilter": "Reset Filter",
+  "eVouchers": "EVOUCHERS",
+  "selectPreferredRegionAmount": "Select your preferred\nregion and amount",
+  "howWouldLikeToPay": "How would you like to\nmake the payment",
+  "region": "REGION",
+  "value": "VALUE",
+  "backToCategory": "Back to {String}",
+  "selectRegion": "Select Region",
+  "selectAMount": "Select Amount",
+  "purchasedFor": "Purchased for",
+  "toViewVoucher": "to View Voucher"
 }

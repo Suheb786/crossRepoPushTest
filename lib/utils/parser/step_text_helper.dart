@@ -157,7 +157,6 @@ class StepTextHelper {
 
   static Widget paymentToNewRecipientStepTextHelper(
       int index, Widget step1, Widget step2) {
-    print("got index : ${index}");
     switch (index) {
       case 0:
         return step1;

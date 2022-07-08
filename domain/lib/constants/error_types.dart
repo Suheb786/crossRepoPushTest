@@ -582,5 +582,10 @@ enum ErrorType {
 
   ///manage cliq
   EMPTY_CLIQ_ID_TYPE,
-  EMPTY_ALIAS
+  EMPTY_ALIAS,
+
+  ///EVouchers
+  SELECT_REGION,
+  SELECT_AMOUNT,
+  SELECT_ACCOUNT
 }

@@ -114,4 +114,6 @@ class RoutePaths {
   static const String ManageCreditCardLimits = "/manageCreditCardLimits";
   static const String SupplementaryDebitCardPinSet = "/supplementaryDebitCardPinSet";
   static const String EVouchersListing = "/eVouchersListing";
+  static const String EVouchersPurchase = "/eVouchersPurchase";
+  static const String EVouchersPurchaseSuccess = "/eVouchersPurchaseSuccess";
 }

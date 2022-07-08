@@ -23,39 +23,33 @@ class EVoucherCategoryListingPageState
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
       preferredSize: Size(double.maxFinite, 85),
-      child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            Navigator.pop(context);
-          },
-          behavior: HitTestBehavior.translucent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24.0),
-                  child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true, color: Theme.of(context).accentColor),
-                ),
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 24.0),
+              child: AppSvg.asset(AssetUtils.leftArrow,
+                  matchTextDirection: true, color: Theme.of(context).accentColor),
+            ),
+          ),
 
-              ///TODO:pass category name here
-              Text(
-                'Games',
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: 18.0),
-                child: Container(
-                  width: 28,
-                ),
-              )
-            ],
-          )),
+          ///TODO:pass category name here
+          Text(
+            'Games',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(end: 18.0),
+            child: Container(
+              width: 28,
+            ),
+          )
+        ],
+      ),
     );
   }
 
