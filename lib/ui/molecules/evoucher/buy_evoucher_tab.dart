@@ -13,7 +13,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import '../app_svg.dart';
 import 'browser_category_widget.dart';
 import 'favourite_brand_widget.dart';
-import 'my_voucher_text_widget.dart';
+import 'evoucher_text_widget.dart';
 
 class BuyEvoucherTab extends StatefulWidget {
   const BuyEvoucherTab({Key? key}) : super(key: key);

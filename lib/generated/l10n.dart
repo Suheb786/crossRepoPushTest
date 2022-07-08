@@ -13020,6 +13020,26 @@ class S {
     );
   }
 
+  /// `View Voucher`
+  String get viewVoucher {
+    return Intl.message(
+      'View Voucher',
+      name: 'viewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Games`
+  String get games {
+    return Intl.message(
+      'Games',
+      name: 'games',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `e-Vouchers are here!`
   String get eVouchersAreHere {
     return Intl.message(
@@ -13035,6 +13055,46 @@ class S {
     return Intl.message(
       'Processing voucher',
       name: 'processingVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22`
+  String get buyVoucherDetailTitle {
+    return Intl.message(
+      'FIFA 22',
+      name: 'buyVoucherDetailTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22 Promo Pack Lorem Ipsum`
+  String get buyVoucherDetailSubTitle {
+    return Intl.message(
+      'FIFA 22 Promo Pack Lorem Ipsum',
+      name: 'buyVoucherDetailSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your voucher is being processed. You’ll get notification when your voucher is ready to be used.`
+  String get viewVoucherDialogDescription {
+    return Intl.message(
+      'Your voucher is being processed. You’ll get notification when your voucher is ready to be used.',
+      name: 'viewVoucherDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid until 24 December 2022`
+  String get buyVoucherDetailSubSubTitle {
+    return Intl.message(
+      'Valid until 24 December 2022',
+      name: 'buyVoucherDetailSubSubTitle',
       desc: '',
       args: [],
     );

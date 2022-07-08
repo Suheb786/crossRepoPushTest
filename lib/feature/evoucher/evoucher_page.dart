@@ -54,7 +54,34 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage>
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 18.0),
               child: Container(
-                width: 28,
+                width: 30,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 18,
+                      height: 2,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Container(
+                      width: 14,
+                      height: 2,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Container(
+                      width: 10,
+                      height: 2,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
               ),
             )
           ],

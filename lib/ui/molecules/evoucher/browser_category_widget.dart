@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import 'my_voucher_text_widget.dart';
+import 'evoucher_text_widget.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
   const BrowserByCategoryItemWidget({Key? key}) : super(key: key);
@@ -40,15 +41,17 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              AssetUtils.top_brand_adidas,
+              AssetUtils.processing_voucher_icon,
             ),
-            EVoucherTextWidget(
-              alignment: Alignment.center,
-              text: 'Games',
-              textSize: 14,
-              textWeight: FontWeight.w600,
-              textColor: AppColor.gray_black,
-            ),
+            Builder(builder: (context) {
+              return EVoucherTextWidget(
+                alignment: Alignment.center,
+                text: S.of(context).games,
+                textSize: 14,
+                textWeight: FontWeight.w600,
+                textColor: AppColor.gray_black,
+              );
+            }),
           ],
         ),
       ),

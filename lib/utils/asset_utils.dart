@@ -108,6 +108,7 @@ class AssetUtils {
   static const String personCircle = svg + "person_circle.svg";
   static const String cardFreeze = svg + "card_freeze.svg";
   static const String cardCancelIcon = svg + "cancel_card_icon.svg";
+  static const String processingVoucherSvg = svg + "processing_voucher_svg.svg";
   static const String supplementaryCardIcon =
       svg + "supplementary_card_icon.svg";
   static const String reportIssueIcon = svg + "report_issue_icon.svg";
@@ -230,10 +231,11 @@ class AssetUtils {
 
 //Evoucher png
 static const String apple_music = drawable + "apple_music.png";
+static const String view_voucher_icon = drawable + "view_voucher_icon.png";
 static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
 static const String favourite_brand = drawable + "favourite_brand.png";
 static const String top_brand_adidas = drawable + "top_brand_adidas.png";
-static const String browser_category_shopping_icon = drawable + "browser_category_shopping_icon.png";
+static const String processing_voucher_icon = drawable + "processing_voucher_icon.png";
 
 
 //Evoucher svg

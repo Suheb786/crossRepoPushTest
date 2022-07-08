@@ -278,6 +278,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
+        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage(
+            "Valid until 24 December 2022"),
+        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage(
+            "FIFA 22 Promo Pack Lorem Ipsum"),
+        "buyVoucherDetailTitle":
+            MessageLookupByLibrary.simpleMessage("FIFA 22"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
@@ -988,6 +994,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
+        "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -2343,6 +2350,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
+        "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
+            "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),
