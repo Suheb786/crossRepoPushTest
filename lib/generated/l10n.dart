@@ -13050,6 +13050,16 @@ class S {
     );
   }
 
+  /// `Purchase Now`
+  String get purchaseNow {
+    return Intl.message(
+      'Purchase Now',
+      name: 'purchaseNow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Processing voucher`
   String get processingVoucher {
     return Intl.message(
@@ -13065,6 +13075,16 @@ class S {
     return Intl.message(
       'FIFA 22',
       name: 'buyVoucherDetailTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spotify Monthly Subscription`
+  String get myVoucherItemTitle {
+    return Intl.message(
+      'Spotify Monthly Subscription',
+      name: 'myVoucherItemTitle',
       desc: '',
       args: [],
     );

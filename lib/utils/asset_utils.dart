@@ -235,6 +235,7 @@ static const String view_voucher_icon = drawable + "view_voucher_icon.png";
 static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
 static const String favourite_brand = drawable + "favourite_brand.png";
 static const String top_brand_adidas = drawable + "top_brand_adidas.png";
+static const String playStationIcon = drawable + "play_station.png";
 static const String processing_voucher_icon = drawable + "processing_voucher_icon.png";
 
 

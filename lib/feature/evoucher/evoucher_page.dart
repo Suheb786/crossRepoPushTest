@@ -11,7 +11,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 import 'evoucher_model.dart';
-import 'buy_evoucher_view.dart';
+import 'buy_voucher/buy_evoucher_view.dart';
+import 'my_voucher/my_voucher_view.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   @override
@@ -140,7 +141,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage>
             child: Container(
               child: TabBarView(controller: _tabController, children: [
                 BuyEvoucherView(provideBase()),
-                BuyEvoucherView(provideBase())
+                MyVoucherView(provideBase())
               ]),
             ),
           )
