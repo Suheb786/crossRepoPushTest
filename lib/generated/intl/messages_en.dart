@@ -2062,6 +2062,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Share my receipt"),
         "sharePdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
         "shareQr": MessageLookupByLibrary.simpleMessage("Share QR"),
+        "shareVoucher": MessageLookupByLibrary.simpleMessage("Share Voucher"),
         "showQrForScanning": MessageLookupByLibrary.simpleMessage(
             "Please show your QR\nfor scanning"),
         "signatureUploadDes": MessageLookupByLibrary.simpleMessage(
@@ -2353,6 +2354,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),

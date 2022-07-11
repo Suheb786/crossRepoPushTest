@@ -54,6 +54,7 @@ import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_repla
 import 'package:neo_bank/feature/evouchers/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evouchers/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evouchers/purchase_voucher_success/purchase_voucher_success_page.dart';
+import 'package:neo_bank/feature/evouchers/share_voucher/share_voucher_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_page.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
@@ -685,6 +686,10 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PurchaseVoucherSuccessPage(),
             settings: RouteSettings(name: RoutePaths.EVouchersPurchaseSuccess));
+
+      case RoutePaths.ShareVoucher:
+        return CupertinoPageRoute(
+            builder: (context) => ShareVoucherPage(), settings: RouteSettings(name: RoutePaths.ShareVoucher));
 
       default:
         return CupertinoPageRoute(

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -13146,6 +13145,26 @@ class S {
     return Intl.message(
       'to View Voucher',
       name: 'toViewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Voucher`
+  String get viewVoucher {
+    return Intl.message(
+      'View Voucher',
+      name: 'viewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Voucher`
+  String get shareVoucher {
+    return Intl.message(
+      'Share Voucher',
+      name: 'shareVoucher',
       desc: '',
       args: [],
     );

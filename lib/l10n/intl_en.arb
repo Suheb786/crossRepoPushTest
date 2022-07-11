@@ -1336,5 +1336,7 @@
   "selectRegion": "Select Region",
   "selectAMount": "Select Amount",
   "purchasedFor": "Purchased for",
-  "toViewVoucher": "to View Voucher"
+  "toViewVoucher": "to View Voucher",
+  "viewVoucher": "View Voucher",
+  "shareVoucher": "Share Voucher"
 }

@@ -5,6 +5,7 @@ import 'package:neo_bank/feature/evouchers/purchase_evoucher/purchase_evoucher_p
 import 'package:neo_bank/feature/evouchers/purchase_evoucher/select_account/select_account_page_view_model.dart';
 import 'package:neo_bank/feature/evouchers/purchase_evoucher/select_region_amount/select_region_amount_page_view_model.dart';
 import 'package:neo_bank/feature/evouchers/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
+import 'package:neo_bank/feature/evouchers/share_voucher/share_voucher_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog_view_model.dart';
 
 ///e-vouchers filter dialog
@@ -33,3 +34,7 @@ final selectAccountViewModelProvider = ChangeNotifierProvider.autoDispose<Select
 final purchaseVoucherViewModelProvider =
     ChangeNotifierProvider.autoDispose<PurchaseVoucherSuccessPageViewModel>(
         (ref) => PurchaseVoucherSuccessPageViewModel());
+
+///share voucher view model
+final shareVoucherViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ShareVoucherPageViewModel>((ref) => ShareVoucherPageViewModel());

@@ -220,6 +220,9 @@ class AssetUtils {
   static const String qr = drawable + "qr.png";
   static const String viewSubscription = drawable + "view_subscription.png";
 
+  ///voucher static image
+  static const String shareVoucher = drawable + "share_voucher.png";
+
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
