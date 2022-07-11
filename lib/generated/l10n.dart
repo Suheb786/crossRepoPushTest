@@ -12989,6 +12989,256 @@ class S {
       args: [],
     );
   }
+
+  /// `eVouchers`
+  String get eVouchers {
+    return Intl.message(
+      'eVouchers',
+      name: 'eVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy Vouchers`
+  String get buyVouchers {
+    return Intl.message(
+      'Buy Vouchers',
+      name: 'buyVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Vouchers`
+  String get myVouchers {
+    return Intl.message(
+      'My Vouchers',
+      name: 'myVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Voucher`
+  String get viewVoucher {
+    return Intl.message(
+      'View Voucher',
+      name: 'viewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Games`
+  String get games {
+    return Intl.message(
+      'Games',
+      name: 'games',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3,540`
+  String get amt {
+    return Intl.message(
+      '3,540',
+      name: 'amt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e-Vouchers are here!`
+  String get eVouchersAreHere {
+    return Intl.message(
+      'e-Vouchers are here!',
+      name: 'eVouchersAreHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Now`
+  String get purchaseNow {
+    return Intl.message(
+      'Purchase Now',
+      name: 'purchaseNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing voucher`
+  String get processingVoucher {
+    return Intl.message(
+      'Processing voucher',
+      name: 'processingVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22`
+  String get buyVoucherDetailTitle {
+    return Intl.message(
+      'FIFA 22',
+      name: 'buyVoucherDetailTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22`
+  String get purchaseNowSubTitle {
+    return Intl.message(
+      'FIFA 22',
+      name: 'purchaseNowSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22 Voucher Lorem Ipsum`
+  String get purchaseNowTitle {
+    return Intl.message(
+      'FIFA 22 Voucher Lorem Ipsum',
+      name: 'purchaseNowTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite Brand`
+  String get favouriteBrand {
+    return Intl.message(
+      'Favourite Brand',
+      name: 'favouriteBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Brands`
+  String get topBrand {
+    return Intl.message(
+      'Top Brands',
+      name: 'topBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse by Category`
+  String get browserByCatgy {
+    return Intl.message(
+      'Browse by Category',
+      name: 'browserByCatgy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PlayStation`
+  String get playStation {
+    return Intl.message(
+      'PlayStation',
+      name: 'playStation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet conspec`
+  String get favouriteBrandItemDescription {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet conspec',
+      name: 'favouriteBrandItemDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spotify Monthly Subscription`
+  String get myVoucherItemTitle {
+    return Intl.message(
+      'Spotify Monthly Subscription',
+      name: 'myVoucherItemTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula`
+  String get buyVoucherTitle {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula',
+      name: 'buyVoucherTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22 Promo Pack Lorem Ipsum`
+  String get buyVoucherDetailSubTitle {
+    return Intl.message(
+      'FIFA 22 Promo Pack Lorem Ipsum',
+      name: 'buyVoucherDetailSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your voucher is being processed. You’ll get notification when your voucher is ready to be used.`
+  String get viewVoucherDialogDescription {
+    return Intl.message(
+      'Your voucher is being processed. You’ll get notification when your voucher is ready to be used.',
+      name: 'viewVoucherDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid until 24 December 2022`
+  String get buyVoucherDetailSubSubTitle {
+    return Intl.message(
+      'Valid until 24 December 2022',
+      name: 'buyVoucherDetailSubSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.`
+  String get eVoucherLandingDialogDescption {
+    return Intl.message(
+      'You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.',
+      name: 'eVoucherLandingDialogDescption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What are you looking for?`
+  String get eVoucherSearchLabel {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'eVoucherSearchLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`
+  String get eVoucherDetailDescption {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
+      name: 'eVoucherDetailDescption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

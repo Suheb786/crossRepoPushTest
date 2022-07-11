@@ -21,6 +21,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/version_update/version_update_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -46,11 +47,25 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 onHorizontalDragEnd: (details) {
                   // FirebaseCrashlytics.instance.crash();
 
-                  FocusScope.of(context).unfocus();
-                  if (details.primaryVelocity!.isNegative) {
-                    model.validateEmail();
-                    //FirebaseCrashlytics.instance.crash();
-                  }
+                  EvoucherDialog.show(context,
+                      image: AssetUtils.mobile,
+                      title: S.of(context).eVouchersAreHere,
+                      descriptionWidget: Text(
+                        S.of(context).eVoucherLandingDialogDescption,
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w400),
+                      ), onDismissed: () {
+                    Navigator.pop(context);
+                  }, onSelected: () {
+                    Navigator.pushNamed(context, RoutePaths.Evoucher);
+                    // model.sendOtpTokenMobile();
+                  });
+
+                  // FocusScope.of(context).unfocus();
+                  // if (details.primaryVelocity!.isNegative) {
+                  //   model.validateEmail();
+                  //   //FirebaseCrashlytics.instance.crash();
+                  // }
                 },
                 child: SingleChildScrollView(
                   controller: model.scrollController,
