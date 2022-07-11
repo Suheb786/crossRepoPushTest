@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/evouchers/evouchers_modules.dart';
-import 'package:neo_bank/feature/evouchers/evoucher_category_listing/evoucher_category_listing_page_view.dart';
-import 'package:neo_bank/feature/evouchers/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
+import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 

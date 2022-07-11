@@ -33,8 +33,8 @@ class SelectAccountPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _selectAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _selectAccountResponse.safeAdd(event);
         updateLoader();
+        _selectAccountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();

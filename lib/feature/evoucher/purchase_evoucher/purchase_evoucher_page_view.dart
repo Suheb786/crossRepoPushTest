@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
-import 'package:neo_bank/feature/evouchers/purchase_evoucher/purchase_evoucher_page_view_model.dart';
-import 'package:neo_bank/feature/evouchers/purchase_evoucher/select_account/select_account_page.dart';
-import 'package:neo_bank/feature/evouchers/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -61,7 +61,7 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                 return Column(
                   children: [
                     Text(
-                      S.of(context).eVouchers,
+                      S.of(context).eVouchers.toUpperCase(),
                       style: TextStyle(
                           color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),

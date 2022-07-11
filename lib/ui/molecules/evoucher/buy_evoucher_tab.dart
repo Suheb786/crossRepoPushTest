@@ -1,19 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/evoucher/top_brand_widget.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import '../app_svg.dart';
 import 'browser_category_widget.dart';
-import 'favourite_brand_widget.dart';
 import 'evoucher_text_widget.dart';
+import 'favourite_brand_widget.dart';
 
 class BuyEvoucherTab extends StatefulWidget {
   const BuyEvoucherTab({Key? key}) : super(key: key);
@@ -33,7 +29,6 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
-          
             child: AppTextField(
               labelText: "",
               hintText: S.of(context).eVoucherSearchLabel,
@@ -54,7 +49,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutePaths.EvoucherDetail);
+                      Navigator.pushNamed(context, RoutePaths.PurchaseNowDetail);
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -87,8 +82,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
           ),
           EVoucherTextWidget(
             alignment: AlignmentDirectional.topStart,
-            text:
-                S.of(context).buyVoucherTitle,
+            text: S.of(context).buyVoucherTitle,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
@@ -144,6 +138,5 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
         ],
       ),
     );
-  
   }
 }

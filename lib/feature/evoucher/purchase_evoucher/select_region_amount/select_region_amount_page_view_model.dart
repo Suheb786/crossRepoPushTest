@@ -59,8 +59,8 @@ class SelectRegionAmountPageViewModel extends BasePageViewModel {
       RequestManager(value, createCall: () => _selectRegionAmountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _selectRegionAmountResponse.safeAdd(event);
         updateLoader();
+        _selectRegionAmountResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();

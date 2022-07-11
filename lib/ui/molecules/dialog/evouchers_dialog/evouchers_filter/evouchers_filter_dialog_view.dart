@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
-import 'package:neo_bank/di/evouchers/evouchers_modules.dart';
+import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
@@ -191,7 +191,9 @@ class EVouchersFilterDialogView extends StatelessWidget {
                       child: Column(
                         children: <Widget>[
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              onSelected?.call('');
+                            },
                             child: Container(
                               padding: EdgeInsets.all(16),
                               height: 57,

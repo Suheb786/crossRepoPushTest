@@ -9,7 +9,9 @@ import 'package:domain/usecase/base/params.dart';
 class SelectAccountUseCase extends BaseUseCase<NetworkError, SelectAccountUseCaseParams, bool> {
   @override
   Future<Either<NetworkError, bool>> execute({required SelectAccountUseCaseParams params}) {
-    return Future.value(Right(true));
+    return Future.delayed(Duration(seconds: 2), () {
+      return Right(true);
+    });
   }
 }
 

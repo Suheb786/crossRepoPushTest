@@ -163,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "amountLimitError": MessageLookupByLibrary.simpleMessage(
             "Amount Should be Greater then or equal to minimum Amount"),
         "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
+        "amt": MessageLookupByLibrary.simpleMessage("3,540"),
         "androidLoginError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "annual": MessageLookupByLibrary.simpleMessage("ANNUAL "),
@@ -269,6 +270,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
             "Make sure you’re in bright place and surrounding"),
+        "browserByCatgy":
+            MessageLookupByLibrary.simpleMessage("Browse by Category"),
         "buildingNameNo":
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "buildingNameOrNo":
@@ -281,6 +284,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
+        "buyVoucherDetailSubSubTitle": MessageLookupByLibrary.simpleMessage(
+            "Valid until 24 December 2022"),
+        "buyVoucherDetailSubTitle": MessageLookupByLibrary.simpleMessage(
+            "FIFA 22 Promo Pack Lorem Ipsum"),
+        "buyVoucherDetailTitle":
+            MessageLookupByLibrary.simpleMessage("FIFA 22"),
+        "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
+        "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
@@ -629,7 +641,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
-        "eVouchers": MessageLookupByLibrary.simpleMessage("EVOUCHERS"),
+        "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
+        "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
+            "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally."),
+        "eVoucherSearchLabel":
+            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
+        "eVouchers": MessageLookupByLibrary.simpleMessage("eVouchers"),
+        "eVouchersAreHere":
+            MessageLookupByLibrary.simpleMessage("e-Vouchers are here!"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("EDIT CLIQ ID"),
         "editId": MessageLookupByLibrary.simpleMessage("Edit ID"),
@@ -947,6 +967,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatcaDetailNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some of the required FATCA information. Please check again and ensure all information is provided."),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
+        "favouriteBrand":
+            MessageLookupByLibrary.simpleMessage("Favourite Brand"),
+        "favouriteBrandItemDescription": MessageLookupByLibrary.simpleMessage(
+            "Lorem ipsum dolor sit amet conspec"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "I feel the credit limit is low"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
@@ -985,6 +1009,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
+        "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -1502,6 +1527,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
         "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
+        "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
+            "Spotify Monthly Subscription"),
+        "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
@@ -1685,6 +1713,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PlaceHolder Id is null"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
+        "playStation": MessageLookupByLibrary.simpleMessage("PlayStation"),
         "pleaseAgreeToTheTermAndCondition":
             MessageLookupByLibrary.simpleMessage(
                 "Please agree to the term and condition"),
@@ -1753,6 +1782,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "processingVoucher":
+            MessageLookupByLibrary.simpleMessage("Processing voucher"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
@@ -1793,6 +1824,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "purchaseInstallmentsSuccessfullySetDesc":
             MessageLookupByLibrary.simpleMessage(
                 "Your purchase has been set for instalment. The first instalment of 44.57 JOD will be charged on 27 Nov 2021."),
+        "purchaseNow": MessageLookupByLibrary.simpleMessage("Purchase Now"),
+        "purchaseNowSubTitle": MessageLookupByLibrary.simpleMessage("FIFA 22"),
+        "purchaseNowTitle":
+            MessageLookupByLibrary.simpleMessage("FIFA 22 Voucher Lorem Ipsum"),
         "purchasedFor": MessageLookupByLibrary.simpleMessage("Purchased for"),
         "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
         "purposeDetail":
@@ -2198,6 +2233,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "TokenSerial / Apin is empty from Vkey"),
         "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(
             "There are too many recurrent declined transactions"),
+        "topBrand": MessageLookupByLibrary.simpleMessage("Top Brands"),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
@@ -2355,6 +2391,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
+        "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
+            "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),

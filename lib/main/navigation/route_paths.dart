@@ -117,4 +117,9 @@ class RoutePaths {
   static const String EVouchersPurchase = "/eVouchersPurchase";
   static const String EVouchersPurchaseSuccess = "/eVouchersPurchaseSuccess";
   static const String ShareVoucher = "/shareVoucher";
+  static const String Evoucher = "/evoucher";
+  static const String EvoucherDetail = "/evoucherDetail";
+  static const String PurchaseNowDetail = "/purchaseNowDetail";
+
+  static const String EVoucherMainPage = "/eVoucherMainPage";
 }

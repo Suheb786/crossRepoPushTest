@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/evouchers/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
+import 'package:neo_bank/feature/evoucher/purchase_voucher_success/purchase_voucher_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -16,7 +17,9 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
   Widget build(BuildContext context, PurchaseVoucherSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {}
+        if (details.primaryVelocity!.isNegative) {
+          Navigator.pushNamed(context, RoutePaths.EvoucherDetail);
+        }
       },
       child: Container(
           height: double.infinity,
