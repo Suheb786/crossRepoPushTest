@@ -45,7 +45,7 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
             ),
             Builder(builder: (context) {
               return EVoucherTextWidget(
-                alignment: Alignment.center,
+                alignment: AlignmentDirectional.center,
                 text: S.of(context).games,
                 textSize: 14,
                 textWeight: FontWeight.w600,

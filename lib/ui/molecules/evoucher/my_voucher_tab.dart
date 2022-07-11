@@ -103,7 +103,7 @@ class _MyVoucherTabState extends State<MyVoucherTab> {
   Widget build(BuildContext context) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
+        padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
         child: ListView(
           children: [
             SizedBox(
@@ -133,9 +133,9 @@ class BuildItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 24, top: 18),
+          padding: const EdgeInsetsDirectional.only(start: 24, top: 18),
           child: Container(
-              padding: EdgeInsets.only(left: 24, right: 24, top: 5, bottom: 5),
+              padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 5, bottom: 5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.green),
               child: Text(
@@ -147,14 +147,14 @@ class BuildItem extends StatelessWidget {
               )),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 14),
+          padding: const EdgeInsetsDirectional.only(start: 24, end: 24, top: 14),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(AssetUtils.playStationIcon),
               Expanded(
                 child: Container(
-                    margin: EdgeInsets.only(left: 12),
+                    margin: EdgeInsetsDirectional.only(start: 12),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,7 +173,7 @@ class BuildItem extends StatelessWidget {
                     )),
               ),
               Container(
-                  margin: EdgeInsets.only(left: 17),
+                  margin: EdgeInsetsDirectional.only(start: 17),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -194,7 +194,7 @@ class BuildItem extends StatelessWidget {
                     ],
                   )),
               Container(
-                  margin: EdgeInsets.only(left: 2),
+                  margin: EdgeInsetsDirectional.only(start: 2),
                   child: Column(
                     children: [
                       Text(
@@ -205,7 +205,7 @@ class BuildItem extends StatelessWidget {
                             fontWeight: FontWeight.w600),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(6.0),
+                        padding: const EdgeInsetsDirectional.all(6.0),
                         child: Text(
                           'USD',
                           style: TextStyle(

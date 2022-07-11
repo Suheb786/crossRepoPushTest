@@ -13040,6 +13040,16 @@ class S {
     );
   }
 
+  /// `3,540`
+  String get amt {
+    return Intl.message(
+      '3,540',
+      name: 'amt',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `e-Vouchers are here!`
   String get eVouchersAreHere {
     return Intl.message(
@@ -13080,11 +13090,91 @@ class S {
     );
   }
 
+  /// `FIFA 22`
+  String get purchaseNowSubTitle {
+    return Intl.message(
+      'FIFA 22',
+      name: 'purchaseNowSubTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FIFA 22 Voucher Lorem Ipsum`
+  String get purchaseNowTitle {
+    return Intl.message(
+      'FIFA 22 Voucher Lorem Ipsum',
+      name: 'purchaseNowTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favourite Brand`
+  String get favouriteBrand {
+    return Intl.message(
+      'Favourite Brand',
+      name: 'favouriteBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Brands`
+  String get topBrand {
+    return Intl.message(
+      'Top Brands',
+      name: 'topBrand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Browse by Category`
+  String get browserByCatgy {
+    return Intl.message(
+      'Browse by Category',
+      name: 'browserByCatgy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PlayStation`
+  String get playStation {
+    return Intl.message(
+      'PlayStation',
+      name: 'playStation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet conspec`
+  String get favouriteBrandItemDescription {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet conspec',
+      name: 'favouriteBrandItemDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Spotify Monthly Subscription`
   String get myVoucherItemTitle {
     return Intl.message(
       'Spotify Monthly Subscription',
       name: 'myVoucherItemTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula`
+  String get buyVoucherTitle {
+    return Intl.message(
+      'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula',
+      name: 'buyVoucherTitle',
       desc: '',
       args: [],
     );

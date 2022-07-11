@@ -9,7 +9,7 @@ class EVoucherTextWidget extends StatelessWidget {
       required this.textWeight,
       required this.text,required this.textColor})
       : super(key: key);
-  final Alignment alignment;
+  final AlignmentDirectional alignment;
   final double textSize;
   final FontWeight textWeight;
   final String text;
@@ -18,7 +18,7 @@ class EVoucherTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24.0, right: 24),
+      padding: const EdgeInsetsDirectional.only(start: 24.0, end: 24),
       child: Align(
           alignment: this.alignment,
           child: Text(

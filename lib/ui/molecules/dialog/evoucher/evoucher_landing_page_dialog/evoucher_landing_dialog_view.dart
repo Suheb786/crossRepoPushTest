@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gallery_3d/gallery3d.dart';
+
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -77,7 +77,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                       onSelected!.call();
                     },
                     child: Container(
-                      padding: EdgeInsets.all(16),
+                      padding: EdgeInsetsDirectional.all(16),
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
@@ -91,7 +91,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                    padding: const EdgeInsetsDirectional.only(top: 8.0, bottom: 16),
                     child: Visibility(
                       visible: isSwipeToCancel ?? true,
                       child: InkWell(

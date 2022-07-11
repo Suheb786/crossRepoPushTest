@@ -30,9 +30,9 @@ class PurchaseNowDetailView
                     height: 180,
                     color: Colors.yellow,
                   ),
-                  Positioned(
+                  PositionedDirectional(
                     top: 47,
-                    left: 24,
+                    start: 24,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(40),
                       child: Container(
@@ -51,9 +51,9 @@ class PurchaseNowDetailView
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 168),
+              padding: const EdgeInsetsDirectional.only(top: 168),
               child: Container(
-                padding: EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(start: 24, end: 24),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -83,7 +83,7 @@ class PageDetail extends StatelessWidget {
           height: 40,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailTitle,
           textSize: 12,
           textWeight: FontWeight.w600,
@@ -93,7 +93,7 @@ class PageDetail extends StatelessWidget {
           height: 4,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailSubTitle,
           textSize: 20,
           textWeight: FontWeight.w600,
@@ -103,7 +103,7 @@ class PageDetail extends StatelessWidget {
           height: 8,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailSubSubTitle,
           textSize: 14,
           textWeight: FontWeight.w400,
@@ -113,7 +113,7 @@ class PageDetail extends StatelessWidget {
           height: 24,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24),
+          padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
           child: Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -126,7 +126,7 @@ class PageDetail extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsetsDirectional.all(8.0),
                   child: Text(
                     S.of(context).JOD,
                     style: TextStyle(
@@ -143,16 +143,16 @@ class PageDetail extends StatelessWidget {
           height: 16,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           text: S.of(context).termsAndConditionsSetting,
           textSize: 14,
           textWeight: FontWeight.w600,
           textColor: AppColor.gray_black,
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsetsDirectional.all(8.0),
           child: EVoucherTextWidget(
-            alignment: Alignment.topLeft,
+            alignment: AlignmentDirectional.topStart,
             text: S.of(context).eVoucherDetailDescption,
             textSize: 14,
             textWeight: FontWeight.w400,
@@ -179,12 +179,12 @@ class PurchaseNowBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsetsDirectional.all(8.0),
       child: GestureDetector(
         onTap: () {
           PurchaseNowDialog.show(context,
               image: AssetUtils.processingVoucherSvg,
-              title: "FIFA 22 Voucher Lorem Ipsum",
+              title: S.of(context).purchaseNowTitle,
               descriptionWidget: Text(
                 S.of(context).viewVoucherDialogDescription,
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -192,7 +192,7 @@ class PurchaseNowBtn extends StatelessWidget {
             Navigator.pop(context);
           }, onDismissed: () {
             Navigator.pop(context);
-          }, price: '3054', subTitle: 'FIFA 22');
+          }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);
         },
         child: Container(
           width: double.infinity,

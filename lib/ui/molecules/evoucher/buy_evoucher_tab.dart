@@ -32,7 +32,8 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 40,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24),
+            padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+          
             child: AppTextField(
               labelText: "",
               hintText: S.of(context).eVoucherSearchLabel,
@@ -42,8 +43,8 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 25,
           ),
           Container(
-              padding: const EdgeInsets.only(
-                left: 24,
+              padding: const EdgeInsetsDirectional.only(
+                start: 24,
               ),
               height: 211,
               child: ListView.separated(
@@ -75,8 +76,8 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 16,
           ),
           EVoucherTextWidget(
-            alignment: Alignment.topLeft,
-            text: 'FIFA 22',
+            alignment: AlignmentDirectional.topStart,
+            text: S.of(context).purchaseNowSubTitle,
             textSize: 12,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray5,
@@ -85,9 +86,9 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 4,
           ),
           EVoucherTextWidget(
-            alignment: Alignment.topLeft,
+            alignment: AlignmentDirectional.topStart,
             text:
-                'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula',
+                S.of(context).buyVoucherTitle,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
@@ -96,8 +97,8 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 40,
           ),
           EVoucherTextWidget(
-            alignment: Alignment.topLeft,
-            text: 'Favourite Brand',
+            alignment: AlignmentDirectional.topStart,
+            text: S.of(context).favouriteBrand,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
@@ -110,8 +111,8 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 40,
           ),
           EVoucherTextWidget(
-            alignment: Alignment.topLeft,
-            text: 'Top Brands',
+            alignment: AlignmentDirectional.topStart,
+            text: S.of(context).topBrand,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
@@ -120,15 +121,15 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 16,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24.0),
+            padding: const EdgeInsetsDirectional.only(start: 24.0),
             child: TopBrandListItemWidget(),
           ),
           SizedBox(
             height: 25,
           ),
           EVoucherTextWidget(
-            alignment: Alignment.topLeft,
-            text: 'Browse by Category',
+            alignment: AlignmentDirectional.topStart,
+            text: S.of(context).browserByCatgy,
             textSize: 14,
             textWeight: FontWeight.w600,
             textColor: AppColor.gray_black,
@@ -137,7 +138,7 @@ class _BuyEvoucherTabState extends State<BuyEvoucherTab> {
             height: 17,
           ),
           Padding(
-            padding: EdgeInsets.only(left: 24.0, right: 24, bottom: 48, top: 0),
+            padding: EdgeInsetsDirectional.only(start: 24.0, end: 24, bottom: 48, top: 0),
             child: BrowserByCategoryItemWidget(),
           )
         ],

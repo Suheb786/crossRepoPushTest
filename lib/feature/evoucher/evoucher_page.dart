@@ -107,9 +107,9 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage>
             height: 40,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24),
+            padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: TabBar(
                 isScrollable: true,
                 indicatorColor: AppColor.brightRed,
@@ -126,7 +126,7 @@ class EvoucherState extends BaseStatefulPage<EvoucherViewModel, EvoucherPage>
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 2),
+                    padding: const EdgeInsetsDirectional.only(start: 2),
                     child: Text(
                       S.of(context).myVouchers,
                       style:

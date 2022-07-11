@@ -28,9 +28,9 @@ class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
                     height: 180,
                     color: Colors.yellow,
                   ),
-                  Positioned(
+                  PositionedDirectional(
                     top: 47,
-                    left: 24,
+                    start: 24,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(40),
                       child: Container(
@@ -49,9 +49,9 @@ class EvoucherDetailView extends BasePageViewWidget<EvoucherDetailViewModel> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 168),
+              padding: const EdgeInsetsDirectional.only(top: 168),
               child: Container(
-                padding: EdgeInsets.only(left: 24, right: 24),
+                padding: EdgeInsetsDirectional.only(start: 24, end: 24),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -81,7 +81,7 @@ class PageDetail extends StatelessWidget {
           height: 40,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailTitle,
           textSize: 12,
           textWeight: FontWeight.w600,
@@ -91,7 +91,7 @@ class PageDetail extends StatelessWidget {
           height: 4,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment:  AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailSubTitle,
           textSize: 20,
           textWeight: FontWeight.w600,
@@ -101,7 +101,7 @@ class PageDetail extends StatelessWidget {
           height: 8,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment:  AlignmentDirectional.topStart,
           text: S.of(context).buyVoucherDetailSubSubTitle,
           textSize: 14,
           textWeight: FontWeight.w400,
@@ -111,20 +111,20 @@ class PageDetail extends StatelessWidget {
           height: 24,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24),
+          padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
           child: Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "3,540",
+                  S.of(context).amt,
                   style: TextStyle(
                       color: AppColor.brightBlue,
                       fontSize: 24,
                       fontWeight: FontWeight.w700),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsetsDirectional.all(8.0),
                   child: Text(
                     S.of(context).JOD,
                     style: TextStyle(
@@ -141,16 +141,16 @@ class PageDetail extends StatelessWidget {
           height: 16,
         ),
         EVoucherTextWidget(
-          alignment: Alignment.topLeft,
+          alignment:  AlignmentDirectional.topStart,
           text: S.of(context).termsAndConditionsSetting,
           textSize: 14,
           textWeight: FontWeight.w600,
           textColor: AppColor.gray_black,
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsetsDirectional.all(8.0),
           child: EVoucherTextWidget(
-            alignment: Alignment.topLeft,
+            alignment:  AlignmentDirectional.topStart,
             text: S.of(context).eVoucherDetailDescption,
             textSize: 14,
             textWeight: FontWeight.w400,
@@ -177,7 +177,7 @@ class ViewVoucherBtb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsetsDirectional.all(8.0),
       child: GestureDetector(
         onTap: () {
           InformationDialog.show(context,
@@ -197,9 +197,9 @@ class ViewVoucherBtb extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: const EdgeInsetsDirectional.only(start: 20),
                 child: EVoucherTextWidget(
-                  alignment: Alignment.center,
+                  alignment: AlignmentDirectional.center,
                   text: S.of(context).viewVoucher,
                   textSize: 14,
                   textWeight: FontWeight.w600,
@@ -207,7 +207,7 @@ class ViewVoucherBtb extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 120),
+                padding: const EdgeInsetsDirectional.only(start: 120),
                 child: Image.asset(AssetUtils.view_voucher_icon),
               )
             ],
