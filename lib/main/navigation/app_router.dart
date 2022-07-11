@@ -55,6 +55,9 @@ import 'package:neo_bank/feature/evouchers/evoucher_category_listing/evoucher_ca
 import 'package:neo_bank/feature/evouchers/purchase_evoucher/purchase_evoucher_page.dart';
 import 'package:neo_bank/feature/evouchers/purchase_voucher_success/purchase_voucher_success_page.dart';
 import 'package:neo_bank/feature/evouchers/share_voucher/share_voucher_page.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
+import 'package:neo_bank/feature/evoucher/evoucher_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_now/purchase_now_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_page.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
@@ -665,6 +668,21 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ConvertPurchaseToInstallmentsPage(),
             settings: RouteSettings(name: RoutePaths.ConvertPurchaseToInstallments));
+
+      case RoutePaths.Evoucher:
+        return CupertinoPageRoute(
+            builder: (context) => EvoucherPage(),
+            settings: RouteSettings(name: RoutePaths.Evoucher));
+
+      case RoutePaths.EvoucherDetail:
+        return CupertinoPageRoute(
+            builder: (context) => EvoucherDetailPage(),
+            settings: RouteSettings(name: RoutePaths.EvoucherDetail));
+
+             case RoutePaths.PurchaseNowDetail:
+        return CupertinoPageRoute(
+            builder: (context) => PurchaseNowDetailPage(),
+            settings: RouteSettings(name: RoutePaths.PurchaseNowDetail));
 
       case RoutePaths.SupplementaryDebitCardPinSet:
         return CupertinoPageRoute(
