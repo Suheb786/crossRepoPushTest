@@ -83,12 +83,12 @@ class _MyVoucherTabState extends State<MyVoucherTab> {
           child: Container(
               decoration: new BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.withOpacity(0.6),
-                      blurRadius: 0.1,
-                      spreadRadius: 0.1,
+                      color: AppColor.light_grayish_violet,
+                      blurRadius: 1.4,
+                      spreadRadius: 1.8,
                       offset: Offset(0.0, 1.0)),
                 ],
               ),
