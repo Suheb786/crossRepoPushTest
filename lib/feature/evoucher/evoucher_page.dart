@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/evoucher/evoucher_modules.dart';
+import 'package:neo_bank/feature/evoucher/buy_voucher/buy_evoucher_view.dart';
+import 'package:neo_bank/feature/evoucher/my_voucher/my_voucher_view.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/evouchers_dialog/evouchers_filter/evouchers_filter_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import 'buy_voucher/buy_evoucher_view.dart';
 import 'evoucher_model.dart';
-import 'my_voucher/my_voucher_view.dart';
 
 class EvoucherPage extends BasePage<EvoucherViewModel> {
   @override
