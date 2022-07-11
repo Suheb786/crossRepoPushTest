@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -12990,6 +12991,176 @@ class S {
     );
   }
 
+  /// `Category`
+  String get category {
+    return Intl.message(
+      'Category',
+      name: 'category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Region`
+  String get preferredRegion {
+    return Intl.message(
+      'Preferred Region',
+      name: 'preferredRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min. Price`
+  String get minPrice {
+    return Intl.message(
+      'Min. Price',
+      name: 'minPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max. Price`
+  String get maxPrice {
+    return Intl.message(
+      'Max. Price',
+      name: 'maxPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Vouchers`
+  String get filterVouchers {
+    return Intl.message(
+      'Filter Vouchers',
+      name: 'filterVouchers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Filter`
+  String get resetFilter {
+    return Intl.message(
+      'Reset Filter',
+      name: 'resetFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your preferred\nregion and amount`
+  String get selectPreferredRegionAmount {
+    return Intl.message(
+      'Select your preferred\nregion and amount',
+      name: 'selectPreferredRegionAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howWouldLikeToPay {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howWouldLikeToPay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REGION`
+  String get region {
+    return Intl.message(
+      'REGION',
+      name: 'region',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VALUE`
+  String get value {
+    return Intl.message(
+      'VALUE',
+      name: 'value',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to {String}`
+  String backToCategory(Object String) {
+    return Intl.message(
+      'Back to $String',
+      name: 'backToCategory',
+      desc: '',
+      args: [String],
+    );
+  }
+
+  /// `Select Region`
+  String get selectRegion {
+    return Intl.message(
+      'Select Region',
+      name: 'selectRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Amount`
+  String get selectAMount {
+    return Intl.message(
+      'Select Amount',
+      name: 'selectAMount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchased for`
+  String get purchasedFor {
+    return Intl.message(
+      'Purchased for',
+      name: 'purchasedFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to View Voucher`
+  String get toViewVoucher {
+    return Intl.message(
+      'to View Voucher',
+      name: 'toViewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Voucher`
+  String get viewVoucher {
+    return Intl.message(
+      'View Voucher',
+      name: 'viewVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Voucher`
+  String get shareVoucher {
+    return Intl.message(
+      'Share Voucher',
+      name: 'shareVoucher',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `eVouchers`
   String get eVouchers {
     return Intl.message(
@@ -13015,16 +13186,6 @@ class S {
     return Intl.message(
       'My Vouchers',
       name: 'myVouchers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `View Voucher`
-  String get viewVoucher {
-    return Intl.message(
-      'View Voucher',
-      name: 'viewVoucher',
       desc: '',
       args: [],
     );

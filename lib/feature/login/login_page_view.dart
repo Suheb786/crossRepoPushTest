@@ -21,7 +21,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/version_update/version_update_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -47,25 +46,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 onHorizontalDragEnd: (details) {
                   // FirebaseCrashlytics.instance.crash();
 
-                  EvoucherDialog.show(context,
-                      image: AssetUtils.mobile,
-                      title: S.of(context).eVouchersAreHere,
-                      descriptionWidget: Text(
-                        S.of(context).eVoucherLandingDialogDescption,
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w400),
-                      ), onDismissed: () {
-                    Navigator.pop(context);
-                  }, onSelected: () {
-                    Navigator.pushNamed(context, RoutePaths.Evoucher);
-                    // model.sendOtpTokenMobile();
-                  });
-
-                  // FocusScope.of(context).unfocus();
-                  // if (details.primaryVelocity!.isNegative) {
-                  //   model.validateEmail();
-                  //   //FirebaseCrashlytics.instance.crash();
-                  // }
+                  FocusScope.of(context).unfocus();
+                  if (details.primaryVelocity!.isNegative) {
+                    model.validateEmail();
+                    //FirebaseCrashlytics.instance.crash();
+                  }
                 },
                 child: SingleChildScrollView(
                   controller: model.scrollController,
@@ -82,41 +67,30 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               return Align(
                                 alignment: AlignmentDirectional.centerEnd,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.only(
-                                      top: 64, end: 40),
+                                  padding: EdgeInsetsDirectional.only(top: 64, end: 40),
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 16, /*vertical: 8.5*/
                                     ),
                                     decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(200),
-                                        border: Border.all(
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            width: 1)),
+                                        borderRadius: BorderRadius.circular(200),
+                                        border: Border.all(color: Theme.of(context).accentColor, width: 1)),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<LanguageEnum>(
                                         value: selectedLanguage,
                                         items: model.language
-                                            .map((LanguageEnum e) =>
-                                                DropdownMenuItem(
-                                                    value: e,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .only(end: 12),
-                                                      child: Text(
-                                                        e.fromLanguage(),
-                                                        style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .accentColor,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 14),
-                                                      ),
-                                                    )))
+                                            .map((LanguageEnum e) => DropdownMenuItem(
+                                                value: e,
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional.only(end: 12),
+                                                  child: Text(
+                                                    e.fromLanguage(),
+                                                    style: TextStyle(
+                                                        color: Theme.of(context).accentColor,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: 14),
+                                                  ),
+                                                )))
                                             .toList(),
                                         onChanged: (value) {
                                           model.setLanguage(value!);
@@ -124,8 +98,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               .read(appViewModel)
                                               .toggleLocale(value);
                                         },
-                                        dropdownColor:
-                                            Theme.of(context).primaryColor,
+                                        dropdownColor: Theme.of(context).primaryColor,
                                         icon: AppSvg.asset(AssetUtils.dropDown),
                                       ),
                                     ),
@@ -157,8 +130,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           stream: model.checkVersionUpdateStream,
                           onData: (data) {
                             if (data.status == Status.ERROR) {
-                              if (data.appError!.type ==
-                                  ErrorType.PLATFORM_NOT_FOUND) {
+                              if (data.appError!.type == ErrorType.PLATFORM_NOT_FOUND) {
                                 VersionUpdateDialog.show(context,
                                     image: AssetUtils.alert,
                                     title: S.of(context).updateRequired,
@@ -175,8 +147,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ), onSelected: () {
                                   Navigator.pop(context);
                                   Platform.isAndroid
-                                      ? LaunchUrlUtils.launchDigitalService(
-                                          AppConstantsUtils.PLAY_STORE_URL)
+                                      ? LaunchUrlUtils.launchDigitalService(AppConstantsUtils.PLAY_STORE_URL)
                                       : Platform.isIOS
                                           ? LaunchUrlUtils.launchDigitalService(
                                               AppConstantsUtils.APP_STORE_URL)
@@ -199,8 +170,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       shakeAngle: Rotation.deg(z: 1),
                                       curve: Curves.easeInOutSine,
                                       child: AppStreamBuilder<Resource<bool>>(
-                                          stream:
-                                              model.sendOtpTokenMobileStream,
+                                          stream: model.sendOtpTokenMobileStream,
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
@@ -208,34 +178,24 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               model.passwordController.clear();
                                               model.fingerPrintShow(false);
                                               Navigator.popAndPushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .OTPForChangeDevice);
+                                                  context, RoutePaths.OTPForChangeDevice);
                                             }
                                           },
-                                          dataBuilder:
-                                              (context, otpForChangeDevice) {
-                                            return AppStreamBuilder<
-                                                    Resource<User>>(
+                                          dataBuilder: (context, otpForChangeDevice) {
+                                            return AppStreamBuilder<Resource<User>>(
                                                 stream: model.iphoneLoginStream,
                                                 initialData: Resource.none(),
                                                 onData: (data) {
-                                                  if (data.status ==
-                                                      Status.SUCCESS) {
+                                                  if (data.status == Status.SUCCESS) {
                                                     model.checkKycStatus();
                                                   }
                                                 },
-                                                dataBuilder:
-                                                    (context, snapshot) {
-                                                  return AppStreamBuilder<
-                                                          Resource<bool>>(
-                                                      stream: model
-                                                          .androidLoginStream,
-                                                      initialData:
-                                                          Resource.none(),
+                                                dataBuilder: (context, snapshot) {
+                                                  return AppStreamBuilder<Resource<bool>>(
+                                                      stream: model.androidLoginStream,
+                                                      initialData: Resource.none(),
                                                       onData: (data) {
-                                                        if (data.status ==
-                                                            Status.SUCCESS) {
+                                                        if (data.status == Status.SUCCESS) {
                                                           ///refresh token api
                                                           // ProviderScope
                                                           //         .containerOf(
@@ -243,65 +203,34 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                           //     .read(
                                                           //         appViewModel)
                                                           //     .getToken();
-                                                          model
-                                                              .checkKycStatus();
+                                                          model.checkKycStatus();
                                                         }
                                                       },
-                                                      dataBuilder:
-                                                          (context, snapshot) {
-                                                        return AppStreamBuilder<
-                                                                Resource<
-                                                                    GetCipherResponse>>(
-                                                            stream: model
-                                                                .getCipherStream,
-                                                            initialData:
-                                                                Resource.none(),
-                                                            onData:
-                                                                (cipherResponse) {
-                                                              if (cipherResponse
-                                                                      .status ==
-                                                                  Status
-                                                                      .SUCCESS) {
+                                                      dataBuilder: (context, snapshot) {
+                                                        return AppStreamBuilder<Resource<GetCipherResponse>>(
+                                                            stream: model.getCipherStream,
+                                                            initialData: Resource.none(),
+                                                            onData: (cipherResponse) {
+                                                              if (cipherResponse.status == Status.SUCCESS) {
                                                                 if (cipherResponse
-                                                                            .data!
-                                                                            .getCipherContent!
-                                                                            .cipher !=
+                                                                            .data!.getCipherContent!.cipher !=
                                                                         null &&
-                                                                    cipherResponse
-                                                                        .data!
-                                                                        .getCipherContent!
-                                                                        .cipher!
-                                                                        .isNotEmpty) {
-                                                                  model
-                                                                      .fingerPrintShow(
-                                                                          true);
+                                                                    cipherResponse.data!.getCipherContent!
+                                                                        .cipher!.isNotEmpty) {
+                                                                  model.fingerPrintShow(true);
                                                                 }
                                                               }
                                                             },
-                                                            dataBuilder:
-                                                                (context,
-                                                                    cipher) {
-                                                              return AppStreamBuilder<
-                                                                  Resource<
-                                                                      User>>(
-                                                                stream: model
-                                                                    .loginStream,
-                                                                initialData:
-                                                                    Resource
-                                                                        .none(),
+                                                            dataBuilder: (context, cipher) {
+                                                              return AppStreamBuilder<Resource<User>>(
+                                                                stream: model.loginStream,
+                                                                initialData: Resource.none(),
                                                                 onData: (data) {
-                                                                  if (data.status ==
-                                                                      Status
-                                                                          .SUCCESS) {
-                                                                    model.mobileNumber = data
-                                                                        .data!
-                                                                        .mobile!;
-                                                                    model.mobileCode = data
-                                                                        .data!
-                                                                        .mobileCode!;
-                                                                    model.applicationId = data
-                                                                        .data!
-                                                                        .applicationId!;
+                                                                  if (data.status == Status.SUCCESS) {
+                                                                    model.mobileNumber = data.data!.mobile!;
+                                                                    model.mobileCode = data.data!.mobileCode!;
+                                                                    model.applicationId =
+                                                                        data.data!.applicationId!;
 
                                                                     ///refresh token api
                                                                     // ProviderScope.containerOf(
@@ -314,35 +243,25 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
 
                                                                     ///new device flow check
 
-                                                                    if (data
-                                                                        .data!
-                                                                        .newDevice!) {
-                                                                      InformationDialog.show(
-                                                                          context,
-                                                                          image: AssetUtils
-                                                                              .mobile,
-                                                                          title: S
-                                                                              .of(
-                                                                                  context)
-                                                                              .newDeviceDetected,
-                                                                          descriptionWidget:
-                                                                              Text(
-                                                                            S.of(context).newDeviceDetectedDesc,
-                                                                            style:
-                                                                                TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                                                                          ),
-                                                                          onDismissed:
-                                                                              () {
-                                                                        Navigator.pop(
-                                                                            context);
-                                                                      }, onSelected:
-                                                                              () {
-                                                                        model
-                                                                            .sendOtpTokenMobile();
+                                                                    if (data.data!.newDevice!) {
+                                                                      InformationDialog.show(context,
+                                                                          image: AssetUtils.mobile,
+                                                                          title:
+                                                                              S.of(context).newDeviceDetected,
+                                                                          descriptionWidget: Text(
+                                                                            S
+                                                                                .of(context)
+                                                                                .newDeviceDetectedDesc,
+                                                                            style: TextStyle(
+                                                                                fontSize: 14,
+                                                                                fontWeight: FontWeight.w400),
+                                                                          ), onDismissed: () {
+                                                                        Navigator.pop(context);
+                                                                      }, onSelected: () {
+                                                                        model.sendOtpTokenMobile();
                                                                       });
                                                                     } else {
-                                                                      model
-                                                                          .checkKycStatus();
+                                                                      model.checkKycStatus();
                                                                     }
 
                                                                     // Future.delayed(
@@ -359,130 +278,181 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //       arguments:
                                                                     //           RegisterPageParams());
                                                                     // });
-                                                                  } else if (data
-                                                                          .status ==
-                                                                      Status
-                                                                          .ERROR) {
-                                                                    model
-                                                                        .emailKey
-                                                                        .currentState!
-                                                                        .isValid = false;
-                                                                    model.showToastWithError(
-                                                                        data.appError!);
+                                                                  } else if (data.status == Status.ERROR) {
+                                                                    model.emailKey.currentState!.isValid =
+                                                                        false;
+                                                                    model.showToastWithError(data.appError!);
                                                                   }
                                                                 },
-                                                                dataBuilder:
-                                                                    (context,
-                                                                        loginData) {
+                                                                dataBuilder: (context, loginData) {
                                                                   return AppStreamBuilder<
-                                                                      Resource<
-                                                                          CheckKycResponse>>(
-                                                                    stream: model
-                                                                        .kycStatusStream,
-                                                                    initialData:
-                                                                        Resource
-                                                                            .none(),
-                                                                    onData:
-                                                                        (data) {
-                                                                      if (data.status ==
-                                                                          Status
-                                                                              .SUCCESS) {
-                                                                        CheckKYCData
-                                                                            kycData =
-                                                                            data.data?.content?.kycData?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
-                                                                                CheckKYCData();
+                                                                      Resource<CheckKycResponse>>(
+                                                                    stream: model.kycStatusStream,
+                                                                    initialData: Resource.none(),
+                                                                    onData: (data) {
+                                                                      if (data.status == Status.SUCCESS) {
+                                                                        CheckKYCData kycData = data
+                                                                                .data?.content?.kycData
+                                                                                ?.firstWhere(
+                                                                                    (element) =>
+                                                                                        element.status ??
+                                                                                        false,
+                                                                                    orElse: () =>
+                                                                                        CheckKYCData()) ??
+                                                                            CheckKYCData();
 
                                                                         if (kycData.type?.isNotEmpty ??
                                                                             false) {
-                                                                          if (kycData.type ==
-                                                                              'MobileOTP') {
-                                                                            Navigator.popAndPushNamed(context,
-                                                                                RoutePaths.AccountRegistration,
-                                                                                arguments: AccountRegistrationParams(kycData: kycData, mobileCode: loginData!.data!.mobileCode!, mobileNumber: loginData.data!.mobile!));
+                                                                          if (kycData.type == 'MobileOTP') {
+                                                                            Navigator.popAndPushNamed(
+                                                                                context,
+                                                                                RoutePaths
+                                                                                    .AccountRegistration,
+                                                                                arguments:
+                                                                                    AccountRegistrationParams(
+                                                                                        kycData: kycData,
+                                                                                        mobileCode: loginData!
+                                                                                            .data!
+                                                                                            .mobileCode!,
+                                                                                        mobileNumber:
+                                                                                            loginData.data!
+                                                                                                .mobile!));
                                                                           } else {
                                                                             Navigator.popAndPushNamed(context,
                                                                                 RoutePaths.Registration,
                                                                                 arguments: RegisterPageParams(
-                                                                                  applicationId: model.applicationId,
+                                                                                  applicationId:
+                                                                                      model.applicationId,
                                                                                   kycData: kycData,
                                                                                 ));
                                                                           }
                                                                         } else {
                                                                           Navigator.popAndPushNamed(
-                                                                              context,
-                                                                              RoutePaths.AppHome);
+                                                                              context, RoutePaths.AppHome);
                                                                         }
                                                                       }
                                                                     },
-                                                                    dataBuilder:
-                                                                        (context,
-                                                                            kycResponse) {
+                                                                    dataBuilder: (context, kycResponse) {
                                                                       return Padding(
                                                                         padding: EdgeInsets.only(
-                                                                            left:
-                                                                                40,
-                                                                            right:
-                                                                                40,
-                                                                            top:
-                                                                                25),
-                                                                        child:
-                                                                            Column(
+                                                                            left: 40, right: 40, top: 25),
+                                                                        child: Column(
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.stretch,
                                                                           children: [
                                                                             AppTextField(
-                                                                                textFieldBorderColor: AppColor.whiteGray,
-                                                                                textFieldFocusBorderColor: Theme.of(context).primaryColorDark,
-                                                                                labelText: S.of(context).emailAddress,
-                                                                                hintText: S.of(context).pleaseEnter,
+                                                                                textFieldBorderColor:
+                                                                                    AppColor.whiteGray,
+                                                                                textFieldFocusBorderColor:
+                                                                                    Theme.of(context)
+                                                                                        .primaryColorDark,
+                                                                                labelText: S
+                                                                                    .of(context)
+                                                                                    .emailAddress,
+                                                                                hintText:
+                                                                                    S.of(context).pleaseEnter,
                                                                                 key: model.emailKey,
-                                                                                controller: model.emailController,
-                                                                                inputType: TextInputType.emailAddress,
-                                                                                inputAction: TextInputAction.next,
+                                                                                controller:
+                                                                                    model.emailController,
+                                                                                inputType: TextInputType
+                                                                                    .emailAddress,
+                                                                                inputAction:
+                                                                                    TextInputAction.next,
                                                                                 onSaved: (value) {
                                                                                   model.validateEmail();
                                                                                 },
                                                                                 suffixIcon: (_, __) {
-                                                                                  return AppStreamBuilder<Resource<bool>>(
-                                                                                      stream: model.checkBioMetricStream,
-                                                                                      initialData: Resource.none(),
+                                                                                  return AppStreamBuilder<
+                                                                                          Resource<bool>>(
+                                                                                      stream: model
+                                                                                          .checkBioMetricStream,
+                                                                                      initialData:
+                                                                                          Resource.none(),
                                                                                       onData: (data) {
-                                                                                        if (data.status == Status.SUCCESS) {
-                                                                                          model.authenticateBioMetric(title: S.of(context).biometricLogin, localisedReason: Platform.isAndroid ? S.of(context).enableBiometricLoginDescriptionAndroid : S.of(context).enableBiometricLoginDescriptionIos);
+                                                                                        if (data.status ==
+                                                                                            Status.SUCCESS) {
+                                                                                          model.authenticateBioMetric(
+                                                                                              title: S
+                                                                                                  .of(context)
+                                                                                                  .biometricLogin,
+                                                                                              localisedReason: Platform
+                                                                                                      .isAndroid
+                                                                                                  ? S
+                                                                                                      .of(
+                                                                                                          context)
+                                                                                                      .enableBiometricLoginDescriptionAndroid
+                                                                                                  : S
+                                                                                                      .of(context)
+                                                                                                      .enableBiometricLoginDescriptionIos);
                                                                                         }
                                                                                       },
-                                                                                      dataBuilder: (context, checkBioMetric) {
-                                                                                        return AppStreamBuilder<Resource<bool>>(
-                                                                                            stream: model.authenticateBioMetricStream,
-                                                                                            initialData: Resource.none(),
+                                                                                      dataBuilder: (context,
+                                                                                          checkBioMetric) {
+                                                                                        return AppStreamBuilder<
+                                                                                                Resource<
+                                                                                                    bool>>(
+                                                                                            stream: model
+                                                                                                .authenticateBioMetricStream,
+                                                                                            initialData:
+                                                                                                Resource
+                                                                                                    .none(),
                                                                                             onData: (data) {
-                                                                                              if (data.status == Status.SUCCESS) {
-                                                                                                if (data.data!) {
-                                                                                                  model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                              if (data.status ==
+                                                                                                  Status
+                                                                                                      .SUCCESS) {
+                                                                                                if (data
+                                                                                                    .data!) {
+                                                                                                  model.androidLogin(
+                                                                                                      cipher: cipher!
+                                                                                                          .data!
+                                                                                                          .getCipherContent!
+                                                                                                          .cipher!);
                                                                                                 }
                                                                                                 // model.getCurrentUser();
                                                                                                 //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                               }
                                                                                             },
-                                                                                            dataBuilder: (context, authenticBiometric) {
-                                                                                              return AppStreamBuilder<Resource<User>>(
-                                                                                                  stream: model.currentUser,
-                                                                                                  initialData: Resource.none(),
-                                                                                                  onData: (data) {
-                                                                                                    if (data.status == Status.SUCCESS) {
+                                                                                            dataBuilder: (context,
+                                                                                                authenticBiometric) {
+                                                                                              return AppStreamBuilder<
+                                                                                                      Resource<
+                                                                                                          User>>(
+                                                                                                  stream: model
+                                                                                                      .currentUser,
+                                                                                                  initialData:
+                                                                                                      Resource
+                                                                                                          .none(),
+                                                                                                  onData:
+                                                                                                      (data) {
+                                                                                                    if (data.status ==
+                                                                                                        Status
+                                                                                                            .SUCCESS) {
                                                                                                       //model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
-                                                                                                      model.checkVersionUpdate(clear: "false");
-                                                                                                    } else if (data.status == Status.ERROR) {
-                                                                                                      if (data.appError!.type == ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                        model.checkVersionUpdate(clear: "true");
+                                                                                                      model.checkVersionUpdate(
+                                                                                                          clear:
+                                                                                                              "false");
+                                                                                                    } else if (data
+                                                                                                            .status ==
+                                                                                                        Status
+                                                                                                            .ERROR) {
+                                                                                                      if (data.appError!.type ==
+                                                                                                          ErrorType.DB_USER_NOT_FOUND) {
+                                                                                                        model.checkVersionUpdate(
+                                                                                                            clear: "true");
                                                                                                       }
                                                                                                     }
                                                                                                   },
-                                                                                                  dataBuilder: (context, progress) {
-                                                                                                    return AppStreamBuilder<bool>(
-                                                                                                        stream: model.fingerPrintShowStream,
-                                                                                                        initialData: false,
-                                                                                                        dataBuilder: (context, fingerPrintValue) {
+                                                                                                  dataBuilder:
+                                                                                                      (context,
+                                                                                                          progress) {
+                                                                                                    return AppStreamBuilder<
+                                                                                                            bool>(
+                                                                                                        stream: model
+                                                                                                            .fingerPrintShowStream,
+                                                                                                        initialData:
+                                                                                                            false,
+                                                                                                        dataBuilder:
+                                                                                                            (context, fingerPrintValue) {
                                                                                                           return Visibility(
                                                                                                             visible: fingerPrintValue!,
                                                                                                             child: InkWell(
@@ -499,48 +469,80 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                       });
                                                                                 },
                                                                                 suffixIconSize: 24,
-                                                                                onChanged: (value) => model.validate()),
+                                                                                onChanged: (value) =>
+                                                                                    model.validate()),
                                                                             Padding(
-                                                                              padding: EdgeInsets.only(top: 16),
+                                                                              padding:
+                                                                                  EdgeInsets.only(top: 16),
                                                                               child: AppTextField(
-                                                                                textFieldBorderColor: AppColor.whiteGray,
-                                                                                textFieldFocusBorderColor: Theme.of(context).primaryColorDark,
-                                                                                labelText: S.of(context).password,
-                                                                                hintText: S.of(context).pleaseEnter,
+                                                                                textFieldBorderColor:
+                                                                                    AppColor.whiteGray,
+                                                                                textFieldFocusBorderColor:
+                                                                                    Theme.of(context)
+                                                                                        .primaryColorDark,
+                                                                                labelText:
+                                                                                    S.of(context).password,
+                                                                                hintText:
+                                                                                    S.of(context).pleaseEnter,
                                                                                 key: model.passwordKey,
-                                                                                controller: model.passwordController,
-                                                                                inputAction: TextInputAction.done,
+                                                                                controller:
+                                                                                    model.passwordController,
+                                                                                inputAction:
+                                                                                    TextInputAction.done,
                                                                                 onSaved: (value) {
                                                                                   model.validateEmail();
                                                                                 },
-                                                                                onChanged: (value) => model.validate(),
+                                                                                onChanged: (value) =>
+                                                                                    model.validate(),
                                                                                 obscureText: true,
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: EdgeInsets.only(top: 24),
+                                                                              padding:
+                                                                                  EdgeInsets.only(top: 24),
                                                                               child: InkWell(
-                                                                                onTap: () => Navigator.pushNamed(context, RoutePaths.ForgotPassword),
+                                                                                onTap: () =>
+                                                                                    Navigator.pushNamed(
+                                                                                        context,
+                                                                                        RoutePaths
+                                                                                            .ForgotPassword),
                                                                                 child: Text(
-                                                                                  S.of(context).forgotPassword,
+                                                                                  S
+                                                                                      .of(context)
+                                                                                      .forgotPassword,
                                                                                   textAlign: TextAlign.center,
-                                                                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
+                                                                                  style: TextStyle(
+                                                                                      fontSize: 14,
+                                                                                      fontWeight:
+                                                                                          FontWeight.w500,
+                                                                                      color: Theme.of(context)
+                                                                                          .accentColor),
                                                                                 ),
                                                                               ),
                                                                             ),
                                                                             Center(
                                                                               child: AppStreamBuilder<bool>(
-                                                                                  stream: model.showButtonStream,
+                                                                                  stream:
+                                                                                      model.showButtonStream,
                                                                                   initialData: false,
-                                                                                  dataBuilder: (context, isValid) {
+                                                                                  dataBuilder:
+                                                                                      (context, isValid) {
                                                                                     return Visibility(
                                                                                       visible: isValid!,
                                                                                       child: Padding(
-                                                                                        padding: EdgeInsets.only(top: 24),
+                                                                                        padding:
+                                                                                            EdgeInsets.only(
+                                                                                                top: 24),
                                                                                         child: AnimatedButton(
-                                                                                          buttonText: S.of(context).swipeToProceed,
-                                                                                          borderColor: Theme.of(context).accentColor,
-                                                                                          textColor: Theme.of(context).accentColor,
+                                                                                          buttonText: S
+                                                                                              .of(context)
+                                                                                              .swipeToProceed,
+                                                                                          borderColor: Theme
+                                                                                                  .of(context)
+                                                                                              .accentColor,
+                                                                                          textColor: Theme.of(
+                                                                                                  context)
+                                                                                              .accentColor,
                                                                                         ),
                                                                                       ),
                                                                                     );
@@ -576,9 +578,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   ProviderScope.containerOf(context)
                       .read(onBoardingViewModelProvider)
                       .onBoardingPageController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                      .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                 } else {
                   // model.scrollController.animateTo(details.localPosition.dx,
                   //     duration: Duration(milliseconds: 350), curve: Curves.ease);
@@ -590,9 +590,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                     height: 4,
                     width: 128,
                     margin: EdgeInsets.only(bottom: 8, top: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(2),
-                        color: AppColor.whiteGray),
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(2), color: AppColor.whiteGray),
                   ),
                   Container(
                       padding: Platform.isAndroid
@@ -602,16 +601,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Theme.of(context).cardColor,
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(16))),
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
                       child: Text(
                         S.of(context).swipeUpToJoinOurCommunity,
                         style: TextStyle(
                             fontSize: 14,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1
-                                ?.color,
+                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500),
                       )),

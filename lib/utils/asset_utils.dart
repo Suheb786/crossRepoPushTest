@@ -108,14 +108,12 @@ class AssetUtils {
   static const String personCircle = svg + "person_circle.svg";
   static const String cardFreeze = svg + "card_freeze.svg";
   static const String cardCancelIcon = svg + "cancel_card_icon.svg";
+  static const String supplementaryCardIcon = svg + "supplementary_card_icon.svg";
   static const String processingVoucherSvg = svg + "processing_voucher_svg.svg";
-  static const String supplementaryCardIcon =
-      svg + "supplementary_card_icon.svg";
   static const String reportIssueIcon = svg + "report_issue_icon.svg";
   static const String freezeIcon = svg + "freeze_icon.svg";
   static const String changeMobileNoIcon = svg + "change_mobile_no_icon.svg";
-  static const String changeLinkedAccountIcon =
-      svg + "change_linked_account_icon.svg";
+  static const String changeLinkedAccountIcon = svg + "change_linked_account_icon.svg";
   static const String cardPinIcon = svg + "card_pin_icon.svg";
   static const String cardLimitsIcon = svg + "card_limits_icon.svg";
   static const String cancelIcon = svg + "cancel_icon.svg";
@@ -222,25 +220,25 @@ class AssetUtils {
   static const String qr = drawable + "qr.png";
   static const String viewSubscription = drawable + "view_subscription.png";
 
+  ///voucher static image
+  static const String shareVoucher = drawable + "share_voucher.png";
+
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
-
 //Evoucher png
-static const String apple_music = drawable + "apple_music.png";
-static const String view_voucher_icon = drawable + "view_voucher_icon.png";
-static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
-static const String favourite_brand = drawable + "favourite_brand.png";
-static const String top_brand_adidas = drawable + "top_brand_adidas.png";
-static const String playStationIcon = drawable + "play_station.png";
-static const String processing_voucher_icon = drawable + "processing_voucher_icon.png";
-
+  static const String apple_music = drawable + "apple_music.png";
+  static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
+  static const String favourite_brand = drawable + "favourite_brand.png";
+  static const String top_brand_adidas = drawable + "top_brand_adidas.png";
+  static const String playStationIcon = drawable + "play_station.png";
 
 //Evoucher svg
 
-// static const String favourite_brand = svg + "favourite_brand.svg";
-
+  static const String filterMenu = svg + "filter_menu.svg";
+  static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
+  static const String view_voucher_icon = svg + "view_voucher.svg";
 }

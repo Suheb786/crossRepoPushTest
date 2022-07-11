@@ -20,7 +20,7 @@ class CustomBulletWithTitle extends StatelessWidget {
         Container(
           width: 4,
           height: 4,
-          margin: const EdgeInsets.only(top: 12),
+          margin: const EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             color: AppColor.veryDarkGray1,
             shape: BoxShape.circle,

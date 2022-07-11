@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -26,10 +25,8 @@ class EvoucherLandingDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding:
-            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async => false,
           child: GestureDetector(
@@ -62,8 +59,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                     child: Text(
                       title,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(height: 31),
@@ -81,13 +77,8 @@ class EvoucherLandingDialogView extends StatelessWidget {
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!),
-                      child: AppSvg.asset(AssetUtils.tick,
-                          color: Theme.of(context).accentColor),
+                          shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                      child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
@@ -102,9 +93,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
+                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),
@@ -123,8 +112,7 @@ class EvoucherLandingDialogView extends StatelessWidget {
         itemBuilder: (context, index, realIndex) {
           return Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(width: 2, color: Colors.yellow)),
+                borderRadius: BorderRadius.circular(16), border: Border.all(width: 2, color: Colors.yellow)),
             width: 158,
             height: 102,
           );

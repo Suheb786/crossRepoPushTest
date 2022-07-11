@@ -17,10 +17,8 @@ class RoutePaths {
   static const String Capture = '/capture';
   static const String FatcaCertification = '/fatcaCertification';
   static const String ExemptPayeeCode = '/exemptPayeeCode';
-  static const String ExemptionFromFatcaReportingCode =
-      '/exemptionFromFatcaReportingCode';
-  static const String UsTaxPayerIdentificationNo =
-      '/usTaxPayerIdentificationNo';
+  static const String ExemptionFromFatcaReportingCode = '/exemptionFromFatcaReportingCode';
+  static const String UsTaxPayerIdentificationNo = '/usTaxPayerIdentificationNo';
   static const String ReferenceNumber = '/referenceNumber';
   static const String TaxTreatyBenefits = '/taxTreatyBenefits';
   static const String CardDelivery = '/cardDelivery';
@@ -41,20 +39,16 @@ class RoutePaths {
   static const String SendAmountToContactSuccess = "SendAmountToContactSuccess";
   static const String SendMoney = "/sendMoneyPage";
   static const String RequestMoney = "/requestMoney";
-  static const String RequestAmountFromContactSuccess =
-      "/requestAmountFromContactSuccessPage";
-  static const String RequestPaymentFromNewRecipient =
-      "/requestPaymentFromNewRecipient";
+  static const String RequestAmountFromContactSuccess = "/requestAmountFromContactSuccessPage";
+  static const String RequestPaymentFromNewRecipient = "/requestPaymentFromNewRecipient";
   static const String PaymentToNewRecipient = "/paymentToNewRecipientPage";
   static const String DownloadTransaction = '/downloadTransaction';
   static const String CardTransaction = "/cardTransaction";
   static const String AccountTransaction = "/accountTransaction";
   static const String CreditCardDelivered = "/creditCardDelivered";
   static const String DebitCardDelivered = "/debitCardDelivered";
-  static const String CreditCardVerificationSuccess =
-      "/creditCardVerificationSuccess";
-  static const String DebitCardVerificationSuccess =
-      "/debitCardVerificationSuccess";
+  static const String CreditCardVerificationSuccess = "/creditCardVerificationSuccess";
+  static const String DebitCardVerificationSuccess = "/debitCardVerificationSuccess";
   static const String DebitCardSettings = "/debitCardSettings";
   static const String CreditCardSettings = "/creditCardSettings";
   static const String HelpCenter = "/helpCenter";
@@ -63,51 +57,42 @@ class RoutePaths {
   static const String ManageCardPin = "/manageCardPin";
   static const String CardPinUnBlockSuccess = "/cardPinUnBlockSuccessPage";
   static const String DebitCardReplacement = "/debitCardReplacement";
-  static const String DebitCardReplacementSuccess =
-      "/debitCardReplacementSuccess";
+  static const String DebitCardReplacementSuccess = "/debitCardReplacementSuccess";
   static const String manageDebitLimit = "/manageDebitLimits";
   static const String ChangeCardPin = "/changeCardPin";
   static const String ChangeCardPinSuccess = "/changeCardPinSuccess";
   static const String SupplementaryCreditCard = "/supplementaryCreditCard";
-  static const String SupplementaryCreditCardReady =
-      "/supplementaryCreditCardReady";
+  static const String SupplementaryCreditCardReady = "/supplementaryCreditCardReady";
   static const String SupplementaryDebitCard = "/supplementaryDebitCard";
   static const String SupplementaryCardInReview = "/supplementaryCardInReview";
   static const String BlinkCreditCard = "/blinkCreditCard";
-  static const String CreditCardApplicationFailure =
-      "/creditCardApplicationFailure";
+  static const String CreditCardApplicationFailure = "/creditCardApplicationFailure";
   static const String ApplyCreditCardHome = "/applyCreditCardHome";
   static const String AccountHold = "/accountHold";
   static const String VideoKYCScheduled = "/videoKycScheduled";
   static const String ForgotPassword = "/forgotPassword";
-  static const String CreditCardActivationStatus =
-      "/creditCardActivationStatus";
+  static const String CreditCardActivationStatus = "/creditCardActivationStatus";
   static const String CreditCardApplySuccess = "/creditCardApplySuccess";
   static const String ResetPasswordSuccess = "/resetPasswordSuccess";
   static const String UploadDocumentLater = "/uploadDocumentLater";
   static const String VideoKyc = "/videoKyc";
   static const String OTPForChangeDevice = "/OTPForChangeDevice";
   static const String ChangeDeviceSuccess = "/changeDeviceSuccess";
-  static const String SupplementaryDebitCardSuccess =
-      "/supplementaryDebitCardSuccess";
+  static const String SupplementaryDebitCardSuccess = "/supplementaryDebitCardSuccess";
   static const String CreditCardPayBack = "/creditCardPayBack";
   static const String CreditCardPayBackSuccess = "/creditCardPayBackSuccess";
   static const String VideoCall = "/videoCall";
   static const String CheckScheduledVideoCall = "/checkScheduledVideoCall";
   static const String TimeLinePage = "/TimeLinePage";
-  static const String SupplementaryCreditCardActivationStatus =
-      "/supplementaryCreditCardActivationStatus";
+  static const String SupplementaryCreditCardActivationStatus = "/supplementaryCreditCardActivationStatus";
   static const String AllContact = "/allContact";
-  static const String CreditCardVideoCallInitiate =
-      "/creditCardVideoCallInitiate";
-  static const String CreditCardVideoCallComplete =
-      "/creditCardVideoCallComplete";
+  static const String CreditCardVideoCallInitiate = "/creditCardVideoCallInitiate";
+  static const String CreditCardVideoCallComplete = "/creditCardVideoCallComplete";
   static const String CreditCardVideoKyc = "/creditCardVideoKyc";
   static const String RequestMoneyQrGeneration = "/requestMoneyQrGeneration";
   static const String QRScreen = "/qRScreen";
   static const String SendMoneyQrScanning = "/sendMoneyQrScanning";
-  static const String SendMoneyQrScanningSuccess =
-      "/sendMoneyQrScanningSuccess";
+  static const String SendMoneyQrScanningSuccess = "/sendMoneyQrScanningSuccess";
   static const String CliqIdList = "/cliqIdList";
   static const String CreateCliqId = "/createCliqId";
   static const String CliqIdCreationSuccess = "/cliqIdCreationSuccess";
@@ -116,26 +101,25 @@ class RoutePaths {
   static const String ChangeCountryRestriction = "/changeCountryRestriction";
   static const String ManageCreditSettlement = "/manageCreditSettlement";
   static const String ChangeCardPayment = "/changeCardPayment";
-  static const String ChangeCardSettlementPercentage =
-      "/changeCardSettlementPercentage";
+  static const String ChangeCardSettlementPercentage = "/changeCardSettlementPercentage";
   static const String ViewDebitCardSubscription = "/viewDebitCardSubscription";
-  static const String DcChangeLinkedMobileNumber =
-      "/dcChangeLinkedMobileNumber";
-  static const String DcChangeMobileNumberSuccess =
-      "/dcChangeMobileNumberSuccess";
+  static const String DcChangeLinkedMobileNumber = "/dcChangeLinkedMobileNumber";
+  static const String DcChangeMobileNumberSuccess = "/dcChangeMobileNumberSuccess";
   static const String DcChangeLinkedAccount = "/dcChangeLinkedAccount";
   static const String DcSettingCardDelivery = "/dcSettingCardDelivery";
   static const String DcSettingCardReady = "/dcSettingCardReady";
   static const String RenewCreditCard = "/renewCreditCard";
   static const String ChangeCreditLimit = "/changeCreditLimit";
-  static const String ConvertPurchaseToInstallments =
-      "/convertPurchaseToInstallments";
+  static const String ConvertPurchaseToInstallments = "/convertPurchaseToInstallments";
   static const String ManageCreditCardLimits = "/manageCreditCardLimits";
-  static const String SupplementaryDebitCardPinSet =
-      "/supplementaryDebitCardPinSet";
+  static const String SupplementaryDebitCardPinSet = "/supplementaryDebitCardPinSet";
+  static const String EVouchersListing = "/eVouchersListing";
+  static const String EVouchersPurchase = "/eVouchersPurchase";
+  static const String EVouchersPurchaseSuccess = "/eVouchersPurchaseSuccess";
+  static const String ShareVoucher = "/shareVoucher";
+  static const String Evoucher = "/evoucher";
+  static const String EvoucherDetail = "/evoucherDetail";
+  static const String PurchaseNowDetail = "/purchaseNowDetail";
 
-      static const String Evoucher = "/evoucher";
-      static const String EvoucherDetail = "/evoucherDetail";
-      static const String PurchaseNowDetail = "/purchaseNowDetail";
-
+  static const String EVoucherMainPage = "/eVoucherMainPage";
 }
