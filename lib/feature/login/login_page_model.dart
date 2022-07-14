@@ -351,7 +351,10 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void validateEmail() {
-    _loginRequest.safeAdd(LoginUseCaseParams(email: emailController.text, password: passwordController.text));
+    _loginRequest.safeAdd(LoginUseCaseParams(
+        email: emailController.text,
+        password: passwordController.text,
+        languageEnum: _selectedLanguage.value.toString()));
   }
 
   void checkKycStatus() {

@@ -1,5 +1,3 @@
-import 'package:domain/constants/enum/language_enum.dart';
-
 class User {
   String? token;
   String? id;
@@ -20,7 +18,7 @@ class User {
   String? cifNumber;
   String? accountNumber;
   String? applicationId;
-  LanguageEnum? selectedLanguage;
+  String? selectedLanguage;
 
   User(
       {this.token,
@@ -42,31 +40,31 @@ class User {
       this.newDevice: false,
       this.isBiometricEnabled: false,
       this.applicationId: "",
-      this.selectedLanguage: LanguageEnum.ENGLISH});
+      this.selectedLanguage: 'en'});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        token: json["token"],
-        id: json["id"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        email: json["email"],
-        mobile: json["mobile"],
-        mobileCode: json["mobileCode"],
-        isCurrent: json["isCurrent"],
-        refreshToken: json["refreshToken"],
-        tokenType: json["tokenType"],
-        expiredIn: json["expiredIn"],
-        isExisting: json["isExisting"],
-        publicPEM: json["publicPEM"],
-        privatePEM: json["privatePEM"],
-        cifNumber: json["cifNumber"],
-        accountNumber: json["accountNumber"],
-        newDevice: json["newDevice"],
-        isBiometricEnabled: json["isBiometricEnabled"],
-        applicationId: json["applicationId"],
-      );
+      token: json["token"],
+      id: json["id"],
+      firstName: json["firstName"],
+      lastName: json["lastName"],
+      email: json["email"],
+      mobile: json["mobile"],
+      mobileCode: json["mobileCode"],
+      isCurrent: json["isCurrent"],
+      refreshToken: json["refreshToken"],
+      tokenType: json["tokenType"],
+      expiredIn: json["expiredIn"],
+      isExisting: json["isExisting"],
+      publicPEM: json["publicPEM"],
+      privatePEM: json["privatePEM"],
+      cifNumber: json["cifNumber"],
+      accountNumber: json["accountNumber"],
+      newDevice: json["newDevice"],
+      isBiometricEnabled: json["isBiometricEnabled"],
+      applicationId: json["applicationId"],
+      selectedLanguage: json["selectedLanguage"]);
 
   Map<String, dynamic> toJson() => {
         "token": token,
@@ -87,6 +85,7 @@ class User {
         "accountNumber": accountNumber,
         "newDevice": newDevice,
         "isBiometricEnabled": isBiometricEnabled,
-        "applicationId": applicationId
+        "applicationId": applicationId,
+        "selectedLanguage": selectedLanguage
       };
 }

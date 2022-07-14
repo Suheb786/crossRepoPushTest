@@ -27,3 +27,16 @@ extension LanguageEnumExt on LanguageEnum {
     }
   }
 }
+
+extension LanguageEnumStringExt on String {
+  LanguageEnum fromLanguageValue() {
+    switch (this) {
+      case "en":
+        return LanguageEnum.ENGLISH;
+      case "ar":
+        return LanguageEnum.ARABIC;
+      default:
+        return LanguageEnum.ENGLISH;
+    }
+  }
+}

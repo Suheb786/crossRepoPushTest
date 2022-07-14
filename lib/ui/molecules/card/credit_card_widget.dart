@@ -94,8 +94,20 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       )
                                     : InkWell(
                                         splashFactory: NoSplash.splashFactory,
-                                        onTap: () {
+                                        onTap: () async{
                                           widget.flipCardController!.toggleCard();
+                                          // var result = await Navigator.pushNamed(
+                                          //     context, RoutePaths.CreditCardSettings,
+                                          //     arguments: CreditCardSettingsArguments(
+                                          //         creditCard: widget.creditCard));
+                                          // if (result != null) {
+                                          //   bool value = result as bool;
+                                          //   if (value) {
+                                          //     ProviderScope.containerOf(context)
+                                          //         .read(appHomeViewModelProvider)
+                                          //         .getDashboardData();
+                                          //   }
+                                          // }
                                         },
                                         child: Container(
                                           height: 50,
