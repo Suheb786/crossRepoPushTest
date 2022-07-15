@@ -1,3 +1,4 @@
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_content.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
@@ -17,34 +18,26 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   final FreezeCreditCardUseCase _freezeCreditCardUseCase;
   final UnFreezeCreditCardUseCase _unFreezeCreditCardUseCase;
   final CancelCreditCardUseCase _cancelCreditCardUseCase;
-  final GetSupplementaryCreditCardApplicationUseCase
-      _getSupplementaryCreditCardApplicationUseCase;
+  final GetSupplementaryCreditCardApplicationUseCase _getSupplementaryCreditCardApplicationUseCase;
   final ReportLostStolenCCUseCase _reportLostStolenCCUseCase;
 
   PublishSubject<bool> _toggleFreezeCardSubject = PublishSubject();
 
   Stream<bool> get freezeCardStream => _toggleFreezeCardSubject.stream;
 
-  PublishSubject<FreezeCreditCardUseCaseParams> _freezeCardRequestSubject =
-      PublishSubject();
-  PublishSubject<Resource<bool>> _toggleFreezeCardSubjectResponse =
-      PublishSubject();
+  PublishSubject<FreezeCreditCardUseCaseParams> _freezeCardRequestSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _toggleFreezeCardSubjectResponse = PublishSubject();
 
-  Stream<Resource<bool>> get toggleFreezeCardStream =>
-      _toggleFreezeCardSubjectResponse.stream;
+  Stream<Resource<bool>> get toggleFreezeCardStream => _toggleFreezeCardSubjectResponse.stream;
 
-  PublishSubject<UnFreezeCreditCardUseCaseParams> _unFreezeCardRequestSubject =
-      PublishSubject();
+  PublishSubject<UnFreezeCreditCardUseCaseParams> _unFreezeCardRequestSubject = PublishSubject();
 
   ///cancel credit card
-  PublishSubject<CancelCreditCardUseCaseParams>
-      _cancelCreditCardRequestSubject = PublishSubject();
+  PublishSubject<CancelCreditCardUseCaseParams> _cancelCreditCardRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _cancelCreditCardResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _cancelCreditCardResponseSubject = PublishSubject();
 
-  Stream<Resource<bool>> get cancelCreditCardStream =>
-      _cancelCreditCardResponseSubject.stream;
+  Stream<Resource<bool>> get cancelCreditCardStream => _cancelCreditCardResponseSubject.stream;
 
   bool isFreezed = false;
   bool isUnFreezed = false;
@@ -67,24 +60,18 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
           _getSupplementaryCreditCardApplicationResponseSubject.stream;
 
   ///report Lost stolen cc use case
-  PublishSubject<ReportLostStolenCCUseCaseParams>
-      _reportLostStolenCCRequestSubject = PublishSubject();
+  PublishSubject<ReportLostStolenCCUseCaseParams> _reportLostStolenCCRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _reportLostStolenCCResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _reportLostStolenCCResponseSubject = PublishSubject();
 
-  Stream<Resource<bool>> get reportLostStolenCCStream =>
-      _reportLostStolenCCResponseSubject.stream;
+  Stream<Resource<bool>> get reportLostStolenCCStream => _reportLostStolenCCResponseSubject.stream;
 
   ///report damaged cc use case
-  PublishSubject<ReportLostStolenCCUseCaseParams>
-      _reportDamagedCCRequestSubject = PublishSubject();
+  PublishSubject<ReportLostStolenCCUseCaseParams> _reportDamagedCCRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _reportDamagedCCResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _reportDamagedCCResponseSubject = PublishSubject();
 
-  Stream<Resource<bool>> get reportDamagedCCStream =>
-      _reportDamagedCCResponseSubject.stream;
+  Stream<Resource<bool>> get reportDamagedCCStream => _reportDamagedCCResponseSubject.stream;
 
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
@@ -94,8 +81,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
       this._getSupplementaryCreditCardApplicationUseCase,
       this._reportLostStolenCCUseCase) {
     _freezeCardRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () => _freezeCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _freezeCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -111,9 +97,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
     });
 
     _unFreezeCardRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _unFreezeCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _unFreezeCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -129,8 +113,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
     });
 
     _cancelCreditCardRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () => _cancelCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cancelCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -145,20 +128,21 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
     _getSupplementaryCreditCardApplicationRequestSubject.listen((value) {
       RequestManager(value,
-          createCall: () => _getSupplementaryCreditCardApplicationUseCase
-              .execute(params: value)).asFlow().listen((event) {
+              createCall: () => _getSupplementaryCreditCardApplicationUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         updateLoader();
         _getSupplementaryCreditCardApplicationResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          checkStepIncomplete(event.data!.cardApplicationContent);
         }
       });
     });
 
     _reportLostStolenCCRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _reportLostStolenCCUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _reportLostStolenCCUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -170,9 +154,7 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
     });
 
     _reportDamagedCCRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _reportLostStolenCCUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _reportLostStolenCCUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -193,18 +175,15 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
   }
 
   void freezeCard(String cardID) {
-    _freezeCardRequestSubject
-        .safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
+    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
   }
 
   void unFreezeCard(String cardID) {
-    _unFreezeCardRequestSubject
-        .safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
+    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
   }
 
   void cancelCard(String reason) {
-    _cancelCreditCardRequestSubject
-        .safeAdd(CancelCreditCardUseCaseParams(reason: reason));
+    _cancelCreditCardRequestSubject.safeAdd(CancelCreditCardUseCaseParams(reason: reason));
   }
 
   bool willPop() {
@@ -237,6 +216,28 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
         cardCode: creditCardSettingsArguments.creditCard.cardCode ?? '',
         panGenerationMode: "N",
         replacementReason: "0001"));
+  }
+
+  PublishSubject<bool> _routeSupplementarySubject = PublishSubject();
+
+  Stream<bool> get routeSupplementaryStream => _routeSupplementarySubject.stream;
+
+  void checkStepIncomplete(List<SupplementaryCreditCardApplicationContent>? cardApplicationContent) {
+    bool isIncomplete = false;
+    if (cardApplicationContent!.isEmpty) {
+      isIncomplete = false;
+    } else {
+      cardApplicationContent.firstWhere((element) {
+        if (!((element.step1 ?? false) && (element.step2 ?? false) && (element.step3 ?? false))) {
+          isIncomplete = true;
+          return false;
+        } else {
+          isIncomplete = false;
+          return true;
+        }
+      });
+    }
+    _routeSupplementarySubject.safeAdd(isIncomplete);
   }
 
   @override

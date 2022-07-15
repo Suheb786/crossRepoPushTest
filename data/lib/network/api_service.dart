@@ -394,8 +394,7 @@ abstract class ApiService {
   Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(@Body() BaseRequest baseRequest);
 
   @POST("/auth/ChangePassword")
-  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
-      @Body() ChangePasswordRequest changePasswordRequest);
+  Future<HttpResponse<ResponseEntity>> changePassword(@Body() ChangePasswordRequest changePasswordRequest);
 
   @POST("/CustomerDetails/ChangeProfileImage")
   Future<HttpResponse<ResponseEntity>> updateProfileImage(

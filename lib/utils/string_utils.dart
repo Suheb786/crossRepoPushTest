@@ -60,16 +60,12 @@ class StringUtils {
   static String getMinDueDate() {
     DateTime currentDate = DateTime.now();
 
-    String month = currentDate.month < 10
-        ? '0${currentDate.month}'
-        : currentDate.month.toString();
+    String month = currentDate.month < 10 ? '0${currentDate.month}' : currentDate.month.toString();
     String minDueDate = '28/${month}';
     return minDueDate;
   }
 
   static bool isDirectionRTL(BuildContext context) {
-    debugPrint('current language--->${Localizations.localeOf(context).languageCode}');
-    return intl.Bidi.isRtlLanguage(
-        Localizations.localeOf(context).languageCode);
+    return intl.Bidi.isRtlLanguage(Localizations.localeOf(context).languageCode);
   }
 }

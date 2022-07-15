@@ -32,7 +32,7 @@ abstract class AccountSettingsRepository {
           required String mobileCode});
 
   ///change password
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>> changePassword(
+  Future<Either<NetworkError, bool>> changePassword(
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword});

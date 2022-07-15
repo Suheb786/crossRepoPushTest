@@ -41,7 +41,7 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
+  Future<HttpResponse<ResponseEntity>> changePassword(
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword}) async {

@@ -1,4 +1,3 @@
-import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_password/enter_new_password_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,30 +12,23 @@ import 'package:rxdart/rxdart.dart';
 class EnterNewPasswordPageViewModel extends BasePageViewModel {
   final EnterNewPasswordUseCase _enterPasswordUseCase;
 
-  final TextEditingController currentPasswordController =
-      TextEditingController();
+  final TextEditingController currentPasswordController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmNewPasswordController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> currentPasswordKey =
-      GlobalKey(debugLabel: "currentPassword");
+  final GlobalKey<AppTextFieldState> currentPasswordKey = GlobalKey(debugLabel: "currentPassword");
 
-  final GlobalKey<AppTextFieldState> newPasswordKey =
-      GlobalKey(debugLabel: "newPassword");
+  final GlobalKey<AppTextFieldState> newPasswordKey = GlobalKey(debugLabel: "newPassword");
 
-  final GlobalKey<AppTextFieldState> confirmNewPasswordKey =
-      GlobalKey(debugLabel: "confirmNewPassword");
+  final GlobalKey<AppTextFieldState> confirmNewPasswordKey = GlobalKey(debugLabel: "confirmNewPassword");
 
   ///create password request subject holder
-  PublishSubject<EnterNewPasswordUseCaseParams> _createPasswordRequest =
-      PublishSubject();
+  PublishSubject<EnterNewPasswordUseCaseParams> _createPasswordRequest = PublishSubject();
 
   /// create password response subject holder
-  PublishSubject<Resource<ProfileChangedSuccessResponse>>
-      _createPasswordResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<ProfileChangedSuccessResponse>> get createPasswordStream =>
-      _createPasswordResponse.stream;
+  Stream<Resource<bool>> get createPasswordStream => _createPasswordResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -45,8 +37,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
 
   EnterNewPasswordPageViewModel(this._enterPasswordUseCase) {
     _createPasswordRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _enterPasswordUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enterPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

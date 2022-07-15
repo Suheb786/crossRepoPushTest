@@ -94,7 +94,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       )
                                     : InkWell(
                                         splashFactory: NoSplash.splashFactory,
-                                        onTap: () async{
+                                        onTap: () async {
                                           widget.flipCardController!.toggleCard();
                                           // var result = await Navigator.pushNamed(
                                           //     context, RoutePaths.CreditCardSettings,
