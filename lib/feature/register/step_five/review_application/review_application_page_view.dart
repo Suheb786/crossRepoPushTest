@@ -682,9 +682,12 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                       //     context,
                                                                       //     RoutePaths
                                                                       //         .TermsAndCondition);
-                                                                      LaunchUrlUtils.launchDigitalService(
-                                                                          AppConstantsUtils
-                                                                              .ONBOARDING_DIGITAL_SERVICE_LINK_UAT);
+                                                                      LaunchUrlUtils.launchDigitalService(StringUtils
+                                                                              .isDirectionRTL(context)
+                                                                          ? AppConstantsUtils
+                                                                              .ONBOARDING_DIGITAL_SERVICE_LINK_LIVE_AR
+                                                                          : AppConstantsUtils
+                                                                              .ONBOARDING_DIGITAL_SERVICE_LINK_LIVE);
                                                                     },
                                                                     onTap: () {
                                                                       model.updateDeclarationSelection(
