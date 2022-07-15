@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:flutter/material.dart';
@@ -189,8 +190,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                               );
                             }),
                         SettingTile(
-                          isNotify: false,
-                          isEnabled: true,
+                          isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.PRIMARY,
+                          isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.SECONDARY,
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.ManageCreditCardLimits,
                                 arguments: ManageCreditCardLimitsArguments(
@@ -258,8 +261,11 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 onTap: () {
                                   model.getSupplementaryCreditCardApplication();
                                 },
-                                isEnabled: true,
-                                isNotify: false,
+                                isEnabled:
+                                    model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                        PrimarySecondaryCardEnum.PRIMARY,
+                                isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                    PrimarySecondaryCardEnum.SECONDARY,
                                 title: S.of(context).requestSupplementarycard,
                                 tileIcon: AssetUtils.cardIcon,
                               );
@@ -319,8 +325,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           },
                           title: S.of(context).manageSettlement,
                           tileIcon: AssetUtils.linked,
-                          isEnabled: true,
-                          isNotify: false,
+                          isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.PRIMARY,
+                          isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.SECONDARY,
                         ),
                         AppStreamBuilder<Resource<bool>>(
                             stream: model.reportLostStolenCCStream,
@@ -355,8 +363,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 },
                                 title: S.of(context).reportCardIssue,
                                 tileIcon: AssetUtils.report,
-                                isEnabled: true,
-                                isNotify: false,
+                                isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                    PrimarySecondaryCardEnum.PRIMARY,
+                                isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                    PrimarySecondaryCardEnum.SECONDARY,
                               );
                             }),
                         AppStreamBuilder<Resource<bool>>(
@@ -390,8 +400,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 },
                                 title: S.of(context).replaceDamageCard,
                                 tileIcon: AssetUtils.damageCard,
-                                isEnabled: true,
-                                isNotify: false,
+                                isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                    PrimarySecondaryCardEnum.PRIMARY,
+                                isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                    PrimarySecondaryCardEnum.SECONDARY,
                               );
                             }),
                         IgnorePointer(
