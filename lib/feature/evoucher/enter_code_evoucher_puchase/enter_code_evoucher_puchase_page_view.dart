@@ -21,7 +21,7 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(left: 24, right: 24, top: 60, bottom: 36),
+      padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 60, bottom: 36),
       child: AppKeyBoardHide(
         child: Column(
           children: [
