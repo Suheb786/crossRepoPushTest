@@ -16,14 +16,11 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
 class SupplementaryCreditCardActivationStatusPageView
-    extends BasePageViewWidget<
-        SupplementaryCreditCardActivationStatusPageViewModel> {
-  SupplementaryCreditCardActivationStatusPageView(ProviderBase model)
-      : super(model);
+    extends BasePageViewWidget<SupplementaryCreditCardActivationStatusPageViewModel> {
+  SupplementaryCreditCardActivationStatusPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context,
-      SupplementaryCreditCardActivationStatusPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryCreditCardActivationStatusPageViewModel model) {
     return Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -35,8 +32,7 @@ class SupplementaryCreditCardActivationStatusPageView
               if (response.status == Status.SUCCESS) {
                 model.getApplication();
               } else if (response.status == Status.ERROR) {
-                Navigator.popUntil(
-                    context, ModalRoute.withName(RoutePaths.AppHome));
+                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
               }
             },
             dataBuilder: (context, supplementaryCreditCardStepThree) {
@@ -47,59 +43,40 @@ class SupplementaryCreditCardActivationStatusPageView
                     if (response.status == Status.SUCCESS) {
                       model.getApplication();
                     } else if (response.status == Status.ERROR) {
-                      Navigator.popUntil(
-                          context, ModalRoute.withName(RoutePaths.AppHome));
+                      Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
                     }
                   },
                   dataBuilder: (context, supplementaryCreditCardStepTwo) {
-                    return AppStreamBuilder<
-                            Resource<
-                                SupplementaryCreditCardApplicationResponse>>(
+                    return AppStreamBuilder<Resource<SupplementaryCreditCardApplicationResponse>>(
                         stream: model.getApplicationResponseStream,
                         initialData: Resource.none(),
                         onData: (response) {
                           if (response.status == Status.SUCCESS) {
-                            if (!(response.data!.cardApplicationContent!.first
-                                    .step2 ??
-                                false)) {
+                            if (!(response.data!.cardApplicationContent![model.index].step2 ?? false)) {
                               Future.delayed(Duration(seconds: 1), () {
                                 model.supplementaryCreditCardStepTwoRequest(
-                                  cardId: response.data!.cardApplicationContent!
-                                      .first.primaryCardId,
-                                  secondaryId: response.data!
-                                      .cardApplicationContent!.first.supCardId,
+                                  cardId: response.data!.cardApplicationContent![model.index].primaryCardId,
+                                  secondaryId: response.data!.cardApplicationContent![model.index].supCardId,
                                 );
                               });
-                            } else if (!(response
-                                .data!.cardApplicationContent!.first.step3!)) {
+                            } else if (!(response.data!.cardApplicationContent![model.index].step3!)) {
                               Future.delayed(Duration(seconds: 1), () {
                                 model.supplementaryCreditCardStepThree(
-                                    cardId: response
-                                        .data!
-                                        .cardApplicationContent!
-                                        .first
-                                        .primaryCardId,
-                                    secondaryId: response
-                                        .data!
-                                        .cardApplicationContent!
-                                        .first
-                                        .supCardId,
-                                    accountNumber:
-                                        ProviderScope.containerOf(context)
-                                                .read(appHomeViewModelProvider)
-                                                .dashboardDataContent
-                                                .account!
-                                                .accountNo ??
-                                            '');
+                                    cardId: response.data!.cardApplicationContent![model.index].primaryCardId,
+                                    secondaryId:
+                                        response.data!.cardApplicationContent![model.index].supCardId,
+                                    accountNumber: ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .account!
+                                            .accountNo ??
+                                        '');
                               });
-                            } else if (response
-                                .data!.cardApplicationContent!.first.step3!) {
+                            } else if (response.data!.cardApplicationContent![model.index].step3!) {
                               Future.delayed(Duration(seconds: 1), () {
-                                Navigator.pushNamed(
-                                    context, RoutePaths.CreditCardApplySuccess,
+                                Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
                                     arguments: CreditCardApplySuccessArguments(
-                                        creditSuccessState: CreditSuccessState
-                                            .Applied_Success));
+                                        creditSuccessState: CreditSuccessState.Applied_Success));
                               });
                             }
                           }
@@ -126,9 +103,7 @@ class SupplementaryCreditCardActivationStatusPageView
                                                 shape: BoxShape.circle,
                                                 color: AppColor.vividYellow,
                                               ),
-                                              child: Center(
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.right)),
+                                              child: Center(child: AppSvg.asset(AssetUtils.right)),
                                             ),
                                           ),
                                         ],
@@ -148,40 +123,27 @@ class SupplementaryCreditCardActivationStatusPageView
                                       height: 16,
                                     ),
                                     CreditCardActivationStatusWidget(
-                                      label:
-                                          S.of(context).creatingSuppCreditLimit,
+                                      label: S.of(context).creatingSuppCreditLimit,
                                       isActivated: applicationResponse!
-                                              .data!
-                                              .cardApplicationContent!
-                                              .first
-                                              .step1 ??
+                                              .data!.cardApplicationContent![model.index].step1 ??
                                           false,
                                     ),
                                     SizedBox(
                                       height: 16,
                                     ),
                                     CreditCardActivationStatusWidget(
-                                      label:
-                                          S.of(context).issuingSuppCreditCard,
+                                      label: S.of(context).issuingSuppCreditCard,
                                       isActivated: applicationResponse
-                                              .data!
-                                              .cardApplicationContent!
-                                              .first
-                                              .step2 ??
+                                              .data!.cardApplicationContent![model.index].step2 ??
                                           false,
                                     ),
                                     SizedBox(
                                       height: 16,
                                     ),
                                     CreditCardActivationStatusWidget(
-                                      label: S
-                                          .of(context)
-                                          .activatingSuppCreditCard,
+                                      label: S.of(context).activatingSuppCreditCard,
                                       isActivated: applicationResponse
-                                              .data!
-                                              .cardApplicationContent!
-                                              .first
-                                              .step3 ??
+                                              .data!.cardApplicationContent![model.index].step3 ??
                                           false,
                                     )
                                   ],

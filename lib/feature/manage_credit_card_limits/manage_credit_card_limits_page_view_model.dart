@@ -15,25 +15,20 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
   final CreditCardLimitsUpdateUseCase _creditCardLimitsUpdateUseCase;
 
   ///credit card limits update request
-  PublishSubject<CreditCardLimitsUpdateUseCaseParams>
-      _updateCreditCardLimitsRequestSubject = PublishSubject();
-
-  PublishSubject<Resource<bool>> _updateCreditCardLimitsResponseSubject =
+  PublishSubject<CreditCardLimitsUpdateUseCaseParams> _updateCreditCardLimitsRequestSubject =
       PublishSubject();
 
-  Stream<Resource<bool>> get updateCreditCardLimitsStream =>
-      _updateCreditCardLimitsResponseSubject.stream;
+  PublishSubject<Resource<bool>> _updateCreditCardLimitsResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get updateCreditCardLimitsStream => _updateCreditCardLimitsResponseSubject.stream;
 
   ///credit card get limits request
-  PublishSubject<GetCreditCardLimitUseCaseParams> _getCreditCardLimitRequest =
-      PublishSubject();
+  PublishSubject<GetCreditCardLimitUseCaseParams> _getCreditCardLimitRequest = PublishSubject();
 
-  PublishSubject<Resource<GetCreditCardLimitResponse>>
-      _getCreditCardLimitResponseSubject = PublishSubject();
+  PublishSubject<Resource<GetCreditCardLimitResponse>> _getCreditCardLimitResponseSubject = PublishSubject();
 
-  Stream<Resource<GetCreditCardLimitResponse>>
-      get getCreditCardLimitResponseStream =>
-          _getCreditCardLimitResponseSubject.stream;
+  Stream<Resource<GetCreditCardLimitResponse>> get getCreditCardLimitResponseStream =>
+      _getCreditCardLimitResponseSubject.stream;
 
   /// show save button visibility
   BehaviorSubject<bool> _showSaveButtonSubject = BehaviorSubject.seeded(false);
@@ -60,11 +55,10 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
   bool isOnlinePurchaseInitialValue = false;
   bool isContactLessPaymentsInitialValue = false;
 
-  ManageCreditCardLimitsPageViewModel(this.cardLimitsArguments,
-      this._creditCardLimitUseCase, this._creditCardLimitsUpdateUseCase) {
+  ManageCreditCardLimitsPageViewModel(
+      this.cardLimitsArguments, this._creditCardLimitUseCase, this._creditCardLimitsUpdateUseCase) {
     _getCreditCardLimitRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _creditCardLimitUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _creditCardLimitUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -76,9 +70,7 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
     });
 
     _updateCreditCardLimitsRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _creditCardLimitsUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _creditCardLimitsUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -92,8 +84,8 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void getCreditCardLimit() {
-    _getCreditCardLimitRequest.safeAdd(GetCreditCardLimitUseCaseParams(
-        secureCode: cardLimitsArguments.secureCode));
+    _getCreditCardLimitRequest
+        .safeAdd(GetCreditCardLimitUseCaseParams(secureCode: cardLimitsArguments.secureCode));
   }
 
   void updateCreditCardLimits(
@@ -101,11 +93,10 @@ class ManageCreditCardLimitsPageViewModel extends BasePageViewModel {
       required num merchantPayment,
       required num onlinePurchase,
       required num contactlessPayments}) {
-    _updateCreditCardLimitsRequestSubject
-        .safeAdd(CreditCardLimitsUpdateUseCaseParams(
+    _updateCreditCardLimitsRequestSubject.safeAdd(CreditCardLimitsUpdateUseCaseParams(
       onlinePurchase: onlinePurchase,
-      merchantsPayments: merchantPayment,
-      atmWithdrawal: atmWithdrawalValue,
+      merchantsPayments: isMerchantPayments ? merchantPayment : 0.001,
+      atmWithdrawal: isAtmWithdrawal ? atmWithdrawalValue : 0.001,
       isOnlinePurchase: isOnlinePurchase,
       isMerchantsPayments: isMerchantPayments,
       isContactLessPayments: isContactLessPayments,

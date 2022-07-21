@@ -39,7 +39,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
   }
 
   @override
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>> changePassword(
+  Future<Either<NetworkError, bool>> changePassword(
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword}) async {
@@ -51,7 +51,7 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.data.transform()),
+      (r) => Right(r.isSuccessful()),
     );
   }
 

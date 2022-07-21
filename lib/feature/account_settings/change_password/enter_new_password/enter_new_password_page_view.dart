@@ -1,6 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -17,8 +16,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterNewPasswordPageView
-    extends BasePageViewWidget<EnterNewPasswordPageViewModel> {
+class EnterNewPasswordPageView extends BasePageViewWidget<EnterNewPasswordPageViewModel> {
   EnterNewPasswordPageView(ProviderBase model) : super(model);
 
   @override
@@ -33,8 +31,7 @@ class EnterNewPasswordPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<
-                        Resource<ProfileChangedSuccessResponse>>(
+                child: AppStreamBuilder<Resource<bool>>(
                     stream: model.createPasswordStream,
                     initialData: Resource.none(),
                     onData: (passwordData) {
@@ -42,25 +39,17 @@ class EnterNewPasswordPageView
                         Navigator.pop(context);
                         model.showSuccessToast(S.of(context).passwordUpdate);
                       } else if (passwordData.status == Status.ERROR) {
-                        if (passwordData.appError!.type ==
-                            ErrorType.EMPTY_PASSWORD) {
-                          model.currentPasswordKey.currentState!.isValid =
-                              false;
-                        } else if (passwordData.appError!.type ==
-                            ErrorType.EMPTY_NEW_PASSWORD) {
+                        if (passwordData.appError!.type == ErrorType.EMPTY_PASSWORD) {
+                          model.currentPasswordKey.currentState!.isValid = false;
+                        } else if (passwordData.appError!.type == ErrorType.EMPTY_NEW_PASSWORD) {
                           model.newPasswordKey.currentState!.isValid = false;
-                        } else if (passwordData.appError!.type ==
-                            ErrorType.PASSWORD_NOT_MEET_CRITERIA) {
+                        } else if (passwordData.appError!.type == ErrorType.PASSWORD_NOT_MEET_CRITERIA) {
                           model.newPasswordKey.currentState!.isValid = false;
+                        } else if (passwordData.appError!.type == ErrorType.CURRENT_PASSWORD_INVALID) {
+                          model.currentPasswordKey.currentState!.isValid = false;
                         } else if (passwordData.appError!.type ==
-                            ErrorType.CURRENT_PASSWORD_INVALID) {
-                          model.currentPasswordKey.currentState!.isValid =
-                              false;
-                        } else if (passwordData.appError!.type ==
-                            ErrorType
-                                .CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD) {
-                          model.confirmNewPasswordKey.currentState!.isValid =
-                              false;
+                            ErrorType.CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD) {
+                          model.confirmNewPasswordKey.currentState!.isValid = false;
                         }
 
                         model.showToastWithError(passwordData.appError!);
@@ -83,37 +72,26 @@ class EnterNewPasswordPageView
                         child: Card(
                           child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            50 <=
-                                        0
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom -
-                                        48),
+                                    : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: SingleChildScrollView(
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             AppTextField(
                                               key: model.currentPasswordKey,
-                                              labelText:
-                                                  S.of(context).currentPassword,
+                                              labelText: S.of(context).currentPassword,
                                               obscureText: true,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
+                                              hintText: S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
-                                              controller: model
-                                                  .currentPasswordController,
+                                              controller: model.currentPasswordController,
                                               onChanged: (value) {
                                                 model.validateAllFields();
                                                 model.validateCurrentPassword();
@@ -121,38 +99,24 @@ class EnterNewPasswordPageView
                                               suffixIcon: (isChecked, value) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    model
-                                                            .currentPasswordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .currentPasswordKey
-                                                            .currentState!
-                                                            .secureText;
+                                                    model.currentPasswordKey.currentState!.secureText =
+                                                        !model.currentPasswordKey.currentState!.secureText;
                                                   },
-                                                  child: model
-                                                          .currentPasswordKey
-                                                          .currentState!
-                                                          .secureText
+                                                  child: model.currentPasswordKey.currentState!.secureText
                                                       ? Container(
                                                           width: 16,
                                                           height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          padding: EdgeInsets.all(4),
+                                                          child: AppSvg.asset(AssetUtils.eye,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .labelStyle!
                                                                   .color!
-                                                                  .withOpacity(
-                                                                      0.3)),
+                                                                  .withOpacity(0.3)),
                                                         )
                                                       : Icon(
                                                           Icons.visibility_off,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .labelStyle!
                                                               .color,
@@ -165,53 +129,36 @@ class EnterNewPasswordPageView
                                             ),
                                             AppTextField(
                                               key: model.newPasswordKey,
-                                              labelText:
-                                                  S.of(context).newPassword,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
+                                              labelText: S.of(context).newPassword,
+                                              hintText: S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
                                               obscureText: true,
                                               onChanged: (value) {
                                                 model.validatePassword();
                                                 model.validateAllFields();
                                               },
-                                              controller:
-                                                  model.newPasswordController,
+                                              controller: model.newPasswordController,
                                               suffixIcon: (isChecked, value) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    model
-                                                            .newPasswordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .newPasswordKey
-                                                            .currentState!
-                                                            .secureText;
+                                                    model.newPasswordKey.currentState!.secureText =
+                                                        !model.newPasswordKey.currentState!.secureText;
                                                   },
-                                                  child: model
-                                                          .newPasswordKey
-                                                          .currentState!
-                                                          .secureText
+                                                  child: model.newPasswordKey.currentState!.secureText
                                                       ? Container(
                                                           width: 16,
                                                           height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          padding: EdgeInsets.all(4),
+                                                          child: AppSvg.asset(AssetUtils.eye,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .labelStyle!
                                                                   .color!
-                                                                  .withOpacity(
-                                                                      0.3)),
+                                                                  .withOpacity(0.3)),
                                                         )
                                                       : Icon(
                                                           Icons.visibility_off,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .labelStyle!
                                                               .color,
@@ -220,34 +167,25 @@ class EnterNewPasswordPageView
                                               },
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10.0),
+                                              padding: const EdgeInsets.only(top: 10.0),
                                               child: Wrap(
                                                 runSpacing: 10,
                                                 spacing: 8,
                                                 children: [
                                                   PasswordHintWidget(
-                                                    label: S
-                                                        .of(context)
-                                                        .eightCharacters,
-                                                    isValid: model
-                                                        .minimumEightCharacters,
+                                                    label: S.of(context).eightCharacters,
+                                                    isValid: model.minimumEightCharacters,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label: S
-                                                        .of(context)
-                                                        .oneUpperCaseLetter,
+                                                    label: S.of(context).oneUpperCaseLetter,
                                                     isValid: model.hasUpperCase,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label:
-                                                        S.of(context).oneNumber,
-                                                    isValid:
-                                                        model.containsDigit,
+                                                    label: S.of(context).oneNumber,
+                                                    isValid: model.containsDigit,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label:
-                                                        S.of(context).oneSymbol,
+                                                    label: S.of(context).oneSymbol,
                                                     isValid: model.hasSymbol,
                                                   ),
                                                 ],
@@ -258,53 +196,36 @@ class EnterNewPasswordPageView
                                             ),
                                             AppTextField(
                                               key: model.confirmNewPasswordKey,
-                                              labelText:
-                                                  S.of(context).confirmPassword,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
+                                              labelText: S.of(context).confirmPassword,
+                                              hintText: S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
                                               obscureText: true,
                                               onChanged: (value) {
                                                 model.validatePassword();
                                                 model.validateAllFields();
                                               },
-                                              controller: model
-                                                  .confirmNewPasswordController,
+                                              controller: model.confirmNewPasswordController,
                                               suffixIcon: (isChecked, value) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    model
-                                                            .confirmNewPasswordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .confirmNewPasswordKey
-                                                            .currentState!
-                                                            .secureText;
+                                                    model.confirmNewPasswordKey.currentState!.secureText =
+                                                        !model.confirmNewPasswordKey.currentState!.secureText;
                                                   },
-                                                  child: model
-                                                          .confirmNewPasswordKey
-                                                          .currentState!
-                                                          .secureText
+                                                  child: model.confirmNewPasswordKey.currentState!.secureText
                                                       ? Container(
                                                           width: 16,
                                                           height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          padding: EdgeInsets.all(4),
+                                                          child: AppSvg.asset(AssetUtils.eye,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .labelStyle!
                                                                   .color!
-                                                                  .withOpacity(
-                                                                      0.3)),
+                                                                  .withOpacity(0.3)),
                                                         )
                                                       : Icon(
                                                           Icons.visibility_off,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .labelStyle!
                                                               .color,
@@ -313,9 +234,7 @@ class EnterNewPasswordPageView
                                               },
                                             ),
                                             SizedBox(
-                                              height: MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom,
+                                              height: MediaQuery.of(context).viewInsets.bottom,
                                             )
                                           ],
                                         ),
@@ -328,10 +247,7 @@ class EnterNewPasswordPageView
                                           initialData: false,
                                           dataBuilder: (context, isValid) {
                                             if (isValid!) {
-                                              return AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed);
+                                              return AnimatedButton(buttonText: S.of(context).swipeToProceed);
                                             } else {
                                               return Container();
                                             }

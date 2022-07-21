@@ -15,9 +15,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class BlinkCreditCardPageView
-    extends BasePageViewWidget<BlinkCreditCardViewModel> {
+class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewModel> {
   BlinkCreditCardPageView(ProviderBase model) : super(model);
 
   @override
@@ -30,8 +30,7 @@ class BlinkCreditCardPageView
             if (data.data!.cardApplicationContent!.isEmpty) {
               Navigator.pushNamed(context, RoutePaths.ApplyCreditCardHome);
             } else {
-              Navigator.pushReplacementNamed(
-                  context, RoutePaths.CreditCardActivationStatus);
+              Navigator.pushReplacementNamed(context, RoutePaths.CreditCardActivationStatus);
             }
           }
         },
@@ -58,8 +57,7 @@ class BlinkCreditCardPageView
                     width: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(AssetUtils.zigzagWhite),
-                            alignment: Alignment.topLeft)),
+                            image: AssetImage(AssetUtils.zigzagWhite), alignment: Alignment.topLeft)),
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsetsDirectional.only(top: 55, start: 24),
@@ -71,33 +69,26 @@ class BlinkCreditCardPageView
                                   Navigator.pop(context);
                                 },
                                 child: AppSvg.asset(AssetUtils.leftArrow,
-                                    matchTextDirection: true,
-                                    height: 24,
-                                    width: 24)),
+                                    matchTextDirection: true, height: 24, width: 24)),
                             SizedBox(
                               height: 16,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 62, end: 86),
+                              padding: EdgeInsetsDirectional.only(start: 62, end: 86),
                               child: Card(
                                 child: Container(
                                   height: 325,
                                   decoration: BoxDecoration(
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(12)),
-                                  padding: EdgeInsetsDirectional.only(
-                                      top: 29, bottom: 16),
+                                  padding: EdgeInsetsDirectional.only(top: 29, bottom: 16),
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            start: 29, end: 52),
+                                        padding: EdgeInsetsDirectional.only(start: 29, end: 52),
                                         child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             AppSvg.asset(AssetUtils.blinkWhite),
                                             AppSvg.asset(AssetUtils.wifi)
@@ -106,12 +97,10 @@ class BlinkCreditCardPageView
                                       ),
                                       Image.asset(AssetUtils.line_black_white),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            end: 15.0),
+                                        padding: EdgeInsetsDirectional.only(end: 15.0),
                                         child: Align(
                                           alignment: Alignment.centerRight,
-                                          child: AppSvg.asset(
-                                              AssetUtils.visaWhite),
+                                          child: AppSvg.asset(AssetUtils.visaWhite),
                                         ),
                                       )
                                     ],
@@ -128,9 +117,7 @@ class BlinkCreditCardPageView
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).blinkCreditCardTitle,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
@@ -138,17 +125,14 @@ class BlinkCreditCardPageView
                               height: 24,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  end: 55.0, start: 31),
+                              padding: EdgeInsetsDirectional.only(end: 55.0, start: 31),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).getCardDelivered,
                                   textAlign: TextAlign.center,
                                   // maxLines: 3,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14),
+                                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
                                 ),
                               ),
                             ),
@@ -156,8 +140,7 @@ class BlinkCreditCardPageView
                               height: 48,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  start: 25.0, end: 49),
+                              padding: EdgeInsetsDirectional.only(start: 25.0, end: 49),
                               child: Row(
                                 children: [
                                   AppStreamBuilder<bool>(
@@ -165,8 +148,7 @@ class BlinkCreditCardPageView
                                       initialData: false,
                                       dataBuilder: (context, value) {
                                         return InkWell(
-                                          splashColor:
-                                              Theme.of(context).accentColor,
+                                          splashColor: Theme.of(context).accentColor,
                                           onTap: () {
                                             model.updateCheckBox(!value!);
                                           },
@@ -175,23 +157,17 @@ class BlinkCreditCardPageView
                                             width: 40,
                                             decoration: BoxDecoration(
                                                 color: !value!
-                                                    ? Theme.of(context)
-                                                        .accentColor
-                                                    : Theme.of(context)
-                                                        .canvasColor,
+                                                    ? Theme.of(context).accentColor
+                                                    : Theme.of(context).canvasColor,
                                                 shape: BoxShape.circle,
                                                 border: Border.all(
-                                                    color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color!)),
+                                                    color:
+                                                        Theme.of(context).accentTextTheme.bodyText1!.color!)),
                                             child: Center(
                                               child: Visibility(
                                                 visible: value,
-                                                child: AppSvg.asset(
-                                                    AssetUtils.tick,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark),
+                                                child: AppSvg.asset(AssetUtils.tick,
+                                                    color: Theme.of(context).primaryColorDark),
                                               ),
                                             ),
                                           ),
@@ -206,8 +182,7 @@ class BlinkCreditCardPageView
                                         text: TextSpan(
                                             text: S.of(context).authorize,
                                             style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .primaryColorDark,
+                                                color: Theme.of(context).primaryColorDark,
                                                 fontSize: 12,
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w600),
@@ -215,72 +190,50 @@ class BlinkCreditCardPageView
                                           TextSpan(
                                               text: S.of(context).creditTc,
                                               recognizer: new TapGestureRecognizer()
-                                                ..onTap = () => LaunchUrlUtils
-                                                    .launchDigitalService(
-                                                        AppConstantsUtils
-                                                            .CREDIT_CARD_TERMS_CONDITION_LINK_UAT),
+                                                ..onTap = () => LaunchUrlUtils.launchDigitalService(
+                                                    StringUtils.isDirectionRTL(context)
+                                                        ? AppConstantsUtils
+                                                            .CREDIT_CARD_TERMS_CONDITION_LINK_LIVE_AR
+                                                        : AppConstantsUtils
+                                                            .CREDIT_CARD_TERMS_CONDITION_LINK_LIVE),
                                               style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                                   fontSize: 12,
                                                   fontFamily: 'Montserrat',
                                                   fontWeight: FontWeight.w600),
                                               children: [
                                                 TextSpan(
-                                                    text:
-                                                        S.of(context).agreeData,
+                                                    text: S.of(context).agreeData,
                                                     style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark,
+                                                        color: Theme.of(context).primaryColorDark,
                                                         fontSize: 12,
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        fontWeight:
-                                                            FontWeight.w600),
+                                                        fontFamily: 'Montserrat',
+                                                        fontWeight: FontWeight.w600),
                                                     children: [
                                                       TextSpan(
-                                                          text: S
-                                                              .of(context)
-                                                              .creditBureau,
+                                                          text: S.of(context).creditBureau,
                                                           recognizer: new TapGestureRecognizer()
                                                             ..onTap = () => Navigator.pushNamed(
-                                                                context,
-                                                                RoutePaths
-                                                                    .TaxTreatyBenefits,
+                                                                context, RoutePaths.TaxTreatyBenefits,
                                                                 arguments: ClaimOfTaxTreatyBenefitsArguments(
                                                                     staticRouteContent:
-                                                                        StaticRouteContent
-                                                                            .CREDIT_BUREAU)),
+                                                                        StaticRouteContent.CREDIT_BUREAU)),
                                                           style: TextStyle(
-                                                              color: Theme.of(
-                                                                      context)
+                                                              color: Theme.of(context)
                                                                   .accentTextTheme
                                                                   .bodyText1!
                                                                   .color!,
                                                               fontSize: 12,
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
+                                                              fontFamily: 'Montserrat',
+                                                              fontWeight: FontWeight.w600),
                                                           children: [
                                                             TextSpan(
-                                                                text: S
-                                                                    .of(context)
-                                                                    .authorization,
+                                                                text: S.of(context).authorization,
                                                                 style: TextStyle(
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .primaryColorDark,
-                                                                    fontFamily:
-                                                                        'Montserrat',
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600)),
+                                                                    color: Theme.of(context).primaryColorDark,
+                                                                    fontFamily: 'Montserrat',
+                                                                    fontSize: 12,
+                                                                    fontWeight: FontWeight.w600)),
                                                           ])
                                                     ])
                                               ])
@@ -299,20 +252,12 @@ class BlinkCreditCardPageView
                                   return Visibility(
                                     visible: value!,
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.only(
-                                          end: 24, bottom: 28),
+                                      padding: EdgeInsetsDirectional.only(end: 24, bottom: 28),
                                       child: Center(
                                         child: AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
-                                          borderColor: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!,
-                                          textColor: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!,
+                                          buttonText: S.of(context).swipeToProceed,
+                                          borderColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                          textColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                         ),
                                       ),
                                     ),

@@ -9,15 +9,13 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class
-LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
+class LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
   final UserRepository _repository;
 
   LoginUseCase(this._repository);
 
   @override
-  Future<Either<BaseError, User>> execute(
-      {required LoginUseCaseParams params}) async {
+  Future<Either<BaseError, User>> execute({required LoginUseCaseParams params}) async {
     // return Future.value(
     //   (await _repository.loginUser(
     //           email: params.email, password: params.password))
@@ -34,9 +32,9 @@ LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
     // );
 
     return Future.value(
-      (await _repository.loginUser(
-              email: params.email, password: params.password))
-          .fold((l) => Left(l), (user) async {
+      (await _repository.loginUser(email: params.email, password: params.password)).fold((l) => Left(l),
+          (user) async {
+        user.selectedLanguage = params.languageEnum;
         return _repository.saveUser(user);
       }),
     );
@@ -46,27 +44,20 @@ LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
 class LoginUseCaseParams extends Params {
   final String email;
   final String password;
+  final String languageEnum;
 
-  LoginUseCaseParams({required this.email, required this.password});
+  LoginUseCaseParams({required this.email, required this.password, required this.languageEnum});
 
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(email)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EMAIL, cause: Exception()));
     } else if (!Validator.validateEmail(email)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMAIL, cause: Exception()));
     }
     if (Validator.isEmpty(password)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PASSWORD,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PASSWORD, cause: Exception()));
     }
     return Right(true);
   }

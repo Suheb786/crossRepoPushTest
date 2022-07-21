@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
@@ -80,15 +82,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
   );
 
   @override
-  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
-      {String? email}) async {
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName({String? email}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     Map<String, dynamic> content = Map();
     content.putIfAbsent("userName", () => email);
-    content.putIfAbsent(
-        "UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
-    return _apiService.checkUserName(
-        CheckUserEmailRequest(baseData: baseData.toJson(), content: content));
+    content.putIfAbsent("UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
+    return _apiService.checkUserName(CheckUserEmailRequest(baseData: baseData.toJson(), content: content));
   }
 
   @override
@@ -111,17 +110,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
     Map<String, dynamic> content = Map();
     content.putIfAbsent("MobileNumber", () => mobileNumber);
     content.putIfAbsent("CountryCode", () => countryCode);
-    content.putIfAbsent(
-        "UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
-    return _apiService
-        .checkUserNameMobile(CheckUserNameMobileRequest(content: content));
+    content.putIfAbsent("UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
+    return _apiService.checkUserNameMobile(CheckUserNameMobileRequest(content: content));
   }
 
   @override
   Future<String> fetchCountryList({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.fetchCountryList(
-        FetchCountryListRequest(baseData: baseData, getToken: getToken));
+    return _apiService.fetchCountryList(FetchCountryListRequest(baseData: baseData, getToken: getToken));
   }
 
   @override
@@ -238,9 +234,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         mainSource: 'JOB',
         businessType: businessType ?? '',
         additionalIncomes: additionalIncome,
-        additionalIncome: additionalIncomeType!
-            .map((e) => AdditionalIncome().restore(e))
-            .toList()));
+        additionalIncome: additionalIncomeType!.map((e) => AdditionalIncome().restore(e)).toList()));
   }
 
   @override
@@ -269,8 +263,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation({
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation({
     String? residentCountry,
     String? buildingName,
     String? streetName,
@@ -295,11 +288,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
-      {String? otpCode}) async {
+  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp({String? otpCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyMobileOtp(VerifyMobileOtpRequest(
-        getToken: true, otpCode: otpCode, baseData: baseData.toJson()));
+    return _apiService.verifyMobileOtp(
+        VerifyMobileOtpRequest(getToken: true, otpCode: otpCode, baseData: baseData.toJson()));
   }
 
   @override
@@ -308,17 +300,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-      confirmApplicationDataGet() async {
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmApplicationDataGet(
-        ConfirmApplicationDataGetRequestEntity(
-            getToken: true, baseData: baseData.toJson()));
+        ConfirmApplicationDataGetRequestEntity(getToken: true, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
-      {String? email}) async {
+  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest({String? email}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.registerInterest(RegisterInterestRequestEntity(
         email: email,
@@ -343,39 +332,30 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-      confirmApplicationDataSet(
-          {CountryResidenceInfo? countryResidenceInfo,
-          ProfileStatusInfo? profileStatusInfo,
-          JobDetailInfo? jobDetailInfo,
-          FatcaCrsInfo? fatcaCrsInfo,
-          AccountPurposeInfo? accountPurposeInfo}) async {
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
+      {CountryResidenceInfo? countryResidenceInfo,
+      ProfileStatusInfo? profileStatusInfo,
+      JobDetailInfo? jobDetailInfo,
+      FatcaCrsInfo? fatcaCrsInfo,
+      AccountPurposeInfo? accountPurposeInfo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.confirmApplicationDataSet(
-        ConfirmApplicationDataSetRequestEntity(
-            getToken: true,
-            reviewDocumentResponse: ReviewApplicationDataEntity(
-                    profileStatus: ProfileStatusEntity()
-                        .restore(profileStatusInfo!)
-                        .toJson(),
-                    jobDetail:
-                        JobDetailEntity().restore(jobDetailInfo!).toJson(),
-                    fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
-                    countryResidence: CountryResidenceEntity()
-                        .restore(countryResidenceInfo!)
-                        .toJson(),
-                    accountPurpose: AccountPurposeEntity()
-                        .restore(accountPurposeInfo!)
-                        .toJson())
-                .toJson(),
-            baseData: baseData.toJson()));
+    return _apiService.confirmApplicationDataSet(ConfirmApplicationDataSetRequestEntity(
+        getToken: true,
+        reviewDocumentResponse: ReviewApplicationDataEntity(
+                profileStatus: ProfileStatusEntity().restore(profileStatusInfo!).toJson(),
+                jobDetail: JobDetailEntity().restore(jobDetailInfo!).toJson(),
+                fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
+                countryResidence: CountryResidenceEntity().restore(countryResidenceInfo!).toJson(),
+                accountPurpose: AccountPurposeEntity().restore(accountPurposeInfo!).toJson())
+            .toJson(),
+        baseData: baseData.toJson()));
   }
 
   @override
   Future<bool> enableFingerPrint({String? cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.enableFingerPrint(EnableFingerPrintRequestEntity(
-        getToken: true, cipher: cipher, baseData: baseData.toJson()));
+    return _apiService.enableFingerPrint(
+        EnableFingerPrintRequestEntity(getToken: true, cipher: cipher, baseData: baseData.toJson()));
   }
 
   @override
@@ -388,13 +368,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
-      {String? imagePath}) async {
+  Future<HttpResponse<ResponseEntity>> uploadSelfieImage({String? imagePath}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.uploadSelfieImage(SaveSelfieImageRequest(
-        baseData: baseData.toJson(),
-        getToken: true,
-        selfieImage: ImageUtils.convertToBase64(imagePath!)));
+        baseData: baseData.toJson(), getToken: true, selfieImage: ImageUtils.convertToBase64(imagePath!)));
   }
 
   @override
@@ -411,10 +388,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     User? user = await _userLocalDS.getCurrentUser();
     return _apiService.enableBiometric(EnableBiometricRequestEntity(
       publicKey: user!.publicPEM,
-      cipher: await encryptData(
-          content: user.id,
-          publicKey: user.publicPEM,
-          privateKey: user.privatePEM),
+      cipher: await encryptData(content: user.id, publicKey: user.publicPEM, privateKey: user.privatePEM),
       baseData: baseData.toJson(),
     ));
   }
@@ -422,16 +396,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getComboValues(GetComboValuesRequestEntity(
-        baseData: baseData.toJson(), getToken: true));
+    return _apiService
+        .getComboValues(GetComboValuesRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
-  Future<HttpResponse<CustomerStatusResponseEntity>>
-      checkCustomerStatus() async {
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.checkCustomerStatus(
-        BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.checkCustomerStatus(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
@@ -444,54 +416,43 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> androidLogin(
-      {required String cipher}) async {
+  Future<HttpResponse<ResponseEntity>> androidLogin({required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
     if (user != null) {
       //userId = user.id!;
       // print('user private key--->${user.privatePEM}');
-      userId = await decryptData(
-          content: cipher,
-          publicKey: user.publicPEM,
-          privateKey: user.privatePEM);
+      userId = await decryptData(content: cipher, publicKey: user.publicPEM, privateKey: user.privatePEM);
     }
 
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature:
-          await signedData(userId: userId, privateKey: user!.privatePEM!),
+      signature: await signedData(userId: userId, privateKey: user!.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }
 
   @override
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
-      {required String cipher}) async {
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin({required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     User? user = await _userLocalDS.getCurrentUser();
     String userId = '';
     if (user != null) {
-      userId = await decryptData(
-          content: user.id,
-          publicKey: user.publicPEM,
-          privateKey: user.privatePEM);
+      userId = await decryptData(content: user.id, publicKey: user.publicPEM, privateKey: user.privatePEM);
     }
 
     return _apiService.iphoneLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature:
-          await signedData(userId: userId, privateKey: user!.privatePEM!),
+      signature: await signedData(userId: userId, privateKey: user!.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changeMyNumber(
-      {String? mobileNo, String? mobileCode}) async {
+  Future<HttpResponse<ResponseEntity>> changeMyNumber({String? mobileNo, String? mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.changeMyNumber(ChangeMyNumberRequestEntity(
       getToken: true,
@@ -502,13 +463,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
-      {String? clear}) async {
+  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate({String? clear}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkVersionUpdate(CheckVersionUpdateRequest(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       platform: baseData.platform,
-      parentVersion: '1.0',
+      parentVersion: Platform.isAndroid
+          ? '1.0'
+          : Platform.isIOS
+              ? '1.2'
+              : '',
       //version: '1.0.0',
       clear: clear,
       version: baseData.appVersion,

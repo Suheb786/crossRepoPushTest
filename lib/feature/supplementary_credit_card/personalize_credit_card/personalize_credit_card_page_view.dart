@@ -59,7 +59,7 @@ class PersonalizeCreditCardPageView extends BasePageViewWidget<PersonalizeCredit
                                       primaryId: ProviderScope.containerOf(context)
                                               .read(supplementaryCreditCardViewModelProvider)
                                               .creditCard
-                                              .parentId ??
+                                              .cardId ??
                                           '',
                                       relationShip: ProviderScope.containerOf(context)
                                           .read(relationShipWithCardHolderViewModelProvider)

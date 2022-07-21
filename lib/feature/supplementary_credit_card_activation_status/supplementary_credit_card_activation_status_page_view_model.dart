@@ -1,3 +1,4 @@
+import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_content.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/get_supplementary_credit_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
@@ -10,16 +11,12 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SupplementaryCreditCardActivationStatusPageViewModel
-    extends BasePageViewModel {
-  final GetSupplementaryCreditCardApplicationUseCase
-      _getSupplementaryCreditCardApplicationUseCase;
+class SupplementaryCreditCardActivationStatusPageViewModel extends BasePageViewModel {
+  final GetSupplementaryCreditCardApplicationUseCase _getSupplementaryCreditCardApplicationUseCase;
 
-  final SupplementaryCreditCardStepTwoUseCase
-      _supplementaryCreditCardStepTwoUseCase;
+  final SupplementaryCreditCardStepTwoUseCase _supplementaryCreditCardStepTwoUseCase;
 
-  final SupplementaryCreditCardStepThreeUseCase
-      _supplementaryCreditCardStepThreeUseCase;
+  final SupplementaryCreditCardStepThreeUseCase _supplementaryCreditCardStepThreeUseCase;
 
   final SupplementaryCreditCardActivationArguments arguments;
 
@@ -28,32 +25,30 @@ class SupplementaryCreditCardActivationStatusPageViewModel
       _getSupplementaryCreditCardApplicationRequest = PublishSubject();
 
   ///get application response
-  PublishSubject<Resource<SupplementaryCreditCardApplicationResponse>>
-      _getApplicationResponse = PublishSubject();
+  PublishSubject<Resource<SupplementaryCreditCardApplicationResponse>> _getApplicationResponse =
+      PublishSubject();
 
   ///get application response stream
-  Stream<Resource<SupplementaryCreditCardApplicationResponse>>
-      get getApplicationResponseStream => _getApplicationResponse.stream;
+  Stream<Resource<SupplementaryCreditCardApplicationResponse>> get getApplicationResponseStream =>
+      _getApplicationResponse.stream;
 
   ///supplementary credit card step two request
-  PublishSubject<SupplementaryCreditCardStepTwoUseCaseParams>
-      _supplementaryCreditCardStepTwoRequest = PublishSubject();
+  PublishSubject<SupplementaryCreditCardStepTwoUseCaseParams> _supplementaryCreditCardStepTwoRequest =
+      PublishSubject();
 
   ///supplementary credit card step two response
-  PublishSubject<Resource<bool>> _supplementaryCreditCardStepTwoResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _supplementaryCreditCardStepTwoResponse = PublishSubject();
 
   ///supplementary credit card step two response stream
   Stream<Resource<bool>> get supplementaryCreditCardStepTwoResponseStream =>
       _supplementaryCreditCardStepTwoResponse.stream;
 
   ///supplementaryCreditCard step three request
-  PublishSubject<SupplementaryCreditCardStepThreeUseCaseParams>
-      _supplementaryCreditcardStepThreeRequest = PublishSubject();
+  PublishSubject<SupplementaryCreditCardStepThreeUseCaseParams> _supplementaryCreditcardStepThreeRequest =
+      PublishSubject();
 
   ///supplementaryCreditCard step three response
-  PublishSubject<Resource<bool>> _supplementaryCreditcardStepThreeResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _supplementaryCreditcardStepThreeResponse = PublishSubject();
 
   ///supplementaryCreditCard step three response stream
   Stream<Resource<bool>> get supplementaryCreditcardStepThreeStream =>
@@ -66,20 +61,20 @@ class SupplementaryCreditCardActivationStatusPageViewModel
       this.arguments) {
     _getSupplementaryCreditCardApplicationRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getSupplementaryCreditCardApplicationUseCase
-              .execute(params: value)).asFlow().listen((event) {
+              createCall: () => _getSupplementaryCreditCardApplicationUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           _getApplicationResponse.safeAdd(event);
+          getIncompleteCard(event.data!.cardApplicationContent);
         }
       });
     });
 
     _supplementaryCreditCardStepTwoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _supplementaryCreditCardStepTwoUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _supplementaryCreditCardStepTwoUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _supplementaryCreditCardStepTwoResponse.safeAdd(event);
@@ -90,9 +85,9 @@ class SupplementaryCreditCardActivationStatusPageViewModel
     });
 
     _supplementaryCreditcardStepThreeRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _supplementaryCreditCardStepThreeUseCase.execute(
-              params: value)).asFlow().listen((event) {
+      RequestManager(value, createCall: () => _supplementaryCreditCardStepThreeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
         _supplementaryCreditcardStepThreeResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -104,25 +99,35 @@ class SupplementaryCreditCardActivationStatusPageViewModel
   }
 
   void getApplication() {
-    _getSupplementaryCreditCardApplicationRequest.safeAdd(
-        GetSupplementaryCreditCardApplicationUseCaseParams(
-            primaryCard: arguments.primaryCardId));
+    _getSupplementaryCreditCardApplicationRequest
+        .safeAdd(GetSupplementaryCreditCardApplicationUseCaseParams(primaryCard: arguments.primaryCardId));
   }
 
-  void supplementaryCreditCardStepTwoRequest(
-      {String? cardId, String? secondaryId}) {
+  void supplementaryCreditCardStepTwoRequest({String? cardId, String? secondaryId}) {
     _supplementaryCreditCardStepTwoRequest.safeAdd(
-        SupplementaryCreditCardStepTwoUseCaseParams(
-            primaryCardId: cardId, secondaryCardId: secondaryId));
+        SupplementaryCreditCardStepTwoUseCaseParams(primaryCardId: cardId, secondaryCardId: secondaryId));
   }
 
-  void supplementaryCreditCardStepThree(
-      {String? cardId, String? accountNumber, String? secondaryId}) {
-    _supplementaryCreditcardStepThreeRequest.safeAdd(
-        SupplementaryCreditCardStepThreeUseCaseParams(
-            accountNumber: accountNumber,
-            secondaryCardId: secondaryId,
-            primaryCardId: cardId));
+  void supplementaryCreditCardStepThree({String? cardId, String? accountNumber, String? secondaryId}) {
+    _supplementaryCreditcardStepThreeRequest.safeAdd(SupplementaryCreditCardStepThreeUseCaseParams(
+        accountNumber: accountNumber, secondaryCardId: secondaryId, primaryCardId: cardId));
+  }
+
+  int index = 0;
+
+  void getIncompleteCard(List<SupplementaryCreditCardApplicationContent>? cardApplicationContent) {
+    if (cardApplicationContent!.isEmpty) {
+      index = 0;
+    } else {
+      for (int i = 0; i <= cardApplicationContent.length; i++) {
+        if (!((cardApplicationContent[i].step1 ?? false) &&
+            (cardApplicationContent[i].step2 ?? false) &&
+            (cardApplicationContent[i].step3 ?? false))) {
+          index = i;
+          return;
+        }
+      }
+    }
   }
 
   @override

@@ -427,7 +427,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     if (data.status ==
                                                                                                         Status
                                                                                                             .SUCCESS) {
-                                                                                                      //model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                                      model.setLanguage(data.data!.selectedLanguage !=
+                                                                                                              null
+                                                                                                          ? data.data!.selectedLanguage!.fromLanguageValue()
+                                                                                                          : LanguageEnum.ENGLISH);
+                                                                                                      ProviderScope.containerOf(context).read(appViewModel).toggleLocale(data.data!.selectedLanguage !=
+                                                                                                              null
+                                                                                                          ? data.data!.selectedLanguage!.fromLanguageValue()
+                                                                                                          : LanguageEnum.ENGLISH);
                                                                                                       model.checkVersionUpdate(
                                                                                                           clear:
                                                                                                               "false");
@@ -437,6 +444,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             .ERROR) {
                                                                                                       if (data.appError!.type ==
                                                                                                           ErrorType.DB_USER_NOT_FOUND) {
+                                                                                                        model.setLanguage(
+                                                                                                            LanguageEnum.ENGLISH);
+                                                                                                        ProviderScope.containerOf(context)
+                                                                                                            .read(appViewModel)
+                                                                                                            .toggleLocale(LanguageEnum.ENGLISH);
                                                                                                         model.checkVersionUpdate(
                                                                                                             clear: "true");
                                                                                                       }

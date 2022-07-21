@@ -14,8 +14,7 @@ class SecureStorageHelper {
 
   SecureStorageHelper._privateConstructor();
 
-  static final SecureStorageHelper _instance =
-      SecureStorageHelper._privateConstructor();
+  static final SecureStorageHelper _instance = SecureStorageHelper._privateConstructor();
 
   static SecureStorageHelper get instance {
     return _instance;
@@ -23,8 +22,7 @@ class SecureStorageHelper {
 
   ///save user keys to secure storage
   Future<void> saveToSecureStorage({GenerateKeyPairContent? keyPairs}) async {
-    return _storage.write(
-        key: KEY_PAIR, value: json.encode(keyPairs!.toJson()));
+    return _storage.write(key: KEY_PAIR, value: json.encode(keyPairs!.toJson()));
   }
 
   ///get secure keys
@@ -32,8 +30,7 @@ class SecureStorageHelper {
     String? keyPairString = await _storage.read(key: KEY_PAIR);
     print('$keyPairString');
     if (keyPairString != null) {
-      GenerateKeyPairContent user =
-          GenerateKeyPairContent.fromJson(json.decode(keyPairString));
+      GenerateKeyPairContent user = GenerateKeyPairContent.fromJson(json.decode(keyPairString));
       return user;
     }
   }
@@ -67,16 +64,13 @@ class SecureStorageHelper {
         secureUser.newDevice = user.newDevice ?? secureUser.newDevice;
         secureUser.privatePEM = user.privatePEM ?? secureUser.privatePEM;
         secureUser.publicPEM = user.publicPEM ?? secureUser.publicPEM;
-        secureUser.isBiometricEnabled =
-            user.isBiometricEnabled ?? secureUser.isBiometricEnabled;
+        secureUser.isBiometricEnabled = user.isBiometricEnabled ?? secureUser.isBiometricEnabled;
         secureUser.cifNumber = user.cifNumber ?? secureUser.cifNumber;
-        secureUser.accountNumber =
-            user.accountNumber ?? secureUser.accountNumber;
-        secureUser.applicationId =
-            user.applicationId ?? secureUser.applicationId;
+        secureUser.accountNumber = user.accountNumber ?? secureUser.accountNumber;
+        secureUser.applicationId = user.applicationId ?? secureUser.applicationId;
+        secureUser.selectedLanguage = user.selectedLanguage ?? secureUser.selectedLanguage;
 
-        await _storage.write(
-            key: USER, value: json.encode(secureUser.toJson()));
+        await _storage.write(key: USER, value: json.encode(secureUser.toJson()));
       } else {
         //print('new  user login');
         await _storage.write(key: USER, value: json.encode(user.toJson()));

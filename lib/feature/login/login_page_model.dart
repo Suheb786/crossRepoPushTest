@@ -44,8 +44,8 @@ class LoginViewModel extends BasePageViewModel {
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
-  final TextEditingController emailController = TextEditingController(text: 'testrob122@g.com');
-  final TextEditingController passwordController = TextEditingController(text: 'Asdf123!');
+  final TextEditingController emailController = TextEditingController(/*text: 'testrob146@g.com'*/);
+  final TextEditingController passwordController = TextEditingController(/*text: 'Asdf@12345'*/);
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "login_password");
@@ -351,7 +351,10 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void validateEmail() {
-    _loginRequest.safeAdd(LoginUseCaseParams(email: emailController.text, password: passwordController.text));
+    _loginRequest.safeAdd(LoginUseCaseParams(
+        email: emailController.text,
+        password: passwordController.text,
+        languageEnum: _selectedLanguage.value.toString()));
   }
 
   void checkKycStatus() {

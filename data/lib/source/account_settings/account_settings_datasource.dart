@@ -24,7 +24,7 @@ abstract class AccountSettingsRemoteDs {
       required String mobileNo,
       required String mobileCode});
 
-  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
+  Future<HttpResponse<ResponseEntity>> changePassword(
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword});
