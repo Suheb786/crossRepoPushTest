@@ -193,7 +193,7 @@ class PurchaseNowBtn extends StatelessWidget {
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ), onSelected: () {
             Navigator.pop(context);
-            Navigator.pushNamed(context, RoutePaths.EVouchersPurchaseSuccess);
+            Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
           }, onDismissed: () {
             Navigator.pop(context);
           }, price: S.of(context).amt, subTitle: S.of(context).purchaseNowSubTitle);

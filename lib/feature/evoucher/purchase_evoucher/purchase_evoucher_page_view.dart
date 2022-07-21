@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
+import 'package:neo_bank/feature/evoucher/purchase_evoucher/enter_otp_for_evoucher_category_puchase/enter_otp_for_evoucher_category_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/purchase_evoucher_page_view_model.dart';
-import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_account/select_account_page.dart';
 import 'package:neo_bank/feature/evoucher/purchase_evoucher/select_region_amount/select_region_amount_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
@@ -16,7 +16,8 @@ import 'package:show_up_animation/show_up_animation.dart';
 class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageViewModel> {
   final pages = [
     SelectRegionAmountPage(),
-    SelectAccountPage(),
+    // SelectAccountPage(),
+    EnterOtpForEVoucherCategoryPurchasePage(),
     Visibility(visible: false, child: BaseCardPage())
   ];
 
@@ -66,7 +67,8 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(
+                          top: 8.0, bottom: currentStep == 1 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -78,13 +80,35 @@ class PurchaseEVoucherPageView extends BasePageViewWidget<PurchaseEVoucherPageVi
                           StepTextHelper.changeEmailAddressTextHelper(
                             currentStep ?? 0,
                             S.of(context).selectPreferredRegionAmount,
-                            S.of(context).howWouldLikeToPay,
+                            //S.of(context).howWouldLikeToPay,
+                            S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: currentStep == 1,
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 32),
+                        child: ShowUpAnimation(
+                          delayStart: Duration(milliseconds: 500),
+                          animationDuration: Duration(milliseconds: 750),
+                          curve: Curves.bounceIn,
+                          direction: Direction.vertical,
+                          offset: 0.5,
+                          child: Text(
+                            "+962 79 322 8080",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
                     ),

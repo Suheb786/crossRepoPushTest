@@ -52,6 +52,7 @@ import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_card_ready/
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/evoucher/e_voucher_main_page.dart';
+import 'package:neo_bank/feature/evoucher/enter_code_evoucher_puchase/enter_code_evoucher_puchase_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_detail/evoucher_detail_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_page.dart';
@@ -713,6 +714,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EVoucherMainPage(),
             settings: RouteSettings(name: RoutePaths.EVoucherMainPage));
+
+      case RoutePaths.EnterCodeEVoucherPurchase:
+        return CupertinoPageRoute(
+            builder: (context) => EnterCodeEVoucherPurchasePage(),
+            settings: RouteSettings(name: RoutePaths.EnterCodeEVoucherPurchase));
 
       default:
         return CupertinoPageRoute(
