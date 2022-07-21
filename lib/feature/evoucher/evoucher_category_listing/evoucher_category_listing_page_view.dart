@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/evoucher/evoucher_category_listing/evoucher_category_listing_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
-import 'package:neo_bank/ui/molecules/evouchers/evoucher_category_list_widget.dart';
+import 'package:neo_bank/ui/molecules/evoucher/evoucher_category_list_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class EVoucherCategoryListingPageView extends BasePageViewWidget<EVoucherCategoryListingPageViewModel> {
