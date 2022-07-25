@@ -15,7 +15,7 @@ class SetCreditLimitViewModel extends BasePageViewModel {
   SetCreditLimitUseCase _setCreditLimitUseCase;
   final GetLoanValueUseCase _getLoanValueUseCase;
 
-  List<String> percentageList = ["5 %", "25 %", "50 %", "100 %"];
+  List<String> percentageList = [/*"5 %",*/ "25 %", "50 %", "100 %"];
 
   BehaviorSubject<double> _valueSubject = BehaviorSubject();
 

@@ -16,39 +16,29 @@ import 'package:rxdart/rxdart.dart';
 
 class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
   final PersonalizeCreditCardUseCase _personalizeCreditCardUseCase;
-  final SupplementaryCreditCardRequestUseCase
-      _supplementaryCreditCardRequestUseCase;
+  final SupplementaryCreditCardRequestUseCase _supplementaryCreditCardRequestUseCase;
 
   TextEditingController creditLimitSettingsController = TextEditingController();
   TextEditingController minimumSettlementController = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> creditLimitSettingsKey =
-      GlobalKey(debugLabel: "creditLimitSettings");
+  final GlobalKey<AppTextFieldState> creditLimitSettingsKey = GlobalKey(debugLabel: "creditLimitSettings");
 
-  final GlobalKey<AppTextFieldState> minimumSettlementKey =
-      GlobalKey(debugLabel: "minimumSettlement");
+  final GlobalKey<AppTextFieldState> minimumSettlementKey = GlobalKey(debugLabel: "minimumSettlement");
 
-  final GlobalKey<AppTextFieldState> nickNameKey =
-      GlobalKey(debugLabel: "nickName");
+  final GlobalKey<AppTextFieldState> nickNameKey = GlobalKey(debugLabel: "nickName");
 
-  List<String> creditLimitsSettings = [
-    "Shared limit with primary",
-    "Set up sub limit within primary"
-  ];
+  List<String> creditLimitsSettings = ["Shared limit with primary", "Set up sub limit within primary"];
 
-  List<String> minimumSettlements = ["5 %", "25 %", "50 %", "100 %"];
+  List<String> minimumSettlements = [/*"5 %",*/ "25 %", "50 %", "100 %"];
 
   /// personalize credit card request subject holder
-  PublishSubject<PersonalizeCreditCardUseCaseParams>
-      _personalizeCreditCardRequest = PublishSubject();
+  PublishSubject<PersonalizeCreditCardUseCaseParams> _personalizeCreditCardRequest = PublishSubject();
 
   /// personalize credit card response subject holder
-  PublishSubject<Resource<bool>> _personalizeCreditCardResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _personalizeCreditCardResponse = PublishSubject();
 
-  Stream<Resource<bool>> get personalizeCreditCardResponseStream =>
-      _personalizeCreditCardResponse.stream;
+  Stream<Resource<bool>> get personalizeCreditCardResponseStream => _personalizeCreditCardResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -61,23 +51,20 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
   Stream<bool> get minimumPayBackStream => _minimumPayBackSubject.stream;
 
   /// supplementary credit card request subject holder
-  PublishSubject<SupplementaryCreditCardRequestUseCaseParams>
-      _supplementaryCreditCardRequest = PublishSubject();
+  PublishSubject<SupplementaryCreditCardRequestUseCaseParams> _supplementaryCreditCardRequest =
+      PublishSubject();
 
   /// supplementary credit card response subject holder
-  PublishSubject<Resource<SupplementaryCreditCardResponse>>
-      _supplementaryCreditCardResponse = PublishSubject();
+  PublishSubject<Resource<SupplementaryCreditCardResponse>> _supplementaryCreditCardResponse =
+      PublishSubject();
 
-  Stream<Resource<SupplementaryCreditCardResponse>>
-      get supplementaryCreditCardResponseStream =>
-          _supplementaryCreditCardResponse.stream;
+  Stream<Resource<SupplementaryCreditCardResponse>> get supplementaryCreditCardResponseStream =>
+      _supplementaryCreditCardResponse.stream;
 
-  PersonalizeCreditCardPageViewModel(this._personalizeCreditCardUseCase,
-      this._supplementaryCreditCardRequestUseCase) {
+  PersonalizeCreditCardPageViewModel(
+      this._personalizeCreditCardUseCase, this._supplementaryCreditCardRequestUseCase) {
     _personalizeCreditCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _personalizeCreditCardUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _personalizeCreditCardUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -89,9 +76,7 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
     });
 
     _supplementaryCreditCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _supplementaryCreditCardRequestUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _supplementaryCreditCardRequestUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -142,8 +127,7 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
       {required String primaryId,
       required String relationShip,
       required ScannedDocumentInformation scannedDocumentInformation}) {
-    _supplementaryCreditCardRequest
-        .safeAdd(SupplementaryCreditCardRequestUseCaseParams(
+    _supplementaryCreditCardRequest.safeAdd(SupplementaryCreditCardRequestUseCaseParams(
       primaryCard: primaryId,
       relationship: relationShip,
       nickName: nickNameController.text,
@@ -151,16 +135,13 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
       limit: num.parse(minimumSettlementController.text.replaceAll('%', '')),
       scannedDocumentInformation: scannedDocumentInformation,
       doe: scannedDocumentInformation.doe != null
-          ? TimeUtils.getFormattedDateForCheckPassword(
-              scannedDocumentInformation.doe.toString())
+          ? TimeUtils.getFormattedDateForCheckPassword(scannedDocumentInformation.doe.toString())
           : "",
       dob: scannedDocumentInformation.dob != null
-          ? TimeUtils.getFormattedDateForCheckPassword(
-              scannedDocumentInformation.dob.toString())
+          ? TimeUtils.getFormattedDateForCheckPassword(scannedDocumentInformation.dob.toString())
           : "",
       doi: scannedDocumentInformation.issuingDate != null
-          ? TimeUtils.getFormattedDateForCheckPassword(
-              scannedDocumentInformation.issuingDate.toString())
+          ? TimeUtils.getFormattedDateForCheckPassword(scannedDocumentInformation.issuingDate.toString())
           : "",
     ));
   }
