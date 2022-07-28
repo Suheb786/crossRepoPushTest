@@ -10,8 +10,7 @@ class LoginPage extends BasePage<LoginViewModel> {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
-    with WidgetsBindingObserver {
+class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> with WidgetsBindingObserver {
   @override
   ProviderBase provideBase() {
     return loginViewModelProvider;
@@ -39,6 +38,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage>
   @override
   void onModelReady(LoginViewModel model) {
     //model.checkVersionUpdate();
+    model.getLanguageFromStorage(context);
     model.getCurrentUser();
     super.onModelReady(model);
   }

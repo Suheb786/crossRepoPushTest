@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_content.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -10,6 +11,7 @@ class SecureStorageHelper {
   SecureStorageHelper();
 
   static const String KEY_PAIR = "keyPair";
+  static const String LANGUAGE = "language";
   static const String USER = "user";
 
   SecureStorageHelper._privateConstructor();
@@ -32,6 +34,22 @@ class SecureStorageHelper {
     if (keyPairString != null) {
       GenerateKeyPairContent user = GenerateKeyPairContent.fromJson(json.decode(keyPairString));
       return user;
+    }
+  }
+
+  ///save user selected language to secure storage
+  Future<void> saveUserSelectedLanguageToStorage({String? language}) async {
+    return _storage.write(key: LANGUAGE, value: language);
+  }
+
+  ///get user selected language from secure storage
+  Future<LanguageEnum?> getUserSelectedLanguageFromStorage() async {
+    String? language = await _storage.read(key: LANGUAGE);
+    if (language != null) {
+      LanguageEnum selectedLanguage = language.fromLanguageValue();
+      return selectedLanguage;
+    } else {
+      return LanguageEnum.ENGLISH;
     }
   }
 

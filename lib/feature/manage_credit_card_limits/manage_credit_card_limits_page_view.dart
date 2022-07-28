@@ -327,7 +327,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                             //               '0'));
                                                             // }
                                                           },
-                                                          initialValue: (model.cardLimitsArguments
+                                                          initialValue: /*(model.cardLimitsArguments
                                                                       .creditDeliveredDatetime
                                                                       .toString()
                                                                       .isNotEmpty &&
@@ -337,11 +337,14 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                                       creditCardLimitResponse
                                                                           .data!.cardLimit!.isContactLess!))
                                                               ? true
-                                                              : false,
-                                                          noToggle: !(model
+                                                              :*/
+                                                              false,
+                                                          noToggle:
+                                                              true /*!(model
                                                               .cardLimitsArguments.creditDeliveredDatetime
                                                               .toString()
-                                                              .isNotEmpty),
+                                                              .isNotEmpty)*/
+                                                          ,
                                                           title: S.of(context).contactLessPayments,
 
                                                           ///TODO:check with backend
