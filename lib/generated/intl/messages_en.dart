@@ -339,14 +339,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "Your may use your new PIN for payments immediately."),
+            "You need to visit any ATM to activate your new PIN"),
         "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "You have successfully changed your card\'s PIN"),
         "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
             "You have successfully unblocked your card\'s PIN"),
-        "cardPinSucccesFullyUnblockedDesc":
-            MessageLookupByLibrary.simpleMessage(
-                "Your may use your card PIN for payments immediately."),
+        "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
+            "Your first transaction will be declined, don\'t worry the second one will work."),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("CARD SETTLEMENT ACCOUNT"),
         "cardSubscription":

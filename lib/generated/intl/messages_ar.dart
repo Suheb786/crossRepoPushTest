@@ -320,14 +320,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("لتخصيص البطاقة"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
-            "بتقدر تستخدم الرمز السري PIN الجديد مباشرة"),
+            "لازم تزور اي صراف ألي عشان تأكًد على تغير الرقم السري"),
         "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم تغيير الرمز السري PIN على بطاقتك بنجاح"),
         "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
             "تم فك حظر الرمز السري PIN بنجاح"),
-        "cardPinSucccesFullyUnblockedDesc":
-            MessageLookupByLibrary.simpleMessage(
-                "بتقدر تستخدم الرمز السري PIN على بطاقتك مباشرة."),
+        "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
+            "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح"),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("حساب تسوية البطاقة"),
         "cardSubscription":

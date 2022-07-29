@@ -6960,10 +6960,10 @@ class S {
     );
   }
 
-  /// `Your may use your card PIN for payments immediately.`
+  /// `Your first transaction will be declined, don't worry the second one will work.`
   String get cardPinSucccesFullyUnblockedDesc {
     return Intl.message(
-      'Your may use your card PIN for payments immediately.',
+      'Your first transaction will be declined, don\'t worry the second one will work.',
       name: 'cardPinSucccesFullyUnblockedDesc',
       desc: '',
       args: [],
@@ -7110,10 +7110,10 @@ class S {
     );
   }
 
-  /// `Your may use your new PIN for payments immediately.`
+  /// `You need to visit any ATM to activate your new PIN`
   String get cardPinChangedDesc {
     return Intl.message(
-      'Your may use your new PIN for payments immediately.',
+      'You need to visit any ATM to activate your new PIN',
       name: 'cardPinChangedDesc',
       desc: '',
       args: [],
