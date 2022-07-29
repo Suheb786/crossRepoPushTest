@@ -21,12 +21,12 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
-            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options,
-                    'http://192.168.181.2:2821/api/auth/CheckUserName',
-                    queryParameters: queryParameters, data: _data)
-                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
+                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(
+                _dio.options, 'http://10.6.13.1:2181/api/auth/CheckUserName',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -43,7 +43,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'http://192.168.181.2:2821/api/auth/CheckUserNameMobile',
+                    'http://10.6.13.1:2181/api/auth/CheckUserNameMobile',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -617,7 +617,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'http://192.168.181.2:2821/api/Country/GetAllowedCode',
+                    'http://10.6.13.1:2181/api/Country/GetAllowedCode',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
