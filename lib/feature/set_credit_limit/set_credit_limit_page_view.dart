@@ -1,6 +1,5 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
-import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -47,7 +46,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                   }
                 },
                 dataBuilder: (context, loanValue) {
-                  return AppStreamBuilder<Resource<ProcessLoanRequestResponse>>(
+                  return AppStreamBuilder<Resource<bool>>(
                       stream: model.setCreditLimitResponse,
                       initialData: Resource.none(),
                       onData: (data) {

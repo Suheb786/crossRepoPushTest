@@ -8,7 +8,6 @@ import 'package:data/entity/remote/card/credit_supplementary/supplementary_credi
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
-import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -93,8 +92,7 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues({String? accountId});
 
-  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
-      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit});
+  Future<HttpResponse<ResponseEntity>> processLoanRequest({String? cardId, num? loanValueId});
 
   Future<HttpResponse<ResponseEntity>> linkCardStep({String cardId, String accountNumber});
 
@@ -164,4 +162,7 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> removeOrReApplySupplementaryDebitCard(
       {required String status, required String tokenizedPan, required bool reApply});
+
+  Future<HttpResponse<ResponseEntity>> getCardInProcess(
+      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit});
 }

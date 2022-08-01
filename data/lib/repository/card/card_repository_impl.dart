@@ -8,7 +8,6 @@ import 'package:domain/model/card/get_card_applications/get_card_application_res
 import 'package:domain/model/card/get_credit_card_relationship/credit_card_relationship_respponse.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
-import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
 import 'package:domain/model/credit_card/get_credit_card_limit_response.dart';
@@ -355,16 +354,14 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
-      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit}) async {
+  Future<Either<NetworkError, bool>> processLoanRequest({String? cardId, num? loanValueId}) async {
     final result = await safeApiCall(_remoteDs.processLoanRequest(
-        minimumSettlement: minimumSettlement,
-        nickName: nickName,
-        loanValueId: loanValueId,
-        creditLimit: creditLimit));
+      cardId: cardId,
+      loanValueId: loanValueId,
+    ));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.data.transform()),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -593,6 +590,20 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.removeOrReApplySupplementaryDebitCard(
           status: status, tokenizedPan: tokenizedPan, reApply: reApply),
     );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getCardInProcess(
+      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit}) async {
+    final result = await safeApiCall(_remoteDs.getCardInProcess(
+        minimumSettlement: minimumSettlement,
+        nickName: nickName,
+        loanValueId: loanValueId,
+        creditLimit: creditLimit));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),

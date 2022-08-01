@@ -1077,6 +1077,8 @@ class ErrorParser {
         return localisedHelper.selectAMount;
       case ErrorType.SELECT_REGION:
         return localisedHelper.selectRegion;
+      case ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS:
+        return localisedHelper.cannotApplyCCInsufficientFunds;
 
       default:
         return "";

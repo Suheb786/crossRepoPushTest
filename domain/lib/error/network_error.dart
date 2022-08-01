@@ -928,6 +928,9 @@ class NetworkError extends BaseError {
           case "err-312":
             return AppError(cause: cause, error: error, type: ErrorType.NO_SUPP_USER_DETAILS_FOUND);
 
+          case "err-322":
+            return AppError(cause: cause, error: error, type: ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

@@ -6,7 +6,6 @@ import 'package:domain/model/card/get_card_applications/get_card_application_res
 import 'package:domain/model/card/get_credit_card_relationship/credit_card_relationship_respponse.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
-import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_application_response.dart';
 import 'package:domain/model/card/supplementary_credit_card/supplementary_credit_card_response.dart';
 import 'package:domain/model/credit_card/get_credit_card_limit_response.dart';
@@ -93,8 +92,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues({String accountId});
 
-  Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
-      {String minimumSettlement, String nickName, num loanValueId, num creditLimit});
+  Future<Either<NetworkError, bool>> processLoanRequest({String cardId, num loanValueId});
 
   Future<Either<NetworkError, bool>> linkCardStep({required String cardId, required String accountNumber});
 
@@ -164,4 +162,7 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> removeOrReApplySupplementaryDebitCard(
       {required String status, required String tokenizedPan, required bool reApply});
+
+  Future<Either<NetworkError, bool>> getCardInProcess(
+      {String minimumSettlement, String nickName, num loanValueId, num creditLimit});
 }

@@ -13399,6 +13399,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You can not apply for credit card due to insufficient funds`
+  String get cannotApplyCCInsufficientFunds {
+    return Intl.message(
+      'You can not apply for credit card due to insufficient funds',
+      name: 'cannotApplyCCInsufficientFunds',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

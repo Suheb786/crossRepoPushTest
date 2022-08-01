@@ -24,7 +24,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
                 method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(
-                _dio.options, 'http://10.6.13.1:2181/api/auth/CheckUserName',
+                _dio.options, 'https://10.6.13.1:2181/api/auth/CheckUserName',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -43,7 +43,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'http://10.6.13.1:2181/api/auth/CheckUserNameMobile',
+                    'https://10.6.13.1:2181/api/auth/CheckUserNameMobile',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -617,7 +617,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'http://10.6.13.1:2181/api/Country/GetAllowedCode',
+                    'https://10.6.13.1:2181/api/Country/GetAllowedCode',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
@@ -1668,19 +1668,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+  Future<HttpResponse<ResponseEntity>> processLoanRequest(
       processLoanRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(processLoanRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ProcessLoanResponseEntity>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/ProccessLoanRequest',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ProcessLoanResponseEntity.fromJson(_result.data!);
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2452,6 +2452,24 @@ class _ApiService implements ApiService {
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
                     _dio.options, '/DebitCard/RemoveOrReApplySuppDebitCard',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCardInProcess(
+      getCardInProcessRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(getCardInProcessRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/CardTracking/GetCardInProcess',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);

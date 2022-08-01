@@ -1,5 +1,4 @@
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
-import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/usecase/apply_credit_card/set_credit_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_loan_values_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,9 +38,9 @@ class SetCreditLimitViewModel extends BasePageViewModel {
 
   PublishSubject<SetCreditLimitUseCaseParams> _setCreditLimitRequest = PublishSubject();
 
-  PublishSubject<Resource<ProcessLoanRequestResponse>> _setCreditLimitResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _setCreditLimitResponse = PublishSubject();
 
-  Stream<Resource<ProcessLoanRequestResponse>> get setCreditLimitResponse => _setCreditLimitResponse.stream;
+  Stream<Resource<bool>> get setCreditLimitResponse => _setCreditLimitResponse.stream;
 
   TextEditingController minimumSettlementController = TextEditingController();
 
