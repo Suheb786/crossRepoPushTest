@@ -50,7 +50,23 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: AppSvg.asset(AssetUtils.swiggleHello, matchTextDirection: true),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      alignment: AlignmentDirectional.bottomCenter,
+                      children: [
+                        AppSvg.asset(AssetUtils.dashboardSwiggle, matchTextDirection: true),
+                        PositionedDirectional(
+                          start: 120,
+                          child: Text(
+                            S.of(context).helloE,
+                            style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 40,

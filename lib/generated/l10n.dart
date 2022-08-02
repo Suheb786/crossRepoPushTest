@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -13400,11 +13401,81 @@ class S {
     );
   }
 
+  /// `No Activity to Display`
+  String get noActivityToDisplay {
+    return Intl.message(
+      'No Activity to Display',
+      name: 'noActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Payment activity to display`
+  String get noPaymentActivityToDisplay {
+    return Intl.message(
+      'No Payment activity to display',
+      name: 'noPaymentActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe to view more`
+  String get swipeToViewMore {
+    return Intl.message(
+      'Swipe to view more',
+      name: 'swipeToViewMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from `
+  String get fromS {
+    return Intl.message(
+      'from ',
+      name: 'fromS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Transaction to display`
+  String get noTransactionToDisplay {
+    return Intl.message(
+      'No Transaction to display',
+      name: 'noTransactionToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You can not apply for credit card due to insufficient funds`
   String get cannotApplyCCInsufficientFunds {
     return Intl.message(
       'You can not apply for credit card due to insufficient funds',
       name: 'cannotApplyCCInsufficientFunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello!`
+  String get helloE {
+    return Intl.message(
+      'Hello!',
+      name: 'helloE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount to pay should be greater than 0`
+  String get amountGreaterThan0 {
+    return Intl.message(
+      'Amount to pay should be greater than 0',
+      name: 'amountGreaterThan0',
       desc: '',
       args: [],
     );

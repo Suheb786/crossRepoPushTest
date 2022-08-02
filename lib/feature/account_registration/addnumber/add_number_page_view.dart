@@ -100,7 +100,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 onData: (data) {
                                   if (data.status == Status.ERROR) {
                                     if (data.appError!.type == ErrorType.EMAIL_ALREADY_EXIST) {
-                                      model.isEmailAvailable = false;
+                                      model.isEmailExist = 1;
                                     }
                                     model.showToastWithError(data.appError!);
                                     model.showErrorState();
@@ -144,6 +144,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                         stream: model.checkUserMobileStream,
                                         onData: (data) {
                                           if (data.status == Status.ERROR) {
+                                            if (data.appError!.type == ErrorType.MOBILE_ALREADY_EXIST) {
+                                              model.isMobileNoExist = 1;
+                                            }
                                             model.showToastWithError(data.appError!);
                                             model.showErrorState();
                                           } else if (data.status == Status.SUCCESS) {
@@ -205,15 +208,20 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                       ),
                                                       Padding(
                                                         padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                                        child: Text(
-                                                          selectedCountry.phoneCode!.isNotEmpty
-                                                              ? '+${selectedCountry.phoneCode!}'
-                                                              : "",
-                                                          style: TextStyle(
-                                                            color:
-                                                                Theme.of(context).textTheme.bodyText1!.color,
-                                                            fontSize: 14,
-                                                            fontWeight: FontWeight.w600,
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.ltr,
+                                                          child: Text(
+                                                            selectedCountry.phoneCode!.isNotEmpty
+                                                                ? '+${selectedCountry.phoneCode!}'
+                                                                : "",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),

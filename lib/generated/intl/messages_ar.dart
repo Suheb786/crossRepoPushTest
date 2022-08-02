@@ -154,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("تفعيل الدخول بالبصمة"),
         "amount": MessageLookupByLibrary.simpleMessage("المبلغ"),
+        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يكون المبلغ المطلوب دفعه أكبر من 0"),
         "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
             "المبلغ لازم ما يزيد عن الحد الاعلى"),
         "amountLimitError": MessageLookupByLibrary.simpleMessage(
@@ -305,7 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تحديث معلومات البطاقة بنجاح"),
         "cardDetailsUpdatedDesc": MessageLookupByLibrary.simpleMessage(
             "تم تحديث حساب تسوية بطاقتك الائتمانية بالحساب الجديد بنجاح"),
-        "cardFrozen": MessageLookupByLibrary.simpleMessage("تجميد البطاقة"),
+        "cardFrozen": MessageLookupByLibrary.simpleMessage("البطاقة مجمدة"),
         "cardHasBeenDelivered": MessageLookupByLibrary.simpleMessage(
             "تأكد من إنه الأرقام اللي على ظهر البطاقة هي نفسها الأرقام اللي فوق"),
         "cardInfoError":
@@ -965,6 +967,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "freezeThisCard": MessageLookupByLibrary.simpleMessage("تجميد البطاقة"),
         "from": MessageLookupByLibrary.simpleMessage("من"),
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
+        "fromS": MessageLookupByLibrary.simpleMessage("من "),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderHint": MessageLookupByLibrary.simpleMessage("أدخل الجنس"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("الجنس"),
@@ -1046,6 +1049,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "للاستمرار، لازم يكون العمر أكبر من 18 سنة."),
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
+        "helloE": MessageLookupByLibrary.simpleMessage("مرحبا!"),
         "highInterestFeesAndCharges":
             MessageLookupByLibrary.simpleMessage("فوائد ورسوم وتكاليف مرتفعة"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
@@ -1505,6 +1509,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "غير قادرين على استرداد بيانات الصراف الآلي. حاول بعدين."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-071)"),
+        "noActivityToDisplay":
+            MessageLookupByLibrary.simpleMessage("لا يوجد نشاط لعرضه"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
         "noCountriesFound":
@@ -1519,12 +1525,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الخدمة غير متاحة"),
         "noMatchingYearFound":
             MessageLookupByLibrary.simpleMessage("لم يتم العثور على السنة"),
+        "noPaymentActivityToDisplay":
+            MessageLookupByLibrary.simpleMessage("لا يوجد نشاط دفع لعرضه"),
         "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
             "لم يتم العثور على سجل عنصر نائب مقابل هذا المعرف"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-086)"),
         "noSignatureFound": MessageLookupByLibrary.simpleMessage(
             "توقيعك على نموذج FACTA غير موجود. تأكد من إنك تزودنا بالتوقيع أو تواصل معنا على 06-5200100"),
+        "noTransactionToDisplay":
+            MessageLookupByLibrary.simpleMessage("لا توجد معاملة لعرضها"),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
             "مصدر الهوية الشخصية غير متوفر حالياً. حاول مرة ثانية مع مصدر آخر."),
         "notAllowedToLogin": MessageLookupByLibrary.simpleMessage(
@@ -1655,7 +1665,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "أدخل المعلومات التالية إذا بتنطبق عليك"),
         "pleaseProvideSelfie":
             MessageLookupByLibrary.simpleMessage("صوّر حالك سيلفي للاستمرار."),
-        "pleaseSelect": MessageLookupByLibrary.simpleMessage("اختار وظيفتك"),
+        "pleaseSelect": MessageLookupByLibrary.simpleMessage("الرجاء التحديد"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage("حدد موعد لاحق لمكالمتك"),
         "pleaseSelectTheReason":
@@ -2067,6 +2077,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اسحب الشاشة لاستعراض القائمة"),
         "swipeToViewMap": MessageLookupByLibrary.simpleMessage(
             "اسحب الشاشة لاستعراض الخريطة"),
+        "swipeToViewMore":
+            MessageLookupByLibrary.simpleMessage("اسحب لعرض المزيد"),
         "swipeUpToJoinOurCommunity":
             MessageLookupByLibrary.simpleMessage("اسحب لفوق لتنضم إلنا"),
         "swipeUpToRegister":

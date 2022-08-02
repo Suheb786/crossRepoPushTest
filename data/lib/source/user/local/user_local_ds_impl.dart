@@ -42,15 +42,13 @@ class UserLocalDSImpl extends UserLocalDS {
   }
 
   @override
-  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
-      scanUserDocument() async {
+  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>> scanUserDocument() async {
     var idRecognizer = BlinkIdCombinedRecognizer();
     idRecognizer.returnFullDocumentImage = true;
     idRecognizer.scanCroppedDocumentImage = true;
     idRecognizer.returnFaceImage = true;
 
-    DocumentVerificationOverlaySettings settings =
-        DocumentVerificationOverlaySettings();
+    DocumentVerificationOverlaySettings settings = DocumentVerificationOverlaySettings();
     settings.firstSideInstructions =
         'Front ID\nID will be scanned automatically when placed within the frame';
     settings.secondSideInstructions =
@@ -71,10 +69,8 @@ class UserLocalDSImpl extends UserLocalDS {
                   : "");
 
       if (results.length == 0)
-        return Left(LocalError(
-            message: "No Data Found",
-            cause: Exception("No Data Found"),
-            localError: 1212));
+        return Left(
+            LocalError(message: "No Data Found", cause: Exception("No Data Found"), localError: 1212));
 
       for (var result in results) {
         if (result is BlinkIdCombinedRecognizerResult) {
@@ -86,12 +82,10 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM dateOfBirth : ${result.dateOfBirth}");
           print("I AM sex:  ${result.sex}");
           print("I AM fullName:  ${result.fullName}");
-          print(
-              "I AM additionalAddressInformation : ${result.additionalAddressInformation}");
+          print("I AM additionalAddressInformation : ${result.additionalAddressInformation}");
           print("I AM address : ${result.address}");
           print("I AM age:  ${result.age}");
-          print(
-              "I AM additionalNameInformation : ${result.additionalNameInformation}");
+          print("I AM additionalNameInformation : ${result.additionalNameInformation}");
           print("I AM dateOfIssue : ${result.dateOfIssue}");
           // print("I AM dateOfIssue day : ${result.dateOfIssue!.day}");
           // print("I AM dateOfIssue month : ${result.dateOfIssue!.month}");
@@ -100,10 +94,8 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM mothersName : ${result.mothersName}");
 
           print("I AM mrzResult Gender :${result.mrzResult!.gender}");
-          print(
-              "I AM mrzResult documentNumber :${result.mrzResult!.documentNumber}");
-          print(
-              "I AM mrzResult Date of Expiry :${result.mrzResult!.dateOfExpiry}");
+          print("I AM mrzResult documentNumber :${result.mrzResult!.documentNumber}");
+          print("I AM mrzResult Date of Expiry :${result.mrzResult!.dateOfExpiry}");
           print("I AM mrzResult nationality :${result.mrzResult!.nationality}");
           print("I AM mrzResult mrzVerified:${result.mrzResult!.mrzVerified}");
           print("I AM mrzResult mrzParsed :${result.mrzResult!.mrzParsed}");
@@ -112,47 +104,30 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM mrzResult age :${result.mrzResult!.age}");
           print("I AM mrzResult mrzText :${result.mrzResult!.mrzText}");
           print("I AM mrzResult alienNumber :${result.mrzResult!.alienNumber}");
-          print(
-              "I AM mrzResult applicationReceiptNumber :${result.mrzResult!.applicationReceiptNumber}");
-          print(
-              "I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
-          print(
-              "I AM mrzResult documentType :${result.mrzResult!.documentType}");
-          print(
-              "I AM mrzResult immigrantCaseNumber :${result.mrzResult!.immigrantCaseNumber}");
+          print("I AM mrzResult applicationReceiptNumber :${result.mrzResult!.applicationReceiptNumber}");
+          print("I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
+          print("I AM mrzResult documentType :${result.mrzResult!.documentType}");
+          print("I AM mrzResult immigrantCaseNumber :${result.mrzResult!.immigrantCaseNumber}");
           print("I AM mrzResult opt1 :${result.mrzResult!.opt1}");
           print("I AM mrzResult opt2 :${result.mrzResult!.opt2}");
           print("I AM mrzResult primaryId :${result.mrzResult!.primaryId}");
-          print(
-              "I AM mrzResult sanitizedDocumentCode :${result.mrzResult!.sanitizedDocumentCode}");
-          print(
-              "I AM mrzResult sanitizedDocumentNumber :${result.mrzResult!.sanitizedDocumentNumber}");
-          print(
-              "I AM mrzResult sanitizedIssuer :${result.mrzResult!.sanitizedIssuer}");
-          print(
-              "I AM mrzResult sanitizedNationality :${result.mrzResult!.sanitizedNationality}");
-          print(
-              "I AM mrzResult sanitizedOpt1 :${result.mrzResult!.sanitizedOpt1}");
-          print(
-              "I AM mrzResult sanitizedOpt2 :${result.mrzResult!.sanitizedOpt2}");
+          print("I AM mrzResult sanitizedDocumentCode :${result.mrzResult!.sanitizedDocumentCode}");
+          print("I AM mrzResult sanitizedDocumentNumber :${result.mrzResult!.sanitizedDocumentNumber}");
+          print("I AM mrzResult sanitizedIssuer :${result.mrzResult!.sanitizedIssuer}");
+          print("I AM mrzResult sanitizedNationality :${result.mrzResult!.sanitizedNationality}");
+          print("I AM mrzResult sanitizedOpt1 :${result.mrzResult!.sanitizedOpt1}");
+          print("I AM mrzResult sanitizedOpt2 :${result.mrzResult!.sanitizedOpt2}");
           print("I AM mrzResult secondaryId :${result.mrzResult!.secondaryId}");
 
           DateTime currentTime = DateTime.now();
 
           DateTime expiryDate = DateTime(
-              result.dateOfExpiry != null
-                  ? result.dateOfExpiry!.year!
-                  : currentTime.year,
-              result.dateOfExpiry != null
-                  ? result.dateOfExpiry!.month!
-                  : currentTime.month,
-              result.dateOfExpiry != null
-                  ? result.dateOfExpiry!.day!
-                  : currentTime.day);
+              result.dateOfExpiry != null ? result.dateOfExpiry!.year! : currentTime.year,
+              result.dateOfExpiry != null ? result.dateOfExpiry!.month! : currentTime.month,
+              result.dateOfExpiry != null ? result.dateOfExpiry!.day! : currentTime.day);
 
           if (currentTime.toUtc().isAfter(expiryDate.toUtc())) {
-            return Left(LocalError(
-                cause: Exception(""), localError: 1211, message: ""));
+            return Left(LocalError(cause: Exception(""), localError: 1211, message: ""));
           }
           return Right(result);
         }
@@ -161,11 +136,9 @@ class UserLocalDSImpl extends UserLocalDS {
     } on Exception catch (e) {
       print("I AM HERE ${e}");
       return Left(LocalError(
-          cause: Exception(
-              "Some error occurred while processing. Please try again later"),
+          cause: Exception("Some error occurred while processing. Please try again later"),
           localError: 1212,
-          message:
-              "Some error occurred while processing. Please try again later"));
+          message: "Some error occurred while processing. Please try again later"));
     }
   }
 

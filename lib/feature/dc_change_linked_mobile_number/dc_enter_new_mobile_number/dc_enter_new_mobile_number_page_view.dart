@@ -154,14 +154,17 @@ class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobile
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                                  child: Text(
-                                                    selectedCountry.phoneCode!.isNotEmpty
-                                                        ? '+${selectedCountry.phoneCode!}'
-                                                        : "",
-                                                    style: TextStyle(
-                                                      color: Theme.of(context).textTheme.bodyText1!.color,
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w600,
+                                                  child: Directionality(
+                                                    textDirection: TextDirection.ltr,
+                                                    child: Text(
+                                                      selectedCountry.phoneCode!.isNotEmpty
+                                                          ? '+${selectedCountry.phoneCode!}'
+                                                          : "",
+                                                      style: TextStyle(
+                                                        color: Theme.of(context).textTheme.bodyText1!.color,
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

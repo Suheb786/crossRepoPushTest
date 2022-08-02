@@ -1362,5 +1362,12 @@
   "eVoucherLandingDialogDescption": "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.",
   "eVoucherSearchLabel": "What are you looking for?",
   "eVoucherDetailDescption": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.",
-  "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds"
+  "noActivityToDisplay": "No Activity to Display",
+  "noPaymentActivityToDisplay": "No Payment activity to display",
+  "swipeToViewMore": "Swipe to view more",
+  "fromS": "from ",
+  "noTransactionToDisplay": "No Transaction to display",
+  "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds",
+  "helloE": "Hello!",
+  "amountGreaterThan0": "Amount to pay should be greater than 0"
 }

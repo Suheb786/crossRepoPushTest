@@ -36,12 +36,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        if (currentStep == 1 &&
-                            paymentListData!.data!.length > 4) {
-                          Navigator.push(
-                              context,
-                              CustomRoute.createRoute(
-                                  PaymentActivityTransactionPage()));
+                        if (currentStep == 1 && paymentListData!.data!.length > 4) {
+                          Navigator.push(context, CustomRoute.createRoute(PaymentActivityTransactionPage()));
                         }
                       } else {
                         if (details.primaryVelocity! > 0.5) {
@@ -60,8 +56,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                             padding: EdgeInsetsDirectional.only(top: 9),
                             child: Text(
                               S.of(context).activity,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 18),
+                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                             ),
                           ),
                           Expanded(
@@ -71,56 +66,39 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsetsDirectional.only(top: 4),
+                                      padding: EdgeInsetsDirectional.only(top: 4),
                                       child: Stack(
                                         alignment: Alignment.center,
                                         fit: StackFit.expand,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                bottom: 20.0),
+                                            padding: EdgeInsetsDirectional.only(bottom: 20.0),
                                             child: AppSwiper(
-                                              appSwiperController:
-                                                  model.appSwiperController,
-                                              pages: [
-                                                NotificationPage(),
-                                                PaymentActivityPage(),
-                                                Container()
-                                              ],
-                                              pageController:
-                                                  model.pageController,
+                                              appSwiperController: model.appSwiperController,
+                                              pages: [NotificationPage(), PaymentActivityPage(), Container()],
+                                              pageController: model.pageController,
                                               onIndexChanged: (index) {
                                                 model.updatePage(index);
-                                                model
-                                                    .updatePageControllerStream(
-                                                        index);
+                                                model.updatePageControllerStream(index);
                                               },
                                               currentStep: currentStep,
                                             ),
                                           ),
                                           Visibility(
-                                            visible: currentStep == 1 &&
-                                                paymentListData!.data!.length >
-                                                    4,
+                                            visible: currentStep == 1 && paymentListData!.data!.length > 4,
                                             child: Positioned(
                                               bottom: 0,
                                               child: Column(
                                                 children: [
-                                                  AppSvg.asset(
-                                                      AssetUtils.swipeUp),
+                                                  AppSvg.asset(AssetUtils.swipeUp),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .only(top: 2),
+                                                    padding: EdgeInsetsDirectional.only(top: 2),
                                                     child: Text(
-                                                      "Swipe to view more",
+                                                      S.of(context).swipeToViewMore,
                                                       style: TextStyle(
-                                                          color: AppColor
-                                                              .dark_gray_2,
+                                                          color: AppColor.dark_gray_2,
                                                           fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontWeight: FontWeight.w600),
                                                     ),
                                                   )
                                                 ],
@@ -139,11 +117,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                       effect: ScrollingDotsEffect(
                                         activeStrokeWidth: 2.6,
                                         activeDotScale: 1.3,
-                                        activeDotColor:
-                                            Theme.of(context).primaryColorDark,
-                                        dotColor: Theme.of(context)
-                                            .primaryColorDark
-                                            .withOpacity(0.6),
+                                        activeDotColor: Theme.of(context).primaryColorDark,
+                                        dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
                                         maxVisibleDots: 5,
                                         radius: 8,
                                         spacing: 10,

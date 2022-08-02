@@ -100,8 +100,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsetsDirectional.only(
-                                              start: 8.0, bottom: 10),
+                                          padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 10),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
                                               style: TextStyle(fontSize: 14, height: 1.7)),
                                         ),
@@ -156,35 +155,39 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     },
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
-                                    trailing: FlutterSwitch(
-                                      value: data!,
-                                      onToggle: (value) {
-                                        if (value) {
-                                          model.updateShowDialog(true);
-                                        }
-                                        model.toggleFreezeCardStatus(value);
-                                        if (!value) {
-                                          model.unFreezeCard(
-                                              status: 'SR',
-                                              tokenizedPan: model.debitCardSettingsArguments.debitCard.code);
-                                        }
-                                      },
-                                      width: 60,
-                                      height: 35,
-                                      padding: 4,
-                                      activeText: S.of(context).yes,
-                                      activeTextColor: AppColor.white,
-                                      inactiveTextColor: AppColor.darkGray,
-                                      activeTextFontWeight: FontWeight.w500,
-                                      showOnOff: true,
-                                      valueFontSize: 10,
-                                      activeToggleColor: AppColor.white,
-                                      inactiveText: S.of(context).no,
-                                      inactiveToggleColor: AppColor.lightGrayishMagenta,
-                                      inactiveTextFontWeight: FontWeight.w500,
-                                      inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                      activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                      inactiveColor: Theme.of(context).accentColor,
+                                    trailing: Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: FlutterSwitch(
+                                        value: data!,
+                                        onToggle: (value) {
+                                          if (value) {
+                                            model.updateShowDialog(true);
+                                          }
+                                          model.toggleFreezeCardStatus(value);
+                                          if (!value) {
+                                            model.unFreezeCard(
+                                                status: 'SR',
+                                                tokenizedPan:
+                                                    model.debitCardSettingsArguments.debitCard.code);
+                                          }
+                                        },
+                                        width: 60,
+                                        height: 35,
+                                        padding: 4,
+                                        activeText: S.of(context).yes,
+                                        activeTextColor: AppColor.white,
+                                        inactiveTextColor: AppColor.darkGray,
+                                        activeTextFontWeight: FontWeight.w500,
+                                        showOnOff: true,
+                                        valueFontSize: 10,
+                                        activeToggleColor: AppColor.white,
+                                        inactiveText: S.of(context).no,
+                                        inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                        inactiveTextFontWeight: FontWeight.w500,
+                                        inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                        inactiveColor: Theme.of(context).accentColor,
+                                      ),
                                     ),
                                   );
                                 },

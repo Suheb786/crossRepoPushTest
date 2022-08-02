@@ -156,34 +156,37 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                     },
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
-                                    trailing: FlutterSwitch(
-                                      value: data!,
-                                      onToggle: (value) {
-                                        if (value) {
-                                          model.updateShowDialog(true);
-                                        }
-                                        model.toggleFreezeCardStatus(value);
-                                        if (!value) {
-                                          model.unFreezeCard(
-                                              model.creditCardSettingsArguments.creditCard.cardId ?? '');
-                                        }
-                                      },
-                                      width: 60,
-                                      height: 35,
-                                      padding: 4,
-                                      activeText: S.of(context).yes,
-                                      activeTextColor: AppColor.white,
-                                      inactiveTextColor: AppColor.darkGray,
-                                      activeTextFontWeight: FontWeight.w500,
-                                      showOnOff: true,
-                                      valueFontSize: 10,
-                                      activeToggleColor: AppColor.white,
-                                      inactiveText: S.of(context).no,
-                                      inactiveToggleColor: AppColor.lightGrayishMagenta,
-                                      inactiveTextFontWeight: FontWeight.w500,
-                                      inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                      activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                      inactiveColor: Theme.of(context).accentColor,
+                                    trailing: Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: FlutterSwitch(
+                                        value: data!,
+                                        onToggle: (value) {
+                                          if (value) {
+                                            model.updateShowDialog(true);
+                                          }
+                                          model.toggleFreezeCardStatus(value);
+                                          if (!value) {
+                                            model.unFreezeCard(
+                                                model.creditCardSettingsArguments.creditCard.cardId ?? '');
+                                          }
+                                        },
+                                        width: 60,
+                                        height: 35,
+                                        padding: 4,
+                                        activeText: S.of(context).yes,
+                                        activeTextColor: AppColor.white,
+                                        inactiveTextColor: AppColor.darkGray,
+                                        activeTextFontWeight: FontWeight.w500,
+                                        showOnOff: true,
+                                        valueFontSize: 10,
+                                        activeToggleColor: AppColor.white,
+                                        inactiveText: S.of(context).no,
+                                        inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                        inactiveTextFontWeight: FontWeight.w500,
+                                        inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                        inactiveColor: Theme.of(context).accentColor,
+                                      ),
                                     ),
                                   );
                                 },

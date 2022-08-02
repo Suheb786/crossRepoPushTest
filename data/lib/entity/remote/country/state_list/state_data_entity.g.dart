@@ -16,6 +16,8 @@ StateCityDataEntity _$StateCityDataEntityFromJson(Map<String, dynamic> json) {
     stateName: json['stateName'] as String?,
     cityName: json['name'] as String?,
     cityID: json['cityID'] as String?,
+    cityNameAR: json['nameAR'] as String?,
+    stateNameAR: json['stateNameAR'] as String?,
   );
 }
 
@@ -26,6 +28,8 @@ Map<String, dynamic> _$StateCityDataEntityToJson(
       'countryID': instance.countryID,
       'stateID': instance.stateID,
       'stateName': instance.stateName,
+      'stateNameAR': instance.stateNameAR,
       'cityID': instance.cityID,
       'name': instance.cityName,
+      'nameAR': instance.cityNameAR,
     };

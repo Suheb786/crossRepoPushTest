@@ -20,8 +20,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class AddNewMobileNumberPageView
-    extends BasePageViewWidget<AddNewMobileNumberPageViewModel> {
+class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPageViewModel> {
   AddNewMobileNumberPageView(ProviderBase model) : super(model);
 
   @override
@@ -41,9 +40,7 @@ class AddNewMobileNumberPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(changeMobileNumberViewModelProvider)
-                      .nextPage();
+                  ProviderScope.containerOf(context).read(changeMobileNumberViewModelProvider).nextPage();
                   // .next(animation: true);
                   // ProviderScope?.containerOf(context)
                   //         .read(enterOtpForNewMobileNumberViewModelProvider)
@@ -73,16 +70,14 @@ class AddNewMobileNumberPageView
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: SingleChildScrollView(
                                   physics: ClampingScrollPhysics(),
-                                  child: AppStreamBuilder<
-                                      Resource<AllowedCountryListResponse>>(
+                                  child: AppStreamBuilder<Resource<AllowedCountryListResponse>>(
                                     stream: model.getAllowedCountryStream,
                                     initialData: Resource.none(),
                                     dataBuilder: (context, country) {
@@ -91,19 +86,13 @@ class AddNewMobileNumberPageView
                                         initialData: CountryData(),
                                         dataBuilder: (context, countryData) {
                                           return AppTextField(
-                                            labelText: S
-                                                .of(context)
-                                                .mobileNumber
-                                                .toUpperCase(),
-                                            hintText:
-                                                S.of(context).mobileNumberHint,
+                                            labelText: S.of(context).mobileNumber.toUpperCase(),
+                                            hintText: S.of(context).mobileNumberHint,
                                             inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(
-                                                  12),
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(r'[0-9]')),
+                                              LengthLimitingTextInputFormatter(12),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                             ],
                                             controller: model.mobileController,
                                             key: model.mobileKey,
@@ -113,83 +102,60 @@ class AddNewMobileNumberPageView
                                             prefixIcon: () {
                                               return InkWell(
                                                 onTap: () {
-                                                  MobileNumberDialog.show(
-                                                      context,
-                                                      title: S
-                                                          .of(context)
-                                                          .mobileNumber,
-                                                      selectedCountryData:
-                                                          model.countryData,
+                                                  MobileNumberDialog.show(context,
+                                                      title: S.of(context).mobileNumber,
+                                                      selectedCountryData: model.countryData,
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;
-                                                    model.setSelectedCountry(
-                                                        data);
+                                                    model.setSelectedCountry(data);
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                      countryDataList: country!
-                                                          .data!
-                                                          .contentData!
-                                                          .countryData);
+                                                      countryDataList:
+                                                          country!.data!.contentData!.countryData);
                                                 },
                                                 child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8.0),
+                                                  padding: EdgeInsets.only(top: 8.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                                    mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
                                                       Container(
                                                         height: 16,
                                                         width: 16,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark,
-                                                          shape:
-                                                              BoxShape.circle,
+                                                        decoration: BoxDecoration(
+                                                          color: Theme.of(context).primaryColorDark,
+                                                          shape: BoxShape.circle,
                                                         ),
-                                                        child: AppSvg.asset(countryData!
-                                                                    .isoCode3 !=
-                                                                null
+                                                        child: AppSvg.asset(countryData!.isoCode3 != null
                                                             ? "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase()}.svg"
                                                             : "assets/flags/jor.svg"),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    8.0),
-                                                        child: Text(
-                                                          countryData.phoneCode!
-                                                                  .isNotEmpty
-                                                              ? '+${countryData.phoneCode!}'
-                                                              : "",
-                                                          style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText1!
-                                                                .color,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.ltr,
+                                                          child: Text(
+                                                            countryData.phoneCode!.isNotEmpty
+                                                                ? '+${countryData.phoneCode!}'
+                                                                : "",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
                                                       Container(
                                                           height: 16,
                                                           width: 16,
-                                                          margin:
-                                                              EdgeInsetsDirectional
-                                                                  .only(end: 8),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .downArrow,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          margin: EdgeInsetsDirectional.only(end: 8),
+                                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                                              color: Theme.of(context)
                                                                   .primaryTextTheme
                                                                   .bodyText1!
                                                                   .color))
@@ -214,8 +180,7 @@ class AddNewMobileNumberPageView
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

@@ -165,6 +165,7 @@ class AssetUtils {
   static const String percentage = svg + "percentage.svg";
   static const String circleRight = svg + "circle_right.svg";
   static const String replaceCard = svg + "replace_card.svg";
+  static const String dashboardSwiggle = svg + "dashboard_swiggle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

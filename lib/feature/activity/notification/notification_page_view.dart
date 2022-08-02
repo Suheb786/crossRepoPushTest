@@ -23,28 +23,22 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
-                  .nextPage(
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.linear);
+                  .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             }
           } else {
             if (details.primaryVelocity!.isNegative) {
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
-                  .nextPage(
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.linear);
+                  .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             } else {}
           }
         },
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
-          color:
-              Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+          color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
           margin: EdgeInsetsDirectional.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Padding(
@@ -63,18 +57,14 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                           .activityResponse,
                       initialData: Resource.none(),
                       dataBuilder: (context, activities) {
-                        return activities!
-                                    .data!.activityContent!.activities!.length >
-                                0
+                        return activities!.data!.activityContent!.activities!.length > 0
                             ? ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: activities
-                                    .data!.activityContent!.activities!.length,
+                                itemCount: activities.data!.activityContent!.activities!.length,
                                 padding: EdgeInsetsDirectional.only(top: 20),
                                 itemBuilder: (context, index) {
                                   return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -83,28 +73,21 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                             width: 6,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                color: Theme.of(context)
-                                                    .primaryColor),
+                                                color: Theme.of(context).primaryColor),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: 7),
+                                            padding: EdgeInsetsDirectional.only(start: 7),
                                             child: Text(
-                                              activities.data!.activityContent!
-                                                  .activities![index].heading!,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  fontSize: 12),
+                                              activities.data!.activityContent!.activities![index].heading!,
+                                              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
                                             ),
                                           )
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(
-                                            top: 6, bottom: 12),
+                                        padding: EdgeInsetsDirectional.only(top: 6, bottom: 12),
                                         child: Text(
-                                          activities.data!.activityContent!
-                                              .activities![index].description!,
+                                          activities.data!.activityContent!.activities![index].description!,
                                           maxLines: 2,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
@@ -116,7 +99,7 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                   );
                                 },
                               )
-                            : Center(child: Text("No Activity to Display"));
+                            : Center(child: Text(S.of(context).noActivityToDisplay));
                       }),
                 )
               ],

@@ -14,17 +14,11 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class DcChangeLinkedMobileNumberPageView
-    extends BasePageViewWidget<DcChangeLinkedMobileNumberViewModel> {
+class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLinkedMobileNumberViewModel> {
   final DCChangeLinkedMobileNumberArguments arguments;
-  final pages = [
-    DcEnterNewMobileNumberPage(),
-    DcEnterOtpPage(),
-    BaseCardPage()
-  ];
+  final pages = [DcEnterNewMobileNumberPage(), DcEnterOtpPage(), BaseCardPage()];
 
-  DcChangeLinkedMobileNumberPageView(ProviderBase model, this.arguments)
-      : super(model);
+  DcChangeLinkedMobileNumberPageView(ProviderBase model, this.arguments) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -55,10 +49,7 @@ class DcChangeLinkedMobileNumberPageView
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0,
-                          bottom: currentStep == 1 ? 0 : 32,
-                          start: 24,
-                          end: 24),
+                          top: 8.0, bottom: currentStep == 1 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -92,17 +83,20 @@ class DcChangeLinkedMobileNumberPageView
                           curve: Curves.bounceIn,
                           direction: Direction.vertical,
                           offset: 0.5,
-                          child: Text(
-                            ProviderScope.containerOf(context)
-                                .read(dcEnterNewMobileNumberViewModelProvider)
-                                .mobileNumberWithCode,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: arguments.cardType == CardType.DEBIT
-                                    ? Theme.of(context).primaryColorDark
-                                    : Theme.of(context).accentColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              ProviderScope.containerOf(context)
+                                  .read(dcEnterNewMobileNumberViewModelProvider)
+                                  .mobileNumberWithCode,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: arguments.cardType == CardType.DEBIT
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).accentColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),

@@ -11,8 +11,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PaymentActivityPageView
-    extends BasePageViewWidget<PaymentActivityViewModel> {
+class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewModel> {
   PaymentActivityPageView(ProviderBase model) : super(model);
 
   @override
@@ -26,9 +25,7 @@ class PaymentActivityPageView
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
-                  .previousPage(
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.linear);
+                  .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             }
           } else {
             if (details.primaryVelocity!.isNegative) {
@@ -36,15 +33,12 @@ class PaymentActivityPageView
               ProviderScope.containerOf(context)
                   .read(activityHomeViewModelProvider)
                   .appSwiperController
-                  .previousPage(
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.linear);
+                  .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
             }
           }
         },
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).canvasColor,
@@ -57,10 +51,7 @@ class PaymentActivityPageView
               children: [
                 Text(
                   S.of(context).paymentActivity,
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.dark_yellow),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_yellow),
                 ),
                 SizedBox(
                   height: 10,
@@ -74,42 +65,28 @@ class PaymentActivityPageView
                       dataBuilder: (context, transaction) {
                         return transaction!.data!.length > 0
                             ? ListView.builder(
-                                itemCount: transaction.data!.length > 4
-                                    ? 4
-                                    : transaction.data!.length,
+                                itemCount: transaction.data!.length > 4 ? 4 : transaction.data!.length,
                                 shrinkWrap: true,
                                 itemBuilder: (mContext, index) {
                                   return Padding(
                                     padding: EdgeInsetsDirectional.only(
                                         top: index == 0 ? 0 : 23,
-                                        bottom: index ==
-                                                transaction.data!.length - 1
-                                            ? 10
-                                            : 0),
+                                        bottom: index == transaction.data!.length - 1 ? 10 : 0),
                                     child: Row(
                                       children: [
                                         Container(
                                           height: 50,
                                           width: 50,
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              shape: BoxShape.circle),
+                                              color: Theme.of(context).primaryColor, shape: BoxShape.circle),
                                           child: Center(
                                             child: Text(
-                                              transaction.data![index].name!
-                                                          .split(" ")
-                                                          .length >
-                                                      1
-                                                  ? StringUtils
-                                                      .getFirstInitials(
-                                                          transaction
-                                                              .data![index]
-                                                              .name!)
+                                              transaction.data![index].name!.split(" ").length > 1
+                                                  ? StringUtils.getFirstInitials(
+                                                      transaction.data![index].name!)
                                                   : "",
                                               style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
+                                                  color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 14),
                                             ),
@@ -117,42 +94,28 @@ class PaymentActivityPageView
                                         ),
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: 11),
+                                            padding: EdgeInsetsDirectional.only(start: 11),
                                             child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Text.rich(TextSpan(
-                                                    text: 'You requested ',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 12),
+                                                    text: S.of(context).youRequested,
+                                                    style:
+                                                        TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
                                                     children: [
                                                       TextSpan(
                                                           text:
-                                                              '${transaction.data![index].amount} JOD ',
+                                                              '${transaction.data![index].amount} ${S.of(context).JOD} ',
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 12)),
+                                                              fontWeight: FontWeight.w600, fontSize: 12)),
                                                       TextSpan(
-                                                          text: 'from ',
+                                                          text: S.of(context).fromS,
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              fontSize: 12)),
+                                                              fontWeight: FontWeight.w400, fontSize: 12)),
                                                       TextSpan(
-                                                          text:
-                                                              '${transaction.data![index].name}',
+                                                          text: '${transaction.data![index].name}',
                                                           style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 12)),
+                                                              fontWeight: FontWeight.w600, fontSize: 12)),
                                                     ])),
                                                 // Text(
                                                 //   "You requested ${transaction
@@ -166,31 +129,17 @@ class PaymentActivityPageView
                                                 //       fontSize: 12),
                                                 // ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .only(top: 6),
+                                                  padding: EdgeInsetsDirectional.only(top: 6),
                                                   child: Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 8,
-                                                            vertical: 2),
+                                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                                     decoration: BoxDecoration(
-                                                        color: getColor(
-                                                            transaction
-                                                                .data![index]
-                                                                .status!),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(100)),
+                                                        color: getColor(transaction.data![index].status!),
+                                                        borderRadius: BorderRadius.circular(100)),
                                                     child: Text(
-                                                      transaction
-                                                          .data![index].status!
-                                                          .toString(),
+                                                      transaction.data![index].status!.toString(),
                                                       style: TextStyle(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor,
-                                                          fontWeight:
-                                                              FontWeight.w600,
+                                                          color: Theme.of(context).accentColor,
+                                                          fontWeight: FontWeight.w600,
                                                           fontSize: 12),
                                                     ),
                                                   ),
@@ -206,7 +155,7 @@ class PaymentActivityPageView
                               )
                             : Center(
                                 child: Text(
-                                  "No Payment activity to display",
+                                  S.of(context).noPaymentActivityToDisplay,
                                   textAlign: TextAlign.center,
                                 ),
                               );

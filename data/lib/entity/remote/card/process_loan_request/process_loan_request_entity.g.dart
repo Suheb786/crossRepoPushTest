@@ -11,16 +11,16 @@ ProcessLoanRequestEntity _$ProcessLoanRequestEntityFromJson(
   return ProcessLoanRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
-    cardId: json['CardId'] as String?,
-    loanValueId: json['LoanValueId'] as num?,
+    cardId: json['cardId'] as String?,
+    loanValueId: json['loanValueid'] as num?,
   );
 }
 
 Map<String, dynamic> _$ProcessLoanRequestEntityToJson(
         ProcessLoanRequestEntity instance) =>
     <String, dynamic>{
-      'CardId': instance.cardId,
-      'LoanValueId': instance.loanValueId,
+      'cardId': instance.cardId,
+      'loanValueid': instance.loanValueId,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,
     };

@@ -50,7 +50,7 @@
   "tellUsAboutYourJob": "احكيلنا عن شغلك",
   "employmentStatus": "الوضع الوضيفي",
   "occupation": "الوظيفة",
-  "pleaseSelect": "اختار وظيفتك",
+  "pleaseSelect": "الرجاء التحديد",
   "mainSourceOfIncome": "مصدر الدخل الرئيسي",
   "monthlyIncome": "الدخل الشهري",
   "annualIncome": "الدخل السنوي",
@@ -831,7 +831,7 @@
   "addRequestMoney": "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال.",
   "errorWhileProcessLoanRequest": "خطأ خلال طلب القرض",
   "errorWhileGettingAccountCloseOtp": "خطأ خلال الحصول على كلمة المرور OTP",
-  "cardFrozen": "تجميد البطاقة",
+  "cardFrozen": "البطاقة مجمدة",
   "toEnjoyCardLessPaymentDebit": "لتتمتع بالدفع الإلكتروني بدون بطاقة، بتقدر تحصل على بطاقة الدفع المباشر الافتراضية، ورح نوصللك بطاقتك الفعلية لباب بيتك.",
   "requestNewDebitcard": "طلب بطاقة دفع مباشر جديدة",
   "ibanOrMobileOrAccount": "IBAN/ رقم الموبايل/ الحساب",
@@ -1317,5 +1317,12 @@
   "invalidRelationshipAPI": "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-306) ",
   "primaryCreditCardHoldIdNotMatchGroom": "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-307) ",
   "supplementaryCreditCardHolderIdNotMatchMotherFather": "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-308) ",
-  "primaryDebitCreditCardHolderNotMatchMotherFather": "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-309) "
+  "primaryDebitCreditCardHolderNotMatchMotherFather": "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-309) ",
+  "noActivityToDisplay": "لا يوجد نشاط لعرضه",
+  "noPaymentActivityToDisplay": "لا يوجد نشاط دفع لعرضه",
+  "swipeToViewMore": "اسحب لعرض المزيد",
+  "fromS": "من ",
+  "noTransactionToDisplay": "لا توجد معاملة لعرضها",
+  "helloE": "مرحبا!",
+  "amountGreaterThan0": "يجب أن يكون المبلغ المطلوب دفعه أكبر من 0"
 }

@@ -276,6 +276,11 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                       cause: Exception(),
                                       error: ErrorInfo(message: ''),
                                       type: ErrorType.INVALID_ACCOUNT_BALANCE));
+                                } else if (!(num.parse(model.currentPinValue) > 0)) {
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ''),
+                                      type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                                 } else {
                                   model.payBackCreditCard();
                                 }

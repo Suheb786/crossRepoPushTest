@@ -10,8 +10,7 @@ class AccountSettingWidget extends StatelessWidget {
   final String? subtitle;
   final Function()? onTap;
 
-  const AccountSettingWidget(
-      {Key? key, this.image, this.title, this.subtitle: '', this.onTap})
+  const AccountSettingWidget({Key? key, this.image, this.title, this.subtitle: '', this.onTap})
       : super(key: key);
 
   @override
@@ -41,12 +40,12 @@ class AccountSettingWidget extends StatelessWidget {
                   height: 2,
                 ),
                 subtitle!.isNotEmpty
-                    ? Text(
-                        subtitle ?? '',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppColor.gray),
+                    ? Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Text(
+                          subtitle ?? '',
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.gray),
+                        ),
                       )
                     : Container(),
               ],
@@ -59,9 +58,7 @@ class AccountSettingWidget extends StatelessWidget {
               height: 24,
               width: 24,
               child: AppSvg.asset(AssetUtils.rightChevron,
-                  matchTextDirection: true,
-                  color:
-                      Theme.of(context).inputDecorationTheme.hintStyle!.color))
+                  matchTextDirection: true, color: Theme.of(context).inputDecorationTheme.hintStyle!.color))
         ],
       ),
     );

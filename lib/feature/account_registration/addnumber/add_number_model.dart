@@ -73,6 +73,8 @@ class AddNumberViewModel extends BasePageViewModel {
   bool isEmailAvailable = false;
   bool isNumberAvailable = false;
   Country selectedCountry = Country();
+  int isMobileNoExist = 7;
+  int isEmailExist = 7;
 
   CountryData countryData = CountryData();
 
@@ -151,6 +153,7 @@ class AddNumberViewModel extends BasePageViewModel {
         updateLoader();
         if (event.status == Status.SUCCESS) {
           isEmailAvailable = event.data?.isAvailable ?? false;
+          isEmailExist = 0;
         }
         _checkUserNameResponse.safeAdd(event);
         validate();
@@ -170,6 +173,7 @@ class AddNumberViewModel extends BasePageViewModel {
         updateLoader();
         if (event.status == Status.SUCCESS) {
           isNumberAvailable = event.data?.isAvailable ?? false;
+          isMobileNoExist = 0;
         }
         _checkUserMobileResponse.safeAdd(event);
         validate();
@@ -200,8 +204,8 @@ class AddNumberViewModel extends BasePageViewModel {
 
   void validateNumber() {
     _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-        isEmailExist: isEmailAvailable,
-        isMobileNoExist: isNumberAvailable,
+        isEmailExist: isEmailExist,
+        isMobileNoExist: isMobileNoExist,
         emailAddress: emailController.text,
         countryCode: countryData.isoCode,
         mobileNumber: mobileNumberController.text));

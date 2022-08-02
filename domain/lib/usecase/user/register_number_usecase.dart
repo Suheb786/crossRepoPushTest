@@ -20,8 +20,8 @@ class RegisterNumberUseCaseParams extends Params {
   final String mobileNumber;
   final String? countryCode;
   final String? emailAddress;
-  final bool isEmailExist;
-  final bool isMobileNoExist;
+  final int isEmailExist;
+  final int isMobileNoExist;
 
   RegisterNumberUseCaseParams(
       {required this.mobileNumber,
@@ -39,9 +39,12 @@ class RegisterNumberUseCaseParams extends Params {
     } else if (mobileNumber.isEmpty || mobileNumber.length < 8) {
       return Left(
           AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
-    } else if (!isEmailExist) {
+    } else if (isEmailExist == 1) {
       return Left(
-          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMAIL_ALREADY_EXIST, cause: Exception()));
+    } else if (isMobileNoExist == 1) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.MOBILE_ALREADY_EXIST, cause: Exception()));
     }
     return Right(true);
   }

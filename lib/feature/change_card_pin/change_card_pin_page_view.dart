@@ -14,13 +14,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class ChangeCardPinPageView
-    extends BasePageViewWidget<ChangeCardPinPageViewModel> {
-  final pages = [
-    EnterNewPinForCardPage(),
-    OtpForChangeCardPinPage(),
-    BaseCardPage()
-  ];
+class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewModel> {
+  final pages = [EnterNewPinForCardPage(), OtpForChangeCardPinPage(), BaseCardPage()];
 
   ChangeCardPinPageView(ProviderBase model) : super(model);
 
@@ -51,20 +46,15 @@ class ChangeCardPinPageView
                             Text(
                               S.of(context).changeCardPin.toUpperCase(),
                               style: TextStyle(
-                                  color:
-                                      model.changeCardPinArguments.cardType ==
-                                              CardType.DEBIT
-                                          ? Theme.of(context).primaryColorDark
-                                          : Theme.of(context).accentColor,
+                                  color: model.changeCardPinArguments.cardType == CardType.DEBIT
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).accentColor,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(
-                                  top: 8.0,
-                                  bottom: currentStep == 1 ? 0 : 32,
-                                  start: 24,
-                                  end: 24),
+                                  top: 8.0, bottom: currentStep == 1 ? 0 : 32, start: 24, end: 24),
                               child: ShowUpAnimation(
                                 key: ValueKey(currentStep),
                                 delayStart: Duration(milliseconds: 50),
@@ -80,9 +70,7 @@ class ChangeCardPinPageView
                                   ),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: model.changeCardPinArguments
-                                                  .cardType ==
-                                              CardType.DEBIT
+                                      color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                           ? Theme.of(context).primaryColorDark
                                           : Theme.of(context).accentColor,
                                       fontSize: 20,
@@ -96,23 +84,23 @@ class ChangeCardPinPageView
                                 padding: EdgeInsets.only(bottom: 32),
                                 child: ShowUpAnimation(
                                   delayStart: Duration(milliseconds: 500),
-                                  animationDuration:
-                                      Duration(milliseconds: 750),
+                                  animationDuration: Duration(milliseconds: 750),
                                   curve: Curves.bounceIn,
                                   direction: Direction.vertical,
                                   offset: 0.5,
-                                  child: Text(
-                                    "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
-                                        " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: model.changeCardPinArguments
-                                                    .cardType ==
-                                                CardType.DEBIT
-                                            ? Theme.of(context).primaryColorDark
-                                            : Theme.of(context).accentColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                  child: Directionality(
+                                    textDirection: TextDirection.ltr,
+                                    child: Text(
+                                      "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                          " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: model.changeCardPinArguments.cardType == CardType.DEBIT
+                                              ? Theme.of(context).primaryColorDark
+                                              : Theme.of(context).accentColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ),
                               ),

@@ -55,11 +55,14 @@ class EnterCodeEVoucherPurchasePageView extends BasePageViewWidget<EnterCodeEVou
                 curve: Curves.bounceIn,
                 direction: Direction.vertical,
                 offset: 0.5,
-                child: Text(
-                  '+962 79 322 8080',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Text(
+                    '+962 79 322 8080',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ),

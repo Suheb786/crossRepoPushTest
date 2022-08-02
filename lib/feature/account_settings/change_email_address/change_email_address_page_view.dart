@@ -16,13 +16,8 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 import 'enter_code_for_change_email_address/enter_code_for_change_email_address_page.dart';
 
-class ChangeEmailAddressPageView
-    extends BasePageViewWidget<ChangeEmailAddressPageViewModel> {
-  final pages = [
-    AddNewEmailAddressPage(),
-    EnterCodeForChangeEmailAddressPage(),
-    BaseCardPage()
-  ];
+class ChangeEmailAddressPageView extends BasePageViewWidget<ChangeEmailAddressPageViewModel> {
+  final pages = [AddNewEmailAddressPage(), EnterCodeForChangeEmailAddressPage(), BaseCardPage()];
 
   ChangeEmailAddressPageView(ProviderBase model) : super(model);
 
@@ -48,8 +43,7 @@ class ChangeEmailAddressPageView
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          matchTextDirection: true,
-                          color: Theme.of(context).accentColor),
+                          matchTextDirection: true, color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -68,10 +62,7 @@ class ChangeEmailAddressPageView
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(
-                                top: 8.0,
-                                bottom: currentStep == 1 ? 0 : 32,
-                                start: 24,
-                                end: 24),
+                                top: 8.0, bottom: currentStep == 1 ? 0 : 32, start: 24, end: 24),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),
@@ -103,14 +94,17 @@ class ChangeEmailAddressPageView
                                 curve: Curves.bounceIn,
                                 direction: Direction.vertical,
                                 offset: 0.5,
-                                child: Text(
-                                  "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
-                                      " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                child: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    "${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                        " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
                             ),

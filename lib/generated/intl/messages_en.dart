@@ -158,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("Allow biometric"),
         "amount": MessageLookupByLibrary.simpleMessage("AMOUNT"),
+        "amountGreaterThan0": MessageLookupByLibrary.simpleMessage(
+            "Amount to pay should be greater than 0"),
         "amountGreaterThanOutstanding": MessageLookupByLibrary.simpleMessage(
             "Amount Should be Not Greater then Total OutStandings"),
         "amountLimitError": MessageLookupByLibrary.simpleMessage(
@@ -1010,6 +1012,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
+        "fromS": MessageLookupByLibrary.simpleMessage("from "),
         "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
@@ -1091,6 +1094,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "Age must be greater than 18 to proceed."),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
+        "helloE": MessageLookupByLibrary.simpleMessage("Hello!"),
         "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
             "High interest,fees,and charges"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
@@ -1571,6 +1575,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-071)"),
+        "noActivityToDisplay":
+            MessageLookupByLibrary.simpleMessage("No Activity to Display"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":
@@ -1586,6 +1592,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Service is Unavailable"),
         "noMatchingYearFound":
             MessageLookupByLibrary.simpleMessage("No matching year found!"),
+        "noPaymentActivityToDisplay": MessageLookupByLibrary.simpleMessage(
+            "No Payment activity to display"),
         "noPlaceholderFound": MessageLookupByLibrary.simpleMessage(
             "No Placeholder Record Found against this Id"),
         "noRequestFoundRTP": MessageLookupByLibrary.simpleMessage(
@@ -1594,6 +1602,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "It seems your signature on the FATCA form is missing. Please check that you provided the signature or contact or Engagement Team for help 06-5200100."),
         "noSuppUserDetailsFound": MessageLookupByLibrary.simpleMessage(
             "No Supplimentary User Details Found"),
+        "noTransactionToDisplay":
+            MessageLookupByLibrary.simpleMessage("No Transaction to display"),
         "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
             "ID card issuer is not allowed at this moment. Please try again with valid ID card issuer."),
         "notAllowedToLogin": MessageLookupByLibrary.simpleMessage(
@@ -2168,6 +2178,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Swipe to view list"),
         "swipeToViewMap":
             MessageLookupByLibrary.simpleMessage("Swipe to view map"),
+        "swipeToViewMore":
+            MessageLookupByLibrary.simpleMessage("Swipe to view more"),
         "swipeUpToJoinOurCommunity": MessageLookupByLibrary.simpleMessage(
             "Swipe up to join our community"),
         "swipeUpToRegister":

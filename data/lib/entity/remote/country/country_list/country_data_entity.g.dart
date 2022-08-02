@@ -20,6 +20,7 @@ CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) {
     isNationalityAllowed: json['isNationalityAllowed'] as bool?,
     isIssuerAllowed: json['isIssuerAllowed'] as bool?,
     mobileMax: json['mobileMax'] as int?,
+    countryNameAR: json['countryNameAR'] as String?,
   );
 }
 
@@ -29,6 +30,7 @@ Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) =>
       'isoCode': instance.isoCode,
       'phoneCode': instance.phoneCode,
       'countryName': instance.countryName,
+      'countryNameAR': instance.countryNameAR,
       'isAllowedCountry': instance.isAllowedCountry,
       'nationality': instance.nationality,
       'gfxCode': instance.gfxCode,

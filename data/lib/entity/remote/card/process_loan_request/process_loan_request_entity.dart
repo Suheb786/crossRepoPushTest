@@ -4,9 +4,9 @@ part 'process_loan_request_entity.g.dart';
 
 @JsonSerializable()
 class ProcessLoanRequestEntity {
-  @JsonKey(name: "CardId")
+  @JsonKey(name: "cardId")
   final String? cardId;
-  @JsonKey(name: "LoanValueId")
+  @JsonKey(name: "loanValueid")
   final num? loanValueId;
   @JsonKey(name: "GetToken")
   final bool? getToken;
