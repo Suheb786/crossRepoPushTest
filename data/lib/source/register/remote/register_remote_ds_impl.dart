@@ -1,5 +1,6 @@
 import 'package:data/source/register/register_datasource.dart';
 import 'package:domain/model/register/additional_income.dart';
+import 'package:intl/intl.dart';
 
 class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   @override
@@ -27,19 +28,29 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
 
   @override
   Future<List<String>> getPurposeOfAccountOpeningList() {
-    return Future.value([
+    List<String> purposeListEn = [
       'Salary Transfer',
       'Normal Daily Banking',
       'Saving',
       'Credit Card',
       'Facilities',
       'Others'
-    ]);
+    ];
+    List<String> purposeListAr = [
+      'حويل الراتب',
+      'حركات بنكية يومية',
+      'وفير',
+      ' بطاقة ائتمانية',
+      'تسهيلات مصرفية',
+      'اخرى'
+    ];
+
+    return Future.value(Future.value(Intl.getCurrentLocale() == 'en' ? purposeListEn : purposeListAr));
   }
 
   @override
   Future<List<AdditionalIncome>> getAdditionalIncomeSourceList() {
-    return Future.value([
+    List<AdditionalIncome> additionalIncomeEn = [
       AdditionalIncome(type: 'Additional Salary'),
       AdditionalIncome(type: 'Pension'),
       AdditionalIncome(type: 'Freelance Income'),
@@ -49,7 +60,19 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       AdditionalIncome(type: 'Own Business'),
       AdditionalIncome(type: 'Family Allowance'),
       AdditionalIncome(type: 'Other'),
-    ]);
+    ];
+    List<AdditionalIncome> additionalIncomeAr = [
+      AdditionalIncome(type: 'راتب اضافي'),
+      AdditionalIncome(type: 'تب تقاعد '),
+      AdditionalIncome(type: 'خل من أعمال حرة'),
+      AdditionalIncome(type: 'تب اضافي , فز , مولة  '),
+      AdditionalIncome(type: 'خل الايجار'),
+      AdditionalIncome(type: 'ستثمار'),
+      AdditionalIncome(type: 'عمل خاص'),
+      AdditionalIncome(type: 'خصص عائلي'),
+      AdditionalIncome(type: 'خرى'),
+    ];
+    return Future.value(Intl.getCurrentLocale() == 'en' ? additionalIncomeEn : additionalIncomeAr);
   }
 
   @override

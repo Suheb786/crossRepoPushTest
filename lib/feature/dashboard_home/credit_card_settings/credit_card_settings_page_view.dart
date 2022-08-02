@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsViewModel> {
   CreditCardSettingsPageView(ProviderBase model) : super(model);
@@ -417,28 +418,17 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 isNotify: true,
                                 isEnabled: false,
                                 onTap: () {
-                                  CardCancelDialog.show(
-                                    context,
-                                    onSelected: (reasonValue, needsReplacement) {
-                                      Navigator.pop(context);
-                                      model.cancelCard(reasonValue);
-                                    },
-                                    onDismissed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onError: (AppError error) {
-                                      model.showToastWithError(error);
-                                    },
-                                    reasons: [
-                                      "I don’t need my card anymore.",
-                                      "High interest, fees & charges.",
-                                      "I feel the credit limit is low.",
-                                      "High FX rates.",
-                                      "I’m trying to control my expenses.",
-                                      "I’m dissatisfied with service.",
-                                      "There are too many declined trx’s"
-                                    ],
-                                  );
+                                  CardCancelDialog.show(context, onSelected: (reasonValue, needsReplacement) {
+                                    Navigator.pop(context);
+                                    model.cancelCard(reasonValue);
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onError: (AppError error) {
+                                    model.showToastWithError(error);
+                                  },
+                                      reasons: StringUtils.isDirectionRTL(context)
+                                          ? model.creditCardCancellationReasonAr
+                                          : model.creditCardCancellationReasonEn);
                                 },
                                 title: S.of(context).cancelThisCard,
                                 tileIcon: AssetUtils.cancelCard,

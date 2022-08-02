@@ -86,6 +86,17 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   Stream<bool> get showDialogStream => _showDialogRequestSubject.stream;
 
+  List<String> debitCardcancellationReason = [
+    "I don’t need my card anymore.",
+    "I'am dissatisfied with service.",
+    "There are too many declined trx’s"
+  ];
+  List<String> debitCardcancellationReasonAr = [
+    "عدم الحاجة الى البطاقة",
+    " غير راضي عن الخدمة المقدمة",
+    "كثرة الحركات المرفوضة"
+  ];
+
   DebitCardSettingsViewModel(
       this._freezeDebitCardUseCase,
       this._unFreezeDebitCardUseCase,
