@@ -213,7 +213,7 @@
   "invalidDOB": "أدخل تاريخ الميلاد",
   "invalidCitizenship": "أدخل دولة الجنسية",
   "pleaseProvideInformationIfAppliesToYou": "أدخل المعلومات التالية إذا بتنطبق عليك",
-  "PermanentResidentAddressLine": "عنوان الإقامة الدائمة",
+  "permanentResidentAddressLine": "عنوان الإقامة الدائمة",
   "state": "الولاية",
   "city": "المدينة",
   "country": "الدولة",

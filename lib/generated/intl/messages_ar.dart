@@ -1634,6 +1634,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان السكن الدائم"),
         "permanentResidence":
             MessageLookupByLibrary.simpleMessage("العنوان الدائم"),
+        "permanentResidentAddressLine":
+            MessageLookupByLibrary.simpleMessage("عنوان الإقامة الدائمة"),
         "personName": MessageLookupByLibrary.simpleMessage("اسم الشخص"),
         "personRole": MessageLookupByLibrary.simpleMessage("وظيفته"),
         "personalDetails":

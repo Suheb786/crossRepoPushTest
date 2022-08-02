@@ -62,14 +62,14 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       AdditionalIncome(type: 'Other'),
     ];
     List<AdditionalIncome> additionalIncomeAr = [
-      AdditionalIncome(type: 'راتب اضافي'),
-      AdditionalIncome(type: 'تب تقاعد '),
-      AdditionalIncome(type: 'خل من أعمال حرة'),
-      AdditionalIncome(type: 'تب اضافي , فز , مولة  '),
-      AdditionalIncome(type: 'خل الايجار'),
-      AdditionalIncome(type: 'ستثمار'),
+      AdditionalIncome(type: 'راتب إضافي'),
+      AdditionalIncome(type: "راتب تقاعد"),
+      AdditionalIncome(type: "الدخل المستقل"),
+      AdditionalIncome(type: "مكافئات وأجور وعمولات"),
+      AdditionalIncome(type: 'عائد من الإيجارات'),
+      AdditionalIncome(type: "استثمارات"),
       AdditionalIncome(type: 'عمل خاص'),
-      AdditionalIncome(type: 'خصص عائلي'),
+      AdditionalIncome(type: "بدل الأسرة"),
       AdditionalIncome(type: 'خرى'),
     ];
     return Future.value(Intl.getCurrentLocale() == 'en' ? additionalIncomeEn : additionalIncomeAr);

@@ -22,39 +22,28 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
-  GlobalKey<AppTextFieldState> occupationKey =
-      new GlobalKey(debugLabel: "occupation");
+  GlobalKey<AppTextFieldState> occupationKey = new GlobalKey(debugLabel: "occupation");
 
   final TextEditingController businessTypeController = TextEditingController();
-  GlobalKey<AppTextFieldState> businessTypeKey =
-      new GlobalKey(debugLabel: "businessType");
+  GlobalKey<AppTextFieldState> businessTypeKey = new GlobalKey(debugLabel: "businessType");
 
-  final TextEditingController businessTypeOtherController =
-      TextEditingController();
-  GlobalKey<AppTextFieldState> businessTypeOtherKey =
-      new GlobalKey(debugLabel: "businessTypeOther");
+  final TextEditingController businessTypeOtherController = TextEditingController();
+  GlobalKey<AppTextFieldState> businessTypeOtherKey = new GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
-  GlobalKey<AppTextFieldState> annualIncomeKey =
-      new GlobalKey(debugLabel: "annualIncome");
+  GlobalKey<AppTextFieldState> annualIncomeKey = new GlobalKey(debugLabel: "annualIncome");
 
   final TextEditingController employerNameController = TextEditingController();
-  GlobalKey<AppTextFieldState> employerNameKey =
-      new GlobalKey(debugLabel: "employerName");
+  GlobalKey<AppTextFieldState> employerNameKey = new GlobalKey(debugLabel: "employerName");
 
-  final TextEditingController employerCountryController =
-      TextEditingController();
-  GlobalKey<AppTextFieldState> employerCountryKey =
-      new GlobalKey(debugLabel: "employerCountry");
+  final TextEditingController employerCountryController = TextEditingController();
+  GlobalKey<AppTextFieldState> employerCountryKey = new GlobalKey(debugLabel: "employerCountry");
 
   final TextEditingController employerCityController = TextEditingController();
-  GlobalKey<AppTextFieldState> employerCityKey =
-      new GlobalKey(debugLabel: "employerCity");
+  GlobalKey<AppTextFieldState> employerCityKey = new GlobalKey(debugLabel: "employerCity");
 
-  final TextEditingController employerContactController =
-      TextEditingController();
-  GlobalKey<AppTextFieldState> employerContactKey =
-      new GlobalKey(debugLabel: "employerContact");
+  final TextEditingController employerContactController = TextEditingController();
+  GlobalKey<AppTextFieldState> employerContactKey = new GlobalKey(debugLabel: "employerContact");
 
   ///update occupation  textfield value
   void updateOccupation(String value) {
@@ -69,14 +58,12 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   }
 
   /// business type other visibility Subject holder
-  BehaviorSubject<bool> _businessTypeOtherVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _businessTypeOtherVisibilitySubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get businessTypeOtherVisibilityStream =>
-      _businessTypeOtherVisibilitySubject.stream;
+  Stream<bool> get businessTypeOtherVisibilityStream => _businessTypeOtherVisibilitySubject.stream;
 
   void updateBusinessTypeOtherVisibility() {
-    if (businessTypeController.text == 'Other') {
+    if (businessTypeController.text == 'Other' || businessTypeController.text == 'أخرى') {
       _businessTypeOtherVisibilitySubject.safeAdd(true);
     } else {
       _businessTypeOtherVisibilitySubject.safeAdd(false);
@@ -84,16 +71,13 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   }
 
   ///employment details request subject holder
-  PublishSubject<JobAndIncomeUseCaseParams> _jobAndIncomeRequest =
-      PublishSubject();
+  PublishSubject<JobAndIncomeUseCaseParams> _jobAndIncomeRequest = PublishSubject();
 
   ///employment details response holder
-  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
-      PublishSubject();
+  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse = PublishSubject();
 
   ///employment details stream
-  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
-      _jobAndIncomeResponse.stream;
+  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream => _jobAndIncomeResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -115,24 +99,21 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   List<GetComboValuesData> businessTypeList = [];
 
   ///additional income source list holder
-  final BehaviorSubject<List<AdditionalIncomeType>>
-      _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+  final BehaviorSubject<List<AdditionalIncomeType>> _additionalIncomeSourceSubject =
+      BehaviorSubject.seeded([]);
 
   ///additional income source response stream
   Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
       _additionalIncomeSourceSubject.stream;
 
   ///get combo values request subject holder
-  PublishSubject<GetComboValuesUseCaseParams> _getComboValuesRequest =
-      PublishSubject();
+  PublishSubject<GetComboValuesUseCaseParams> _getComboValuesRequest = PublishSubject();
 
   ///get combo values response holder
-  PublishSubject<Resource<GetComboValuesResponse>> _getComboValuesResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetComboValuesResponse>> _getComboValuesResponse = PublishSubject();
 
   ///get combo values stream
-  Stream<Resource<GetComboValuesResponse>> get getComboValuesStream =>
-      _getComboValuesResponse.stream;
+  Stream<Resource<GetComboValuesResponse>> get getComboValuesStream => _getComboValuesResponse.stream;
 
   bool isValid() {
     bool valid = false;
@@ -171,11 +152,9 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  JobAndIncomePageViewModel(
-      this._jobAndIncomeUseCase, this._getComboValuesUseCase) {
+  JobAndIncomePageViewModel(this._jobAndIncomeUseCase, this._getComboValuesUseCase) {
     _jobAndIncomeRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _jobAndIncomeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _jobAndIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -188,8 +167,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     });
 
     _getComboValuesRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getComboValuesUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getComboValuesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -198,8 +176,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          businessTypeList = event.data!.getComboValuesContent!
-              .getComboValuesContentData!.businessType!;
+          businessTypeList = event.data!.getComboValuesContent!.getComboValuesContentData!.businessType!;
         }
       });
     });
