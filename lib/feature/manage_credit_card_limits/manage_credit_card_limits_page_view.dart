@@ -157,8 +157,12 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                               false,
                                                           title: S.of(context).atmWithDrawal,
                                                           amountSet: creditCardLimitResponse
-                                                                  .data!.cardLimit!.atmCurrentLimit ??
-                                                              '0',
+                                                                      .data!.cardLimit!.atmCurrentLimit ==
+                                                                  '0.001'
+                                                              ? '0'
+                                                              : creditCardLimitResponse
+                                                                      .data!.cardLimit!.atmCurrentLimit ??
+                                                                  '0',
                                                           maxAmount: creditCardLimitResponse
                                                                   .data!.cardLimit!.atmMaxLimit ??
                                                               '0',
@@ -206,9 +210,13 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           initialValue: creditCardLimitResponse
                                                                   .data!.cardLimit!.isMerchant ??
                                                               false,
-                                                          amountSet: creditCardLimitResponse
-                                                                  .data!.cardLimit!.merchantCurrentLimit ??
-                                                              '0',
+                                                          amountSet: creditCardLimitResponse.data!.cardLimit!
+                                                                      .merchantCurrentLimit ==
+                                                                  '0.001'
+                                                              ? '0'
+                                                              : creditCardLimitResponse.data!.cardLimit!
+                                                                      .merchantCurrentLimit ??
+                                                                  '0',
                                                           maxAmount: creditCardLimitResponse
                                                                   .data!.cardLimit!.merchantMaxLimit ??
                                                               '0',
