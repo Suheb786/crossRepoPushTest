@@ -316,6 +316,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cancel this card"),
         "cannotApplyCCInsufficientFunds": MessageLookupByLibrary.simpleMessage(
             "You can not apply for credit card due to insufficient funds"),
+        "cannotProceedNoAhwalDataFound": MessageLookupByLibrary.simpleMessage(
+            "Can not proceed on-boarding since there is no data found against the national id no"),
         "cardApplyMsg": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
         "cardDelivered":

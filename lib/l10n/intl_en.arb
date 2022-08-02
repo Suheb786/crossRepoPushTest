@@ -1369,5 +1369,6 @@
   "noTransactionToDisplay": "No Transaction to display",
   "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds",
   "helloE": "Hello!",
-  "amountGreaterThan0": "Amount to pay should be greater than 0"
+  "amountGreaterThan0": "Amount to pay should be greater than 0",
+  "cannotProceedNoAhwalDataFound": "Can not proceed on-boarding since there is no data found against the national id no"
 }

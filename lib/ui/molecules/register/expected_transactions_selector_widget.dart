@@ -33,15 +33,9 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: Theme.of(context)
-                          .inputDecorationTheme
-                          .enabledBorder!
-                          .borderSide
-                          .color,
+                      color: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
                       width: 1)),
-              child: expectedTransactions.isSelected
-                  ? AppSvg.asset(AssetUtils.correct)
-                  : Container(),
+              child: expectedTransactions.isSelected ? AppSvg.asset(AssetUtils.correct) : Container(),
             ),
             SizedBox(
               width: 16,
@@ -50,9 +44,7 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
               child: Text(
                 expectedTransactions.type!,
                 style: TextStyle(
-                    color: Theme.of(context).primaryColorDark,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600),
+                    color: Theme.of(context).primaryColorDark, fontSize: 14, fontWeight: FontWeight.w600),
               ),
             ),
           ],

@@ -52,8 +52,6 @@ extension EmploymentStatusEnumExt on String {
         return EmploymentStatusEnum.RETIRED;
       case "عاطل عن العم":
         return EmploymentStatusEnum.UNEMPLOYED;
-      case "Other":
-        return EmploymentStatusEnum.OTHER;
       default:
         return EmploymentStatusEnum.NONE;
     }

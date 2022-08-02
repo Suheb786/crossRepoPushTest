@@ -1081,6 +1081,8 @@ class ErrorParser {
         return localisedHelper.cannotApplyCCInsufficientFunds;
       case ErrorType.AMOUNT_GREATER_THAN_ZERO:
         return localisedHelper.amountGreaterThan0;
+      case ErrorType.CANNOT_PROCEED_NO_AHWAL_DATA_FOUND:
+        return localisedHelper.cannotProceedNoAhwalDataFound;
 
       default:
         return "";

@@ -8,7 +8,7 @@ class TaxPayerDialogViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   List<String> taxPayerListW9 = ['Social Security', 'Employer'];
-  List<String> taxPayerListW8 = ['U.S.', 'جنبي'];
+  List<String> taxPayerListW8 = ['U.S.', 'Foreign'];
   List<String> taxPayerListW9Ar = ['ان اجتماعي', 'لجهة الوظيفية'];
   List<String> taxPayerListW8Ar = ['U.S.', 'اجنبي'];
 

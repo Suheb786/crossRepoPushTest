@@ -296,6 +296,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "cancelTheCard": MessageLookupByLibrary.simpleMessage("إلغاء البطاقة؟"),
         "cancelThisCard": MessageLookupByLibrary.simpleMessage("إلغاء البطاقة"),
+        "cannotProceedNoAhwalDataFound": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن متابعة إعداد المستخدم نظرًا لعدم وجود بيانات مقابل رقم الهوية الوطنية"),
         "cardApplyMsg": MessageLookupByLibrary.simpleMessage(
             "رح يتواصلوا معك من أرامكس قريباً، ورح يوصلك الرمز السري PIN برسالة SMS. تواصل معنا إذا ما وصلتك البطاقة."),
         "cardDelivered": MessageLookupByLibrary.simpleMessage("وصلتك البطاقة؟"),

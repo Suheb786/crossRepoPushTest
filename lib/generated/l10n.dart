@@ -13480,6 +13480,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Can not proceed on-boarding since there is no data found against the national id no`
+  String get cannotProceedNoAhwalDataFound {
+    return Intl.message(
+      'Can not proceed on-boarding since there is no data found against the national id no',
+      name: 'cannotProceedNoAhwalDataFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

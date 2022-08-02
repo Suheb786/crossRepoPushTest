@@ -73,14 +73,13 @@ class TimeUtils {
   }
 
   static Iterable<String> getTimeRange() {
-    var base =
-        DateTime.fromMillisecondsSinceEpoch(11 * Duration.millisecondsPerHour);
-    var list =
-        List.generate(48, (index) => base.add(Duration(minutes: 30) * index))
-            .map((dt) => DateFormat.jm().format(dt));
+    var base = DateTime.fromMillisecondsSinceEpoch(11 * Duration.millisecondsPerHour);
+    var list = List.generate(48, (index) => base.add(Duration(minutes: 30) * index))
+        .map((dt) => DateFormat.jm().format(dt));
     return list;
   }
 
+  ///check whether data saved in backend or giving error
   static String getFormattedDOB(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
     final DateFormat formatter = DateFormat('dd/MM/y');
@@ -88,7 +87,7 @@ class TimeUtils {
   }
 
   static String getFormattedMMMYYYY(String date) {
-    final DateTime dateTime = DateFormat('MM/yyyy').parse(date).toLocal();
+    final DateTime dateTime = DateFormat('MM/yyyy', 'en_US').parse(date).toLocal();
     return DateFormat('MMM yyyy').format(dateTime);
   }
 
@@ -99,7 +98,7 @@ class TimeUtils {
   }
 
   static String getFormattedDateForAccountTransaction(String date) {
-    final DateTime dateTime = DateFormat('M/d/yyyy').parse(date).toLocal();
+    final DateTime dateTime = DateFormat('M/d/yyyy', 'en_US').parse(date).toLocal();
     return DateFormat('d MMMM').format(dateTime);
   }
 

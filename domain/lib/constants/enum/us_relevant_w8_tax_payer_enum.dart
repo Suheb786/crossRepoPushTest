@@ -9,11 +9,9 @@ class USRelevantW8TaxPayerEnum {
   }
 
   static const USRelevantW8TaxPayerEnum US = USRelevantW8TaxPayerEnum._("U.S.");
-  static const USRelevantW8TaxPayerEnum FOREIGN =
-      USRelevantW8TaxPayerEnum._("Foreign");
+  static const USRelevantW8TaxPayerEnum FOREIGN = USRelevantW8TaxPayerEnum._("Foreign");
 
-  static const USRelevantW8TaxPayerEnum NONE =
-      USRelevantW8TaxPayerEnum._("None");
+  static const USRelevantW8TaxPayerEnum NONE = USRelevantW8TaxPayerEnum._("None");
 }
 
 extension USRelevantW8TaxPayerEnumExt on String {
@@ -22,6 +20,8 @@ extension USRelevantW8TaxPayerEnumExt on String {
       case "U.S.":
         return USRelevantW8TaxPayerEnum.US;
       case "Foreign":
+        return USRelevantW8TaxPayerEnum.FOREIGN;
+      case "اجنبي":
         return USRelevantW8TaxPayerEnum.FOREIGN;
       default:
         return USRelevantW8TaxPayerEnum.NONE;
