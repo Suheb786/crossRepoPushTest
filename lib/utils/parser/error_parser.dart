@@ -1077,6 +1077,12 @@ class ErrorParser {
         return localisedHelper.selectAMount;
       case ErrorType.SELECT_REGION:
         return localisedHelper.selectRegion;
+      case ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS:
+        return localisedHelper.cannotApplyCCInsufficientFunds;
+      case ErrorType.AMOUNT_GREATER_THAN_ZERO:
+        return localisedHelper.amountGreaterThan0;
+      case ErrorType.CANNOT_PROCEED_NO_AHWAL_DATA_FOUND:
+        return localisedHelper.cannotProceedNoAhwalDataFound;
 
       default:
         return "";

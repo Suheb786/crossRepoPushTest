@@ -21,16 +21,13 @@ class AccountTransactionViewModel extends BasePageViewModel {
   TextEditingController searchController = TextEditingController();
 
   ///get transaction request
-  PublishSubject<GetDebitCardTransactionsUseCaseParams>
-      _getTransactionsRequest = PublishSubject();
+  PublishSubject<GetDebitCardTransactionsUseCaseParams> _getTransactionsRequest = PublishSubject();
 
   ///get transaction response
-  PublishSubject<Resource<GetTransactionsResponse>> _getTransactionsResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetTransactionsResponse>> _getTransactionsResponse = PublishSubject();
 
   ///get transaction response stream
-  Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
-      _getTransactionsResponse.stream;
+  Stream<Resource<GetTransactionsResponse>> get getTransactionsStream => _getTransactionsResponse.stream;
 
   Resource<GetTransactionsResponse>? transactionsResponse;
 
@@ -39,16 +36,13 @@ class AccountTransactionViewModel extends BasePageViewModel {
   List<GetTransactionsResponse> transactionList = [];
 
   ///get debit years
-  PublishSubject<GetDebitYearsUseCaseParams> _getDebitYearsRequest =
-      PublishSubject();
+  PublishSubject<GetDebitYearsUseCaseParams> _getDebitYearsRequest = PublishSubject();
 
   ///get debit response
-  PublishSubject<Resource<GetDebitYearsResponse>> _getDebitYearsResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetDebitYearsResponse>> _getDebitYearsResponse = PublishSubject();
 
   ///get debit response stream
-  Stream<Resource<GetDebitYearsResponse>> get getDebitYearsStream =>
-      _getDebitYearsResponse.stream;
+  Stream<Resource<GetDebitYearsResponse>> get getDebitYearsStream => _getDebitYearsResponse.stream;
 
   List<String> _searchTextList = [];
 
@@ -67,11 +61,9 @@ class AccountTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  BehaviorSubject<List<TransactionItem>> _transactionListSubject =
-      BehaviorSubject();
+  BehaviorSubject<List<TransactionItem>> _transactionListSubject = BehaviorSubject();
 
-  Stream<List<TransactionItem>> get transactionListStream =>
-      _transactionListSubject.stream;
+  Stream<List<TransactionItem>> get transactionListStream => _transactionListSubject.stream;
 
   BehaviorSubject<List<String>> _searchTextSubject = BehaviorSubject();
 
@@ -79,11 +71,9 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  AccountTransactionViewModel(
-      this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
+  AccountTransactionViewModel(this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
     _getTransactionsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardTransactionsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -99,8 +89,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
     });
 
     _getDebitYearsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _debitYearsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _debitYearsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -128,10 +117,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
           GetTransactionsResponse getTransactionsResponse;
           for (i = 0; i < element.transactions!.length; i++) {
             print("description: ${element.transactions![i].description}");
-            if ((element.transactions![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
+            if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
                 (element.transactions![i].description
                     .toString()
                     .toLowerCase()
@@ -157,8 +143,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
             }
           }
           if (searchList.isNotEmpty) {
-            searchContent = TransactionContent(
-                label: element.label!, transactions: searchList);
+            searchContent = TransactionContent(label: element.label!, transactions: searchList);
             tempList.add(searchContent);
           }
         });
@@ -171,10 +156,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
           TransactionContent searchContent;
           GetTransactionsResponse getTransactionsResponse;
           for (i = 0; i < element.transactions!.length; i++) {
-            if ((element.transactions![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
+            if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
                 (element.transactions![i].description
                     .toString()
                     .toLowerCase()
@@ -200,30 +182,25 @@ class AccountTransactionViewModel extends BasePageViewModel {
             }
           }
           if (searchList.isNotEmpty) {
-            searchContent = TransactionContent(
-                label: element.label!, transactions: searchList);
+            searchContent = TransactionContent(label: element.label!, transactions: searchList);
             tempList.add(searchContent);
           }
         });
       }
       if (tempList.isNotEmpty) {
-        getTransactionsResponse =
-            GetTransactionsResponse(transactionResponse: tempList);
-        searchTransactionResponse =
-            Resource.success(data: getTransactionsResponse);
+        getTransactionsResponse = GetTransactionsResponse(transactionResponse: tempList);
+        searchTransactionResponse = Resource.success(data: getTransactionsResponse);
         _getTransactionsResponse.safeAdd(searchTransactionResponse);
         searchTransactionList = [];
         searchTransactionList.addAll(tempList);
       } else {
-        _getTransactionsResponse
-            .safeAdd(Resource.none<GetTransactionsResponse>());
+        _getTransactionsResponse.safeAdd(Resource.none<GetTransactionsResponse>());
       }
     }
   }
 
   void getTransactions({num? noOfDays}) {
-    _getTransactionsRequest.safeAdd(
-        GetDebitCardTransactionsUseCaseParams(noOfDays: noOfDays ?? 180));
+    _getTransactionsRequest.safeAdd(GetDebitCardTransactionsUseCaseParams(noOfDays: noOfDays ?? 180));
   }
 
   void getFilteredData(String value) {
@@ -237,6 +214,12 @@ class AccountTransactionViewModel extends BasePageViewModel {
       case "Last 3 months":
         return 90;
       case "Last 6 months":
+        return 180;
+      case "آخر 30 يوم":
+        return 30;
+      case "آخر 3 اشهر":
+        return 90;
+      case "آخر 6 اشهر":
         return 180;
       default:
         return 180;

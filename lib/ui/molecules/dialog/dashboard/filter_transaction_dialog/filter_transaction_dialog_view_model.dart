@@ -3,14 +3,10 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FilterTransactionDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-  FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
-  List<String> filterTransactionList = [
-    "Last 30 days",
-    "Last 3 months",
-    "Last 6 months"
-  ];
+  List<String> filterTransactionList = ["Last 30 days", "Last 3 months", "Last 6 months"];
+  List<String> filterTransactionListAr = ["آخر 30 يوم", "آخر 3 اشهر", "آخر 6 اشهر"];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();

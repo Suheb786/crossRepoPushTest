@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsViewModel> {
   CreditCardSettingsPageView(ProviderBase model) : super(model);
@@ -156,34 +157,37 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                     },
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
-                                    trailing: FlutterSwitch(
-                                      value: data!,
-                                      onToggle: (value) {
-                                        if (value) {
-                                          model.updateShowDialog(true);
-                                        }
-                                        model.toggleFreezeCardStatus(value);
-                                        if (!value) {
-                                          model.unFreezeCard(
-                                              model.creditCardSettingsArguments.creditCard.cardId ?? '');
-                                        }
-                                      },
-                                      width: 60,
-                                      height: 35,
-                                      padding: 4,
-                                      activeText: S.of(context).yes,
-                                      activeTextColor: AppColor.white,
-                                      inactiveTextColor: AppColor.darkGray,
-                                      activeTextFontWeight: FontWeight.w500,
-                                      showOnOff: true,
-                                      valueFontSize: 10,
-                                      activeToggleColor: AppColor.white,
-                                      inactiveText: S.of(context).no,
-                                      inactiveToggleColor: AppColor.lightGrayishMagenta,
-                                      inactiveTextFontWeight: FontWeight.w500,
-                                      inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                      activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                      inactiveColor: Theme.of(context).accentColor,
+                                    trailing: Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: FlutterSwitch(
+                                        value: data!,
+                                        onToggle: (value) {
+                                          if (value) {
+                                            model.updateShowDialog(true);
+                                          }
+                                          model.toggleFreezeCardStatus(value);
+                                          if (!value) {
+                                            model.unFreezeCard(
+                                                model.creditCardSettingsArguments.creditCard.cardId ?? '');
+                                          }
+                                        },
+                                        width: 60,
+                                        height: 35,
+                                        padding: 4,
+                                        activeText: S.of(context).yes,
+                                        activeTextColor: AppColor.white,
+                                        inactiveTextColor: AppColor.darkGray,
+                                        activeTextFontWeight: FontWeight.w500,
+                                        showOnOff: true,
+                                        valueFontSize: 10,
+                                        activeToggleColor: AppColor.white,
+                                        inactiveText: S.of(context).no,
+                                        inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                        inactiveTextFontWeight: FontWeight.w500,
+                                        inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                        inactiveColor: Theme.of(context).accentColor,
+                                      ),
                                     ),
                                   );
                                 },
@@ -414,28 +418,17 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 isNotify: true,
                                 isEnabled: false,
                                 onTap: () {
-                                  CardCancelDialog.show(
-                                    context,
-                                    onSelected: (reasonValue, needsReplacement) {
-                                      Navigator.pop(context);
-                                      model.cancelCard(reasonValue);
-                                    },
-                                    onDismissed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    onError: (AppError error) {
-                                      model.showToastWithError(error);
-                                    },
-                                    reasons: [
-                                      "I don’t need my card anymore.",
-                                      "High interest, fees & charges.",
-                                      "I feel the credit limit is low.",
-                                      "High FX rates.",
-                                      "I’m trying to control my expenses.",
-                                      "I’m dissatisfied with service.",
-                                      "There are too many declined trx’s"
-                                    ],
-                                  );
+                                  CardCancelDialog.show(context, onSelected: (reasonValue, needsReplacement) {
+                                    Navigator.pop(context);
+                                    model.cancelCard(reasonValue);
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  }, onError: (AppError error) {
+                                    model.showToastWithError(error);
+                                  },
+                                      reasons: StringUtils.isDirectionRTL(context)
+                                          ? model.creditCardCancellationReasonAr
+                                          : model.creditCardCancellationReasonEn);
                                 },
                                 title: S.of(context).cancelThisCard,
                                 tileIcon: AssetUtils.cancelCard,

@@ -6960,10 +6960,10 @@ class S {
     );
   }
 
-  /// `Your may use your card PIN for payments immediately.`
+  /// `Your first transaction will be declined, don't worry the second one will work.`
   String get cardPinSucccesFullyUnblockedDesc {
     return Intl.message(
-      'Your may use your card PIN for payments immediately.',
+      'Your first transaction will be declined, don\'t worry the second one will work.',
       name: 'cardPinSucccesFullyUnblockedDesc',
       desc: '',
       args: [],
@@ -7110,10 +7110,10 @@ class S {
     );
   }
 
-  /// `Your may use your new PIN for payments immediately.`
+  /// `You need to visit any ATM to activate your new PIN`
   String get cardPinChangedDesc {
     return Intl.message(
-      'Your may use your new PIN for payments immediately.',
+      'You need to visit any ATM to activate your new PIN',
       name: 'cardPinChangedDesc',
       desc: '',
       args: [],
@@ -13395,6 +13395,96 @@ class S {
     return Intl.message(
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.',
       name: 'eVoucherDetailDescption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Activity to Display`
+  String get noActivityToDisplay {
+    return Intl.message(
+      'No Activity to Display',
+      name: 'noActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Payment activity to display`
+  String get noPaymentActivityToDisplay {
+    return Intl.message(
+      'No Payment activity to display',
+      name: 'noPaymentActivityToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe to view more`
+  String get swipeToViewMore {
+    return Intl.message(
+      'Swipe to view more',
+      name: 'swipeToViewMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from `
+  String get fromS {
+    return Intl.message(
+      'from ',
+      name: 'fromS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Transaction to display`
+  String get noTransactionToDisplay {
+    return Intl.message(
+      'No Transaction to display',
+      name: 'noTransactionToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can not apply for credit card due to insufficient funds`
+  String get cannotApplyCCInsufficientFunds {
+    return Intl.message(
+      'You can not apply for credit card due to insufficient funds',
+      name: 'cannotApplyCCInsufficientFunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello!`
+  String get helloE {
+    return Intl.message(
+      'Hello!',
+      name: 'helloE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount to pay should be greater than 0`
+  String get amountGreaterThan0 {
+    return Intl.message(
+      'Amount to pay should be greater than 0',
+      name: 'amountGreaterThan0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can not proceed on-boarding since there is no data found against the national id no`
+  String get cannotProceedNoAhwalDataFound {
+    return Intl.message(
+      'Can not proceed on-boarding since there is no data found against the national id no',
+      name: 'cannotProceedNoAhwalDataFound',
       desc: '',
       args: [],
     );

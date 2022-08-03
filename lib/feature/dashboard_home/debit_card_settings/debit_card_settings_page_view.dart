@@ -26,6 +26,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsViewModel> {
   DebitCardSettingsPageView(ProviderBase model) : super(model);
@@ -100,8 +101,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsetsDirectional.only(
-                                              start: 8.0, bottom: 10),
+                                          padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 10),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
                                               style: TextStyle(fontSize: 14, height: 1.7)),
                                         ),
@@ -156,35 +156,39 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     },
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
-                                    trailing: FlutterSwitch(
-                                      value: data!,
-                                      onToggle: (value) {
-                                        if (value) {
-                                          model.updateShowDialog(true);
-                                        }
-                                        model.toggleFreezeCardStatus(value);
-                                        if (!value) {
-                                          model.unFreezeCard(
-                                              status: 'SR',
-                                              tokenizedPan: model.debitCardSettingsArguments.debitCard.code);
-                                        }
-                                      },
-                                      width: 60,
-                                      height: 35,
-                                      padding: 4,
-                                      activeText: S.of(context).yes,
-                                      activeTextColor: AppColor.white,
-                                      inactiveTextColor: AppColor.darkGray,
-                                      activeTextFontWeight: FontWeight.w500,
-                                      showOnOff: true,
-                                      valueFontSize: 10,
-                                      activeToggleColor: AppColor.white,
-                                      inactiveText: S.of(context).no,
-                                      inactiveToggleColor: AppColor.lightGrayishMagenta,
-                                      inactiveTextFontWeight: FontWeight.w500,
-                                      inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-                                      activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                      inactiveColor: Theme.of(context).accentColor,
+                                    trailing: Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: FlutterSwitch(
+                                        value: data!,
+                                        onToggle: (value) {
+                                          if (value) {
+                                            model.updateShowDialog(true);
+                                          }
+                                          model.toggleFreezeCardStatus(value);
+                                          if (!value) {
+                                            model.unFreezeCard(
+                                                status: 'SR',
+                                                tokenizedPan:
+                                                    model.debitCardSettingsArguments.debitCard.code);
+                                          }
+                                        },
+                                        width: 60,
+                                        height: 35,
+                                        padding: 4,
+                                        activeText: S.of(context).yes,
+                                        activeTextColor: AppColor.white,
+                                        inactiveTextColor: AppColor.darkGray,
+                                        activeTextFontWeight: FontWeight.w500,
+                                        showOnOff: true,
+                                        valueFontSize: 10,
+                                        activeToggleColor: AppColor.white,
+                                        inactiveText: S.of(context).no,
+                                        inactiveToggleColor: AppColor.lightGrayishMagenta,
+                                        inactiveTextFontWeight: FontWeight.w500,
+                                        inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                                        inactiveColor: Theme.of(context).accentColor,
+                                      ),
                                     ),
                                   );
                                 },
@@ -376,43 +380,37 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       dataBuilder: (context, data) {
                                         return SettingTile(
                                           onTap: () {
-                                            CardCancelDialog.show(
-                                              context,
-                                              onSelected: (reasonValue, needsReplacement) {
-                                                model.needsReplacement = needsReplacement;
-                                                Navigator.pop(context);
-                                                if (model.debitCardSettingsArguments.debitCard
-                                                        .primarySecondaryCard ==
-                                                    PrimarySecondaryEnum.PRIMARY) {
-                                                  model.cancelCard(
-                                                      status: 'TE',
-                                                      reasonValue: reasonValue,
-                                                      tokenizedPlan:
-                                                          model.debitCardSettingsArguments.debitCard.code,
-                                                      cancellationReason: reasonValue);
-                                                } else if (model.debitCardSettingsArguments.debitCard
-                                                        .primarySecondaryCard ==
-                                                    PrimarySecondaryEnum.SECONDARY) {
-                                                  if (needsReplacement) {
-                                                    model.removeOrReapplySuppDebitCardWithResponse(
-                                                        needsReplacement);
-                                                  } else {
-                                                    model.removeOrReapplySuppDebitCard(needsReplacement);
-                                                  }
+                                            CardCancelDialog.show(context,
+                                                onSelected: (reasonValue, needsReplacement) {
+                                              model.needsReplacement = needsReplacement;
+                                              Navigator.pop(context);
+                                              if (model.debitCardSettingsArguments.debitCard
+                                                      .primarySecondaryCard ==
+                                                  PrimarySecondaryEnum.PRIMARY) {
+                                                model.cancelCard(
+                                                    status: 'TE',
+                                                    reasonValue: reasonValue,
+                                                    tokenizedPlan:
+                                                        model.debitCardSettingsArguments.debitCard.code,
+                                                    cancellationReason: reasonValue);
+                                              } else if (model.debitCardSettingsArguments.debitCard
+                                                      .primarySecondaryCard ==
+                                                  PrimarySecondaryEnum.SECONDARY) {
+                                                if (needsReplacement) {
+                                                  model.removeOrReapplySuppDebitCardWithResponse(
+                                                      needsReplacement);
+                                                } else {
+                                                  model.removeOrReapplySuppDebitCard(needsReplacement);
                                                 }
-                                              },
-                                              onDismissed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              onError: (AppError error) {
-                                                model.showToastWithError(error);
-                                              },
-                                              reasons: [
-                                                "I don’t need my card anymore.",
-                                                "I'am dissatisfied with service.",
-                                                "There are too many declined trx’s"
-                                              ],
-                                            );
+                                              }
+                                            }, onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onError: (AppError error) {
+                                              model.showToastWithError(error);
+                                            },
+                                                reasons: StringUtils.isDirectionRTL(context)
+                                                    ? model.debitCardcancellationReasonAr
+                                                    : model.debitCardcancellationReason);
                                           },
                                           title: S.of(context).cancelThisCard,
                                           tileIcon: AssetUtils.cancelCard,

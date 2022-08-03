@@ -10,7 +10,6 @@ import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
@@ -93,10 +92,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                 )))
                                             .toList(),
                                         onChanged: (value) {
-                                          model.setLanguage(value!);
-                                          ProviderScope.containerOf(context)
-                                              .read(appViewModel)
-                                              .toggleLocale(value);
+                                          model.setLanguage(value!, context);
                                         },
                                         dropdownColor: Theme.of(context).primaryColor,
                                         icon: AppSvg.asset(AssetUtils.dropDown),
@@ -427,14 +423,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                     if (data.status ==
                                                                                                         Status
                                                                                                             .SUCCESS) {
-                                                                                                      model.setLanguage(data.data!.selectedLanguage !=
-                                                                                                              null
-                                                                                                          ? data.data!.selectedLanguage!.fromLanguageValue()
-                                                                                                          : LanguageEnum.ENGLISH);
-                                                                                                      ProviderScope.containerOf(context).read(appViewModel).toggleLocale(data.data!.selectedLanguage !=
-                                                                                                              null
-                                                                                                          ? data.data!.selectedLanguage!.fromLanguageValue()
-                                                                                                          : LanguageEnum.ENGLISH);
                                                                                                       model.checkVersionUpdate(
                                                                                                           clear:
                                                                                                               "false");
@@ -444,11 +432,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                                             .ERROR) {
                                                                                                       if (data.appError!.type ==
                                                                                                           ErrorType.DB_USER_NOT_FOUND) {
-                                                                                                        model.setLanguage(
-                                                                                                            LanguageEnum.ENGLISH);
-                                                                                                        ProviderScope.containerOf(context)
-                                                                                                            .read(appViewModel)
-                                                                                                            .toggleLocale(LanguageEnum.ENGLISH);
                                                                                                         model.checkVersionUpdate(
                                                                                                             clear: "true");
                                                                                                       }

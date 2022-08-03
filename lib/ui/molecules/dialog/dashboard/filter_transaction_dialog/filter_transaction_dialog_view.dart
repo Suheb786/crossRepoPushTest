@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FilterTransactionDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -27,10 +28,8 @@ class FilterTransactionDialogView extends StatelessWidget {
     return BaseWidget<FilterTransactionDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -50,8 +49,7 @@ class FilterTransactionDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               S.of(context).transactionPeriod,
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -60,8 +58,7 @@ class FilterTransactionDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -72,11 +69,15 @@ class FilterTransactionDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
-                              key: ValueKey(model.filterTransactionList.length),
+                              key: ValueKey(StringUtils.isDirectionRTL(context)
+                                  ? model.filterTransactionListAr.length
+                                  : model.filterTransactionList.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
-                                itemCount: model.filterTransactionList.length,
+                                itemCount: StringUtils.isDirectionRTL(context)
+                                    ? model.filterTransactionListAr.length
+                                    : model.filterTransactionList.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
@@ -88,31 +89,28 @@ class FilterTransactionDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount: model
-                                                .filterTransactionList.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return ListScrollWheelListWidget(
-                                                label:
-                                                    model.filterTransactionList[
-                                                        index],
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: model.filterTransactionList.length,
+                                        builder: (BuildContext context, int index) {
+                                          return ListScrollWheelListWidget(
+                                            label: StringUtils.isDirectionRTL(context)
+                                                ? model.filterTransactionListAr[index]
+                                                : model.filterTransactionList[index],
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(
-                                model.filterTransactionList[currentIndex!]);
+                            onSelected!.call(StringUtils.isDirectionRTL(context)
+                                ? model.filterTransactionListAr[currentIndex!]
+                                : model.filterTransactionList[currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -120,12 +118,8 @@ class FilterTransactionDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -134,9 +128,7 @@ class FilterTransactionDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.dark_gray_1),
+                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

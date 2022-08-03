@@ -31,10 +31,8 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
     return BaseWidget<PaymentActivityFilterDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -56,8 +54,7 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                               filterType == FilterType.type
                                   ? S.of(context).transactionType
                                   : S.of(context).transactionPeriod,
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -66,8 +63,7 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -78,15 +74,11 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
-                              key: ValueKey(model
-                                  .getTransactionList(filterType!)!
-                                  .length),
+                              key: ValueKey(model.getTransactionList(filterType!, context)!.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
-                                itemCount: model
-                                    .getTransactionList(filterType!)!
-                                    .length,
+                                itemCount: model.getTransactionList(filterType!, context)!.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
@@ -98,32 +90,24 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount: model
-                                                .getTransactionList(
-                                                    filterType!)!
-                                                .length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return PaymentScrollWheelWidget(
-                                                label: model.getTransactionList(
-                                                    filterType!)![index],
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: model.getTransactionList(filterType!, context)!.length,
+                                        builder: (BuildContext context, int index) {
+                                          return PaymentScrollWheelWidget(
+                                            label: model.getTransactionList(filterType!, context)![index],
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(model.getTransactionList(
-                                filterType!)![currentIndex!]);
+                            onSelected!.call(model.getTransactionList(filterType!, context)![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -131,12 +115,8 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -145,9 +125,7 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.dark_gray_1),
+                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

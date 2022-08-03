@@ -45,6 +45,7 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
 import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
+import 'package:data/entity/remote/card/card_in_process/get_card_in_process_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -568,7 +569,7 @@ abstract class ApiService {
       @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
 
   @POST("/CardTracking/ProccessLoanRequest")
-  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+  Future<HttpResponse<ResponseEntity>> processLoanRequest(
       @Body() ProcessLoanRequestEntity processLoanRequestEntity);
 
   @POST("/CardTracking/LinkCardStep")
@@ -738,4 +739,8 @@ abstract class ApiService {
       @Body()
           RemoveOrReApplySupplementaryDebitCardRequestEnity
               removeOrReApplySupplementaryDebitCardRequestEnity);
+
+  @POST("/CardTracking/GetCardInProcess")
+  Future<HttpResponse<ResponseEntity>> getCardInProcess(
+      @Body() GetCardInProcessRequestEntity getCardInProcessRequestEntity);
 }

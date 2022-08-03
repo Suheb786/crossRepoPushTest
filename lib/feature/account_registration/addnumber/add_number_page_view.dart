@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
@@ -54,9 +55,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                       }
                     };
                     InfobipMobilemessaging.submitEventImmediately(event);
-                    ProviderScope.containerOf(context)
-                        .read(accountRegistrationViewModelProvider)
-                        .nextPage();
+                    ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -92,8 +91,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                           child: Column(
                             children: [
                               AppStreamBuilder<Resource<CheckUsername>>(
@@ -101,6 +99,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 stream: model.checkUserNameStream,
                                 onData: (data) {
                                   if (data.status == Status.ERROR) {
+                                    if (data.appError!.type == ErrorType.EMAIL_ALREADY_EXIST) {
+                                      model.isEmailExist = 1;
+                                    }
                                     model.showToastWithError(data.appError!);
                                     model.showErrorState();
                                   }
@@ -123,68 +124,50 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               SizedBox(
                                 height: 16,
                               ),
-                              AppStreamBuilder<
-                                  Resource<AllowedCountryListResponse>>(
-                                initialData: Resource.success(
-                                    data: AllowedCountryListResponse()),
+                              AppStreamBuilder<Resource<AllowedCountryListResponse>>(
+                                initialData: Resource.success(data: AllowedCountryListResponse()),
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
                                     ProviderScope.containerOf(context)
-                                            .read(
-                                                accountRegistrationViewModelProvider)
-                                            .countryDataList =
-                                        data.data!.contentData!.countryData!;
+                                        .read(accountRegistrationViewModelProvider)
+                                        .countryDataList = data.data!.contentData!.countryData!;
                                   }
                                 },
                                 stream: model.getAllowedCountryStream,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<CountryData>(
-                                    initialData: CountryData(
-                                        isoCode3: 'JOR', phoneCode: '962'),
+                                    initialData: CountryData(isoCode3: 'JOR', phoneCode: '962'),
                                     stream: model.getSelectedCountryStream,
                                     dataBuilder: (context, selectedCountry) {
-                                      return AppStreamBuilder<
-                                          Resource<CheckUsername>>(
+                                      return AppStreamBuilder<Resource<CheckUsername>>(
                                         initialData: Resource.none(),
                                         stream: model.checkUserMobileStream,
                                         onData: (data) {
                                           if (data.status == Status.ERROR) {
-                                            model.showToastWithError(
-                                                data.appError!);
+                                            if (data.appError!.type == ErrorType.MOBILE_ALREADY_EXIST) {
+                                              model.isMobileNoExist = 1;
+                                            }
+                                            model.showToastWithError(data.appError!);
                                             model.showErrorState();
-                                          } else if (data.status ==
-                                              Status.SUCCESS) {
+                                          } else if (data.status == Status.SUCCESS) {
                                             ProviderScope.containerOf(context)
-                                                .read(
-                                                    accountRegistrationViewModelProvider)
-                                                .updateMobileNumber(
-                                                    MobileNumberParams(
-                                                        mobileCode: model
-                                                            .countryData
-                                                            .phoneCode!,
-                                                        mobileNumber: model
-                                                            .mobileNumberController
-                                                            .text));
+                                                .read(accountRegistrationViewModelProvider)
+                                                .updateMobileNumber(MobileNumberParams(
+                                                    mobileCode: model.countryData.phoneCode!,
+                                                    mobileNumber: model.mobileNumberController.text));
                                           }
                                         },
                                         dataBuilder: (context, data) {
                                           return AppTextField(
-                                            labelText: S
-                                                .of(context)
-                                                .mobileNumber
-                                                .toUpperCase(),
-                                            hintText:
-                                                S.of(context).mobileNumberHint,
+                                            labelText: S.of(context).mobileNumber.toUpperCase(),
+                                            hintText: S.of(context).mobileNumberHint,
                                             inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(
-                                                  model.countryData.mobileMax),
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(r'[0-9]')),
+                                              LengthLimitingTextInputFormatter(model.countryData.mobileMax),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                             ],
-                                            controller:
-                                                model.mobileNumberController,
+                                            controller: model.mobileNumberController,
                                             key: model.mobileNumberKey,
                                             onChanged: (value) {
                                               model.validateMobile();
@@ -193,86 +176,61 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                             prefixIcon: () {
                                               return InkWell(
                                                 onTap: () {
-                                                  MobileNumberDialog.show(
-                                                      context,
-                                                      title: S
-                                                          .of(context)
-                                                          .mobileNumber,
-                                                      selectedCountryData:
-                                                          model.countryData,
+                                                  MobileNumberDialog.show(context,
+                                                      title: S.of(context).mobileNumber,
+                                                      selectedCountryData: model.countryData,
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;
-                                                    model.setSelectedCountry(
-                                                        data);
-                                                    print(
-                                                        'selectedData---->${data.phoneCode}');
+                                                    model.setSelectedCountry(data);
+                                                    print('selectedData---->${data.phoneCode}');
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                      countryDataList: country!
-                                                          .data!
-                                                          .contentData!
-                                                          .countryData);
+                                                      countryDataList:
+                                                          country!.data!.contentData!.countryData);
                                                 },
                                                 child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8.0),
+                                                  padding: EdgeInsets.only(top: 8.0),
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                                    mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
                                                       Container(
                                                         height: 16,
                                                         width: 16,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark,
-                                                          shape:
-                                                              BoxShape.circle,
+                                                        decoration: BoxDecoration(
+                                                          color: Theme.of(context).primaryColorDark,
+                                                          shape: BoxShape.circle,
                                                         ),
-                                                        child: AppSvg.asset(selectedCountry!
-                                                                    .isoCode3 !=
-                                                                null
+                                                        child: AppSvg.asset(selectedCountry!.isoCode3 != null
                                                             ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
                                                             : "assets/flags/jor.svg"),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    8.0),
-                                                        child: Text(
-                                                          selectedCountry
-                                                                  .phoneCode!
-                                                                  .isNotEmpty
-                                                              ? '+${selectedCountry.phoneCode!}'
-                                                              : "",
-                                                          style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText1!
-                                                                .color,
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.ltr,
+                                                          child: Text(
+                                                            selectedCountry.phoneCode!.isNotEmpty
+                                                                ? '+${selectedCountry.phoneCode!}'
+                                                                : "",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
                                                       Container(
                                                           height: 16,
                                                           width: 16,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  right: 8),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .downArrow,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          margin: EdgeInsets.only(right: 8),
+                                                          child: AppSvg.asset(AssetUtils.downArrow,
+                                                              color: Theme.of(context)
                                                                   .primaryTextTheme
                                                                   .bodyText1!
                                                                   .color))
@@ -311,8 +269,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                       return Visibility(
                                         visible: isValid!,
                                         child: AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
+                                          buttonText: S.of(context).swipeToProceed,
                                         ),
                                       );
                                     }),

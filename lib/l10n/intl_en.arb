@@ -710,7 +710,7 @@
   "unBlockPin": "Unblock PIN?",
   "unBlockPinDescription": "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.",
   "cardPinSucccesFullyUnblocked": "You have successfully unblocked your card's PIN",
-  "cardPinSucccesFullyUnblockedDesc": "Your may use your card PIN for payments immediately.",
+  "cardPinSucccesFullyUnblockedDesc": "Your first transaction will be declined, don't worry the second one will work.",
   "backToDashboard": "Back to Dashboard",
   "atmWithDrawal": "ATM Withdrawal",
   "merchantPayments": "Merchant Payments",
@@ -729,7 +729,7 @@
   "confirmNewPin": "CONFIRM new pin ",
   "emptyConfirmPin": "Enter pin again",
   "cardPinChangedSuccessfully": "You have successfully changed your card's PIN",
-  "cardPinChangedDesc": "Your may use your new PIN for payments immediately.",
+  "cardPinChangedDesc": "You need to visit any ATM to activate your new PIN",
   "limitExceeded": "Limit exceeded",
   "whatRelationshipWithCardHolder": "What is your relationship\nwith the cardholder?",
   "relationship": "Relationship",
@@ -1361,5 +1361,14 @@
   "buyVoucherDetailSubSubTitle": "Valid until 24 December 2022",
   "eVoucherLandingDialogDescption": "You can now purchase and redeem e-vouchers from your favorite online & offline stores, locally and internationally.",
   "eVoucherSearchLabel": "What are you looking for?",
-  "eVoucherDetailDescption": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."
+  "eVoucherDetailDescption": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.",
+  "noActivityToDisplay": "No Activity to Display",
+  "noPaymentActivityToDisplay": "No Payment activity to display",
+  "swipeToViewMore": "Swipe to view more",
+  "fromS": "from ",
+  "noTransactionToDisplay": "No Transaction to display",
+  "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds",
+  "helloE": "Hello!",
+  "amountGreaterThan0": "Amount to pay should be greater than 0",
+  "cannotProceedNoAhwalDataFound": "Can not proceed on-boarding since there is no data found against the national id no"
 }

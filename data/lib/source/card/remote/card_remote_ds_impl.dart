@@ -4,6 +4,7 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
 import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
+import 'package:data/entity/remote/card/card_in_process/get_card_in_process_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -39,7 +40,6 @@ import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
 import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
-import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_request_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
@@ -292,16 +292,10 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
-      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit}) async {
+  Future<HttpResponse<ResponseEntity>> processLoanRequest({String? cardId, num? loanValueId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.processLoanRequest(ProcessLoanRequestEntity(
-        getToken: true,
-        baseData: baseData.toJson(),
-        loanValueId: loanValueId,
-        minimumSettlement: minimumSettlement,
-        nickName: nickName,
-        creditLimit: creditLimit));
+        getToken: true, baseData: baseData.toJson(), loanValueId: loanValueId, cardId: cardId));
   }
 
   @override
@@ -556,5 +550,18 @@ class CardRemoteDsImpl extends CardRemoteDs {
             status: status,
             tokenizedPan: tokenizedPan,
             reApply: reApply));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCardInProcess(
+      {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCardInProcess(GetCardInProcessRequestEntity(
+        getToken: true,
+        baseData: baseData.toJson(),
+        loanValueId: loanValueId,
+        minimumSettlement: minimumSettlement,
+        nickName: nickName,
+        creditLimit: creditLimit));
   }
 }

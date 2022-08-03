@@ -21,28 +21,22 @@ class CardTransactionViewModel extends BasePageViewModel {
   TextEditingController searchController = TextEditingController();
 
   ///get transaction request
-  PublishSubject<GetCreditCardTransactionsUseCaseParams>
-      _getTransactionsRequest = PublishSubject();
+  PublishSubject<GetCreditCardTransactionsUseCaseParams> _getTransactionsRequest = PublishSubject();
 
   ///get transaction response
-  PublishSubject<Resource<GetTransactionsResponse>> _getTransactionsResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetTransactionsResponse>> _getTransactionsResponse = PublishSubject();
 
   ///get transaction response stream
-  Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
-      _getTransactionsResponse.stream;
+  Stream<Resource<GetTransactionsResponse>> get getTransactionsStream => _getTransactionsResponse.stream;
 
   ///get credit years
-  PublishSubject<GetCreditYearsUseCaseParams> _getCreditYearsRequest =
-      PublishSubject();
+  PublishSubject<GetCreditYearsUseCaseParams> _getCreditYearsRequest = PublishSubject();
 
   ///get credit response
-  PublishSubject<Resource<GetDebitYearsResponse>> _getCreditYearsResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetDebitYearsResponse>> _getCreditYearsResponse = PublishSubject();
 
   ///get credit response stream
-  Stream<Resource<GetDebitYearsResponse>> get getCreditYearsStream =>
-      _getCreditYearsResponse.stream;
+  Stream<Resource<GetDebitYearsResponse>> get getCreditYearsStream => _getCreditYearsResponse.stream;
 
   Resource<GetTransactionsResponse>? transactionsResponse;
 
@@ -67,11 +61,9 @@ class CardTransactionViewModel extends BasePageViewModel {
     }
   }
 
-  BehaviorSubject<List<TransactionItem>> _transactionListSubject =
-      BehaviorSubject();
+  BehaviorSubject<List<TransactionItem>> _transactionListSubject = BehaviorSubject();
 
-  Stream<List<TransactionItem>> get transactionListStream =>
-      _transactionListSubject.stream;
+  Stream<List<TransactionItem>> get transactionListStream => _transactionListSubject.stream;
 
   ///filters stream
   BehaviorSubject<List<String>> _searchTextSubject = BehaviorSubject();
@@ -80,11 +72,10 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  CardTransactionViewModel(this._cardTransactionsUseCase,
-      this._creditYearsUseCase, this.cardTransactionArguments) {
+  CardTransactionViewModel(
+      this._cardTransactionsUseCase, this._creditYearsUseCase, this.cardTransactionArguments) {
     _getTransactionsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardTransactionsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardTransactionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -100,8 +91,7 @@ class CardTransactionViewModel extends BasePageViewModel {
     });
 
     _getCreditYearsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _creditYearsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _creditYearsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -127,10 +117,7 @@ class CardTransactionViewModel extends BasePageViewModel {
           GetTransactionsResponse getTransactionsResponse;
           for (i = 0; i < element.transactions!.length; i++) {
             print("description: ${element.transactions![i].description}");
-            if ((element.transactions![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
+            if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
                 (element.transactions![i].description
                     .toString()
                     .toLowerCase()
@@ -156,8 +143,7 @@ class CardTransactionViewModel extends BasePageViewModel {
             }
           }
           if (searchList.isNotEmpty) {
-            searchContent = TransactionContent(
-                label: element.label!, transactions: searchList);
+            searchContent = TransactionContent(label: element.label!, transactions: searchList);
             tempList.add(searchContent);
           }
         });
@@ -170,10 +156,7 @@ class CardTransactionViewModel extends BasePageViewModel {
           TransactionContent searchContent;
           GetTransactionsResponse getTransactionsResponse;
           for (i = 0; i < element.transactions!.length; i++) {
-            if ((element.transactions![i].amount
-                    .toString()
-                    .toLowerCase()
-                    .contains(text.toLowerCase())) ||
+            if ((element.transactions![i].amount.toString().toLowerCase().contains(text.toLowerCase())) ||
                 (element.transactions![i].description
                     .toString()
                     .toLowerCase()
@@ -199,23 +182,19 @@ class CardTransactionViewModel extends BasePageViewModel {
             }
           }
           if (searchList.isNotEmpty) {
-            searchContent = TransactionContent(
-                label: element.label!, transactions: searchList);
+            searchContent = TransactionContent(label: element.label!, transactions: searchList);
             tempList.add(searchContent);
           }
         });
       }
       if (tempList.isNotEmpty) {
-        getTransactionsResponse =
-            GetTransactionsResponse(transactionResponse: tempList);
-        searchTransactionResponse =
-            Resource.success(data: getTransactionsResponse);
+        getTransactionsResponse = GetTransactionsResponse(transactionResponse: tempList);
+        searchTransactionResponse = Resource.success(data: getTransactionsResponse);
         _getTransactionsResponse.safeAdd(searchTransactionResponse);
         searchTransactionList = [];
         searchTransactionList.addAll(tempList);
       } else {
-        _getTransactionsResponse
-            .safeAdd(Resource.none<GetTransactionsResponse>());
+        _getTransactionsResponse.safeAdd(Resource.none<GetTransactionsResponse>());
       }
     }
   }
@@ -224,8 +203,8 @@ class CardTransactionViewModel extends BasePageViewModel {
     required String cardId,
     required num noOfDays,
   }) {
-    _getTransactionsRequest.safeAdd(GetCreditCardTransactionsUseCaseParams(
-        cardId: cardId, noOfDays: noOfDays));
+    _getTransactionsRequest
+        .safeAdd(GetCreditCardTransactionsUseCaseParams(cardId: cardId, noOfDays: noOfDays));
   }
 
   int getFilterDays(String value) {
@@ -235,6 +214,12 @@ class CardTransactionViewModel extends BasePageViewModel {
       case "Last 3 months":
         return 90;
       case "Last 6 months":
+        return 180;
+      case "آخر 30 يوم":
+        return 30;
+      case "آخر 3 اشهر":
+        return 90;
+      case "آخر 6 اشهر":
         return 180;
       default:
         return 180;

@@ -24,7 +24,6 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
@@ -35,10 +34,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     listenPopUps(model, context);
     return Padding(
       padding: EdgeInsets.only(
-          top: model.deviceSize.height <
-                      ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
-                  model.deviceSize.height <
-                      ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
+          top: model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+                  model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
               ? 48
               : 70),
       child: AppStreamBuilder<int>(
@@ -58,31 +55,21 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                       onHorizontalDragEnd: (details) {},
                       onVerticalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
-                          if (model.cardTypeList[currentStep!].cardType ==
-                              CardType.ACCOUNT) {
-                            Navigator.pushNamed(
-                                context, RoutePaths.AccountTransaction);
-                          } else if (model.cardTypeList[currentStep].cardType ==
-                                  CardType.CREDIT &&
-                              model.cardTypeList[currentStep].swipeUpEnum ==
-                                  SwipeUpEnum.SWIPE_UP_YES) {
-                            Navigator.pushNamed(
-                                context, RoutePaths.CardTransaction,
+                          if (model.cardTypeList[currentStep!].cardType == CardType.ACCOUNT) {
+                            Navigator.pushNamed(context, RoutePaths.AccountTransaction);
+                          } else if (model.cardTypeList[currentStep].cardType == CardType.CREDIT &&
+                              model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES) {
+                            Navigator.pushNamed(context, RoutePaths.CardTransaction,
                                 arguments: GetCreditCardTransactionArguments(
-                                    cardId: model
-                                        .timeLineListArguments[currentStep - 1]
-                                        .cardId));
+                                    cardId: model.timeLineListArguments[currentStep - 1].cardId));
                           }
                         } else {
                           if (details.primaryVelocity! > 0.5) {
                             if (!showTimeLine!) {
-                              Navigator.pushNamed(
-                                  context, RoutePaths.TimeLinePage,
+                              Navigator.pushNamed(context, RoutePaths.TimeLinePage,
                                   arguments: TimeLinePageArguments(
-                                      cardType: model
-                                          .cardTypeList[currentStep!].cardType,
-                                      timeLineArguments:
-                                          model.timeLineArguments));
+                                      cardType: model.cardTypeList[currentStep!].cardType,
+                                      timeLineArguments: model.timeLineArguments));
                               //model.updateShowTimeLineStream(!showTimeLine);
                             }
                           }
@@ -93,10 +80,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         children: [
                           Text(
                             S.of(context).totalBalance,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                                color: AppColor.black),
+                            style:
+                                TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: AppColor.black),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 5.0),
@@ -104,14 +89,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                    cardData!.data!.dashboardDataContent!
-                                        .account!.availableBalance!,
+                                Text('${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
-                                        color: Theme.of(context)
-                                            .primaryColorDark)),
+                                        color: Theme.of(context).primaryColorDark)),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5, left: 5.0),
                                   child: Text(S.of(context).JOD,
@@ -141,23 +123,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           child: AppStreamBuilder<List>(
                                               stream: model.pageStream,
                                               initialData: [Container()],
-                                              dataBuilder:
-                                                  (context, pagesList) {
-                                                return AppStreamBuilder<
-                                                        GetDashboardDataContent>(
-                                                    stream: ProviderScope
-                                                            .containerOf(
-                                                                context)
-                                                        .read(
-                                                            appHomeViewModelProvider)
+                                              dataBuilder: (context, pagesList) {
+                                                return AppStreamBuilder<GetDashboardDataContent>(
+                                                    stream: ProviderScope.containerOf(context)
+                                                        .read(appHomeViewModelProvider)
                                                         .getDashboardCardDataStream,
-                                                    initialData:
-                                                        GetDashboardDataContent(),
-                                                    dataBuilder:
-                                                        (context, cardData) {
-                                                      if (cardData!.account!
-                                                              .accountNo ==
-                                                          null) {
+                                                    initialData: GetDashboardDataContent(),
+                                                    dataBuilder: (context, cardData) {
+                                                      if (cardData!.account!.accountNo == null) {
                                                         return SizedBox();
                                                       }
                                                       return DashboardSwiper(
@@ -167,25 +140,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             ? pagesList!
                                                                 .reversed
                                                                 .toList()
-                                                            :*/ pagesList,
-                                                        appSwiperController: model
-                                                            .appSwiperController,
-                                                        pageController: model
-                                                            .pageController,
-                                                        onIndexChanged:
-                                                            (index) {
+                                                            :*/
+                                                            pagesList,
+                                                        appSwiperController: model.appSwiperController,
+                                                        pageController: model.pageController,
+                                                        onIndexChanged: (index) {
                                                           // _currentPage = index;
-                                                          model.updatePage(
-                                                              index);
-                                                          model
-                                                              .updatePageControllerStream(
-                                                                  index);
+                                                          model.updatePage(index);
+                                                          model.updatePageControllerStream(index);
                                                           // model
                                                           //     .updateAppSwipeControllerStream(
                                                           //         index);
                                                         },
-                                                        currentStep:
-                                                            currentStep,
+                                                        currentStep: currentStep,
                                                       );
                                                     });
                                               }),
@@ -193,19 +160,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       ),
                                       const SizedBox(height: 0.0),
                                       SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.03,
+                                        height: MediaQuery.of(context).size.height * 0.03,
                                         child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: model.buildPageIndicator(
-                                              currentStep!,
-                                              cardData
-                                                  .data!
-                                                  .dashboardDataContent!
-                                                  .debitCard!
-                                                  .length),
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: model.buildPageIndicator(currentStep!,
+                                              cardData.data!.dashboardDataContent!.debitCard!.length),
                                         ),
                                       ),
                                       // SmoothPageIndicator(
@@ -229,37 +188,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 35, bottom: 24),
+                                          padding: EdgeInsets.only(top: 35, bottom: 24),
                                           child: ConvexAppBar(
                                             elevation: 0,
                                             style: TabStyle.fixedCircle,
-                                            backgroundColor:
-                                                Theme.of(context).accentColor,
+                                            backgroundColor: Theme.of(context).accentColor,
                                             items: [
-                                              TabItem(
-                                                  icon: AppSvg.asset(
-                                                      AssetUtils.house),
-                                                  title: " "),
+                                              TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
                                               TabItem(
                                                 icon: Container(
                                                   height: 120,
                                                   width: 120,
                                                   decoration: BoxDecoration(
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark,
+                                                      color: Theme.of(context).primaryColorDark,
                                                       shape: BoxShape.circle),
                                                   child: Center(
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.logoWhite),
+                                                    child: AppSvg.asset(AssetUtils.logoWhite),
                                                   ),
                                                 ),
                                               ),
                                               TabItem(
                                                   icon: Container(
-                                                      child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .headphoneBlack)),
+                                                      child: AppSvg.asset(AssetUtils.headphoneBlack)),
                                                   title: " "),
                                             ],
                                             initialActiveIndex: 1,
@@ -274,8 +224,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   );
                                                   break;
                                                 case 2:
-                                                  EngagementTeamDialog.show(
-                                                      context, onDismissed: () {
+                                                  EngagementTeamDialog.show(context, onDismissed: () {
                                                     Navigator.pop(context);
                                                   }, onSelected: (value) {
                                                     Navigator.pop(context);
@@ -297,31 +246,21 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                         child: Center(
                                           child: InkWell(
                                             onTap: () {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .AddMoneyOptionSelector);
+                                              Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                                             },
                                             child: Container(
                                               height: 40,
                                               width: 104,
                                               decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                  borderRadius: BorderRadius.circular(20)),
                                               child: Center(
                                                 child: Text(
                                                   S.of(context).addMoney,
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                                      fontWeight: FontWeight.w600,
                                                       fontSize: 14,
-                                                      color: Theme.of(context)
-                                                          .accentColor),
+                                                      color: Theme.of(context).accentColor),
                                                 ),
                                               ),
                                             ),
@@ -331,35 +270,22 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10, right: 37),
+                                          padding: EdgeInsets.only(top: 10, right: 37),
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 18),
+                                                padding: EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
                                                     Visibility(
-                                                      visible: cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .creditCard!
-                                                                  .length >
+                                                      visible: cardData.data!.dashboardDataContent!
+                                                                  .creditCard!.length >
                                                               0 &&
-                                                          (cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .isCompleted ??
+                                                          (cardData.data!.dashboardDataContent!.creditCard!
+                                                                  .first.isCompleted ??
                                                               false),
-                                                      child: (cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
+                                                      child: (cardData.data!.dashboardDataContent!.creditCard!
                                                                       .length >
                                                                   0
                                                               ? (cardData
@@ -369,12 +295,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           .first
                                                                           .isCreditDelivered !=
                                                                       null &&
-                                                                  cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .first
-                                                                      .isCreditDelivered!)
+                                                                  cardData.data!.dashboardDataContent!
+                                                                      .creditCard!.first.isCreditDelivered!)
                                                               : false)
                                                           // : (cardData
                                                           //         .data!
@@ -397,37 +319,35 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           ? Column(
                                                               children: [
                                                                 Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .creditCardDelivered,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                  S.of(context).creditCardDelivered,
+                                                                  textAlign: TextAlign.center,
                                                                   style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          12),
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: 12),
                                                                 ),
                                                                 Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 5),
+                                                                  padding: EdgeInsets.only(top: 5),
                                                                   child: Text(
-                                                                    (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                    (cardData.data!.dashboardDataContent!
+                                                                                    .creditCard!.length >
                                                                                 0
-                                                                            ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
+                                                                            ? cardData
+                                                                                    .data!
+                                                                                    .dashboardDataContent!
+                                                                                    .creditCard!
+                                                                                    .first
+                                                                                    .creditDeliveredDatetime !=
                                                                                 null
                                                                             : false)
-                                                                        ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .first
-                                                                            .creditDeliveredDatetime!
-                                                                            .toString())
+                                                                        ? TimeUtils
+                                                                            .getFormattedDateForTransaction(
+                                                                                cardData
+                                                                                    .data!
+                                                                                    .dashboardDataContent!
+                                                                                    .creditCard!
+                                                                                    .first
+                                                                                    .creditDeliveredDatetime!
+                                                                                    .toString())
                                                                         : '-',
                                                                     // : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
                                                                     //         cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
@@ -443,14 +363,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     //         .toString())
                                                                     //     : '-',
                                                                     style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
+                                                                        fontSize: 12,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
                                                                             .hintStyle!
                                                                             .color,
-                                                                        fontWeight:
-                                                                            FontWeight.w600),
+                                                                        fontWeight: FontWeight.w600),
                                                                   ),
                                                                 )
                                                               ],
@@ -458,28 +376,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           : Column(
                                                               children: [
                                                                 Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .creditCardDelivered,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                  S.of(context).creditCardDelivered,
+                                                                  textAlign: TextAlign.center,
                                                                   style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          12),
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: 12),
                                                                 ),
                                                                 Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 5),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
+                                                                  padding: EdgeInsets.only(top: 5),
+                                                                  child: InkWell(
+                                                                    onTap: () async {
                                                                       // if (currentStep ==
                                                                       //     1) {
                                                                       //   var result = await Navigator.push(
@@ -513,46 +419,39 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                       var result = await Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder: (context) => CreditCardDeliveredPage(
-                                                                                    creditCard: TimeLineListArguments(),
+                                                                              builder: (context) =>
+                                                                                  CreditCardDeliveredPage(
+                                                                                    creditCard:
+                                                                                        TimeLineListArguments(),
                                                                                     //creditCard: cardData.data!.dashboardDataContent!.creditCard!.first,
                                                                                   )));
-                                                                      if (result !=
-                                                                          null) {
-                                                                        print(
-                                                                            '$result');
-                                                                        model
-                                                                            .getDashboardData();
+                                                                      if (result != null) {
+                                                                        print('$result');
+                                                                        model.getDashboardData();
                                                                       }
                                                                     },
-                                                                    child:
-                                                                        Container(
+                                                                    child: Container(
                                                                       padding: EdgeInsets.symmetric(
-                                                                          horizontal:
-                                                                              11,
-                                                                          vertical:
-                                                                              2),
+                                                                          horizontal: 11, vertical: 2),
                                                                       decoration: BoxDecoration(
-                                                                          color: Theme.of(context)
-                                                                              .accentColor,
-                                                                          borderRadius: BorderRadius.circular(
-                                                                              14),
-                                                                          border:
-                                                                              Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                                                      child:
-                                                                          Text(
-                                                                        S
-                                                                            .of(context)
-                                                                            .confirm,
+                                                                          color:
+                                                                              Theme.of(context).accentColor,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(14),
+                                                                          border: Border.all(
+                                                                              color: Theme.of(context)
+                                                                                  .accentTextTheme
+                                                                                  .bodyText1!
+                                                                                  .color!)),
+                                                                      child: Text(
+                                                                        S.of(context).confirm,
                                                                         style: TextStyle(
                                                                             color: Theme.of(context)
                                                                                 .accentTextTheme
                                                                                 .bodyText1!
                                                                                 .color,
-                                                                            fontSize:
-                                                                                14,
-                                                                            fontWeight:
-                                                                                FontWeight.w600),
+                                                                            fontSize: 14,
+                                                                            fontWeight: FontWeight.w600),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -562,60 +461,32 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: (cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
-                                                                          .creditCard!
-                                                                          .length >
+                                                          left: (cardData.data!.dashboardDataContent!
+                                                                          .creditCard!.length >
                                                                       0 &&
-                                                                  (cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
-                                                                          .creditCard!
-                                                                          .first
-                                                                          .isCompleted ??
+                                                                  (cardData.data!.dashboardDataContent!
+                                                                          .creditCard!.first.isCompleted ??
                                                                       false))
                                                               ? 170
                                                               : 0),
-                                                      child: (cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .debitCard!
+                                                      child: (cardData.data!.dashboardDataContent!.debitCard!
                                                                   .isNotEmpty &&
-                                                              cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .debitCard!
-                                                                      .first
-                                                                      .isDebitDelivered !=
+                                                              cardData.data!.dashboardDataContent!.debitCard!
+                                                                      .first.isDebitDelivered !=
                                                                   null &&
-                                                              cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .debitCard!
-                                                                  .first
-                                                                  .isDebitDelivered!)
+                                                              cardData.data!.dashboardDataContent!.debitCard!
+                                                                  .first.isDebitDelivered!)
                                                           ? Column(
                                                               children: [
                                                                 Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .debitCardDelivered,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                  S.of(context).debitCardDelivered,
+                                                                  textAlign: TextAlign.center,
                                                                   style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          12),
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: 12),
                                                                 ),
                                                                 Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 5),
+                                                                  padding: EdgeInsets.only(top: 5),
                                                                   child: Text(
                                                                     // (cardData.data!.dashboardDataContent!.creditCard!.length > 0
                                                                     //     ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
@@ -630,28 +501,38 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     //     .toString())
                                                                     //     : '-',
                                                                     //:
-                                                                    (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
-                                                                            cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
+                                                                    (cardData.data!.dashboardDataContent!
+                                                                                    .debitCard!.length >
+                                                                                0 &&
+                                                                            cardData
+                                                                                    .data!
+                                                                                    .dashboardDataContent!
+                                                                                    .debitCard![0]
+                                                                                    .debitDeliveredDatetime !=
                                                                                 null &&
-                                                                            cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
+                                                                            cardData
+                                                                                .data!
+                                                                                .dashboardDataContent!
+                                                                                .debitCard![0]
+                                                                                .debitDeliveredDatetime
                                                                                 .toString()
                                                                                 .isNotEmpty)
-                                                                        ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .debitCard![0]
-                                                                            .debitDeliveredDatetime!
-                                                                            .toString())
+                                                                        ? TimeUtils
+                                                                            .getFormattedDateForTransaction(
+                                                                                cardData
+                                                                                    .data!
+                                                                                    .dashboardDataContent!
+                                                                                    .debitCard![0]
+                                                                                    .debitDeliveredDatetime!
+                                                                                    .toString())
                                                                         : '-',
                                                                     style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
+                                                                        fontSize: 12,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
                                                                             .hintStyle!
                                                                             .color,
-                                                                        fontWeight:
-                                                                            FontWeight.w600),
+                                                                        fontWeight: FontWeight.w600),
                                                                   ),
                                                                 )
                                                               ],
@@ -659,33 +540,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           : Column(
                                                               children: [
                                                                 Text(
-                                                                  S
-                                                                      .of(context)
-                                                                      .debitCardDelivered,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                                                  S.of(context).debitCardDelivered,
+                                                                  textAlign: TextAlign.center,
                                                                   style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          12),
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: 12),
                                                                 ),
                                                                 Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .only(
-                                                                              top: 5),
-                                                                  child: cardData
-                                                                              .data!
-                                                                              .dashboardDataContent!
-                                                                              .debitCard!
-                                                                              .length >
+                                                                  padding: EdgeInsets.only(top: 5),
+                                                                  child: cardData.data!.dashboardDataContent!
+                                                                              .debitCard!.length >
                                                                           0
                                                                       ? InkWell(
-                                                                          onTap:
-                                                                              () async {
+                                                                          onTap: () async {
                                                                             // if (currentStep ==
                                                                             //     1) {
                                                                             //   var result = await Navigator.push(
@@ -719,38 +586,49 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                             var result = await Navigator.push(
                                                                                 context,
                                                                                 MaterialPageRoute(
-                                                                                    builder: (context) => DebitCardDeliveredPage(debitCard: TimeLineListArguments() //cardData.data!.dashboardDataContent!.debitCard!.first,
-                                                                                        )));
-                                                                            if (result !=
-                                                                                null) {
+                                                                                    builder: (context) =>
+                                                                                        DebitCardDeliveredPage(
+                                                                                            debitCard:
+                                                                                                TimeLineListArguments() //cardData.data!.dashboardDataContent!.debitCard!.first,
+                                                                                            )));
+                                                                            if (result != null) {
                                                                               print('$result');
                                                                               model.getDashboardData();
                                                                             }
                                                                           },
-                                                                          child:
-                                                                              Container(
-                                                                            padding:
-                                                                                EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                                                                          child: Container(
+                                                                            padding: EdgeInsets.symmetric(
+                                                                                horizontal: 11, vertical: 2),
                                                                             decoration: BoxDecoration(
-                                                                                color: Theme.of(context).accentColor,
-                                                                                borderRadius: BorderRadius.circular(14),
-                                                                                border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                                                            child:
-                                                                                Text(
+                                                                                color: Theme.of(context)
+                                                                                    .accentColor,
+                                                                                borderRadius:
+                                                                                    BorderRadius.circular(14),
+                                                                                border: Border.all(
+                                                                                    color: Theme.of(context)
+                                                                                        .accentTextTheme
+                                                                                        .bodyText1!
+                                                                                        .color!)),
+                                                                            child: Text(
                                                                               S.of(context).confirm,
-                                                                              style: TextStyle(color: Theme.of(context).accentTextTheme.bodyText1!.color, fontSize: 14, fontWeight: FontWeight.w600),
+                                                                              style: TextStyle(
+                                                                                  color: Theme.of(context)
+                                                                                      .accentTextTheme
+                                                                                      .bodyText1!
+                                                                                      .color,
+                                                                                  fontSize: 14,
+                                                                                  fontWeight:
+                                                                                      FontWeight.w600),
                                                                             ),
                                                                           ),
                                                                         )
-                                                                      : Text(
-                                                                          '-'),
+                                                                      : Text('-'),
                                                                 )
                                                               ],
                                                             ),
                                                     ),
                                                     Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 180),
+                                                      padding: EdgeInsets.only(left: 180),
                                                       child: Column(
                                                         children: [
                                                           Text(
@@ -759,43 +637,29 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             //         .of(context)
                                                             //         .debitCardDelivered
                                                             //     :
-                                                            S
-                                                                .of(context)
-                                                                .joinedBlink,
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            S.of(context).joinedBlink,
+                                                            textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 12),
+                                                                fontWeight: FontWeight.w600, fontSize: 12),
                                                           ),
                                                           Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 5),
+                                                            padding: EdgeInsets.only(top: 5),
                                                             child: Text(
-                                                              cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
+                                                              cardData.data!.dashboardDataContent!
                                                                           .youJoinedBlink !=
                                                                       null
-                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .youJoinedBlink!
-                                                                      .toString())
+                                                                  ? TimeUtils.getFormattedDateForTransaction(
+                                                                      cardData.data!.dashboardDataContent!
+                                                                          .youJoinedBlink!
+                                                                          .toString())
                                                                   : '-',
                                                               style: TextStyle(
                                                                   fontSize: 12,
-                                                                  color: Theme.of(
-                                                                          context)
+                                                                  color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
                                                                       .color,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600),
+                                                                  fontWeight: FontWeight.w600),
                                                             ),
                                                           )
                                                         ],
@@ -805,40 +669,26 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 56, top: 22),
+                                                padding: EdgeInsets.only(left: 56, top: 22),
                                                 child: IntrinsicHeight(
                                                   child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                                    mainAxisSize: MainAxisSize.min,
                                                     children: [
                                                       // Image.asset(AssetUtils.progress1),
                                                       // Image.asset(AssetUtils.progress2a),
                                                       // Image.asset(AssetUtils.progress1),
                                                       Visibility(
-                                                        visible: cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .length >
+                                                        visible: cardData.data!.dashboardDataContent!
+                                                                    .creditCard!.length >
                                                                 0 &&
-                                                            (cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .first
-                                                                    .isCompleted ??
+                                                            (cardData.data!.dashboardDataContent!.creditCard!
+                                                                    .first.isCompleted ??
                                                                 false),
                                                         child: Stack(
                                                           children: [
                                                             Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      left:
-                                                                          15.0),
-                                                              child: Image.asset(
-                                                                  AssetUtils
-                                                                      .progress2),
+                                                              padding: EdgeInsets.only(left: 15.0),
+                                                              child: Image.asset(AssetUtils.progress2),
                                                             ),
                                                             Positioned(
                                                               bottom: 0,
@@ -847,10 +697,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 height: 20,
                                                                 width: 20,
                                                                 decoration: BoxDecoration(
-                                                                    color: AppColor
-                                                                        .vividYellow,
-                                                                    shape: BoxShape
-                                                                        .circle),
+                                                                    color: AppColor.vividYellow,
+                                                                    shape: BoxShape.circle),
                                                               ),
                                                             ),
                                                             Positioned(
@@ -860,34 +708,23 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 height: 20,
                                                                 width: 20,
                                                                 decoration: BoxDecoration(
-                                                                    color: AppColor
-                                                                        .vivid_red,
-                                                                    shape: BoxShape
-                                                                        .circle),
+                                                                    color: AppColor.vivid_red,
+                                                                    shape: BoxShape.circle),
                                                               ),
                                                             )
                                                           ],
                                                         ),
                                                       ),
                                                       Visibility(
-                                                        visible: cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .length >
+                                                        visible: cardData.data!.dashboardDataContent!
+                                                                    .creditCard!.length >
                                                                 0 &&
-                                                            (cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .creditCard!
-                                                                    .first
-                                                                    .isCompleted ??
+                                                            (cardData.data!.dashboardDataContent!.creditCard!
+                                                                    .first.isCompleted ??
                                                                 false),
                                                         child: Stack(
                                                           children: [
-                                                            Image.asset(
-                                                                AssetUtils
-                                                                    .progress1),
+                                                            Image.asset(AssetUtils.progress1),
                                                             Positioned(
                                                               bottom: 0,
                                                               left: -10,
@@ -895,10 +732,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 height: 20,
                                                                 width: 20,
                                                                 decoration: BoxDecoration(
-                                                                    color: AppColor
-                                                                        .vividYellow,
-                                                                    shape: BoxShape
-                                                                        .circle),
+                                                                    color: AppColor.vividYellow,
+                                                                    shape: BoxShape.circle),
                                                               ),
                                                             ),
                                                             Positioned(
@@ -908,10 +743,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 height: 20,
                                                                 width: 20,
                                                                 decoration: BoxDecoration(
-                                                                    color: AppColor
-                                                                        .vividYellow,
-                                                                    shape: BoxShape
-                                                                        .circle),
+                                                                    color: AppColor.vividYellow,
+                                                                    shape: BoxShape.circle),
                                                               ),
                                                             )
                                                           ],
@@ -922,15 +755,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Padding(
                                                             padding: EdgeInsets.only(
                                                                 right: 0.0,
-                                                                left: (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                left: (cardData.data!.dashboardDataContent!
+                                                                                .creditCard!.length >
                                                                             0 &&
-                                                                        (cardData.data!.dashboardDataContent!.creditCard!.first.isCompleted ??
+                                                                        (cardData
+                                                                                .data!
+                                                                                .dashboardDataContent!
+                                                                                .creditCard!
+                                                                                .first
+                                                                                .isCompleted ??
                                                                             false))
                                                                     ? 0
                                                                     : 10),
-                                                            child: Image.asset(
-                                                                AssetUtils
-                                                                    .progress2),
+                                                            child: Image.asset(AssetUtils.progress2),
                                                           ),
                                                           Positioned(
                                                             bottom: 0,
@@ -939,26 +776,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           ),
                                                           Positioned(
                                                             top: 0,
-                                                            left: (cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .length >
+                                                            left: (cardData.data!.dashboardDataContent!
+                                                                            .creditCard!.length >
                                                                         0 &&
-                                                                    (cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCard!
-                                                                            .first
-                                                                            .isCompleted ??
+                                                                    (cardData.data!.dashboardDataContent!
+                                                                            .creditCard!.first.isCompleted ??
                                                                         false))
                                                                 ? -10
                                                                 : 0,
@@ -966,18 +794,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           ),
                                                         ],
                                                       ),
                                                       Stack(
                                                         children: [
-                                                          Image.asset(AssetUtils
-                                                              .progress1),
+                                                          Image.asset(AssetUtils.progress1),
                                                           Positioned(
                                                             bottom: 0,
                                                             left: -10,
@@ -985,10 +810,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           ),
                                                           Positioned(
@@ -998,10 +821,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           )
                                                         ],
@@ -1009,13 +830,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       Stack(
                                                         children: [
                                                           Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      right:
-                                                                          15),
-                                                              child: Image.asset(
-                                                                  AssetUtils
-                                                                      .progress2)),
+                                                              padding: EdgeInsets.only(right: 15),
+                                                              child: Image.asset(AssetUtils.progress2)),
                                                           Positioned(
                                                             top: 0,
                                                             left: -10,
@@ -1023,10 +839,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           ),
                                                           Positioned(
@@ -1036,10 +850,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               height: 20,
                                                               width: 20,
                                                               decoration: BoxDecoration(
-                                                                  color: AppColor
-                                                                      .vividYellow,
-                                                                  shape: BoxShape
-                                                                      .circle),
+                                                                  color: AppColor.vividYellow,
+                                                                  shape: BoxShape.circle),
                                                             ),
                                                           )
                                                         ],
@@ -1049,40 +861,25 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 19, left: 160),
+                                                padding: EdgeInsets.only(top: 19, left: 160),
                                                 child: Row(
                                                   children: [
                                                     Visibility(
-                                                      visible: (cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .creditCard!
-                                                                  .length >
+                                                      visible: (cardData.data!.dashboardDataContent!
+                                                                  .creditCard!.length >
                                                               0 &&
-                                                          (cardData
-                                                                  .data!
-                                                                  .dashboardDataContent!
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .isCompleted ??
+                                                          (cardData.data!.dashboardDataContent!.creditCard!
+                                                                  .first.isCompleted ??
                                                               false)),
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            S
-                                                                .of(context)
-                                                                .creditCardActivated,
+                                                            S.of(context).creditCardActivated,
                                                             style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 12),
+                                                                fontWeight: FontWeight.w600, fontSize: 12),
                                                           ),
                                                           Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 4),
+                                                            padding: EdgeInsets.only(top: 4),
                                                             child: Text(
                                                               // currentStep != 1 ?
                                                               // cardData
@@ -1101,8 +898,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               //             .toString())
                                                               //         : '-'
                                                               //     :
-                                                              (cardData.data!.dashboardDataContent!.creditCard!
-                                                                              .length >
+                                                              (cardData.data!.dashboardDataContent!
+                                                                              .creditCard!.length >
                                                                           0
                                                                       ? cardData
                                                                               .data!
@@ -1112,17 +909,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                               .creditCardActivatedDate !=
                                                                           null
                                                                       : false)
-                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .creditCard!
-                                                                      .first
-                                                                      .creditCardActivatedDate!
-                                                                      .toString())
+                                                                  ? TimeUtils.getFormattedDateForTransaction(
+                                                                      cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .creditCard!
+                                                                          .first
+                                                                          .creditCardActivatedDate!
+                                                                          .toString())
                                                                   : '-',
                                                               style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
+                                                                  color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
                                                                       .color,
@@ -1134,47 +931,30 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: (cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
-                                                                          .creditCard!
-                                                                          .length >
+                                                          left: (cardData.data!.dashboardDataContent!
+                                                                          .creditCard!.length >
                                                                       0 &&
-                                                                  (cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
-                                                                          .creditCard!
-                                                                          .first
-                                                                          .isCompleted ??
+                                                                  (cardData.data!.dashboardDataContent!
+                                                                          .creditCard!.first.isCompleted ??
                                                                       false))
                                                               ? 180
                                                               : 0),
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            S
-                                                                .of(context)
-                                                                .debitCardActivated,
+                                                            S.of(context).debitCardActivated,
                                                             style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 12),
+                                                                fontWeight: FontWeight.w600, fontSize: 12),
                                                           ),
                                                           Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 4),
+                                                            padding: EdgeInsets.only(top: 4),
                                                             child: Text(
                                                               // currentStep != 1 ?
                                                               (cardData.data!.dashboardDataContent!
                                                                               .debitCard !=
                                                                           null &&
-                                                                      cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
-                                                                          .debitCard!
-                                                                          .isNotEmpty &&
+                                                                      cardData.data!.dashboardDataContent!
+                                                                          .debitCard!.isNotEmpty &&
                                                                       cardData
                                                                               .data!
                                                                               .dashboardDataContent!
@@ -1182,13 +962,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                               .first
                                                                               .debitCardActivated !=
                                                                           null)
-                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .debitCard!
-                                                                      .first
-                                                                      .debitCardActivated!
-                                                                      .toString())
+                                                                  ? TimeUtils.getFormattedDateForTransaction(
+                                                                      cardData
+                                                                          .data!
+                                                                          .dashboardDataContent!
+                                                                          .debitCard!
+                                                                          .first
+                                                                          .debitCardActivated!
+                                                                          .toString())
                                                                   : '-',
                                                               //     :
                                                               // (cardData.data!.dashboardDataContent!.creditCard!.length >
@@ -1205,8 +986,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               //     .toString())
                                                               //     : '-',
                                                               style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
+                                                                  color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
                                                                       .color,
@@ -1217,41 +997,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                       ),
                                                     ),
                                                     Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 180),
+                                                      padding: EdgeInsets.only(left: 180),
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            S
-                                                                .of(context)
-                                                                .blinkBorn,
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            S.of(context).blinkBorn,
+                                                            textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 12),
+                                                                fontWeight: FontWeight.w600, fontSize: 12),
                                                           ),
                                                           Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 4),
+                                                            padding: EdgeInsets.only(top: 4),
                                                             child: Text(
-                                                              cardData
-                                                                          .data!
-                                                                          .dashboardDataContent!
+                                                              cardData.data!.dashboardDataContent!
                                                                           .blinkWasBorn !=
                                                                       null
-                                                                  ? TimeUtils.getFormattedDateForTransaction(cardData
-                                                                      .data!
-                                                                      .dashboardDataContent!
-                                                                      .blinkWasBorn!
-                                                                      .toString())
+                                                                  ? TimeUtils.getFormattedDateForTransaction(
+                                                                      cardData.data!.dashboardDataContent!
+                                                                          .blinkWasBorn!
+                                                                          .toString())
                                                                   : '-',
                                                               style: TextStyle(
-                                                                  color: Theme.of(
-                                                                          context)
+                                                                  color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
                                                                       .color,
@@ -1279,11 +1046,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 // color: Theme.of(context)
                                                 //     .primaryColor,
                                                 image: DecorationImage(
-                                                    image: AssetImage(
-                                                        AssetUtils.credit),
+                                                    image: AssetImage(AssetUtils.credit),
                                                     fit: BoxFit.contain),
-                                                borderRadius:
-                                                    BorderRadius.circular(16)),
+                                                borderRadius: BorderRadius.circular(16)),
                                             // child: Padding(
                                             //   padding: EdgeInsets.only(
                                             //       top: 31,
@@ -1348,50 +1113,30 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                               height: 100,
                                               margin: EdgeInsets.only(top: 8),
                                               decoration: BoxDecoration(
-                                                  color: currentStep == 1 ||
-                                                          currentStep == 3
-                                                      ? Theme.of(context)
-                                                          .primaryColor
+                                                  color: currentStep == 1 || currentStep == 3
+                                                      ? Theme.of(context).primaryColor
                                                       : currentStep == 2
-                                                          ? Theme.of(context)
-                                                              .canvasColor
-                                                          : Theme.of(context)
-                                                              .primaryColorDark,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  16),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  16))),
+                                                          ? Theme.of(context).canvasColor
+                                                          : Theme.of(context).primaryColorDark,
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(16),
+                                                      topRight: Radius.circular(16))),
                                               child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 22, left: 27),
+                                                padding: EdgeInsets.only(top: 22, left: 27),
                                                 child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    currentStep == 1 ||
-                                                            currentStep == 0
-                                                        ? AppSvg.asset(
-                                                            AssetUtils
-                                                                .blink_updated_logo,
-                                                            height: 34,
-                                                            width: 72)
-                                                        : AppSvg.asset(
-                                                            AssetUtils
-                                                                .blinkBlack,
-                                                            height: 34,
-                                                            width: 72),
+                                                    currentStep == 1 || currentStep == 0
+                                                        ? AppSvg.asset(AssetUtils.blink_updated_logo,
+                                                            height: 34, width: 72)
+                                                        : AppSvg.asset(AssetUtils.blinkBlack,
+                                                            height: 34, width: 72),
                                                   ],
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          Center(
-                                              child: AppSvg.asset(
-                                                  AssetUtils.swipeUp)),
+                                          Center(child: AppSvg.asset(AssetUtils.swipeUp)),
                                         ],
                                       ),
                                     ],
@@ -1424,8 +1169,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
         showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) =>
-                popUpWidget(context, model.requestMoneyPlaceholderData.image));
+            builder: (context) => popUpWidget(context, model.requestMoneyPlaceholderData.image));
       }
     });
 

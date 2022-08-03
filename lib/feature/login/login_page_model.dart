@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
@@ -20,7 +21,9 @@ import 'package:domain/usecase/user/get_current_user_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -408,8 +411,23 @@ class LoginViewModel extends BasePageViewModel {
     }
   }
 
-  void setLanguage(LanguageEnum language) {
+  ///setting selected language to secure storage
+  void setLanguage(LanguageEnum language, BuildContext context) {
     _selectedLanguage.safeAdd(language);
+    ProviderScope.containerOf(context).read(appViewModel).toggleLocale(language);
+    setLanguageToStorage(language);
+  }
+
+  getLanguageFromStorage(BuildContext context) async {
+    LanguageEnum? selectedLanguage = await SecureStorageHelper.instance.getUserSelectedLanguageFromStorage();
+    if (selectedLanguage != null) {
+      _selectedLanguage.add(selectedLanguage);
+      ProviderScope.containerOf(context).read(appViewModel).toggleLocale(selectedLanguage);
+    }
+  }
+
+  setLanguageToStorage(LanguageEnum languageEnum) async {
+    await SecureStorageHelper.instance.saveUserSelectedLanguageToStorage(language: languageEnum.toString());
   }
 
   @override

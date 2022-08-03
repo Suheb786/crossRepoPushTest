@@ -20,33 +20,24 @@ class EnterAddressViewModel extends BasePageViewModel {
 
   TextEditingController residentCountryController = TextEditingController();
   TextEditingController streetAddressController = TextEditingController();
-  TextEditingController buildingNameOrNumberController =
-      TextEditingController();
-  TextEditingController permanentHomeAddressController =
-      TextEditingController();
-  TextEditingController permanentStreetAddressController =
-      TextEditingController();
-  TextEditingController permanentBuildingNameOrNumberController =
-      TextEditingController();
-  TextEditingController permanentResidentCountryController =
-      TextEditingController();
+  TextEditingController buildingNameOrNumberController = TextEditingController();
+  TextEditingController permanentHomeAddressController = TextEditingController();
+  TextEditingController permanentStreetAddressController = TextEditingController();
+  TextEditingController permanentBuildingNameOrNumberController = TextEditingController();
+  TextEditingController permanentResidentCountryController = TextEditingController();
   TextEditingController permanentCityController = TextEditingController();
   TextEditingController districtController = TextEditingController();
   TextEditingController cityController = TextEditingController();
 
   bool? dropDownEnabled = true;
 
-  final GlobalKey<AppTextFieldState> residentCountryKey =
-      GlobalKey(debugLabel: "residentCountry");
+  final GlobalKey<AppTextFieldState> residentCountryKey = GlobalKey(debugLabel: "residentCountry");
 
-  final GlobalKey<AppTextFieldState> streetAddressKey =
-      GlobalKey(debugLabel: "streetAddress");
+  final GlobalKey<AppTextFieldState> streetAddressKey = GlobalKey(debugLabel: "streetAddress");
 
-  final GlobalKey<AppTextFieldState> buildingNameOrNumberKey =
-      GlobalKey(debugLabel: "buildingNameOrNumber");
+  final GlobalKey<AppTextFieldState> buildingNameOrNumberKey = GlobalKey(debugLabel: "buildingNameOrNumber");
 
-  final GlobalKey<AppTextFieldState> permanentHomeAddressKey =
-      GlobalKey(debugLabel: "permanentHomeAddress");
+  final GlobalKey<AppTextFieldState> permanentHomeAddressKey = GlobalKey(debugLabel: "permanentHomeAddress");
 
   final GlobalKey<AppTextFieldState> permanentStreetAddressKey =
       GlobalKey(debugLabel: "permanentStreetAddress");
@@ -57,23 +48,19 @@ class EnterAddressViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> permanentResidentCountryKey =
       GlobalKey(debugLabel: "permanentResidentCountry");
 
-  final GlobalKey<AppTextFieldState> permanentCityKey =
-      GlobalKey(debugLabel: "permanentCity");
-  final GlobalKey<AppTextFieldState> districtKey =
-      GlobalKey(debugLabel: "district");
+  final GlobalKey<AppTextFieldState> permanentCityKey = GlobalKey(debugLabel: "permanentCity");
+  final GlobalKey<AppTextFieldState> districtKey = GlobalKey(debugLabel: "district");
 
   final GlobalKey<AppTextFieldState> cityKey = GlobalKey(debugLabel: "city");
 
   /// enter address request subject holder
-  PublishSubject<EnterAddressUseCaseParams> _enterAddressRequest =
-      PublishSubject();
+  PublishSubject<EnterAddressUseCaseParams> _enterAddressRequest = PublishSubject();
 
   /// enter address response subject holder
-  PublishSubject<Resource<SaveCountryResidenceInfoResponse>>
-      _enterAddressResponse = PublishSubject();
+  PublishSubject<Resource<SaveCountryResidenceInfoResponse>> _enterAddressResponse = PublishSubject();
 
-  Stream<Resource<SaveCountryResidenceInfoResponse>>
-      get enterAddressResponseStream => _enterAddressResponse.stream;
+  Stream<Resource<SaveCountryResidenceInfoResponse>> get enterAddressResponseStream =>
+      _enterAddressResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -81,19 +68,15 @@ class EnterAddressViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///permanent address Subject holder
-  BehaviorSubject<bool> _permanentAddressVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _permanentAddressVisibilitySubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get permanentAddressVisibilityStream =>
-      _permanentAddressVisibilitySubject.stream;
+  Stream<bool> get permanentAddressVisibilityStream => _permanentAddressVisibilitySubject.stream;
 
   /// get cities by country request subject holder
-  PublishSubject<GetCityByCountryListUseParams> _getCitiesByCountryRequest =
-      PublishSubject();
+  PublishSubject<GetCityByCountryListUseParams> _getCitiesByCountryRequest = PublishSubject();
 
   /// get cities by country response subject holder
-  PublishSubject<Resource<CityListResponse>> _getCitiesByCountryResponse =
-      PublishSubject();
+  PublishSubject<Resource<CityListResponse>> _getCitiesByCountryResponse = PublishSubject();
 
   /// get cities by country response stream
   Stream<Resource<CityListResponse>> get getCitiesByCountryResponseStream =>
@@ -109,18 +92,16 @@ class EnterAddressViewModel extends BasePageViewModel {
     permanentCityController.clear();
     permanentCountry = CountryData();
     permanentCity = StateCityData();
-    if (residentCountryController.text == 'Jordan') {
+    if (residentCountryController.text == 'Jordan' || residentCountryController.text == 'الاردن') {
       _permanentAddressVisibilitySubject.safeAdd(false);
     } else {
       _permanentAddressVisibilitySubject.safeAdd(true);
     }
   }
 
-  EnterAddressViewModel(
-      this._enterAddressUseCase, this._getCityByCountryListUseCase) {
+  EnterAddressViewModel(this._enterAddressUseCase, this._getCityByCountryListUseCase) {
     _enterAddressRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _enterAddressUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enterAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -132,9 +113,7 @@ class EnterAddressViewModel extends BasePageViewModel {
     });
 
     _getCitiesByCountryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getCityByCountryListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCityByCountryListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -164,8 +143,7 @@ class EnterAddressViewModel extends BasePageViewModel {
   }
 
   void getCitiesByCountry(String isoCode) {
-    _getCitiesByCountryRequest.safeAdd(
-        GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
+    _getCitiesByCountryRequest.safeAdd(GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
   }
 
   void validateAddress() {

@@ -1,6 +1,5 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
-import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -37,7 +36,8 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.ERROR) {
-                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE ||
+                        data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
                       Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                           arguments: CreditCardApplicationFailureArguments(
                               creditFailureState: CreditFailureState.InEligible));
@@ -47,7 +47,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                   }
                 },
                 dataBuilder: (context, loanValue) {
-                  return AppStreamBuilder<Resource<ProcessLoanRequestResponse>>(
+                  return AppStreamBuilder<Resource<bool>>(
                       stream: model.setCreditLimitResponse,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -60,7 +60,8 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                             model.minimumSettlementKey.currentState!.isValid = false;
                             model.showErrorState();
                             model.showToastWithError(data.appError!);
-                          } else if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
+                          } else if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE ||
+                              data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
                             Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                                 arguments: CreditCardApplicationFailureArguments(
                                     creditFailureState: CreditFailureState.InEligible));

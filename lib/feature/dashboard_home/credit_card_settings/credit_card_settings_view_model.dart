@@ -73,6 +73,25 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get reportDamagedCCStream => _reportDamagedCCResponseSubject.stream;
 
+  List<String> creditCardCancellationReasonEn = [
+    "I don’t need my card anymore.",
+    "High interest, fees & charges.",
+    "I feel the credit limit is low.",
+    "High FX rates.",
+    "I’m trying to control my expenses.",
+    "I’m dissatisfied with service.",
+    "There are too many declined trx’s"
+  ];
+  List<String> creditCardCancellationReasonAr = [
+    " عدم الحاجة الى البطاقة",
+    "ارتفاع العمولات و الفوائد",
+    " سقف البطاقة منخفض",
+    "رتفاع سعر الصرف",
+    "حاول التحكم بمصاريفي",
+    "غير راضي عن الخدمة المقدمة",
+    "ثرة الحركات المرفوضة"
+  ];
+
   CreditCardSettingsViewModel(
       this._freezeCreditCardUseCase,
       this._unFreezeCreditCardUseCase,

@@ -107,14 +107,17 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                                 curve: Curves.bounceIn,
                                 direction: Direction.vertical,
                                 offset: 0.5,
-                                child: Text(
-                                  "${mobileNumber!.mobileCode.isNotEmpty ? (mobileNumber.mobileCode.contains('00') ? mobileNumber.mobileCode.replaceAll('00', '+') : '+${mobileNumber.mobileCode}') : '-'} "
-                                  "${mobileNumber.mobileNumber}",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                child: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    "${mobileNumber!.mobileCode.isNotEmpty ? (mobileNumber.mobileCode.contains('00') ? mobileNumber.mobileCode.replaceAll('00', '+') : '+${mobileNumber.mobileCode}') : '-'} "
+                                    "${mobileNumber.mobileNumber}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
                             ),

@@ -3,8 +3,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EmploymentStatusDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   List<String> employmentStatusList = [
     "Business Owner",
@@ -14,6 +13,16 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
     "Retired",
     "Student",
     "Unemployed",
+    //"Other"
+  ];
+  List<String> employmentStatusListAr = [
+    "احب عمل",
+    "وظف بدوام كامل,",
+    "موظف دوام جزئي",
+    "اعمال حرة",
+    "متقاعد",
+    "طالب",
+    "عاطل عن العم",
     //"Other"
   ];
 

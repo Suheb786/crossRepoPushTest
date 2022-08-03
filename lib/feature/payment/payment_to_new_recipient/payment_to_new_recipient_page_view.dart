@@ -16,15 +16,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class PaymentToNewRecipientPageView
-    extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
+class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
   PaymentToNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [
-    SendToNewRecipientPage(),
-    EnterOtpPage(),
-    Visibility(visible: false, child: BaseCardPage())
-  ];
+  final pages = [SendToNewRecipientPage(), EnterOtpPage(), Visibility(visible: false, child: BaseCardPage())];
 
   @override
   Widget build(BuildContext context, model) {
@@ -54,19 +49,13 @@ class PaymentToNewRecipientPageView
                     dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        activeSize:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
-                        size:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        activeSize: Size((MediaQuery.of(context).size.width) / 2.5, 4),
+                        size: Size((MediaQuery.of(context).size.width) / 2.5, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
-                        activeShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                        activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeColor: Theme.of(context).accentColor,
-                        color: Theme.of(context)
-                            .primaryColorLight
-                            .withOpacity(0.3)),
+                        color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                   ),
                 ),
                 Padding(
@@ -84,9 +73,7 @@ class PaymentToNewRecipientPageView
                         children: [
                           Text(
                             S.of(context).sending,
-                            style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 20),
+                            style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6),
@@ -103,23 +90,15 @@ class PaymentToNewRecipientPageView
                                               width: 100,
                                               child: TextFormField(
                                                 autofocus: true,
-                                                keyboardType: TextInputType
-                                                    .numberWithOptions(
-                                                        decimal: true),
+                                                keyboardType: TextInputType.numberWithOptions(decimal: true),
                                                 inputFormatters: [
-                                                  FilteringTextInputFormatter
-                                                      .allow(RegExp(r'[0-9.]')),
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                                                 ],
                                                 onChanged: (value) {
                                                   if (value != ".") {
-                                                    ProviderScope.containerOf(
-                                                                context)
-                                                            .read(
-                                                                sendMoneyViewModelProvider)
-                                                            .currentPinValue =
-                                                        model
-                                                            .editAmountController
-                                                            .text;
+                                                    ProviderScope.containerOf(context)
+                                                        .read(sendMoneyViewModelProvider)
+                                                        .currentPinValue = model.editAmountController.text;
                                                     print(
                                                         "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
                                                   }
@@ -130,30 +109,22 @@ class PaymentToNewRecipientPageView
                                                 style: TextStyle(
                                                     fontSize: 28,
                                                     fontWeight: FontWeight.w700,
-                                                    color: Theme.of(context)
-                                                        .accentColor),
-                                                cursorColor: Theme.of(context)
-                                                    .accentColor,
-                                                controller:
-                                                    model.editAmountController,
+                                                    color: Theme.of(context).accentColor),
+                                                cursorColor: Theme.of(context).accentColor,
+                                                controller: model.editAmountController,
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
-                                                  contentPadding:
-                                                      EdgeInsets.only(
-                                                          bottom: 10),
+                                                  contentPadding: EdgeInsets.only(bottom: 10),
                                                 ),
                                               ),
                                             )
                                           : Text(
-                                              double.parse(ProviderScope
-                                                          .containerOf(context)
-                                                      .read(
-                                                          sendMoneyViewModelProvider)
+                                              double.parse(ProviderScope.containerOf(context)
+                                                      .read(sendMoneyViewModelProvider)
                                                       .currentPinValue)
                                                   .toStringAsFixed(3),
                                               style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
+                                                  color: Theme.of(context).accentColor,
                                                   fontSize: 28,
                                                   fontWeight: FontWeight.w700),
                                             );
@@ -161,7 +132,7 @@ class PaymentToNewRecipientPageView
                                 Padding(
                                   padding: EdgeInsets.only(top: 8),
                                   child: Text(
-                                    "JOD",
+                                    S.of(context).JOD,
                                     style: TextStyle(
                                         color: AppColor.very_light_red,
                                         fontSize: 14,
@@ -180,11 +151,9 @@ class PaymentToNewRecipientPageView
                                   return InkWell(
                                     onTap: () {
                                       if (!value!) {
-                                        model.editAmountController.text =
-                                            ProviderScope.containerOf(context)
-                                                .read(
-                                                    sendMoneyViewModelProvider)
-                                                .currentPinValue;
+                                        model.editAmountController.text = ProviderScope.containerOf(context)
+                                            .read(sendMoneyViewModelProvider)
+                                            .currentPinValue;
                                         model.updateEditAmount(true);
                                       }
                                     },
@@ -211,15 +180,18 @@ class PaymentToNewRecipientPageView
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              S.of(context).enterCode +
-                                  "\n${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
-                                  " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: Theme.of(context).accentColor),
+                            child: Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: Text(
+                                S.of(context).enterCode +
+                                    "\n${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode != null ? (ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.isNotEmpty ? ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode!.replaceAll('00', '+') : '+') : ""}" +
+                                    " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    color: Theme.of(context).accentColor),
+                              ),
                             ),
                           )
                         ],

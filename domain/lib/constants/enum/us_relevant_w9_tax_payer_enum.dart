@@ -8,13 +8,10 @@ class USRelevantW9TaxPayerEnum {
     return _value.toString();
   }
 
-  static const USRelevantW9TaxPayerEnum SOCIAL_SECURITY =
-      USRelevantW9TaxPayerEnum._("Social Security");
-  static const USRelevantW9TaxPayerEnum EMPLOYER =
-      USRelevantW9TaxPayerEnum._("Employer");
+  static const USRelevantW9TaxPayerEnum SOCIAL_SECURITY = USRelevantW9TaxPayerEnum._("Social Security");
+  static const USRelevantW9TaxPayerEnum EMPLOYER = USRelevantW9TaxPayerEnum._("Employer");
 
-  static const USRelevantW9TaxPayerEnum NONE =
-      USRelevantW9TaxPayerEnum._("None");
+  static const USRelevantW9TaxPayerEnum NONE = USRelevantW9TaxPayerEnum._("None");
 }
 
 extension USRelevantW9TaxPayerEnumExt on String {
@@ -23,6 +20,10 @@ extension USRelevantW9TaxPayerEnumExt on String {
       case "Social Security":
         return USRelevantW9TaxPayerEnum.SOCIAL_SECURITY;
       case "Employer":
+        return USRelevantW9TaxPayerEnum.EMPLOYER;
+      case "ان اجتماعي":
+        return USRelevantW9TaxPayerEnum.SOCIAL_SECURITY;
+      case "لجهة الوظيفية":
         return USRelevantW9TaxPayerEnum.EMPLOYER;
       default:
         return USRelevantW9TaxPayerEnum.NONE;

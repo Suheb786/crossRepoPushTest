@@ -14,8 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class ForgotPasswordPageView
-    extends BasePageViewWidget<ForgotPasswordPageViewModel> {
+class ForgotPasswordPageView extends BasePageViewWidget<ForgotPasswordPageViewModel> {
   final pages = [
     AddIDNumberForResetPasswordPage(),
     CreateNewPasswordPage(),
@@ -42,17 +41,13 @@ class ForgotPasswordPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -69,16 +64,11 @@ class ForgotPasswordPageView
                     Text(
                       S.of(context).forgotPassword.toUpperCase(),
                       style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
+                          color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0,
-                          bottom: currentStep == 2 ? 0 : 32,
-                          start: 24,
-                          end: 24),
+                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -111,19 +101,21 @@ class ForgotPasswordPageView
                           curve: Curves.bounceIn,
                           direction: Direction.vertical,
                           offset: 0.5,
-                          child: Text(
-                            ProviderScope.containerOf(context)
-                                        .read(
-                                            createNewPasswordViewModelProvider)
-                                        .mobileNumber !=
-                                    null
-                                ? "${ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).mobileNumber}"
-                                : "",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              ProviderScope.containerOf(context)
+                                          .read(createNewPasswordViewModelProvider)
+                                          .mobileNumber !=
+                                      null
+                                  ? "${ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).mobileNumber}"
+                                  : "",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       ),

@@ -7,9 +7,9 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 
-class CardPinUnBlockSuccessPageView
-    extends BasePageViewWidget<CardPinUnBlockSuccessPageViewModel> {
+class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuccessPageViewModel> {
   CardPinUnBlockSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -38,23 +38,24 @@ class CardPinUnBlockSuccessPageView
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Image.asset(AssetUtils.line),
+                          Image.asset(AssetUtils.line,
+                              color: model.manageCardPinArguments.cardType == CardType.DEBIT
+                                  ? Theme.of(context).accentColor.withOpacity(0.4)
+                                  : AppColor.softRed),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: model.manageCardPinArguments.cardType ==
-                                        CardType.CREDIT
+                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).canvasColor
                                     : Theme.of(context).primaryColor,
                               ),
                               child: Center(
                                   child: AppSvg.asset(
                                 AssetUtils.right,
-                                color: model.manageCardPinArguments.cardType ==
-                                        CardType.CREDIT
+                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).primaryColorDark
                                     : Theme.of(context).accentColor,
                               )),
@@ -76,34 +77,24 @@ class CardPinUnBlockSuccessPageView
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: model.manageCardPinArguments.cardType ==
-                                        CardType.CREDIT
+                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).accentColor
-                                    : Theme.of(context)
-                                        .textTheme
-                                        .bodyText1!
-                                        .color),
+                                    : Theme.of(context).textTheme.bodyText1!.color),
                           ),
                           SizedBox(
                             height: 4,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).cardPinSucccesFullyUnblockedDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color:
-                                      model.manageCardPinArguments.cardType ==
-                                              CardType.CREDIT
-                                          ? Theme.of(context).accentColor
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodyText1!
-                                              .color),
+                                  color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                      ? Theme.of(context).accentColor
+                                      : Theme.of(context).textTheme.bodyText1!.color),
                             ),
                           ),
                         ],
@@ -117,14 +108,12 @@ class CardPinUnBlockSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor:
-                        model.manageCardPinArguments.cardType == CardType.CREDIT
-                            ? Theme.of(context).accentColor
-                            : Theme.of(context).textTheme.bodyText1!.color,
-                    borderColor:
-                        model.manageCardPinArguments.cardType == CardType.CREDIT
-                            ? Theme.of(context).accentColor
-                            : Theme.of(context).textTheme.bodyText1!.color,
+                    textColor: model.manageCardPinArguments.cardType == CardType.CREDIT
+                        ? Theme.of(context).accentColor
+                        : Theme.of(context).textTheme.bodyText1!.color,
+                    borderColor: model.manageCardPinArguments.cardType == CardType.CREDIT
+                        ? Theme.of(context).accentColor
+                        : Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   SizedBox(
                     height: 5,
@@ -137,8 +126,7 @@ class CardPinUnBlockSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: model.manageCardPinArguments.cardType ==
-                                  CardType.CREDIT
+                          color: model.manageCardPinArguments.cardType == CardType.CREDIT
                               ? Theme.of(context).accentColor
                               : Theme.of(context).textTheme.bodyText1!.color,
                           fontWeight: FontWeight.w400,

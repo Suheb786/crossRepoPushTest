@@ -21,13 +21,15 @@ class CountryData {
       this.isAllowedFatca,
       this.isNationalityAllowed,
       this.isIssuerAllowed,
-      this.isSelected: false});
+      this.isSelected: false,
+      this.countryNameAR});
 
   final String? isoCode3;
   final dynamic? score;
   final String? isoCode;
   final String? phoneCode;
   final String? countryName;
+  final String? countryNameAR;
   final bool? isAllowedCountry;
   final String? nationality;
   final String? gfxCode;

@@ -7,13 +7,11 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class RegisterNumberUseCase
-    extends BaseUseCase<LocalError, RegisterNumberUseCaseParams, bool> {
+class RegisterNumberUseCase extends BaseUseCase<LocalError, RegisterNumberUseCaseParams, bool> {
   RegisterNumberUseCase();
 
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required RegisterNumberUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required RegisterNumberUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -22,27 +20,31 @@ class RegisterNumberUseCaseParams extends Params {
   final String mobileNumber;
   final String? countryCode;
   final String? emailAddress;
+  final int isEmailExist;
+  final int isMobileNoExist;
 
   RegisterNumberUseCaseParams(
-      {required this.mobileNumber, this.countryCode, this.emailAddress});
+      {required this.mobileNumber,
+      this.countryCode,
+      this.emailAddress,
+      required this.isEmailExist,
+      required this.isMobileNoExist});
 
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(emailAddress!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_EMAIL, cause: Exception()));
     } else if (!Validator.validateEmail(emailAddress!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMAIL,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMAIL, cause: Exception()));
     } else if (mobileNumber.isEmpty || mobileNumber.length < 8) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_MOBILE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_MOBILE, cause: Exception()));
+    } else if (isEmailExist == 1) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMAIL_ALREADY_EXIST, cause: Exception()));
+    } else if (isMobileNoExist == 1) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.MOBILE_ALREADY_EXIST, cause: Exception()));
     }
     return Right(true);
   }

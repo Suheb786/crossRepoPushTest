@@ -67,7 +67,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           RichText(
                               maxLines: 3,
                               text: TextSpan(
-                                  text: 'You requested',
+                                  text: S.of(context).youRequested,
                                   style: TextStyle(
                                       fontSize: 12,
                                       overflow: TextOverflow.ellipsis,
@@ -75,7 +75,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       color: Theme.of(context).primaryColorDark),
                                   children: [
                                     TextSpan(
-                                        text: " ${transactions!.data![index].amount} JOD",
+                                        text: " ${transactions!.data![index].amount} ${S.of(context).JOD}",
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,

@@ -14,13 +14,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class EditMobileNoCliqPageView
-    extends BasePageViewWidget<EditMobileNoCliqPageViewModel> {
-  final pages = [
-    AddNewMobileNumberCliqPage(),
-    EnterOtpForMobileNumberCliqPage(),
-    BaseCardPage()
-  ];
+class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageViewModel> {
+  final pages = [AddNewMobileNumberCliqPage(), EnterOtpForMobileNumberCliqPage(), BaseCardPage()];
 
   EditMobileNoCliqPageView(ProviderBase model) : super(model);
 
@@ -46,8 +41,7 @@ class EditMobileNoCliqPageView
                     child: Padding(
                       padding: const EdgeInsetsDirectional.only(start: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          matchTextDirection: true,
-                          color: Theme.of(context).accentColor),
+                          matchTextDirection: true, color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -66,10 +60,7 @@ class EditMobileNoCliqPageView
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.only(
-                                top: 8.0,
-                                bottom: currentStep == 1 ? 0 : 32,
-                                start: 24,
-                                end: 24),
+                                top: 8.0, bottom: currentStep == 1 ? 0 : 32, start: 24, end: 24),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),
@@ -101,13 +92,16 @@ class EditMobileNoCliqPageView
                                 curve: Curves.bounceIn,
                                 direction: Direction.vertical,
                                 offset: 0.5,
-                                child: Text(
-                                  "+962 79 322 8080",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
+                                child: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text(
+                                    "+962 79 322 8080",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
                             ),

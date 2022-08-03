@@ -34,15 +34,12 @@ class OtpForChangeDeviceConfirmationPageView
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 )),
             Text(
               S.of(context).switchDevice,
-              style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w600),
+              style:
+                  TextStyle(color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
             ),
             Padding(
               padding: EdgeInsets.only(top: 8.0, bottom: 0),
@@ -57,9 +54,7 @@ class OtpForChangeDeviceConfirmationPageView
                   S.of(context).enterOtpHeader,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
+                      color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -71,13 +66,14 @@ class OtpForChangeDeviceConfirmationPageView
                 curve: Curves.bounceIn,
                 direction: Direction.vertical,
                 offset: 0.5,
-                child: Text(
-                  '${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.isNotEmpty ? ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.replaceAll('00', '+') : '-'} ${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Text(
+                    '${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.isNotEmpty ? ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.replaceAll('00', '+') : '-'} ${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ),
@@ -98,8 +94,7 @@ class OtpForChangeDeviceConfirmationPageView
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
                           model.saveUserData();
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.ChangeDeviceSuccess);
+                          Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }
@@ -114,11 +109,9 @@ class OtpForChangeDeviceConfirmationPageView
                           child: Card(
                             margin: EdgeInsets.zero,
                             child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SingleChildScrollView(
                                       physics: ClampingScrollPhysics(),
@@ -143,12 +136,8 @@ class OtpForChangeDeviceConfirmationPageView
                                           endTime: model.endTime,
                                           textStyle: TextStyle(
                                               fontSize: 16,
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
-                                          widgetBuilder:
-                                              (context, currentTimeRemaining) {
+                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                          widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
                                                 ? TextButton(
                                                     onPressed: () {
@@ -158,10 +147,8 @@ class OtpForChangeDeviceConfirmationPageView
                                                       'Resend Code',
                                                       style: TextStyle(
                                                           fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color!),
@@ -171,8 +158,7 @@ class OtpForChangeDeviceConfirmationPageView
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
                                                         fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontWeight: FontWeight.w600,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
                                                             .bodyText1!
@@ -190,9 +176,7 @@ class OtpForChangeDeviceConfirmationPageView
                                                   visible: isValid!,
                                                   child: AnimatedButton(
                                                     buttonHeight: 50,
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
+                                                    buttonText: S.of(context).swipeToProceed,
                                                   ),
                                                 );
                                               }),

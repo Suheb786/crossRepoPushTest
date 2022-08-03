@@ -125,15 +125,20 @@ class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumb
                                                       ),
                                                       Padding(
                                                         padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                                        child: Text(
-                                                          countryData.phoneCode!.isNotEmpty
-                                                              ? '+${countryData.phoneCode!}'
-                                                              : "",
-                                                          style: TextStyle(
-                                                            color:
-                                                                Theme.of(context).textTheme.bodyText1!.color,
-                                                            fontSize: 14,
-                                                            fontWeight: FontWeight.w600,
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.ltr,
+                                                          child: Text(
+                                                            countryData.phoneCode!.isNotEmpty
+                                                                ? '+${countryData.phoneCode!}'
+                                                                : "",
+                                                            style: TextStyle(
+                                                              color: Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w600,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),

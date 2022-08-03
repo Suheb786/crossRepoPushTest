@@ -37,17 +37,13 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 6, 4),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 6, 4),
                       size: Size(MediaQuery.of(context).size.width / 6, 4),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
-                      color:
-                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
