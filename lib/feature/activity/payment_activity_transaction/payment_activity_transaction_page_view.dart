@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActivityTransactionViewModel> {
   PaymentActivityTransactionPageView(ProviderBase model) : super(model);
@@ -93,7 +94,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                   ),
                                   AppStreamBuilder<String>(
                                       stream: model.paymentPeriodResponseStream,
-                                      initialData: 'Last 30 days',
+                                      initialData:
+                                          StringUtils.isDirectionRTL(context) ? "آخر 30 يوم" : 'Last 30 days',
                                       dataBuilder: (mContext, paymentPeriod) {
                                         return Padding(
                                           padding: EdgeInsetsDirectional.only(start: 8),

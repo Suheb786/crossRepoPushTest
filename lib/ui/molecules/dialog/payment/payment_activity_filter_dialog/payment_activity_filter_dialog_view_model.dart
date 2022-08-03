@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PaymentActivityFilterDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
-  List<String>? transactionTypeList = [
-    "All Transactions",
-    "From Me",
-    "From Others"
-  ];
+  List<String>? transactionTypeList = ["All Transactions", "From Me", "From Others"];
 
-  List<String>? transactionPeriodList = [
-    "Last 30 days",
-    "Last 3 months",
-    "Last 6 months"
-  ];
+  List<String>? transactionPeriodList = ["Last 30 days", "Last 3 months", "Last 6 months"];
 
-  List<String>? getTransactionList(FilterType type) {
+  List<String> transactionPeriodListAr = ["آخر 30 يوم", "آخر 3 اشهر", "آخر 6 اشهر"];
+
+  List<String>? getTransactionList(FilterType type, BuildContext context) {
     switch (type) {
       case FilterType.type:
         return transactionTypeList;
 
       case FilterType.period:
-        return transactionPeriodList;
+        return StringUtils.isDirectionRTL(context) ? transactionPeriodListAr : transactionPeriodList;
     }
   }
 

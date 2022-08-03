@@ -11,33 +11,27 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   PaymentActivityTransactionUseCase _useCase;
 
   /// payment activity subject holder
-  PublishSubject<PaymentActivityTransactionUseCaseParams>
-      _paymentActivityTransactionRequest = PublishSubject();
+  PublishSubject<PaymentActivityTransactionUseCaseParams> _paymentActivityTransactionRequest =
+      PublishSubject();
 
-  PublishSubject<Resource<PaymentActivityResponse>>
-      _paymentActivityTransactionResponse = PublishSubject();
+  PublishSubject<Resource<PaymentActivityResponse>> _paymentActivityTransactionResponse = PublishSubject();
 
-  Stream<Resource<PaymentActivityResponse>>
-      get paymentActivityTransactionResponse =>
-          _paymentActivityTransactionResponse.stream;
+  Stream<Resource<PaymentActivityResponse>> get paymentActivityTransactionResponse =>
+      _paymentActivityTransactionResponse.stream;
 
   ///transaction type
   BehaviorSubject<String> _transactionTypeResponse = BehaviorSubject();
 
-  Stream<String> get transactionTypeResponseStream =>
-      _transactionTypeResponse.stream;
+  Stream<String> get transactionTypeResponseStream => _transactionTypeResponse.stream;
 
   ///payment period
   BehaviorSubject<String> _paymentPeriodResponse = BehaviorSubject();
 
-  Stream<String> get paymentPeriodResponseStream =>
-      _paymentPeriodResponse.stream;
+  Stream<String> get paymentPeriodResponseStream => _paymentPeriodResponse.stream;
 
   PaymentActivityTransactionViewModel(this._useCase) {
     _paymentActivityTransactionRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _paymentActivityTransactionResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -50,8 +44,8 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
   }
 
   void getPaymentActivity(int filterDays) {
-    _paymentActivityTransactionRequest.safeAdd(
-        PaymentActivityTransactionUseCaseParams(filterDays: filterDays));
+    _paymentActivityTransactionRequest
+        .safeAdd(PaymentActivityTransactionUseCaseParams(filterDays: filterDays));
   }
 
   void updateTransactionType(String value) {
@@ -70,6 +64,12 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       case "Last 3 months":
         return 90;
       case "Last 6 months":
+        return 180;
+      case "آخر 30 يوم":
+        return 30;
+      case "آخر 3 اشهر":
+        return 90;
+      case "آخر 6 اشهر":
         return 180;
       default:
         return 180;
