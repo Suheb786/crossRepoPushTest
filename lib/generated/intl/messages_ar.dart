@@ -1083,6 +1083,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم موبايل/ اسم مستعار"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
             "رقم IBAN اللي دخلته غير موجود على Blink. رح تقدر تحوّل الأموال لحسابات خارجية قريباً. بتقدر هلأ تدعو صاحبك لينضم لعيلتنا!"),
+        "idAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("رقم الهوية موجود بالفعل"),
         "idCardDataNotFound": MessageLookupByLibrary.simpleMessage(
             "بيانات الهوية الشخصية غير موجودة"),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(

@@ -1134,6 +1134,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile No. / ALIAS"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
             "We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community."),
+        "idAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("IdNo Already Exist"),
         "idCardDataNotFound":
             MessageLookupByLibrary.simpleMessage("Id Card Data Not Found"),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(

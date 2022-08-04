@@ -13539,6 +13539,16 @@ class S {
       args: [],
     );
   }
+
+  /// `IdNo Already Exist`
+  String get idAlreadyExists {
+    return Intl.message(
+      'IdNo Already Exist',
+      name: 'idAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

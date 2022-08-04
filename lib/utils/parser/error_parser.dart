@@ -1083,6 +1083,8 @@ class ErrorParser {
         return localisedHelper.amountGreaterThan0;
       case ErrorType.CANNOT_PROCEED_NO_AHWAL_DATA_FOUND:
         return localisedHelper.cannotProceedNoAhwalDataFound;
+      case ErrorType.ID_CARD_NOT_ALLOWED:
+        return localisedHelper.idAlreadyExists;
 
       default:
         return "";

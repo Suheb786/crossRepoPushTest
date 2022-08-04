@@ -1330,5 +1330,6 @@
   "statement": " بيان",
   "accountNoCopied": "تم نسخ رقم الحساب",
   "ibanCopied": "نسخ IBAN",
-  "cardNumberCopied": "تم نسخ رقم البطاقة"
+  "cardNumberCopied": "تم نسخ رقم البطاقة",
+  "idAlreadyExists": "رقم الهوية موجود بالفعل"
 }
