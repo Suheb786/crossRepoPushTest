@@ -12,9 +12,9 @@ import 'package:neo_bank/ui/molecules/button/app_icon_button.dart';
 import 'package:neo_bank/ui/molecules/register/notify_me_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class RegisterSelectionPageView
-    extends BasePageViewWidget<RegisterSelectionViewModel> {
+class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionViewModel> {
   RegisterSelectionPageView(ProviderBase model) : super(model);
 
   @override
@@ -25,9 +25,7 @@ class RegisterSelectionPageView
           ProviderScope.containerOf(context)
               .read(onBoardingViewModelProvider)
               .onBoardingPageController
-              .previousPage(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.easeInOut);
+              .previousPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
         }
       },
       child: Container(
@@ -36,19 +34,15 @@ class RegisterSelectionPageView
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding:
-                  EdgeInsets.only(left: 128, right: 128, bottom: 8, top: 44),
+              padding: EdgeInsets.only(left: 128, right: 128, bottom: 8, top: 44),
               width: double.infinity,
               decoration: BoxDecoration(
                   color: Theme.of(context).accentColor,
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(16))),
+                  borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
               child: Container(
                 height: 4,
                 width: 128,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(2),
-                    color: AppColor.whiteGray),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), color: AppColor.whiteGray),
               ),
             ),
             Expanded(
@@ -63,6 +57,7 @@ class RegisterSelectionPageView
                         S.of(context).letsCreateYourProfile,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
                             fontSize: 32,
                             fontWeight: FontWeight.w600),
@@ -71,8 +66,7 @@ class RegisterSelectionPageView
                         margin: EdgeInsets.only(top: 41),
                         child: NotifyMeWidget(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.NonJordanianRegister);
+                            Navigator.pushNamed(context, RoutePaths.NonJordanianRegister);
                           },
                           title: S.of(context).accountOpeningDescription,
                           labelText: S.of(context).notifyMeExC,
@@ -82,8 +76,7 @@ class RegisterSelectionPageView
                         padding: EdgeInsets.only(top: 56),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, RoutePaths.AccountRegistration,
+                            Navigator.pushNamed(context, RoutePaths.AccountRegistration,
                                 arguments: AccountRegistrationParams());
                           },
                           child: Container(
@@ -91,14 +84,12 @@ class RegisterSelectionPageView
                             width: double.maxFinite,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1
-                                  ?.color,
+                              color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             ),
                             child: Center(
                               child: Text(S.of(context).registerViaEmail,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 1,
@@ -123,6 +114,7 @@ class RegisterSelectionPageView
                               Text(
                                 S.of(context).orContinueWith,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).accentColor,
                                     fontSize: 12),
                               ),
@@ -168,6 +160,7 @@ class RegisterSelectionPageView
               child: Text(
                 S.of(context).swipeDownToLogin,
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     color: Theme.of(context).accentColor,
                     letterSpacing: 1,

@@ -6,14 +6,14 @@ import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_suc
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ConvertPurchaseToInstallmentsPageView
     extends BasePageViewWidget<ConvertPurchaseToInstallmentsPageViewModel> {
   ConvertPurchaseToInstallmentsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, ConvertPurchaseToInstallmentsPageViewModel model) {
+  Widget build(BuildContext context, ConvertPurchaseToInstallmentsPageViewModel model) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 24),
       child: Column(
@@ -22,6 +22,7 @@ class ConvertPurchaseToInstallmentsPageView
           Text(
             S.of(context).convertPurchaseToInstallments.toUpperCase(),
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
                 color: Theme.of(context).accentColor),
@@ -33,6 +34,7 @@ class ConvertPurchaseToInstallmentsPageView
             S.of(context).selectPreferredInstallmentDuration,
             textAlign: TextAlign.center,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
                 color: Theme.of(context).accentColor),
@@ -47,11 +49,9 @@ class ConvertPurchaseToInstallmentsPageView
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.CreditCardApplySuccess,
+                    Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
                         arguments: CreditCardApplySuccessArguments(
-                            creditSuccessState: CreditSuccessState
-                                .Convert_Purchase_To_Installments));
+                            creditSuccessState: CreditSuccessState.Convert_Purchase_To_Installments));
                   } else {}
                 },
                 child: Column(
@@ -64,11 +64,10 @@ class ConvertPurchaseToInstallmentsPageView
                             "Host International Inc Dubai \nAED 2,771.74",
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
-                                color: Theme.of(context)
-                                    .textSelectionTheme
-                                    .cursorColor),
+                                color: Theme.of(context).textSelectionTheme.cursorColor),
                           ),
                         ),
                         Row(
@@ -77,21 +76,18 @@ class ConvertPurchaseToInstallmentsPageView
                             Text(
                               "- 534.900",
                               style: TextStyle(
-                                  color: Theme.of(context)
-                                      .textSelectionTheme
-                                      .cursorColor,
+                                  fontFamily: StringUtils.appFont,
+                                  color: Theme.of(context).textSelectionTheme.cursorColor,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 24),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 5.0),
                               child: Text(
-                                "JOD",
+                                S.of(context).JOD,
                                 style: TextStyle(
-                                    color: Theme.of(context)
-                                        .inputDecorationTheme
-                                        .hintStyle!
-                                        .color,
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700),
                               ),
@@ -104,11 +100,10 @@ class ConvertPurchaseToInstallmentsPageView
                         Text(
                           S.of(context).installmentOption,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
-                              color: Theme.of(context)
-                                  .textSelectionTheme
-                                  .cursorColor),
+                              color: Theme.of(context).textSelectionTheme.cursorColor),
                         ),
                         SizedBox(
                           height: 16,
@@ -120,15 +115,11 @@ class ConvertPurchaseToInstallmentsPageView
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 24),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!,
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,6 +127,7 @@ class ConvertPurchaseToInstallmentsPageView
                                   Text(
                                     "3-month",
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),
@@ -144,12 +136,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Monthly amount",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -157,6 +149,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "44.57 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -167,12 +160,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Fees (%)",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -180,6 +173,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "0.7%",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -190,26 +184,23 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Total payable",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                       Text(
                                         "592.39 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                     ],
                                   )
@@ -220,15 +211,11 @@ class ConvertPurchaseToInstallmentsPageView
                               height: 16,
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 24),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!,
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,6 +223,7 @@ class ConvertPurchaseToInstallmentsPageView
                                   Text(
                                     "6-month",
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),
@@ -244,12 +232,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Monthly amount",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -257,6 +245,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "29.71 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -267,12 +256,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Fees (%)",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -280,6 +269,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "0.6%",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -290,26 +280,23 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Total payable",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                       Text(
                                         "610.90 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                     ],
                                   )
@@ -320,15 +307,11 @@ class ConvertPurchaseToInstallmentsPageView
                               height: 16,
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 24),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!,
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                   )),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -336,6 +319,7 @@ class ConvertPurchaseToInstallmentsPageView
                                   Text(
                                     "9-month",
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),
@@ -344,12 +328,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Monthly amount",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -357,6 +341,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "44.57 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -367,12 +352,12 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Fees (%)",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -380,6 +365,7 @@ class ConvertPurchaseToInstallmentsPageView
                                       Text(
                                         "0.7%",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.gray),
@@ -390,26 +376,23 @@ class ConvertPurchaseToInstallmentsPageView
                                     height: 8,
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         "Total payable",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                       Text(
                                         "592.39 JOD",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
-                                            color: Theme.of(context)
-                                                .textSelectionTheme
-                                                .cursorColor),
+                                            color: Theme.of(context).textSelectionTheme.cursorColor),
                                       ),
                                     ],
                                   )

@@ -76,7 +76,10 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                       child: Text(
                                         S.of(context).numberOnCard,
                                         style: TextStyle(
-                                            fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.gray4),
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.gray4),
                                       ),
                                     ),
                                     Padding(
@@ -86,7 +89,10 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                             ? StringUtils.getLastFourDigitOfCardNo(
                                                 model.creditCard.cardNumber)
                                             : '-',
-                                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.w400),
                                       ),
                                     ),
                                     Padding(
@@ -96,7 +102,10 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                         textAlign: TextAlign.center,
                                         maxLines: 4,
                                         style: TextStyle(
-                                            fontSize: 14, fontWeight: FontWeight.w500, color: AppColor.gray4),
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColor.gray4),
                                       ),
                                     ),
                                     Padding(
@@ -140,6 +149,7 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                         ? model.creditCard.accountTitle ?? '-'
                                         : '-',
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12,
                                     ),
@@ -151,7 +161,10 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                                               ? StringUtils.getLastFourDigitOfCardNo(
                                                   model.creditCard.cardNumber!)
                                               : '-',
-                                          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700)))
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w700)))
                                 ],
                               )),
                         ),
@@ -176,6 +189,7 @@ class CreditCardDeliveredPageView extends BasePageViewWidget<CreditCardDelivered
                 child: Text(
                   S.of(context).deliveryIssue,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentTextTheme.bodyText1!.color,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),

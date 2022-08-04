@@ -161,6 +161,7 @@ class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobile
                                                           ? '+${selectedCountry.phoneCode!}'
                                                           : "",
                                                       style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         color: Theme.of(context).textTheme.bodyText1!.color,
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w600,
@@ -192,7 +193,10 @@ class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobile
                               child: Text(
                                 S.of(context).changeMobileNumberInfo,
                                 style: TextStyle(
-                                    color: AppColor.dark_gray_1, fontSize: 12, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.dark_gray_1,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                             Spacer(),
@@ -217,6 +221,7 @@ class DcEnterNewMobileNumberPageView extends BasePageViewWidget<DcEnterNewMobile
                               child: Text(
                                 S.of(context).backToCardSettings,
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: AppColor.brightBlue,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,

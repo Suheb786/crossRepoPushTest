@@ -10,9 +10,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ChangeCardPinSuccessPageView
-    extends BasePageViewWidget<ChangeCardPinSuccessPageViewModel> {
+class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSuccessPageViewModel> {
   ChangeCardPinSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -21,9 +21,7 @@ class ChangeCardPinSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Container(
@@ -56,18 +54,15 @@ class ChangeCardPinSuccessPageView
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color:
-                                    model.arguments.cardType == CardType.DEBIT
-                                        ? Theme.of(context).primaryColor
-                                        : Theme.of(context).canvasColor,
+                                color: model.arguments.cardType == CardType.DEBIT
+                                    ? Theme.of(context).primaryColor
+                                    : Theme.of(context).canvasColor,
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color: model.arguments.cardType ==
-                                              CardType.DEBIT
+                                      color: model.arguments.cardType == CardType.DEBIT
                                           ? Theme.of(context).accentColor
-                                          : Theme.of(context)
-                                              .primaryColorDark)),
+                                          : Theme.of(context).primaryColorDark)),
                             ),
                           ),
                         ],
@@ -81,36 +76,34 @@ class ChangeCardPinSuccessPageView
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).cardPinChangedSuccessfully,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 24,
-                                  color:
-                                      model.arguments.cardType == CardType.DEBIT
-                                          ? Theme.of(context).primaryColorDark
-                                          : Theme.of(context).accentColor),
+                                  color: model.arguments.cardType == CardType.DEBIT
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).accentColor),
                             ),
                           ),
                           SizedBox(
                             height: 4,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).cardPinChangedDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color:
-                                      model.arguments.cardType == CardType.DEBIT
-                                          ? Theme.of(context).primaryColorDark
-                                          : Theme.of(context).accentColor),
+                                  color: model.arguments.cardType == CardType.DEBIT
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).accentColor),
                             ),
                           ),
                         ],
@@ -142,6 +135,7 @@ class ChangeCardPinSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: model.arguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
                               : Theme.of(context).accentColor,

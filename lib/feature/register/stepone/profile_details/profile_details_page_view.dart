@@ -229,6 +229,7 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                     Text(
                                       S.of(context).whatIsYourEmploymentStatus,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).primaryColorDark),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ExemptionFromFatcaReportingCodePageView
     extends BasePageViewWidget<ExemptionFromFatcaReportingCodePageViewModel> {
@@ -30,6 +31,7 @@ class ExemptionFromFatcaReportingCodePageView
                 '''The following codes identify payees that are exempt from reporting under FATCA. These codes apply to persons submitting this form for accounts maintained outside of the United States by certain foreign financial institutions. Therefore, if you are only submitting this form for an account you hold in the United States, you may leave this field blank. Consult with the person requesting this form if you are uncertain if the financial institution is subject to these requirements. A requester may indicate that a code is not required by providing you with a Form W-9 with “Not Applicable” (or any similar indication) written or printed on the line for a FATCA exemption code. 
                 ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -95,6 +97,7 @@ section 664 or described in section 4947(a)(1).
 M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                 ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -109,6 +112,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                 '''Note: You may wish to consult with the financial institution requesting this form to determine whether the FATCA code and/or exempt payee code should be completed.
                   ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),

@@ -136,6 +136,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                   onEnd: () {},
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 16,
                                       color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
@@ -145,8 +146,9 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                               model.updateTime(context);
                                             },
                                             child: Text(
-                                              'Resend Code',
+                                              S.of(context).resendCode,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
@@ -154,6 +156,7 @@ class DcEnterOtpPageView extends BasePageViewWidget<DcEnterOtpViewModel> {
                                             S.of(context).resendIn(
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );

@@ -31,7 +31,11 @@ class ChangeCardSettlementPercentagePageView
         children: [
           Text(
             S.of(context).changeLinkedAccount.toUpperCase(),
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -39,7 +43,11 @@ class ChangeCardSettlementPercentagePageView
           Text(
             S.of(context).selectNewPercentage,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -86,6 +94,7 @@ class ChangeCardSettlementPercentagePageView
                                     child: Text(
                                       S.of(context).currentSettlementPercentage,
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14,
                                       ),
@@ -120,7 +129,10 @@ class ChangeCardSettlementPercentagePageView
                                           model.arguments?.creditCard.minimumSettlement != null
                                               ? model.arguments!.creditCard.minimumSettlement.toString() + "%"
                                               : "",
-                                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
                                         )
                                       ],
                                     ),
@@ -189,6 +201,7 @@ class ChangeCardSettlementPercentagePageView
                                       child: Text(
                                         S.of(context).backToCardSettings,
                                         style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.brightBlue,
                                           letterSpacing: 1,
                                           fontSize: 14,

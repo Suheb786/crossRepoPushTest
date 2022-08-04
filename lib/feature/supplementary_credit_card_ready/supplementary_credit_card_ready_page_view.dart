@@ -8,14 +8,14 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SupplementaryCreditCardReadyPageView
     extends BasePageViewWidget<SupplementaryCreditCardReadyPageViewModel> {
   SupplementaryCreditCardReadyPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, SupplementaryCreditCardReadyPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryCreditCardReadyPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
@@ -52,8 +52,7 @@ class SupplementaryCreditCardReadyPageView
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color:
-                                          Theme.of(context).primaryColorDark)),
+                                      color: Theme.of(context).primaryColorDark)),
                             ),
                           ),
                         ],
@@ -66,6 +65,7 @@ class SupplementaryCreditCardReadyPageView
                       S.of(context).yourCardIsReady,
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w500,
                           fontSize: 24,
                           color: Theme.of(context).accentColor),
@@ -77,8 +77,7 @@ class SupplementaryCreditCardReadyPageView
                       padding: const EdgeInsets.symmetric(horizontal: 48),
                       child: Row(
                         children: [
-                          AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
+                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           SizedBox(
                             width: 16,
                           ),
@@ -87,6 +86,7 @@ class SupplementaryCreditCardReadyPageView
                               S.of(context).aramaxWillConnectYouSoon,
                               textAlign: TextAlign.start,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
                                   color: Theme.of(context).accentColor),
@@ -100,8 +100,7 @@ class SupplementaryCreditCardReadyPageView
                       padding: const EdgeInsets.symmetric(horizontal: 48),
                       child: Row(
                         children: [
-                          AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
+                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           SizedBox(
                             width: 16,
                           ),
@@ -110,6 +109,7 @@ class SupplementaryCreditCardReadyPageView
                               S.of(context).youWillReceiveCardPinViaSms,
                               textAlign: TextAlign.start,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
                                   color: Theme.of(context).accentColor),
@@ -140,6 +140,7 @@ class SupplementaryCreditCardReadyPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,

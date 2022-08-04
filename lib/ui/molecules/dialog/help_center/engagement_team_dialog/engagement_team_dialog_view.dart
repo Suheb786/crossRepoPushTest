@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagement_team_dialog_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EngagementTeamDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -47,7 +48,8 @@ class EngagementTeamDialogView extends StatelessWidget {
                     child: Center(
                       child: Text(
                         S.of(context).engagementTeam,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
@@ -57,6 +59,7 @@ class EngagementTeamDialogView extends StatelessWidget {
                       child: Text(
                         S.of(context).engagementTeamDescription,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             height: 1.5,
                             fontWeight: FontWeight.w400,
@@ -87,7 +90,8 @@ class EngagementTeamDialogView extends StatelessWidget {
                               )),
                           Text(
                             S.of(context).voiceCall,
-                            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, fontSize: 14.0, fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
@@ -126,7 +130,8 @@ class EngagementTeamDialogView extends StatelessWidget {
                               )),
                           Text(
                             S.of(context).liveChat,
-                            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, fontSize: 14.0, fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
@@ -139,8 +144,11 @@ class EngagementTeamDialogView extends StatelessWidget {
                     child: Center(
                       child: Text(
                         S.of(context).swipeDownToCancel,
-                        style:
-                            TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.dark_gray_1),
                       ),
                     ),
                   ),

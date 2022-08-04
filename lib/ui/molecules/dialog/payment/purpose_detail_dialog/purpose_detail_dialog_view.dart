@@ -12,14 +12,14 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/payment_scrol
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurposeDetailDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(PurposeDetail)? onSelected;
   final List<PurposeDetail>? purposeDetailList;
 
-  const PurposeDetailDialogView(
-      {this.onDismissed, this.onSelected, this.purposeDetailList});
+  const PurposeDetailDialogView({this.onDismissed, this.onSelected, this.purposeDetailList});
 
   ProviderBase providerBase() {
     return purposeDetailDialogViewModelProvider.call(purposeDetailList!);
@@ -30,10 +30,8 @@ class PurposeDetailDialogView extends StatelessWidget {
     return BaseWidget<PurposeDetailDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -54,7 +52,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).purposeDetailSmall,
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, fontSize: 16, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -63,8 +61,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -91,31 +88,24 @@ class PurposeDetailDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount:
-                                                model.purposeDetailList!.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return PaymentScrollWheelWidget(
-                                                label: model
-                                                    .purposeDetailList![index]
-                                                    .labelEn!,
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: model.purposeDetailList!.length,
+                                        builder: (BuildContext context, int index) {
+                                          return PaymentScrollWheelWidget(
+                                            label: model.purposeDetailList![index].labelEn!,
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!
-                                .call(model.purposeDetailList![currentIndex!]);
+                            onSelected!.call(model.purposeDetailList![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -123,12 +113,8 @@ class PurposeDetailDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -137,6 +123,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),

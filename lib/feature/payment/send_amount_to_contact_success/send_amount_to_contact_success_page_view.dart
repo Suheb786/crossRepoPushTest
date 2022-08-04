@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountToContactSuccessViewModel> {
@@ -57,14 +58,20 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                       model.arguments.amount.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor, fontWeight: FontWeight.w700, fontSize: 28),
+                          fontFamily: StringUtils.appFont,
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 28),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 8, left: 5.0),
                       child: Text(
                         S.of(context).JOD,
                         style: TextStyle(
-                            color: AppColor.very_light_red, fontWeight: FontWeight.w700, fontSize: 14),
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.very_light_red,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14),
                       ),
                     ),
                   ],
@@ -77,7 +84,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                   maxLines: 3,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24),
                 ),
               ),
               Padding(
@@ -86,7 +96,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                   model.arguments.name ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14),
                 ),
               ),
               Padding(
@@ -94,7 +107,11 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                 child: Text(
                   model.arguments.iban ?? '',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: AppColor.very_light_red, fontWeight: FontWeight.w600, fontSize: 12),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.very_light_red,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12),
                 ),
               ),
               Padding(
@@ -111,6 +128,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                           Text(
                             S.of(context).refno,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),
@@ -118,6 +136,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                           Text(
                             model.arguments.referenceNo ?? '',
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                             ),
@@ -132,6 +151,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                             Text(
                               S.of(context).date,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -142,6 +162,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                                   text:
                                       "${TimeUtils.getFormattedDateForCreditCard(model.arguments.transferDate.toString())} - ",
                                   style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -150,7 +171,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                                   text:
                                       "${TimeUtils.getFormattedTimeForTransaction(model.arguments.transferDate.toString())}",
                                   style: TextStyle(
-                                      fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_1),
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.dark_gray_1),
                                 )
                               ]),
                             )
@@ -175,6 +199,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                         child: Text(
                           S.of(context).shareMyReceipt,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
                               color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -199,7 +224,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).accentColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -212,6 +240,7 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                       child: Text(
                         S.of(context).undoTransaction,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -222,7 +251,10 @@ class SendAmountToContactSuccessPageView extends BasePageViewWidget<SendAmountTo
                       child: Text(
                         "0:07",
                         style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).accentColor),
                       ),
                     ),
                   ],

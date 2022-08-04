@@ -15,6 +15,7 @@ class EmploymentStatusEnum {
   static const EmploymentStatusEnum RETIRED = EmploymentStatusEnum._("Retired");
   static const EmploymentStatusEnum STUDENT = EmploymentStatusEnum._("Student");
   static const EmploymentStatusEnum UNEMPLOYED = EmploymentStatusEnum._("Unemployed");
+  static const EmploymentStatusEnum HOUSEWIFE = EmploymentStatusEnum._("Housewife");
   static const EmploymentStatusEnum OTHER = EmploymentStatusEnum._("Other");
   static const EmploymentStatusEnum NONE = EmploymentStatusEnum._("None");
 }
@@ -36,6 +37,8 @@ extension EmploymentStatusEnumExt on String {
         return EmploymentStatusEnum.RETIRED;
       case "Unemployed":
         return EmploymentStatusEnum.UNEMPLOYED;
+      case "Housewife":
+        return EmploymentStatusEnum.HOUSEWIFE;
       case "Other":
         return EmploymentStatusEnum.OTHER;
       case "وظف بدوام كامل,":
@@ -52,6 +55,8 @@ extension EmploymentStatusEnumExt on String {
         return EmploymentStatusEnum.RETIRED;
       case "عاطل عن العم":
         return EmploymentStatusEnum.UNEMPLOYED;
+      case "ربة منزل":
+        return EmploymentStatusEnum.HOUSEWIFE;
       default:
         return EmploymentStatusEnum.NONE;
     }

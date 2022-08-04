@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/payment_scrol
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentActivityFilterDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -54,7 +55,8 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                               filterType == FilterType.type
                                   ? S.of(context).transactionType
                                   : S.of(context).transactionPeriod,
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -125,7 +127,10 @@ class PaymentActivityFilterDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

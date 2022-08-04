@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class EditTransactionPurposeDialogView extends StatelessWidget {
@@ -55,6 +56,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       Text(
                         S.of(context).editTransactionPurpose,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -66,6 +68,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           child: Text(
                             beneficiary!.fullName ?? '',
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                             ),
@@ -79,6 +82,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           child: Text(
                             beneficiary!.iban ?? '',
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 12,
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.w600,
@@ -165,7 +169,10 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),
@@ -216,6 +223,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         Text(
                           S.of(context).error,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
                               fontSize: 10),
@@ -224,6 +232,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           padding: EdgeInsets.only(top: 4.0, right: 16),
                           child: Text(message,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,

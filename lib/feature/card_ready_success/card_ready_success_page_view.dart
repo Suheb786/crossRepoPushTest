@@ -8,9 +8,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class CardReadySuccessPageView
-    extends BasePageViewWidget<CardReadySuccessPageViewModel> {
+class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageViewModel> {
   CardReadySuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -46,8 +46,7 @@ class CardReadySuccessPageView
                                 shape: BoxShape.circle,
                                 color: AppColor.vividYellow,
                               ),
-                              child:
-                                  Center(child: AppSvg.asset(AssetUtils.right)),
+                              child: Center(child: AppSvg.asset(AssetUtils.right)),
                             ),
                           ),
                         ],
@@ -63,6 +62,7 @@ class CardReadySuccessPageView
                           Text(
                             S.of(context).yourCardReady,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 24,
                                 color: Theme.of(context).accentColor),
@@ -71,12 +71,12 @@ class CardReadySuccessPageView
                             height: 24,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).accentColor),
@@ -107,6 +107,7 @@ class CardReadySuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,

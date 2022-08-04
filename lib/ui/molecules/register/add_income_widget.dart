@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AddIncomeWidget extends StatelessWidget {
   final String? label;
@@ -18,9 +19,7 @@ class AddIncomeWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-                color: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                width: 1)),
+            border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!, width: 1)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -29,7 +28,7 @@ class AddIncomeWidget extends StatelessWidget {
               style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
                   fontSize: 12,
-                  fontFamily: 'Montserrat',
+                  fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600),
             ),
             Icon(

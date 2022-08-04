@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSelectionWidget extends StatelessWidget {
   final Color? textColor;
@@ -10,12 +11,7 @@ class AccountSelectionWidget extends StatelessWidget {
   final int currentIndex;
 
   const AccountSelectionWidget(
-      {Key? key,
-      required this.label,
-      this.onTap,
-      this.textColor,
-      this.widgetColor,
-      this.currentIndex: 0})
+      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor, this.currentIndex: 0})
       : super(key: key);
 
   @override
@@ -29,8 +25,7 @@ class AccountSelectionWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: widgetColor),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +33,10 @@ class AccountSelectionWidget extends StatelessWidget {
             Text(
               S.of(context).savingAccount('${currentIndex + 1}'),
               style: TextStyle(
-                  color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
+                  fontFamily: StringUtils.appFont,
+                  color: textColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400),
             ),
             SizedBox(
               height: 4,
@@ -46,7 +44,10 @@ class AccountSelectionWidget extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                  color: textColor, fontSize: 10, fontWeight: FontWeight.w400),
+                  fontFamily: StringUtils.appFont,
+                  color: textColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w400),
             ),
           ],
         ),

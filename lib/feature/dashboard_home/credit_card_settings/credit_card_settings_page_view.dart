@@ -70,7 +70,11 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
               padding: EdgeInsets.only(top: 8),
               child: Text(
                 S.of(context).backToDashboard,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Expanded(
@@ -106,7 +110,10 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                         Padding(
                                           padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 10),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
-                                              style: TextStyle(fontSize: 14, height: 1.7)),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14,
+                                                  height: 1.7)),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -349,6 +356,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                       descriptionWidget: Text(
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
@@ -389,6 +397,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                       descriptionWidget: Text(
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
@@ -443,6 +452,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             S.of(context).actionComeToYouSoon,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.bold,
                               fontSize: 11,

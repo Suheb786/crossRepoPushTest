@@ -11,6 +11,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
@@ -37,16 +38,13 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
                 position: 4,
                 mainAxisSize: MainAxisSize.max,
                 decorator: DotsDecorator(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     activeSize: Size(MediaQuery.of(context).size.width / 6, 4),
                     size: Size(MediaQuery.of(context).size.width / 6, 4),
                     spacing: EdgeInsets.symmetric(horizontal: 1),
-                    activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
+                    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                     activeColor: Theme.of(context).accentColor,
-                    color:
-                        Theme.of(context).primaryColorLight.withOpacity(0.3)),
+                    color: Theme.of(context).primaryColorLight.withOpacity(0.3)),
               ),
               SizedBox(
                 height: 36,
@@ -54,13 +52,13 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
               Text(
                 S.of(context).videoCall,
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                padding: EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -77,6 +75,7 @@ class VideoCallPagePageView extends BasePageViewWidget<VideoCallPageViewModel> {
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class VersionUpdateDialogView extends StatelessWidget {
   final Function? onSelected;
@@ -20,10 +21,8 @@ class VersionUpdateDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding:
-            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async {
             return false;
@@ -35,13 +34,12 @@ class VersionUpdateDialogView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 41),
-                    image != null
-                        ? AppSvg.asset(image!, height: 50, width: 50)
-                        : Container(),
+                    image != null ? AppSvg.asset(image!, height: 50, width: 50) : Container(),
                     SizedBox(height: 25),
                     Text(
                       title,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                           color: AppColor.very_dark_gray),
@@ -59,12 +57,8 @@ class VersionUpdateDialogView extends StatelessWidget {
                         width: 57,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!),
-                        child: AppSvg.asset(AssetUtils.tick,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                        child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                       ),
                     ),
                     SizedBox(height: 12),

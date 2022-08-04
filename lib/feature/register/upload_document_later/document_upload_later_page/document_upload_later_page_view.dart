@@ -137,6 +137,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                 S.of(context).proofOfIncome,
                                                                 softWrap: true,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 14,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
@@ -149,6 +150,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                   S.of(context).proofOfIncomeDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontSize: 12,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
@@ -290,6 +292,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                 S.of(context).proofOfAddress,
                                                                 softWrap: true,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 14,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
@@ -302,6 +305,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                   S.of(context).proofOfAddressDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontSize: 12,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
@@ -640,6 +644,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                                                                         child: Text(
                                                                           S.of(context).uploadDocumentLater,
                                                                           style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.w600,
                                                                               color: Theme.of(context)

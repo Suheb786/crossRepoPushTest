@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/ahwal/ahwal_info_entity.dart';
 import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -7,9 +6,7 @@ part "ahwal_info_content_data_entity.g.dart";
 
 @JsonSerializable()
 class AhwalInfoContentDataEntity
-    implements
-        BaseLayerDataTransformer<AhwalInfoContentDataEntity,
-            AhwalDetailResponse> {
+    implements BaseLayerDataTransformer<AhwalInfoContentDataEntity, AhwalDetailResponse> {
   @JsonKey(name: "skipConfirmationScreen")
   final bool? skipConfirmationScreen;
 
@@ -27,7 +24,6 @@ class AhwalInfoContentDataEntity
 
   @override
   AhwalDetailResponse transform() {
-    return AhwalDetailResponse(
-        skipConfirmationScreen: this.skipConfirmationScreen ?? false);
+    return AhwalDetailResponse(skipConfirmationScreen: this.skipConfirmationScreen ?? false);
   }
 }

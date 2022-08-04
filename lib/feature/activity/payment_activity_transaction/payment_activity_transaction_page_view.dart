@@ -36,7 +36,8 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                 child: Center(
                   child: Text(
                     S.of(context).paymentActivity,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14),
                   ),
                 ),
               ),
@@ -81,6 +82,7 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                         Text(
                                           S.of(context).fromMe,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 12,
                                               color: AppColor.gray,
                                               fontWeight: FontWeight.w600),
@@ -119,8 +121,10 @@ class PaymentActivityTransactionPageView extends BasePageViewWidget<PaymentActiv
                                                 children: [
                                                   Text(
                                                     paymentPeriod!,
-                                                    style:
-                                                        TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w600),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsetsDirectional.only(start: 12),

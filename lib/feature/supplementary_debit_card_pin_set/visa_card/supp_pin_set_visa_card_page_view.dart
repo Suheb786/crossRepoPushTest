@@ -103,6 +103,7 @@ class SuppPinSetVisaCardPageView extends BasePageViewWidget<SuppPinSetVisaCardPa
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 1,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 12,
                                                     color: Theme.of(context).primaryColorDark),
@@ -126,6 +127,7 @@ class SuppPinSetVisaCardPageView extends BasePageViewWidget<SuppPinSetVisaCardPa
                                                     : "XXXX",
                                                 maxLines: 1,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 10,
                                                     color: Theme.of(context).primaryColorDark),
@@ -145,6 +147,7 @@ class SuppPinSetVisaCardPageView extends BasePageViewWidget<SuppPinSetVisaCardPa
                                     child: Text(
                                       'Debit',
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 10,
                                           color: Theme.of(context).primaryColorDark),

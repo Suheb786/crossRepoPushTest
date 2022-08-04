@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountReadyHeader extends StatelessWidget {
   final String? title;
@@ -17,6 +18,7 @@ class AccountReadyHeader extends StatelessWidget {
             child: Text(title!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     color: Theme.of(context).accentColor,
                     fontSize: 24,
                     fontWeight: FontWeight.w600)),
@@ -30,6 +32,7 @@ class AccountReadyHeader extends StatelessWidget {
               subTitle!,
               textAlign: TextAlign.center,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w400,
                   fontSize: 14,
                   color: Theme.of(context).accentColor),

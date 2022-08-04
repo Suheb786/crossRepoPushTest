@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import 'additional_income_source_dialog_view_model.dart';
 
@@ -59,7 +60,8 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               S.of(context).additionalIncome,
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -89,6 +91,7 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                               color: AppColor.very_dark_gray_black),
@@ -163,7 +166,10 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

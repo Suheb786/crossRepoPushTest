@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CustomSwitch extends StatefulWidget {
   final bool? value;
@@ -74,6 +75,7 @@ class _CustomSwitchState extends State<CustomSwitch> with SingleTickerProviderSt
                           child: Text(
                             'Yes',
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: _circleAnimation!.value == Alignment.centerLeft
                                     ? Colors.grey
                                     : Colors.white70,
@@ -102,6 +104,7 @@ class _CustomSwitchState extends State<CustomSwitch> with SingleTickerProviderSt
                           child: Text(
                             'No',
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: _circleAnimation!.value == Alignment.centerLeft
                                     ? Colors.grey
                                     : Colors.white70,

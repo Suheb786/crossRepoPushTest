@@ -11,6 +11,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class SupplementaryDebitCardPinSetPageView
@@ -60,6 +61,7 @@ class SupplementaryDebitCardPinSetPageView
                     Text(
                       S.of(context).debitCard,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).primaryColorDark,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
@@ -82,6 +84,7 @@ class SupplementaryDebitCardPinSetPageView
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).primaryColorDark,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),

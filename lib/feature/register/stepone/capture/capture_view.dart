@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CaptureView extends BasePageViewWidget<CaptureViewModel> {
   CaptureView(ProviderBase model) : super(model);
@@ -106,6 +107,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                     Text(
                                       S.of(context).selfieCheck,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).accentColor),
@@ -115,6 +117,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                       S.of(context).makeSureYourFaceFitsTheFrame,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
                                           color: Theme.of(context).accentColor),

@@ -180,6 +180,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                                         child: Text(
                                                                           "+962",
                                                                           style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
                                                                             color: Theme.of(context)
                                                                                 .textTheme
                                                                                 .bodyText1!

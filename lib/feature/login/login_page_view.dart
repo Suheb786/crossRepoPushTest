@@ -29,6 +29,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class LoginPageView extends BasePageViewWidget<LoginViewModel> {
   LoginPageView(ProviderBase model) : super(model);
@@ -85,6 +86,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                   child: Text(
                                                     e.fromLanguage(),
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         color: Theme.of(context).accentColor,
                                                         fontWeight: FontWeight.w500,
                                                         fontSize: 14),
@@ -116,6 +118,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         child: Text(
                           S.of(context).enterLoginDetails,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 14,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w500),
@@ -133,6 +136,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     descriptionWidget: Text(
                                       S.of(context).updateRequiredDesc,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 14,
                                           height: 1.7,
                                           color: Theme.of(context)
@@ -249,6 +253,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 .of(context)
                                                                                 .newDeviceDetectedDesc,
                                                                             style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
                                                                                 fontSize: 14,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ), onDismissed: () {
@@ -507,6 +513,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                       .forgotPassword,
                                                                                   textAlign: TextAlign.center,
                                                                                   style: TextStyle(
+                                                                                      fontFamily:
+                                                                                          StringUtils.appFont,
                                                                                       fontSize: 14,
                                                                                       fontWeight:
                                                                                           FontWeight.w500,
@@ -600,6 +608,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       child: Text(
                         S.of(context).swipeUpToJoinOurCommunity,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             letterSpacing: 1,

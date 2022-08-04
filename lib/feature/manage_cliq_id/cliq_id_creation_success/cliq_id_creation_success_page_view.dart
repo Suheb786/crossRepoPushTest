@@ -7,6 +7,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuccessPageViewModel> {
   CliqIdCreationSuccessPageView(ProviderBase model) : super(model);
@@ -46,7 +47,10 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                 S.of(context).cliqIdCreateSuccessFully,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor, fontWeight: FontWeight.w500, fontSize: 24),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).accentColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24),
               ),
             ),
             Padding(
@@ -61,6 +65,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                     Text(
                       S.of(context).alias,
                       style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
                       ),
@@ -68,6 +73,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                     Text(
                       "zeinmalhas3",
                       style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
@@ -89,6 +95,7 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
                       child: Text(
                         S.of(context).shareCliqId,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                             color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -109,7 +116,10 @@ class CliqIdCreationSuccessPageView extends BasePageViewWidget<CliqIdCreationSuc
               child: Text(
                 S.of(context).toManageCliq,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w600),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).accentColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ],

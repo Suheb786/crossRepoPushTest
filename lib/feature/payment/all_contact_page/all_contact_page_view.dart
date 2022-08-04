@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AllContactPageView extends BasePageViewWidget<AllContactPageViewModel> {
   AllContactPageView(ProviderBase model) : super(model);
@@ -67,6 +68,7 @@ class AllContactPageView extends BasePageViewWidget<AllContactPageViewModel> {
                                 child: Text(
                                   S.of(context).addingContactsDesc,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryColorDark),
@@ -118,7 +120,10 @@ class AllContactPageView extends BasePageViewWidget<AllContactPageViewModel> {
                               Text(
                                 S.of(context).noContactsYetDesc,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
                               )
                             ],
                           ),

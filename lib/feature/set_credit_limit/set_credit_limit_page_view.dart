@@ -109,7 +109,10 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                           children: [
                                             Text(
                                               S.of(context).creditLimit,
-                                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 10),
                                             ),
                                             SizedBox(
                                               height: 8,
@@ -124,7 +127,9 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                       return Text(
                                                         value!.toInt().toString(),
                                                         style: TextStyle(
-                                                            fontSize: 24, fontWeight: FontWeight.w700),
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 24,
+                                                            fontWeight: FontWeight.w700),
                                                       );
                                                     }),
                                                 Padding(
@@ -132,6 +137,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                   child: Text(
                                                     S.of(context).JOD,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w700,
                                                         color: AppColor.verLightGray4),
@@ -190,6 +196,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                   Text(
                                                     '${sliderLimitValues.minValue!} ${S.of(context).JOD}',
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         color: AppColor.gray,
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 10),
@@ -197,6 +204,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                   Text(
                                                     "${'${sliderLimitValues.maxValue!}'} ${S.of(context).JOD}",
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         color: AppColor.gray,
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 10),
@@ -261,6 +269,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                   child: Text(
                                                     S.of(context).backToCardSettings,
                                                     style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: AppColor.brightBlue,
                                                       fontSize: 14,
                                                       fontWeight: FontWeight.w500,

@@ -261,6 +261,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         Text(
                                                           S.of(context).permanentAddress,
                                                           style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
                                                               fontSize: 14,
                                                               fontWeight: FontWeight.w600,
                                                               color: Theme.of(context).primaryColorDark),

@@ -20,6 +20,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CreditCardVideoCallInitiatePageView
@@ -105,6 +106,7 @@ class CreditCardVideoCallInitiatePageView
                         child: Text(
                           S.of(context).applyForCreditCard,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
                               color: Theme.of(context).accentColor),
@@ -118,6 +120,7 @@ class CreditCardVideoCallInitiatePageView
                           S.of(context).timeForQuickVideoCall,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
                               color: Theme.of(context).accentColor),
@@ -154,6 +157,7 @@ class CreditCardVideoCallInitiatePageView
                                   S.of(context).weWillConnectYouInBlink,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 20,
                                       color: Theme.of(context).primaryColorDark),
@@ -166,6 +170,7 @@ class CreditCardVideoCallInitiatePageView
                                 S.of(context).thankYouForWaitingCallWillStartAutomatically,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 12,
                                     color: AppColor.very_dark_gray1),

@@ -68,4 +68,6 @@ class StringUtils {
   static bool isDirectionRTL(BuildContext context) {
     return intl.Bidi.isRtlLanguage(Localizations.localeOf(context).languageCode);
   }
+
+  static String appFont = intl.Intl.getCurrentLocale() == 'en' ? "Montserrat" : 'Tajawal';
 }

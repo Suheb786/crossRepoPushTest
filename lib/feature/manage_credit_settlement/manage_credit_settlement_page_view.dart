@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSettlementViewModel> {
   ManageCreditSettlementPageView(ProviderBase model) : super(model);
@@ -36,8 +37,11 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
             ),
             Text(
               S.of(context).manageSettlement,
-              style:
-                  TextStyle(color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: Theme.of(context).accentColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
             ),
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 18.0),
@@ -82,6 +86,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                                 child: Text(
                               S.of(context).changeCardPaymentAccount,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).inputDecorationTheme.hintStyle!.color ??
@@ -110,7 +115,8 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                           Expanded(
                               child: Text(
                             S.of(context).changeSettlementOptions,
-                            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14),
                           )),
                           AppSvg.asset(AssetUtils.rightChevron,
                               width: 20,

@@ -4,6 +4,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PEPDialogView extends StatelessWidget {
   final Function()? onSelected;
@@ -31,7 +32,8 @@ class PEPDialogView extends StatelessWidget {
                   Center(
                     child: Text(
                       S.of(context).whatIsPEP,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                   ),
                   Padding(
@@ -41,7 +43,7 @@ class PEPDialogView extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
-                          fontFamily: 'Montserrat',
+                          fontFamily: StringUtils.appFont,
                           color: AppColor.very_dark_gray_black,
                         ),
                         children: [
@@ -50,7 +52,7 @@ class PEPDialogView extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
-                              fontFamily: 'Montserrat',
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.very_dark_gray_black,
                             ),
                           )
@@ -81,7 +83,10 @@ class PEPDialogView extends StatelessWidget {
                         child: Text(
                           S.of(context).swipeDownToCancel,
                           style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: AppColor.dark_gray_1),
                         ),
                       ),
                     ),

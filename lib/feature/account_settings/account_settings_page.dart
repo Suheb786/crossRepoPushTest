@@ -7,6 +7,7 @@ import 'package:neo_bank/feature/account_settings/account_settings_page_view_mod
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSettingPage extends BasePage<AccountSettingPageViewModel> {
   @override
@@ -55,6 +56,7 @@ class AccountSettingPageState
             Text(
               S.of(context).settings,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: Theme.of(context).accentColor),

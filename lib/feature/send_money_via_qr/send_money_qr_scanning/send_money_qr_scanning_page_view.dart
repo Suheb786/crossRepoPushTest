@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanningPageViewModel> {
   SendMoneyQrScanningPageView(ProviderBase model) : super(model);
@@ -25,7 +26,11 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
         children: [
           Text(
             S.of(context).qrPayments,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -33,7 +38,11 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
           Text(
             S.of(context).youAreAcceptingMoneyRequestViaQr,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -57,6 +66,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                       Text(
                         S.of(context).amount,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w400,
                           fontSize: 10,
                         ),
@@ -69,6 +79,7 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                             Text(
                               '20.00',
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 24,
                               ),
@@ -78,7 +89,10 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 14, color: AppColor.verLightGray4),
+                                    fontFamily: StringUtils.appFont,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                    color: AppColor.verLightGray4),
                               ),
                             ),
                           ],
@@ -92,13 +106,17 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                             Text(
                               'Name',
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 12, color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12,
+                                  color: AppColor.dark_gray_1),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 4.0),
                               child: Text(
                                 "Zein Malhas",
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12,
                                 ),
@@ -156,7 +174,10 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),

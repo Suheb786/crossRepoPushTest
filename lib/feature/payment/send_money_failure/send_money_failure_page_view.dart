@@ -7,6 +7,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewModel> {
   SendMoneyFailurePageView(ProviderBase model) : super(model);
@@ -49,7 +50,10 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                     textAlign: TextAlign.center,
                     maxLines: 2,
                     style: TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
+                        fontFamily: StringUtils.appFont,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).accentColor),
                   )),
               Padding(
                 padding: EdgeInsetsDirectional.only(top: 51, start: 24, end: 24),
@@ -58,7 +62,10 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: TextStyle(
-                      fontWeight: FontWeight.w400, fontSize: 14, color: Theme.of(context).accentColor),
+                      fontFamily: StringUtils.appFont,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Theme.of(context).accentColor),
                 ),
               ),
               Padding(
@@ -76,6 +83,7 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).accentColor,

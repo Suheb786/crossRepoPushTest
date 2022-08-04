@@ -13489,6 +13489,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Resend Code`
+  String get resendCode {
+    return Intl.message(
+      'Resend Code',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Statement`
+  String get statement {
+    return Intl.message(
+      ' Statement',
+      name: 'statement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account No. Copied`
+  String get accountNoCopied {
+    return Intl.message(
+      'Account No. Copied',
+      name: 'accountNoCopied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN Copied`
+  String get ibanCopied {
+    return Intl.message(
+      'IBAN Copied',
+      name: 'ibanCopied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card Number Copied`
+  String get cardNumberCopied {
+    return Intl.message(
+      'Card Number Copied',
+      name: 'cardNumberCopied',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

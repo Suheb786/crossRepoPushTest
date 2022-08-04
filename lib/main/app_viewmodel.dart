@@ -13,6 +13,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
@@ -54,7 +55,7 @@ class AppViewModel extends BaseViewModel {
           ),
           inputDecorationTheme: InputDecorationTheme(
               hintStyle: TextStyle(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 color: AppColor.white.withOpacity(0.3),
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -65,14 +66,14 @@ class AppViewModel extends BaseViewModel {
               border: InputBorder.none,
               isCollapsed: true,
               errorStyle: TextStyle(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 color: AppColor.white,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               ),
               labelStyle: TextStyle(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 color: AppColor.black,
                 fontSize: 18,
                 height: 1.48,
@@ -80,11 +81,13 @@ class AppViewModel extends BaseViewModel {
                 fontStyle: FontStyle.normal,
               )),
           textTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat", bodyColor: AppColor.brightBlue, displayColor: AppColor.brightBlue),
-          accentTextTheme: _themeData.textTheme
-              .apply(fontFamily: "Montserrat", bodyColor: AppColor.white, displayColor: AppColor.white),
-          primaryTextTheme: _themeData.textTheme
-              .apply(fontFamily: "Montserrat", bodyColor: AppColor.white, displayColor: AppColor.white),
+              fontFamily: StringUtils.appFont,
+              bodyColor: AppColor.brightBlue,
+              displayColor: AppColor.brightBlue),
+          accentTextTheme: _themeData.textTheme.apply(
+              fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
+          primaryTextTheme: _themeData.textTheme.apply(
+              fontFamily: StringUtils.appFont, bodyColor: AppColor.white, displayColor: AppColor.white),
           iconTheme: IconThemeData(
             color: AppColor.white,
           ),
@@ -120,7 +123,7 @@ class AppViewModel extends BaseViewModel {
             ),
             inputDecorationTheme: InputDecorationTheme(
                 hintStyle: TextStyle(
-                  fontFamily: "Montserrat",
+                  fontFamily: StringUtils.appFont,
                   color: AppColor.gray1,
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -141,14 +144,14 @@ class AppViewModel extends BaseViewModel {
                     borderSide: BorderSide(width: 0.000001, color: AppColor.gray1, style: BorderStyle.none)),
                 isCollapsed: true,
                 errorStyle: TextStyle(
-                  fontFamily: "Montserrat",
+                  fontFamily: StringUtils.appFont,
                   color: AppColor.white,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                 ),
                 labelStyle: TextStyle(
-                  fontFamily: "Montserrat",
+                  fontFamily: StringUtils.appFont,
                   color: AppColor.veryDarkGray2,
                   fontSize: 18,
                   height: 1.48,
@@ -156,13 +159,15 @@ class AppViewModel extends BaseViewModel {
                   fontStyle: FontStyle.normal,
                 )),
             textTheme: _themeData.textTheme.apply(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 bodyColor: AppColor.veryDarkGray2,
                 displayColor: AppColor.veryDarkGray2),
             accentTextTheme: _themeData.textTheme.apply(
-                fontFamily: "Montserrat", bodyColor: AppColor.brightBlue, displayColor: AppColor.brightBlue),
+                fontFamily: StringUtils.appFont,
+                bodyColor: AppColor.brightBlue,
+                displayColor: AppColor.brightBlue),
             primaryTextTheme: _themeData.textTheme.apply(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 bodyColor: AppColor.very_dark_gray_black,
                 displayColor: AppColor.white),
             iconTheme: IconThemeData(

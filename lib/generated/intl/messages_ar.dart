@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 06-5200100 لفك القفل."),
         "accountNo": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
+        "accountNoCopied":
+            MessageLookupByLibrary.simpleMessage("تم نسخ رقم الحساب"),
         "accountNotFound":
             MessageLookupByLibrary.simpleMessage("الحساب غير موجود"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("رقم الحساب"),
@@ -321,6 +323,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardLoanAccNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
         "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
+        "cardNumberCopied":
+            MessageLookupByLibrary.simpleMessage("تم نسخ رقم البطاقة"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("لتخصيص البطاقة"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
@@ -1064,6 +1068,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iDNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "iHaveAnAccount": MessageLookupByLibrary.simpleMessage("عندي حساب"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanCopied": MessageLookupByLibrary.simpleMessage("نسخ IBAN"),
         "ibanMobileNoAlias": MessageLookupByLibrary.simpleMessage(
             "IBAN/ رقم موبايل/ اسم مستعار"),
         "ibanNotBlink": MessageLookupByLibrary.simpleMessage(
@@ -1872,6 +1877,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requesting": MessageLookupByLibrary.simpleMessage("طلب"),
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("تحديد موعد للمكالمة"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("أعد إرسال الرمز"),
         "resendIn": m3,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -2030,6 +2036,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "التعديل السريع غير فعال لبعض المعلومات. بدك تعيد من الأول؟ ما تقلق، رح نحتفظ بمعلوماتك الموجودة."),
         "state": MessageLookupByLibrary.simpleMessage("الولاية"),
         "stateSmall": MessageLookupByLibrary.simpleMessage("الولاية"),
+        "statement": MessageLookupByLibrary.simpleMessage(" بيان"),
         "statementPDF":
             MessageLookupByLibrary.simpleMessage("ملف كشف الحساب PDF"),
         "step2Complete": MessageLookupByLibrary.simpleMessage(

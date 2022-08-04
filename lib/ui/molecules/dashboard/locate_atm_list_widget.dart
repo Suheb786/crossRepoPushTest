@@ -2,13 +2,13 @@ import 'package:domain/model/dashboard/get_atms/atm_content_data.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class LocateATMListWidget extends StatelessWidget {
   final AtmContentData? atmContentData;
   final Function()? onTap;
 
-  const LocateATMListWidget({Key? key, this.atmContentData, this.onTap})
-      : super(key: key);
+  const LocateATMListWidget({Key? key, this.atmContentData, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +28,16 @@ class LocateATMListWidget extends StatelessWidget {
                     Text(
                       atmContentData!.bankName!,
                       maxLines: 3,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 16,
                     ),
                     Text(
                       atmContentData!.bankAddress!,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 18,
@@ -47,12 +47,10 @@ class LocateATMListWidget extends StatelessWidget {
                       child: Text(
                         S.of(context).getDirections,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     ),
                   ],
@@ -63,7 +61,7 @@ class LocateATMListWidget extends StatelessWidget {
               ),
               Text(
                 '0.8 km',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ],
           ),

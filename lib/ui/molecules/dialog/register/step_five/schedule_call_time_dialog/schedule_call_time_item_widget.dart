@@ -1,6 +1,7 @@
 import 'package:domain/model/account/available_time_slots.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ScheduleCallItemWidget extends StatelessWidget {
   final AvailableTimeSlots item;
@@ -20,6 +21,7 @@ class ScheduleCallItemWidget extends StatelessWidget {
         softWrap: true,
         maxLines: 2,
         style: TextStyle(
+            fontFamily: StringUtils.appFont,
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),

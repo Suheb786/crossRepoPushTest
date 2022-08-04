@@ -3,6 +3,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreatePasswordInfoDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -24,12 +25,20 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).passwordDialogHeader,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColor.gray_black),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.gray_black),
                 ),
                 SizedBox(height: 32),
                 Text(
                   S.of(context).passwordDialogContent,
-                  style: TextStyle(fontSize: 14, color: AppColor.gray_black, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 14,
+                      color: AppColor.gray_black,
+                      fontWeight: FontWeight.w400),
                 ),
               ],
             ),

@@ -12,9 +12,9 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ManageContactListPageView
-    extends BasePageViewWidget<ManageContactListPageViewModel> {
+class ManageContactListPageView extends BasePageViewWidget<ManageContactListPageViewModel> {
   ManageContactListPageView(ProviderBase model) : super(model);
 
   @override
@@ -25,8 +25,7 @@ class ManageContactListPageView
       padding: EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
           color: Theme.of(context).accentColor,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
           SizedBox(height: 24),
@@ -41,10 +40,8 @@ class ManageContactListPageView
           AppTextField(
             labelText: '',
             controller: model.contactSearchController,
-            textFieldBorderColor:
-                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.3),
-            hintTextColor:
-                Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5),
+            textFieldBorderColor: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.3),
+            hintTextColor: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.5),
             textColor: Theme.of(context).primaryColorDark,
             hintText: S.of(context).searchContacts,
             onChanged: (value) {
@@ -57,8 +54,7 @@ class ManageContactListPageView
                     height: 16,
                     width: 16,
                     padding: EdgeInsetsDirectional.only(end: 8),
-                    child: AppSvg.asset(AssetUtils.search,
-                        color: Theme.of(context).primaryColorDark)),
+                    child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
               );
             },
           ),
@@ -74,18 +70,16 @@ class ManageContactListPageView
                               height: 16,
                             ),
                             Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 24),
+                                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                                 decoration: BoxDecoration(
-                                    color: AppColor.vividYellow,
-                                    borderRadius: BorderRadius.circular(16)),
+                                    color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
                                 child: Text(
                                   S.of(context).addingContactsDesc,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color:
-                                          Theme.of(context).primaryColorDark),
+                                      color: Theme.of(context).primaryColorDark),
                                 )),
                             Expanded(
                               child: Card(
@@ -98,10 +92,8 @@ class ManageContactListPageView
                                       beneficiary: beneficiaryList.data![index],
                                       onTap: () async {
                                         var result = await Navigator.pushNamed(
-                                            context,
-                                            RoutePaths.ManageContactsDetail,
-                                            arguments:
-                                                beneficiaryList.data![index]);
+                                            context, RoutePaths.ManageContactsDetail,
+                                            arguments: beneficiaryList.data![index]);
 
                                         if (result != null) {
                                           model.getBeneficiaryList();
@@ -130,10 +122,7 @@ class ManageContactListPageView
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                        color: Theme.of(context)
-                                            .inputDecorationTheme
-                                            .hintStyle!
-                                            .color!)),
+                                        color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
                                 child: Container(
                                     padding: EdgeInsetsDirectional.all(32),
                                     child: AppSvg.asset(AssetUtils.contacts)),
@@ -142,7 +131,9 @@ class ManageContactListPageView
                                 S.of(context).noContactsYetDesc,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
                               )
                             ],
                           ),

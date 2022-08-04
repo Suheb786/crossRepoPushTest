@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherSuccessPageViewModel> {
   PurchaseVoucherSuccessPageView(ProviderBase model) : super(model);
@@ -70,6 +71,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                             '4.99',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 32,
                                 color: Theme.of(context).accentColor),
@@ -83,7 +85,10 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                               'USD',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 14, color: AppColor.very_light_red),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                  color: AppColor.very_light_red),
                             ),
                           ),
                         ],
@@ -95,7 +100,10 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                         '(3.540 JOD)',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 14, color: Theme.of(context).accentColor),
+                            fontFamily: StringUtils.appFont,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Theme.of(context).accentColor),
                       ),
                       SizedBox(
                         height: 24,
@@ -104,7 +112,10 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                         S.of(context).purchasedFor,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 24, color: Theme.of(context).accentColor),
+                            fontFamily: StringUtils.appFont,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24,
+                            color: Theme.of(context).accentColor),
                       ),
                       SizedBox(
                         height: 24,
@@ -130,6 +141,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                               'PlayStation Voucher Lorem Ipsum',
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).indicatorColor),
@@ -141,6 +153,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                               'PlayStation',
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
                                   color: Theme.of(context).indicatorColor),
@@ -161,6 +174,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                   Text(
                                     S.of(context).date,
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -170,6 +184,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                       TextSpan(
                                         text: "16 Dec 2021 - ",
                                         style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -177,6 +192,7 @@ class PurchaseVoucherSuccessPageView extends BasePageViewWidget<PurchaseVoucherS
                                       TextSpan(
                                         text: "3:30PM",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: AppColor.dark_gray_1),

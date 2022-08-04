@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
 
@@ -43,13 +44,9 @@ class MobileNumberDialogView extends StatelessWidget {
     return BaseWidget<MobileNumberDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding:
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -75,24 +72,22 @@ class MobileNumberDialogView extends StatelessWidget {
                                   child: Text(
                                     title!,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 32),
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                                 child: AppTextField(
                                   labelText: '',
-                                  controller:
-                                      model.mobileNumberSearchController,
+                                  controller: model.mobileNumberSearchController,
                                   textFieldBorderColor: AppColor.gray_1,
                                   hintTextColor: AppColor.gray_2,
                                   textColor: Theme.of(context).primaryColorDark,
                                   hintText: S.of(context).searchCountry,
-                                  containerPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
+                                  containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   onChanged: (value) {
                                     print(value);
                                     model.searchMobileNumber(value);
@@ -105,8 +100,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                           width: 16,
                                           padding: EdgeInsets.all(6),
                                           child: AppSvg.asset(AssetUtils.search,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark)),
+                                              color: Theme.of(context).primaryColorDark)),
                                     );
                                   },
                                 ),
@@ -117,60 +111,40 @@ class MobileNumberDialogView extends StatelessWidget {
                                           alignment: Alignment.center,
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16.0),
+                                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                               child: Container(
                                                 height: 64,
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(16),
+                                                  borderRadius: BorderRadius.circular(16),
                                                   color: AppColor.vividYellow,
                                                 ),
                                               ),
                                             ),
                                             AppScrollableListViewWidget(
                                               key: ValueKey(data.data!.length),
-                                              child:
-                                                  ClickableListWheelScrollView(
-                                                scrollController:
-                                                    model.scrollController,
+                                              child: ClickableListWheelScrollView(
+                                                scrollController: model.scrollController,
                                                 itemHeight: 72,
                                                 itemCount: data.data!.length,
                                                 onItemTapCallback: (index) {
-                                                  model.selectMobileNumber(
-                                                      index);
+                                                  model.selectMobileNumber(index);
                                                 },
-                                                child: ListWheelScrollView
-                                                    .useDelegate(
-                                                        controller: model
-                                                            .scrollController,
-                                                        itemExtent: 72,
-                                                        onSelectedItemChanged:
-                                                            (int index) {
-                                                          model
-                                                              .selectMobileNumber(
-                                                                  index);
-                                                        },
-                                                        physics:
-                                                            FixedExtentScrollPhysics(),
-                                                        perspective:
-                                                            0.0000000001,
-                                                        childDelegate:
-                                                            ListWheelChildBuilderDelegate(
-                                                                childCount: data
-                                                                    .data!
-                                                                    .length,
-                                                                builder: (BuildContext
-                                                                        context,
-                                                                    int index) {
-                                                                  return AllowedMobileNumberListWidget(
-                                                                    item: data
-                                                                            .data![
-                                                                        index],
-                                                                  );
-                                                                })),
+                                                child: ListWheelScrollView.useDelegate(
+                                                    controller: model.scrollController,
+                                                    itemExtent: 72,
+                                                    onSelectedItemChanged: (int index) {
+                                                      model.selectMobileNumber(index);
+                                                    },
+                                                    physics: FixedExtentScrollPhysics(),
+                                                    perspective: 0.0000000001,
+                                                    childDelegate: ListWheelChildBuilderDelegate(
+                                                        childCount: data.data!.length,
+                                                        builder: (BuildContext context, int index) {
+                                                          return AllowedMobileNumberListWidget(
+                                                            item: data.data![index],
+                                                          );
+                                                        })),
                                               ),
                                             ),
                                           ],
@@ -179,6 +153,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                           child: Text(
                                             S.of(context).noCountriesFound,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
                                                 color: AppColor.dark_violet_4),
@@ -196,8 +171,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                     children: <Widget>[
                                       InkWell(
                                         onTap: () {
-                                          onSelected!
-                                              .call(model.selectedCountryData!);
+                                          onSelected!.call(model.selectedCountryData!);
                                         },
                                         child: Container(
                                           padding: EdgeInsets.all(16),
@@ -205,13 +179,9 @@ class MobileNumberDialogView extends StatelessWidget {
                                           width: 57,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
+                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           child: AppSvg.asset(AssetUtils.tick,
-                                              color: Theme.of(context)
-                                                  .accentColor),
+                                              color: Theme.of(context).accentColor),
                                         ),
                                       ),
                                       InkWell(
@@ -219,12 +189,12 @@ class MobileNumberDialogView extends StatelessWidget {
                                           onDismissed?.call();
                                         },
                                         child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 8.0, bottom: 16),
+                                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                           child: Center(
                                             child: Text(
                                               S.of(context).swipeDownToCancel,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                   color: AppColor.dark_gray_1),
@@ -247,7 +217,7 @@ class MobileNumberDialogView extends StatelessWidget {
         },
         onModelReady: (model) {
           if (model.allCountryList == null || model.allCountryList!.isEmpty) {
-            model.setResponse(countryDataList,selectedCountryData);
+            model.setResponse(countryDataList, selectedCountryData);
           }
         },
         providerBase: providerBase());

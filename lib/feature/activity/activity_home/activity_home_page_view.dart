@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
@@ -56,7 +57,8 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                             padding: EdgeInsetsDirectional.only(top: 9),
                             child: Text(
                               S.of(context).activity,
-                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
                             ),
                           ),
                           Expanded(
@@ -96,6 +98,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                                     child: Text(
                                                       S.of(context).swipeToViewMore,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           color: AppColor.dark_gray_2,
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.w600),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class TermsAndConditionWidget extends StatelessWidget {
   final String? title1;
@@ -12,12 +13,7 @@ class TermsAndConditionWidget extends StatelessWidget {
   final Function? onTap;
 
   const TermsAndConditionWidget(
-      {Key? key,
-      this.title1,
-      this.title2,
-      this.title3,
-      this.isSelected: false,
-      this.onTap})
+      {Key? key, this.title1, this.title2, this.title3, this.isSelected: false, this.onTap})
       : super(key: key);
 
   @override
@@ -38,15 +34,11 @@ class TermsAndConditionWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Theme.of(context).primaryColorDark),
                 shape: BoxShape.circle,
-                color: isSelected!
-                    ? Theme.of(context).canvasColor
-                    : Colors.transparent,
+                color: isSelected! ? Theme.of(context).canvasColor : Colors.transparent,
               ),
               child: (isSelected!)
                   ? AppSvg.asset(AssetUtils.checkIcon,
-                      color: Theme.of(context).primaryColorDark,
-                      height: 7.33,
-                      width: 10.67)
+                      color: Theme.of(context).primaryColorDark, height: 7.33, width: 10.67)
                   : null,
             ),
           ),
@@ -57,7 +49,7 @@ class TermsAndConditionWidget extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
-                  fontFamily: 'Montserrat',
+                  fontFamily: StringUtils.appFont,
                   color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
@@ -66,9 +58,8 @@ class TermsAndConditionWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color!,
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                       ),
                       children: [
                         TextSpan(
@@ -76,7 +67,7 @@ class TermsAndConditionWidget extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
-                            fontFamily: 'Montserrat',
+                            fontFamily: StringUtils.appFont,
                             color: Theme.of(context).primaryColorDark,
                           ),
                         )

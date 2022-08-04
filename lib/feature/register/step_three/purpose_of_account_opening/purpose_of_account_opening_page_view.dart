@@ -116,7 +116,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                         Text(
                                           S.of(context).typeOfExpectedTransactions,
                                           style: TextStyle(
-                                              fontFamily: "Montserrat",
+                                              fontFamily: StringUtils.appFont,
                                               color: Theme.of(context).primaryColorDark,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 14),
@@ -152,6 +152,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                       child: Text(
                                         S.of(context).JOD,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
@@ -183,6 +184,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).primaryTextTheme.bodyText1!.color!),

@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCardLimitsPageViewModel> {
   ManageCreditCardLimitsPageView(ProviderBase model) : super(model);
@@ -68,6 +69,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                         Text(
                           S.of(context).manageCardLimits,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).accentColor,
                             fontSize: 13,
@@ -438,6 +440,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                         child: Center(
                                           child: Text(S.of(context).saveChanges,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,

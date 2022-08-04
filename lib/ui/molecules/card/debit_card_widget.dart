@@ -71,6 +71,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               Text(
                                 S.of(context).myDebitCard,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).primaryColorDark,
                                     fontSize: widget.isSmallDevice ? 10 : 12,
                                     fontWeight: FontWeight.w600),
@@ -83,6 +84,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       child: Text(
                                         S.of(context).cardFrozen,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             color: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1!
@@ -118,6 +120,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                           child: Text(
                                             S.of(context).flipCard,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                                 fontWeight: FontWeight.w600),
@@ -144,6 +147,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                   child: Text(
                                     widget.debitCard.accountTitle ?? '',
                                     style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: widget.isSmallDevice ? 12 : 14,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -187,6 +191,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                         child: Text(
                                           S.of(context).addMoney,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               fontSize: widget.isSmallDevice ? 12 : 14,
                                               color: Theme.of(context).accentColor),
@@ -238,6 +243,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                         child: Text(
                           S.of(context).cardDelivered,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w600,
                               fontSize: widget.isSmallDevice ? 10 : 12),
@@ -274,6 +280,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 : '',
                             maxLines: 2,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).primaryColorDark,
                                 fontSize: widget.isSmallDevice ? 10 : 12,
                                 fontWeight: FontWeight.w600),
@@ -293,6 +300,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                             child: Text(
                               S.of(context).flipBack,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                   fontSize: widget.isSmallDevice ? 12 : 14,
                                   fontWeight: FontWeight.w600),
@@ -313,6 +321,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
                               fontSize: widget.isSmallDevice ? 12 : 14,
                             ),
@@ -322,7 +331,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                             child: InkWell(
                                 onTap: () {
                                   Clipboard.setData(ClipboardData(text: widget.debitCard.cardNumber ?? ''))
-                                      .then((value) => Fluttertoast.showToast(msg: 'Card number Copied'));
+                                      .then((value) =>
+                                          Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                                 },
                                 child: AppSvg.asset(AssetUtils.copy)),
                           )
@@ -334,6 +344,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       child: Text(
                         S.of(context).cardNumber,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: widget.isSmallDevice ? 8 : 10,
                             color: AppColor.green),
@@ -350,6 +361,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               Text(
                                 widget.debitCard.expiryDate ?? '',
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: widget.isSmallDevice ? 10 : 12,
                                 ),
@@ -359,6 +371,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 child: Text(
                                   S.of(context).expiryDate,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: widget.isSmallDevice ? 8 : 10,
                                       color: AppColor.green,
                                       fontWeight: FontWeight.w600),
@@ -375,6 +388,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                               Text(
                                 widget.debitCard.cvv ?? '',
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: widget.isSmallDevice ? 10 : 12,
                                 ),
@@ -384,6 +398,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                 child: Text(
                                   S.of(context).cvv,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: widget.isSmallDevice ? 8 : 10,
                                       color: AppColor.green,
                                       fontWeight: FontWeight.w600),
@@ -406,6 +421,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                           ? StringUtils.getFormattedCreditCardNumber(widget.debitCard.linkedAccountNumber)
                           : '',
                       style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w700,
                         fontSize: widget.isSmallDevice ? 12 : 14,
                       ),
@@ -415,6 +431,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                       child: Text(
                         S.of(context).linkedAccountNumber,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: widget.isSmallDevice ? 8 : 10,
                             color: AppColor.green),

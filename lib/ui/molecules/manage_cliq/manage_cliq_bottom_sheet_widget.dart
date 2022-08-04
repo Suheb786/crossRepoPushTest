@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCliqBottomSheetWidget extends StatelessWidget {
   final Function()? setAsDefault;
@@ -28,10 +29,10 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 child: Text(
                   title ?? "",
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.4)),
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.4)),
                 ),
               ),
             ),
@@ -51,10 +52,10 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 child: Text(
                   S.of(context).setAsDefault,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color:
-                          Theme.of(context).accentTextTheme.bodyText1!.color),
+                      color: Theme.of(context).accentTextTheme.bodyText1!.color),
                 ),
               ),
             ),
@@ -74,6 +75,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 child: Text(
                   S.of(context).unlinkAccount,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).errorColor),
@@ -97,6 +99,7 @@ class ManageCliqBottomSheetWidget extends StatelessWidget {
                 child: Text(
                   S.of(context).cancel,
                   style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentTextTheme.bodyText1!.color,

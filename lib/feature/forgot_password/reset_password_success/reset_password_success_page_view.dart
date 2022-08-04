@@ -9,9 +9,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ResetPasswordSuccessPageView
-    extends BasePageViewWidget<ResetPasswordSuccessViewModel> {
+class ResetPasswordSuccessPageView extends BasePageViewWidget<ResetPasswordSuccessViewModel> {
   ResetPasswordSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -19,8 +19,7 @@ class ResetPasswordSuccessPageView
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(
-              context, ModalRoute.withName(RoutePaths.OnBoarding));
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
         }
       },
       child: SingleChildScrollView(
@@ -51,6 +50,7 @@ class ResetPasswordSuccessPageView
                   S.of(context).createPasswordSuccess,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontSize: 24,
                       fontWeight: FontWeight.w500),
@@ -62,6 +62,7 @@ class ResetPasswordSuccessPageView
                   S.of(context).proceedToLogin,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
@@ -82,9 +83,7 @@ class ResetPasswordSuccessPageView
                   child: Text(
                     S.of(context).toLoginPage,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
+                        color: Theme.of(context).accentColor, fontSize: 12, fontWeight: FontWeight.w500),
                   ),
                 ),
               ),

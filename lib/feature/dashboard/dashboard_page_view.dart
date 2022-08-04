@@ -60,6 +60,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           child: Text(
                             S.of(context).helloE,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: 32,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),
@@ -76,7 +77,10 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     child: Text(
                       S.of(context).successfullyCreatedLoginAccount,
                       style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                   SizedBox(
@@ -202,6 +206,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                         child: Text(
                           S.of(context).logoutAndContinueLater,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class UploadProfileBottomSheetWidget extends StatelessWidget {
   final Function()? onPhotoLibraryTap;
@@ -30,7 +31,10 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               child: Text(
                 title ?? "",
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).primaryColorDark),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).primaryColorDark),
               ),
             ),
             new ListTile(
@@ -41,7 +45,10 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 title: Text(
                   S.of(context).selectFromLibrary,
                   style: TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Theme.of(context).primaryColorDark),
                 ),
                 onTap: () {
                   onPhotoLibraryTap?.call();
@@ -51,7 +58,10 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               title: Text(
                 S.of(context).takePhoto,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onCameraTap?.call();
@@ -62,7 +72,10 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               title: Text(
                 S.of(context).removePhoto,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).primaryColorDark),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onRemoveTap?.call();
@@ -85,6 +98,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 child: Text(
                   S.of(context).cancel,
                   style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentTextTheme.bodyText1!.color,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardActivationStatusWidget extends StatelessWidget {
   final String label;
   final bool isActivated;
 
-  const CreditCardActivationStatusWidget(
-      {Key? key, required this.label, this.isActivated: false})
+  const CreditCardActivationStatusWidget({Key? key, required this.label, this.isActivated: false})
       : super(key: key);
 
   @override
@@ -20,8 +20,7 @@ class CreditCardActivationStatusWidget extends StatelessWidget {
           Row(
             children: [
               isActivated
-                  ? AppSvg.asset(AssetUtils.tick,
-                      color: Theme.of(context).accentColor)
+                  ? AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor)
                   : Container(
                       height: 24,
                       width: 24,
@@ -33,6 +32,7 @@ class CreditCardActivationStatusWidget extends StatelessWidget {
                 child: Text(
                   label,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: isActivated

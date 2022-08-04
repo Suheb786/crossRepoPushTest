@@ -8,9 +8,9 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class DcSettingCardReadyPageView
-    extends BasePageViewWidget<DcSettingCardReadyViewModel> {
+class DcSettingCardReadyPageView extends BasePageViewWidget<DcSettingCardReadyViewModel> {
   DcSettingCardReadyPageView(ProviderBase model) : super(model);
 
   @override
@@ -19,9 +19,7 @@ class DcSettingCardReadyPageView
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           // ProviderScope.containerOf(context)
           //     .read(appHomeViewModelProvider)
           //     .triggerSubscriptionPopUp();
@@ -43,10 +41,7 @@ class DcSettingCardReadyPageView
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Image.asset(AssetUtils.line,
-                              color: Theme.of(context)
-                                  .accentColor
-                                  .withOpacity(0.4)),
+                          Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
@@ -56,8 +51,8 @@ class DcSettingCardReadyPageView
                                 color: Theme.of(context).primaryColor,
                               ),
                               child: Center(
-                                  child: AppSvg.asset(AssetUtils.right,
-                                      color: Theme.of(context).accentColor)),
+                                  child:
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                             ),
                           ),
                         ],
@@ -73,6 +68,7 @@ class DcSettingCardReadyPageView
                           Text(
                             S.of(context).yourCardReady,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 24,
                             ),
@@ -81,12 +77,12 @@ class DcSettingCardReadyPageView
                             height: 24,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
                               ),
@@ -103,10 +99,8 @@ class DcSettingCardReadyPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
-                    textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                   SizedBox(
                     height: 5,
@@ -119,12 +113,10 @@ class DcSettingCardReadyPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     ),
                   ),

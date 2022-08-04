@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
   ActiveCallPageView(ProviderBase model) : super(model);
@@ -44,9 +45,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                               shape: BoxShape.circle,
                               color: AppColor.vividYellow,
                             ),
-                            child: Center(
-                                child: AppSvg.asset(AssetUtils.helpAgent,
-                                    height: 71, width: 57.28)),
+                            child:
+                                Center(child: AppSvg.asset(AssetUtils.helpAgent, height: 71, width: 57.28)),
                           ),
                         ),
                       ],
@@ -59,6 +59,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                       dataBuilder: (context, data) => Text(
                             data!,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 32),
@@ -85,9 +86,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       ),
                                       child: Center(
                                           child: AppSvg.asset(
-                                              data!.data!
-                                                  ? AssetUtils.speaker
-                                                  : AssetUtils.speakerOff,
+                                              data!.data! ? AssetUtils.speaker : AssetUtils.speakerOff,
                                               height: 30.32,
                                               width: 30.32)),
                                     ),
@@ -109,9 +108,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       ),
                                       child: Center(
                                           child: AppSvg.asset(
-                                              !data!.data!
-                                                  ? AssetUtils.micBlue
-                                                  : AssetUtils.muteMicBlue,
+                                              !data!.data! ? AssetUtils.micBlue : AssetUtils.muteMicBlue,
                                               height: 30.32,
                                               width: 30.32)),
                                     ),
@@ -123,8 +120,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                             onData: (value) {
                               print("HANGUP ::::: ${value.data}");
                               if (value.data!) {
-                                Navigator.pushReplacementNamed(
-                                    context, RoutePaths.CallEndedPage);
+                                Navigator.pushReplacementNamed(context, RoutePaths.CallEndedPage);
                               }
                             },
                             dataBuilder: (context, data) => InkWell(
@@ -142,8 +138,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                         color: AppColor.dark_brown,
                                       ),
                                       child: Center(
-                                          child: AppSvg.asset(AssetUtils.hangUp,
-                                              height: 30.32, width: 30.32)),
+                                          child:
+                                              AppSvg.asset(AssetUtils.hangUp, height: 30.32, width: 30.32)),
                                     ),
                                   ),
                                 )),

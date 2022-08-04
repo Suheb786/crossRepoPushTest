@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class OtpForChangeDeviceConfirmationPageView
@@ -38,8 +39,11 @@ class OtpForChangeDeviceConfirmationPageView
                 )),
             Text(
               S.of(context).switchDevice,
-              style:
-                  TextStyle(color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: Theme.of(context).accentColor,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w600),
             ),
             Padding(
               padding: EdgeInsets.only(top: 8.0, bottom: 0),
@@ -54,7 +58,10 @@ class OtpForChangeDeviceConfirmationPageView
                   S.of(context).enterOtpHeader,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).accentColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -72,7 +79,10 @@ class OtpForChangeDeviceConfirmationPageView
                     '${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.isNotEmpty ? ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode.replaceAll('00', '+') : '-'} ${ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).accentColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -135,6 +145,7 @@ class OtpForChangeDeviceConfirmationPageView
                                           onEnd: () {},
                                           endTime: model.endTime,
                                           textStyle: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 16,
                                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           widgetBuilder: (context, currentTimeRemaining) {
@@ -144,8 +155,9 @@ class OtpForChangeDeviceConfirmationPageView
                                                       model.resendOtp();
                                                     },
                                                     child: Text(
-                                                      'Resend Code',
+                                                      S.of(context).resendCode,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontSize: 14,
                                                           fontWeight: FontWeight.w600,
                                                           color: Theme.of(context)
@@ -157,6 +169,7 @@ class OtpForChangeDeviceConfirmationPageView
                                                     S.of(context).resendIn(
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context)

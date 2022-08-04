@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
@@ -65,6 +66,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                             Text(
                                               S.of(context).voiceChat,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600),
@@ -83,6 +85,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                   S.of(context).engagementTeamGettingReady,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
                                                       fontSize: 20,
                                                       fontWeight: FontWeight.w600),
@@ -131,6 +134,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                             S.of(context).weWillConnectYou,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
                                                                 color: Theme.of(context).primaryColorDark,
                                                                 fontSize: 20,
                                                                 fontWeight: FontWeight.w600),
@@ -140,6 +144,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                             S.of(context).thankYouForWaiting,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
                                                                 color: AppColor.very_dark_gray1,
                                                                 fontSize: 12,
                                                                 fontWeight: FontWeight.w400),
@@ -155,6 +160,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                                 child: Text(
                                                                   S.of(context).backToDashboard,
                                                                   style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     color: AppColor.brightBlue,
                                                                     fontSize: 14,
                                                                     fontWeight: FontWeight.w500,

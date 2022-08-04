@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DebitCardErrorWidget extends StatelessWidget {
   final double? fontSize;
   final bool isSmallDevices;
 
-  DebitCardErrorWidget({this.fontSize, this.isSmallDevices: false, Key? key})
-      : super(key: key);
+  DebitCardErrorWidget({this.fontSize, this.isSmallDevices: false, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,7 @@ class DebitCardErrorWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).canvasColor,
@@ -43,6 +42,7 @@ class DebitCardErrorWidget extends StatelessWidget {
                   S.of(context).creditCardIssuanceFailure,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontSize: isSmallDevices ? 12 : 14,
                       fontWeight: FontWeight.w600),

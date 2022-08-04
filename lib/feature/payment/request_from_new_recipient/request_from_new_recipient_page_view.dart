@@ -106,7 +106,10 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                             children: [
                                               Text(
                                                 S.of(context).requestedMoneyVia,
-                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600),
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.only(top: 16.0),
@@ -139,6 +142,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                 child: Text(
                                                                   S.of(context).nameOfBeneficiary,
                                                                   style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 12,
                                                                     fontWeight: FontWeight.w400,
                                                                   ),
@@ -149,6 +153,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                   value,
                                                                   maxLines: 2,
                                                                   style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 12,
                                                                     fontWeight: FontWeight.w600,
                                                                   ),
@@ -164,7 +169,10 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                 padding: EdgeInsets.only(top: 24),
                                                 child: Text(
                                                   S.of(context).selectPurpose,
-                                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                                                  style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w600),
                                                 ),
                                               ),
                                               Padding(
@@ -322,6 +330,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                           height: 28,
                                                                           child: TextField(
                                                                             style: TextStyle(
+                                                                                fontFamily:
+                                                                                    StringUtils.appFont,
                                                                                 fontSize: 14,
                                                                                 fontWeight: FontWeight.w600,
                                                                                 color: Theme.of(context)
@@ -338,6 +348,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                               hintText:
                                                                                   S.of(context).addNickName,
                                                                               hintStyle: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
                                                                                   fontSize: 14,
                                                                                   fontWeight: FontWeight.w600,
                                                                                   color: val!
@@ -398,6 +410,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                           child: Text(
                                             S.of(context).backToPayments,
                                             style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               color: AppColor.brightBlue,
                                               fontSize: 12,
                                               fontWeight: FontWeight.w500,

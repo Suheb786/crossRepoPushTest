@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistrationPageViewModel> {
@@ -66,7 +67,10 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                     Text(
                       S.of(context).accountRegistration,
                       style: TextStyle(
-                          color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
+                          color: Theme.of(context).accentColor,
+                          fontSize: 10,
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
@@ -87,6 +91,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
@@ -114,6 +119,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                                     "${mobileNumber.mobileNumber}",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).accentColor,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),

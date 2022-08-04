@@ -362,6 +362,7 @@ class AppHomeViewModel extends BasePageViewModel {
             if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
               if (!(debitCard.isPINSet ?? true)) {
                 pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
                   isSmallDevice: isSmallDevices,
                   isPinSet: debitCard.isPINSet!,
                   cardHolderName: debitCard.accountTitle ?? '',
@@ -374,6 +375,7 @@ class AppHomeViewModel extends BasePageViewModel {
                     .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
                 pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
                   isSmallDevice: isSmallDevices,
                   isPinSet: true,
                   cardHolderName: debitCard.accountTitle ?? '',
@@ -388,6 +390,7 @@ class AppHomeViewModel extends BasePageViewModel {
             } else {
               if (!(debitCard.isPINSet ?? true)) {
                 pages.add(ApplyDebitCardWidget(
+                  debitRoutes: DebitRoutes.DASHBOARD,
                   isSmallDevice: isSmallDevices,
                   isPinSet: debitCard.isPINSet!,
                   cardHolderName: debitCard.accountTitle ?? '',
@@ -422,6 +425,7 @@ class AppHomeViewModel extends BasePageViewModel {
           });
         } else {
           pages.add(ApplyDebitCardWidget(
+            debitRoutes: DebitRoutes.DASHBOARD,
             isSmallDevice: isSmallDevices,
             isPinSet: true,
             primarySecondaryEnum: PrimarySecondaryEnum.PRIMARY,

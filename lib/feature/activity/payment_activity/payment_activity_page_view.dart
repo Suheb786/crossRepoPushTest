@@ -51,7 +51,11 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
               children: [
                 Text(
                   S.of(context).paymentActivity,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_yellow),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.dark_yellow),
                 ),
                 SizedBox(
                   height: 10,
@@ -86,6 +90,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                       transaction.data![index].name!)
                                                   : "",
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 14),
@@ -100,22 +105,30 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                               children: [
                                                 Text.rich(TextSpan(
                                                     text: S.of(context).youRequested,
-                                                    style:
-                                                        TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: 12),
                                                     children: [
                                                       TextSpan(
                                                           text:
                                                               '${transaction.data![index].amount} ${S.of(context).JOD} ',
                                                           style: TextStyle(
-                                                              fontWeight: FontWeight.w600, fontSize: 12)),
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 12)),
                                                       TextSpan(
                                                           text: S.of(context).fromS,
                                                           style: TextStyle(
-                                                              fontWeight: FontWeight.w400, fontSize: 12)),
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: 12)),
                                                       TextSpan(
                                                           text: '${transaction.data![index].name}',
                                                           style: TextStyle(
-                                                              fontWeight: FontWeight.w600, fontSize: 12)),
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 12)),
                                                     ])),
                                                 // Text(
                                                 //   "You requested ${transaction

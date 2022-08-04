@@ -60,7 +60,11 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                   padding: EdgeInsets.only(top: 8),
                   child: Text(
                     S.of(context).backToPayments,
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                        color: AppColor.dark_gray_1),
                   ),
                 ),
                 Padding(
@@ -68,6 +72,7 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                   child: Text(
                     S.of(context).requestViaQR,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
                     ),
@@ -94,9 +99,9 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 32,
-                                  fontFamily: 'Montserrat',
                                   color: AppColor.black),
                             ),
                             Padding(
@@ -104,7 +109,10 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
-                                    color: AppColor.verLightGray4, fontSize: 14, fontWeight: FontWeight.w700),
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.verLightGray4,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ],
@@ -130,7 +138,11 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                   padding: EdgeInsets.only(top: 24),
                   child: Text(
                     S.of(context).accountBalance,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                        color: AppColor.dark_gray_1),
                   ),
                 ),
                 Padding(
@@ -141,6 +153,7 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                       Text(
                         '12,451.91',
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w700,
                           fontSize: 14,
                         ),
@@ -149,7 +162,11 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                         padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                         child: Text(
                           S.of(context).JOD,
-                          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.gray1),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 12,
+                              color: AppColor.gray1),
                         ),
                       ),
                     ],

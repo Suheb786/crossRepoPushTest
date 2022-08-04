@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPageViewModel> {
   FatcaCertificationPageView(ProviderBase model) : super(model);
@@ -28,6 +29,7 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
                     :*/
                 'Under penalties of perjury, I certify that:',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -51,6 +53,7 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
 4. The FATCA code(s) entered on this form (if any) indicating that I am exempt from FATCA reporting is correct.
                   ''',
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -73,6 +76,7 @@ acquisition or abandonment of secured property, cancellation of debt, contributi
 other than interest and dividends, you are not required to sign the certification, but you must provide your correct TIN.
                   ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),

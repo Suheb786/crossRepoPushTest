@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class TransactionWidget extends StatelessWidget {
@@ -15,11 +16,11 @@ class TransactionWidget extends StatelessWidget {
       children: [
         Text(
           transactions!.label!.isNotEmpty
-              ? TimeUtils.getFormattedDateForAccountTransaction(
-                  transactions!.label!)
+              ? TimeUtils.getFormattedDateForAccountTransaction(transactions!.label!)
               : '-',
           //transactions!.label!,
           style: TextStyle(
+              fontFamily: StringUtils.appFont,
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).primaryColorDark),
@@ -43,6 +44,7 @@ class TransactionWidget extends StatelessWidget {
                           transactions!.transactions![index].description!,
                           maxLines: 2,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -51,13 +53,10 @@ class TransactionWidget extends StatelessWidget {
                           padding: EdgeInsets.only(top: 4),
                           child: Text(
                             TimeUtils.getFormattedTimeForTransaction(
-                                transactions!.transactions![index].time!
-                                    .toString()),
+                                transactions!.transactions![index].time!.toString()),
                             style: TextStyle(
-                                color: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color,
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -77,15 +76,11 @@ class TransactionWidget extends StatelessWidget {
                         children: [
                           Text(
                             transactions!.transactions![index].trnxType == "D"
-                                ? "-" +
-                                    transactions!.transactions![index].amount!
-                                        .toStringAsFixed(3)
-                                : transactions!.transactions![index].amount!
-                                    .toStringAsFixed(3),
+                                ? "-" + transactions!.transactions![index].amount!.toStringAsFixed(3)
+                                : transactions!.transactions![index].amount!.toStringAsFixed(3),
                             style: TextStyle(
-                                color: transactions!
-                                            .transactions![index].trnxType ==
-                                        "D"
+                                fontFamily: StringUtils.appFont,
+                                color: transactions!.transactions![index].trnxType == "D"
                                     ? AppColor.dark_brown
                                     : AppColor.darkModerateLimeGreen,
                                 fontWeight: FontWeight.w600,
@@ -94,12 +89,10 @@ class TransactionWidget extends StatelessWidget {
                           Text(
                             " ${transactions!.transactions![index].amountCur}",
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
-                                color: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color),
+                                color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                           ),
                         ],
                       ),
@@ -110,25 +103,20 @@ class TransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            transactions!.transactions![index].balance!
-                                .toStringAsFixed(3),
+                            transactions!.transactions![index].balance!.toStringAsFixed(3),
                             style: TextStyle(
-                                color: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color,
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),
                           ),
                           Text(
                             " ${transactions!.transactions![index].balanceCur}",
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
-                                color: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color),
+                                color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                           ),
                         ],
                       ),

@@ -7,6 +7,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailureViewModel> {
   RequestMoneyFailurePageView(ProviderBase model) : super(model);
@@ -43,7 +44,8 @@ class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailure
                     S.of(context).sendMoneyNotSuccessful,
                     textAlign: TextAlign.center,
                     maxLines: 2,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 24, fontWeight: FontWeight.w500),
                   )),
               Padding(
                 padding: EdgeInsets.only(top: 51),
@@ -51,7 +53,8 @@ class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailure
                   S.of(context).tryAgainLater,
                   textAlign: TextAlign.center,
                   maxLines: 2,
-                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                  style:
+                      TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 14),
                 ),
               ),
               Padding(
@@ -68,7 +71,8 @@ class RequestMoneyFailurePageView extends BasePageViewWidget<RequestMoneyFailure
                   padding: EdgeInsets.only(top: 9),
                   child: Text(
                     S.of(context).toDashboard,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),

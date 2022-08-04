@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 import 'enter_code_for_change_mobile_number/enter_code_for_change_mobile_number_page.dart';
@@ -56,6 +57,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                           Text(
                             S.of(context).changeMobileNumber,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
@@ -78,6 +80,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
@@ -102,6 +105,7 @@ class ChangeMobileNumberPageView extends BasePageViewWidget<ChangeMobileNumberPa
                                         .mobileNumberWithCode,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).accentColor,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),

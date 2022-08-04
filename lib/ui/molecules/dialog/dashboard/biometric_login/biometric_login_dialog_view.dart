@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class BiometricLoginDialogView extends StatelessWidget {
   final Function? mayBeLater;
@@ -24,18 +25,15 @@ class BiometricLoginDialogView extends StatelessWidget {
     return BaseWidget<BiometricLoginDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: SingleChildScrollView(
                 physics: ClampingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 56),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AppSvg.asset(AssetUtils.biometricIcon,
-                        color: AppColor.dark_gray_1),
+                    AppSvg.asset(AssetUtils.biometricIcon, color: AppColor.dark_gray_1),
                     Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 41),
@@ -43,6 +41,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                           S.of(context).enableBiometricLogin,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).primaryColorDark),
@@ -55,6 +54,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                         child: Text(
                           S.of(context).biometricLoginDesc,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).primaryColorDark),
@@ -70,11 +70,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Theme
-                              .of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!,
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                           boxShadow: [
                             BoxShadow(
                                 color: AppColor.black.withOpacity(0.32),
@@ -84,10 +80,9 @@ class BiometricLoginDialogView extends StatelessWidget {
                           ],
                         ),
                         child: Center(
-                          child: Text(S
-                              .of(context)
-                              .enable,
+                          child: Text(S.of(context).enable,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 1,
@@ -105,6 +100,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).mayBeLater,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: 14,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w600,

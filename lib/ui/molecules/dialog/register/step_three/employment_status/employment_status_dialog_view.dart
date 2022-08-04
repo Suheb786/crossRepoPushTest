@@ -50,7 +50,8 @@ class EmploymentStatusDialogView extends StatelessWidget {
                           child: Center(
                             child: Text(
                               S.of(context).employmentStatusSmall,
-                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -129,7 +130,10 @@ class EmploymentStatusDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.dark_gray_1),
                             ),
                           ),
                         ),

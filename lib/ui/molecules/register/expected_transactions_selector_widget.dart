@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ExpectedTransactionsSelectorWidget extends StatelessWidget {
   final Color? textColor;
@@ -44,7 +45,10 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
               child: Text(
                 expectedTransactions.type!,
                 style: TextStyle(
-                    color: Theme.of(context).primaryColorDark, fontSize: 14, fontWeight: FontWeight.w600),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AppSwitchLabelWidget extends StatelessWidget {
   final String? label;
@@ -11,12 +12,7 @@ class AppSwitchLabelWidget extends StatelessWidget {
   final String? inActiveText;
 
   const AppSwitchLabelWidget(
-      {Key? key,
-      this.onToggle,
-      this.label,
-      this.isActive,
-      this.activeText,
-      this.inActiveText})
+      {Key? key, this.onToggle, this.label, this.isActive, this.activeText, this.inActiveText})
       : super(key: key);
 
   @override
@@ -31,7 +27,7 @@ class AppSwitchLabelWidget extends StatelessWidget {
             softWrap: false,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                fontFamily: "Montserrat",
+                fontFamily: StringUtils.appFont,
                 color: Theme.of(context).primaryColorDark,
                 fontWeight: FontWeight.w600,
                 fontSize: 14),

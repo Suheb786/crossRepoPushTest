@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentBeneficiaryEmptyWidget extends StatelessWidget {
   const PaymentBeneficiaryEmptyWidget({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class PaymentBeneficiaryEmptyWidget extends StatelessWidget {
           child: Text(
             "",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 9, fontWeight: FontWeight.w600),
+            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 9, fontWeight: FontWeight.w600),
           ),
         )
       ],

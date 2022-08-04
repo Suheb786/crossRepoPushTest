@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/payment/account_selection_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountsDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -18,11 +19,7 @@ class AccountsDialogView extends StatelessWidget {
   final List<String>? accountsList;
   final String label;
 
-  AccountsDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.accountsList,
-      required this.label});
+  AccountsDialogView({this.onDismissed, this.onSelected, this.accountsList, required this.label});
 
   ProviderBase providerBase() {
     return accountsDialogViewModelProvider;
@@ -33,10 +30,8 @@ class AccountsDialogView extends StatelessWidget {
     return BaseWidget<AccountsDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -57,7 +52,7 @@ class AccountsDialogView extends StatelessWidget {
                             child: Text(
                               label,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -66,8 +61,7 @@ class AccountsDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -94,31 +88,25 @@ class AccountsDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount:
-                                                model.accountsList!.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return AccountSelectionWidget(
-                                                label:
-                                                    model.accountsList![index],
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                                currentIndex: index,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: model.accountsList!.length,
+                                        builder: (BuildContext context, int index) {
+                                          return AccountSelectionWidget(
+                                            label: model.accountsList![index],
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                            currentIndex: index,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!
-                                .call(model.accountsList![currentIndex!]);
+                            onSelected!.call(model.accountsList![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -126,12 +114,8 @@ class AccountsDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -140,6 +124,7 @@ class AccountsDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),

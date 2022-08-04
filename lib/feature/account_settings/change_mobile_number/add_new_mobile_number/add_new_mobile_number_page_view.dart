@@ -140,6 +140,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                                 ? '+${countryData.phoneCode!}'
                                                                 : "",
                                                             style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
                                                               color: Theme.of(context)
                                                                   .textTheme
                                                                   .bodyText1!

@@ -135,6 +135,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                       StringUtils.getFirstInitials(profileData
                                                                           .data!.content!.fullName),
                                                                       style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
                                                                           fontWeight: FontWeight.w700,
                                                                           fontSize: 18,
                                                                           color:
@@ -164,6 +165,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 child: Text(
                                   S.of(context).tapToEditPhoto,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).inputDecorationTheme.hintStyle!.color),

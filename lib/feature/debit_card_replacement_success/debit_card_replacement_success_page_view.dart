@@ -8,6 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DebitCardReplacementSuccessPageView
     extends BasePageViewWidget<DebitCardReplacementSuccessPageViewModel> {
@@ -76,6 +77,7 @@ class DebitCardReplacementSuccessPageView
                           Text(
                             S.of(context).yourCardReady,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w500,
                               fontSize: 24,
                             ),
@@ -89,6 +91,7 @@ class DebitCardReplacementSuccessPageView
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).primaryColorDark),
@@ -119,6 +122,7 @@ class DebitCardReplacementSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentTextTheme.bodyText1!.color,
                           fontWeight: FontWeight.w500,
                           fontSize: 12,

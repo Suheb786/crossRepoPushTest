@@ -357,6 +357,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                       S.of(context).JOD,
                                                                       textAlign: TextAlign.end,
                                                                       style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
                                                                           fontSize: 12,
                                                                           fontWeight: FontWeight.w600,
                                                                           color: Theme.of(context)
@@ -510,6 +511,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     S.of(context).JOD,
                                                                     textAlign: TextAlign.end,
                                                                     style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
                                                                         fontSize: 12,
                                                                         fontWeight: FontWeight.w600,
                                                                         color: Theme.of(context)
@@ -535,6 +537,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                       S.of(context).JOD,
                                                                       textAlign: TextAlign.end,
                                                                       style: TextStyle(
+                                                                          fontFamily: StringUtils.appFont,
                                                                           fontSize: 12,
                                                                           fontWeight: FontWeight.w600,
                                                                           color: Theme.of(context)

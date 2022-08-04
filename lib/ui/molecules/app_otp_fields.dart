@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../utils/color_utils.dart';
@@ -70,6 +71,7 @@ class AppOtpFields extends StatelessWidget {
                 BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color),
           ),
           textStyle: TextStyle(
+              fontFamily: StringUtils.appFont,
               // color: AppColor.very_pale_blue,
               fontWeight: FontWeight.w600,
               fontSize: 19),

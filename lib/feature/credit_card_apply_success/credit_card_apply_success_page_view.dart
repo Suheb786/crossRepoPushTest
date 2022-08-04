@@ -9,21 +9,18 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class CreditCardApplySuccessPageView
-    extends BasePageViewWidget<CreditCardApplySuccessPageViewModel> {
+class CreditCardApplySuccessPageView extends BasePageViewWidget<CreditCardApplySuccessPageViewModel> {
   CreditCardApplySuccessPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, CreditCardApplySuccessPageViewModel model) {
+  Widget build(BuildContext context, CreditCardApplySuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Container(
@@ -56,8 +53,7 @@ class CreditCardApplySuccessPageView
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color:
-                                          Theme.of(context).primaryColorDark)),
+                                      color: Theme.of(context).primaryColorDark)),
                             ),
                           ),
                         ],
@@ -67,12 +63,10 @@ class CreditCardApplySuccessPageView
                       height: 56,
                     ),
                     Text(
-                      model.getTitle(
-                          context,
-                          model.creditCardApplySuccessArguments
-                              .creditSuccessState),
+                      model.getTitle(context, model.creditCardApplySuccessArguments.creditSuccessState),
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w500,
                           fontSize: 24,
                           color: Theme.of(context).accentColor),
@@ -83,12 +77,10 @@ class CreditCardApplySuccessPageView
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        model.description(
-                            context,
-                            model.creditCardApplySuccessArguments
-                                .creditSuccessState),
+                        model.description(context, model.creditCardApplySuccessArguments.creditSuccessState),
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 14,
                             color: Theme.of(context).accentColor),
@@ -116,6 +108,7 @@ class CreditCardApplySuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,

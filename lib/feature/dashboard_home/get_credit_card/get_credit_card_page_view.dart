@@ -27,8 +27,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    bool isSmallDevices = model.deviceSize.height <
-            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+    bool isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return cardData.somethingWrong!
         ? Center(
@@ -36,14 +35,12 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
               padding: const EdgeInsets.all(15),
               child: GestureDetector(
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).primaryColor,
                   margin: EdgeInsets.zero,
-                  shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -51,8 +48,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                       fit: BoxFit.cover,
                       scale: isSmallDevices ? 1.3 : 1,
                     )),
-                    child: CreditCardIssuanceFailureWidget(
-                        fontSize: isSmallDevices ? 12 : 14),
+                    child: CreditCardIssuanceFailureWidget(fontSize: isSmallDevices ? 12 : 14),
                   ),
                 ),
               ),
@@ -77,14 +73,12 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                     //   }
                     // },
                     child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       elevation: 2,
                       color: Theme.of(context).primaryColor,
                       margin: EdgeInsets.zero,
-                      shadowColor:
-                          Theme.of(context).primaryColorDark.withOpacity(0.32),
+                      shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                       child: Container(
                         decoration: BoxDecoration(
                             image: DecorationImage(
@@ -97,30 +91,26 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 23, right: 23, left: 23),
+                              padding: const EdgeInsets.only(top: 23, right: 23, left: 23),
                               child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                                  height: isSmallDevices ? 26 : 33.64,
-                                  width: isSmallDevices ? 52 : 72),
+                                  height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  top: isSmallDevices ? 20 : 58),
+                              padding: EdgeInsets.only(top: isSmallDevices ? 20 : 58),
                               child: Align(
                                 alignment: Alignment.center,
-                                child: AppSvg.asset(AssetUtils.cardCircle,
-                                    height: isSmallDevices ? 72 : 96),
+                                child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
                               ),
                             ),
                             Padding(
-                                padding: EdgeInsets.only(
-                                    top: 10, left: 23, right: 23),
+                                padding: EdgeInsets.only(top: 10, left: 23, right: 23),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
                                     S.of(context).blinkCreditCard,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: isSmallDevices ? 10 : 12,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).accentColor),
@@ -137,27 +127,21 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                   onTap: () {
                                     // model.updateIsGetCardNowClicked(
                                     //     !isValid!);
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.BlinkCreditCard);
+                                    Navigator.pushNamed(context, RoutePaths.BlinkCreditCard);
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 17),
+                                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                                     decoration: BoxDecoration(
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1
-                                            ?.color,
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
+                                        color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                                        borderRadius: BorderRadius.circular(100)),
                                     child: Center(
                                       child: Text(
                                         S.of(context).getCardNow,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: isSmallDevices ? 12 : 14,
                                             fontWeight: FontWeight.w600,
-                                            color:
-                                                Theme.of(context).accentColor),
+                                            color: Theme.of(context).accentColor),
                                       ),
                                     ),
                                   ),
@@ -199,19 +183,14 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                               child: Container(
                                   key: ValueKey(true),
                                   child: Card(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(16)),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     elevation: 2,
                                     color: Theme.of(context).primaryColor,
                                     margin: EdgeInsets.zero,
-                                    shadowColor: Theme.of(context)
-                                        .primaryColorDark
-                                        .withOpacity(0.32),
+                                    shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.only(
@@ -220,25 +199,21 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               left: 23,
                                               bottom: 5),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 S.of(context).myCreditCard,
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: isSmallDevices
-                                                        ? 10
-                                                        : 12,
+                                                    fontSize: isSmallDevices ? 10 : 12,
                                                     color: Colors.white),
                                               ),
                                               InkWell(
-                                                splashFactory:
-                                                    NoSplash.splashFactory,
+                                                splashFactory: NoSplash.splashFactory,
                                                 onTap: () {
-                                                  model.cardKey.currentState!
-                                                      .toggleCard();
+                                                  model.cardKey.currentState!.toggleCard();
                                                 },
                                                 child: Container(
                                                   height: 50,
@@ -247,11 +222,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     S.of(context).flipCard,
                                                     textAlign: TextAlign.right,
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: isSmallDevices
-                                                            ? 12
-                                                            : 14,
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: isSmallDevices ? 12 : 14,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
                                                             .bodyText1!
@@ -263,125 +236,76 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 23, vertical: 5),
-                                          child: AppSvg.asset(
-                                              AssetUtils.blink_updated_logo,
-                                              height:
-                                                  isSmallDevices ? 26 : 33.64,
+                                          padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
+                                          child: AppSvg.asset(AssetUtils.blink_updated_logo,
+                                              height: isSmallDevices ? 26 : 33.64,
                                               width: isSmallDevices ? 52 : 72),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 23, vertical: 5),
+                                          padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
                                           child: Text(
-                                            cardData.creditCard!.first.name ??
-                                                "",
+                                            cardData.creditCard!.first.name ?? "",
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize:
-                                                    isSmallDevices ? 12 : 14,
+                                                fontSize: isSmallDevices ? 12 : 14,
                                                 color: Colors.white),
                                           ),
                                         ),
                                         Spacer(),
-                                        Image.asset(
-                                            AssetUtils.line_black_white),
+                                        Image.asset(AssetUtils.line_black_white),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              left: 24,
-                                              top: isSmallDevices ? 30 : 53,
-                                              right: 11),
+                                              left: 24, top: isSmallDevices ? 30 : 53, right: 11),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        cardData
-                                                            .creditCard!
-                                                            .first
-                                                            .paymentDueAmount
+                                                        cardData.creditCard!.first.paymentDueAmount
                                                             .toString(),
                                                         style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .accentColor,
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            fontSize:
-                                                                isSmallDevices
-                                                                    ? 14
-                                                                    : 20),
+                                                            color: Theme.of(context).accentColor,
+                                                            fontWeight: FontWeight.w700,
+                                                            fontSize: isSmallDevices ? 14 : 20),
                                                       ),
                                                       Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 5.0),
+                                                        padding: EdgeInsets.only(left: 5.0),
                                                         child: Text(
                                                           "JOD",
                                                           style: TextStyle(
-                                                              color: AppColor
-                                                                  .lightRed,
-                                                              fontSize:
-                                                                  isSmallDevices
-                                                                      ? 12
-                                                                      : 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
+                                                              color: AppColor.lightRed,
+                                                              fontSize: isSmallDevices ? 12 : 14,
+                                                              fontWeight: FontWeight.w700),
                                                         ),
                                                       )
                                                     ],
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.only(top: 5),
+                                                    padding: EdgeInsets.only(top: 5),
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          S
-                                                              .of(context)
-                                                              .minDueBy,
+                                                          S.of(context).minDueBy,
                                                           style: TextStyle(
-                                                              color: AppColor
-                                                                  .veryLightRed,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize:
-                                                                  isSmallDevices
-                                                                      ? 8
-                                                                      : 10),
+                                                              color: AppColor.veryLightRed,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: isSmallDevices ? 8 : 10),
                                                         ),
                                                         Text(
-                                                          cardData
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .nextPaymentDate!
+                                                          cardData.creditCard!.first.nextPaymentDate!
                                                                   .isNotEmpty
                                                               ? TimeUtils.getFormattedDateForCreditCard(
-                                                                  cardData
-                                                                      .creditCard!
-                                                                      .first
-                                                                      .nextPaymentDate!)
+                                                                  cardData.creditCard!.first.nextPaymentDate!)
                                                               : "-",
                                                           style: TextStyle(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .accentColor,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize:
-                                                                  isSmallDevices
-                                                                      ? 8
-                                                                      : 10),
+                                                              color: Theme.of(context).accentColor,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: isSmallDevices ? 8 : 10),
                                                         ),
                                                       ],
                                                     ),
@@ -390,62 +314,32 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  Navigator.pushNamed(
-                                                      context, RoutePaths.CreditCardPayBack,
+                                                  Navigator.pushNamed(context, RoutePaths.CreditCardPayBack,
                                                       arguments: CreditCardPayBackArguments(
-                                                          accountHolderName:
-                                                              cardData
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .name!,
-                                                          secureCode: cardData
-                                                              .creditCard!
-                                                              .first
-                                                              .cardCode!,
-                                                          accountBalance: cardData
-                                                              .account!
-                                                              .availableBalance!,
-                                                          minDuePayBackAmount:
-                                                              cardData
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .paymentDueAmount
-                                                                  .toString(),
+                                                          accountHolderName: cardData.creditCard!.first.name!,
+                                                          secureCode: cardData.creditCard!.first.cardCode!,
+                                                          accountBalance: cardData.account!.availableBalance!,
+                                                          minDuePayBackAmount: cardData
+                                                              .creditCard!.first.paymentDueAmount
+                                                              .toString(),
                                                           totalMinDueAmount:
-                                                              cardData
-                                                                  .creditCard!
-                                                                  .first
-                                                                  .usedBalance!));
+                                                              cardData.creditCard!.first.usedBalance!));
                                                 },
                                                 child: Container(
                                                   height: 36,
                                                   decoration: BoxDecoration(
-                                                    color: Theme.of(context)
-                                                        .accentTextTheme
-                                                        .bodyText1!
-                                                        .color,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
+                                                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                    borderRadius: BorderRadius.circular(20),
                                                   ),
                                                   child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 8,
-                                                            horizontal:
-                                                                isSmallDevices
-                                                                    ? 15
-                                                                    : 25),
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: 8, horizontal: isSmallDevices ? 15 : 25),
                                                     child: Text(
                                                       S.of(context).payBack,
                                                       style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .accentColor,
-                                                        fontSize: isSmallDevices
-                                                            ? 12
-                                                            : 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        color: Theme.of(context).accentColor,
+                                                        fontSize: isSmallDevices ? 12 : 14,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                   ),
@@ -462,71 +356,43 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             bottom: isSmallDevices ? 30 : 50,
                                           ),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
                                               Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        cardData
-                                                            .creditCard!
-                                                            .first
-                                                            .availableBalance
+                                                        cardData.creditCard!.first.availableBalance
                                                             .toString(),
                                                         style: TextStyle(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize:
-                                                              isSmallDevices
-                                                                  ? 14
-                                                                  : 20,
+                                                          color: Theme.of(context).accentColor,
+                                                          fontWeight: FontWeight.w700,
+                                                          fontSize: isSmallDevices ? 14 : 20,
                                                         ),
                                                       ),
                                                       Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 5.0),
+                                                        padding: EdgeInsets.only(left: 5.0),
                                                         child: Text(
                                                           "JOD",
                                                           style: TextStyle(
-                                                              color: AppColor
-                                                                  .lightRed,
-                                                              fontSize:
-                                                                  isSmallDevices
-                                                                      ? 12
-                                                                      : 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
+                                                              color: AppColor.lightRed,
+                                                              fontSize: isSmallDevices ? 12 : 14,
+                                                              fontWeight: FontWeight.w700),
                                                         ),
                                                       )
                                                     ],
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.only(top: 5),
+                                                    padding: EdgeInsets.only(top: 5),
                                                     child: Text(
-                                                      S
-                                                          .of(context)
-                                                          .availableAmount,
+                                                      S.of(context).availableAmount,
                                                       style: TextStyle(
-                                                          color: AppColor
-                                                              .veryLightRed,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize:
-                                                              isSmallDevices
-                                                                  ? 8
-                                                                  : 10),
+                                                          color: AppColor.veryLightRed,
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: isSmallDevices ? 8 : 10),
                                                     ),
                                                   ),
                                                 ],
@@ -536,14 +402,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     // model.updateIsGetCardNowClicked(
                                                     //     !isValid!);
                                                     Navigator.pushNamed(
-                                                        context,
-                                                        RoutePaths
-                                                            .CreditCardSettings);
+                                                        context, RoutePaths.CreditCardSettings);
                                                   },
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.settingsRed,
-                                                      color: AppColor
-                                                          .light_acccent_blue))
+                                                  child: AppSvg.asset(AssetUtils.settingsRed,
+                                                      color: AppColor.light_acccent_blue))
                                             ],
                                           ),
                                         )
@@ -553,9 +415,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             ),
                           ),
                           Visibility(
-                            visible: !(cardData
-                                        .creditCard!.first.isCreditDelivered !=
-                                    null &&
+                            visible: !(cardData.creditCard!.first.isCreditDelivered != null &&
                                 cardData.creditCard!.first.isCreditDelivered!),
                             child: Positioned(
                               top: 0,
@@ -617,40 +477,32 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                         child: Container(
                           key: ValueKey(false),
                           child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
                             color: Theme.of(context).primaryColor,
                             margin: EdgeInsets.zero,
-                            shadowColor: Theme.of(context)
-                                .primaryColorDark
-                                .withOpacity(0.32),
+                            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 29.0, top: 38, right: 25, bottom: 30),
+                              padding: EdgeInsets.only(left: 29.0, top: 38, right: 25, bottom: 30),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         cardData.creditCard!.first.name ?? '',
                                         style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).accentColor,
                                             fontSize: isSmallDevices ? 10 : 12,
                                             fontWeight: FontWeight.w600),
                                       ),
                                       InkWell(
                                         splashFactory: NoSplash.splashFactory,
                                         onTap: () {
-                                          model.cardKey.currentState!
-                                              .toggleCard();
+                                          model.cardKey.currentState!.toggleCard();
                                         },
                                         child: Container(
                                           height: 50,
@@ -658,12 +510,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           child: Text(
                                             S.of(context).flipBack,
                                             style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color,
-                                                fontSize:
-                                                    isSmallDevices ? 12 : 14,
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                fontSize: isSmallDevices ? 12 : 14,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ),
@@ -675,17 +523,13 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          cardData.creditCard!.first.cardNumber!
-                                                  .isNotEmpty
-                                              ? StringUtils
-                                                  .getFormattedCreditCardNumber(
-                                                      cardData.creditCard!.first
-                                                          .cardNumber)
+                                          cardData.creditCard!.first.cardNumber!.isNotEmpty
+                                              ? StringUtils.getFormattedCreditCardNumber(
+                                                  cardData.creditCard!.first.cardNumber)
                                               : '-',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            color:
-                                                Theme.of(context).accentColor,
+                                            color: Theme.of(context).accentColor,
                                             fontSize: isSmallDevices ? 12 : 14,
                                           ),
                                         ),
@@ -695,13 +539,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         InkWell(
                                           onTap: () {
                                             Clipboard.setData(ClipboardData(
-                                                    text: cardData.creditCard!
-                                                            .first.cardNumber ??
-                                                        ''))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg:
-                                                            'Card Number Copied'));
+                                                    text: cardData.creditCard!.first.cardNumber ?? ''))
+                                                .then((value) => Fluttertoast.showToast(
+                                                    msg: S.of(context).cardNumberCopied));
                                           },
                                           child: AppSvg.asset(
                                             AssetUtils.copy,
@@ -716,9 +556,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       S.of(context).cardNumber,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
+                                          color: Theme.of(context).accentColor.withOpacity(0.6),
                                           fontSize: isSmallDevices ? 8 : 10),
                                     ),
                                   ),
@@ -749,36 +587,27 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     visible: false,
                                     child: Padding(
                                       padding: EdgeInsets.only(top: 8),
-                                      child: Text(
-                                          S.of(context).linkedAccountNumber,
+                                      child: Text(S.of(context).linkedAccountNumber,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 10,
-                                            color: Theme.of(context)
-                                                .accentColor
-                                                .withOpacity(0.6),
+                                            color: Theme.of(context).accentColor.withOpacity(0.6),
                                           )),
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 24, bottom: 24),
+                                    padding: EdgeInsets.only(top: 24, bottom: 24),
                                     child: Row(
                                       children: [
                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              cardData.creditCard!.first
-                                                      .expiryDate ??
-                                                  '-',
+                                              cardData.creditCard!.first.expiryDate ?? '-',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize:
-                                                    isSmallDevices ? 10 : 12,
-                                                color: Theme.of(context)
-                                                    .accentColor,
+                                                fontSize: isSmallDevices ? 10 : 12,
+                                                color: Theme.of(context).accentColor,
                                               ),
                                             ),
                                             Padding(
@@ -786,13 +615,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               child: Text(
                                                 S.of(context).expiryDate,
                                                 style: TextStyle(
-                                                    fontSize:
-                                                        isSmallDevices ? 8 : 10,
-                                                    color: Theme.of(context)
-                                                        .accentColor
-                                                        .withOpacity(0.6),
-                                                    fontWeight:
-                                                        FontWeight.w600),
+                                                    fontSize: isSmallDevices ? 8 : 10,
+                                                    color: Theme.of(context).accentColor.withOpacity(0.6),
+                                                    fontWeight: FontWeight.w600),
                                               ),
                                             )
                                           ],
@@ -800,38 +625,26 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         Padding(
                                           padding: EdgeInsets.only(left: 59.0),
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                cardData.creditCard!.first.cvv!
-                                                        .isNotEmpty
-                                                    ? StringUtils.getCvv(
-                                                        cardData.creditCard!
-                                                            .first.cvv)
+                                                cardData.creditCard!.first.cvv!.isNotEmpty
+                                                    ? StringUtils.getCvv(cardData.creditCard!.first.cvv)
                                                     : '-',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w700,
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  fontSize:
-                                                      isSmallDevices ? 10 : 12,
+                                                  color: Theme.of(context).accentColor,
+                                                  fontSize: isSmallDevices ? 10 : 12,
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 4),
+                                                padding: EdgeInsets.only(top: 4),
                                                 child: Text(
                                                   S.of(context).cvv,
                                                   style: TextStyle(
-                                                      fontSize: isSmallDevices
-                                                          ? 8
-                                                          : 10,
-                                                      color: Theme.of(context)
-                                                          .accentColor
-                                                          .withOpacity(0.6),
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                                      fontSize: isSmallDevices ? 8 : 10,
+                                                      color: Theme.of(context).accentColor.withOpacity(0.6),
+                                                      fontWeight: FontWeight.w600),
                                                 ),
                                               )
                                             ],
@@ -847,23 +660,17 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     height: 24,
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            cardData.creditCard!.first
-                                                    .usedBalance ??
-                                                '-',
+                                            cardData.creditCard!.first.usedBalance ?? '-',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
-                                              fontSize:
-                                                  isSmallDevices ? 12 : 14,
-                                              color:
-                                                  Theme.of(context).accentColor,
+                                              fontSize: isSmallDevices ? 12 : 14,
+                                              color: Theme.of(context).accentColor,
                                             ),
                                           ),
                                           SizedBox(
@@ -874,9 +681,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontSize: isSmallDevices ? 8 : 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
+                                              color: Theme.of(context).accentColor.withOpacity(0.6),
                                             ),
                                           ),
                                         ],
@@ -887,9 +692,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           S.of(context).totalUsedAmount,
                                           style: TextStyle(
                                               fontSize: isSmallDevices ? 8 : 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
+                                              color: Theme.of(context).accentColor.withOpacity(0.6),
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
@@ -899,23 +702,17 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     height: 24,
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            cardData.creditCard!.first
-                                                    .creditLimit ??
-                                                '-',
+                                            cardData.creditCard!.first.creditLimit ?? '-',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
-                                              fontSize:
-                                                  isSmallDevices ? 12 : 14,
-                                              color:
-                                                  Theme.of(context).accentColor,
+                                              fontSize: isSmallDevices ? 12 : 14,
+                                              color: Theme.of(context).accentColor,
                                             ),
                                           ),
                                           SizedBox(
@@ -926,9 +723,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontSize: isSmallDevices ? 8 : 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
+                                              color: Theme.of(context).accentColor.withOpacity(0.6),
                                             ),
                                           ),
                                         ],
@@ -939,9 +734,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           S.of(context).yourCardLimit,
                                           style: TextStyle(
                                               fontSize: 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
+                                              color: Theme.of(context).accentColor.withOpacity(0.6),
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
@@ -959,15 +752,12 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                     child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
                         color: Theme.of(context).primaryColor,
                         margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
+                        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Container(
                           decoration: BoxDecoration(
                               image: DecorationImage(

@@ -73,6 +73,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                         child: Text(
                                           S.of(context).numberOnCard,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400,
                                               color: AppColor.gray4),
@@ -85,7 +86,10 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                               ? StringUtils.getLastFourDigitOfCardNo(
                                                   model.debitCard.cardNumber)
                                               : '-',
-                                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w400),
                                         ),
                                       ),
                                       Padding(
@@ -94,6 +98,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                           S.of(context).cardDelivery,
                                           maxLines: 4,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                               color: AppColor.gray4),
@@ -139,6 +144,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                     Text(
                                       model.debitCard.accountTitle ?? '',
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12,
                                       ),
@@ -150,7 +156,10 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                                 ? StringUtils.getLastFourDigitOfCardNo(
                                                     model.debitCard.cardNumber)
                                                 : '-',
-                                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700)))
+                                            style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w700)))
                                   ],
                                 )),
                           ),
@@ -166,6 +175,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                   child: Text(
                     S.of(context).deliveryIssue,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentTextTheme.bodyText1!.color,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),

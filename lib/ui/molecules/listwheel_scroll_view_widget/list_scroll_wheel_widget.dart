@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ListScrollWheelListWidget extends StatelessWidget {
   final Color? textColor;
@@ -8,11 +9,7 @@ class ListScrollWheelListWidget extends StatelessWidget {
   final Function? onTap;
 
   const ListScrollWheelListWidget(
-      {Key? key,
-      required this.label,
-      this.onTap,
-      this.textColor,
-      this.widgetColor})
+      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor})
       : super(key: key);
 
   @override
@@ -26,12 +23,11 @@ class ListScrollWheelListWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: widgetColor),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Text(
           label,
           style: TextStyle(
-              color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
+              fontFamily: StringUtils.appFont, color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
         ),
       ),
     );

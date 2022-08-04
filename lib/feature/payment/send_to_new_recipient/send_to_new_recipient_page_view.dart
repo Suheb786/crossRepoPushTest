@@ -143,7 +143,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                       Text(
                                                         S.of(context).sendMoneyTo,
                                                         style: TextStyle(
-                                                            fontSize: 14, fontWeight: FontWeight.w600),
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w600),
                                                       ),
                                                       Padding(
                                                         padding: EdgeInsets.only(top: 16.0),
@@ -187,6 +189,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                         child: Text(
                                                                           S.of(context).nameOfBeneficiary,
                                                                           style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
                                                                             fontSize: 12,
                                                                             fontWeight: FontWeight.w400,
                                                                           ),
@@ -202,6 +205,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                               : '-',
                                                                           maxLines: 2,
                                                                           style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
                                                                             fontSize: 12,
                                                                             fontWeight: FontWeight.w600,
                                                                           ),
@@ -216,7 +220,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         child: Text(
                                                           S.of(context).selectPurpose,
                                                           style: TextStyle(
-                                                              fontSize: 14, fontWeight: FontWeight.w600),
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontSize: 14,
+                                                              fontWeight: FontWeight.w600),
                                                         ),
                                                       ),
                                                       Padding(
@@ -420,6 +426,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                         height: 28,
                                                                                         child: TextField(
                                                                                           style: TextStyle(
+                                                                                              fontFamily:
+                                                                                                  StringUtils
+                                                                                                      .appFont,
                                                                                               fontSize: 14,
                                                                                               fontWeight:
                                                                                                   FontWeight
@@ -442,6 +451,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                 .of(context)
                                                                                                 .addNickName,
                                                                                             hintStyle: TextStyle(
+                                                                                                fontFamily:
+                                                                                                    StringUtils
+                                                                                                        .appFont,
                                                                                                 fontSize: 14,
                                                                                                 fontWeight:
                                                                                                     FontWeight
@@ -647,6 +659,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                   child: Text(
                                                     S.of(context).backToPayments,
                                                     style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: AppColor.brightBlue,
                                                       fontSize: 12,
                                                       fontWeight: FontWeight.w500,

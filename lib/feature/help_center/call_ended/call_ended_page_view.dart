@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
   CallEndedPageView(ProviderBase model) : super(model);
@@ -55,6 +56,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                 dataBuilder: (context, data) => Text(
                       data!,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w700,
                           fontSize: 32),
@@ -62,6 +64,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
             Text(
               S.of(context).callHasEnded,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w500,
                   fontSize: 24),
@@ -71,6 +74,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
               S.of(context).thankYouForContacting,
               textAlign: TextAlign.center,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   height: 1.5,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w600,
@@ -89,6 +93,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 12,

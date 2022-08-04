@@ -5,6 +5,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EvoucherLandingDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -59,7 +60,8 @@ class EvoucherLandingDialogView extends StatelessWidget {
                     child: Text(
                       title,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                   ),
                   SizedBox(height: 31),
@@ -93,7 +95,10 @@ class EvoucherLandingDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),

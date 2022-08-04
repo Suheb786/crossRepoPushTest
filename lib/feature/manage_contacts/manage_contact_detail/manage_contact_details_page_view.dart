@@ -15,8 +15,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class ManageContactDetailsPageView
-    extends BasePageViewWidget<ManageContactDetailsPageViewModel> {
+class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetailsPageViewModel> {
   ManageContactDetailsPageView(ProviderBase model) : super(model);
 
   @override
@@ -71,14 +70,12 @@ class ManageContactDetailsPageView
                                     //         .pleaseSelectYourAction);
                                   },
                                   child: CircleAvatar(
-                                    backgroundColor:
-                                        Theme.of(context).primaryColor,
+                                    backgroundColor: Theme.of(context).primaryColor,
                                     radius: 48,
                                     child: CircleAvatar(
                                       radius: 48,
                                       child: image!.isEmpty
-                                          ? (model.beneficiary.imageUrl!
-                                                  .isNotEmpty
+                                          ? (model.beneficiary.imageUrl!.isNotEmpty
                                               ? CircleAvatar(
                                                   radius: 48,
                                                   backgroundImage: Image.memory(
@@ -88,20 +85,14 @@ class ManageContactDetailsPageView
                                                 )
                                               : CircleAvatar(
                                                   radius: 48,
-                                                  backgroundColor:
-                                                      Theme.of(context)
-                                                          .primaryColor,
+                                                  backgroundColor: Theme.of(context).primaryColor,
                                                   child: Text(
-                                                    StringUtils
-                                                        .getFirstInitials(model
-                                                            .beneficiary
-                                                            .fullName),
+                                                    StringUtils.getFirstInitials(model.beneficiary.fullName),
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w700,
                                                         fontSize: 14,
-                                                        color: Theme.of(context)
-                                                            .accentColor),
+                                                        color: Theme.of(context).accentColor),
                                                   ),
                                                 ))
                                           : CircleAvatar(
@@ -128,12 +119,10 @@ class ManageContactDetailsPageView
                               child: Text(
                                 S.of(context).tapToEditPhoto,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
-                                    color: Theme.of(context)
-                                        .inputDecorationTheme
-                                        .hintStyle!
-                                        .color),
+                                    color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                               ),
                             ),
                           ],
@@ -149,10 +138,7 @@ class ManageContactDetailsPageView
                         readOnly: true,
                         controller: model.nickNameController,
                         maxLength: 25,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                         onChanged: (text) {
                           model.showSaveButton();
                           model.updateType = UpdateType.details;
@@ -160,31 +146,23 @@ class ManageContactDetailsPageView
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText:
-                            S.of(context).ibanMobileNoAlias.toUpperCase(),
+                        labelText: S.of(context).ibanMobileNoAlias.toUpperCase(),
                         hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.ibanController,
                         enabled: false,
                         readOnly: true,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText:
-                            S.of(context).accountHolderName.toUpperCase(),
+                        labelText: S.of(context).accountHolderName.toUpperCase(),
                         hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.accountHolderNameController,
                         enabled: false,
                         readOnly: true,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
@@ -194,10 +172,7 @@ class ManageContactDetailsPageView
                         controller: model.bankNameController,
                         enabled: false,
                         readOnly: true,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
@@ -207,10 +182,7 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         controller: model.purposeController,
                         readOnly: true,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                         // onPressed: () {
                         //   if (model.purposeList.length > 0) {
                         //     PurposeDialog.show(context,
@@ -244,10 +216,7 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
-                        textColor: Theme.of(context)
-                            .inputDecorationTheme
-                            .hintStyle!
-                            .color,
+                        textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                         /*onPressed: () {
                           if (model.purposeDetailList.isNotEmpty) {
                             PurposeDetailDialog.show(context,
@@ -276,8 +245,7 @@ class ManageContactDetailsPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            model.showSuccessToast(
-                                'Contact Deleted Successfully.');
+                            model.showSuccessToast('Contact Deleted Successfully.');
                             Navigator.pop(context, true);
                           }
                         },
@@ -287,19 +255,18 @@ class ManageContactDetailsPageView
                               model.deleteBeneficiary();
                             },
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  top: 45, bottom: 11),
+                              padding: EdgeInsetsDirectional.only(top: 45, bottom: 11),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  AppSvg.asset(AssetUtils.delete,
-                                      color: Theme.of(context).primaryColor),
+                                  AppSvg.asset(AssetUtils.delete, color: Theme.of(context).primaryColor),
                                   SizedBox(
                                     width: 15,
                                   ),
                                   Text(
                                     S.of(context).removeFromContact,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).primaryColor),
@@ -318,8 +285,7 @@ class ManageContactDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      model.showSuccessToast(
-                          S.of(context).yourContactDetailsUpdated);
+                      model.showSuccessToast(S.of(context).yourContactDetailsUpdated);
                       Navigator.pop(context, true);
                     }
                   },
@@ -329,8 +295,7 @@ class ManageContactDetailsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          model.showSuccessToast(
-                              S.of(context).yourContactDetailsUpdated);
+                          model.showSuccessToast(S.of(context).yourContactDetailsUpdated);
                           Navigator.pop(context, true);
                         }
                       },
@@ -348,24 +313,19 @@ class ManageContactDetailsPageView
                                       model.updateBeneficiary();
                                     },
                                     child: Container(
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 24, vertical: 20),
+                                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                                       height: 56,
                                       decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color,
-                                          borderRadius:
-                                              BorderRadius.circular(100)),
+                                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                          borderRadius: BorderRadius.circular(100)),
                                       child: Center(
                                         child: Text(
                                           S.of(context).saveChanges,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .accentColor),
+                                              color: Theme.of(context).accentColor),
                                         ),
                                       ),
                                     ),
@@ -385,8 +345,7 @@ class ManageContactDetailsPageView
     );
   }
 
-  void _cropImage(String data, ManageContactDetailsPageViewModel model,
-      BuildContext context) async {
+  void _cropImage(String data, ManageContactDetailsPageViewModel model, BuildContext context) async {
     File? cropped = await ImageCropper.cropImage(
         sourcePath: data,
         cropStyle: CropStyle.circle,

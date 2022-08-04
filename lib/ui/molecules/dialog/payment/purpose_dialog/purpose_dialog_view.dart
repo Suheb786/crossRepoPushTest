@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -29,10 +30,8 @@ class PurposeDialogView extends StatelessWidget {
     return BaseWidget<PurposeDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -53,7 +52,7 @@ class PurposeDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).purposeSmall,
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, fontSize: 16, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -62,8 +61,7 @@ class PurposeDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -90,22 +88,17 @@ class PurposeDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount:
-                                                model.purposeList!.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return ListScrollWheelListWidget(
-                                                label: model.purposeList![index]
-                                                    .labelEn!,
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: model.purposeList!.length,
+                                        builder: (BuildContext context, int index) {
+                                          return ListScrollWheelListWidget(
+                                            label: model.purposeList![index].labelEn!,
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
@@ -120,12 +113,8 @@ class PurposeDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -134,6 +123,7 @@ class PurposeDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),

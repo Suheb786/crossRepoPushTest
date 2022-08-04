@@ -19,9 +19,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class AccountTransactionPageView
-    extends BasePageViewWidget<AccountTransactionViewModel> {
+class AccountTransactionPageView extends BasePageViewWidget<AccountTransactionViewModel> {
   AccountTransactionPageView(ProviderBase model) : super(model);
 
   @override
@@ -48,6 +48,7 @@ class AccountTransactionPageView
                         child: Text(
                           S.of(context).transactionHistory,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 14),
@@ -63,17 +64,14 @@ class AccountTransactionPageView
                             child: InkWell(
                               onTap: () {
                                 if (debitYears!.status == Status.SUCCESS) {
-                                  DownloadTransactionDialog.show(context,
-                                      years: debitYears.data!.years,
+                                  DownloadTransactionDialog.show(context, years: debitYears.data!.years,
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
                                     Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.DownloadTransaction,
+                                    Navigator.pushNamed(context, RoutePaths.DownloadTransaction,
                                         arguments: DownloadStatementArguments(
-                                            statementType: StatementType.Debit,
-                                            transactionDate: value));
+                                            statementType: StatementType.Debit, transactionDate: value));
                                   });
                                 }
                               },
@@ -91,9 +89,8 @@ class AccountTransactionPageView
                     height: double.infinity,
                     decoration: BoxDecoration(
                         color: Theme.of(context).accentColor,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(16),
-                            topLeft: Radius.circular(16))),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(top: 8),
                       child: Column(
@@ -104,13 +101,11 @@ class AccountTransactionPageView
                               height: 4,
                               width: 64,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: AppColor.whiteGray),
+                                  borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                top: 24.0, start: 24, end: 38),
+                            padding: EdgeInsetsDirectional.only(top: 24.0, start: 24, end: 38),
                             child: Row(
                               children: [
                                 Expanded(
@@ -119,26 +114,21 @@ class AccountTransactionPageView
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onFieldSubmitted: (text) =>
-                                        model.onSearchTextChanged(text),
+                                    onFieldSubmitted: (text) => model.onSearchTextChanged(text),
                                     suffixIcon: (value, data) {
                                       return Padding(
-                                          padding: EdgeInsetsDirectional.only(
-                                              start: 19),
-                                          child: AppSvg.asset(AssetUtils.search,
-                                              height: 16, width: 16));
+                                          padding: EdgeInsetsDirectional.only(start: 19),
+                                          child: AppSvg.asset(AssetUtils.search, height: 16, width: 16));
                                     },
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      EdgeInsetsDirectional.only(start: 24),
+                                  padding: EdgeInsetsDirectional.only(start: 24),
                                   child: InkWell(
                                       onTap: () {
                                         FilterTransactionDialog.show(
                                           context,
-                                          onDismissed: () =>
-                                              Navigator.pop(context),
+                                          onDismissed: () => Navigator.pop(context),
                                           onSelected: (value) {
                                             print("value: $value");
                                             Navigator.pop(context);
@@ -158,8 +148,7 @@ class AccountTransactionPageView
                                 return Visibility(
                                   visible: textList!.length > 0,
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        top: 21, start: 24, end: 24),
+                                    padding: EdgeInsetsDirectional.only(top: 21, start: 24, end: 24),
                                     child: Container(
                                       height: 40,
                                       child: ListView.builder(
@@ -168,39 +157,29 @@ class AccountTransactionPageView
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, index) {
                                           return Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: index == 0 ? 0 : 9),
+                                            padding: EdgeInsetsDirectional.only(start: index == 0 ? 0 : 9),
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .primaryColorDark,
-                                                borderRadius:
-                                                    BorderRadius.circular(100),
+                                                color: Theme.of(context).primaryColorDark,
+                                                borderRadius: BorderRadius.circular(100),
                                               ),
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 9, vertical: 2),
+                                              padding: EdgeInsets.symmetric(horizontal: 9, vertical: 2),
                                               child: Row(
                                                 children: [
                                                   Text(
                                                     textList[index],
                                                     style: TextStyle(
-                                                        color: Theme.of(context)
-                                                            .accentColor),
+                                                        fontFamily: StringUtils.appFont,
+                                                        color: Theme.of(context).accentColor),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .only(start: 9),
+                                                    padding: EdgeInsetsDirectional.only(start: 9),
                                                     child: InkWell(
                                                       onTap: () {
-                                                        model.updateSearchList(
-                                                            index);
+                                                        model.updateSearchList(index);
                                                       },
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.close,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor),
+                                                      child: AppSvg.asset(AssetUtils.close,
+                                                          color: Theme.of(context).accentColor),
                                                     ),
                                                   )
                                                 ],
@@ -219,921 +198,24 @@ class AccountTransactionPageView
                               dataBuilder: (context, transaction) {
                                 return Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                        start: 24, end: 24),
-                                    // child: model.searchTransactionList.length > 0
-                                    //     ? GroupedListView<TransactionItem, String>(
-                                    //         scrollDirection: Axis.vertical,
-                                    //         elements: model.searchTransactionList,
-                                    //         order: GroupedListOrder.DESC,
-                                    //         shrinkWrap: true,
-                                    //         primary: false,
-                                    //         padding: EdgeInsetsDirectional.zero,
-                                    //         floatingHeader: false,
-                                    //         groupBy: (TransactionItem element) {
-                                    //           return element.createdAt!;
-                                    //         },
-                                    //         groupHeaderBuilder: (element) =>
-                                    //             Container(
-                                    //               color:
-                                    //                   Theme.of(context).accentColor,
-                                    //               child: Padding(
-                                    //                 padding: EdgeInsetsDirectional.only(
-                                    //                     top: 16, bottom: 16),
-                                    //                 child: Text(
-                                    //                   element.createdAt!,
-                                    //                   style: TextStyle(
-                                    //                       fontWeight: FontWeight.w600,
-                                    //                       fontSize: 14),
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //         itemBuilder: (context, element) {
-                                    //           return Container(
-                                    //             child: Column(
-                                    //               children: [
-                                    //                 Padding(
-                                    //                   padding: EdgeInsetsDirectional.only(
-                                    //                       top: 17,
-                                    //                       start: 17,
-                                    //                       end: 17),
-                                    //                   child: Row(
-                                    //                     mainAxisAlignment:
-                                    //                         MainAxisAlignment
-                                    //                             .spaceBetween,
-                                    //                     crossAxisAlignment:
-                                    //                         CrossAxisAlignment.start,
-                                    //                     children: [
-                                    //                       Expanded(
-                                    //                         child: Column(
-                                    //                           crossAxisAlignment:
-                                    //                               CrossAxisAlignment
-                                    //                                   .start,
-                                    //                           children: [
-                                    //                             Text(
-                                    //                               element.to!,
-                                    //                               maxLines: 2,
-                                    //                               style: TextStyle(
-                                    //                                 fontSize: 12,
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                               ),
-                                    //                             ),
-                                    //                             Padding(
-                                    //                               padding:
-                                    //                                   EdgeInsetsDirectional.only(
-                                    //                                       top: 4),
-                                    //                               child: Text(
-                                    //                                 element.time!,
-                                    //                                 style: TextStyle(
-                                    //                                     color: Theme.of(
-                                    //                                             context)
-                                    //                                         .inputDecorationTheme
-                                    //                                         .hintStyle!
-                                    //                                         .color),
-                                    //                               ),
-                                    //                             )
-                                    //                           ],
-                                    //                         ),
-                                    //                       ),
-                                    //                       Row(
-                                    //                         mainAxisAlignment:
-                                    //                             MainAxisAlignment.end,
-                                    //                         children: [
-                                    //                           Text(
-                                    //                             element.type ==
-                                    //                                     "debit"
-                                    //                                 ? "-${element.amount!}"
-                                    //                                 : element.amount!,
-                                    //                             style: TextStyle(
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                                 fontSize: 14),
-                                    //                           ),
-                                    //                           Text(
-                                    //                             "JOD",
-                                    //                             style: TextStyle(
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                                 fontSize: 14,
-                                    //                                 color: Theme.of(
-                                    //                                         context)
-                                    //                                     .inputDecorationTheme
-                                    //                                     .hintStyle!
-                                    //                                     .color),
-                                    //                           ),
-                                    //                         ],
-                                    //                       )
-                                    //                     ],
-                                    //                   ),
-                                    //                 ),
-                                    //                 Padding(
-                                    //                   padding:
-                                    //                       EdgeInsetsDirectional.only(top: 4),
-                                    //                   child: Divider(),
-                                    //                 )
-                                    //               ],
-                                    //             ),
-                                    //           );
-                                    //         })
-                                    //     : GroupedListView<TransactionItem, String>(
-                                    //         scrollDirection: Axis.vertical,
-                                    //         elements: model.transactionList,
-                                    //         order: GroupedListOrder.DESC,
-                                    //         shrinkWrap: true,
-                                    //         primary: false,
-                                    //         padding: EdgeInsetsDirectional.zero,
-                                    //         floatingHeader: false,
-                                    //         groupBy: (TransactionItem element) {
-                                    //           return element.createdAt!;
-                                    //         },
-                                    //         groupHeaderBuilder: (element) =>
-                                    //             Container(
-                                    //               color:
-                                    //                   Theme.of(context).accentColor,
-                                    //               child: Padding(
-                                    //                 padding: EdgeInsetsDirectional.only(
-                                    //                     top: 16, bottom: 16),
-                                    //                 child: Text(
-                                    //                   element.createdAt!,
-                                    //                   style: TextStyle(
-                                    //                       fontWeight: FontWeight.w600,
-                                    //                       fontSize: 14),
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //         itemBuilder: (context, element) {
-                                    //           return Container(
-                                    //             child: Column(
-                                    //               children: [
-                                    //                 Padding(
-                                    //                   padding: EdgeInsetsDirectional.only(
-                                    //                       top: 17,
-                                    //                       start: 17,
-                                    //                       end: 17),
-                                    //                   child: Row(
-                                    //                     mainAxisAlignment:
-                                    //                         MainAxisAlignment
-                                    //                             .spaceBetween,
-                                    //                     crossAxisAlignment:
-                                    //                         CrossAxisAlignment.start,
-                                    //                     children: [
-                                    //                       Expanded(
-                                    //                         child: Column(
-                                    //                           crossAxisAlignment:
-                                    //                               CrossAxisAlignment
-                                    //                                   .start,
-                                    //                           children: [
-                                    //                             Text(
-                                    //                               element.to!,
-                                    //                               maxLines: 2,
-                                    //                               style: TextStyle(
-                                    //                                 fontSize: 12,
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                               ),
-                                    //                             ),
-                                    //                             Padding(
-                                    //                               padding:
-                                    //                                   EdgeInsetsDirectional.only(
-                                    //                                       top: 4),
-                                    //                               child: Text(
-                                    //                                 element.time!,
-                                    //                                 style: TextStyle(
-                                    //                                     color: Theme.of(
-                                    //                                             context)
-                                    //                                         .inputDecorationTheme
-                                    //                                         .hintStyle!
-                                    //                                         .color),
-                                    //                               ),
-                                    //                             )
-                                    //                           ],
-                                    //                         ),
-                                    //                       ),
-                                    //                       Row(
-                                    //                         mainAxisAlignment:
-                                    //                             MainAxisAlignment.end,
-                                    //                         children: [
-                                    //                           Text(
-                                    //                             element.type ==
-                                    //                                     "debit"
-                                    //                                 ? "-${element.amount!}"
-                                    //                                 : element.amount!,
-                                    //                             style: TextStyle(
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                                 fontSize: 14),
-                                    //                           ),
-                                    //                           Text(
-                                    //                             "JOD",
-                                    //                             style: TextStyle(
-                                    //                                 fontWeight:
-                                    //                                     FontWeight
-                                    //                                         .w600,
-                                    //                                 fontSize: 14,
-                                    //                                 color: Theme.of(
-                                    //                                         context)
-                                    //                                     .inputDecorationTheme
-                                    //                                     .hintStyle!
-                                    //                                     .color),
-                                    //                           ),
-                                    //                         ],
-                                    //                       )
-                                    //                     ],
-                                    //                   ),
-                                    //                 ),
-                                    //                 Padding(
-                                    //                   padding:
-                                    //                       EdgeInsetsDirectional.only(top: 4),
-                                    //                   child: Divider(),
-                                    //                 )
-                                    //               ],
-                                    //             ),
-                                    //           );
-                                    //         }),
-                                    child: transaction!.data!
-                                                .transactionResponse!.length >
-                                            0
+                                    padding: EdgeInsetsDirectional.only(start: 24, end: 24),
+                                    child: transaction!.data!.transactionResponse!.length > 0
                                         ? ListView.builder(
                                             itemBuilder: (context, index) {
                                               return TransactionWidget(
-                                                transactions: transaction.data!
-                                                        .transactionResponse![
-                                                    index],
+                                                transactions: transaction.data!.transactionResponse![index],
                                               );
                                             },
                                             shrinkWrap: true,
-                                            itemCount: transaction.data!
-                                                .transactionResponse!.length,
-                                            physics:
-                                                AlwaysScrollableScrollPhysics(),
+                                            itemCount: transaction.data!.transactionResponse!.length,
+                                            physics: AlwaysScrollableScrollPhysics(),
                                           )
                                         : Center(
-                                            child: Text(
-                                                'No Transactions to display'),
+                                            child: Text(S.of(context).noTransactionToDisplay),
                                           ),
                                   ),
                                 );
                               }),
-                          // Padding(
-                          //   padding:
-                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       Text(
-                          //         "12 September",
-                          //         style: TextStyle(
-                          //           fontSize: 14,
-                          //           fontWeight: FontWeight.w600,
-                          //         ),
-                          //       ),
-                          //       Padding(
-                          //         padding: EdgeInsetsDirectional.only(top: 16),
-                          //         child: Card(
-                          //           shape: RoundedRectangleBorder(
-                          //               borderRadius:
-                          //                   BorderRadius.circular(16)),
-                          //           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          //           elevation: 2,
-                          //           color: Theme.of(context)
-                          //               .cardTheme
-                          //               .copyWith(color: AppColor.white)
-                          //               .color,
-                          //           margin: EdgeInsetsDirectional.zero,
-                          //           shadowColor:
-                          //               AppColor.black.withOpacity(0.32),
-                          //           child: Container(
-                          //             color: Theme.of(context).accentColor,
-                          //             child: Column(
-                          //               children: [
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17,
-                          //                       start: 24,
-                          //                       end: 24,
-                          //                       bottom: 17),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                          // Padding(
-                          //   padding:
-                          //       EdgeInsetsDirectional.only(top: 24, start: 24, end: 24),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       Text(
-                          //         "11 September",
-                          //         style: TextStyle(
-                          //           fontSize: 14,
-                          //           fontWeight: FontWeight.w600,
-                          //         ),
-                          //       ),
-                          //       Padding(
-                          //         padding: EdgeInsetsDirectional.only(top: 16),
-                          //         child: Card(
-                          //           shape: RoundedRectangleBorder(
-                          //               borderRadius:
-                          //                   BorderRadius.circular(16)),
-                          //           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          //           elevation: 2,
-                          //           color: Theme.of(context)
-                          //               .cardTheme
-                          //               .copyWith(color: AppColor.white)
-                          //               .color,
-                          //           margin: EdgeInsetsDirectional.zero,
-                          //           shadowColor:
-                          //               AppColor.black.withOpacity(0.32),
-                          //           child: Container(
-                          //             color: Theme.of(context).accentColor,
-                          //             child: Column(
-                          //               children: [
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17, start: 24, end: 24),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(top: 16),
-                          //                   child: Divider(),
-                          //                 ),
-                          //                 Padding(
-                          //                   padding: EdgeInsetsDirectional.only(
-                          //                       top: 17,
-                          //                       start: 24,
-                          //                       end: 24,
-                          //                       bottom: 17),
-                          //                   child: Row(
-                          //                     mainAxisAlignment:
-                          //                         MainAxisAlignment
-                          //                             .spaceBetween,
-                          //                     crossAxisAlignment:
-                          //                         CrossAxisAlignment.start,
-                          //                     children: [
-                          //                       Column(
-                          //                         crossAxisAlignment:
-                          //                             CrossAxisAlignment
-                          //                                 .start,
-                          //                         children: [
-                          //                           Text(
-                          //                             "Host International Inc Dubai\nAED 533.03",
-                          //                             maxLines: 2,
-                          //                             style: TextStyle(
-                          //                               fontSize: 12,
-                          //                               fontWeight:
-                          //                                   FontWeight.w600,
-                          //                             ),
-                          //                           ),
-                          //                           Padding(
-                          //                             padding:
-                          //                                 EdgeInsetsDirectional.only(
-                          //                                     top: 4),
-                          //                             child: Text(
-                          //                               "8:32PM",
-                          //                               style: TextStyle(
-                          //                                   color: Theme.of(
-                          //                                           context)
-                          //                                       .inputDecorationTheme
-                          //                                       .hintStyle!
-                          //                                       .color),
-                          //                             ),
-                          //                           )
-                          //                         ],
-                          //                       ),
-                          //                       Row(
-                          //                         mainAxisAlignment:
-                          //                             MainAxisAlignment.end,
-                          //                         children: [
-                          //                           Text(
-                          //                             "-102.92",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14),
-                          //                           ),
-                          //                           Text(
-                          //                             "JOD",
-                          //                             style: TextStyle(
-                          //                                 fontWeight:
-                          //                                     FontWeight.w600,
-                          //                                 fontSize: 14,
-                          //                                 color: Theme.of(
-                          //                                         context)
-                          //                                     .inputDecorationTheme
-                          //                                     .hintStyle!
-                          //                                     .color),
-                          //                           ),
-                          //                         ],
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       )
-                          //     ],
-                          //   ),
-                          // )
                         ],
                       ),
                     ),

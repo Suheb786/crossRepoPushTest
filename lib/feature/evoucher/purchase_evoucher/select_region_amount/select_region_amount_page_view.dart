@@ -90,6 +90,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                         'PlayStation',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).indicatorColor,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
@@ -172,6 +173,7 @@ class SelectRegionAmountPageView extends BasePageViewWidget<SelectRegionAmountPa
                                     child: Text(
                                       S.of(context).backToCategory('Games'),
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: AppColor.brightBlue,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,

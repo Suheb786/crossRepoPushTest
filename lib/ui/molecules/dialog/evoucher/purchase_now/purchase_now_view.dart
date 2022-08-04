@@ -4,6 +4,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurchaseNowDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -50,14 +51,18 @@ class PurchaseNowDialogView extends StatelessWidget {
                       Text(
                         title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: 2),
                       Text(
                         subTitle,
                         textAlign: TextAlign.center,
-                        style:
-                            TextStyle(color: AppColor.gray_black, fontSize: 12, fontWeight: FontWeight.w400),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: AppColor.gray_black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400),
                       ),
                       SizedBox(height: 16),
                       Row(
@@ -68,7 +73,10 @@ class PurchaseNowDialogView extends StatelessWidget {
                             price,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: AppColor.brightBlue, fontSize: 24, fontWeight: FontWeight.w700),
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700),
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.only(bottom: 4, start: 8),
@@ -76,7 +84,10 @@ class PurchaseNowDialogView extends StatelessWidget {
                               S.of(context).JOD,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: AppColor.verLightGray4, fontSize: 14, fontWeight: FontWeight.w700),
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.verLightGray4,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ],
@@ -110,7 +121,10 @@ class PurchaseNowDialogView extends StatelessWidget {
                               child: Text(
                                 S.of(context).swipeDownToCancel,
                                 style: TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.dark_gray_1),
                               ),
                             ),
                           ),

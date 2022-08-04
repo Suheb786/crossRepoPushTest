@@ -14,6 +14,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
@@ -70,7 +71,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                             padding: EdgeInsets.only(top: 9),
                             child: Text(
                               S.of(context).payments,
-                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
                             ),
                           ),
                           Expanded(

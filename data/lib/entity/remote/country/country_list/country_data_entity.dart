@@ -72,7 +72,7 @@ class CountryDataEntity implements BaseLayerDataTransformer<CountryDataEntity, C
         isMobileAllowed: this.isMobileAllowed,
         isNationalityAllowed: this.isNationalityAllowed,
         isIssuerAllowed: this.isIssuerAllowed,
-        mobileMax: this.mobileMax ?? 12,
+        mobileMax: this.mobileMax ?? 13,
         countryNameAR: this.countryNameAR ?? '');
   }
 }

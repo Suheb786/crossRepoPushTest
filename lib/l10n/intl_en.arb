@@ -1370,5 +1370,10 @@
   "cannotApplyCCInsufficientFunds": "You can not apply for credit card due to insufficient funds",
   "helloE": "Hello!",
   "amountGreaterThan0": "Amount to pay should be greater than 0",
-  "cannotProceedNoAhwalDataFound": "Can not proceed on-boarding since there is no data found against the national id no"
+  "cannotProceedNoAhwalDataFound": "Can not proceed on-boarding since there is no data found against the national id no",
+  "resendCode": "Resend Code",
+  "statement": " Statement",
+  "accountNoCopied": "Account No. Copied",
+  "ibanCopied": "IBAN Copied",
+  "cardNumberCopied": "Card Number Copied"
 }

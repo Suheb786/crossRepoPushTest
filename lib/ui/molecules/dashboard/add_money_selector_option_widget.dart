@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AddMoneySelectorOptionsWidget extends StatelessWidget {
   final String? title;
@@ -38,7 +39,10 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
                 style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).accentColor),
               ),
               SizedBox(
                 height: 10,
@@ -49,7 +53,10 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 textAlign: TextAlign.start,
                 maxLines: 3,
                 style: TextStyle(
-                    fontSize: 12, fontWeight: FontWeight.w500, color: Theme.of(context).accentColor),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).accentColor),
               ),
               SizedBox(
                 height: 16,
@@ -70,7 +77,10 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                         buttonText!,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                            fontFamily: StringUtils.appFont,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).accentColor),
                       ),
                     ),
                   ),

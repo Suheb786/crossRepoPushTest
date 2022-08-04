@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageViewModel> {
   ExemptPayeeCodePageView(ProviderBase model) : super(model);
@@ -38,6 +39,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
 • The following codes identify payees that are exempt from backup withholding. Enter the appropriate code in the field text.
                 ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -75,6 +77,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
 12. A trust exempt from tax under section 664 or described in section 4947.
                 ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -91,6 +94,7 @@ class ExemptPayeeCodePageView extends BasePageViewWidget<ExemptPayeeCodePageView
 
                   ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),

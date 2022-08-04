@@ -7,9 +7,9 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class RenewCreditCardPageView
-    extends BasePageViewWidget<RenewCreditCardPageViewModel> {
+class RenewCreditCardPageView extends BasePageViewWidget<RenewCreditCardPageViewModel> {
   RenewCreditCardPageView(ProviderBase model) : super(model);
 
   @override
@@ -22,6 +22,7 @@ class RenewCreditCardPageView
           Text(
             S.of(context).renewNewCreditCard.toUpperCase(),
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
                 color: Theme.of(context).accentColor),
@@ -33,6 +34,7 @@ class RenewCreditCardPageView
             S.of(context).yourCardIssued,
             textAlign: TextAlign.center,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
                 color: Theme.of(context).accentColor),
@@ -47,8 +49,7 @@ class RenewCreditCardPageView
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.CreditCardActivationStatus);
+                    Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
                   } else {}
                 },
                 child: Container(
@@ -63,8 +64,7 @@ class RenewCreditCardPageView
                             children: [
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 14),
+                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
@@ -78,6 +78,7 @@ class RenewCreditCardPageView
                                     Text(
                                       S.of(context).creditLimit.toUpperCase(),
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -88,6 +89,7 @@ class RenewCreditCardPageView
                                     Text(
                                       "JOD 1,000",
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -104,8 +106,7 @@ class RenewCreditCardPageView
                               ),
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 14),
+                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
@@ -117,11 +118,9 @@ class RenewCreditCardPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      S
-                                          .of(context)
-                                          .cardSettlementAccount
-                                          .toUpperCase(),
+                                      S.of(context).cardSettlementAccount.toUpperCase(),
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -132,6 +131,7 @@ class RenewCreditCardPageView
                                     Text(
                                       "Savings Account",
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -146,6 +146,7 @@ class RenewCreditCardPageView
                                     Text(
                                       "5669 4900 2111",
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -162,8 +163,7 @@ class RenewCreditCardPageView
                               ),
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 14),
+                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
@@ -175,11 +175,9 @@ class RenewCreditCardPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      S
-                                          .of(context)
-                                          .minimumSettlement
-                                          .toUpperCase(),
+                                      S.of(context).minimumSettlement.toUpperCase(),
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -190,6 +188,7 @@ class RenewCreditCardPageView
                                     Text(
                                       "3%",
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         color: Theme.of(context)
                                             .textSelectionTheme
@@ -207,6 +206,7 @@ class RenewCreditCardPageView
                               Text(
                                 S.of(context).youCanChangeCardDetailsInSettings,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                     color: AppColor.gray),
@@ -231,6 +231,7 @@ class RenewCreditCardPageView
                               child: Text(
                                 S.of(context).backToCardSettings,
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: AppColor.brightBlue,
                                   letterSpacing: 1,
                                   fontSize: 14,

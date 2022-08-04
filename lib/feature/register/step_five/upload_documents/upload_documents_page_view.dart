@@ -160,6 +160,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                 S.of(context).proofOfIncome,
                                                                 softWrap: true,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 14,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
@@ -172,6 +173,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                   S.of(context).proofOfIncomeDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontSize: 12,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
@@ -313,6 +315,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                 S.of(context).proofOfAddress,
                                                                 softWrap: true,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 14,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
@@ -325,6 +328,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                   S.of(context).proofOfAddressDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontSize: 12,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
@@ -661,6 +665,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                         child: Text(
                                                                           S.of(context).uploadDocumentLater,
                                                                           style: TextStyle(
+                                                                              fontFamily: StringUtils.appFont,
                                                                               fontSize: 14,
                                                                               fontWeight: FontWeight.w600,
                                                                               color: Theme.of(context)

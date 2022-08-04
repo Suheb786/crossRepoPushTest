@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMobileNumberSuccessViewModel> {
   final DCChangeLinkedMobileNumberArguments _arguments;
@@ -65,6 +66,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                     S.of(context).cardDetailUpdated,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 24,
                         fontWeight: FontWeight.w500,
                         color: _arguments.cardType == CardType.DEBIT
@@ -78,6 +80,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                     S.of(context).dcMobileNumberUpdated,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: _arguments.cardType == CardType.DEBIT
@@ -105,6 +108,7 @@ class DcChangeMobileNumberSuccessPageView extends BasePageViewWidget<DcChangeMob
                     child: Text(
                       S.of(context).toDashboard,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: _arguments.cardType == CardType.DEBIT
                               ? Theme.of(context).accentTextTheme.bodyText1!.color
                               : Theme.of(context).accentColor,

@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ScheduleCallTimeDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -20,8 +21,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
   final String? title;
   final List<AvailableTimeSlots> data;
 
-  ScheduleCallTimeDialogView(
-      {this.onDismissed, this.onSelected, this.title, required this.data});
+  ScheduleCallTimeDialogView({this.onDismissed, this.onSelected, this.title, required this.data});
 
   ProviderBase providerBase() {
     return scheduleCallTimeDialogViwModelProvider;
@@ -36,8 +36,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
       },
       builder: (context, model, child) {
         return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
             insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
@@ -63,7 +62,9 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                               child: Text(
                                 title!,
                                 style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
@@ -74,60 +75,42 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16.0),
+                                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                           child: Container(
                                             height: 64,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
+                                              borderRadius: BorderRadius.circular(16),
                                               color: AppColor.vividYellow,
                                             ),
                                           ),
                                         ),
                                         Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              2.5,
+                                          height: MediaQuery.of(context).size.height / 2.5,
                                           child: AppScrollableListViewWidget(
                                             key: ValueKey(data.data!.length),
                                             child: ClickableListWheelScrollView(
-                                              scrollController:
-                                                  model.scrollController,
+                                              scrollController: model.scrollController,
                                               itemHeight: 64,
                                               itemCount: data.data!.length,
                                               onItemTapCallback: (index) {
                                                 model.selectMobileNumber(index);
                                               },
-                                              child: ListWheelScrollView
-                                                  .useDelegate(
-                                                      controller: model
-                                                          .scrollController,
-                                                      itemExtent: 64,
-                                                      onSelectedItemChanged:
-                                                          (int index) {
-                                                        model
-                                                            .selectMobileNumber(
-                                                                index);
-                                                      },
-                                                      physics:
-                                                          FixedExtentScrollPhysics(),
-                                                      perspective: 0.0000000001,
-                                                      childDelegate:
-                                                          ListWheelChildBuilderDelegate(
-                                                              childCount: data
-                                                                  .data!.length,
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  int index) {
-                                                                return ScheduleCallItemWidget(
-                                                                  item: data
-                                                                          .data![
-                                                                      index],
-                                                                );
-                                                              })),
+                                              child: ListWheelScrollView.useDelegate(
+                                                  controller: model.scrollController,
+                                                  itemExtent: 64,
+                                                  onSelectedItemChanged: (int index) {
+                                                    model.selectMobileNumber(index);
+                                                  },
+                                                  physics: FixedExtentScrollPhysics(),
+                                                  perspective: 0.0000000001,
+                                                  childDelegate: ListWheelChildBuilderDelegate(
+                                                      childCount: data.data!.length,
+                                                      builder: (BuildContext context, int index) {
+                                                        return ScheduleCallItemWidget(
+                                                          item: data.data![index],
+                                                        );
+                                                      })),
                                             ),
                                           ),
                                         ),
@@ -137,6 +120,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                       child: Text(
                                         "No Options Available",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_violet_4),
@@ -154,8 +138,7 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                 children: <Widget>[
                                   InkWell(
                                     onTap: () {
-                                      onSelected!
-                                          .call(model.selectedOptionData!);
+                                      onSelected!.call(model.selectedOptionData!);
                                     },
                                     child: Container(
                                       padding: EdgeInsets.all(16),
@@ -163,17 +146,13 @@ class ScheduleCallTimeDialogView extends StatelessWidget {
                                       width: 57,
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!),
-                                      child: AppSvg.asset(AssetUtils.tick,
-                                          color: Theme.of(context).accentColor),
+                                          color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                      child:
+                                          AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, bottom: 16),
+                                    padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                     child: Center(
                                       child: Text(
                                         S.of(context).swipeDownToCancel,

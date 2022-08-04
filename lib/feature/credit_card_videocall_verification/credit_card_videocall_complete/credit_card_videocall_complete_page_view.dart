@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardVideoCallCompletePageView
     extends BasePageViewWidget<CreditCardVideoCallCompletePageViewModel> {
@@ -21,9 +22,7 @@ class CreditCardVideoCallCompletePageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         } else {
           //Navigator.pop(context);
         }
@@ -36,6 +35,7 @@ class CreditCardVideoCallCompletePageView
             Text(
               S.of(context).applyForCreditCard,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
                   fontSize: 10,
                   color: Theme.of(context).accentColor),
@@ -47,6 +47,7 @@ class CreditCardVideoCallCompletePageView
               S.of(context).verificationCallEnded,
               textAlign: TextAlign.center,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
                   color: Theme.of(context).accentColor),
@@ -75,15 +76,14 @@ class CreditCardVideoCallCompletePageView
                             shape: BoxShape.circle,
                           ),
                           child: AppSvg.asset(AssetUtils.ccAgent,
-                              width: 32,
-                              height: 32,
-                              color: Theme.of(context).primaryColorDark),
+                              width: 32, height: 32, color: Theme.of(context).primaryColorDark),
                         ),
                       ),
                       Text(
                         S.of(context).verificationCallEndedDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
                             color: Theme.of(context).primaryColorDark),

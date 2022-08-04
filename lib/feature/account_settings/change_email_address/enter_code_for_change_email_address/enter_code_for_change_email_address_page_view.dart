@@ -85,8 +85,7 @@ class EnterCodeForChangeEmailAddressPageView
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -111,44 +110,35 @@ class EnterCodeForChangeEmailAddressPageView
                                   onEnd: () {},
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 16,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  widgetBuilder:
-                                      (context, currentTimeRemaining) {
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
                                             onPressed: () {
                                               model.resendOtp(
-                                                  email: ProviderScope
-                                                          .containerOf(context)
-                                                      .read(
-                                                          addNewEmailAddressViewModelProvider)
+                                                  email: ProviderScope.containerOf(context)
+                                                      .read(addNewEmailAddressViewModelProvider)
                                                       .emailController
                                                       .text);
                                             },
                                             child: Text(
-                                              'Resend Code',
+                                              S.of(context).resendCode,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );
                                   },
                                 ),
@@ -162,8 +152,7 @@ class EnterCodeForChangeEmailAddressPageView
                                           visible: isValid!,
                                           child: AnimatedButton(
                                             buttonHeight: 50,
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
+                                            buttonText: S.of(context).swipeToProceed,
                                           ),
                                         );
                                       }),

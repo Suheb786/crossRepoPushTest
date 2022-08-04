@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DeclarationWidget extends StatelessWidget {
   final String? title1;
@@ -12,12 +13,7 @@ class DeclarationWidget extends StatelessWidget {
   final Function? onTap;
 
   const DeclarationWidget(
-      {Key? key,
-      this.title1,
-      this.title2,
-      this.title3,
-      this.isSelected: false,
-      this.onTap})
+      {Key? key, this.title1, this.title2, this.title3, this.isSelected: false, this.onTap})
       : super(key: key);
 
   @override
@@ -36,21 +32,13 @@ class DeclarationWidget extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                border: Border.all(
-                    color: Theme.of(context)
-                        .inputDecorationTheme
-                        .hintStyle!
-                        .color!),
+                border: Border.all(color: Theme.of(context).inputDecorationTheme.hintStyle!.color!),
                 shape: BoxShape.circle,
-                color: isSelected!
-                    ? Theme.of(context).canvasColor
-                    : Colors.transparent,
+                color: isSelected! ? Theme.of(context).canvasColor : Colors.transparent,
               ),
               child: (isSelected!)
                   ? AppSvg.asset(AssetUtils.checkIcon,
-                      color: Theme.of(context).primaryColorDark,
-                      height: 7.33,
-                      width: 10.67)
+                      color: Theme.of(context).primaryColorDark, height: 7.33, width: 10.67)
                   : null,
             ),
           ),
@@ -61,7 +49,7 @@ class DeclarationWidget extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
-                  fontFamily: 'Montserrat',
+                  fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
                   color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
@@ -70,9 +58,8 @@ class DeclarationWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
-                        fontFamily: 'Montserrat',
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color!,
+                        fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
+                        color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                       ),
                       children: [
                         TextSpan(
@@ -80,7 +67,7 @@ class DeclarationWidget extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
-                            fontFamily: 'Montserrat',
+                            fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
                             color: Theme.of(context).primaryColorDark,
                           ),
                         )

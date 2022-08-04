@@ -68,7 +68,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.dark_gray_2),
                           ),
                         ),
                       ],
@@ -93,6 +96,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       child: Text(
                         StringUtils.getFirstInitials(model.beneficiary.fullName),
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
                             color: Theme.of(context).primaryTextTheme.bodyText1!.color),
@@ -104,6 +108,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               child: Text(
                 S.of(context).sendMoneyTo,
                 style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
                 ),
@@ -114,6 +119,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                   ? model.beneficiary.nickName!
                   : model.beneficiary.fullName!,
               style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
               ),
@@ -131,8 +137,11 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                   children: [
                     Text(
                       S.of(context).transactionPurpose,
-                      style:
-                          TextStyle(color: AppColor.dark_gray_1, fontSize: 10, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          color: AppColor.dark_gray_1,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 2),
@@ -148,7 +157,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               dataBuilder: (context, value) {
                                 return Text(
                                   value!,
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
                                 );
                               }),
                           Visibility(
@@ -175,6 +187,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               child: Text(
                                 S.of(context).edit,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -195,7 +208,8 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                           dataBuilder: (context, value) {
                             return Text(
                               value!,
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                             );
                           }),
                     ),
@@ -222,9 +236,9 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               textAlign: TextAlign.center,
                               maxLines: 1,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 40,
-                                  fontFamily: 'Montserrat',
                                   color: AppColor.black),
                             ),
                             Padding(
@@ -232,7 +246,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
-                                    color: AppColor.verLightGray4, fontSize: 16, fontWeight: FontWeight.w700),
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.verLightGray4,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ],
@@ -256,7 +273,11 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               padding: EdgeInsets.only(top: 24),
               child: Text(
                 S.of(context).accountBalance,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 10,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
@@ -271,6 +292,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                         .account!
                         .availableBalance!,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
                     ),
@@ -279,8 +301,11 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
                     child: Text(
                       S.of(context).JOD,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: AppColor.dark_gray_1),
                     ),
                   ),
                 ],

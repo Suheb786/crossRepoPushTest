@@ -6,9 +6,9 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../app_keyboard_hide.dart';
-import 'evoucher_text_widget.dart';
 
 class MyVoucherTab extends StatefulWidget {
   MyVoucherTab({Key? key}) : super(key: key);
@@ -66,6 +66,7 @@ class _MyVoucherTabState extends State<MyVoucherTab> {
               child: Text(
             groupByValue.toString(),
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 color: AppColor.gray_black,
                 fontSize: 14,
                 fontWeight: FontWeight.w600),
@@ -136,11 +137,11 @@ class BuildItem extends StatelessWidget {
           padding: const EdgeInsetsDirectional.only(start: 24, top: 18),
           child: Container(
               padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 5, bottom: 5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.green),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.green),
               child: Text(
                 "Failed",
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     color: AppColor.white,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
@@ -161,11 +162,13 @@ class BuildItem extends StatelessWidget {
                       children: [
                         Text(S.of(context).myVoucherItemTitle,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: AppColor.gray_black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600)),
                         Text("6:10PM",
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: AppColor.gray1,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600)),
@@ -180,6 +183,7 @@ class BuildItem extends StatelessWidget {
                       Text(
                         "-5000",
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: AppColor.dark_brown,
                             fontSize: 14,
                             fontWeight: FontWeight.w700),
@@ -187,6 +191,7 @@ class BuildItem extends StatelessWidget {
                       Text(
                         "4.9",
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: AppColor.dark_gray_1,
                             fontSize: 12,
                             fontWeight: FontWeight.w600),
@@ -200,6 +205,7 @@ class BuildItem extends StatelessWidget {
                       Text(
                         'JOD',
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: AppColor.gray1,
                             fontSize: 10,
                             fontWeight: FontWeight.w600),
@@ -209,6 +215,7 @@ class BuildItem extends StatelessWidget {
                         child: Text(
                           'USD',
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.gray1,
                               fontSize: 10,
                               fontWeight: FontWeight.w600),

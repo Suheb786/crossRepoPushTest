@@ -135,6 +135,7 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                     S.of(context).yourSignature,
                                                     softWrap: true,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context).primaryColorDark),
@@ -145,6 +146,7 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                       S.of(context).signatureUploadDes,
                                                       softWrap: true,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.w400,
                                                           color: Theme.of(context).primaryColorDark),

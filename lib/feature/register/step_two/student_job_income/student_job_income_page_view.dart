@@ -155,6 +155,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                   descriptionWidget: Text.rich(TextSpan(
                                                       text: S.of(context).additionalIncomePopUpDesc1,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: 14,
                                                           height: 1.4,
@@ -167,6 +168,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                         TextSpan(
                                                             text: S.of(context).annual,
                                                             style: TextStyle(
+                                                                fontFamily: StringUtils.appFont,
                                                                 fontWeight: FontWeight.w600,
                                                                 fontSize: 14,
                                                                 color: Theme.of(context)
@@ -179,6 +181,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                                 text:
                                                                     S.of(context).additionalIncomePopUpDesc2,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w400,
                                                                     fontSize: 14,
                                                                     color: Theme.of(context)
