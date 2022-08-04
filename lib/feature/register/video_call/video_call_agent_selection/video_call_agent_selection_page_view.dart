@@ -25,13 +25,11 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class VideoCallAgentSelectionPageView
-    extends BasePageViewWidget<VideoCallAgentSelectionPageViewModel> {
+class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentSelectionPageViewModel> {
   VideoCallAgentSelectionPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, VideoCallAgentSelectionPageViewModel model) {
+  Widget build(BuildContext context, VideoCallAgentSelectionPageViewModel model) {
     return AppStreamBuilder<Resource<CreateAccountResponse>>(
       stream: model.createAccountStream,
       initialData: Resource.none(),
@@ -58,24 +56,19 @@ class VideoCallAgentSelectionPageView
                 if (userStatus.status == Status.SUCCESS) {
                   switch (userStatus.data!.nextPage) {
                     case CustomerStatusEnum.HOLD:
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.AccountHold,
-                          arguments: AccountHoldArguments(
-                              applicationId: userStatus.data!.applicationId));
+                      Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
+                          arguments: AccountHoldArguments(applicationId: userStatus.data!.applicationId));
                       break;
                     case CustomerStatusEnum.ACCOUNT_PAGE:
                       model.getAccount();
                       break;
                     case CustomerStatusEnum.SUCCESS:
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.AccountReady,
-                          arguments:
-                              AccountReadyArguments(isDocumentUploaded: false));
+                      Navigator.pushReplacementNamed(context, RoutePaths.AccountReady,
+                          arguments: AccountReadyArguments(isDocumentUploaded: false));
                       break;
                     case CustomerStatusEnum.DOC_UPLOAD:
                       Future.delayed(Duration(microseconds: 100), () {
-                        Navigator.pushReplacementNamed(
-                            context, RoutePaths.UploadDocumentLater);
+                        Navigator.pushReplacementNamed(context, RoutePaths.UploadDocumentLater);
                       });
                       break;
                     case CustomerStatusEnum.VIDEO_CALL:
@@ -92,8 +85,7 @@ class VideoCallAgentSelectionPageView
                       // model.removeDebitLock();
                       break;
                     case CustomerStatusEnum.CARD_ISSUANCE:
-                      Navigator.pushReplacementNamed(
-                          context, RoutePaths.CardDelivery);
+                      Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
                       break;
                   }
                 }
@@ -104,8 +96,7 @@ class VideoCallAgentSelectionPageView
                   stream: model.requestCallStream,
                   onData: (requestCall) async {
                     if (requestCall.status == Status.SUCCESS) {
-                      final result = await Navigator.pushNamed(
-                          context, RoutePaths.VideoKyc,
+                      final result = await Navigator.pushNamed(context, RoutePaths.VideoKyc,
                           arguments: VideKycCredentials(
                               token: requestCall.data!.conferenceLink,
                               channelName: requestCall.data!.callId));
@@ -142,10 +133,8 @@ class VideoCallAgentSelectionPageView
                                               .appSwiperController
                                               .page ==
                                           1.0) {
-                                        if (StringUtils.isDirectionRTL(
-                                            context)) {
-                                          if (!details
-                                              .primaryDelta!.isNegative) {
+                                        if (StringUtils.isDirectionRTL(context)) {
+                                          if (!details.primaryDelta!.isNegative) {
                                             ///don't allow user to go document page it will depend on customer status
                                             // Future.delayed(Duration(milliseconds: 500), () {
                                             //   ProviderScope.containerOf(context)
@@ -154,19 +143,15 @@ class VideoCallAgentSelectionPageView
                                             //       .move(4, animation: false);
                                             // });
                                           } else {
-                                            Future.delayed(
-                                                Duration(milliseconds: 500),
-                                                () {
+                                            Future.delayed(Duration(milliseconds: 500), () {
                                               ProviderScope.containerOf(context)
-                                                  .read(
-                                                      videoCallViewModelProvider)
+                                                  .read(videoCallViewModelProvider)
                                                   .previousPage();
                                               // .previous();
                                             });
                                           }
                                         } else {
-                                          if (details
-                                              .primaryDelta!.isNegative) {
+                                          if (details.primaryDelta!.isNegative) {
                                             ///don't allow user to go document page it will depend on customer status
                                             // Future.delayed(Duration(milliseconds: 500), () {
                                             //   ProviderScope.containerOf(context)
@@ -175,12 +160,9 @@ class VideoCallAgentSelectionPageView
                                             //       .move(4, animation: false);
                                             // });
                                           } else {
-                                            Future.delayed(
-                                                Duration(milliseconds: 500),
-                                                () {
+                                            Future.delayed(Duration(milliseconds: 500), () {
                                               ProviderScope.containerOf(context)
-                                                  .read(
-                                                      videoCallViewModelProvider)
+                                                  .read(videoCallViewModelProvider)
                                                   .previousPage();
                                               // .previous();
                                             });
@@ -190,102 +172,72 @@ class VideoCallAgentSelectionPageView
                                     },
                                     child: Card(
                                       child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 32, horizontal: 24),
+                                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
                                                 children: [
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 35.0,
-                                                            bottom: 32),
+                                                    padding: const EdgeInsets.only(top: 35.0, bottom: 32),
                                                     child: Container(
                                                       height: 78,
                                                       width: 78,
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 25.07,
-                                                              vertical: 22.29),
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal: 25.07, vertical: 22.29),
                                                       decoration: BoxDecoration(
-                                                        color: AppColor
-                                                            .vividYellow,
+                                                        color: AppColor.vividYellow,
                                                         shape: BoxShape.circle,
                                                       ),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.maleAgent,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark),
+                                                      child: AppSvg.asset(AssetUtils.maleAgent,
+                                                          color: Theme.of(context).primaryColorDark),
                                                     ),
                                                   ),
                                                   Text(
-                                                    S
-                                                        .of(context)
-                                                        .weWillConnectYouInBlink,
+                                                    S.of(context).weWillConnectYouInBlink,
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontWeight: FontWeight.w600,
                                                         fontSize: 20,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark),
+                                                        color: Theme.of(context).primaryColorDark),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 32.0),
+                                                    padding: const EdgeInsets.only(top: 32.0),
                                                     child: CountdownTimer(
-                                                      controller: model
-                                                          .countDownController,
+                                                      controller: model.countDownController,
                                                       onEnd: () {},
                                                       endTime: model.endTime,
-                                                      widgetBuilder: (context,
-                                                          currentTimeRemaining) {
-                                                        return currentTimeRemaining ==
-                                                                null
+                                                      widgetBuilder: (context, currentTimeRemaining) {
+                                                        return currentTimeRemaining == null
                                                             ? TextButton(
                                                                 onPressed: () {
-                                                                  model
-                                                                      .updateTime();
-                                                                  model
-                                                                      .checkAvailableAgent();
+                                                                  model.updateTime();
+                                                                  model.checkAvailableAgent();
                                                                 },
                                                                 child: Text(
                                                                   'Search Again',
                                                                   style: TextStyle(
-                                                                      fontSize:
-                                                                          14,
-                                                                      color: Theme.of(
-                                                                              context)
+                                                                      fontFamily: StringUtils.appFont,
+                                                                      fontSize: 14,
+                                                                      color: Theme.of(context)
                                                                           .accentTextTheme
                                                                           .bodyText1!
                                                                           .color),
                                                                 ))
                                                             : Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .estimatedTime(
-                                                                        '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
+                                                                S.of(context).estimatedTime(
+                                                                    '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                                 style: TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        14,
-                                                                    color: Theme.of(
-                                                                            context)
+                                                                    fontFamily: StringUtils.appFont,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    fontSize: 14,
+                                                                    color: Theme.of(context)
                                                                         .accentTextTheme
                                                                         .bodyText1!
                                                                         .color),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
+                                                                textAlign: TextAlign.center,
                                                               );
                                                       },
                                                     ),
@@ -293,15 +245,13 @@ class VideoCallAgentSelectionPageView
                                                 ],
                                               ),
                                               Text(
-                                                S
-                                                    .of(context)
-                                                    .thankYouForWaitingCallWillStartAutomatically,
+                                                S.of(context).thankYouForWaitingCallWillStartAutomatically,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 12,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark),
+                                                    color: Theme.of(context).primaryColorDark),
                                               ),
                                             ],
                                           )),

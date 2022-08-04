@@ -83,7 +83,7 @@ class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumb
                                             inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(12),
+                                              LengthLimitingTextInputFormatter(10),
                                               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                             ],
                                             controller: model.mobileController,
@@ -132,6 +132,7 @@ class AddNewMobileNumberCliqPageView extends BasePageViewWidget<AddNewMobileNumb
                                                                 ? '+${countryData.phoneCode!}'
                                                                 : "",
                                                             style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
                                                               color: Theme.of(context)
                                                                   .textTheme
                                                                   .bodyText1!

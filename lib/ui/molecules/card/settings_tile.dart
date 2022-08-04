@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../app_divider.dart';
 
@@ -59,6 +60,7 @@ class SettingTile extends StatelessWidget {
                     child: Text(
                       title!,
                       style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: isEnabled
                             ? Theme.of(context).primaryColorDark
                             : Theme.of(context).inputDecorationTheme.hintStyle!.color ?? AppColor.gray1,

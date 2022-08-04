@@ -7,15 +7,12 @@ import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ApplyCreditCardHomePageView
-    extends BasePageViewWidget<ApplyCreditCardHomeViewModel> {
+class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHomeViewModel> {
   ApplyCreditCardHomePageView(ProviderBase model) : super(model);
 
-  final pages = [
-    SetCreditLimitPage(),
-    Visibility(visible: true, child: BaseCardPage())
-  ];
+  final pages = [SetCreditLimitPage(), Visibility(visible: true, child: BaseCardPage())];
 
   @override
   Widget build(BuildContext context, ApplyCreditCardHomeViewModel model) {
@@ -40,17 +37,18 @@ class ApplyCreditCardHomePageView
                   child: Text(
                     S.of(context).applyCreditCardTitle,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 10,
                         color: Theme.of(context).accentColor),
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.only(top: 8, start: 10, end: 10),
+                  padding: EdgeInsetsDirectional.only(top: 8, start: 10, end: 10),
                   child: Text(
                     S.of(context).personalizeCreditCard,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         color: Theme.of(context).accentColor),

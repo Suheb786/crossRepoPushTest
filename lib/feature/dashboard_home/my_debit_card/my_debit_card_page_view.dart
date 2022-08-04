@@ -26,8 +26,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    bool isSmallDevices = model.deviceSize.height <
-            ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
+    bool isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return !(cardData.debitCard!.length > 0)
         ? Center(
@@ -48,14 +47,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 //   }
                 // },
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
                   color: Theme.of(context).canvasColor,
                   margin: EdgeInsets.zero,
-                  shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                   child: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(
@@ -68,30 +65,26 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 23, right: 23, left: 23),
+                          padding: const EdgeInsets.only(top: 23, right: 23, left: 23),
                           child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                              height: isSmallDevices ? 26 : 33.64,
-                              width: isSmallDevices ? 52 : 72),
+                              height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.only(top: isSmallDevices ? 50 : 78),
+                          padding: EdgeInsets.only(top: isSmallDevices ? 50 : 78),
                           child: Align(
                             alignment: Alignment.center,
-                            child: AppSvg.asset(AssetUtils.cardCircle,
-                                height: isSmallDevices ? 72 : 96),
+                            child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
                           ),
                         ),
                         Padding(
-                            padding:
-                                EdgeInsets.only(top: 12, left: 10, right: 10),
+                            padding: EdgeInsets.only(top: 12, left: 10, right: 10),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
                                 S.of(context).toEnjoyCardLessPaymentDebit,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontSize: isSmallDevices ? 10 : 12,
                                     fontWeight: FontWeight.w600,
                                     color: Theme.of(context).accentColor),
@@ -106,22 +99,18 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                           child: Center(
                             child: InkWell(
                               onTap: () {
-                                Navigator.pushNamed(
-                                    context, RoutePaths.DebitCardReplacement);
+                                Navigator.pushNamed(context, RoutePaths.DebitCardReplacement);
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 17),
+                                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1
-                                        ?.color,
+                                    color: Theme.of(context).accentTextTheme.bodyText1?.color,
                                     borderRadius: BorderRadius.circular(100)),
                                 child: Center(
                                   child: Text(
                                     S.of(context).requestNewDebitcard,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: isSmallDevices ? 10 : 12,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).accentColor),
@@ -174,18 +163,14 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                         //   }
                         // },
                         child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           elevation: 2,
-                          color: cardData.debitCard!.first.cardStatus ==
-                                  FreezeCardStatusEnum.F
+                          color: cardData.debitCard!.first.cardStatus == FreezeCardStatusEnum.F
                               ? AppColor.paleYellow
                               : Theme.of(context).canvasColor,
                           margin: EdgeInsets.zero,
-                          shadowColor: Theme.of(context)
-                              .primaryColorDark
-                              .withOpacity(0.32),
+                          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                           child: AppStreamBuilder<bool>(
                             stream: model.isGetCardNowClickedStream,
                             initialData: false,
@@ -197,71 +182,56 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           S.of(context).myDebitCard,
                                           style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .primaryColorDark,
-                                              fontSize:
-                                                  isSmallDevices ? 10 : 12,
+                                              fontFamily: StringUtils.appFont,
+                                              color: Theme.of(context).primaryColorDark,
+                                              fontSize: isSmallDevices ? 10 : 12,
                                               fontWeight: FontWeight.w600),
                                         ),
-                                        cardData.debitCard!.first.cardStatus ==
-                                                FreezeCardStatusEnum.F
+                                        cardData.debitCard!.first.cardStatus == FreezeCardStatusEnum.F
                                             ? Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: 23.0),
+                                                padding: EdgeInsets.only(right: 23.0),
                                                 child: Text(
                                                   S.of(context).cardFrozen,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context)
                                                           .textTheme
                                                           .bodyText1!
                                                           .color!
                                                           .withOpacity(0.5),
-                                                      fontSize: isSmallDevices
-                                                          ? 12
-                                                          : 14,
-                                                      fontWeight:
-                                                          FontWeight.w600),
+                                                      fontSize: isSmallDevices ? 12 : 14,
+                                                      fontWeight: FontWeight.w600),
                                                 ),
                                               )
                                             : InkWell(
-                                                splashFactory:
-                                                    NoSplash.splashFactory,
+                                                splashFactory: NoSplash.splashFactory,
                                                 onTap: () {
-                                                  model.cardKey.currentState!
-                                                      .toggleCard();
+                                                  model.cardKey.currentState!.toggleCard();
                                                 },
                                                 child: Container(
                                                   height: 50,
                                                   alignment: Alignment.center,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 23.0),
+                                                    padding: EdgeInsets.only(right: 23.0),
                                                     child: Text(
                                                       S.of(context).flipCard,
                                                       style: TextStyle(
-                                                          color: Theme.of(
-                                                                  context)
+                                                          fontFamily: StringUtils.appFont,
+                                                          color: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color!,
-                                                          fontSize:
-                                                              isSmallDevices
-                                                                  ? 12
-                                                                  : 14,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                          fontSize: isSmallDevices ? 12 : 14,
+                                                          fontWeight: FontWeight.w600),
                                                     ),
                                                   ),
                                                 ),
@@ -275,8 +245,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           alignment: Alignment.centerLeft,
                                           child: Padding(
                                             padding: EdgeInsets.only(top: 12),
-                                            child: AppSvg.asset(
-                                                AssetUtils.blinkBlack),
+                                            child: AppSvg.asset(AssetUtils.blinkBlack),
                                           ),
                                         ),
                                         Align(
@@ -284,12 +253,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           child: Padding(
                                             padding: EdgeInsets.only(top: 20),
                                             child: Text(
-                                              cardData.debitCard!.first
-                                                      .accountTitle ??
-                                                  '',
+                                              cardData.debitCard!.first.accountTitle ?? '',
                                               style: TextStyle(
-                                                fontSize:
-                                                    isSmallDevices ? 12 : 14,
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: isSmallDevices ? 12 : 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -298,81 +265,57 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          top: isSmallDevices ? 10 : 50),
+                                      padding: EdgeInsets.only(top: isSmallDevices ? 10 : 50),
                                       child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: AppSvg.asset(
-                                            AssetUtils.zigzagCircle),
+                                        child: AppSvg.asset(AssetUtils.zigzagCircle),
                                       ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: isSmallDevices ? 10 : 40,
-                                          bottom: isSmallDevices ? 30 : 50),
+                                          top: isSmallDevices ? 10 : 40, bottom: isSmallDevices ? 30 : 50),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  RoutePaths
-                                                      .AddMoneyOptionSelector);
+                                              Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                                             },
                                             child: Container(
                                               height: 40,
                                               width: isSmallDevices ? 95 : 104,
                                               decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color),
+                                                  borderRadius: BorderRadius.circular(20),
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                               child: Center(
                                                 child: Text(
                                                   S.of(context).addMoney,
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: isSmallDevices
-                                                          ? 12
-                                                          : 14,
-                                                      color: Theme.of(context)
-                                                          .accentColor),
+                                                      fontFamily: StringUtils.appFont,
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: isSmallDevices ? 12 : 14,
+                                                      color: Theme.of(context).accentColor),
                                                 ),
                                               ),
                                             ),
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              var result =
-                                                  await Navigator.pushNamed(
-                                                      context,
-                                                      RoutePaths
-                                                          .DebitCardSettings);
+                                              var result = await Navigator.pushNamed(
+                                                  context, RoutePaths.DebitCardSettings);
                                               if (result != null) {
                                                 bool value = result as bool;
                                                 if (value) {
-                                                  ProviderScope.containerOf(
-                                                          context)
-                                                      .read(
-                                                          appHomeViewModelProvider)
+                                                  ProviderScope.containerOf(context)
+                                                      .read(appHomeViewModelProvider)
                                                       .getDashboardData();
                                                 }
                                               }
                                             },
                                             child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 33.0),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.settingsRed,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                              padding: EdgeInsets.only(right: 33.0),
+                                              child: AppSvg.asset(AssetUtils.settingsRed,
+                                                  color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ),
                                           )
                                         ],
@@ -389,8 +332,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
                     ///delivered button
                     Visibility(
-                      visible: !(cardData.debitCard!.first.isDebitDelivered !=
-                              null &&
+                      visible: !(cardData.debitCard!.first.isDebitDelivered != null &&
                           cardData.debitCard!.first.isDebitDelivered!),
                       child: Positioned(
                         top: 0,
@@ -398,12 +340,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                           height: 24,
                           width: isSmallDevices ? 100 : 125,
                           decoration: BoxDecoration(
-                              color: AppColor.darkGrey,
-                              borderRadius: BorderRadius.circular(100)),
+                              color: AppColor.darkGrey, borderRadius: BorderRadius.circular(100)),
                           child: Center(
                             child: Text(
                               S.of(context).cardDelivered,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.w600,
                                   fontSize: isSmallDevices ? 10 : 12),
@@ -420,10 +362,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      ProviderScope.containerOf(context)
-                          .read(appHomeViewModelProvider)
-                          .pageController
-                          .next();
+                      ProviderScope.containerOf(context).read(appHomeViewModelProvider).pageController.next();
                       Future.delayed(Duration(milliseconds: 300)).then((value) {
                         if (!model.cardKey.currentState!.isFront) {
                           model.cardKey.currentState!.toggleCard();
@@ -442,41 +381,34 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                     }
                   },
                   child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     elevation: 2,
                     color: Theme.of(context).canvasColor,
                     margin: EdgeInsets.zero,
-                    shadowColor:
-                        Theme.of(context).primaryColorDark.withOpacity(0.32),
+                    shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                     child: AppStreamBuilder<bool>(
                       stream: model.isGetCardNowClickedStream,
                       initialData: false,
                       dataBuilder: (context, isClicked) {
                         return Padding(
-                          padding: EdgeInsets.only(
-                              left: 29.0, top: 38, right: 25, bottom: 30),
+                          padding: EdgeInsets.only(left: 29.0, top: 38, right: 25, bottom: 30),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      cardData.debitCard!.first.accountTitle !=
-                                              null
-                                          ? cardData
-                                              .debitCard!.first.accountTitle!
-                                              .toTitleCase()
+                                      cardData.debitCard!.first.accountTitle != null
+                                          ? cardData.debitCard!.first.accountTitle!.toTitleCase()
                                           : '',
                                       maxLines: 2,
                                       style: TextStyle(
-                                          color: Theme.of(context)
-                                              .primaryColorDark,
+                                          fontFamily: StringUtils.appFont,
+                                          color: Theme.of(context).primaryColorDark,
                                           fontSize: isSmallDevices ? 10 : 12,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -495,10 +427,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       child: Text(
                                         S.of(context).flipBack,
                                         style: TextStyle(
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color,
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             fontSize: isSmallDevices ? 12 : 14,
                                             fontWeight: FontWeight.w600),
                                       ),
@@ -507,22 +437,19 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsets.only(
-                                    top: isSmallDevices ? 50 : 63),
+                                padding: EdgeInsets.only(top: isSmallDevices ? 50 : 63),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      cardData.debitCard!.first.cardNumber!
-                                              .isNotEmpty
-                                          ? StringUtils
-                                              .getFormattedCreditCardNumber(
-                                                  cardData.debitCard!.first
-                                                      .cardNumber)
+                                      cardData.debitCard!.first.cardNumber!.isNotEmpty
+                                          ? StringUtils.getFormattedCreditCardNumber(
+                                              cardData.debitCard!.first.cardNumber)
                                           : '-',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
                                         fontSize: isSmallDevices ? 12 : 14,
                                       ),
@@ -532,13 +459,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       child: InkWell(
                                           onTap: () {
                                             Clipboard.setData(ClipboardData(
-                                                    text: cardData.debitCard!
-                                                            .first.cardNumber ??
-                                                        ''))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg:
-                                                            'Card number Copied'));
+                                                    text: cardData.debitCard!.first.cardNumber ?? ''))
+                                                .then((value) => Fluttertoast.showToast(
+                                                    msg: S.of(context).cardNumberCopied));
                                           },
                                           child: AppSvg.asset(AssetUtils.copy)),
                                     )
@@ -550,6 +473,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 child: Text(
                                   S.of(context).cardNumber,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: isSmallDevices ? 8 : 10,
                                       color: AppColor.green),
@@ -558,18 +482,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 21),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          cardData.debitCard!.first
-                                                  .expiryDate ??
-                                              '',
+                                          cardData.debitCard!.first.expiryDate ?? '',
                                           style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w700,
                                             fontSize: isSmallDevices ? 10 : 12,
                                           ),
@@ -579,8 +500,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           child: Text(
                                             S.of(context).expiryDate,
                                             style: TextStyle(
-                                                fontSize:
-                                                    isSmallDevices ? 8 : 10,
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: isSmallDevices ? 8 : 10,
                                                 color: AppColor.green,
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -591,12 +512,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       width: 8,
                                     ),
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           cardData.debitCard!.first.cvv ?? '',
                                           style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w700,
                                             fontSize: isSmallDevices ? 10 : 12,
                                           ),
@@ -606,8 +527,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           child: Text(
                                             S.of(context).cvv,
                                             style: TextStyle(
-                                                fontSize:
-                                                    isSmallDevices ? 8 : 10,
+                                                fontFamily: StringUtils.appFont,
+                                                fontSize: isSmallDevices ? 8 : 10,
                                                 color: AppColor.green,
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -621,21 +542,17 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 padding: EdgeInsets.symmetric(vertical: 32),
                                 child: Divider(
                                   height: 2,
-                                  color: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyText1!
-                                      .color!
-                                      .withOpacity(0.1),
+                                  color:
+                                      Theme.of(context).primaryTextTheme.bodyText1!.color!.withOpacity(0.1),
                                 ),
                               ),
                               Text(
-                                cardData.debitCard!.first.linkedAccountNumber!
-                                        .isNotEmpty
+                                cardData.debitCard!.first.linkedAccountNumber!.isNotEmpty
                                     ? StringUtils.getFormattedCreditCardNumber(
-                                        cardData.debitCard!.first
-                                            .linkedAccountNumber)
+                                        cardData.debitCard!.first.linkedAccountNumber)
                                     : '',
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: isSmallDevices ? 12 : 14,
                                 ),
@@ -645,6 +562,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 child: Text(
                                   S.of(context).linkedAccountNumber,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: isSmallDevices ? 8 : 10,
                                       color: AppColor.green),

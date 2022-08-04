@@ -11,15 +11,11 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class DebitCardReplacementPageView
-    extends BasePageViewWidget<DebitCardReplacementPageViewModel> {
-  final pages = [
-    ReplacementVisaCardPage(),
-    CreateReplacementPinPage(),
-    ConfirmReplacementPinPage()
-  ];
+class DebitCardReplacementPageView extends BasePageViewWidget<DebitCardReplacementPageViewModel> {
+  final pages = [ReplacementVisaCardPage(), CreateReplacementPinPage(), ConfirmReplacementPinPage()];
 
   DebitCardReplacementPageView(ProviderBase model) : super(model);
 
@@ -41,17 +37,13 @@ class DebitCardReplacementPageView
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      activeSize:
-                          Size(MediaQuery.of(context).size.width / 3.7, 5),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      activeSize: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       size: Size(MediaQuery.of(context).size.width / 3.7, 5),
                       spacing: EdgeInsets.symmetric(horizontal: 1),
-                      activeShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).primaryColorDark,
-                      color:
-                          Theme.of(context).primaryColorDark.withOpacity(0.3)),
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.3)),
                 );
               },
             ),
@@ -68,13 +60,13 @@ class DebitCardReplacementPageView
                     Text(
                       S.of(context).debitCard,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).primaryColorDark,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -91,6 +83,7 @@ class DebitCardReplacementPageView
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).primaryColorDark,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),

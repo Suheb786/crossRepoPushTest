@@ -75,6 +75,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   S.of(context).myCreditCard,
                                   textAlign: TextAlign.right,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
                                       fontSize: widget.isSmallDevice ? 10 : 12,
                                       color: Colors.white),
@@ -87,6 +88,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                         child: Text(
                                           S.of(context).cardFrozen,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               color: Theme.of(context).accentColor.withOpacity(0.5),
                                               fontSize: widget.isSmallDevice ? 12 : 14,
                                               fontWeight: FontWeight.w600),
@@ -116,6 +118,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             S.of(context).flipCard,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -136,6 +139,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             child: Text(
                               widget.creditCard.name ?? "",
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: widget.isSmallDevice ? 10 : 14,
                                   color: Colors.white),
@@ -176,6 +180,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             child: Text(
                                               S.of(context).payBack,
                                               style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 color: Theme.of(context).accentColor,
                                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                                 fontWeight: FontWeight.w600,
@@ -192,6 +197,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               Text(
                                                 widget.creditCard.paymentDueAmount.toString(),
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     color: Theme.of(context).accentColor,
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: widget.isSmallDevice ? 14 : 20),
@@ -201,6 +207,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
                                                       fontSize: widget.isSmallDevice ? 12 : 14,
                                                       fontWeight: FontWeight.w700),
@@ -215,6 +222,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 Text(
                                                   S.of(context).minDueBy,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryLightRed,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: widget.isSmallDevice ? 8 : 10),
@@ -225,6 +233,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                           widget.creditCard.nextPaymentDate!)
                                                       : "-",
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: widget.isSmallDevice ? 8 : 10),
@@ -243,6 +252,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             Text(
                                               widget.creditCard.paymentDueAmount.toString(),
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: widget.isSmallDevice ? 14 : 20),
@@ -252,6 +262,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               child: Text(
                                                 S.of(context).JOD,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     color: Theme.of(context).accentColor.withOpacity(0.5),
                                                     fontSize: widget.isSmallDevice ? 12 : 14,
                                                     fontWeight: FontWeight.w700),
@@ -265,6 +276,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 Text(
                                                   S.of(context).minDueBy,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryLightRed,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: widget.isSmallDevice ? 8 : 10),
@@ -275,6 +287,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                           widget.creditCard.nextPaymentDate!)
                                                       : "-",
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: widget.isSmallDevice ? 8 : 10),
@@ -306,6 +319,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             child: Text(
                                               S.of(context).payBack,
                                               style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 color: Theme.of(context).accentColor,
                                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                                 fontWeight: FontWeight.w600,
@@ -354,6 +368,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               Text(
                                                 widget.creditCard.availableBalance.toString(),
                                                 style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: widget.isSmallDevice ? 14 : 20,
@@ -364,6 +379,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
                                                       fontSize: widget.isSmallDevice ? 12 : 14,
                                                       fontWeight: FontWeight.w700),
@@ -376,6 +392,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             child: Text(
                                               S.of(context).availableAmount,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryLightRed,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: widget.isSmallDevice ? 8 : 10),
@@ -393,6 +410,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                               Text(
                                                 widget.creditCard.availableBalance.toString(),
                                                 style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: widget.isSmallDevice ? 14 : 20,
@@ -403,6 +421,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
                                                       fontSize: widget.isSmallDevice ? 12 : 14,
                                                       fontWeight: FontWeight.w700),
@@ -415,6 +434,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             child: Text(
                                               S.of(context).availableAmount,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryLightRed,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: widget.isSmallDevice ? 8 : 10),
@@ -460,6 +480,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       child: Text(
                         S.of(context).cardDelivered,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
                             fontWeight: FontWeight.w600,
                             fontSize: widget.isSmallDevice ? 10 : 12),
@@ -478,6 +499,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       child: Text(
                         S.of(context).swipeUpToViewTransaction,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: widget.isSmallDevice ? 10 : 12,
                             color: AppColor.dark_gray_1),
@@ -512,6 +534,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         Text(
                           widget.creditCard.name ?? '',
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontSize: widget.isSmallDevice ? 10 : 12,
                               fontWeight: FontWeight.w600),
@@ -527,6 +550,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             child: Text(
                               S.of(context).flipBack,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                   fontSize: widget.isSmallDevice ? 12 : 14,
                                   fontWeight: FontWeight.w600),
@@ -544,6 +568,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 ? StringUtils.getFormattedCreditCardNumber(widget.creditCard.cardNumber)
                                 : '-',
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).accentColor,
                               fontSize: widget.isSmallDevice ? 12 : 14,
@@ -554,8 +579,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           ),
                           InkWell(
                             onTap: () {
-                              Clipboard.setData(ClipboardData(text: widget.creditCard.cardNumber ?? ''))
-                                  .then((value) => Fluttertoast.showToast(msg: 'Card Number Copied'));
+                              Clipboard.setData(ClipboardData(text: widget.creditCard.cardNumber ?? '')).then(
+                                  (value) => Fluttertoast.showToast(msg: S.of(context).cardNumberCopied));
                             },
                             child: AppSvg.asset(
                               AssetUtils.copy,
@@ -569,6 +594,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       child: Text(
                         S.of(context).cardNumber,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor.withOpacity(0.6),
                             fontSize: widget.isSmallDevice ? 8 : 10),
@@ -590,6 +616,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         child: Text(
                           "140591314151414",
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
@@ -603,6 +630,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         padding: EdgeInsets.only(top: 8),
                         child: Text(S.of(context).linkedAccountNumber,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 10,
                               color: Theme.of(context).accentColor.withOpacity(0.6),
@@ -619,6 +647,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               Text(
                                 widget.creditCard.expiryDate ?? '-',
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: widget.isSmallDevice ? 10 : 12,
                                   color: Theme.of(context).accentColor,
@@ -629,6 +658,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 child: Text(
                                   S.of(context).expiryDate,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: widget.isSmallDevice ? 8 : 10,
                                       color: Theme.of(context).accentColor.withOpacity(0.6),
                                       fontWeight: FontWeight.w600),
@@ -646,6 +676,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                       ? StringUtils.getCvv(widget.creditCard.cvv)
                                       : '-',
                                   style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     color: Theme.of(context).accentColor,
                                     fontSize: widget.isSmallDevice ? 10 : 12,
@@ -656,6 +687,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   child: Text(
                                     S.of(context).cvv,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: widget.isSmallDevice ? 8 : 10,
                                         color: Theme.of(context).accentColor.withOpacity(0.6),
                                         fontWeight: FontWeight.w600),
@@ -682,6 +714,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             Text(
                               widget.creditCard.usedBalance ?? '-',
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                 color: Theme.of(context).accentColor,
@@ -693,6 +726,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             Text(
                               S.of(context).JOD,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: widget.isSmallDevice ? 8 : 10,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
@@ -705,6 +739,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           child: Text(
                             S.of(context).totalUsedAmount,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: widget.isSmallDevice ? 8 : 10,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                                 fontWeight: FontWeight.w600),
@@ -724,6 +759,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             Text(
                               widget.creditCard.creditLimit ?? '-',
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: widget.isSmallDevice ? 12 : 14,
                                 color: Theme.of(context).accentColor,
@@ -735,6 +771,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             Text(
                               S.of(context).JOD,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
                                 fontSize: widget.isSmallDevice ? 8 : 10,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
@@ -747,6 +784,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           child: Text(
                             S.of(context).yourCardLimit,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: 10,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                                 fontWeight: FontWeight.w600),

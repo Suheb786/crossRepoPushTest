@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AnimatedButton extends StatefulWidget {
   final int? animationDuration;
@@ -106,6 +107,7 @@ class _AnimatedButtonState extends State<AnimatedButton> with TickerProviderStat
                   child: Text(
                     widget.buttonText!,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: widget.textColor != null
                             ? widget.textColor
                             : Theme.of(context).accentTextTheme.bodyText1!.color!,

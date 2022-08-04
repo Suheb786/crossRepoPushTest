@@ -20,8 +20,11 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
         Text(
           // TimeUtils.getFormattedDateForTransaction(transactions!.label!),
           transactions!.rtpDate!.day.toString() + " " + DateFormat.MMMM().format(transactions!.rtpDate!),
-          style:
-              TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Theme.of(context).primaryColorDark),
+          style: TextStyle(
+              fontFamily: StringUtils.appFont,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).primaryColorDark),
         ),
         Card(
           margin: EdgeInsets.only(top: 16, bottom: 32),
@@ -43,6 +46,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               ? StringUtils.getFirstInitials(transactions!.data![index].name!)
                               : "",
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 14),
@@ -56,12 +60,12 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                         children: [
                           // Text(
                           //   "You requested ${transactions!.data![index].amount}",
-                          //   style: TextStyle(
+                          //   style: TextStyle(fontFamily: StringUtils.appFont,
                           //       fontWeight: FontWeight.w800, fontSize: 12),
                           // ),
                           // Text(
                           //   "from ${transactions!.data![index].name}",
-                          //   style: TextStyle(
+                          //   style: TextStyle(fontFamily: StringUtils.appFont,
                           //       fontWeight: FontWeight.w800, fontSize: 12),
                           // ),
                           RichText(
@@ -69,6 +73,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               text: TextSpan(
                                   text: S.of(context).youRequested,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 12,
                                       overflow: TextOverflow.ellipsis,
                                       fontWeight: FontWeight.w400,
@@ -77,6 +82,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                     TextSpan(
                                         text: " ${transactions!.data![index].amount} ${S.of(context).JOD}",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context).primaryColorDark),
@@ -84,6 +90,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                           TextSpan(
                                               text: S.of(context).from,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w400,
                                                   color: Theme.of(context).primaryColorDark),
@@ -91,6 +98,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                 TextSpan(
                                                   text: " ${transactions!.data![index].name}",
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontSize: 12,
                                                       overflow: TextOverflow.ellipsis,
                                                       fontWeight: FontWeight.w600,
@@ -107,7 +115,10 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   TimeUtils.getFormattedTimeForTransaction(
                                       transactions!.data![index].rtpDate.toString()),
                                   style: TextStyle(
-                                      color: AppColor.gray1, fontSize: 12, fontWeight: FontWeight.w600),
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.gray1,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.only(start: 9),
@@ -120,6 +131,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                       child: Text(
                                         transactions!.data![index].status!.toString(),
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             color: Theme.of(context).accentColor,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12),

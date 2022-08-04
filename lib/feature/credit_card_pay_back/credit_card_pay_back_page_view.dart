@@ -70,8 +70,11 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                     padding: EdgeInsets.only(top: 8),
                     child: Text(
                       S.of(context).backToDashboard,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          color: AppColor.dark_gray_1),
                     ),
                   ),
                   SizedBox(
@@ -82,13 +85,13 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                       children: [
                         Text(
                           S.of(context).payBack,
-                          style:
-                              TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w400, fontSize: 20),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20),
                         ),
                         Text(
                           S.of(context).myCreditCard,
-                          style:
-                              TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w600, fontSize: 20),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20),
                         ),
                         SizedBox(height: 32),
                         Directionality(
@@ -116,7 +119,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 40,
-                                                  fontFamily: 'Montserrat',
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.black)),
                                         ),
                                         SizedBox(
@@ -129,7 +132,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 14,
-                                                  fontFamily: 'Montserrat',
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.verLightGray4)),
                                         ),
                                       ],
@@ -172,13 +175,13 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 10,
-                                          fontFamily: 'Montserrat',
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.verLightGray4)),
                                   Text(model.payBackArguments.minDuePayBackAmount,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
-                                          fontFamily: 'Montserrat',
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.black))
                                 ],
                               ),
@@ -198,13 +201,13 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 10,
-                                          fontFamily: 'Montserrat',
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.verLightGray4)),
                                   Text(model.payBackArguments.totalMinDueAmount,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
-                                          fontFamily: 'Montserrat',
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.black))
                                 ],
                               ),
@@ -220,7 +223,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 10,
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: StringUtils.appFont,
                                   color: AppColor.verLightGray4)),
                           Center(
                               child: Row(
@@ -230,7 +233,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: StringUtils.appFont,
                                       color: AppColor.black)),
                               SizedBox(
                                 width: 5,
@@ -239,7 +242,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12,
-                                      fontFamily: 'Montserrat',
+                                      fontFamily: StringUtils.appFont,
                                       color: AppColor.verLightGray4))
                             ],
                           )),

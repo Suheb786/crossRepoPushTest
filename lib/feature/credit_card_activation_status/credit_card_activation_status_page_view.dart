@@ -14,6 +14,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardActivationStatusPageViewModel> {
   CreditCardActivationStatusPageView(ProviderBase model) : super(model);
@@ -126,6 +127,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                             Text(
                                               S.of(context).preparingYourCard,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 24,
                                                   color: Theme.of(context).accentColor),

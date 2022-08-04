@@ -4,6 +4,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class GetCreditCardNowWidget extends StatelessWidget {
   final bool isSmallDevices;
@@ -53,6 +54,7 @@ class GetCreditCardNowWidget extends StatelessWidget {
                         S.of(context).getCreditCardNowDesc,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: isSmallDevices ? 12 : 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
@@ -78,6 +80,7 @@ class GetCreditCardNowWidget extends StatelessWidget {
                           child: Text(
                             S.of(context).getCardNow,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: isSmallDevices ? 12 : 14,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),

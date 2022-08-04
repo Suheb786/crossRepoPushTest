@@ -42,8 +42,7 @@ class AppSecondaryButton extends StatelessWidget {
                 width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      AppColor.dark_moderate_magenta),
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColor.dark_moderate_magenta),
                   strokeWidth: 2,
                 ),
               )
@@ -69,25 +68,17 @@ class AppSecondaryButton extends StatelessWidget {
               return Size(width!, height!); // Use the component's default.
             },
           ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: borderRadius != null
-                      ? BorderRadius.circular(borderRadius!)
-                      : BorderRadius.zero,
-                  side: borderSideWidth != null && borderSideColor != null
-                      ? BorderSide(
-                          width: borderSideWidth!, color: borderSideColor!)
-                      : BorderSide.none)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+              borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius!) : BorderRadius.zero,
+              side: borderSideWidth != null && borderSideColor != null
+                  ? BorderSide(width: borderSideWidth!, color: borderSideColor!)
+                  : BorderSide.none)),
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
             (Set<MaterialState> states) {
-              if (states.contains(MaterialState.disabled))
-                return AppColor.white;
-              if (states.contains(MaterialState.focused))
-                return AppColor.light_grayish_violet;
-              if (states.contains(MaterialState.hovered))
-                return AppColor.light_grayish_violet;
-              if (states.contains(MaterialState.pressed))
-                return AppColor.light_grayish_violet;
+              if (states.contains(MaterialState.disabled)) return AppColor.white;
+              if (states.contains(MaterialState.focused)) return AppColor.light_grayish_violet;
+              if (states.contains(MaterialState.hovered)) return AppColor.light_grayish_violet;
+              if (states.contains(MaterialState.pressed)) return AppColor.light_grayish_violet;
 
               return AppColor.white; // Use the component's default.
             },

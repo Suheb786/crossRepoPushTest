@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class InformationText extends StatelessWidget {
   final String? image;
@@ -37,8 +38,8 @@ class InformationText extends StatelessWidget {
           child: Text(
             title!,
             style: TextStyle(
-                color: textColor ??
-                    Theme.of(context).primaryTextTheme.bodyText1!.color!,
+                fontFamily: StringUtils.appFont,
+                color: textColor ?? Theme.of(context).primaryTextTheme.bodyText1!.color!,
                 fontWeight: FontWeight.w600,
                 fontSize: 14),
           ),

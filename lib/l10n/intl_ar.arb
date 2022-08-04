@@ -1325,5 +1325,11 @@
   "noTransactionToDisplay": "لا توجد معاملة لعرضها",
   "helloE": "مرحبا!",
   "amountGreaterThan0": "يجب أن يكون المبلغ المطلوب دفعه أكبر من 0",
-  "cannotProceedNoAhwalDataFound": "لا يمكن متابعة إعداد المستخدم نظرًا لعدم وجود بيانات مقابل رقم الهوية الوطنية"
+  "cannotProceedNoAhwalDataFound": "لا يمكن متابعة إعداد المستخدم نظرًا لعدم وجود بيانات مقابل رقم الهوية الوطنية",
+  "resendCode": "أعد إرسال الرمز",
+  "statement": " بيان",
+  "accountNoCopied": "تم نسخ رقم الحساب",
+  "ibanCopied": "نسخ IBAN",
+  "cardNumberCopied": "تم نسخ رقم البطاقة",
+  "idAlreadyExists": "رقم الهوية موجود بالفعل"
 }

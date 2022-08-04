@@ -8,21 +8,19 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SupplementaryDebitCardSuccessPageView
     extends BasePageViewWidget<SupplementaryDebitCardSuccessPageViewModel> {
   SupplementaryDebitCardSuccessPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, SupplementaryDebitCardSuccessPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryDebitCardSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
         }
       },
       child: Container(
@@ -43,8 +41,7 @@ class SupplementaryDebitCardSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.4),
+                            color: Theme.of(context).accentColor.withOpacity(0.4),
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -55,8 +52,8 @@ class SupplementaryDebitCardSuccessPageView
                                 color: Theme.of(context).primaryColor,
                               ),
                               child: Center(
-                                  child: AppSvg.asset(AssetUtils.right,
-                                      color: Theme.of(context).accentColor)),
+                                  child:
+                                      AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                             ),
                           ),
                         ],
@@ -72,6 +69,7 @@ class SupplementaryDebitCardSuccessPageView
                           Text(
                             S.of(context).yourCardReady,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w500,
                               fontSize: 24,
                             ),
@@ -80,12 +78,12 @@ class SupplementaryDebitCardSuccessPageView
                             height: 24,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).supplementaryDebitcardSuccessDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: Theme.of(context).primaryColorDark),
@@ -116,6 +114,7 @@ class SupplementaryDebitCardSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).primaryColorDark,
                           fontWeight: FontWeight.w500,
                           fontSize: 12,

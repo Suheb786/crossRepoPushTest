@@ -15,7 +15,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.6+2208031
+version: 1.0.6+2208041
 
 
 environment:
@@ -183,3 +183,19 @@ flutter:
         - asset: assets/font/Montserrat-BlackItalic.ttf
           weight: 900
           style: italic
+    - family: Tajawal
+      fonts:
+        - asset: assets/font/Tajawal-ExtraLight.ttf
+          weight: 200
+        - asset: assets/font/Tajawal-Light.ttf
+          weight: 300
+        - asset: assets/font/Tajawal-Regular.ttf
+          weight: 400
+        - asset: assets/font/Tajawal-Medium.ttf
+          weight: 500
+        - asset: assets/font/Tajawal-Bold.ttf
+          weight: 700
+        - asset: assets/font/Tajawal-ExtraBold.ttf
+          weight: 800
+        - asset: assets/font/Tajawal-Black.ttf
+          weight: 900

@@ -10,9 +10,9 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ChangeCountryRestrictionPageView
-    extends BasePageViewWidget<ChangeCountryRestrictionPageViewModel> {
+class ChangeCountryRestrictionPageView extends BasePageViewWidget<ChangeCountryRestrictionPageViewModel> {
   ChangeCountryRestrictionPageView(ProviderBase model) : super(model);
 
   @override
@@ -25,6 +25,7 @@ class ChangeCountryRestrictionPageView
           Text(
             S.of(context).changeCountryRestriction.toUpperCase(),
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
                 color: Theme.of(context).accentColor),
@@ -36,6 +37,7 @@ class ChangeCountryRestrictionPageView
             S.of(context).changeCardRestrictionDesc,
             textAlign: TextAlign.center,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
                 color: Theme.of(context).accentColor),
@@ -56,6 +58,7 @@ class ChangeCountryRestrictionPageView
                       Text(
                         S.of(context).changeCardRestrictionDesc,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                         ),
@@ -65,8 +68,7 @@ class ChangeCountryRestrictionPageView
                         child: AddIncomeWidget(
                           label: S.of(context).addCountryRestriction,
                           onTap: () {
-                            CountryDialog.show(context,
-                                title: S.of(context).addCountryRestriction,
+                            CountryDialog.show(context, title: S.of(context).addCountryRestriction,
                                 onDismissed: () {
                               Navigator.pop(context);
                             }, onSelected: (value) {
@@ -84,6 +86,7 @@ class ChangeCountryRestrictionPageView
                       Text(
                         S.of(context).blockedCountries,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
@@ -96,8 +99,7 @@ class ChangeCountryRestrictionPageView
                           Container(
                             padding: EdgeInsets.all(32),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor,
-                                shape: BoxShape.circle),
+                                color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
                             child: AppSvg.asset(AssetUtils.countryRestriction),
                           ),
                           SizedBox(
@@ -109,6 +111,7 @@ class ChangeCountryRestrictionPageView
                               S.of(context).notSetUpCountryRestrictionYet,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
                               ),
@@ -128,6 +131,7 @@ class ChangeCountryRestrictionPageView
                         child: Text(
                           S.of(context).backToCardSettings,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: AppColor.brightBlue,
                             letterSpacing: 1,
                             fontSize: 14,

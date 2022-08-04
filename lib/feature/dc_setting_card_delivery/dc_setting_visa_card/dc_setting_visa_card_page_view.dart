@@ -117,6 +117,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
                                                         fontSize: 12,
                                                         color: Theme.of(context).primaryColorDark),
@@ -129,6 +130,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                                         : "XXXX",
                                                     maxLines: 1,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
                                                         fontSize: 10,
                                                         color: Theme.of(context).primaryColorDark),
@@ -148,6 +150,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10,
                                               color: Theme.of(context).primaryColorDark),
@@ -184,7 +187,10 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                           child: Text(
                             S.of(context).backToCardSettings,
                             style: TextStyle(
-                                color: AppColor.brightBlue, fontSize: 14, fontWeight: FontWeight.w600),
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.brightBlue,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

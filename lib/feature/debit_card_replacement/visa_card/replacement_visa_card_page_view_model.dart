@@ -12,21 +12,17 @@ class ReplacementVisaCardPageViewModel extends BasePageViewModel {
   final FlipCardController cardController = FlipCardController();
   final CardIssuanceUseCase _cardIssuanceUseCase;
 
-  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
-      PublishSubject();
+  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest = PublishSubject();
 
-  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse = BehaviorSubject();
 
   String? cardNumber;
 
-  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
-      _cardIssuanceResponse.stream;
+  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream => _cardIssuanceResponse.stream;
 
   ReplacementVisaCardPageViewModel(this._cardIssuanceUseCase) {
     _cardIssuanceRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardIssuanceUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardIssuanceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class NotifyMeWidget extends StatelessWidget {
   final Function()? onTap;
   final String? title;
   final String? labelText;
 
-  const NotifyMeWidget({Key? key, this.onTap, this.title, this.labelText})
-      : super(key: key);
+  const NotifyMeWidget({Key? key, this.onTap, this.title, this.labelText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,13 @@ class NotifyMeWidget extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-        decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
-            borderRadius: BorderRadius.circular(16)),
+        decoration:
+            BoxDecoration(color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
         child: Column(
           children: [
             Text(
               title!,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
             ),
             SizedBox(
               height: 16,
@@ -43,17 +42,15 @@ class NotifyMeWidget extends StatelessWidget {
                   Text(
                     labelText!,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Theme
-                            .of(context)
-                            .accentColor),
+                        color: Theme.of(context).accentColor),
                   ),
                   Container(
                       height: 16,
                       width: 16,
-                      child: AppSvg.asset(AssetUtils.message,
-                          color: Theme.of(context).accentColor))
+                      child: AppSvg.asset(AssetUtils.message, color: Theme.of(context).accentColor))
                 ],
               ),
             )

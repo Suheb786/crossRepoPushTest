@@ -170,7 +170,7 @@ class AddIDNumberForResetPasswordPageView
                                       },
                                       child: Text(
                                         S.of(context).backToLogin,
-                                        style: TextStyle(
+                                        style: TextStyle(fontFamily: StringUtils.appFont,
                                           color: AppColor.brightBlue,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,

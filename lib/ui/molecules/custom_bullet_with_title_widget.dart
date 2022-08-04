@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CustomBulletWithTitle extends StatelessWidget {
   final String title;
@@ -31,6 +32,7 @@ class CustomBulletWithTitle extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
+              fontFamily: StringUtils.appFont,
               fontSize: fontSize,
               height: lineHeight,
             ),

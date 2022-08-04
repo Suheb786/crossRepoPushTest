@@ -39,8 +39,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                   print('status---->${data.status}');
                   if (data.status == Status.SUCCESS) {
                     print('success');
-                    Navigator.pushNamed(
-                        context, RoutePaths.SendAmountToContactSuccess,
+                    Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
                     print('error');
@@ -103,8 +102,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                 model.enterOtp();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(
-                                        paymentToNewRecipientViewModelProvider)
+                                    .read(paymentToNewRecipientViewModelProvider)
                                     .previousPage();
                                 // .previous(animation: true);
                               }
@@ -113,8 +111,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                 model.enterOtp();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(
-                                        paymentToNewRecipientViewModelProvider)
+                                    .read(paymentToNewRecipientViewModelProvider)
                                     .previousPage();
                                 // .previous(animation: true);
                               }
@@ -125,20 +122,13 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           margin: EdgeInsets.zero,
                           child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            50 <=
-                                        0
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom -
-                                        48),
+                                    : MediaQuery.of(context).viewInsets.bottom - 48),
                             child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SingleChildScrollView(
                                       physics: ClampingScrollPhysics(),
@@ -161,24 +151,21 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                           onEnd: () {},
                                           endTime: model.endTime,
                                           textStyle: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 16,
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
-                                          widgetBuilder:
-                                              (context, currentTimeRemaining) {
+                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                          widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
                                                 ? TextButton(
                                                     onPressed: () {
                                                       model.updateTime();
                                                     },
                                                     child: Text(
-                                                      'Resend Code',
+                                                      S.of(context).resendCode,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontSize: 14,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color!),
@@ -187,6 +174,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                     S.of(context).resendIn(
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 14,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
@@ -205,9 +193,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                   visible: isValid!,
                                                   child: AnimatedButton(
                                                     buttonHeight: 50,
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
+                                                    buttonText: S.of(context).swipeToProceed,
                                                   ),
                                                 );
                                               }),

@@ -7,8 +7,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
   final Beneficiary? beneficiary;
   final TransferEnum transferEnum;
 
-  const PaymentBeneficiaryWidget(
-      {Key? key, this.onTap, this.beneficiary, required this.transferEnum})
+  const PaymentBeneficiaryWidget({Key? key, this.onTap, this.beneficiary, required this.transferEnum})
       : super(key: key);
 
   @override
@@ -37,13 +36,11 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                           ? StringUtils.getFirstInitials(beneficiary!.fullName)
                           : beneficiary!.fullName![0],
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w700,
                           fontSize: 20,
                           color: transferEnum == TransferEnum.send
-                              ? Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyText1!
-                                  .color
+                              ? Theme.of(context).primaryTextTheme.bodyText1!.color
                               : Theme.of(context).accentColor),
                     ),
                   )),
@@ -55,6 +52,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                 : beneficiary!.fullName!,
             textAlign: TextAlign.center,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 overflow: TextOverflow.ellipsis,
                 color: transferEnum == TransferEnum.send
                     ? Theme.of(context).accentColor

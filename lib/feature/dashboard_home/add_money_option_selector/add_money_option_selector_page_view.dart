@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSelectorViewModel> {
@@ -55,6 +56,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                         S.of(context).waysYocCanAddMoneyToAccount,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 20, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                       ),
                     ),
@@ -118,6 +120,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                           Text(
                             S.of(context).or,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),

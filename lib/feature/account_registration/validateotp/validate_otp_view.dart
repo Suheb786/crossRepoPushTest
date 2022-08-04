@@ -55,8 +55,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         //   "properties": {"validated": true}
                         // };
                         // InfobipMobilemessaging.submitEventImmediately(event);
-                        Navigator.pushReplacementNamed(
-                            context, RoutePaths.Dashboard);
+                        Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }
@@ -93,11 +92,9 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         child: Card(
                           margin: EdgeInsets.zero,
                           child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 32, horizontal: 24),
+                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   SingleChildScrollView(
                                     physics: ClampingScrollPhysics(),
@@ -107,43 +104,31 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                           length: 6,
                                           controller: model.otpController,
                                           onChanged: (val) {
-                                            if (val.length == 6)
-                                              model.validate(val);
+                                            if (val.length == 6) model.validate(val);
                                           },
                                         ),
                                         Center(
                                             child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 32.0),
+                                          padding: const EdgeInsets.only(top: 32.0),
                                           child: InkWell(
                                             onTap: () {
                                               ChangeMyNumberDialog.show(context,
-                                                  countryList: ProviderScope
-                                                          .containerOf(context)
-                                                      .read(
-                                                          accountRegistrationViewModelProvider)
-                                                      .countryDataList,
-                                                  onDismissed: () {
+                                                  countryList: ProviderScope.containerOf(context)
+                                                      .read(accountRegistrationViewModelProvider)
+                                                      .countryDataList, onDismissed: () {
                                                 Navigator.pop(context);
-                                              }, onSelected:
-                                                      (country, mobileNo) {
-                                                model.mobileNumberParams =
-                                                    MobileNumberParams(
-                                                        mobileNumber: mobileNo,
-                                                        mobileCode:
-                                                            country.phoneCode!);
+                                              }, onSelected: (country, mobileNo) {
+                                                model.mobileNumberParams = MobileNumberParams(
+                                                    mobileNumber: mobileNo, mobileCode: country.phoneCode!);
                                                 Navigator.pop(context);
-                                                model.changeMyNumber(mobileNo,
-                                                    country.phoneCode!);
+                                                model.changeMyNumber(mobileNo, country.phoneCode!);
                                               });
                                             },
                                             child: Text(
                                               S.of(context).changeMyNumber,
                                               style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!,
+                                                fontFamily: StringUtils.appFont,
+                                                color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -160,21 +145,19 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                         onEnd: () {},
                                         endTime: model.endTime,
                                         textStyle: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 16,
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color!),
-                                        widgetBuilder:
-                                            (context, currentTimeRemaining) {
+                                            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                        widgetBuilder: (context, currentTimeRemaining) {
                                           return currentTimeRemaining == null
                                               ? TextButton(
                                                   onPressed: () {
                                                     model.updateTime();
                                                   },
                                                   child: Text(
-                                                    'Resend Code',
+                                                    S.of(context).resendCode,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 14,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
@@ -185,6 +168,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   S.of(context).resendIn(
                                                       '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontSize: 14,
                                                       color: Theme.of(context)
                                                           .accentTextTheme
@@ -203,9 +187,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                 visible: isValid!,
                                                 child: AnimatedButton(
                                                   buttonHeight: 50,
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
+                                                  buttonText: S.of(context).swipeToProceed,
                                                 ),
                                               );
                                             }),

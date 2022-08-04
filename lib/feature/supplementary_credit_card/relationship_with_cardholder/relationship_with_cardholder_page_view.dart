@@ -115,6 +115,7 @@ class RelationshipWithCardholderPageView extends BasePageViewWidget<Relationship
                                           child: Text(
                                             S.of(context).backToCardSettings,
                                             style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               color: AppColor.brightBlue,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,

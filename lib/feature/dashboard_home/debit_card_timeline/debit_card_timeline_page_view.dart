@@ -12,6 +12,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineViewModel> {
@@ -32,7 +33,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
           children: [
             Text(
               S.of(context).totalBalance,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+              style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
             ),
             Padding(
               padding: EdgeInsets.only(top: 5),
@@ -41,14 +42,18 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                 children: [
                   Text(
                     model.timeLineArguments.timeLineArguments.availableBalance ?? "0.000",
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 24),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(start: 5, top: 5),
                     child: Text(
                       S.of(context).JOD,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColor.verLightGray4),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: AppColor.verLightGray4),
                     ),
                   )
                 ],
@@ -69,7 +74,10 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                     child: Text(
                       S.of(context).addMoney,
                       style: TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 12, color: Theme.of(context).accentColor),
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -126,7 +134,9 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                             : S.of(context).creditCardDelivered,
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(
-                                                            fontSize: 12, fontWeight: FontWeight.w600),
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontSize: 12,
+                                                            fontWeight: FontWeight.w600),
                                                       ),
                                                       SizedBox(
                                                         height: 5,
@@ -147,6 +157,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                             : '-',
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(
+                                                            fontFamily: StringUtils.appFont,
                                                             fontSize: 12,
                                                             color: Theme.of(context)
                                                                 .inputDecorationTheme
@@ -166,7 +177,9 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                             : S.of(context).creditCardDeliveredQ,
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(
-                                                            fontWeight: FontWeight.w600, fontSize: 12),
+                                                            fontFamily: StringUtils.appFont,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 12),
                                                       ),
                                                       Padding(
                                                         padding: EdgeInsets.only(top: 5),
@@ -223,6 +236,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                             child: Text(
                                                               S.of(context).confirm,
                                                               style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
                                                                   color: Theme.of(context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
@@ -252,8 +266,10 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                         ? S.of(context).debitCardActivated
                                                         : S.of(context).creditCardActivated,
                                                     textAlign: TextAlign.center,
-                                                    style:
-                                                        TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12,
+                                                        fontWeight: FontWeight.w600),
                                                   ),
                                                   SizedBox(
                                                     height: 5,
@@ -274,6 +290,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                         : "-",
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontSize: 12,
                                                         color: Theme.of(context)
                                                             .inputDecorationTheme
@@ -315,7 +332,10 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                             Text(
                                               S.of(context).joinedBlink,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
                                             ),
                                             SizedBox(
                                               height: 5,
@@ -326,6 +346,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                   .toString()), //'4th Jan',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 12,
                                                   color:
                                                       Theme.of(context).inputDecorationTheme.hintStyle!.color,
@@ -355,6 +376,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                   .toString()),
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 12,
                                                   color:
                                                       Theme.of(context).inputDecorationTheme.hintStyle!.color,
@@ -389,7 +411,10 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                         Text(
                                           S.of(context).joinedBlink,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         SizedBox(
                                           height: 5,
@@ -400,6 +425,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                               .toString()), //'4th Jan',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 12,
                                               color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                               fontWeight: FontWeight.w600),
@@ -417,7 +443,10 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                         Text(
                                           S.of(context).blinkBorn,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
                                         ),
                                         SizedBox(
                                           height: 5,
@@ -428,6 +457,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                               .toString()),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 12,
                                               color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                               fontWeight: FontWeight.w600),

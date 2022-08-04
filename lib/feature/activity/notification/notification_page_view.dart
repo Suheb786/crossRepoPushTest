@@ -48,7 +48,8 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
               children: [
                 Text(
                   S.of(context).notifications,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  style:
+                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                 ),
                 Expanded(
                   child: AppStreamBuilder<Resource<ActivityResponse>>(
@@ -79,7 +80,10 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                             padding: EdgeInsetsDirectional.only(start: 7),
                                             child: Text(
                                               activities.data!.activityContent!.activities![index].heading!,
-                                              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 12),
                                             ),
                                           )
                                         ],
@@ -90,6 +94,7 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                           activities.data!.activityContent!.activities![index].description!,
                                           maxLines: 2,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12,
                                               color: AppColor.dark_gray_1),

@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/dialog/evoucher/purchase_now/purchase_now_
 import 'package:neo_bank/ui/molecules/evoucher/evoucher_text_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurchaseNowDetailView extends BasePageViewWidget<PurchaseNowDetailViewModel> {
   PurchaseNowDetailView(ProviderBase model) : super(model);
@@ -113,14 +114,21 @@ class PageDetail extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).amt,
-                  style: TextStyle(color: AppColor.brightBlue, fontSize: 24, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: AppColor.brightBlue,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w700),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 4),
                   child: Text(
                     S.of(context).JOD,
-                    style:
-                        TextStyle(color: AppColor.verLightGray4, fontSize: 14, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.verLightGray4,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
               ],
@@ -190,7 +198,7 @@ class PurchaseNowBtn extends StatelessWidget {
               title: S.of(context).purchaseNowTitle,
               descriptionWidget: Text(
                 S.of(context).viewVoucherDialogDescription,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
               ), onSelected: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, RoutePaths.EnterCodeEVoucherPurchase);
@@ -205,7 +213,10 @@ class PurchaseNowBtn extends StatelessWidget {
               child: Text(
             S.of(context).purchaseNow,
             style: TextStyle(
-                color: Colors.white, fontFamily: "Montserrat", fontSize: 14, fontWeight: FontWeight.w600),
+                fontFamily: StringUtils.appFont,
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w600),
           )),
           decoration: BoxDecoration(
               border: Border.all(color: AppColor.white_gray),

@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ProfileRowItem extends StatelessWidget {
   final String title;
@@ -48,6 +49,7 @@ class ProfileRowItem extends StatelessWidget {
                           title,
                           softWrap: true,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryTextTheme.bodyText1!.color!,

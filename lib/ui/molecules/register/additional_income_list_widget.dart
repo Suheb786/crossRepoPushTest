@@ -1,15 +1,15 @@
 import 'package:domain/model/user/confirm_application_data_get/additional_income_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AdditionalIncomeListWidget extends StatelessWidget {
   final String? title;
   final AdditionalIncomeInfo? additionalIncomeInfo;
 
-  const AdditionalIncomeListWidget(
-      {Key? key, this.title, this.additionalIncomeInfo})
-      : super(key: key);
+  const AdditionalIncomeListWidget({Key? key, this.title, this.additionalIncomeInfo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,7 @@ class AdditionalIncomeListWidget extends StatelessWidget {
               title!,
               softWrap: true,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: AppColor.very_dark_gray),
@@ -40,6 +41,7 @@ class AdditionalIncomeListWidget extends StatelessWidget {
                   softWrap: true,
                   maxLines: 3,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColorDark),
@@ -48,9 +50,10 @@ class AdditionalIncomeListWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  "JOD ${num.parse(additionalIncomeInfo!.totalIncome!).toStringAsFixed(3)}",
+                  "${S.of(context).JOD} ${num.parse(additionalIncomeInfo!.totalIncome!).toStringAsFixed(3)}",
                   softWrap: true,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).primaryColorDark),

@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/register/upload_document_later/upload_document_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLaterViewModel> {
@@ -49,7 +50,10 @@ class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLat
               Text(
                 S.of(context).uploadDocuments,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
+                    fontFamily: StringUtils.appFont,
+                    color: Theme.of(context).accentColor,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
@@ -64,7 +68,10 @@ class UploadDocumentsLaterPageView extends BasePageViewWidget<UploadDocumentsLat
                     S.of(context).pleaseUploadNecessaryInfo,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor, fontSize: 20, fontWeight: FontWeight.w600),
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).accentColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

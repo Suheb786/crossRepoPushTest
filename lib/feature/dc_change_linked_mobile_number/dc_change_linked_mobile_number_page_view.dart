@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLinkedMobileNumberViewModel> {
@@ -41,6 +42,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                     Text(
                       S.of(context).changeLinkedMobileNumber,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: arguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
                               : Theme.of(context).accentColor,
@@ -65,6 +67,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: arguments.cardType == CardType.DEBIT
                                   ? Theme.of(context).primaryColorDark
                                   : Theme.of(context).accentColor,
@@ -91,6 +94,7 @@ class DcChangeLinkedMobileNumberPageView extends BasePageViewWidget<DcChangeLink
                                   .mobileNumberWithCode,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
                                       : Theme.of(context).accentColor,

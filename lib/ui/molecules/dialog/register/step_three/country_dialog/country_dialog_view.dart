@@ -18,6 +18,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
@@ -40,13 +41,9 @@ class CountryDialogView extends StatelessWidget {
     return BaseWidget<CountryDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding:
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -77,14 +74,14 @@ class CountryDialogView extends StatelessWidget {
                                   child: Text(
                                     title!,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 32),
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                                 child: AppTextField(
                                   labelText: '',
                                   controller: model.countrySearchController,
@@ -92,8 +89,7 @@ class CountryDialogView extends StatelessWidget {
                                   hintTextColor: AppColor.gray_2,
                                   textColor: AppColor.black,
                                   hintText: S.of(context).searchCountry,
-                                  containerPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
+                                  containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   onChanged: (value) {
                                     print(value);
                                     model.searchCountry(value);
@@ -106,8 +102,7 @@ class CountryDialogView extends StatelessWidget {
                                           width: 16,
                                           padding: EdgeInsets.all(6),
                                           child: AppSvg.asset(AssetUtils.search,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark)),
+                                              color: Theme.of(context).primaryColorDark)),
                                     );
                                   },
                                 ),
@@ -119,63 +114,40 @@ class CountryDialogView extends StatelessWidget {
                                               alignment: Alignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 16.0),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                                   child: Container(
                                                     height: 64,
                                                     width: double.infinity,
                                                     decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              16),
-                                                      color:
-                                                          AppColor.vividYellow,
+                                                      borderRadius: BorderRadius.circular(16),
+                                                      color: AppColor.vividYellow,
                                                     ),
                                                   ),
                                                 ),
                                                 AppScrollableListViewWidget(
-                                                  key: ValueKey(
-                                                      data.data!.length),
-                                                  child:
-                                                      ClickableListWheelScrollView(
-                                                    scrollController:
-                                                        model.scrollController,
+                                                  key: ValueKey(data.data!.length),
+                                                  child: ClickableListWheelScrollView(
+                                                    scrollController: model.scrollController,
                                                     itemHeight: 72,
-                                                    itemCount:
-                                                        data.data!.length,
+                                                    itemCount: data.data!.length,
                                                     onItemTapCallback: (index) {
-                                                      model
-                                                          .selectCountry(index);
+                                                      model.selectCountry(index);
                                                     },
-                                                    child: ListWheelScrollView
-                                                        .useDelegate(
-                                                            controller: model
-                                                                .scrollController,
-                                                            itemExtent: 72,
-                                                            onSelectedItemChanged:
-                                                                (int index) {
-                                                              model
-                                                                  .selectCountry(
-                                                                      index);
-                                                            },
-                                                            physics:
-                                                                FixedExtentScrollPhysics(),
-                                                            perspective:
-                                                                0.0000000001,
-                                                            childDelegate:
-                                                                ListWheelChildBuilderDelegate(
-                                                                    childCount: data
-                                                                        .data!
-                                                                        .length,
-                                                                    builder: (BuildContext
-                                                                            context,
-                                                                        int index) {
-                                                                      return EmployerCountryListWidget(
-                                                                        item: data
-                                                                            .data![index],
-                                                                      );
-                                                                    })),
+                                                    child: ListWheelScrollView.useDelegate(
+                                                        controller: model.scrollController,
+                                                        itemExtent: 72,
+                                                        onSelectedItemChanged: (int index) {
+                                                          model.selectCountry(index);
+                                                        },
+                                                        physics: FixedExtentScrollPhysics(),
+                                                        perspective: 0.0000000001,
+                                                        childDelegate: ListWheelChildBuilderDelegate(
+                                                            childCount: data.data!.length,
+                                                            builder: (BuildContext context, int index) {
+                                                              return EmployerCountryListWidget(
+                                                                item: data.data![index],
+                                                              );
+                                                            })),
                                                   ),
                                                 ),
                                               ],
@@ -184,10 +156,10 @@ class CountryDialogView extends StatelessWidget {
                                               child: Text(
                                                 S.of(context).noCountriesFound,
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark),
+                                                    color: Theme.of(context).primaryColorDark),
                                               ),
                                             ))
                                   : Expanded(
@@ -203,17 +175,12 @@ class CountryDialogView extends StatelessWidget {
                                   width: 57,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  child: AppSvg.asset(AssetUtils.tick,
-                                      color: Theme.of(context).accentColor),
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                 child: Center(
                                   child: InkWell(
                                     onTap: () {
@@ -222,6 +189,7 @@ class CountryDialogView extends StatelessWidget {
                                     child: Text(
                                       S.of(context).swipeDownToCancel,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 10,
                                           fontWeight: FontWeight.w400,
                                           color: AppColor.dark_gray_1),
@@ -269,9 +237,7 @@ class CountryDialogView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: AppColor.dark_brown,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -281,6 +247,7 @@ class CountryDialogView extends StatelessWidget {
                         Text(
                           S.of(context).error,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
                               fontSize: 10),
@@ -289,6 +256,7 @@ class CountryDialogView extends StatelessWidget {
                           padding: EdgeInsets.only(top: 4.0, right: 16),
                           child: Text(message,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,

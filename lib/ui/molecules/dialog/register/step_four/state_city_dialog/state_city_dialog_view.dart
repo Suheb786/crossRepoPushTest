@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class StateCityDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -26,11 +27,7 @@ class StateCityDialogView extends StatelessWidget {
   bool _keyboardVisible = false;
 
   StateCityDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.stateCityTypeEnum,
-      this.title,
-      this.stateCityData});
+      {this.onDismissed, this.onSelected, this.stateCityTypeEnum, this.title, this.stateCityData});
 
   ProviderBase providerBase() {
     return stateCityDialogViewModelProvider;
@@ -42,13 +39,9 @@ class StateCityDialogView extends StatelessWidget {
     return BaseWidget<StateCityDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding:
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -73,27 +66,24 @@ class StateCityDialogView extends StatelessWidget {
                                   child: Text(
                                     title!,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 32),
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                                 child: AppTextField(
                                   labelText: '',
                                   controller: model.controller,
                                   textFieldBorderColor: AppColor.gray_1,
                                   hintTextColor: AppColor.gray_2,
                                   textColor: AppColor.black,
-                                  containerPadding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  hintText:
-                                      getHintText(stateCityTypeEnum, context),
+                                  containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                  hintText: getHintText(stateCityTypeEnum, context),
                                   onChanged: (value) {
-                                    model.searchStateCity(
-                                        value, stateCityTypeEnum!);
+                                    model.searchStateCity(value, stateCityTypeEnum!);
                                   },
                                   suffixIcon: (value, data) {
                                     return InkWell(
@@ -102,8 +92,7 @@ class StateCityDialogView extends StatelessWidget {
                                           height: 16,
                                           width: 16,
                                           padding: EdgeInsets.all(6),
-                                          child:
-                                              AppSvg.asset(AssetUtils.search)),
+                                          child: AppSvg.asset(AssetUtils.search)),
                                     );
                                   },
                                 ),
@@ -114,77 +103,46 @@ class StateCityDialogView extends StatelessWidget {
                                           alignment: Alignment.center,
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16.0),
+                                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                               child: Container(
                                                 height: 64,
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(16),
+                                                  borderRadius: BorderRadius.circular(16),
                                                   color: AppColor.vividYellow,
                                                 ),
                                               ),
                                             ),
                                             AppScrollableListViewWidget(
-                                              key: ValueKey(stateCityResponse
-                                                  .data!.length),
-                                              child:
-                                                  ClickableListWheelScrollView(
-                                                scrollController:
-                                                    model.scrollController,
+                                              key: ValueKey(stateCityResponse.data!.length),
+                                              child: ClickableListWheelScrollView(
+                                                scrollController: model.scrollController,
                                                 itemHeight: 64,
-                                                itemCount: stateCityResponse
-                                                    .data!.length,
+                                                itemCount: stateCityResponse.data!.length,
                                                 onItemTapCallback: (index) {
                                                   model.selectCountry(index);
                                                 },
-                                                child: ListWheelScrollView
-                                                    .useDelegate(
-                                                        controller: model
-                                                            .scrollController,
-                                                        itemExtent: 64,
-                                                        onSelectedItemChanged:
-                                                            (int index) {
-                                                          model.selectCountry(
-                                                              index);
-                                                        },
-                                                        physics:
-                                                            FixedExtentScrollPhysics(),
-                                                        perspective:
-                                                            0.0000000001,
-                                                        childDelegate:
-                                                            ListWheelChildBuilderDelegate(
-                                                                childCount:
-                                                                    stateCityResponse
-                                                                        .data!
-                                                                        .length,
-                                                                builder: (BuildContext
-                                                                        context,
-                                                                    int index) {
-                                                                  return ListScrollWheelListWidget(
-                                                                    label: stateCityTypeEnum ==
-                                                                            StateCityTypeEnum
-                                                                                .CITY
-                                                                        ? stateCityResponse
-                                                                            .data![
-                                                                                index]
-                                                                            .cityName!
-                                                                        : stateCityResponse
-                                                                            .data![index]
-                                                                            .stateName!,
-                                                                    textColor: currentIndex ==
-                                                                            index
-                                                                        ? Theme.of(context)
-                                                                            .primaryColorDark
-                                                                        : AppColor
-                                                                            .dark_gray_1,
-                                                                    widgetColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                  );
-                                                                })),
+                                                child: ListWheelScrollView.useDelegate(
+                                                    controller: model.scrollController,
+                                                    itemExtent: 64,
+                                                    onSelectedItemChanged: (int index) {
+                                                      model.selectCountry(index);
+                                                    },
+                                                    physics: FixedExtentScrollPhysics(),
+                                                    perspective: 0.0000000001,
+                                                    childDelegate: ListWheelChildBuilderDelegate(
+                                                        childCount: stateCityResponse.data!.length,
+                                                        builder: (BuildContext context, int index) {
+                                                          return ListScrollWheelListWidget(
+                                                            label: stateCityTypeEnum == StateCityTypeEnum.CITY
+                                                                ? stateCityResponse.data![index].cityName!
+                                                                : stateCityResponse.data![index].stateName!,
+                                                            textColor: currentIndex == index
+                                                                ? Theme.of(context).primaryColorDark
+                                                                : AppColor.dark_gray_1,
+                                                            widgetColor: Colors.transparent,
+                                                          );
+                                                        })),
                                               ),
                                             ),
                                           ],
@@ -193,10 +151,10 @@ class StateCityDialogView extends StatelessWidget {
                                           child: Text(
                                             'No Data Found',
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w400,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
+                                                color: Theme.of(context).primaryColorDark),
                                           ),
                                         )),
                               InkWell(
@@ -209,21 +167,17 @@ class StateCityDialogView extends StatelessWidget {
                                   width: 57,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  child: AppSvg.asset(AssetUtils.tick,
-                                      color: Theme.of(context).accentColor),
+                                      color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                  child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                 child: Center(
                                   child: Text(
                                     S.of(context).swipeDownToCancel,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
                                         color: AppColor.dark_gray_1),

@@ -14,13 +14,13 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class TaxationSwitchWidget extends StatelessWidget {
   final FatcaQuestionContentData data;
   final Function(bool)? onToggle;
   final Function? onInfoClick;
-  final Function(AdditionalData, AdditionalDataDropDownData)?
-      onDropDownSelection;
+  final Function(AdditionalData, AdditionalDataDropDownData)? onDropDownSelection;
   final Function(AdditionalData, String)? onTextUpdate;
 
   const TaxationSwitchWidget(
@@ -64,6 +64,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                           softWrap: false,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w600,
                               fontSize: 14),
@@ -90,10 +91,8 @@ class TaxationSwitchWidget extends StatelessWidget {
                         inactiveText: S.of(context).no,
                         inactiveToggleColor: AppColor.lightGrayishMagenta,
                         inactiveTextFontWeight: FontWeight.w500,
-                        inactiveSwitchBorder:
-                            Border.all(color: AppColor.gray_2),
-                        activeColor:
-                            Theme.of(context).accentTextTheme.bodyText1!.color!,
+                        inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+                        activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
                         inactiveColor: Theme.of(context).accentColor,
                       ),
                     ],
@@ -108,10 +107,8 @@ class TaxationSwitchWidget extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(data.infoText ?? "",
                             style: TextStyle(
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color,
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600)),
                       ),
@@ -129,8 +126,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                             return FatcaDropDownField(
                               data: data.additionalData![index],
                               onSelect: (value) {
-                                onDropDownSelection?.call(
-                                    data.additionalData![index], value);
+                                onDropDownSelection?.call(data.additionalData![index], value);
                               },
                             );
 
@@ -142,8 +138,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                                   hintText: S.of(context).pleaseEnter,
                                   inputType: TextInputType.text,
                                   onChanged: (value) {
-                                    onTextUpdate?.call(
-                                        data.additionalData![index], value);
+                                    onTextUpdate?.call(data.additionalData![index], value);
                                   }),
                             );
                           default:
@@ -188,8 +183,7 @@ class FatcaDropDownField extends StatelessWidget {
             readOnly: true,
             controller: model?.controller,
             onPressed: () {
-              FatcaOptionDialog.show(context, title: data.label ?? "",
-                  onDismissed: () {
+              FatcaOptionDialog.show(context, title: data.label ?? "", onDismissed: () {
                 Navigator.pop(context);
               }, onSelected: (value) {
                 print('value-->${value.name}');
@@ -203,8 +197,7 @@ class FatcaDropDownField extends StatelessWidget {
                   height: 16,
                   width: 16,
                   padding: EdgeInsetsDirectional.only(end: 8),
-                  child: AppSvg.asset(AssetUtils.downArrow,
-                      color: AppColor.dark_gray_1));
+                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
             },
           ),
         );

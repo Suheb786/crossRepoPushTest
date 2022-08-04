@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class ForgotPasswordPageView extends BasePageViewWidget<ForgotPasswordPageViewModel> {
@@ -64,7 +65,10 @@ class ForgotPasswordPageView extends BasePageViewWidget<ForgotPasswordPageViewMo
                     Text(
                       S.of(context).forgotPassword.toUpperCase(),
                       style: TextStyle(
-                          color: Theme.of(context).accentColor, fontSize: 10, fontWeight: FontWeight.w600),
+                          fontFamily: StringUtils.appFont,
+                          color: Theme.of(context).accentColor,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
@@ -85,6 +89,7 @@ class ForgotPasswordPageView extends BasePageViewWidget<ForgotPasswordPageViewMo
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
@@ -112,6 +117,7 @@ class ForgotPasswordPageView extends BasePageViewWidget<ForgotPasswordPageViewMo
                                   : "",
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentColor,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600),

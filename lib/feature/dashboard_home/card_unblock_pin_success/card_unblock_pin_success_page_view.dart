@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuccessPageViewModel> {
   CardPinUnBlockSuccessPageView(ProviderBase model) : super(model);
@@ -75,6 +76,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                             S.of(context).cardPinSucccesFullyUnblocked,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
@@ -90,6 +92,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                               S.of(context).cardPinSucccesFullyUnblockedDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
                                   color: model.manageCardPinArguments.cardType == CardType.CREDIT
@@ -126,6 +129,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: model.manageCardPinArguments.cardType == CardType.CREDIT
                               ? Theme.of(context).accentColor
                               : Theme.of(context).textTheme.bodyText1!.color,

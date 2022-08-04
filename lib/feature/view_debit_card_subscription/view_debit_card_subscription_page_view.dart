@@ -7,6 +7,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/view_debit_card_subscription/view_debit_card_subscription_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCardSubscriptionViewModel> {
   ViewDebitCardSubscriptionPageView(ProviderBase model) : super(model);
@@ -31,6 +32,7 @@ class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCard
                   child: Text(
                     S.of(context).viewCardSubSubscription,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
                         fontSize: 14,
                         color: model.arguments.cardType == CardType.DEBIT
@@ -67,21 +69,30 @@ class ViewDebitCardSubscriptionPageView extends BasePageViewWidget<ViewDebitCard
                               children: [
                                 Text(
                                   "6 " + S.of(context).subscription,
-                                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14),
                                 ),
                                 Spacer(),
                                 Row(
                                   children: [
                                     Text(
                                       "513.23",
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.only(start: 2, top: 4),
                                       child: Text(
                                         "JOD/YR",
                                         style: TextStyle(
-                                            fontSize: 10, fontWeight: FontWeight.w600, color: AppColor.gray1),
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColor.gray1),
                                       ),
                                     )
                                   ],

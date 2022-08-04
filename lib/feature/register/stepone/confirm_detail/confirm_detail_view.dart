@@ -54,8 +54,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                       model.genderKey.currentState!.isValid = true;
                       model.motherNameKey.currentState!.isValid = true;
 
-                      final isImageUpload = await Navigator.pushNamed(
-                          context, RoutePaths.Capture);
+                      final isImageUpload = await Navigator.pushNamed(context, RoutePaths.Capture);
 
                       if (isImageUpload != null && (isImageUpload as bool)) {
                         Future.delayed(Duration(milliseconds: 500), () {
@@ -74,43 +73,32 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                     } else if (data.status == Status.ERROR) {
                       if (data.appError!.type == ErrorType.EMPTY_NAME) {
                         model.nameKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_ID_NUMBER) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_ID_NUMBER) {
                         model.idNumberKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_DATE_OF_BIRTH) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_DATE_OF_BIRTH) {
                         model.dobKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_NATIONALITY) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_NATIONALITY) {
                         model.nationalityKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_EXPIRY_DATE) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_EXPIRY_DATE) {
                         model.expiryDateKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_MOTHER_NAME) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_MOTHER_NAME) {
                         model.motherNameKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.INVALID_LEGAL_DOCUMENT) {
+                      } else if (data.appError!.type == ErrorType.INVALID_LEGAL_DOCUMENT) {
                         model.legalDocumentKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.INVALID_ISSUING_DATE) {
+                      } else if (data.appError!.type == ErrorType.INVALID_ISSUING_DATE) {
                         model.issuingDateKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.INVALID_ISSUING_PLACE) {
+                      } else if (data.appError!.type == ErrorType.INVALID_ISSUING_PLACE) {
                         model.issuingPlaceKey.currentState!.isValid = false;
-                      } else if (data.appError!.type ==
-                          ErrorType.INVALID_DECLARATION_SELECTION) {
+                      } else if (data.appError!.type == ErrorType.INVALID_DECLARATION_SELECTION) {
                         model.showErrorState();
-                      } else if (data.appError!.type ==
-                          ErrorType.EMPTY_GENDER) {
+                      } else if (data.appError!.type == ErrorType.EMPTY_GENDER) {
                         model.genderKey.currentState!.isValid = false;
                       }
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, data) {
-                    return AppStreamBuilder<
-                        Resource<ScannedDocumentInformation>>(
+                    return AppStreamBuilder<Resource<ScannedDocumentInformation>>(
                       stream: model.scanUserDocumentStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -142,18 +130,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.of(context).viewInsets.bottom -
-                                                  50 <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48),
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                      ? 0
+                                      : MediaQuery.of(context).viewInsets.bottom - 48),
                               child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
                                   children: [
                                     AppTextField(
@@ -163,15 +144,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       controller: model.nameController,
                                       key: model.nameKey,
                                       textColor: model.isNameReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       readOnly: model.isNameReadOnly,
                                       maxLength: 25,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
@@ -184,13 +161,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       key: model.idNumberKey,
                                       readOnly: model.isIdNoReadOnly,
                                       textColor: model.isIdNoReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
@@ -202,44 +175,31 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       controller: model.dobController,
                                       readOnly: model.isDobReadOnly,
                                       textColor: model.isDobReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       key: model.dobKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                       suffixIcon: (isvalid, value) {
                                         return IgnorePointer(
                                           ignoring: model.isDobReadOnly,
                                           child: InkWell(
                                               onTap: () {
-                                                DatePicker.show(context,
-                                                    initialDate: DateTime.now(),
+                                                DatePicker.show(context, initialDate: DateTime.now(),
                                                     onSelected: (date) {
-                                                  model.selectedDobDate =
-                                                      date.toString();
+                                                  model.selectedDobDate = date.toString();
                                                   model.dobController.text =
-                                                      TimeUtils.getFormattedDOB(
-                                                          date.toString());
+                                                      TimeUtils.getFormattedDOB(date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
-                                                },
-                                                    title: S
-                                                        .of(context)
-                                                        .dateOfBirthSmall);
+                                                }, title: S.of(context).dateOfBirthSmall);
                                               },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark))),
+                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  child: AppSvg.asset(AssetUtils.calendar,
+                                                      color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
@@ -247,26 +207,20 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       height: 16,
                                     ),
                                     AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .placeOfBirth
-                                          .toUpperCase(),
+                                      labelText: S.of(context).placeOfBirth.toUpperCase(),
                                       hintText: S.of(context).pleaseSelect,
                                       inputType: TextInputType.text,
                                       readOnly: true,
                                       controller: model.nationalityController,
                                       key: model.nationalityKey,
                                       onPressed: () {
-                                        Future.delayed(
-                                            Duration(milliseconds: 200), () {
-                                          CountryDialog.show(context,
-                                              title: S.of(context).placeOfBirth,
+                                        Future.delayed(Duration(milliseconds: 200), () {
+                                          CountryDialog.show(context, title: S.of(context).placeOfBirth,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
-                                            model.nationalityController.text =
-                                                value.countryName!;
+                                            model.nationalityController.text = value.countryName!;
                                             model.selectedPlaceOfBirth = value;
                                             model.validateDetails();
                                           });
@@ -277,12 +231,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             height: 16,
                                             width: 16,
                                             padding: EdgeInsetsDirectional.only(end: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
+                                            child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
@@ -294,14 +246,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       controller: model.genderController,
                                       readOnly: model.isGenderReadOnly,
                                       textColor: model.isGenderReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       key: model.genderKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
@@ -312,15 +260,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       inputType: TextInputType.text,
                                       readOnly: model.isMotherNameReadOnly,
                                       textColor: model.isMotherNameReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       controller: model.motherNameController,
                                       key: model.motherNameKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
@@ -331,68 +275,47 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       inputType: TextInputType.text,
                                       readOnly: model.isLegalDocumentReadOnly,
                                       textColor: model.isLegalDocumentReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       controller: model.legalDocumentController,
                                       key: model.legalDocumentKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 16,
                                     ),
                                     AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .issuingDate
-                                          .toUpperCase(),
+                                      labelText: S.of(context).issuingDate.toUpperCase(),
                                       hintText: S.of(context).dobHint,
                                       inputType: TextInputType.datetime,
                                       controller: model.issuingDateController,
                                       textColor: model.isIssuingDateReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       readOnly: model.isIssuingDateReadOnly,
                                       key: model.issuingDateKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                       suffixIcon: (isvalid, value) {
                                         return IgnorePointer(
                                           ignoring: model.isIssuingDateReadOnly,
                                           child: InkWell(
                                               onTap: () {
-                                                DatePicker.show(context,
-                                                    initialDate: DateTime.now(),
+                                                DatePicker.show(context, initialDate: DateTime.now(),
                                                     onSelected: (date) {
-                                                  model.selectedIssuingDate =
-                                                      date.toString();
-                                                  model.issuingDateController
-                                                          .text =
-                                                      TimeUtils.getFormattedDOB(
-                                                          date.toString());
+                                                  model.selectedIssuingDate = date.toString();
+                                                  model.issuingDateController.text =
+                                                      TimeUtils.getFormattedDOB(date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
-                                                },
-                                                    title: S
-                                                        .of(context)
-                                                        .issuingDate);
+                                                }, title: S.of(context).issuingDate);
                                               },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark))),
+                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  child: AppSvg.asset(AssetUtils.calendar,
+                                                      color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
@@ -406,14 +329,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       controller: model.expiryDateController,
                                       readOnly: model.isExpiryDateReadOnly,
                                       textColor: model.isExpiryDateReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       key: model.expiryDateKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                       suffixIcon: (isvalid, value) {
                                         return IgnorePointer(
                                           ignoring: model.isExpiryDateReadOnly,
@@ -421,31 +340,21 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               onTap: () {
                                                 DatePicker.show(context,
                                                     initialDate: DateTime.now(),
-                                                    lastDate: DateTime.now(),
-                                                    onSelected: (date) {
-                                                  model.selectedExpiryDate =
-                                                      date.toString();
-                                                  model.expiryDateController
-                                                          .text =
-                                                      TimeUtils.getFormattedDOB(
-                                                          date.toString());
+                                                    lastDate: DateTime.now(), onSelected: (date) {
+                                                  model.selectedExpiryDate = date.toString();
+                                                  model.expiryDateController.text =
+                                                      TimeUtils.getFormattedDOB(date.toString());
                                                   model.validateDetails();
                                                 }, onCancelled: () {
                                                   Navigator.pop(context);
-                                                },
-                                                    title: S
-                                                        .of(context)
-                                                        .expiryDate);
+                                                }, title: S.of(context).expiryDate);
                                               },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark))),
+                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  child: AppSvg.asset(AssetUtils.calendar,
+                                                      color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
@@ -453,38 +362,25 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       height: 16,
                                     ),
                                     AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .issuingPlace
-                                          .toUpperCase(),
+                                      labelText: S.of(context).issuingPlace.toUpperCase(),
                                       hintText: S.of(context).pleaseEnter,
                                       maxLines: 5,
                                       inputType: TextInputType.text,
                                       readOnly: true,
                                       textColor: model.isIssuingPlaceReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
+                                          ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                           : Theme.of(context).primaryColorDark,
                                       onPressed: !model.isIssuingPlaceReadOnly
                                           ? () {
-                                              Future.delayed(
-                                                  Duration(milliseconds: 200),
-                                                  () {
+                                              Future.delayed(Duration(milliseconds: 200), () {
                                                 CountryDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .residentCountrySmall,
+                                                    title: S.of(context).residentCountrySmall,
                                                     onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);
-                                                  model.issuingPlaceController
-                                                          .text =
-                                                      value.countryName!;
-                                                  model.selectedIssuingPlace =
-                                                      value;
+                                                  model.issuingPlaceController.text = value.countryName!;
+                                                  model.selectedIssuingPlace = value;
                                                   model.validateDetails();
                                                 });
                                               });
@@ -495,14 +391,12 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             height: 16,
                                             width: 16,
                                             padding: EdgeInsetsDirectional.only(end: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
+                                            child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
                                       controller: model.issuingPlaceController,
                                       key: model.issuingPlaceKey,
-                                      onChanged: (value) =>
-                                          model.validateDetails(),
+                                      onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
                                       height: 24,
@@ -511,18 +405,15 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         onPressed: () {
                                           model.fetchAllowedIssuers();
                                         },
-                                        style: TextButton.styleFrom(
-                                            padding: EdgeInsets.zero),
+                                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
                                         child: Text(
                                           S.of(context).scanIDAgain,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
+                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                         )),
                                     SizedBox(
                                       height: 32,
@@ -530,14 +421,12 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     Row(
                                       children: [
                                         AppStreamBuilder<bool>(
-                                            stream:
-                                                model.declarationSelectedStream,
+                                            stream: model.declarationSelectedStream,
                                             initialData: false,
                                             dataBuilder: (context, isChecked) {
                                               return InkWell(
                                                 onTap: () {
-                                                  model.updateDeclarationValue(
-                                                      !(isChecked!));
+                                                  model.updateDeclarationValue(!(isChecked!));
                                                   model.validateDetails();
                                                 },
                                                 child: Container(
@@ -546,12 +435,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                       color: isChecked!
-                                                          ? Theme.of(context)
-                                                              .canvasColor
+                                                          ? Theme.of(context).canvasColor
                                                           : Colors.transparent,
                                                       border: Border.all(
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .hintStyle!
                                                               .color!)),
@@ -559,15 +446,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                       ? Container(
                                                           height: 16,
                                                           width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  10),
+                                                          padding: EdgeInsets.all(10),
                                                           child: AppSvg.asset(
-                                                            AssetUtils
-                                                                .checkIcon,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorDark,
+                                                            AssetUtils.checkIcon,
+                                                            color: Theme.of(context).primaryColorDark,
                                                           ),
                                                         )
                                                       : Container(),
@@ -579,10 +461,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         ),
                                         Expanded(
                                           child: Text(
-                                            S
-                                                .of(context)
-                                                .confirmDetailsConfirmation,
+                                            S.of(context).confirmDetailsConfirmation,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 12),
                                           ),
@@ -594,14 +475,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           return Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 26.0),
+                                            padding: const EdgeInsets.only(top: 26.0),
                                             child: Visibility(
                                               visible: isValid!,
-                                              child: AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed),
+                                              child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                             ),
                                           );
                                         })

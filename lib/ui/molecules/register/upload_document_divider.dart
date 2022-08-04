@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class UploadDocumentDivider extends StatelessWidget {
   final String? text;
+
   const UploadDocumentDivider({Key? key, this.text}) : super(key: key);
 
   @override
@@ -14,9 +16,7 @@ class UploadDocumentDivider extends StatelessWidget {
             height: 1,
             decoration: BoxDecoration(
                 color: AppColor.white.withOpacity(0.3),
-                border: Border.all(
-                    color: AppColor.very_light_gray_1.withOpacity(0.3),
-                    width: 1)),
+                border: Border.all(color: AppColor.very_light_gray_1.withOpacity(0.3), width: 1)),
           ),
         ),
         Padding(
@@ -25,6 +25,7 @@ class UploadDocumentDivider extends StatelessWidget {
             text!,
             textAlign: TextAlign.start,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 color: AppColor.dark_grayish_violet1),
@@ -35,9 +36,7 @@ class UploadDocumentDivider extends StatelessWidget {
             height: 1,
             decoration: BoxDecoration(
                 color: AppColor.white.withOpacity(0.3),
-                border: Border.all(
-                    color: AppColor.very_light_gray_1.withOpacity(0.3),
-                    width: 1)),
+                border: Border.all(color: AppColor.very_light_gray_1.withOpacity(0.3), width: 1)),
           ),
         ),
       ],

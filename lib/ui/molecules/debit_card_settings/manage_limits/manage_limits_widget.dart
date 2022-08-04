@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_limits_widget_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageLimitsWidget extends StatelessWidget {
   final String title;
@@ -66,7 +67,7 @@ class ManageLimitsWidget extends StatelessWidget {
                             softWrap: false,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontFamily: "Montserrat",
+                                fontFamily: StringUtils.appFont,
                                 color: noToggle
                                     ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                     : Theme.of(context).primaryColorDark,
@@ -126,6 +127,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                   Text(
                                     S.of(context).dailyLimit,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 12),
@@ -133,6 +135,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                   Text(
                                     S.of(context).maximumLimit(maxAmount),
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 10),
@@ -151,6 +154,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                   readOnly: readOnly,
                                   cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -164,6 +168,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             fontWeight: FontWeight.w600,

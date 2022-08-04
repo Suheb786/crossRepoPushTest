@@ -11,16 +11,14 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [
-    RequestFromNewRecipientPage(),
-    Visibility(visible: false, child: BaseCardPage())
-  ];
+  final pages = [RequestFromNewRecipientPage(), Visibility(visible: false, child: BaseCardPage())];
 
   @override
   Widget build(BuildContext context, model) {
@@ -47,19 +45,13 @@ class RequestPaymentFromNewRecipientPageView
                     dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        activeSize: Size(
-                            (MediaQuery.of(context).size.width - 50) / 1, 4),
-                        size: Size(
-                            (MediaQuery.of(context).size.width - 50) / 1, 4),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        activeSize: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
+                        size: Size((MediaQuery.of(context).size.width - 50) / 1, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
-                        activeShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
+                        activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         activeColor: Theme.of(context).primaryColorDark,
-                        color: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.3)),
+                        color: Theme.of(context).primaryColorDark.withOpacity(0.3)),
                   ),
                 ),
                 Padding(
@@ -77,7 +69,7 @@ class RequestPaymentFromNewRecipientPageView
                           children: [
                             Text(
                               S.of(context).requesting,
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 6),
@@ -95,60 +87,48 @@ class RequestPaymentFromNewRecipientPageView
                                                 child: TextFormField(
                                                   autofocus: true,
                                                   style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontSize: 28,
                                                     fontWeight: FontWeight.w700,
                                                   ),
-                                                  cursorColor: Theme.of(context)
-                                                      .accentColor,
-                                                  controller: model
-                                                      .editAmountController,
-                                                  keyboardType:
-                                                      TextInputType.number,
+                                                  cursorColor: Theme.of(context).accentColor,
+                                                  controller: model.editAmountController,
+                                                  keyboardType: TextInputType.number,
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
-                                                    contentPadding:
-                                                        EdgeInsets.only(
-                                                            bottom: 10),
+                                                    contentPadding: EdgeInsets.only(bottom: 10),
                                                   ),
                                                   onChanged: (value) {
                                                     if (value != ".") {
-                                                      ProviderScope.containerOf(
-                                                                  context)
-                                                              .read(
-                                                                  requestMoneyViewModelProvider)
-                                                              .currentPinValue =
-                                                          model
-                                                              .editAmountController
-                                                              .text;
+                                                      ProviderScope.containerOf(context)
+                                                          .read(requestMoneyViewModelProvider)
+                                                          .currentPinValue = model.editAmountController.text;
                                                       print(
                                                           "got request value : ${ProviderScope.containerOf(context).read(requestMoneyViewModelProvider).currentPinValue}");
                                                     }
                                                   },
                                                   onFieldSubmitted: (value) {
-                                                    model.updateEditAmount(
-                                                        false);
+                                                    model.updateEditAmount(false);
                                                   },
                                                 ),
                                               )
                                             : Text(
-                                                double.parse(ProviderScope
-                                                            .containerOf(
-                                                                context)
-                                                        .read(
-                                                            requestMoneyViewModelProvider)
+                                                double.parse(ProviderScope.containerOf(context)
+                                                        .read(requestMoneyViewModelProvider)
                                                         .currentPinValue)
                                                     .toStringAsFixed(3),
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontSize: 28,
-                                                    fontWeight:
-                                                        FontWeight.w700),
+                                                    fontWeight: FontWeight.w700),
                                               );
                                       }),
                                   Padding(
                                     padding: EdgeInsets.only(top: 8),
                                     child: Text(
-                                      "JOD",
+                                      S.of(context).JOD,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.very_dark_gray1,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700),
@@ -172,6 +152,7 @@ class RequestPaymentFromNewRecipientPageView
                                       child: Text(
                                         S.of(context).tapToEdit,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 12,
                                             color: AppColor.very_dark_gray1),
@@ -186,7 +167,7 @@ class RequestPaymentFromNewRecipientPageView
                             Text(
                               S.of(context).requestMoney,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 10),
+                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 8),
@@ -194,6 +175,7 @@ class RequestPaymentFromNewRecipientPageView
                                 S.of(context).enterCode,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20,
                                 ),

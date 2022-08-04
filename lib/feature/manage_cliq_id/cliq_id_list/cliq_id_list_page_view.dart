@@ -7,6 +7,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
   CliqIdListPageView(ProviderBase model) : super(model);
@@ -50,7 +51,8 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                         Text(
                           S.of(context).NoCliqContactYet,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -73,6 +75,7 @@ class CliqIdListPageView extends BasePageViewWidget<CliqIdListPageViewModel> {
                         child: Center(
                           child: Text(S.of(context).createCliqId,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 1,

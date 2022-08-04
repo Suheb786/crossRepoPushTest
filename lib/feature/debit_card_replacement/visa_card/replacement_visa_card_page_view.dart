@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_modules.dart';
 import 'package:neo_bank/feature/debit_card_replacement/visa_card/replacement_visa_card_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -111,6 +113,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                                       overflow: TextOverflow.ellipsis,
                                                       maxLines: 1,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w700,
                                                           fontSize: 12,
                                                           color: Theme.of(context).primaryColorDark),
@@ -123,6 +126,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                                           : "XXXX",
                                                       maxLines: 1,
                                                       style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w700,
                                                           fontSize: 10,
                                                           color: Theme.of(context).primaryColorDark),
@@ -143,6 +147,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                           child: Text(
                                             'Debit',
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 10,
                                                 color: Theme.of(context).primaryColorDark),
@@ -160,24 +165,35 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                           ),
                         ),
                       ),
-                      // Center(
-                      //   child: InkWell(
-                      //     onTap: () {
-                      //       Navigator.pop(context);
-                      //       ProviderScope.containerOf(context)
-                      //           .read(appHomeViewModelProvider)
-                      //           .getDashboardData();
-                      //     },
-                      //     child: Text(
-                      //       S.of(context).backToDashboard,
-                      //       style: TextStyle(
-                      //         color: AppColor.brightBlue,
-                      //         fontSize: 14,
-                      //         fontWeight: FontWeight.w500,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                      Center(
+                        child: InkWell(
+                          onTap: () {
+                            if (ProviderScope.containerOf(context)
+                                    .read(debitCardReplacementViewModelProvider)
+                                    .debitCardReplacementArguments
+                                    .debitRoutes ==
+                                DebitRoutes.DASHBOARD) {
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.of(context)
+                                ..pop
+                                ..pop();
+                            }
+
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardData();
+                          },
+                          child: Text(
+                            S.of(context).backToDashboard,
+                            style: TextStyle(
+                              color: AppColor.brightBlue,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
                       Center(
                         child: Padding(
                           padding: EdgeInsets.only(top: 16.0),

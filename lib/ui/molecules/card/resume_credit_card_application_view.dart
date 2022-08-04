@@ -3,12 +3,12 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ResumeCreditCardApplicationView extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ResumeCreditCardApplicationView({this.isSmallDevices: false, Key? key})
-      : super(key: key);
+  const ResumeCreditCardApplicationView({this.isSmallDevices: false, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.all(15),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).primaryColor,
@@ -31,21 +30,18 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                     scale: isSmallDevices ? 1.3 : 1,
                     matchTextDirection: true)),
             child: Container(
-              padding: EdgeInsetsDirectional.only(
-                  top: 22, bottom: 40, start: 24, end: 24),
+              padding: EdgeInsetsDirectional.only(top: 22, bottom: 40, start: 24, end: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppSvg.asset(AssetUtils.blinkWhite,
-                      height: isSmallDevices ? 26 : 33.64,
-                      width: isSmallDevices ? 52 : 72),
+                      height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                   Column(
                     children: [
                       Align(
                         alignment: Alignment.center,
-                        child: AppSvg.asset(AssetUtils.cardCircle,
-                            height: isSmallDevices ? 72 : 96),
+                        child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
                       ),
                       SizedBox(
                         height: 16,
@@ -56,6 +52,7 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                           S.of(context).resumeCreditCardProcess,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: isSmallDevices ? 12 : 14,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).accentColor),
@@ -67,23 +64,20 @@ class ResumeCreditCardApplicationView extends StatelessWidget {
                     alignment: Alignment.center,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.CreditCardActivationStatus);
+                        Navigator.pushNamed(context, RoutePaths.CreditCardActivationStatus);
                       },
                       child: Container(
                         height: 48,
                         width: 232,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color,
+                          color: Theme.of(context).accentTextTheme.bodyText1!.color,
                         ),
                         child: Center(
                           child: Text(
                             S.of(context).resumeCreditCardText,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600),

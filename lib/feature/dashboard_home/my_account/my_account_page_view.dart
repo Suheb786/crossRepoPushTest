@@ -59,106 +59,6 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Row(
-                                  //   crossAxisAlignment:
-                                  //       CrossAxisAlignment.start,
-                                  //   mainAxisAlignment:
-                                  //       MainAxisAlignment.spaceBetween,
-                                  //   children: [
-                                  //     Expanded(
-                                  //       child: Padding(
-                                  //         padding: EdgeInsetsDirectional.only(top: 30.0),
-                                  //         child: Column(
-                                  //           crossAxisAlignment:
-                                  //               CrossAxisAlignment.start,
-                                  //           children: [
-                                  //             Text(
-                                  //               S.of(context).myAccount,
-                                  //               style: TextStyle(
-                                  //                   fontWeight: FontWeight.w600,
-                                  //                   fontSize: 12,
-                                  //                   color: Theme.of(context)
-                                  //                       .accentColor),
-                                  //             ),
-                                  //             Padding(
-                                  //               padding:
-                                  //                   EdgeInsetsDirectional.only(top: 66),
-                                  //               child: Text(
-                                  //                 cardData!.account!
-                                  //                             .accountTitle !=
-                                  //                         null
-                                  //                     ? account!
-                                  //                         .accountTitle!
-                                  //                         .toTitleCase()
-                                  //                     : '',
-                                  //                 style: TextStyle(
-                                  //                     fontSize: 16,
-                                  //                     fontWeight:
-                                  //                         FontWeight.w600,
-                                  //                     color: Theme.of(context)
-                                  //                         .accentColor),
-                                  //               ),
-                                  //             ),
-                                  //             Padding(
-                                  //               padding:
-                                  //                   EdgeInsetsDirectional.only(top: 23),
-                                  //               child: Row(
-                                  //                 crossAxisAlignment:
-                                  //                     CrossAxisAlignment.center,
-                                  //                 mainAxisAlignment:
-                                  //                     MainAxisAlignment.start,
-                                  //                 children: [
-                                  //                   Text(
-                                  //                       account!
-                                  //                           .availableBalance!,
-                                  //                       style: TextStyle(
-                                  //                           fontSize: 20,
-                                  //                           fontWeight:
-                                  //                               FontWeight.w700,
-                                  //                           color: Theme.of(
-                                  //                                   context)
-                                  //                               .accentColor)),
-                                  //                   Padding(
-                                  //                     padding: EdgeInsetsDirectional.only(
-                                  //                         top: 5, left: 5.0),
-                                  //                     child: Text("JOD",
-                                  //                         style: TextStyle(
-                                  //                             fontWeight:
-                                  //                                 FontWeight
-                                  //                                     .w600,
-                                  //                             fontSize: 10,
-                                  //                             color: Theme.of(
-                                  //                                     context)
-                                  //                                 .accentColor
-                                  //                                 .withOpacity(
-                                  //                                     0.4))),
-                                  //                   ),
-                                  //                 ],
-                                  //               ),
-                                  //             ),
-                                  //             Padding(
-                                  //               padding:
-                                  //                   EdgeInsetsDirectional.only(top: 4),
-                                  //               child: Text(
-                                  //                 S
-                                  //                     .of(context)
-                                  //                     .availableBalance,
-                                  //                 style: TextStyle(
-                                  //                     fontWeight:
-                                  //                         FontWeight.w600,
-                                  //                     fontSize: 10,
-                                  //                     color: Theme.of(context)
-                                  //                         .accentColor
-                                  //                         .withOpacity(0.4)),
-                                  //               ),
-                                  //             ),
-                                  //           ],
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //     Image.asset(AssetUtils.zigzagRed)
-                                  //   ],
-                                  // ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 21 : 30.0),
                                     child: Column(
@@ -167,6 +67,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         Text(
                                           S.of(context).myAccount,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               fontSize: isSmallDevices ? 10 : 12,
                                               color: Theme.of(context).accentColor),
@@ -181,6 +82,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 : '',
                                             maxLines: 3,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: isSmallDevices ? 10 : 16,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).accentColor),
@@ -194,6 +96,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             children: [
                                               Text(account.availableBalance!,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontSize: isSmallDevices ? 12 : 20,
                                                       fontWeight: FontWeight.w700,
                                                       color: Theme.of(context).accentColor)),
@@ -201,6 +104,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 padding: EdgeInsetsDirectional.only(top: 5, start: 5.0),
                                                 child: Text(S.of(context).JOD,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
                                                         fontSize: 10,
                                                         color:
@@ -229,6 +133,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           child: Text(
                                             S.of(context).availableBalance,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: isSmallDevices ? 8 : 10,
                                                 color: Theme.of(context).accentColor.withOpacity(0.4)),
@@ -245,6 +150,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           account.accountNo ?? '',
                                           maxLines: 2,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: isSmallDevices ? 10 : 12,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).accentColor),
@@ -252,8 +158,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         InkWell(
                                           onTap: () {
                                             Clipboard.setData(ClipboardData(text: account.accountNo ?? ''))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(msg: 'Account No. Copied'));
+                                                .then((value) => Fluttertoast.showToast(
+                                                    msg: S.of(context).accountNoCopied));
                                           },
                                           child: Padding(
                                             padding: EdgeInsetsDirectional.only(start: 8),
@@ -270,6 +176,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     child: Text(
                                       S.of(context).accountNo,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).accentColor.withOpacity(0.4),
                                           fontSize: isSmallDevices ? 8 : 10,
                                           fontWeight: FontWeight.w600),
@@ -282,6 +189,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         Text(
                                           account.iban!,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               overflow: TextOverflow.ellipsis,
                                               color: Theme.of(context).accentColor,
                                               fontWeight: FontWeight.w600,
@@ -289,8 +197,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Clipboard.setData(ClipboardData(text: account.iban ?? ''))
-                                                .then((value) => Fluttertoast.showToast(msg: 'IBAN Copied'));
+                                            Clipboard.setData(ClipboardData(text: account.iban ?? '')).then(
+                                                (value) =>
+                                                    Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                                           },
                                           child: Padding(
                                             padding: EdgeInsetsDirectional.only(start: 8),
@@ -305,6 +214,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     child: Text(
                                       S.of(context).iban,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).accentColor.withOpacity(0.4),
                                           fontSize: isSmallDevices ? 8 : 10,
                                           fontWeight: FontWeight.w600),
@@ -337,6 +247,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                 child: Text(
                                                   S.of(context).addMoney,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: isSmallDevices ? 10 : 12,
                                                       color: Theme.of(context).accentColor),
@@ -380,6 +291,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                     child: Text(
                       S.of(context).swipeUpToViewTransaction,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
                           fontSize: isSmallDevices ? 10 : 12,
                           color: AppColor.dark_gray_1),

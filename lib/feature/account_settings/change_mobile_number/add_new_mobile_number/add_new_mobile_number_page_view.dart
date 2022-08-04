@@ -91,7 +91,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                             inputType: TextInputType.phone,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(12),
+                                              LengthLimitingTextInputFormatter(model.countryData.mobileMax),
                                               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                             ],
                                             controller: model.mobileController,
@@ -140,6 +140,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                                 ? '+${countryData.phoneCode!}'
                                                                 : "",
                                                             style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
                                                               color: Theme.of(context)
                                                                   .textTheme
                                                                   .bodyText1!

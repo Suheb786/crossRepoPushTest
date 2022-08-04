@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class YearMonthDialogView extends StatefulWidget {
   final Function? onDismissed;
@@ -22,8 +23,7 @@ class YearMonthDialogView extends StatefulWidget {
   final CalendarEnum? calendarEnum;
   final String? title;
 
-  const YearMonthDialogView(
-      {this.onDismissed, this.onSelected, this.calendarEnum, this.title});
+  const YearMonthDialogView({this.onDismissed, this.onSelected, this.calendarEnum, this.title});
 
   @override
   _YearMonthDialogViewState createState() => _YearMonthDialogViewState();
@@ -39,10 +39,8 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
     return BaseWidget<YearMonthDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<Resource<List<String>>>(
                 stream: model!.getListStream,
                 initialData: Resource.none(),
@@ -67,6 +65,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                 child: Text(
                                   widget.title!,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -75,8 +74,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                             Visibility(
                               visible: widget.calendarEnum == CalendarEnum.YEAR,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 32),
+                                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                                 child: AppTextField(
                                   labelText: '',
                                   controller: model.yearController,
@@ -94,8 +92,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                           height: 16,
                                           width: 16,
                                           padding: EdgeInsetsDirectional.only(end: 8),
-                                          child:
-                                              AppSvg.asset(AssetUtils.search)),
+                                          child: AppSvg.asset(AssetUtils.search)),
                                     );
                                   },
                                 ),
@@ -107,66 +104,44 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                         alignment: Alignment.center,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 16.0),
+                                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                             child: Container(
                                               height: 64,
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
+                                                borderRadius: BorderRadius.circular(16),
                                                 color: AppColor.vividYellow,
                                               ),
                                             ),
                                           ),
                                           AppScrollableListViewWidget(
-                                            key:
-                                                ValueKey(listData.data!.length),
+                                            key: ValueKey(listData.data!.length),
                                             child: ClickableListWheelScrollView(
-                                              scrollController:
-                                                  model.scrollController,
+                                              scrollController: model.scrollController,
                                               itemHeight: 64,
                                               itemCount: listData.data!.length,
                                               onItemTapCallback: (index) {
                                                 model.currentIndexUpdate(index);
                                               },
-                                              child: ListWheelScrollView
-                                                  .useDelegate(
-                                                      controller: model
-                                                          .scrollController,
-                                                      itemExtent: 64,
-                                                      onSelectedItemChanged:
-                                                          (int index) {
-                                                        model
-                                                            .currentIndexUpdate(
-                                                                index);
-                                                      },
-                                                      physics:
-                                                          FixedExtentScrollPhysics(),
-                                                      perspective: 0.0000000001,
-                                                      childDelegate:
-                                                          ListWheelChildBuilderDelegate(
-                                                              childCount:
-                                                                  listData.data!
-                                                                      .length,
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  int index) {
-                                                                return ListScrollWheelListWidget(
-                                                                  label: listData
-                                                                          .data![
-                                                                      index],
-                                                                  textColor: currentIndex == index
-                                                                      ? Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark
-                                                                      : AppColor
-                                                                          .dark_gray_1,
-                                                                  widgetColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                );
-                                                              })),
+                                              child: ListWheelScrollView.useDelegate(
+                                                  controller: model.scrollController,
+                                                  itemExtent: 64,
+                                                  onSelectedItemChanged: (int index) {
+                                                    model.currentIndexUpdate(index);
+                                                  },
+                                                  physics: FixedExtentScrollPhysics(),
+                                                  perspective: 0.0000000001,
+                                                  childDelegate: ListWheelChildBuilderDelegate(
+                                                      childCount: listData.data!.length,
+                                                      builder: (BuildContext context, int index) {
+                                                        return ListScrollWheelListWidget(
+                                                          label: listData.data![index],
+                                                          textColor: currentIndex == index
+                                                              ? Theme.of(context).primaryColorDark
+                                                              : AppColor.dark_gray_1,
+                                                          widgetColor: Colors.transparent,
+                                                        );
+                                                      })),
                                             ),
                                           ),
                                         ],
@@ -175,18 +150,15 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                         child: Text(
                                           S.of(context).noMatchingYearFound,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
+                                              color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                         ),
                                       )),
                             InkWell(
                               onTap: () {
-                                widget.onSelected
-                                    ?.call(listData.data![currentIndex!]);
+                                widget.onSelected?.call(listData.data![currentIndex!]);
                               },
                               child: Container(
                                 padding: EdgeInsets.all(16),
@@ -194,17 +166,12 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                 width: 57,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!),
-                                child: AppSvg.asset(AssetUtils.tick,
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 16),
+                              padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: InkWell(
                                 onTap: () {
                                   widget.onDismissed?.call();
@@ -213,6 +180,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                   child: Text(
                                     S.of(context).swipeDownToCancel,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
                                         color: AppColor.dark_gray_1),

@@ -8,9 +8,9 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class DebitCardVerificationSuccessPageView
-    extends BasePageViewWidget<DebitCardVerificationSuccessViewModel> {
+class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardVerificationSuccessViewModel> {
   DebitCardVerificationSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -23,9 +23,7 @@ class DebitCardVerificationSuccessPageView
               ..pop()
               ..pop()
               ..pop();
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .getDashboardData();
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           }
         },
         child: Padding(
@@ -62,7 +60,8 @@ class DebitCardVerificationSuccessPageView
                   child: Text(
                     S.of(context).debitCardVerified,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w800, fontSize: 24),
                   ),
                 ),
                 Padding(
@@ -70,7 +69,8 @@ class DebitCardVerificationSuccessPageView
                   child: Text(
                     S.of(context).physicalCardUse,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                 ),
                 Padding(
@@ -91,8 +91,8 @@ class DebitCardVerificationSuccessPageView
                     padding: EdgeInsets.only(top: 9),
                     child: Text(
                       S.of(context).toDashboard,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                   ),
                 )

@@ -11,10 +11,10 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
-class ChangePasswordPageView
-    extends BasePageViewWidget<ChangePasswordPageViewModel> {
+class ChangePasswordPageView extends BasePageViewWidget<ChangePasswordPageViewModel> {
   final pages = [EnterNewPasswordPage(), BaseCardPage()];
 
   ChangePasswordPageView(ProviderBase model) : super(model);
@@ -35,8 +35,7 @@ class ChangePasswordPageView
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(start: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true,
-                    color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
           ),
@@ -52,13 +51,13 @@ class ChangePasswordPageView
                     Text(
                       S.of(context).changePassword.toUpperCase(),
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontSize: 10,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: 32, start: 24, end: 24),
+                      padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -68,10 +67,10 @@ class ChangePasswordPageView
                         offset: 0.5,
                         child: Text(
                           StepTextHelper.changePasswordTextHelper(
-                              currentStep ?? 0,
-                              S.of(context).createYourLoginPassword),
+                              currentStep ?? 0, S.of(context).createYourLoginPassword),
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),

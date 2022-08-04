@@ -90,6 +90,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                       child: Text(
                                         S.of(context).backToPayments,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
                                             color: AppColor.dark_gray_2),
@@ -117,6 +118,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                   child: Text(
                                     StringUtils.getFirstInitials(model.beneficiary!.fullName),
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
                                         fontSize: 20,
                                         color: Theme.of(context).accentColor),
@@ -128,6 +130,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                           child: Text(
                             S.of(context).requestMoneyFrom,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w400,
                               fontSize: 20,
                             ),
@@ -138,6 +141,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                               ? model.beneficiary!.nickName!
                               : model.beneficiary!.fullName!,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
                           ),
@@ -156,7 +160,10 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                 Text(
                                   S.of(context).transactionPurpose,
                                   style: TextStyle(
-                                      color: AppColor.dark_gray_1, fontSize: 10, fontWeight: FontWeight.w600),
+                                      fontFamily: StringUtils.appFont,
+                                      color: AppColor.dark_gray_1,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 2),
@@ -172,7 +179,10 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
-                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600),
                                             );
                                           }),
                                       Visibility(
@@ -199,6 +209,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                           child: Text(
                                             S.of(context).edit,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w700,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -219,7 +230,10 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
-                                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                          style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600),
                                         );
                                       }),
                                 ),
@@ -247,9 +261,9 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                           textAlign: TextAlign.center,
                                           maxLines: 1,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.bold,
                                               fontSize: 40,
-                                              fontFamily: 'Montserrat',
                                               color: AppColor.black),
                                         ),
                                         Padding(
@@ -257,6 +271,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                           child: Text(
                                             S.of(context).JOD,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 color: AppColor.verLightGray4,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w700),
@@ -284,7 +299,10 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                           child: Text(
                             S.of(context).accountBalance,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                         Padding(
@@ -300,6 +318,7 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                     .availableBalance!
                                     .toString(),
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14,
                                 ),
@@ -309,121 +328,15 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
+                                      fontFamily: StringUtils.appFont,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                      color: AppColor.dark_gray_1),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        // Expanded(
-                        //   child: Padding(
-                        //     padding: EdgeInsets.only(top: 26.0),
-                        //     child: SingleChildScrollView(
-                        //       child: Column(
-                        //         children: [
-                        //           Padding(
-                        //             padding: const EdgeInsets.symmetric(horizontal: 78),
-                        //             child: Row(
-                        //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //               children: [
-                        //                 Text(
-                        //                   "1",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "2",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "3",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //           Padding(
-                        //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-                        //             child: Row(
-                        //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //               children: [
-                        //                 Text(
-                        //                   "4",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "5",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "6",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //           Padding(
-                        //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-                        //             child: Row(
-                        //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //               children: [
-                        //                 Text(
-                        //                   "7",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "8",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "9",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //           Padding(
-                        //             padding: EdgeInsets.only(
-                        //                 top: 31, left: 78, right: 51, bottom: 40),
-                        //             child: Row(
-                        //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //               children: [
-                        //                 Text(
-                        //                   ".",
-                        //                   textAlign: TextAlign.center,
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 Text(
-                        //                   "0",
-                        //                   style: TextStyle(
-                        //                       fontWeight: FontWeight.w400, fontSize: 28),
-                        //                 ),
-                        //                 InkWell(
-                        //                     onTap: () {
-                        //                       Navigator.push(
-                        //                           context,
-                        //                           MaterialPageRoute(
-                        //                               builder: (context) =>
-                        //                                   RequestAmountFromContactSuccessPage()));
-                        //                     },
-                        //                     child: AppSvg.asset(AssetUtils.next))
-                        //               ],
-                        //             ),
-                        //           )
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
                         Expanded(
                           child: Directionality(
                             textDirection: TextDirection.ltr,
@@ -448,7 +361,6 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
                                   ),
                                 ),
                                 leftButtonFn: () {
-                                  print('left button clicked');
                                   model.changeValue(".");
                                 },
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly),

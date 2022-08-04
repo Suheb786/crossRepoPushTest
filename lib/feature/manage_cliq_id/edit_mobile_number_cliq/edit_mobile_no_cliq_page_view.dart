@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageViewModel> {
@@ -54,6 +55,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                           Text(
                             S.of(context).editCliqId,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
@@ -76,6 +78,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
@@ -98,6 +101,7 @@ class EditMobileNoCliqPageView extends BasePageViewWidget<EditMobileNoCliqPageVi
                                     "+962 79 322 8080",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).accentColor,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),

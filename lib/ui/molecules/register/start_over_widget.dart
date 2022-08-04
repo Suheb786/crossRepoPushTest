@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class StartOverWidget extends StatelessWidget {
   final Function()? onTap;
   final String? title;
   final String? labelText;
 
-  const StartOverWidget({Key? key, this.onTap, this.title, this.labelText})
-      : super(key: key);
+  const StartOverWidget({Key? key, this.onTap, this.title, this.labelText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      decoration: BoxDecoration(
-          color: AppColor.vividYellow,
-          borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(
@@ -23,10 +21,8 @@ class StartOverWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat',
-                color: Theme
-                    .of(context)
-                    .primaryColorDark),
+                fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
+                color: Theme.of(context).primaryColorDark),
           ),
           // SizedBox(
           //   height: 24,
@@ -44,7 +40,7 @@ class StartOverWidget extends StatelessWidget {
           //         style: TextStyle(
           //             fontSize: 14,
           //             fontWeight: FontWeight.w600,
-          //             fontFamily: 'Montserrat',
+          //             fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
           //             color: AppColor.vivid_orange),
           //       ),
           //       InkWell(

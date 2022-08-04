@@ -3,6 +3,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/dialog/evoucher/evoucher_landing_page_dialog/evoucher_landing_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherMainPage extends StatelessWidget {
   @override
@@ -16,7 +17,7 @@ class EVoucherMainPage extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                fontFamily: 'Montserrat',
+                fontFamily: StringUtils.appFont,
               ),
             ),
             onPressed: () {
@@ -25,7 +26,8 @@ class EVoucherMainPage extends StatelessWidget {
                   title: S.of(context).eVouchersAreHere,
                   descriptionWidget: Text(
                     S.of(context).eVoucherLandingDialogDescption,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
                   ), onDismissed: () {
                 Navigator.pop(context);
               }, onSelected: () {

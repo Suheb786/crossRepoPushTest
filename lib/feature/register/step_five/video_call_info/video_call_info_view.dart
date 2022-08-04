@@ -48,19 +48,14 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                   }
                 },
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
-                  color: Theme.of(context)
-                      .cardTheme
-                      .copyWith(color: AppColor.white)
-                      .color,
+                  color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                   margin: EdgeInsets.zero,
                   shadowColor: AppColor.black.withOpacity(0.32),
                   child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -69,51 +64,44 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 35.0, bottom: 24),
+                                    padding: const EdgeInsets.only(top: 35.0, bottom: 24),
                                     child: Container(
                                       height: 78,
                                       width: 78,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 25.07, vertical: 22.29),
+                                      padding: EdgeInsets.symmetric(horizontal: 25.07, vertical: 22.29),
                                       decoration: BoxDecoration(
                                         color: AppColor.vividYellow,
                                         shape: BoxShape.circle,
                                       ),
                                       child: AppSvg.asset(AssetUtils.maleAgent,
-                                          color: Theme.of(context)
-                                              .primaryColorDark),
+                                          color: Theme.of(context).primaryColorDark),
                                     ),
                                   ),
                                   Text(
                                     S.of(context).videoCallInfoDescription,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
-                                        color:
-                                            Theme.of(context).primaryColorDark),
+                                        color: Theme.of(context).primaryColorDark),
                                   ),
                                   SizedBox(
                                     height: 43,
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Future.delayed(
-                                          Duration(milliseconds: 500), () {
+                                      Future.delayed(Duration(milliseconds: 500), () {
                                         ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepFiveViewModelProvider)
+                                            .read(registerStepFiveViewModelProvider)
                                             .moveToPage(3);
                                         // .move(3, animation: false);
                                       });
                                     },
                                     child: Text(S.of(context).scheduleLater,
                                         style: TextStyle(
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color,
+                                            fontFamily: StringUtils.appFont,
+                                            color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600)),
                                   ),
@@ -148,18 +136,13 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
       ].request();
 
       if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
-          statuses[Permission.microphone] ==
-              PermissionStatus.permanentlyDenied ||
-          statuses[Permission.bluetooth] ==
-              PermissionStatus.permanentlyDenied ||
-          statuses[Permission.bluetoothConnect] ==
-              PermissionStatus.permanentlyDenied) {
+          statuses[Permission.microphone] == PermissionStatus.permanentlyDenied ||
+          statuses[Permission.bluetooth] == PermissionStatus.permanentlyDenied ||
+          statuses[Permission.bluetoothConnect] == PermissionStatus.permanentlyDenied) {
         openAppSettings();
       } else {
         Future.delayed(Duration(milliseconds: 500), () {
-          ProviderScope.containerOf(context)
-              .read(registerStepFiveViewModelProvider)
-              .nextPage();
+          ProviderScope.containerOf(context).read(registerStepFiveViewModelProvider).nextPage();
           // .next();
         });
       }
@@ -170,14 +153,11 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
       ].request();
 
       if (statuses[Permission.camera] == PermissionStatus.permanentlyDenied ||
-          statuses[Permission.microphone] ==
-              PermissionStatus.permanentlyDenied) {
+          statuses[Permission.microphone] == PermissionStatus.permanentlyDenied) {
         openAppSettings();
       } else {
         Future.delayed(Duration(milliseconds: 500), () {
-          ProviderScope.containerOf(context)
-              .read(registerStepFiveViewModelProvider)
-              .nextPage();
+          ProviderScope.containerOf(context).read(registerStepFiveViewModelProvider).nextPage();
           // .next();
         });
       }

@@ -16,6 +16,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
   AccountReadyView(ProviderBase model) : super(model);
@@ -153,6 +154,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               child: Text(
                                 S.of(context).cardDelivery,
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentColor,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 12,

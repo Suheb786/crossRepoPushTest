@@ -117,7 +117,10 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).blinkCreditCardTitle,
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
@@ -132,7 +135,10 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                   S.of(context).getCardDelivered,
                                   textAlign: TextAlign.center,
                                   // maxLines: 3,
-                                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -184,7 +190,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                             style: TextStyle(
                                                 color: Theme.of(context).primaryColorDark,
                                                 fontSize: 12,
-                                                fontFamily: 'Montserrat',
+                                                fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600),
                                             children: [
                                           TextSpan(
@@ -199,7 +205,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                               style: TextStyle(
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                                                   fontSize: 12,
-                                                  fontFamily: 'Montserrat',
+                                                  fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w600),
                                               children: [
                                                 TextSpan(
@@ -207,7 +213,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                     style: TextStyle(
                                                         color: Theme.of(context).primaryColorDark,
                                                         fontSize: 12,
-                                                        fontFamily: 'Montserrat',
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600),
                                                     children: [
                                                       TextSpan(
@@ -224,14 +230,14 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                                   .bodyText1!
                                                                   .color!,
                                                               fontSize: 12,
-                                                              fontFamily: 'Montserrat',
+                                                              fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600),
                                                           children: [
                                                             TextSpan(
                                                                 text: S.of(context).authorization,
                                                                 style: TextStyle(
                                                                     color: Theme.of(context).primaryColorDark,
-                                                                    fontFamily: 'Montserrat',
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontSize: 12,
                                                                     fontWeight: FontWeight.w600)),
                                                           ])

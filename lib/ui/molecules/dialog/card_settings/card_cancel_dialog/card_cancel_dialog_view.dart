@@ -14,15 +14,17 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CardCancelDialogView extends StatelessWidget {
   final Function(String, bool)? onSelected;
   final Function(AppError)? onError;
   final Function? onDismissed;
   final List<String> reasons;
+  final bool? isPrimaryDebitCard;
 
   CardCancelDialogView(
-      {required this.reasons, this.onSelected, this.onDismissed, this.onError});
+      {required this.reasons, this.onSelected, this.onDismissed, this.onError, this.isPrimaryDebitCard});
 
   ProviderBase providerBase() {
     return cancelCardDialogViewModelProvider;
@@ -33,10 +35,8 @@ class CardCancelDialogView extends StatelessWidget {
     return BaseWidget<CardCancelDialogViewModel>(
       providerBase: providerBase(),
       builder: (context, model, child) => Dialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        insetPadding:
-            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
         child: Container(
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
@@ -58,6 +58,7 @@ class CardCancelDialogView extends StatelessWidget {
                   Text(
                     S.of(context).cancelTheCard,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
@@ -81,8 +82,7 @@ class CardCancelDialogView extends StatelessWidget {
                         );
                       },
                       child: AppTextField(
-                        labelText:
-                            S.of(context).reasonOfCancellation.toUpperCase(),
+                        labelText: S.of(context).reasonOfCancellation.toUpperCase(),
                         hintText: S.of(context).pleaseSelect,
                         readOnly: true,
                         key: model!.reasonKey,
@@ -104,8 +104,7 @@ class CardCancelDialogView extends StatelessWidget {
                             width: 16,
                             height: 16,
                             padding: EdgeInsets.all(4),
-                            child: AppSvg.asset(AssetUtils.downArrow,
-                                color: AppColor.dark_gray_1),
+                            child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
                           );
                         },
                       ),
@@ -116,6 +115,7 @@ class CardCancelDialogView extends StatelessWidget {
                     child: Text(
                       S.of(context).cancelCardDesc,
                       style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).errorColor,
                         height: 1.5,
                         fontSize: 14,
@@ -123,21 +123,24 @@ class CardCancelDialogView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: AppStreamBuilder<bool>(
-                      stream: model.declarationSelectedStream,
-                      initialData: false,
-                      dataBuilder: (context, isSelected) {
-                        model.isSelected = isSelected!;
-                        return TermsAndConditionWidget(
-                          isSelected: isSelected,
-                          title1: S.of(context).requestNewCardImmediately,
-                          onTap: () {
-                            model.updateDeclarationSelection(!(isSelected));
-                          },
-                        );
-                      },
+                  Visibility(
+                    visible: isPrimaryDebitCard ?? true,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: AppStreamBuilder<bool>(
+                        stream: model.declarationSelectedStream,
+                        initialData: false,
+                        dataBuilder: (context, isSelected) {
+                          model.isSelected = isSelected!;
+                          return TermsAndConditionWidget(
+                            isSelected: isSelected,
+                            title1: S.of(context).requestNewCardImmediately,
+                            onTap: () {
+                              model.updateDeclarationSelection(!(isSelected));
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -145,18 +148,21 @@ class CardCancelDialogView extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      if (model.reasonCancellationController.text.isEmpty) {
-                        model.reasonKey.currentState!.isValid = false;
-                        onError?.call(AppError(
-                          error: ErrorInfo(message: ''),
-                          type: ErrorType.SELECT_CANCELATION_REASON,
-                          cause: Exception(),
-                        ));
+                      if (isPrimaryDebitCard ?? true) {
+                        if (model.reasonCancellationController.text.isEmpty) {
+                          model.reasonKey.currentState!.isValid = false;
+                          onError?.call(AppError(
+                            error: ErrorInfo(message: ''),
+                            type: ErrorType.SELECT_CANCELATION_REASON,
+                            cause: Exception(),
+                          ));
+                        } else {
+                          onSelected?.call(model.reasonCancellationController.text, model.isSelected);
+                        }
                       } else {
-                        onSelected?.call(
-                            model.reasonCancellationController.text,
-                            model.isSelected);
+                        onSelected?.call(model.reasonCancellationController.text, false);
                       }
+
                       // else if (!model.declarationSelected.value) {
                       //   onError?.call(AppError(
                       //     error: ErrorInfo(message: ''),
@@ -170,13 +176,8 @@ class CardCancelDialogView extends StatelessWidget {
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!),
-                      child: AppSvg.asset(AssetUtils.tick,
-                          color: Theme.of(context).accentColor),
+                          shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                      child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
@@ -189,6 +190,7 @@ class CardCancelDialogView extends StatelessWidget {
                         child: Text(
                           S.of(context).swipeDownToCancel,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: AppColor.dark_gray_1),

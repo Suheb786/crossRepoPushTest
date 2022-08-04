@@ -7,6 +7,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ApplyDebitCardWidget extends StatelessWidget {
   final bool isSmallDevice;
@@ -14,6 +15,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
   final PrimarySecondaryEnum primarySecondaryEnum;
   final String cardHolderName;
   final String cardNo;
+  final DebitRoutes debitRoutes;
 
   const ApplyDebitCardWidget(
       {Key? key,
@@ -21,7 +23,8 @@ class ApplyDebitCardWidget extends StatelessWidget {
       this.isPinSet: true,
       this.primarySecondaryEnum = PrimarySecondaryEnum.PRIMARY,
       this.cardHolderName = "",
-      this.cardNo = ""})
+      this.cardNo = "",
+      this.debitRoutes = DebitRoutes.DASHBOARD})
       : super(key: key);
 
   @override
@@ -69,6 +72,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
                         S.of(context).toEnjoyCardLessPaymentDebit,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: isSmallDevice ? 10 : 12,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
@@ -86,7 +90,9 @@ class ApplyDebitCardWidget extends StatelessWidget {
                         primarySecondaryEnum == PrimarySecondaryEnum.PRIMARY
                             ? Navigator.pushNamed(context, RoutePaths.DebitCardReplacement,
                                 arguments: DebitCardReplacementArguments(
-                                    isPinSet: isPinSet, type: DebitReplacementEnum.Normal))
+                                    debitRoutes: debitRoutes,
+                                    isPinSet: isPinSet,
+                                    type: DebitReplacementEnum.Normal))
                             : Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCardPinSet,
                                 arguments: SupplementaryDebitCardPinSetArguments(
                                     type: DebitReplacementEnum.Normal,
@@ -102,6 +108,7 @@ class ApplyDebitCardWidget extends StatelessWidget {
                           child: Text(
                             S.of(context).requestNewDebitcard,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: isSmallDevice ? 10 : 12,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),
@@ -119,3 +126,5 @@ class ApplyDebitCardWidget extends StatelessWidget {
     );
   }
 }
+
+enum DebitRoutes { DASHBOARD, DEBIT_SETTING }

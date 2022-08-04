@@ -12,6 +12,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -28,6 +29,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
           Text(
             S.of(context).qrPayments,
             style: TextStyle(
+              fontFamily: StringUtils.appFont,
               fontWeight: FontWeight.w600,
               fontSize: 10,
             ),
@@ -39,6 +41,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
             S.of(context).showQrForScanning,
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontFamily: StringUtils.appFont,
               fontWeight: FontWeight.w600,
               fontSize: 20,
             ),
@@ -59,6 +62,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                   Text(
                     S.of(context).amount,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 10,
                     ),
@@ -71,6 +75,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                         Text(
                           '20.00',
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 24,
                           ),
@@ -80,7 +85,10 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 14, color: AppColor.verLightGray4),
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                                color: AppColor.verLightGray4),
                           ),
                         ),
                       ],
@@ -98,6 +106,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                     S.of(context).qrValidForOneHour,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 14,
                     ),
@@ -119,7 +128,8 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           children: [
                             Text(
                               S.of(context).shareQr,
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
                             ),
                             AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
                           ],

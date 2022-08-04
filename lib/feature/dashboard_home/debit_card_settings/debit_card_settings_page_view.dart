@@ -17,6 +17,7 @@ import 'package:neo_bank/feature/supplementary_debit_card_pin_set/supplementary_
 import 'package:neo_bank/feature/view_debit_card_subscription/view_debit_card_subscription_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
@@ -40,10 +41,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
           int sensitivity = 8;
           if (details.primaryVelocity! > sensitivity) {
             Navigator.pop(context, model.willPop());
-            print('down');
-          } else if (details.primaryVelocity! < -sensitivity) {
-            print('up');
-          }
+          } else if (details.primaryVelocity! < -sensitivity) {}
           // if (!details.primaryVelocity!.isNegative) {
           //   Navigator.pop(context, model.willPop());
           // }
@@ -75,7 +73,11 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
               padding: EdgeInsetsDirectional.only(top: 8),
               child: Text(
                 S.of(context).backToDashboard,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Expanded(
@@ -103,7 +105,10 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         Padding(
                                           padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 10),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
-                                              style: TextStyle(fontSize: 14, height: 1.7)),
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14,
+                                                  height: 1.7)),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -279,6 +284,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       descriptionWidget: Text(
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
@@ -318,6 +324,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       descriptionWidget: Text(
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
@@ -371,7 +378,9 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                             Navigator.pushReplacementNamed(
                                                 context, RoutePaths.DebitCardReplacement,
                                                 arguments: DebitCardReplacementArguments(
-                                                    isPinSet: true, type: DebitReplacementEnum.Normal));
+                                                    debitRoutes: DebitRoutes.DEBIT_SETTING,
+                                                    isPinSet: true,
+                                                    type: DebitReplacementEnum.Normal));
                                           } else {
                                             Navigator.pop(context, true);
                                           }
@@ -408,6 +417,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                             }, onError: (AppError error) {
                                               model.showToastWithError(error);
                                             },
+                                                isPrimaryDebitCard:
+                                                    model.debitCardSettingsArguments.isPrimaryDebitCard,
                                                 reasons: StringUtils.isDirectionRTL(context)
                                                     ? model.debitCardcancellationReasonAr
                                                     : model.debitCardcancellationReason);
@@ -426,6 +437,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                             S.of(context).actionComeToYouSoon,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.bold,
                               fontSize: 11,

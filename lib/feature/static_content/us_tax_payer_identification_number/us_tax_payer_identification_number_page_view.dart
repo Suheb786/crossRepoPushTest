@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class UsTaxPayerIdentificationNumberPageView
     extends BasePageViewWidget<UsTaxPayerIdentificationNumberPageViewModel> {
@@ -51,6 +52,7 @@ Claiming an exemption from withholding under section 871(f) for certain annuitie
 Submitting the form to a partnership that conducts a trade or business in the United States. 
                 ''',
                 style: TextStyle(
+                    fontFamily: StringUtils.appFont,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),

@@ -5,6 +5,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class BrowserByCategoryItemWidget extends StatelessWidget {
   const BrowserByCategoryItemWidget({Key? key}) : super(key: key);
@@ -49,7 +50,11 @@ class BrowserByCategoryItemWidget extends StatelessWidget {
               ),
               Text(
                 S.of(context).games,
-                style: TextStyle(color: AppColor.gray_black, fontSize: 14, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.gray_black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600),
               )
             ],
           ),

@@ -118,6 +118,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                                     overflow: TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
                                                         fontSize: 12,
                                                         color: Theme.of(context).primaryColorDark),
@@ -130,6 +131,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                                         : "XXXX",
                                                     maxLines: 1,
                                                     style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
                                                         fontSize: 10,
                                                         color: Theme.of(context).primaryColorDark),
@@ -145,10 +147,12 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                     Align(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.only(top: 5.0, bottom: 15.2, end: 20),
+                                        padding:
+                                            const EdgeInsetsDirectional.only(top: 5.0, bottom: 15.2, end: 20),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10,
                                               color: Theme.of(context).primaryColorDark),

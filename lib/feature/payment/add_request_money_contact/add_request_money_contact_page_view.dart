@@ -60,6 +60,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                             padding: EdgeInsetsDirectional.only(top: 30, start: 27),
                             child: Text(S.of(context).requestMoney,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
                                     color: Theme.of(context).primaryColorDark))),
@@ -110,6 +111,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                             child: Text(
                                               S.of(context).seeAllContacts,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -139,6 +141,7 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                         maxLines: 3,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 12,
                                           color: Theme.of(context).primaryColorDark,
                                           fontWeight: FontWeight.w600,
@@ -162,7 +165,11 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                   padding: EdgeInsets.only(top: 6),
                   child: Text(
                     S.of(context).swipeToRequest,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12, color: AppColor.dark_gray_1),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: AppColor.dark_gray_1),
                   ),
                 )
               ],

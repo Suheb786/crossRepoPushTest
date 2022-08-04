@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/block_country/block_country_dialog_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class BlockCountryDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -16,11 +17,7 @@ class BlockCountryDialogView extends StatelessWidget {
   final String? title;
   final CountryData countryData;
 
-  const BlockCountryDialogView(
-      {required this.countryData,
-      this.onDismissed,
-      this.onSelected,
-      this.title});
+  const BlockCountryDialogView({required this.countryData, this.onDismissed, this.onSelected, this.title});
 
   ProviderBase providerBase() {
     return blockCountryDialogViewModelProvider;
@@ -31,10 +28,8 @@ class BlockCountryDialogView extends StatelessWidget {
     return BaseWidget<BlockCountryDialogModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -51,7 +46,7 @@ class BlockCountryDialogView extends StatelessWidget {
                         child: Text(
                           title!,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600),
+                              fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
@@ -59,13 +54,11 @@ class BlockCountryDialogView extends StatelessWidget {
                       height: 24,
                     ),
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        border:
-                            Border.all(width: 1, color: AppColor.white_gray),
+                        border: Border.all(width: 1, color: AppColor.white_gray),
                       ),
                       child: Row(
                         children: [
@@ -89,6 +82,7 @@ class BlockCountryDialogView extends StatelessWidget {
                                 softWrap: true,
                                 maxLines: 2,
                                 style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -106,13 +100,10 @@ class BlockCountryDialogView extends StatelessWidget {
                       child: Text(
                         S.of(context).blockThisCountryDesc,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context)
-                                .inputDecorationTheme
-                                .focusedBorder!
-                                .borderSide
-                                .color),
+                            color: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color),
                       ),
                     ),
                     InkWell(
@@ -124,12 +115,8 @@ class BlockCountryDialogView extends StatelessWidget {
                         width: 57,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!),
-                        child: AppSvg.asset(AssetUtils.tick,
-                            color: Theme.of(context).accentColor),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                        child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                       ),
                     ),
                     Padding(
@@ -138,6 +125,7 @@ class BlockCountryDialogView extends StatelessWidget {
                         child: Text(
                           S.of(context).swipeDownToCancel,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: AppColor.dark_gray_1),

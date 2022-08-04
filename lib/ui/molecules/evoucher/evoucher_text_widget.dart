@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EVoucherTextWidget extends StatelessWidget {
   const EVoucherTextWidget(
@@ -7,7 +7,8 @@ class EVoucherTextWidget extends StatelessWidget {
       required this.alignment,
       required this.textSize,
       required this.textWeight,
-      required this.text,required this.textColor})
+      required this.text,
+      required this.textColor})
       : super(key: key);
   final AlignmentDirectional alignment;
   final double textSize;
@@ -24,6 +25,7 @@ class EVoucherTextWidget extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 color: textColor,
                 fontSize: textSize,
                 fontWeight: textWeight),

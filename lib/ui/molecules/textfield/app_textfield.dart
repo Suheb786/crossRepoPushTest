@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AppTextField extends StatefulWidget {
   final double? height;
@@ -84,8 +85,7 @@ class AppTextField extends StatefulWidget {
     this.filledColor: AppColor.white,
     this.onFieldSubmitted,
     this.labelIcon,
-    this.dividerPadding:
-        const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+    this.dividerPadding: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
     this.floatingLabelBehavior: FloatingLabelBehavior.never,
     this.textAlign: TextAlign.start,
     this.textFieldBorderColor,
@@ -153,18 +153,10 @@ class AppTextFieldState extends State<AppTextField> {
                       border: Border.all(
                           width: 1,
                           color: !isValid
-                              ? Theme.of(context)
-                                  .inputDecorationTheme
-                                  .errorBorder!
-                                  .borderSide
-                                  .color
+                              ? Theme.of(context).inputDecorationTheme.errorBorder!.borderSide.color
                               : _focusNode.hasFocus
                                   ? (widget.textFieldFocusBorderColor ??
-                                      Theme.of(context)
-                                          .inputDecorationTheme
-                                          .focusedBorder!
-                                          .borderSide
-                                          .color)
+                                      Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color)
                                   : (widget.textFieldBorderColor ??
                                       Theme.of(context)
                                           .inputDecorationTheme
@@ -180,15 +172,11 @@ class AppTextFieldState extends State<AppTextField> {
                               text: widget.labelText,
                               style: TextStyle(
                                 color: widget.labelColor ??
-                                    Theme.of(context)
-                                        .inputDecorationTheme
-                                        .labelStyle!
-                                        .color,
+                                    Theme.of(context).inputDecorationTheme.labelStyle!.color,
                                 fontSize: 10,
-                                fontFamily: "Montserrat",
+                                fontFamily: StringUtils.appFont,
                               )),
-                          WidgetSpan(
-                              child: widget.labelIcon?.call() ?? Container())
+                          WidgetSpan(child: widget.labelIcon?.call() ?? Container())
                         ]),
                       ),
                       TextFormField(
@@ -196,10 +184,10 @@ class AppTextFieldState extends State<AppTextField> {
                         maxLength: widget.maxLength,
                         textAlign: widget.textAlign,
                         style: TextStyle(
-                          color: widget.textColor ??
-                              Theme.of(context).primaryColorDark,
+                          color: widget.textColor ?? Theme.of(context).primaryColorDark,
                           fontSize: widget.fontSize,
                           fontWeight: FontWeight.w600,
+                          fontFamily: StringUtils.appFont,
                         ),
                         initialValue: widget.initialValue,
                         autofocus: widget.autoFocus!,
@@ -210,14 +198,12 @@ class AppTextFieldState extends State<AppTextField> {
                         maxLines: widget.maxLines,
                         minLines: widget.minLines,
                         obscureText: secureText,
-                        cursorColor: widget.hintTextColor ??
-                            Theme.of(context).textSelectionTheme.cursorColor,
+                        cursorColor: widget.hintTextColor ?? Theme.of(context).textSelectionTheme.cursorColor,
                         obscuringCharacter: widget.obscuringCharacter,
                         decoration: InputDecoration(
                             prefix: widget.prefix?.call(),
                             prefixIcon: widget.prefixIcon?.call(),
-                            prefixIconConstraints:
-                                BoxConstraints.tightForFinite(),
+                            prefixIconConstraints: BoxConstraints.tightForFinite(),
                             contentPadding: EdgeInsets.only(top: 8),
                             hintText: widget.hintText,
                             hintMaxLines: 1,
@@ -228,20 +214,16 @@ class AppTextFieldState extends State<AppTextField> {
                             fillColor: widget.filledColor,
                             hintStyle: TextStyle(
                               color: widget.hintTextColor ??
-                                  Theme.of(context)
-                                      .inputDecorationTheme
-                                      .hintStyle!
-                                      .color,
+                                  Theme.of(context).inputDecorationTheme.hintStyle!.color,
                               fontSize: widget.fontSize,
                               fontWeight: FontWeight.w600,
+                              fontFamily: StringUtils.appFont,
                             ),
-                            suffixIcon: widget.suffixIcon
-                                ?.call(isValid, widget.controller!.text),
-                            suffixIconConstraints: BoxConstraints.tight(Size(
-                                widget.suffixIconSize, widget.suffixIconSize)),
+                            suffixIcon: widget.suffixIcon?.call(isValid, widget.controller!.text),
+                            suffixIconConstraints:
+                                BoxConstraints.tight(Size(widget.suffixIconSize, widget.suffixIconSize)),
                             enabled: widget.enabled,
-                            floatingLabelBehavior:
-                                widget.floatingLabelBehavior),
+                            floatingLabelBehavior: widget.floatingLabelBehavior),
                         controller: widget.controller,
                         validator: this.widget.validator,
                         onSaved: this.widget.onSaved,
@@ -255,8 +237,7 @@ class AppTextFieldState extends State<AppTextField> {
                     ],
                   ),
                 ),
-                widget.textHintWidget?.call(_focusNode.hasFocus, isValid,
-                        widget.controller!.text) ??
+                widget.textHintWidget?.call(_focusNode.hasFocus, isValid, widget.controller!.text) ??
                     Container(),
               ],
             ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AgentSelectionListWidget extends StatelessWidget {
   final Agent item;
@@ -30,7 +31,10 @@ class AgentSelectionListWidget extends StatelessWidget {
                 item.agent ?? "",
                 softWrap: true,
                 maxLines: 2,
-                style: TextStyle(fontSize: 14, color: item.isSelected! ? AppColor.black : AppColor.white),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    color: item.isSelected! ? AppColor.black : AppColor.white),
               ),
             ),
           ),

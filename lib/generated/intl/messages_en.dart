@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
+        "accountNoCopied":
+            MessageLookupByLibrary.simpleMessage("Account No. Copied"),
         "accountNotFound":
             MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account No."),
@@ -342,6 +344,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardLoanAccNotFound": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
+        "cardNumberCopied":
+            MessageLookupByLibrary.simpleMessage("Card Number Copied"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
         "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
@@ -1115,6 +1119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanCopied": MessageLookupByLibrary.simpleMessage("IBAN Copied"),
         "ibanMobileNoAlias":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
         "ibanNotBlink":
@@ -1129,6 +1134,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile No. / ALIAS"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
             "We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community."),
+        "idAlreadyExists":
+            MessageLookupByLibrary.simpleMessage("IdNo Already Exist"),
         "idCardDataNotFound":
             MessageLookupByLibrary.simpleMessage("Id Card Data Not Found"),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
@@ -1962,6 +1969,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),
+        "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
         "resendIn": m3,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
@@ -2130,6 +2138,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations."),
         "state": MessageLookupByLibrary.simpleMessage("STATE"),
         "stateSmall": MessageLookupByLibrary.simpleMessage("State"),
+        "statement": MessageLookupByLibrary.simpleMessage(" Statement"),
         "statementPDF": MessageLookupByLibrary.simpleMessage("Statement PDF"),
         "step2Complete": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),

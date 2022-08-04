@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel> {
@@ -28,7 +29,10 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                   child: Text(
                     S.of(context).viewVoucher,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor, fontWeight: FontWeight.w600, fontSize: 14),
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14),
                   ),
                 )),
             Expanded(
@@ -68,7 +72,10 @@ class ShareVoucherPageView extends BasePageViewWidget<ShareVoucherPageViewModel>
                               children: [
                                 Text(
                                   S.of(context).shareVoucher,
-                                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                                  style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
                                 ),
                                 AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
                               ],

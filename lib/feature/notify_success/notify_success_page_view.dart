@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewModel> {
   NotifySuccessPageView(ProviderBase model) : super(model);
@@ -63,6 +64,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                           Text(
                             S.of(context).awesome,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 24,
                                 color: Theme.of(context).accentColor),
@@ -74,6 +76,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                             S.of(context).thankYouForInterestWillSendUpdate,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 color: Theme.of(context).accentColor),
@@ -114,6 +117,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                       child: Text(
                         S.of(context).toWelcomePage,
                         style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,

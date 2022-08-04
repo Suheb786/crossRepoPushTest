@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardVerificationSuccessPageView
     extends BasePageViewWidget<CreditCardVerificationSuccessViewModel> {
@@ -26,9 +27,7 @@ class CreditCardVerificationSuccessPageView
               ..pop()
               ..pop();
             //Navigator.pushNamed(context, RoutePaths.AppHome);
-            ProviderScope.containerOf(context)
-                .read(appHomeViewModelProvider)
-                .getDashboardData();
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           }
         },
         child: Padding(
@@ -50,8 +49,7 @@ class CreditCardVerificationSuccessPageView
                           color: AppColor.vividYellow,
                         ),
                         child: Center(
-                            child: AppSvg.asset(AssetUtils.right,
-                                color: Theme.of(context).accentColor)),
+                            child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
                       ),
                     ),
                   ],
@@ -62,6 +60,7 @@ class CreditCardVerificationSuccessPageView
                     S.of(context).creditCardVerified,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w800,
                         fontSize: 24),
@@ -74,6 +73,7 @@ class CreditCardVerificationSuccessPageView
                     maxLines: 3,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 16),
@@ -98,6 +98,7 @@ class CreditCardVerificationSuccessPageView
                     child: Text(
                       S.of(context).toDashboard,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w600),

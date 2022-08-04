@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewModel> {
@@ -46,6 +47,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                             Text(
                               S.of(context).changeCardPin.toUpperCase(),
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
                                       : Theme.of(context).accentColor,
@@ -70,6 +72,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                                   ),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                           ? Theme.of(context).primaryColorDark
                                           : Theme.of(context).accentColor,
@@ -95,6 +98,7 @@ class ChangeCardPinPageView extends BasePageViewWidget<ChangeCardPinPageViewMode
                                           " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: model.changeCardPinArguments.cardType == CardType.DEBIT
                                               ? Theme.of(context).primaryColorDark
                                               : Theme.of(context).accentColor,

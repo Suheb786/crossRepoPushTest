@@ -50,8 +50,7 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick!
                                 ? () {
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.PaymentHome,
+                                    Navigator.pushNamed(context, RoutePaths.PaymentHome,
                                         arguments: NavigationType.DASHBOARD);
                                   }
                                 : () {},
@@ -60,10 +59,7 @@ class SettingsDialogView extends StatelessWidget {
                               width: 112,
                               decoration: BoxDecoration(
                                   color: currentStep == 0
-                                      ? Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color
+                                      ? Theme.of(context).accentTextTheme.bodyText1!.color
                                       : Theme.of(context).accentColor,
                                   borderRadius: BorderRadius.circular(8)),
                               child: Column(
@@ -77,24 +73,20 @@ class SettingsDialogView extends StatelessWidget {
                                       margin: EdgeInsets.only(bottom: 16),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: AppColor.whiteGrey,
-                                              width: 1)),
-                                      child: AppSvg.asset(
-                                          AssetUtils.paymentCircle,
+                                          border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                      child: AppSvg.asset(AssetUtils.paymentCircle,
                                           color: currentStep == 0
                                               ? Theme.of(context).accentColor
-                                              : Theme.of(context)
-                                                  .primaryColorDark)),
+                                              : Theme.of(context).primaryColorDark)),
                                   Text(
                                     S.of(context).payments,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w600,
                                         color: currentStep == 0
                                             ? Theme.of(context).accentColor
-                                            : Theme.of(context)
-                                                .primaryColorDark,
+                                            : Theme.of(context).primaryColorDark,
                                         fontSize: 12),
                                   )
                                 ],
@@ -104,8 +96,7 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick
                                 ? () {
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.ActivityHome);
+                                    Navigator.pushNamed(context, RoutePaths.ActivityHome);
                                   }
                                 : () {},
                             child: Container(
@@ -113,10 +104,7 @@ class SettingsDialogView extends StatelessWidget {
                               width: 112,
                               decoration: BoxDecoration(
                                   color: currentStep == 1
-                                      ? Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color
+                                      ? Theme.of(context).accentTextTheme.bodyText1!.color
                                       : Theme.of(context).accentColor,
                                   borderRadius: BorderRadius.circular(8)),
                               child: Column(
@@ -130,24 +118,20 @@ class SettingsDialogView extends StatelessWidget {
                                       margin: EdgeInsets.only(bottom: 16),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: AppColor.whiteGrey,
-                                              width: 1)),
-                                      child: AppSvg.asset(
-                                          AssetUtils.activityCircle,
+                                          border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                      child: AppSvg.asset(AssetUtils.activityCircle,
                                           color: currentStep == 1
                                               ? Theme.of(context).accentColor
-                                              : Theme.of(context)
-                                                  .primaryColorDark)),
+                                              : Theme.of(context).primaryColorDark)),
                                   Text(
                                     S.of(context).activity,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w600,
                                         color: currentStep == 1
                                             ? Theme.of(context).accentColor
-                                            : Theme.of(context)
-                                                .primaryColorDark,
+                                            : Theme.of(context).primaryColorDark,
                                         fontSize: 12),
                                   )
                                 ],
@@ -157,8 +141,7 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: onClick
                                 ? () {
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.ManageContactsList);
+                                    Navigator.pushNamed(context, RoutePaths.ManageContactsList);
                                   }
                                 : () {},
                             child: Container(
@@ -166,10 +149,7 @@ class SettingsDialogView extends StatelessWidget {
                               width: 112,
                               decoration: BoxDecoration(
                                   color: currentStep == 2
-                                      ? Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color
+                                      ? Theme.of(context).accentTextTheme.bodyText1!.color
                                       : Theme.of(context).accentColor,
                                   borderRadius: BorderRadius.circular(8)),
                               child: Column(
@@ -183,23 +163,20 @@ class SettingsDialogView extends StatelessWidget {
                                       margin: EdgeInsets.only(bottom: 16),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: AppColor.whiteGrey,
-                                              width: 1)),
+                                          border: Border.all(color: AppColor.whiteGrey, width: 1)),
                                       child: AppSvg.asset(AssetUtils.contacts,
                                           color: currentStep == 2
                                               ? Theme.of(context).accentColor
-                                              : Theme.of(context)
-                                                  .primaryColorDark)),
+                                              : Theme.of(context).primaryColorDark)),
                                   Text(
                                     S.of(context).manageContactsSettings,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w600,
                                         color: currentStep == 2
                                             ? Theme.of(context).accentColor
-                                            : Theme.of(context)
-                                                .primaryColorDark,
+                                            : Theme.of(context).primaryColorDark,
                                         fontSize: 12),
                                   )
                                 ],
@@ -209,8 +186,7 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                               onTap: onClick
                                   ? () {
-                                      Navigator.pushNamed(
-                                          context, RoutePaths.AccountSetting);
+                                      Navigator.pushNamed(context, RoutePaths.AccountSetting);
                                     }
                                   : () {},
                               child: Container(
@@ -218,10 +194,7 @@ class SettingsDialogView extends StatelessWidget {
                                 width: 112,
                                 decoration: BoxDecoration(
                                     color: currentStep == 3
-                                        ? Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color
+                                        ? Theme.of(context).accentTextTheme.bodyText1!.color
                                         : Theme.of(context).accentColor,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Column(
@@ -235,51 +208,33 @@ class SettingsDialogView extends StatelessWidget {
                                         margin: EdgeInsets.only(bottom: 16),
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            border: Border.all(
-                                                color: AppColor.whiteGrey,
-                                                width: 1)),
-                                        child: (profileData?.data?.content
-                                                        ?.profileImage ==
-                                                    null ||
-                                                profileData?.data?.content
-                                                    ?.profileImage.isEmpty)
+                                            border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                        child: (profileData?.data?.content?.profileImage == null ||
+                                                profileData?.data?.content?.profileImage.isEmpty)
                                             ? Center(
                                                 child: Container(
-                                                  child:
-                                                      AppStreamBuilder<String>(
-                                                          stream:
-                                                              model.textStream,
-                                                          initialData: "",
-                                                          dataBuilder:
-                                                              (context, text) {
-                                                            print(
-                                                                "got text in stream: $text");
-                                                            return Text(
-                                                              StringUtils
-                                                                  .getFirstInitials(
-                                                                      text),
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize: 18,
-                                                                  color: currentStep ==
-                                                                          3
-                                                                      ? Theme.of(
-                                                                              context)
-                                                                          .accentColor
-                                                                      : Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark),
-                                                            );
-                                                          }),
+                                                  child: AppStreamBuilder<String>(
+                                                      stream: model.textStream,
+                                                      initialData: "",
+                                                      dataBuilder: (context, text) {
+                                                        print("got text in stream: $text");
+                                                        return Text(
+                                                          StringUtils.getFirstInitials(text),
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w700,
+                                                              fontSize: 18,
+                                                              color: currentStep == 3
+                                                                  ? Theme.of(context).accentColor
+                                                                  : Theme.of(context).primaryColorDark),
+                                                        );
+                                                      }),
                                                 ),
                                               )
                                             : CircleAvatar(
                                                 radius: 48,
                                                 backgroundImage: Image.memory(
-                                                  profileData?.data!.content!
-                                                      .profileImage!,
+                                                  profileData?.data!.content!.profileImage!,
                                                   fit: BoxFit.cover,
                                                 ).image,
                                               )),
@@ -287,11 +242,11 @@ class SettingsDialogView extends StatelessWidget {
                                       S.of(context).profileSettings,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           color: currentStep == 3
                                               ? Theme.of(context).accentColor
-                                              : Theme.of(context)
-                                                  .primaryColorDark,
+                                              : Theme.of(context).primaryColorDark,
                                           fontSize: 12),
                                     )
                                   ],
@@ -303,9 +258,7 @@ class SettingsDialogView extends StatelessWidget {
                               onData: (response) {
                                 if (response.status == Status.SUCCESS) {
                                   Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      RoutePaths.OnBoarding,
-                                      ModalRoute.withName(RoutePaths.Splash));
+                                      context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                                 }
                               },
                               dataBuilder: (context, data) {
@@ -320,16 +273,12 @@ class SettingsDialogView extends StatelessWidget {
                                     width: 112,
                                     decoration: BoxDecoration(
                                         color: currentStep == 4
-                                            ? Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color
+                                            ? Theme.of(context).accentTextTheme.bodyText1!.color
                                             : Theme.of(context).accentColor,
                                         borderRadius: BorderRadius.circular(8)),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Container(
                                             height: 64,
@@ -338,26 +287,20 @@ class SettingsDialogView extends StatelessWidget {
                                             margin: EdgeInsets.only(bottom: 16),
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
-                                                border: Border.all(
-                                                    color: AppColor.whiteGrey,
-                                                    width: 1)),
-                                            child: AppSvg.asset(
-                                                AssetUtils.logout,
+                                                border: Border.all(color: AppColor.whiteGrey, width: 1)),
+                                            child: AppSvg.asset(AssetUtils.logout,
                                                 color: currentStep == 4
-                                                    ? Theme.of(context)
-                                                        .accentColor
-                                                    : Theme.of(context)
-                                                        .primaryColorDark)),
+                                                    ? Theme.of(context).accentColor
+                                                    : Theme.of(context).primaryColorDark)),
                                         Text(
                                           S.of(context).logout,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
                                               color: currentStep == 4
-                                                  ? Theme.of(context)
-                                                      .accentColor
-                                                  : Theme.of(context)
-                                                      .primaryColorDark,
+                                                  ? Theme.of(context).accentColor
+                                                  : Theme.of(context).primaryColorDark,
                                               fontSize: 12),
                                         )
                                       ],
@@ -381,11 +324,9 @@ class SettingsDialogView extends StatelessWidget {
                                   child: CarouselSlider.builder(
                                     itemCount: pages.length,
                                     carouselController: model.controller,
-                                    itemBuilder: (BuildContext context,
-                                            int itemIndex, int pageViewIndex) =>
+                                    itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
                                         Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 5.0),
+                                      padding: const EdgeInsets.only(bottom: 5.0),
                                       child: AppTiltCard(
                                           pageViewIndex: pageViewIndex,
                                           degree: 8,
@@ -411,8 +352,7 @@ class SettingsDialogView extends StatelessWidget {
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: AppSvg.asset(AssetUtils.close,
-                                    color: Theme.of(context).accentColor),
+                                child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).accentColor),
                               ),
                               SizedBox(
                                 height: 50,
@@ -443,8 +383,8 @@ class SettingsDialogView extends StatelessWidget {
                   localisedHelper: S.of(context),
                 ),
                 context);
-            Navigator.pushNamedAndRemoveUntil(context, RoutePaths.OnBoarding,
-                ModalRoute.withName(RoutePaths.Splash));
+            Navigator.pushNamedAndRemoveUntil(
+                context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
           } else {
             _showTopError(
                 ErrorParser.getLocalisedStringError(
@@ -467,9 +407,7 @@ class SettingsDialogView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: AppColor.dark_brown,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -479,6 +417,7 @@ class SettingsDialogView extends StatelessWidget {
                         Text(
                           S.of(context).error,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
                               fontSize: 10),
@@ -487,6 +426,7 @@ class SettingsDialogView extends StatelessWidget {
                           padding: EdgeInsets.only(top: 4.0, right: 16),
                           child: Text(message,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ViewDebitCardSubscriptionWidget extends StatelessWidget {
   const ViewDebitCardSubscriptionWidget({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                             Text(
                               "Netflix US",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 12),
+                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                             Spacer(),
                             Row(
@@ -47,6 +48,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                                 Text(
                                   "8.51",
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -55,6 +57,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                                   child: Text(
                                     "JOD/YR",
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 10,
                                         fontWeight: FontWeight.w600,
                                         color: AppColor.gray1),
@@ -69,6 +72,7 @@ class ViewDebitCardSubscriptionWidget extends StatelessWidget {
                           child: Text(
                             "Monthly",
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: AppColor.gray1,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),

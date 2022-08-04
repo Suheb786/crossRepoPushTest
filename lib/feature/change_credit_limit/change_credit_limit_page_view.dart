@@ -8,11 +8,11 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-class ChangeCreditLimitPageView
-    extends BasePageViewWidget<ChangeCreditLimitPageViewModel> {
+class ChangeCreditLimitPageView extends BasePageViewWidget<ChangeCreditLimitPageViewModel> {
   ChangeCreditLimitPageView(ProviderBase model) : super(model);
 
   @override
@@ -25,6 +25,7 @@ class ChangeCreditLimitPageView
           Text(
             S.of(context).changeCreditLimit.toUpperCase(),
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 10,
                 color: Theme.of(context).accentColor),
@@ -36,6 +37,7 @@ class ChangeCreditLimitPageView
             S.of(context).changeCreditLimitDesc,
             textAlign: TextAlign.center,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
                 color: Theme.of(context).accentColor),
@@ -50,11 +52,9 @@ class ChangeCreditLimitPageView
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.CreditCardApplySuccess,
+                    Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
                         arguments: CreditCardApplySuccessArguments(
-                            creditSuccessState:
-                                CreditSuccessState.Credit_Limit_Changed));
+                            creditSuccessState: CreditSuccessState.Credit_Limit_Changed));
                   } else {}
                 },
                 child: Column(
@@ -67,19 +67,14 @@ class ChangeCreditLimitPageView
                           children: [
                             AppStreamBuilder<SliderLimitValues>(
                                 stream: model.sliderValueStream,
-                                initialData: SliderLimitValues(
-                                    maxValue: 1200,
-                                    minValue: 200,
-                                    divisions: 100),
+                                initialData: SliderLimitValues(maxValue: 1200, minValue: 200, divisions: 100),
                                 dataBuilder: (context, sliderLimitValues) {
                                   return Column(
                                     children: [
                                       Text(
-                                        S
-                                            .of(context)
-                                            .changeCreditLimit
-                                            .toUpperCase(),
+                                        S.of(context).changeCreditLimit.toUpperCase(),
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 10),
                                       ),
@@ -87,32 +82,29 @@ class ChangeCreditLimitPageView
                                         height: 8,
                                       ),
                                       Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           AppStreamBuilder<double>(
                                               stream: model.valueStream,
-                                              initialData:
-                                                  sliderLimitValues!.minValue!,
+                                              initialData: sliderLimitValues!.minValue!,
                                               dataBuilder: (context, value) {
                                                 return Text(
                                                   value!.toInt().toString(),
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontSize: 24,
-                                                      fontWeight:
-                                                          FontWeight.w700),
+                                                      fontWeight: FontWeight.w700),
                                                 );
                                               }),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(
-                                                start: 4, top: 5),
+                                            padding: EdgeInsetsDirectional.only(start: 4, top: 5),
                                             child: Text(
-                                              "JOD",
+                                              S.of(context).JOD,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w700,
-                                                  color:
-                                                      AppColor.verLightGray4),
+                                                  color: AppColor.verLightGray4),
                                             ),
                                           )
                                         ],
@@ -121,45 +113,32 @@ class ChangeCreditLimitPageView
                                         height: 16,
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 24),
+                                        padding: EdgeInsets.symmetric(horizontal: 24),
                                         child: Container(
                                           height: 48,
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .backgroundColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(100)),
+                                              color: Theme.of(context).backgroundColor,
+                                              borderRadius: BorderRadius.circular(100)),
                                           child: AppStreamBuilder<double>(
                                               stream: model.valueStream,
-                                              initialData:
-                                                  sliderLimitValues.minValue!,
+                                              initialData: sliderLimitValues.minValue!,
                                               dataBuilder: (context, val) {
                                                 return SfTheme(
                                                   data: SfThemeData(
                                                       sliderThemeData: SfSliderThemeData(
-                                                          activeTrackColor:
-                                                              Colors
-                                                                  .transparent,
+                                                          activeTrackColor: Colors.transparent,
                                                           activeTrackHeight: 0,
                                                           thumbRadius: 20,
-                                                          inactiveTrackColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          thumbColor: Theme.of(
-                                                                  context)
+                                                          inactiveTrackColor: Colors.transparent,
+                                                          thumbColor: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color)),
                                                   child: SfSlider(
-                                                    min: sliderLimitValues
-                                                        .minValue!,
-                                                    max: sliderLimitValues
-                                                        .maxValue!,
-                                                    stepSize: sliderLimitValues
-                                                        .divisions!
-                                                        .toDouble(),
+                                                    min: sliderLimitValues.minValue!,
+                                                    max: sliderLimitValues.maxValue!,
+                                                    stepSize: sliderLimitValues.divisions!.toDouble(),
                                                     value: val!,
                                                     onChanged: (value) {
                                                       model.updateValue(value);
@@ -173,22 +152,22 @@ class ChangeCreditLimitPageView
                                         height: 8,
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 24.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 24.0),
                                         child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              '${sliderLimitValues.minValue!} JOD',
+                                              '${sliderLimitValues.minValue!} ${S.of(context).JOD}',
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.gray,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 10),
                                             ),
                                             Text(
-                                              "${'${sliderLimitValues.maxValue!}'} JOD",
+                                              "${'${sliderLimitValues.maxValue!}'} ${S.of(context).JOD}",
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: AppColor.gray,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 10),
@@ -219,6 +198,7 @@ class ChangeCreditLimitPageView
                             child: Text(
                               S.of(context).backToCardSettings,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: AppColor.brightBlue,
                                 letterSpacing: 1,
                                 fontSize: 14,

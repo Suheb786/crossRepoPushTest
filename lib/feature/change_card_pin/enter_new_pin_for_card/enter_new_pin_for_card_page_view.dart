@@ -17,8 +17,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class EnterNewPinForCardPageView
-    extends BasePageViewWidget<EnterNewPinForCardPageViewModel> {
+class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPageViewModel> {
   EnterNewPinForCardPageView(ProviderBase model) : super(model);
 
   @override
@@ -44,9 +43,7 @@ class EnterNewPinForCardPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(changeCardPinViewModelProvider)
-                          .nextPage();
+                      ProviderScope.containerOf(context).read(changeCardPinViewModelProvider).nextPage();
                       // .next();
                     }
                   },
@@ -60,11 +57,9 @@ class EnterNewPinForCardPageView
                         } else if (data.status == Status.ERROR) {
                           if (data.appError!.type == ErrorType.EMPTY_PIN) {
                             model.newPinKey.currentState!.isValid = false;
-                          } else if (data.appError!.type ==
-                              ErrorType.EMPTY_CONFIRM_PIN) {
+                          } else if (data.appError!.type == ErrorType.EMPTY_CONFIRM_PIN) {
                             model.confirmPinKey.currentState!.isValid = false;
-                          } else if (data.appError!.type ==
-                              ErrorType.PIN_NOT_MATCH) {}
+                          } else if (data.appError!.type == ErrorType.PIN_NOT_MATCH) {}
 
                           model.showToastWithError(data.appError!);
                         }
@@ -75,77 +70,60 @@ class EnterNewPinForCardPageView
                             if (StringUtils.isDirectionRTL(context)) {
                               if (!details.primaryVelocity!.isNegative) {
                                 FocusScope.of(context).unfocus();
-                                model.enterNewPinForCard(
-                                    ProviderScope.containerOf(context)
-                                        .read(changeCardPinViewModelProvider)
-                                        .changeCardPinArguments
-                                        .cardType!);
+                                model.enterNewPinForCard(ProviderScope.containerOf(context)
+                                    .read(changeCardPinViewModelProvider)
+                                    .changeCardPinArguments
+                                    .cardType!);
                               }
                             } else {
                               if (details.primaryVelocity!.isNegative) {
                                 FocusScope.of(context).unfocus();
-                                model.enterNewPinForCard(
-                                    ProviderScope.containerOf(context)
-                                        .read(changeCardPinViewModelProvider)
-                                        .changeCardPinArguments
-                                        .cardType!);
+                                model.enterNewPinForCard(ProviderScope.containerOf(context)
+                                    .read(changeCardPinViewModelProvider)
+                                    .changeCardPinArguments
+                                    .cardType!);
                               }
                             }
                           },
                           child: Card(
                             margin: EdgeInsets.zero,
                             child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     SingleChildScrollView(
                                       physics: NeverScrollableScrollPhysics(),
                                       child: Column(
                                         children: [
                                           AppTextField(
-                                            labelText: S
-                                                .of(context)
-                                                .newPin
-                                                .toUpperCase(),
+                                            labelText: S.of(context).newPin.toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
                                             inputType: TextInputType.number,
                                             obscureText: true,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(
-                                                  4),
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(r'[0-9]'))
+                                              LengthLimitingTextInputFormatter(4),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                                             ],
                                             controller: model.newPinController,
                                             key: model.newPinKey,
-                                            onChanged: (value) =>
-                                                model.validate(),
+                                            onChanged: (value) => model.validate(),
                                           ),
                                           SizedBox(
                                             height: 16,
                                           ),
                                           AppTextField(
-                                            labelText: S
-                                                .of(context)
-                                                .confirmNewPin
-                                                .toUpperCase(),
+                                            labelText: S.of(context).confirmNewPin.toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
                                             obscureText: true,
                                             inputFormatters: [
-                                              LengthLimitingTextInputFormatter(
-                                                  4),
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(r'[0-9]'))
+                                              LengthLimitingTextInputFormatter(4),
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
                                             ],
                                             inputType: TextInputType.number,
-                                            controller:
-                                                model.confirmPinController,
+                                            controller: model.confirmPinController,
                                             key: model.confirmPinKey,
-                                            onChanged: (value) =>
-                                                model.validate(),
+                                            onChanged: (value) => model.validate(),
                                           ),
                                         ],
                                       ),
@@ -153,8 +131,7 @@ class EnterNewPinForCardPageView
                                     Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 16.0, bottom: 24),
+                                          padding: EdgeInsets.only(top: 16.0, bottom: 24),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
@@ -163,9 +140,7 @@ class EnterNewPinForCardPageView
                                                   visible: isValid!,
                                                   child: AnimatedButton(
                                                     buttonHeight: 50,
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
+                                                    buttonText: S.of(context).swipeToProceed,
                                                   ),
                                                 );
                                               }),
@@ -178,6 +153,7 @@ class EnterNewPinForCardPageView
                                             child: Text(
                                               S.of(context).backToCardSettings,
                                               style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 color: AppColor.brightBlue,
                                                 letterSpacing: 1,
                                                 fontSize: 14,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaOptionItemWidget extends StatelessWidget {
   final AdditionalDataDropDownData item;
@@ -40,6 +41,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
             softWrap: true,
             maxLines: 2,
             style: TextStyle(
+                fontFamily: StringUtils.appFont,
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),

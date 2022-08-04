@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 // class ReviewApplicationEditableItem extends StatelessWidget {
 //   final String title;
@@ -95,6 +96,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
               title,
               softWrap: true,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: AppColor.very_dark_gray),
@@ -110,6 +112,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
                         S.of(context).JOD,
                         textAlign: TextAlign.end,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryColorDark),
@@ -148,6 +151,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
                     initialValue!,
                     textAlign: TextAlign.end,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context).primaryColorDark),

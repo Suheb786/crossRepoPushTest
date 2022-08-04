@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSettingWidget extends StatelessWidget {
   final String? image;
@@ -32,6 +33,7 @@ class AccountSettingWidget extends StatelessWidget {
                 Text(
                   title!,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).textTheme.bodyText1!.color),
@@ -44,7 +46,11 @@ class AccountSettingWidget extends StatelessWidget {
                         textDirection: TextDirection.ltr,
                         child: Text(
                           subtitle ?? '',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.gray),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.gray),
                         ),
                       )
                     : Container(),

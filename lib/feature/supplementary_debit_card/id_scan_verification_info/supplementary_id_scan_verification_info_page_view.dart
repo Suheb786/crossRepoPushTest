@@ -115,6 +115,7 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                                             child: Text(
                                               S.of(context).uploadIdInstead,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
                                                   letterSpacing: 1,

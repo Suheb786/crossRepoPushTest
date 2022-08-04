@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/information_text.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
@@ -27,16 +28,11 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
               child: InkWell(
                 onTap: () {
                   Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      RoutePaths.OnBoarding,
-                      ModalRoute.withName(RoutePaths.Splash));
+                      context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
                 },
                 child: Padding(
                   padding: EdgeInsets.only(right: 30),
-                  child: Container(
-                      height: 24,
-                      width: 24,
-                      child: AppSvg.asset(AssetUtils.logout)),
+                  child: Container(height: 24, width: 24, child: AppSvg.asset(AssetUtils.logout)),
                 ),
               ),
             ),
@@ -46,13 +42,13 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
             Text(
               S.of(context).openAccount,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   color: AppColor.dark_gray,
                   fontSize: 10,
                   fontWeight: FontWeight.w600),
             ),
             Padding(
-              padding:
-                  EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+              padding: EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
               child: ShowUpAnimation(
                 key: ValueKey(0),
                 delayStart: Duration(milliseconds: 500),
@@ -64,6 +60,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                   S.of(context).productSelectorHeader,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: AppColor.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
@@ -82,8 +79,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                     clipBehavior: Clip.none,
                     children: [
                       Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
                         margin: EdgeInsets.zero,
@@ -92,45 +88,35 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                           decoration: BoxDecoration(
                             color: AppColor.very_soft_violet,
                             gradient: LinearGradient(
-                                colors: [
-                                  AppColor.dark_violet,
-                                  AppColor.dark_moderate_blue
-                                ],
+                                colors: [AppColor.dark_violet, AppColor.dark_moderate_blue],
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.topCenter),
                           ),
                           child: SingleChildScrollView(
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 24, right: 24, bottom: 32),
+                              padding: EdgeInsets.only(left: 24, right: 24, bottom: 32),
                               child: Column(
                                 children: [
                                   SizedBox(height: 228),
                                   InformationText(
-                                      image: AssetUtils.world,
-                                      title: S.of(context).acceptedWorldWide),
+                                      image: AssetUtils.world, title: S.of(context).acceptedWorldWide),
                                   SizedBox(height: 32),
                                   InformationText(
-                                      image: AssetUtils.gift,
-                                      title: S.of(context).loyaltyRewards),
+                                      image: AssetUtils.gift, title: S.of(context).loyaltyRewards),
                                   SizedBox(height: 32),
                                   InformationText(
-                                      image: AssetUtils.earphone,
-                                      title: S.of(context).customerService),
+                                      image: AssetUtils.earphone, title: S.of(context).customerService),
                                   SizedBox(height: 25),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushReplacementNamed(
-                                          context, RoutePaths.Registration);
+                                      Navigator.pushReplacementNamed(context, RoutePaths.Registration);
                                     },
                                     child: Container(
                                       padding: EdgeInsets.all(16),
                                       height: 57,
                                       width: 57,
                                       decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 1,
-                                              color: AppColor.whiteGray),
+                                          border: Border.all(width: 1, color: AppColor.whiteGray),
                                           shape: BoxShape.circle,
                                           color: AppColor.dark_violet_4),
                                       child: AppSvg.asset(AssetUtils.tick),

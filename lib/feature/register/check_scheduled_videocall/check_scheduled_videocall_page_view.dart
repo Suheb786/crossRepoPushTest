@@ -12,9 +12,9 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class CheckScheduledVideoCallPageView
-    extends BasePageViewWidget<CheckScheduledVideoCallPageViewModel> {
+class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledVideoCallPageViewModel> {
   CheckScheduledVideoCallPageView(ProviderBase model) : super(model);
 
   @override
@@ -47,8 +47,7 @@ class CheckScheduledVideoCallPageView
                         initialData: Resource.none(),
                         onData: (response) {
                           if (response.status == Status.SUCCESS) {
-                            Navigator.popUntil(context,
-                                ModalRoute.withName(RoutePaths.OnBoarding));
+                            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.OnBoarding));
                           }
                         },
                         dataBuilder: (context, data) {
@@ -72,6 +71,7 @@ class CheckScheduledVideoCallPageView
                   child: Text(
                     S.of(context).videoCallDueNow,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                         color: Theme.of(context).accentColor),
@@ -106,6 +106,7 @@ class CheckScheduledVideoCallPageView
                   child: Text(
                     S.of(context).rescheduleTheCall,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1,

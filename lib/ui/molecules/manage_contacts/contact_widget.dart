@@ -7,8 +7,7 @@ class ContactWidget extends StatelessWidget {
   final Beneficiary? beneficiary;
   final Function()? onTap;
 
-  const ContactWidget({Key? key, this.beneficiary, this.onTap})
-      : super(key: key);
+  const ContactWidget({Key? key, this.beneficiary, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +36,10 @@ class ContactWidget extends StatelessWidget {
                         backgroundColor: Theme.of(context).primaryColor,
                         child: Text(
                           beneficiary!.fullName!.split(" ").length > 1
-                              ? StringUtils.getFirstInitials(
-                                  beneficiary!.fullName)
+                              ? StringUtils.getFirstInitials(beneficiary!.fullName)
                               : beneficiary!.fullName![0],
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
                               fontSize: 14,
                               color: Theme.of(context).accentColor),
@@ -51,11 +50,11 @@ class ContactWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    (beneficiary!.nickName != null &&
-                            beneficiary!.nickName!.isNotEmpty)
+                    (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
                         ? beneficiary!.nickName!
                         : beneficiary!.fullName!,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                   ),
                 )
               ],

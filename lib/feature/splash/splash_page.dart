@@ -10,8 +10,7 @@ class SplashPage extends BasePage<SplashViewModel> {
   SplashPageState createState() => SplashPageState();
 }
 
-class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage>
-    with TickerProviderStateMixin {
+class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage> with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return splashViewModelProvider;

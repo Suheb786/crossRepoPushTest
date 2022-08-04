@@ -15,8 +15,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class FatcaUSRelevantW9PageView
-    extends BasePageViewWidget<FatcaUSRelevantW9PageViewModel> {
+class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9PageViewModel> {
   FatcaUSRelevantW9PageView(ProviderBase model) : super(model);
 
   @override
@@ -41,9 +40,7 @@ class FatcaUSRelevantW9PageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
-                            .read(registerStepFourViewModelProvider)
-                            .nextPage();
+                        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).nextPage();
                         // .next();
                       });
                       ProviderScope.containerOf(context)
@@ -82,21 +79,14 @@ class FatcaUSRelevantW9PageView
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
-                        color: Theme.of(context)
-                            .cardTheme
-                            .copyWith(color: AppColor.white)
-                            .color,
+                        color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                         margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
+                        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -106,12 +96,9 @@ class FatcaUSRelevantW9PageView
                                     child: Column(
                                       children: [
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .nameAsPerIncomeTaxReturn,
+                                          labelText: S.of(context).nameAsPerIncomeTaxReturn,
                                           hintText: S.of(context).pleaseEnter,
-                                          controller: model
-                                              .nameAsPerTaxReturnController,
+                                          controller: model.nameAsPerTaxReturnController,
                                           key: model.nameAsPerTaxReturnKey,
                                           inputAction: TextInputAction.go,
                                           onChanged: (value) {
@@ -122,12 +109,9 @@ class FatcaUSRelevantW9PageView
                                           height: 16,
                                         ),
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .businessNameOptional,
+                                          labelText: S.of(context).businessNameOptional,
                                           hintText: S.of(context).pleaseEnter,
-                                          controller:
-                                              model.businessNameController,
+                                          controller: model.businessNameController,
                                           inputType: TextInputType.text,
                                           inputAction: TextInputAction.go,
                                           key: model.businessNameKey,
@@ -139,24 +123,19 @@ class FatcaUSRelevantW9PageView
                                           height: 8,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16),
+                                          padding: const EdgeInsets.symmetric(horizontal: 16),
                                           child: Text(
-                                            S
-                                                .of(context)
-                                                .isBusinessNameDifferent,
+                                            S.of(context).isBusinessNameDifferent,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
+                                                fontFamily: StringUtils.appFont,
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
+                                                color: Theme.of(context).primaryColorDark),
                                           ),
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
+                                          height: MediaQuery.of(context).viewInsets.bottom,
                                         ),
                                       ],
                                     ),
@@ -171,9 +150,7 @@ class FatcaUSRelevantW9PageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
+                                                  buttonText: S.of(context).swipeToProceed,
                                                   buttonHeight: 50,
                                                 )
                                               : Container();

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../app_svg.dart';
 
@@ -33,8 +34,11 @@ class ReviewEditInfoItem extends StatelessWidget {
                     child: Text(
                       title,
                       softWrap: true,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: AppColor.vivid_orange),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColor.vivid_orange),
                     ),
                   ),
                 ),

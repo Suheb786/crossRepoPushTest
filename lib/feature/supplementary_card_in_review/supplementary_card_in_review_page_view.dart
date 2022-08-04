@@ -9,14 +9,13 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class SupplementaryCardInReviewPageView
-    extends BasePageViewWidget<SupplementaryCardInReviewPageViewModel> {
+class SupplementaryCardInReviewPageView extends BasePageViewWidget<SupplementaryCardInReviewPageViewModel> {
   SupplementaryCardInReviewPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, SupplementaryCardInReviewPageViewModel model) {
+  Widget build(BuildContext context, SupplementaryCardInReviewPageViewModel model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
@@ -43,8 +42,7 @@ class SupplementaryCardInReviewPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color: model.cardInReviewArguments.cardType ==
-                                    CardType.DEBIT
+                            color: model.cardInReviewArguments.cardType == CardType.DEBIT
                                 ? Theme.of(context).accentColor.withOpacity(0.4)
                                 : AppColor.softRed,
                           ),
@@ -54,19 +52,15 @@ class SupplementaryCardInReviewPageView
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: model.cardInReviewArguments.cardType ==
-                                        CardType.DEBIT
+                                color: model.cardInReviewArguments.cardType == CardType.DEBIT
                                     ? Theme.of(context).primaryColor
                                     : Theme.of(context).canvasColor,
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color: model.cardInReviewArguments
-                                                  .cardType ==
-                                              CardType.DEBIT
+                                      color: model.cardInReviewArguments.cardType == CardType.DEBIT
                                           ? Theme.of(context).accentColor
-                                          : Theme.of(context)
-                                              .primaryColorDark)),
+                                          : Theme.of(context).primaryColorDark)),
                             ),
                           ),
                         ],
@@ -83,10 +77,10 @@ class SupplementaryCardInReviewPageView
                             S.of(context).yourApplicationInReview,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: model.cardInReviewArguments.cardType ==
-                                        CardType.DEBIT
+                                color: model.cardInReviewArguments.cardType == CardType.DEBIT
                                     ? Theme.of(context).primaryColorDark
                                     : Theme.of(context).accentColor),
                           ),
@@ -94,16 +88,15 @@ class SupplementaryCardInReviewPageView
                             height: 8,
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
                               S.of(context).weWillNotifyOnceReady,
                               textAlign: TextAlign.center,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: model.cardInReviewArguments.cardType ==
-                                          CardType.DEBIT
+                                  color: model.cardInReviewArguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
                                       : Theme.of(context).accentColor),
                             ),
@@ -119,14 +112,12 @@ class SupplementaryCardInReviewPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor:
-                        model.cardInReviewArguments.cardType == CardType.DEBIT
-                            ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).accentColor,
-                    borderColor:
-                        model.cardInReviewArguments.cardType == CardType.DEBIT
-                            ? Theme.of(context).primaryColorDark
-                            : Theme.of(context).accentColor,
+                    textColor: model.cardInReviewArguments.cardType == CardType.DEBIT
+                        ? Theme.of(context).primaryColorDark
+                        : Theme.of(context).accentColor,
+                    borderColor: model.cardInReviewArguments.cardType == CardType.DEBIT
+                        ? Theme.of(context).primaryColorDark
+                        : Theme.of(context).accentColor,
                   ),
                   SizedBox(
                     height: 5,
@@ -139,8 +130,8 @@ class SupplementaryCardInReviewPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: model.cardInReviewArguments.cardType ==
-                                  CardType.DEBIT
+                          fontFamily: StringUtils.appFont,
+                          color: model.cardInReviewArguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
                               : Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,

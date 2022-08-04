@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SplashPageView extends BasePageViewWidget<SplashViewModel> {
   SplashPageView(ProviderBase model) : super(model);
@@ -31,7 +32,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               title: S.of(context).deviceNotSupported,
               descriptionWidget: Text(
                 S.of(context).deviceNotSupportedNote,
-                style: TextStyle(fontSize: 14, height: 1.7),
+                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
               ), onDismissed: () {
             exit(0);
           }, onSelected: () {
@@ -77,6 +78,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
                         return Text(
                           version!,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 12,
                               color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w600),

@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
   SendMoneyPageView(ProviderBase model) : super(model);
@@ -60,7 +61,10 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.dark_gray_2),
                           ),
                         ),
                       ],
@@ -73,7 +77,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               padding: EdgeInsets.only(top: 80),
               child: Text(
                 S.of(context).sendMoney,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                style: TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
               ),
             ),
             Padding(
@@ -92,7 +96,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
-                              fontFamily: 'Montserrat',
+                              fontFamily: StringUtils.appFont,
                               color: AppColor.black),
                         ),
                         Padding(
@@ -100,7 +104,10 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                color: AppColor.verLightGray4, fontSize: 16, fontWeight: FontWeight.w700),
+                                fontFamily: StringUtils.appFont,
+                                color: AppColor.verLightGray4,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ],
@@ -122,7 +129,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
               padding: EdgeInsets.only(top: 49),
               child: Text(
                 S.of(context).accountBalance,
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 10,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
@@ -137,6 +148,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                         .account!
                         .availableBalance!,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
                     ),
@@ -145,8 +157,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                     padding: EdgeInsets.only(left: 4.0, top: 2),
                     child: Text(
                       S.of(context).JOD,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                          color: AppColor.dark_gray_1),
                     ),
                   ),
                 ],

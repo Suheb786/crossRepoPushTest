@@ -14,6 +14,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
   RequestMoneyPageView(ProviderBase model) : super(model);
@@ -72,7 +73,10 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                 child: Text(
                                   S.of(context).backToPayments,
                                   style: TextStyle(
-                                      fontSize: 12, fontWeight: FontWeight.w600, color: AppColor.dark_gray_2),
+                                      fontFamily: StringUtils.appFont,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColor.dark_gray_2),
                                 ),
                               ),
                             ],
@@ -85,7 +89,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     padding: EdgeInsets.only(top: 80),
                     child: Text(
                       S.of(context).requestMoney,
-                      style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Padding(
@@ -102,9 +107,9 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 40,
-                                    fontFamily: 'Montserrat',
                                     color: AppColor.black),
                               ),
                               Padding(
@@ -112,6 +117,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       color: AppColor.verLightGray4,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700),
@@ -135,8 +141,11 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     padding: EdgeInsets.only(top: 49),
                     child: Text(
                       S.of(context).accountBalance,
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: AppColor.dark_gray_1),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 10,
+                          color: AppColor.dark_gray_1),
                     ),
                   ),
                   Padding(
@@ -151,6 +160,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                               .account!
                               .availableBalance!,
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
                             fontSize: 14,
                           ),
@@ -160,7 +170,10 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 12, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                       ],

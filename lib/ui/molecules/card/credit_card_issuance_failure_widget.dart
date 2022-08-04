@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardIssuanceFailureWidget extends StatelessWidget {
   final double? fontSize;
@@ -9,10 +10,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
   final IssuanceType type;
 
   CreditCardIssuanceFailureWidget(
-      {this.fontSize,
-      this.isSmallDevices: false,
-      this.type: IssuanceType.failure,
-      Key? key})
+      {this.fontSize, this.isSmallDevices: false, this.type: IssuanceType.failure, Key? key})
       : super(key: key);
 
   @override
@@ -21,8 +19,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.all(15),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).primaryColor,
@@ -48,6 +45,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
                   getLabel(type, context),
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontSize: isSmallDevices ? 12 : 14,
                       fontWeight: FontWeight.w600),

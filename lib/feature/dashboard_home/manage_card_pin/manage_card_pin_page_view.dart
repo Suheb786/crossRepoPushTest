@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
   ManageCardPinPageView(ProviderBase model) : super(model);
@@ -35,6 +36,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
             child: Text(
               S.of(context).manageCardPin,
               style: TextStyle(
+                  fontFamily: StringUtils.appFont,
                   color: Theme.of(context).primaryColorDark,
                   fontWeight: FontWeight.w600,
                   fontSize: 14),
@@ -54,9 +56,8 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                   height: 4,
                   width: 64,
                   margin: EdgeInsets.only(top: 8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: AppColor.whiteGray),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
                 ),
                 Card(
                   color: Theme.of(context).accentColor,
@@ -67,8 +68,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       stream: model.unblockCardPinStream,
                       onData: (data) {
                         if (data.data!) {
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.CardPinUnBlockSuccess,
+                          Navigator.pushReplacementNamed(context, RoutePaths.CardPinUnBlockSuccess,
                               arguments: model.manageCardPinArguments);
                         }
                       },
@@ -80,16 +80,14 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 title: S.of(context).unBlockPin,
                                 descriptionWidget: Text(
                                   S.of(context).unBlockPinDescription,
-                                  style: TextStyle(fontSize: 14, height: 1.7),
+                                  style:
+                                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
                                 ), onSelected: () {
                               Navigator.pop(context);
-                              if (model.manageCardPinArguments!
-                                      .freezeCardStatusEnum ==
+                              if (model.manageCardPinArguments!.freezeCardStatusEnum ==
                                   FreezeCardStatusEnum.PRE) {
                                 model.unBlockPin(
-                                    pinCode: '',
-                                    tokenizedPan: model
-                                        .manageCardPinArguments!.tokenizedPan);
+                                    pinCode: '', tokenizedPan: model.manageCardPinArguments!.tokenizedPan);
                               }
                             }, onDismissed: () {
                               Navigator.pop(context);
@@ -102,15 +100,13 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 Expanded(
                                     child: Text(
                                   S.of(context).unblockCardPin,
-                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                  style:
+                                      TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
                                 )),
                                 AppSvg.asset(AssetUtils.rightChevron,
                                     width: 20,
                                     height: 20,
-                                    color: Theme.of(context)
-                                        .primaryTextTheme
-                                        .bodyText1!
-                                        .color)
+                                    color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                               ],
                             ),
                           ),
@@ -130,16 +126,14 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 child: Text(
                               S.of(context).changeCardPin,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                               ),
                             )),
                             AppSvg.asset(AssetUtils.rightChevron,
                                 width: 20,
                                 height: 20,
-                                color: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1!
-                                    .color)
+                                color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                           ],
                         ),
                       ),

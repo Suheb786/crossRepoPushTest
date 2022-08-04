@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentScrollWheelWidget extends StatelessWidget {
   final Color? textColor;
@@ -27,7 +28,11 @@ class PaymentScrollWheelWidget extends StatelessWidget {
             padding: EdgeInsetsDirectional.only(start: 32.0, end: 32),
             child: Text(
               label,
-              style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  color: textColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400),
             ),
           ),
         ),

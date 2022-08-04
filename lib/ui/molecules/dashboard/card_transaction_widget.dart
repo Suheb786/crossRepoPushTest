@@ -3,6 +3,7 @@ import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class CardTransactionWidget extends StatelessWidget {
@@ -17,11 +18,11 @@ class CardTransactionWidget extends StatelessWidget {
       children: [
         Text(
           transactions!.label!.isNotEmpty
-              ? TimeUtils.getFormattedDateForAccountTransaction(
-                  transactions!.label!)
+              ? TimeUtils.getFormattedDateForAccountTransaction(transactions!.label!)
               : '-',
           //transactions!.label!,
           style: TextStyle(
+              fontFamily: StringUtils.appFont,
               fontSize: 15,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).primaryColorDark),
@@ -37,17 +38,17 @@ class CardTransactionWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Visibility(
-                    visible: transactions!.transactions![index].type ==
-                        TransactionTypeEnum.PendingAuthorization,
+                    visible:
+                        transactions!.transactions![index].type == TransactionTypeEnum.PendingAuthorization,
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       margin: EdgeInsets.only(bottom: 10),
                       decoration: BoxDecoration(
-                          color: AppColor.dark_orange,
-                          borderRadius: BorderRadius.circular(100)),
+                          color: AppColor.dark_orange, borderRadius: BorderRadius.circular(100)),
                       child: Text(
                         S.of(context).pending,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
                             fontWeight: FontWeight.w600,
                             fontSize: 10),
@@ -66,6 +67,7 @@ class CardTransactionWidget extends StatelessWidget {
                               transactions!.transactions![index].memo!,
                               maxLines: 2,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -74,13 +76,10 @@ class CardTransactionWidget extends StatelessWidget {
                               padding: EdgeInsets.only(top: 4),
                               child: Text(
                                 TimeUtils.getFormattedTimeForTransaction(
-                                    transactions!.transactions![index].time!
-                                        .toString()),
+                                    transactions!.transactions![index].time!.toString()),
                                 style: TextStyle(
-                                    color: Theme.of(context)
-                                        .inputDecorationTheme
-                                        .hintStyle!
-                                        .color,
+                                    fontFamily: StringUtils.appFont,
+                                    color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -95,13 +94,10 @@ class CardTransactionWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            transactions!.transactions![index].amount!
-                                .toStringAsFixed(3),
+                            transactions!.transactions![index].amount!.toStringAsFixed(3),
                             style: TextStyle(
-                                color: transactions!
-                                        .transactions![index].amount!
-                                        .toString()
-                                        .contains('-')
+                                fontFamily: StringUtils.appFont,
+                                color: transactions!.transactions![index].amount!.toString().contains('-')
                                     ? AppColor.dark_brown
                                     : AppColor.darkModerateLimeGreen,
                                 fontWeight: FontWeight.w600,
@@ -113,12 +109,10 @@ class CardTransactionWidget extends StatelessWidget {
                           Text(
                             transactions!.transactions![index].currency!,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
-                                color: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle!
-                                    .color),
+                                color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                           ),
                         ],
                       )

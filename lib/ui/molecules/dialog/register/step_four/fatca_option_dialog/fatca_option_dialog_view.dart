@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
 
@@ -24,11 +25,7 @@ class FatcaOptionDialogView extends StatelessWidget {
   final List<AdditionalDataDropDownData> dropDownData;
   bool _keyboardVisible = false;
 
-  FatcaOptionDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.title,
-      required this.dropDownData});
+  FatcaOptionDialogView({this.onDismissed, this.onSelected, this.title, required this.dropDownData});
 
   ProviderBase providerBase() {
     return fatcaOptionsDialogViwModelProvider;
@@ -40,20 +37,14 @@ class FatcaOptionDialogView extends StatelessWidget {
     return BaseWidget<FatcaOptionDialogViewModel>(
       providerBase: providerBase(),
       onModelReady: (model) {
-        if (model.allOptionalDataList == null ||
-            model.allOptionalDataList!.isEmpty) {
+        if (model.allOptionalDataList == null || model.allOptionalDataList!.isEmpty) {
           model.setOptionData(dropDownData);
         }
       },
       builder: (context, model, child) {
         return Dialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(
-                left: 24,
-                right: 24,
-                bottom: 36,
-                top: _keyboardVisible ? 36 : 204),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
                 if (details.primaryVelocity! > 0) {
@@ -64,8 +55,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                 stream: model!.currentIndexStream,
                 initialData: 0,
                 dataBuilder: (context, currentIndex) {
-                  return AppStreamBuilder<
-                      Resource<List<AdditionalDataDropDownData>>>(
+                  return AppStreamBuilder<Resource<List<AdditionalDataDropDownData>>>(
                     stream: model.optionalDataStream,
                     initialData: Resource.none(),
                     dataBuilder: (context, data) {
@@ -79,15 +69,16 @@ class FatcaOptionDialogView extends StatelessWidget {
                               child: Text(
                                 title!,
                                 style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w600),
+                                    fontFamily: StringUtils.appFont,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
                           Visibility(
                             visible: title == 'TAX COUNTRY' ? true : false,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 32),
+                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                               child: AppTextField(
                                 labelText: '',
                                 controller: model.mobileNumberSearchController,
@@ -95,8 +86,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                 hintTextColor: AppColor.gray_2,
                                 textColor: Theme.of(context).primaryColorDark,
                                 hintText: S.of(context).searchCountry,
-                                containerPadding: EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 10),
+                                containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                 onChanged: (value) {
                                   print(value);
                                   model.searchMobileNumber(value);
@@ -109,8 +99,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                         width: 16,
                                         padding: EdgeInsets.all(6),
                                         child: AppSvg.asset(AssetUtils.search,
-                                            color: Theme.of(context)
-                                                .primaryColorDark)),
+                                            color: Theme.of(context).primaryColorDark)),
                                   );
                                 },
                               ),
@@ -122,62 +111,43 @@ class FatcaOptionDialogView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16.0),
+                                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                           child: Container(
                                             height: 64,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(16),
+                                              borderRadius: BorderRadius.circular(16),
                                               color: AppColor.vividYellow,
                                             ),
                                           ),
                                         ),
                                         Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              2.5,
+                                          height: MediaQuery.of(context).size.height / 2.5,
                                           child: AppScrollableListViewWidget(
                                             key: ValueKey(data.data!.length),
                                             child: ClickableListWheelScrollView(
-                                              scrollController:
-                                                  model.scrollController,
+                                              scrollController: model.scrollController,
                                               itemHeight: 64,
                                               itemCount: data.data!.length,
                                               onItemTapCallback: (index) {
                                                 model.selectMobileNumber(index);
                                               },
-                                              child: ListWheelScrollView
-                                                  .useDelegate(
-                                                      controller: model
-                                                          .scrollController,
-                                                      itemExtent: 64,
-                                                      onSelectedItemChanged:
-                                                          (int index) {
-                                                        model
-                                                            .selectMobileNumber(
-                                                                index);
-                                                      },
-                                                      physics:
-                                                          FixedExtentScrollPhysics(),
-                                                      perspective: 0.0000000001,
-                                                      childDelegate:
-                                                          ListWheelChildBuilderDelegate(
-                                                              childCount: data
-                                                                  .data!.length,
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  int index) {
-                                                                return FatcaOptionItemWidget(
-                                                                  item: data
-                                                                          .data![
-                                                                      index],
-                                                                  showFlag: title ==
-                                                                      'TAX COUNTRY',
-                                                                );
-                                                              })),
+                                              child: ListWheelScrollView.useDelegate(
+                                                  controller: model.scrollController,
+                                                  itemExtent: 64,
+                                                  onSelectedItemChanged: (int index) {
+                                                    model.selectMobileNumber(index);
+                                                  },
+                                                  physics: FixedExtentScrollPhysics(),
+                                                  perspective: 0.0000000001,
+                                                  childDelegate: ListWheelChildBuilderDelegate(
+                                                      childCount: data.data!.length,
+                                                      builder: (BuildContext context, int index) {
+                                                        return FatcaOptionItemWidget(
+                                                          item: data.data![index],
+                                                          showFlag: title == 'TAX COUNTRY',
+                                                        );
+                                                      })),
                                             ),
                                           ),
                                         ),
@@ -187,6 +157,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                       child: Text(
                                         "No Options Available",
                                         style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_violet_4),
@@ -198,8 +169,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
-                                    print(
-                                        'selectedData--->${model.selectedOptionData!.name}');
+                                    print('selectedData--->${model.selectedOptionData!.name}');
                                     Navigator.pop(context);
                                     onSelected!.call(model.selectedOptionData!);
                                   },
@@ -209,21 +179,18 @@ class FatcaOptionDialogView extends StatelessWidget {
                                     width: 57,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color!),
-                                    child: AppSvg.asset(AssetUtils.tick,
-                                        color: Theme.of(context).accentColor),
+                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                    child:
+                                        AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, bottom: 16),
+                                  padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                   child: Center(
                                     child: Text(
                                       S.of(context).swipeDownToCancel,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontSize: 10,
                                           fontWeight: FontWeight.w400,
                                           color: AppColor.dark_gray_1),

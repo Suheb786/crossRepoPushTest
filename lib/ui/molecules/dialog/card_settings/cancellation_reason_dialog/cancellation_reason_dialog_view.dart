@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CancellationReasonDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -19,8 +20,7 @@ class CancellationReasonDialogView extends StatelessWidget {
   final String? title;
   final List<String> reasons;
 
-  const CancellationReasonDialogView(
-      {required this.reasons, this.onDismissed, this.onSelected, this.title});
+  const CancellationReasonDialogView({required this.reasons, this.onDismissed, this.onSelected, this.title});
 
   ProviderBase providerBase() {
     return cancelReasonCardDialogViewModelProvider;
@@ -31,10 +31,8 @@ class CancellationReasonDialogView extends StatelessWidget {
     return BaseWidget<CancellationReasonDialogModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -55,7 +53,7 @@ class CancellationReasonDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).reasonOfCancellation,
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -64,8 +62,7 @@ class CancellationReasonDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Container(
                                 height: 64,
                                 width: double.infinity,
@@ -92,20 +89,17 @@ class CancellationReasonDialogView extends StatelessWidget {
                                     },
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount: reasons.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return ListScrollWheelListWidget(
-                                                label: reasons[index],
-                                                textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
-                                                    : AppColor.dark_gray_1,
-                                                widgetColor: Colors.transparent,
-                                              );
-                                            })),
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                        childCount: reasons.length,
+                                        builder: (BuildContext context, int index) {
+                                          return ListScrollWheelListWidget(
+                                            label: reasons[index],
+                                            textColor: currentIndex == index
+                                                ? Theme.of(context).primaryColorDark
+                                                : AppColor.dark_gray_1,
+                                            widgetColor: Colors.transparent,
+                                          );
+                                        })),
                               ),
                             ),
                           ],
@@ -120,12 +114,8 @@ class CancellationReasonDialogView extends StatelessWidget {
                             width: 57,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!),
-                            child: AppSvg.asset(AssetUtils.tick,
-                                color: Theme.of(context).accentColor),
+                                color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                            child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                           ),
                         ),
                         Padding(
@@ -134,6 +124,7 @@ class CancellationReasonDialogView extends StatelessWidget {
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
                                   fontSize: 10,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),

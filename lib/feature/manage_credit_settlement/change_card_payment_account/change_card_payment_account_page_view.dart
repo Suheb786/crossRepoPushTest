@@ -28,7 +28,11 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
         children: [
           Text(
             S.of(context).changeLinkedAccount.toUpperCase(),
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -36,7 +40,11 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
           Text(
             S.of(context).selectAccountToPayCreditCard,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -74,6 +82,7 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                           child: Text(
                             S.of(context).currentSettlementAccount,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
                             ),
@@ -108,12 +117,18 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                                 children: [
                                   Text(
                                     'Savings Account',
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                    style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   Text(
                                     '5669 4900 2111',
                                     style: TextStyle(
-                                        fontSize: 10, fontWeight: FontWeight.w600, color: AppColor.gray),
+                                        fontFamily: StringUtils.appFont,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.gray),
                                   )
                                 ],
                               )
@@ -181,6 +196,7 @@ class ChangeCardPaymentAccountPageView extends BasePageViewWidget<ChangeCardPaym
                             child: Text(
                               S.of(context).backToCardSettings,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: AppColor.brightBlue,
                                 letterSpacing: 1,
                                 fontSize: 14,

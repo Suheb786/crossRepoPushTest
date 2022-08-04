@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_mod
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
   PlaceholderPageView(ProviderBase model) : super(model);
@@ -23,10 +24,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
               onHorizontalDragEnd: (details) {
                 if (details.primaryVelocity!.isNegative) {
                 } else {
-                  ProviderScope.containerOf(context)
-                      .read(appHomeViewModelProvider)
-                      .pageController
-                      .previous();
+                  ProviderScope.containerOf(context).read(appHomeViewModelProvider).pageController.previous();
                 }
               },
               child: Card(
@@ -35,9 +33,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                 child: Container(
                   margin: EdgeInsets.zero,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AssetUtils.placeholder),
-                          fit: BoxFit.cover)),
+                      image: DecorationImage(image: AssetImage(AssetUtils.placeholder), fit: BoxFit.cover)),
                   child: SingleChildScrollView(
                       child: Container(
                     padding: EdgeInsets.only(top: 232),
@@ -46,6 +42,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                         Text(S.of(context).bornBlink,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontSize: 32,
                                 fontWeight: FontWeight.w700)),
@@ -55,6 +52,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                             S.of(context).spendJod,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),

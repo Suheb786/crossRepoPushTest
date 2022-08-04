@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EmploymentListWidget extends StatelessWidget {
   final Color? textColor;
@@ -22,7 +23,8 @@ class EmploymentListWidget extends StatelessWidget {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: widgetColor),
         child: Text(
           label,
-          style: TextStyle(color: textColor, fontSize: 14, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              fontFamily: StringUtils.appFont, color: textColor, fontSize: 14, fontWeight: FontWeight.w600),
         ),
       ),
     );

@@ -16,9 +16,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
-class ChangeDeviceSuccessPageView
-    extends BasePageViewWidget<ChangeDeviceSuccessPageViewModel> {
+class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccessPageViewModel> {
   ChangeDeviceSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -28,30 +28,25 @@ class ChangeDeviceSuccessPageView
         initialData: Resource.none(),
         onData: (data) {
           if (data.status == Status.SUCCESS) {
-            CheckKYCData kycData = data.data?.content?.kycData?.firstWhere(
-                    (element) => element.status ?? false,
-                    orElse: () => CheckKYCData()) ??
+            CheckKYCData kycData = data.data?.content?.kycData
+                    ?.firstWhere((element) => element.status ?? false, orElse: () => CheckKYCData()) ??
                 CheckKYCData();
 
             if (kycData.type?.isNotEmpty ?? false) {
               if (kycData.type == 'MobileOTP') {
-                Navigator.pushReplacementNamed(
-                    context, RoutePaths.AccountRegistration,
+                Navigator.pushReplacementNamed(context, RoutePaths.AccountRegistration,
                     arguments: AccountRegistrationParams(
                         kycData: kycData,
-                        mobileCode: ProviderScope.containerOf(context)
-                            .read(loginViewModelProvider)
-                            .mobileCode,
-                        mobileNumber: ProviderScope.containerOf(context)
-                            .read(loginViewModelProvider)
-                            .mobileNumber));
+                        mobileCode:
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileCode,
+                        mobileNumber:
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).mobileNumber));
               } else {
                 Navigator.pushReplacementNamed(context, RoutePaths.Registration,
                     arguments: RegisterPageParams(
                         kycData: kycData,
-                        applicationId: ProviderScope.containerOf(context)
-                            .read(loginViewModelProvider)
-                            .applicationId));
+                        applicationId:
+                            ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
               print('in change device');
@@ -96,8 +91,7 @@ class ChangeDeviceSuccessPageView
                                     ),
                                     child: Center(
                                         child: AppSvg.asset(AssetUtils.right,
-                                            color: Theme.of(context)
-                                                .primaryColorDark)),
+                                            color: Theme.of(context).primaryColorDark)),
                                   ),
                                 ),
                               ],
@@ -113,6 +107,7 @@ class ChangeDeviceSuccessPageView
                                 Text(
                                   S.of(context).congratulations,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 24,
                                       color: Theme.of(context).accentColor),
@@ -121,14 +116,12 @@ class ChangeDeviceSuccessPageView
                                   height: 24,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 48.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 48.0),
                                   child: Text(
-                                    S
-                                        .of(context)
-                                        .newDeviceRegisteredSuccessfully,
+                                    S.of(context).newDeviceRegisteredSuccessfully,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
                                         color: Theme.of(context).accentColor),
@@ -159,6 +152,7 @@ class ChangeDeviceSuccessPageView
                             child: Text(
                               S.of(context).toDashboard,
                               style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,

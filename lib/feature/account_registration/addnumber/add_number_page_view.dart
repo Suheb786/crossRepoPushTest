@@ -220,6 +220,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                                   .bodyText1!
                                                                   .color,
                                                               fontSize: 14,
+                                                              fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600,
                                                             ),
                                                           ),
@@ -254,6 +255,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 child: Text(
                                   S.of(context).backToRegistration,
                                   style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     color: AppColor.brightBlue,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,

@@ -102,6 +102,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                           S.of(context).videoCallInfoDescription,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
                                               fontSize: 20,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).primaryColorDark),
@@ -120,6 +121,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                           },
                                           child: Text(S.of(context).scheduleLater,
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600)),

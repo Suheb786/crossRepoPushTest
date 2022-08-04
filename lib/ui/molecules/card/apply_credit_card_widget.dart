@@ -4,12 +4,12 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class ApplyCreditCardWidget extends StatelessWidget {
   final bool isSmallDevices;
 
-  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false})
-      : super(key: key);
+  const ApplyCreditCardWidget({Key? key, this.isSmallDevices: false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,7 @@ class ApplyCreditCardWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.all(15),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           color: Theme.of(context).primaryColor,
@@ -36,30 +35,26 @@ class ApplyCreditCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                      top: 23, end: 23, start: 23),
+                  padding: const EdgeInsetsDirectional.only(top: 23, end: 23, start: 23),
                   child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                      height: isSmallDevices ? 26 : 33.64,
-                      width: isSmallDevices ? 52 : 72),
+                      height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
+                  padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
                   child: Align(
                     alignment: Alignment.center,
-                    child: AppSvg.asset(AssetUtils.cardCircle,
-                        height: isSmallDevices ? 72 : 96),
+                    child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
                   ),
                 ),
                 Padding(
-                    padding:
-                        EdgeInsetsDirectional.only(top: 10, start: 23, end: 23),
+                    padding: EdgeInsetsDirectional.only(top: 10, start: 23, end: 23),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
                         S.of(context).blinkCreditCard,
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: isSmallDevices ? 10 : 12,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
@@ -74,22 +69,18 @@ class ApplyCreditCardWidget extends StatelessWidget {
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.BlinkCreditCard);
+                        Navigator.pushNamed(context, RoutePaths.BlinkCreditCard);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1
-                                ?.color,
+                            color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
                             S.of(context).applyNow,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 fontSize: isSmallDevices ? 12 : 14,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),

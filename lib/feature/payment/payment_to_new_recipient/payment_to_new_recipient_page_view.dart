@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
@@ -73,7 +74,10 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                         children: [
                           Text(
                             S.of(context).sending,
-                            style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                color: Theme.of(context).accentColor,
+                                fontSize: 20),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 6),
@@ -107,6 +111,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                   model.updateEditAmount(false);
                                                 },
                                                 style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
                                                     fontSize: 28,
                                                     fontWeight: FontWeight.w700,
                                                     color: Theme.of(context).accentColor),
@@ -124,6 +129,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                                       .currentPinValue)
                                                   .toStringAsFixed(3),
                                               style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontSize: 28,
                                                   fontWeight: FontWeight.w700),
@@ -134,6 +140,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                   child: Text(
                                     S.of(context).JOD,
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         color: AppColor.very_light_red,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w700),
@@ -160,6 +167,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                     child: Text(
                                       S.of(context).tapToEdit,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 12,
                                           color: AppColor.very_light_red),
@@ -174,6 +182,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                           Text(
                             S.of(context).sendMoney,
                             style: TextStyle(
+                                fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10),
@@ -188,6 +197,7 @@ class PaymentToNewRecipientPageView extends BasePageViewWidget<PaymentToNewRecip
                                     " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
                                     color: Theme.of(context).accentColor),

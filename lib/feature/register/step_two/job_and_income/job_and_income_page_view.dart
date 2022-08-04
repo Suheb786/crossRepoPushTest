@@ -213,6 +213,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
@@ -290,7 +291,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             inputType: TextInputType.phone,
                             inputAction: TextInputAction.done,
                             inputFormatters: [
-                              LengthLimitingTextInputFormatter(12),
+                              LengthLimitingTextInputFormatter(14),
                               FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                             ],
                             controller: model.employerContactController,
@@ -396,6 +397,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                       descriptionWidget: Text.rich(TextSpan(
                                                           text: S.of(context).additionalIncomePopUpDesc1,
                                                           style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w400,
                                                               fontSize: 14,
                                                               height: 1.4,
@@ -408,6 +410,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                             TextSpan(
                                                                 text: S.of(context).annual,
                                                                 style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w600,
                                                                     fontSize: 14,
                                                                     color: Theme.of(context)
@@ -421,6 +424,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                                         .of(context)
                                                                         .additionalIncomePopUpDesc2,
                                                                     style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: 14,
                                                                         color: Theme.of(context)

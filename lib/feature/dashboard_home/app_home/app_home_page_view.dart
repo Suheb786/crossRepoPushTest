@@ -24,6 +24,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
@@ -80,8 +81,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         children: [
                           Text(
                             S.of(context).totalBalance,
-                            style:
-                                TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: AppColor.black),
+                            style: TextStyle(
+                                fontFamily: StringUtils.appFont,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                                color: AppColor.black),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 5.0),
@@ -91,6 +95,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               children: [
                                 Text('${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
                                     style: TextStyle(
+                                        fontFamily: StringUtils.appFont,
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
                                         color: Theme.of(context).primaryColorDark)),
@@ -98,6 +103,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   padding: EdgeInsets.only(top: 5, left: 5.0),
                                   child: Text(S.of(context).JOD,
                                       style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 14,
                                           color: AppColor.verLightGray4)),
@@ -258,6 +264,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Text(
                                                   S.of(context).addMoney,
                                                   style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
                                                       fontWeight: FontWeight.w600,
                                                       fontSize: 14,
                                                       color: Theme.of(context).accentColor),
@@ -322,6 +329,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                   S.of(context).creditCardDelivered,
                                                                   textAlign: TextAlign.center,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontWeight: FontWeight.w600,
                                                                       fontSize: 12),
                                                                 ),
@@ -363,6 +371,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     //         .toString())
                                                                     //     : '-',
                                                                     style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
                                                                         fontSize: 12,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
@@ -379,6 +388,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                   S.of(context).creditCardDelivered,
                                                                   textAlign: TextAlign.center,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontWeight: FontWeight.w600,
                                                                       fontSize: 12),
                                                                 ),
@@ -446,6 +456,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                       child: Text(
                                                                         S.of(context).confirm,
                                                                         style: TextStyle(
+                                                                            fontFamily: StringUtils.appFont,
                                                                             color: Theme.of(context)
                                                                                 .accentTextTheme
                                                                                 .bodyText1!
@@ -482,6 +493,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                   S.of(context).debitCardDelivered,
                                                                   textAlign: TextAlign.center,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontWeight: FontWeight.w600,
                                                                       fontSize: 12),
                                                                 ),
@@ -527,6 +539,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                                     .toString())
                                                                         : '-',
                                                                     style: TextStyle(
+                                                                        fontFamily: StringUtils.appFont,
                                                                         fontSize: 12,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
@@ -543,6 +556,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                   S.of(context).debitCardDelivered,
                                                                   textAlign: TextAlign.center,
                                                                   style: TextStyle(
+                                                                      fontFamily: StringUtils.appFont,
                                                                       fontWeight: FontWeight.w600,
                                                                       fontSize: 12),
                                                                 ),
@@ -612,6 +626,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                             child: Text(
                                                                               S.of(context).confirm,
                                                                               style: TextStyle(
+                                                                                  fontFamily:
+                                                                                      StringUtils.appFont,
                                                                                   color: Theme.of(context)
                                                                                       .accentTextTheme
                                                                                       .bodyText1!
@@ -640,7 +656,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             S.of(context).joinedBlink,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                fontWeight: FontWeight.w600, fontSize: 12),
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12),
                                                           ),
                                                           Padding(
                                                             padding: EdgeInsets.only(top: 5),
@@ -654,6 +672,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           .toString())
                                                                   : '-',
                                                               style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
                                                                   fontSize: 12,
                                                                   color: Theme.of(context)
                                                                       .inputDecorationTheme
@@ -876,7 +895,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Text(
                                                             S.of(context).creditCardActivated,
                                                             style: TextStyle(
-                                                                fontWeight: FontWeight.w600, fontSize: 12),
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12),
                                                           ),
                                                           Padding(
                                                             padding: EdgeInsets.only(top: 4),
@@ -919,6 +940,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           .toString())
                                                                   : '-',
                                                               style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
                                                                   color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
@@ -944,7 +966,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                           Text(
                                                             S.of(context).debitCardActivated,
                                                             style: TextStyle(
-                                                                fontWeight: FontWeight.w600, fontSize: 12),
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12),
                                                           ),
                                                           Padding(
                                                             padding: EdgeInsets.only(top: 4),
@@ -986,6 +1010,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                               //     .toString())
                                                               //     : '-',
                                                               style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
                                                                   color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
@@ -1004,7 +1029,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             S.of(context).blinkBorn,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                fontWeight: FontWeight.w600, fontSize: 12),
+                                                                fontFamily: StringUtils.appFont,
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 12),
                                                           ),
                                                           Padding(
                                                             padding: EdgeInsets.only(top: 4),
@@ -1018,6 +1045,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           .toString())
                                                                   : '-',
                                                               style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
                                                                   color: Theme.of(context)
                                                                       .inputDecorationTheme
                                                                       .hintStyle!
@@ -1219,162 +1247,4 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
           ],
         ));
   }
-
-// Widget subscriptionPopUpWidget(BuildContext context, AppHomeViewModel model) {
-//   return Container(
-//       height: MediaQuery.of(context).size.height,
-//       width: MediaQuery.of(context).size.width,
-//       padding: EdgeInsets.only(top: 116, bottom: 56, left: 23, right: 23),
-//       color: Theme.of(context).primaryColorDark.withOpacity(0.5),
-//       child: Container(
-//         decoration: BoxDecoration(
-//             color: Theme.of(context).accentColor,
-//             borderRadius: BorderRadius.circular(16)),
-//         child: Stack(
-//           alignment: Alignment.bottomCenter,
-//           children: [
-//             FadingEdgeScrollView.fromSingleChildScrollView(
-//               gradientFractionOnEnd: 0.3,
-//               child: SingleChildScrollView(
-//                 controller: model.scrollController,
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: [
-//                     SizedBox(height: 40),
-//                     Text(
-//                       S.of(context).cardSubscription,
-//                       style: TextStyle(
-//                           fontSize: 20, fontWeight: FontWeight.w600),
-//                     ),
-//                     SizedBox(height: 5),
-//                     Padding(
-//                       padding: EdgeInsets.symmetric(horizontal: 26.0),
-//                       child: Text(
-//                         S.of(context).subscriptionPopUpInfo,
-//                         textAlign: TextAlign.center,
-//                         style: TextStyle(
-//                             fontWeight: FontWeight.w400, fontSize: 14),
-//                       ),
-//                     ),
-//                     SizedBox(height: 32),
-//                     Container(
-//                       height: 1,
-//                       color: AppColor.light_grayish_violet,
-//                     ),
-//                     ListView.separated(
-//                       physics: NeverScrollableScrollPhysics(),
-//                       itemBuilder: (context, index) {
-//                         return Padding(
-//                           padding: EdgeInsets.symmetric(
-//                               horizontal: 24, vertical: 24),
-//                           child: Row(
-//                             children: [
-//                               Container(
-//                                 height: 36,
-//                                 width: 36,
-//                                 decoration: BoxDecoration(
-//                                   shape: BoxShape.circle,
-//                                 ),
-//                                 child:
-//                                     Image.asset(AssetUtils.viewSubscription),
-//                               ),
-//                               Expanded(
-//                                 child: Padding(
-//                                   padding: EdgeInsets.only(left: 16),
-//                                   child: Column(
-//                                     crossAxisAlignment:
-//                                         CrossAxisAlignment.start,
-//                                     children: [
-//                                       Row(
-//                                         children: [
-//                                           Text(
-//                                             "Netflix US",
-//                                             style: TextStyle(
-//                                                 fontWeight: FontWeight.w600,
-//                                                 fontSize: 12),
-//                                           ),
-//                                           Spacer(),
-//                                           Row(
-//                                             children: [
-//                                               Text(
-//                                                 "8.51",
-//                                                 style: TextStyle(
-//                                                     fontSize: 14,
-//                                                     fontWeight:
-//                                                         FontWeight.w600),
-//                                               ),
-//                                               Padding(
-//                                                 padding: EdgeInsets.only(
-//                                                     left: 2, top: 4),
-//                                                 child: Text(
-//                                                   "JOD",
-//                                                   style: TextStyle(
-//                                                       fontSize: 10,
-//                                                       fontWeight:
-//                                                           FontWeight.w600,
-//                                                       color: AppColor.gray1),
-//                                                 ),
-//                                               )
-//                                             ],
-//                                           )
-//                                         ],
-//                                       ),
-//                                       Padding(
-//                                         padding: EdgeInsets.only(top: 4),
-//                                         child: Text(
-//                                           "Monthly",
-//                                           style: TextStyle(
-//                                               color: AppColor.gray1,
-//                                               fontWeight: FontWeight.w600,
-//                                               fontSize: 12),
-//                                         ),
-//                                       )
-//                                     ],
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         );
-//                       },
-//                       shrinkWrap: true,
-//                       itemCount: 5,
-//                       separatorBuilder: (BuildContext context, int index) {
-//                         return Container(
-//                           height: 1,
-//                           color: AppColor.light_grayish_violet,
-//                         );
-//                       },
-//                     )
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             Positioned(
-//               bottom: 36,
-//               child: Center(
-//                 child: GestureDetector(
-//                   onTap: () {
-//                     Navigator.pop(context);
-//                   },
-//                   child: Container(
-//                     padding: EdgeInsets.all(16),
-//                     height: 57,
-//                     width: 57,
-//                     decoration: BoxDecoration(
-//                         shape: BoxShape.circle,
-//                         color: Theme.of(context)
-//                             .accentTextTheme
-//                             .bodyText1!
-//                             .color!),
-//                     child: AppSvg.asset(AssetUtils.tick,
-//                         color: Theme.of(context).accentColor),
-//                   ),
-//                 ),
-//               ),
-//             )
-//           ],
-//         ),
-//       ));
-// }
 }

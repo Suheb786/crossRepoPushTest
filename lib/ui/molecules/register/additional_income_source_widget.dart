@@ -5,6 +5,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class AdditionalIncomeSourceWidget extends StatelessWidget {
   final AdditionalIncomeType? additionalIncomeSourceParams;
@@ -37,7 +38,10 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                     softWrap: false,
                     maxLines: 5,
                     style: TextStyle(
-                        color: Theme.of(context).primaryColorDark, fontSize: 14, fontWeight: FontWeight.w600),
+                        fontFamily: StringUtils.appFont,
+                        color: Theme.of(context).primaryColorDark,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 SizedBox(
@@ -47,7 +51,10 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                   '${S.of(context).JOD} ${additionalIncomeSourceParams!.totalIncome}',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColorDark, fontSize: 12, fontWeight: FontWeight.w600),
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).primaryColorDark,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
                 ),
               ],
             ),

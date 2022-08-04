@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class RequestAmountFromContactSuccessPageView
     extends BasePageViewWidget<RequestAmountFromContactSuccessViewModel> {
@@ -59,13 +60,15 @@ class RequestAmountFromContactSuccessPageView
                       Text(
                         model.successValues[0],
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
                         child: Text(
                           S.of(context).JOD,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                               fontWeight: FontWeight.w700,
                               fontSize: 14),
@@ -80,7 +83,8 @@ class RequestAmountFromContactSuccessPageView
                     S.of(context).requestedFrom,
                     maxLines: 3,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24),
                   ),
                 ),
                 Padding(
@@ -88,7 +92,8 @@ class RequestAmountFromContactSuccessPageView
                   child: Text(
                     model.successValues[1],
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14),
                   ),
                 ),
                 Padding(
@@ -97,6 +102,7 @@ class RequestAmountFromContactSuccessPageView
                     model.successValues[2],
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w600,
                         fontSize: 12),
@@ -109,6 +115,7 @@ class RequestAmountFromContactSuccessPageView
                     maxLines: 3,
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                        fontFamily: StringUtils.appFont,
                         color: Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w400,
                         fontSize: 14),
@@ -129,6 +136,7 @@ class RequestAmountFromContactSuccessPageView
                     child: Text(
                       S.of(context).toDashboard,
                       style: TextStyle(
+                          fontFamily: StringUtils.appFont,
                           fontSize: 12,
                           fontWeight: FontWeight.w400,
                           color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -144,6 +152,7 @@ class RequestAmountFromContactSuccessPageView
                         child: Text(
                           S.of(context).undoRequest,
                           style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -154,6 +163,7 @@ class RequestAmountFromContactSuccessPageView
                         child: Text(
                           "0:07",
                           style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),

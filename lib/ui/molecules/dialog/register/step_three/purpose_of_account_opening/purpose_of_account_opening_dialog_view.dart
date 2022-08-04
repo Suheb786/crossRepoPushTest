@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class PurposeOfAccountOpeningDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -32,10 +33,8 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
     return BaseWidget<PurposeOfAccountOpeningDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -60,6 +59,7 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
                                 child: Text(
                                   S.of(context).purposeOfOpeningAccount,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -70,8 +70,7 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
                               alignment: Alignment.center,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                                   child: Container(
                                     height: 64,
                                     width: double.infinity,
@@ -98,22 +97,17 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
                                         },
                                         physics: FixedExtentScrollPhysics(),
                                         perspective: 0.0000000001,
-                                        childDelegate:
-                                            ListWheelChildBuilderDelegate(
-                                                childCount: data.data!.length,
-                                                builder: (BuildContext context,
-                                                    int index) {
-                                                  return ListScrollWheelListWidget(
-                                                    label: data.data![index],
-                                                    textColor: currentIndex ==
-                                                            index
-                                                        ? Theme.of(context)
-                                                            .primaryColorDark
-                                                        : AppColor.dark_gray_1,
-                                                    widgetColor:
-                                                        Colors.transparent,
-                                                  );
-                                                })),
+                                        childDelegate: ListWheelChildBuilderDelegate(
+                                            childCount: data.data!.length,
+                                            builder: (BuildContext context, int index) {
+                                              return ListScrollWheelListWidget(
+                                                label: data.data![index],
+                                                textColor: currentIndex == index
+                                                    ? Theme.of(context).primaryColorDark
+                                                    : AppColor.dark_gray_1,
+                                                widgetColor: Colors.transparent,
+                                              );
+                                            })),
                                   ),
                                 ),
                               ],
@@ -128,21 +122,17 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
                                 width: 57,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color!),
-                                child: AppSvg.asset(AssetUtils.tick,
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme.of(context).accentTextTheme.bodyText1!.color!),
+                                child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 16),
+                              padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: Center(
                                 child: Text(
                                   S.of(context).swipeDownToCancel,
                                   style: TextStyle(
+                                      fontFamily: StringUtils.appFont,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       color: AppColor.dark_gray_1),

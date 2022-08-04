@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
@@ -46,6 +47,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                   return Text(
                     !isOpen! ? S.of(context).swipeToViewList : S.of(context).swipeToViewMap,
                     style: TextStyle(
+                      fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                       color: AppColor.white_gray,
@@ -143,6 +145,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                           child: Text(
                             S.of(context).dragMap,
                             style: TextStyle(
+                              fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w400,
                               fontSize: 10,
                               color: Theme.of(context).primaryColorDark,

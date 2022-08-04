@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
   EditAliasPageView(ProviderBase model) : super(model);
@@ -21,7 +22,11 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
         children: [
           Text(
             S.of(context).editCliqId,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 10, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 10,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 8,
@@ -29,7 +34,11 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
           Text(
             S.of(context).editYourAlias,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: Theme.of(context).accentColor),
+            style: TextStyle(
+                fontFamily: StringUtils.appFont,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: Theme.of(context).accentColor),
           ),
           SizedBox(
             height: 32,
@@ -81,7 +90,10 @@ class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.w400, color: AppColor.dark_gray_1),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
                           ),
                         ),
                       ),

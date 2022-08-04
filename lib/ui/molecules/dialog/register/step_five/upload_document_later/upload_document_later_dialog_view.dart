@@ -4,6 +4,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class UploadDocumentLaterDialogView extends StatelessWidget {
   final Function()? onSelected;
@@ -14,10 +15,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-        insetPadding:
-            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
         child: GestureDetector(
           onVerticalDragEnd: (details) {
             if (details.primaryVelocity! > 0) {
@@ -35,8 +34,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                   Center(
                     child: Text(
                       S.of(context).uploadDocumentLaterQues,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                   ),
                   Padding(
@@ -46,11 +45,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          fontFamily: 'Montserrat',
-                          color: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1!
-                              .color,
+                          fontFamily: StringUtils.appFont,
+                          color: Theme.of(context).primaryTextTheme.bodyText1!.color,
                         ),
                         children: [
                           TextSpan(
@@ -58,11 +54,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
-                              fontFamily: 'Montserrat',
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color,
+                              fontFamily: StringUtils.appFont,
+                              color: Theme.of(context).accentTextTheme.bodyText1!.color,
                             ),
                           )
                         ])),
@@ -76,13 +69,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                       height: 57,
                       width: 57,
                       decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color),
-                      child: AppSvg.asset(AssetUtils.tick,
-                          color: Theme.of(context).accentColor),
+                          shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
@@ -91,6 +79,7 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                       child: Text(
                         S.of(context).swipeDownToCancel,
                         style: TextStyle(
+                            fontFamily: StringUtils.appFont,
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: AppColor.dark_gray_1),
