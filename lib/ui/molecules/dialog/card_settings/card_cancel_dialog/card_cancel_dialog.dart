@@ -8,15 +8,17 @@ class CardCancelDialog {
 
   static show(BuildContext context,
       {Function? onDismissed,
-      Function(String,bool)? onSelected,
+      Function(String, bool)? onSelected,
       required List<String> reasons,
-      Function(AppError)? onError}) {
+      Function(AppError)? onError,
+      bool? isPrimaryDebitCard}) {
     AppDialog.show(context,
         isDismissible: true,
         builder: (context) => CardCancelDialogView(
             onSelected: onSelected,
             onDismissed: onDismissed,
             reasons: reasons,
-            onError: onError));
+            onError: onError,
+            isPrimaryDebitCard: isPrimaryDebitCard));
   }
 }

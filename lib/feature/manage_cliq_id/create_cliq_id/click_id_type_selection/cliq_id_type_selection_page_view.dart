@@ -146,7 +146,7 @@ class CliqIdTypeSelectionPageView extends BasePageViewWidget<CliqIdTypeSelection
                                                             inputType: TextInputType.phone,
                                                             inputAction: TextInputAction.done,
                                                             inputFormatters: [
-                                                              LengthLimitingTextInputFormatter(12),
+                                                              LengthLimitingTextInputFormatter(10),
                                                               FilteringTextInputFormatter.allow(
                                                                   RegExp(r'[0-9]')),
                                                             ],

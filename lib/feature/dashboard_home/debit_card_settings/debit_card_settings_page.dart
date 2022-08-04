@@ -15,12 +15,10 @@ class DebitCardSettingsPage extends BasePage<DebitCardSettingsViewModel> {
   DebitCardSettingsPageState createState() => DebitCardSettingsPageState();
 }
 
-class DebitCardSettingsPageState extends BaseStatefulPage<
-    DebitCardSettingsViewModel, DebitCardSettingsPage> {
+class DebitCardSettingsPageState extends BaseStatefulPage<DebitCardSettingsViewModel, DebitCardSettingsPage> {
   @override
   ProviderBase provideBase() {
-    return debitCardSettingsViewModelProvider
-        .call(widget.debitCardSettingArguments);
+    return debitCardSettingsViewModelProvider.call(widget.debitCardSettingArguments);
   }
 
   @override
@@ -36,6 +34,7 @@ class DebitCardSettingsPageState extends BaseStatefulPage<
 
 class DebitCardSettingsArguments {
   final DebitCard debitCard;
+  final bool isPrimaryDebitCard;
 
-  DebitCardSettingsArguments({required this.debitCard});
+  DebitCardSettingsArguments({required this.debitCard, required this.isPrimaryDebitCard});
 }

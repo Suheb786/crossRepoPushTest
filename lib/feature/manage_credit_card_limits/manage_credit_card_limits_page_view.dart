@@ -160,7 +160,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                           title: S.of(context).atmWithDrawal,
                                                           amountSet: creditCardLimitResponse
                                                                       .data!.cardLimit!.atmCurrentLimit ==
-                                                                  '0.001'
+                                                                  '.001'
                                                               ? '0'
                                                               : creditCardLimitResponse
                                                                       .data!.cardLimit!.atmCurrentLimit ??
@@ -214,7 +214,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                               false,
                                                           amountSet: creditCardLimitResponse.data!.cardLimit!
                                                                       .merchantCurrentLimit ==
-                                                                  '0.001'
+                                                                  '.001'
                                                               ? '0'
                                                               : creditCardLimitResponse.data!.cardLimit!
                                                                       .merchantCurrentLimit ??

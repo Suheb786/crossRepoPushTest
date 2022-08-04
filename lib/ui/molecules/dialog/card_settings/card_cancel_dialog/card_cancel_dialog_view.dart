@@ -21,8 +21,10 @@ class CardCancelDialogView extends StatelessWidget {
   final Function(AppError)? onError;
   final Function? onDismissed;
   final List<String> reasons;
+  final bool? isPrimaryDebitCard;
 
-  CardCancelDialogView({required this.reasons, this.onSelected, this.onDismissed, this.onError});
+  CardCancelDialogView(
+      {required this.reasons, this.onSelected, this.onDismissed, this.onError, this.isPrimaryDebitCard});
 
   ProviderBase providerBase() {
     return cancelCardDialogViewModelProvider;
@@ -121,21 +123,24 @@ class CardCancelDialogView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: AppStreamBuilder<bool>(
-                      stream: model.declarationSelectedStream,
-                      initialData: false,
-                      dataBuilder: (context, isSelected) {
-                        model.isSelected = isSelected!;
-                        return TermsAndConditionWidget(
-                          isSelected: isSelected,
-                          title1: S.of(context).requestNewCardImmediately,
-                          onTap: () {
-                            model.updateDeclarationSelection(!(isSelected));
-                          },
-                        );
-                      },
+                  Visibility(
+                    visible: isPrimaryDebitCard ?? true,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: AppStreamBuilder<bool>(
+                        stream: model.declarationSelectedStream,
+                        initialData: false,
+                        dataBuilder: (context, isSelected) {
+                          model.isSelected = isSelected!;
+                          return TermsAndConditionWidget(
+                            isSelected: isSelected,
+                            title1: S.of(context).requestNewCardImmediately,
+                            onTap: () {
+                              model.updateDeclarationSelection(!(isSelected));
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -143,16 +148,21 @@ class CardCancelDialogView extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      if (model.reasonCancellationController.text.isEmpty) {
-                        model.reasonKey.currentState!.isValid = false;
-                        onError?.call(AppError(
-                          error: ErrorInfo(message: ''),
-                          type: ErrorType.SELECT_CANCELATION_REASON,
-                          cause: Exception(),
-                        ));
+                      if (isPrimaryDebitCard ?? true) {
+                        if (model.reasonCancellationController.text.isEmpty) {
+                          model.reasonKey.currentState!.isValid = false;
+                          onError?.call(AppError(
+                            error: ErrorInfo(message: ''),
+                            type: ErrorType.SELECT_CANCELATION_REASON,
+                            cause: Exception(),
+                          ));
+                        } else {
+                          onSelected?.call(model.reasonCancellationController.text, model.isSelected);
+                        }
                       } else {
-                        onSelected?.call(model.reasonCancellationController.text, model.isSelected);
+                        onSelected?.call(model.reasonCancellationController.text, false);
                       }
+
                       // else if (!model.declarationSelected.value) {
                       //   onError?.call(AppError(
                       //     error: ErrorInfo(message: ''),

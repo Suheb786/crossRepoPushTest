@@ -41,10 +41,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
           int sensitivity = 8;
           if (details.primaryVelocity! > sensitivity) {
             Navigator.pop(context, model.willPop());
-            print('down');
-          } else if (details.primaryVelocity! < -sensitivity) {
-            print('up');
-          }
+          } else if (details.primaryVelocity! < -sensitivity) {}
           // if (!details.primaryVelocity!.isNegative) {
           //   Navigator.pop(context, model.willPop());
           // }
@@ -420,6 +417,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                             }, onError: (AppError error) {
                                               model.showToastWithError(error);
                                             },
+                                                isPrimaryDebitCard:
+                                                    model.debitCardSettingsArguments.isPrimaryDebitCard,
                                                 reasons: StringUtils.isDirectionRTL(context)
                                                     ? model.debitCardcancellationReasonAr
                                                     : model.debitCardcancellationReason);

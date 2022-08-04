@@ -20,8 +20,13 @@ class DebitCardWidget extends StatefulWidget {
   final Key key;
   final DebitCard debitCard;
   final bool isSmallDevice;
+  final bool isPrimaryDebitCard;
 
-  DebitCardWidget({required this.key, required this.debitCard, this.isSmallDevice: false});
+  DebitCardWidget(
+      {required this.key,
+      required this.debitCard,
+      this.isSmallDevice: false,
+      required this.isPrimaryDebitCard});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -203,7 +208,9 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                     onTap: () async {
                                       var result = await Navigator.pushNamed(
                                           context, RoutePaths.DebitCardSettings,
-                                          arguments: DebitCardSettingsArguments(debitCard: widget.debitCard));
+                                          arguments: DebitCardSettingsArguments(
+                                              isPrimaryDebitCard: widget.isPrimaryDebitCard,
+                                              debitCard: widget.debitCard));
                                       if (result != null) {
                                         bool value = result as bool;
                                         if (value) {

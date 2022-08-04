@@ -5,6 +5,7 @@ import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_card_enum.dart';
 import 'package:domain/constants/enum/primary_secondary_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/model/dashboard/get_placeholder/get_placeholder_response.dart';
@@ -358,6 +359,7 @@ class AppHomeViewModel extends BasePageViewModel {
         cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
       } else {
         if (dashboardDataContent.debitCard!.length > 0) {
+          checkIfDebitCardThere(dashboardDataContent.debitCard);
           dashboardDataContent.debitCard!.forEach((debitCard) {
             if (debitCard.cardStatus == FreezeCardStatusEnum.L) {
               if (!(debitCard.isPINSet ?? true)) {
@@ -403,6 +405,7 @@ class AppHomeViewModel extends BasePageViewModel {
                     .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               } else {
                 pages.add(DebitCardWidget(
+                    isPrimaryDebitCard: isPrimaryDebitCard,
                     isSmallDevice: isSmallDevices,
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard));
@@ -465,6 +468,21 @@ class AppHomeViewModel extends BasePageViewModel {
       list.add(i == currentPage ? indicator(true, i, currentPage) : indicator(false, i, currentPage));
     }
     return list;
+  }
+
+  bool isPrimaryDebitCard = true;
+
+  checkIfDebitCardThere(List<DebitCard>? debitCards) {
+    if (debitCards!.isNotEmpty) {
+      DebitCard debitCard = debitCards.firstWhere(
+          (debit) => debit.primarySecondaryCard == PrimarySecondaryEnum.PRIMARY,
+          orElse: () => DebitCard());
+      if (debitCard.cardNumber != null) {
+        isPrimaryDebitCard = true;
+      } else {
+        isPrimaryDebitCard = false;
+      }
+    }
   }
 
   Widget indicator(bool isActive, int i, int currentPage) {
