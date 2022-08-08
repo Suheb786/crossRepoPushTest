@@ -815,7 +815,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorGettingCardInfo": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-097)"),
         "errorInGetCardInfoNet": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06  (Err-101)"),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-101)"),
         "errorInMessage":
             MessageLookupByLibrary.simpleMessage("خطأ في إدارة API"),
         "errorModelNotCorrect": MessageLookupByLibrary.simpleMessage(
@@ -1699,7 +1699,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "preparingYourCard":
             MessageLookupByLibrary.simpleMessage("بطاقتك قيد التجهيز"),
         "primaryCardNotActive": MessageLookupByLibrary.simpleMessage(
-            "فعّل بطاقتك الائتمانية Rebellious Red لإكمال طلبك."),
+            "فعل بطاقتك الائتمانية Rebellious Red لإكمال طلبك."),
         "primaryCreditCardHoldIdNotMatchGroom":
             MessageLookupByLibrary.simpleMessage(
                 "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-307) "),
@@ -2003,7 +2003,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setContactLessZeroError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-159)"),
         "settingContactLessError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-100)"),
+            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-100)"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "settlementPercentage":
             MessageLookupByLibrary.simpleMessage("نسب السداد"),
