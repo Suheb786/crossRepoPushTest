@@ -697,7 +697,7 @@ class ErrorParser {
         return localisedHelper.loanValueRequestProcessingError;
       case ErrorType.INVALID_CUSTOMER_ID:
         return localisedHelper.invalidCustomerId;
-      case ErrorType.INVALID_CUSTOMER_ID:
+      case ErrorType.INVALID_CREDIT_CARD_ID:
         return localisedHelper.invalidCreditCardId;
       case ErrorType.STEP_2_INCOMPLETE:
         return localisedHelper.step2Complete;
