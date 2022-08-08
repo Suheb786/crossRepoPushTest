@@ -12,7 +12,7 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
     "Freelance",
     "Retired",
     "Student",
-    "Unemployed", "Housewife",
+    "Unemployed", "House Wife",
     //"Other"
   ];
   List<String> employmentStatusListAr = [
