@@ -393,7 +393,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 onTap: () {
                                   InformationDialog.show(context,
                                       image: AssetUtils.cardCancelIcon,
-                                      title: S.of(context).reportCardIssue,
+                                      title: S.of(context).replaceDamageCard,
                                       descriptionWidget: Text(
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
