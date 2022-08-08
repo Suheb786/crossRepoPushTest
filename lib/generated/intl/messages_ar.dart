@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "accountBalance": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
         "accountClaimNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-144)"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("تم إنشاء الحساب بنجاح"),
         "accountDetails":
@@ -91,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تفعيل بطاقتك الائتمانية التابعة"),
         "activity": MessageLookupByLibrary.simpleMessage("حركة"),
         "addAccountPurposeError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-009)"),
         "addBeneficiaryError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "addCallError": MessageLookupByLibrary.simpleMessage(
@@ -147,7 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeTermsCondition":
             MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
         "ahwalError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-003)"),
         "ahwalFailed": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-301)"),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
@@ -285,7 +285,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHasEnded":
             MessageLookupByLibrary.simpleMessage("تم إنهاء المكالمة"),
         "callRecordNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-127)"),
         "callScheduled":
             MessageLookupByLibrary.simpleMessage("تم تحديد موعد المكالمة"),
         "callScheduledNote": MessageLookupByLibrary.simpleMessage(
@@ -321,7 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardLater":
             MessageLookupByLibrary.simpleMessage("رح آخذ بطاقتي بعدين"),
         "cardLoanAccNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-145)"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "cardNumberCopied":
             MessageLookupByLibrary.simpleMessage("تم نسخ رقم البطاقة"),
@@ -452,7 +452,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("دفع بدون لمس"),
         "contactlessAlreadyDone": MessageLookupByLibrary.simpleMessage(
-            "هنالك بطاقة تابعة مصدرة بنفس التفاصيل. تأكد وحاول كمان مرة "),
+            "البطاقة التابعة غير موجودة. تأكد وحاول كمان مرة."),
         "contactlessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-095)"),
         "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
@@ -464,7 +464,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "country": MessageLookupByLibrary.simpleMessage("الدولة"),
         "countryOfCitizenship": MessageLookupByLibrary.simpleMessage("الدولة"),
         "createCardError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-156)"),
         "createCliqId": MessageLookupByLibrary.simpleMessage("إنشاء CliQ"),
         "createNewCliqId":
             MessageLookupByLibrary.simpleMessage("إنشاء CliQ جديد"),
@@ -477,11 +477,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "createYourLoginPassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الجديدة"),
         "creatingAccountError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-022)"),
+            "عفواً! مش قادرين نفتح حسابك. حاول كمان مرة  أو تواصل معنا من خلال التطبيق أو على 5200100-06 (Ex-022)"),
         "creatingCreditCardLimit":
             MessageLookupByLibrary.simpleMessage("إنشاء سقف بطاقتك الائتمانية"),
         "creatingShippmentError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-163)"),
         "creatingSuppCreditLimit": MessageLookupByLibrary.simpleMessage(
             "إنشاء سقف لبطاقتك الائتمانية التابعة"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("وحدة الائتمان "),
@@ -495,7 +495,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "طلبك قيد المراجعة. رح نبلغك بالتفاصيل قريباً."),
         "creditCardDataNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-143)"),
         "creditCardDelivered":
             MessageLookupByLibrary.simpleMessage("تم تسليم البطاقة الائتمانية"),
         "creditCardDeliveredQ":
@@ -540,7 +540,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "currentSettlementPercentage":
             MessageLookupByLibrary.simpleMessage("نسبة السداد الحالية"),
         "customerNotEligible": MessageLookupByLibrary.simpleMessage(
-            "إنت غير مؤهل للخدمة. تواصل معنا على التطبيق أو بالاتصال على 06-5200100"),
+            "الخدمة غير متاحة إلك حالياً. الرجاء التواصل معنا على 5200100-06"),
         "customerPreferenceNotFound":
             MessageLookupByLibrary.simpleMessage("خيارات العملاء غير موجودة"),
         "customerService":
@@ -589,7 +589,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "إيداع مباشر بحسابك على Blink من خلال صرافات كابيتال بنك، مع أو بدون بطاقة."),
         "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-0005)"),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("الجهاز غير موجود"),
         "deviceNotSupported":
@@ -599,7 +599,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "خلال تجميد البطاقة، ما رح تقدر تستفيد من عمليات الدفع المباشر المربوطة عليها. مثال: الدفع المباشر من Blink للنادي الرياضي أو شركة الاتصالات."),
         "disableFingerPrintError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال تعطيل تسجيل  الدخول بالبصمة. حاول كمان مرة بعدين."),
+            "خطأ خلال تعطيل التسجيل بالبصمة. حاول كمان مرة بعدين."),
         "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
             "أنا مش راضي عن المنصة الرقمية"),
         "dissatisfiedWithOverallBankingExp":
@@ -741,7 +741,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enableBiometricLoginTitle":
             MessageLookupByLibrary.simpleMessage("تفعيل تسجيل الدخول بالبصمة"),
         "enableFingerPrintError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال تفعيل تسجيل  الدخول بالبصمة. حاول كمان مرة بعدين."),
+            "خطأ خلال تفعيل التسجيل بالبصمة. حاول كمان مرة بعدين."),
         "engagementTeam": MessageLookupByLibrary.simpleMessage("فريق التواصل "),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
             "الرجاء اختيار طريقة التواصل المفضلة. رح يتم مراقبة أو تسجيل مكالمتك أو محادثتك لضمان الجودة."),
@@ -805,7 +805,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorCreatingWorkSpace":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إنشاء مساحة العمل"),
         "errorCustomerByAccountA2A": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-111)"),
         "errorDecryptCard":
             MessageLookupByLibrary.simpleMessage("خطأ خلال فك تشفير البطاقة"),
         "errorEuronetCustomerCardDetails": MessageLookupByLibrary.simpleMessage(
@@ -821,7 +821,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorModelNotCorrect": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-mode)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("خطأ خلال حفظ الهوية"),
         "errorSavingStatus":
@@ -831,13 +831,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorUpdatingAccount": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-073)"),
         "errorUpdatingCardStatusRuleEngine": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-104)"),
         "errorUpdatingCategory":
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحديث الفئة"),
         "errorUpdatingCategoryCif":
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحديث فئة CIF"),
         "errorUpdatingLimits": MessageLookupByLibrary.simpleMessage(
-            "فعّل بطاقتك لتقدر تحدّث سقفها."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-103)"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحميل الصورة"),
         "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
@@ -856,12 +856,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileGetStatus":
             MessageLookupByLibrary.simpleMessage("خطأ خلال تحديد الحالة"),
         "errorWhileGettingAccountBS": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-114)"),
         "errorWhileGettingAccountCloseOtp":
             MessageLookupByLibrary.simpleMessage(
                 "خطأ خلال الحصول على كلمة المرور OTP"),
         "errorWhileGettingAccountDetailsA2A": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-109)"),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الوصول على شاشة التحكم بالحساب"),
         "errorWhileGettingFatcaCrs":
@@ -879,15 +879,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileProcessLoanRequest":
             MessageLookupByLibrary.simpleMessage("خطأ خلال طلب القرض"),
         "errorWhileRTPA2A": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-112)"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال عملية التسجيل، حاول مرة ثانية."),
         "errorWhileUnblockPinNI": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين.(Err-108)"),
         "errorWhileUpdatingCardStatusNI": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-107)"),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
-            "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-106)"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ أثناء حدوث خطأ في ESettlement API"),
         "establishCallError":
@@ -948,7 +948,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fingerPrintNotFound": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بعملية تسجيل الدخول بالبصمة. الرجاء تسجيل الدخول باستخدام الإيميل وكلمة المرور، وبعدين ادخل على إعدادات الملف الشخصي وعطّل ثم فعل الدخول بالبصمة. إذا واجهتك أي مشكلة تواصل معنا على 5200100-06"),
         "firebaseConnectionIssue": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-126)"),
         "flipBack": MessageLookupByLibrary.simpleMessage("اقلب للخلف"),
         "flipCard": MessageLookupByLibrary.simpleMessage("اقلب البطاقة"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
@@ -985,7 +985,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "getAccountByAliasError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getAccountDetailsError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-021)"),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-021)"),
         "getAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getAllowedCountriesError": MessageLookupByLibrary.simpleMessage(
@@ -1115,11 +1115,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "imageNotFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-080)"),
         "imageNull": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "inValidCreditLimit": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-131)"),
         "inValidLoanValueId": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-130)"),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("معلومات الدخل"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("رفع سقف الائتمان"),
@@ -1134,7 +1134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
             "ما عندك رصيد كافي لتكمل الدفعة."),
         "invalidAccount": MessageLookupByLibrary.simpleMessage(
-            "حساب غير صحيح حاول تستخدم حساب آخر."),
+            "خطأ في الحساب. حاول مرة ثانية."),
         "invalidAccountBalance": MessageLookupByLibrary.simpleMessage(
             "رصيد الحساب أقل من رصيد الدفع"),
         "invalidAccountID": MessageLookupByLibrary.simpleMessage(
@@ -1145,7 +1145,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار مصدر الدخل الإضافي"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
         "invalidAmount": MessageLookupByLibrary.simpleMessage(
-            "المبلغ اللي أدخلته بيتجاوز رصيد الحساب. الرجاء إضافة المبلغ لحسابك أو اختار حساب آخر."),
+            "الرقم اللي أدخلته أكبر من رصيد حسابك. الرجاء إيداع المبلغ بالحساب أو اختيار مبلغ آخر."),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("أدخل الدخل السنوي"),
         "invalidAnnualIncomeValue": MessageLookupByLibrary.simpleMessage(
@@ -1163,11 +1163,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidCity": MessageLookupByLibrary.simpleMessage("المدينة"),
         "invalidCountry": MessageLookupByLibrary.simpleMessage("الدولة"),
         "invalidCreditCardId": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-135)"),
         "invalidCurrentPass": MessageLookupByLibrary.simpleMessage(
             "كلمة المرور اللي أدخلتها غير صحيحة. حاول كمان مرة أو اختر \"نسيت كلمة المرور\" من الصقحة الرئيسية."),
         "invalidCustomerId": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-134)"),
         "invalidDOB":
             MessageLookupByLibrary.simpleMessage("أدخل تاريخ الميلاد"),
         "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
@@ -1282,7 +1282,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPreferredTime":
             MessageLookupByLibrary.simpleMessage("اختار الوقت"),
         "invalidPrimaryId": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-147)"),
         "invalidProductId": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-011)"),
         "invalidProductShortCode": MessageLookupByLibrary.simpleMessage(
@@ -1304,15 +1304,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidRequestedAmount":
             MessageLookupByLibrary.simpleMessage("المبلغ المطلوب خطأ"),
         "invalidRole": MessageLookupByLibrary.simpleMessage("أدخل الوظيفة"),
-        "invalidScheduleTime":
-            MessageLookupByLibrary.simpleMessage("اختار تاريخ صالح بالمستقبل"),
+        "invalidScheduleTime": MessageLookupByLibrary.simpleMessage(
+            "الوقت غير صحيح. حاول كمان مرة."),
         "invalidSignatureNetwork": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-074)"),
         "invalidSocialSecurityNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم الضمان الاجتماعي"),
         "invalidState": MessageLookupByLibrary.simpleMessage("الولاية"),
         "invalidSupplementaryCardId": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-158)"),
         "invalidTaxCountry":
             MessageLookupByLibrary.simpleMessage("اختار دولة الضريبة"),
         "invalidTaxPayer":
@@ -1355,7 +1355,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "joinedBlink":
             MessageLookupByLibrary.simpleMessage("صار عندك مع Blink"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-004)"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("رقم الوثيقة القانونية"),
         "lessThanPrimary": MessageLookupByLibrary.simpleMessage(
@@ -1383,15 +1383,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "loanNotActive":
             MessageLookupByLibrary.simpleMessage("حساب القرض غير فعال"),
         "loanStepNotDone": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-137)"),
         "loanValueProcessError": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-132)"),
         "loanValueRequestProcessingError": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-133)"),
         "loanValuesError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال الحصول على قيم القروض"),
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-138)"),
         "locateATM": MessageLookupByLibrary.simpleMessage("موقع الصراف الآلي"),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
@@ -1524,7 +1524,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
-            "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا على التطبيق أو بالاتصال على 06-5200100"),
+            "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-090)"),
         "noDueAmount":
@@ -1624,7 +1624,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "paymentCashbackError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-146)"),
         "paymentPeriod": MessageLookupByLibrary.simpleMessage("فترة الدفعة"),
         "payments": MessageLookupByLibrary.simpleMessage("دفعات"),
         "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
@@ -1655,12 +1655,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("رقم PIN غير مطابق"),
         "pinRequired":
-            MessageLookupByLibrary.simpleMessage("الرمز السري PIN مطلوب"),
+            MessageLookupByLibrary.simpleMessage("أدخل الرمز السري PIN"),
         "placeOfBirth": MessageLookupByLibrary.simpleMessage("مكان الولادة"),
         "placeholderIdNull":
             MessageLookupByLibrary.simpleMessage("معرف PlaceHolder فارغ"),
         "platformNotFound": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-164)"),
         "pleaseAgreeToTheTermAndCondition":
             MessageLookupByLibrary.simpleMessage("وافق على الشروط والأحكام"),
         "pleaseConfirmYourIDDetailsBelow":
@@ -1699,7 +1699,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "preparingYourCard":
             MessageLookupByLibrary.simpleMessage("بطاقتك قيد التجهيز"),
         "primaryCardNotActive": MessageLookupByLibrary.simpleMessage(
-            "فعل بطاقتك الائتمانية Rebellious Red لإكمال طلبك."),
+            "فعّل بطاقتك الائتمانية Rebellious Red لإكمال طلبك."),
         "primaryCreditCardHoldIdNotMatchGroom":
             MessageLookupByLibrary.simpleMessage(
                 "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-307) "),
@@ -1712,7 +1712,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "primaryIdNotMatchWithGroom": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة. يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو طفلك أو والديك. (Err-303) "),
         "primaryLoanAccListNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-148)"),
         "primaryNotComplete":
             MessageLookupByLibrary.simpleMessage("خطوة أساسية غير مكتملة"),
         "proceedToLogin": MessageLookupByLibrary.simpleMessage(
@@ -1720,7 +1720,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "processLoanError": MessageLookupByLibrary.simpleMessage(
             "خطأ في ProcessLoanAPI PAYMENT API"),
         "processLoanStepNotDone": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-162)"),
         "processLoanValuesError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "productSelectorHeader":
@@ -1767,7 +1767,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeDetails":
             MessageLookupByLibrary.simpleMessage("تفاصيل التحويل "),
         "purposeDetailsNotFound": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-110)"),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
         "purposeOfAccountOpening":
@@ -1806,7 +1806,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "registeringUserToVKeyError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال تسجيل المستخدم"),
         "registrationProcessError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-002)"),
         "relationNull": MessageLookupByLibrary.simpleMessage(
             "علاقة غير صحيحة! يرجى التأكد من أن حامل البطاقة الإضافية هو زوجتك أو ابنك أو والدك (Err-0008)"),
         "relationShipNull": MessageLookupByLibrary.simpleMessage(
@@ -1925,19 +1925,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("احفظ أرباحك رقمياً وبأمان"),
         "savingAccount": m4,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-006)"),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-012)"),
         "savingIdCardError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-005)"),
         "savingJobDetailsError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-008)"),
         "savingProfileStatusError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-007)"),
         "savingW8FormError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-013)"),
         "savingW9FormError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-014)"),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage(
             "في خطأ بالمعلومات؟ صوّر هويتك كمان مرة"),
         "scanIdToProceedFurther":
@@ -1969,8 +1969,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اختار الحركات المتوقعة"),
         "selectFromLibrary":
             MessageLookupByLibrary.simpleMessage("اختار من المكتبة"),
-        "selectFutureDate":
-            MessageLookupByLibrary.simpleMessage("اختار التاريخ المستقبلي"),
+        "selectFutureDate": MessageLookupByLibrary.simpleMessage(
+            "التاريخ غير صحيح. الرجاء إدخال تاريخ من المستقبل."),
         "selectMinimumSettlement": MessageLookupByLibrary.simpleMessage(
             "اختار الحد الأدنى لنسبة السداد "),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
@@ -1980,7 +1980,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
         "selfieCheck": MessageLookupByLibrary.simpleMessage("صورة سيلفي"),
         "selfieCheckError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-015)"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("تحويل أموال"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "محاولتك لإرسال الأموال غير ناجحة"),
@@ -1991,7 +1991,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "sending": MessageLookupByLibrary.simpleMessage("جاري الإرسال"),
         "sendingDeviceOtpError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 06-5200100"),
+            "خطأ خلال إرسال الرمز. حاول كمان مرة بعدين أو تواصل معنا على 5200100-06"),
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "السيرفر تحت الصيانة، حاول بعدين."),
@@ -2001,7 +2001,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "setCardPintError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "setContactLessZeroError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-159)"),
         "settingContactLessError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-100)"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
@@ -2041,9 +2041,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "statementPDF":
             MessageLookupByLibrary.simpleMessage("ملف كشف الحساب PDF"),
         "step2Complete": MessageLookupByLibrary.simpleMessage(
-            "خطأ في إصدار البطاقة الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
+            "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-136)"),
         "step2NotDoneCreditCard": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-161)"),
         "storage": MessageLookupByLibrary.simpleMessage("تخزين"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("الشارع"),
         "streetAddressHint":
@@ -2178,9 +2178,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب الحركة"),
         "transactionType": MessageLookupByLibrary.simpleMessage("نوع الحركة"),
         "transferTypeNF": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . "),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . "),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-118)"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "معدل مطالبة الاتفاق الضريبي (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
@@ -2244,7 +2244,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال تحميل الوثائق. حاول كمان مرة بعدين."),
         "uploadDocumentsSmall": MessageLookupByLibrary.simpleMessage("تحميل"),
         "uploadFatcaSignatureError": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 ."),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-011)"),
         "uploadIdInstead":
             MessageLookupByLibrary.simpleMessage("أو حمّل صورة هويتك"),
         "uploadSignature":
@@ -2356,7 +2356,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "whichTaxPayerAreYouSmall":
             MessageLookupByLibrary.simpleMessage("شو نوع الملف الضريبي؟"),
         "wsChildError": MessageLookupByLibrary.simpleMessage(
-            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red. حاول كمان مرة "),
+            "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),
         "yearly": MessageLookupByLibrary.simpleMessage("الدخل السنوي "),
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "youAreAcceptingMoneyRequestViaQr":
