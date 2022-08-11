@@ -373,11 +373,13 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 },
                                 title: S.of(context).reportCardIssue,
                                 tileIcon: AssetUtils.report,
-                                isEnabled:
-                                    model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                        PrimarySecondaryCardEnum.PRIMARY,
-                                isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                    PrimarySecondaryCardEnum.SECONDARY,
+                                // isEnabled:
+                                //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                //         PrimarySecondaryCardEnum.PRIMARY,
+                                // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                //     PrimarySecondaryCardEnum.SECONDARY,
+                                isEnabled: false,
+                                isNotify: true,
                               );
                             }),
                         AppStreamBuilder<Resource<bool>>(
@@ -412,11 +414,13 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                 },
                                 title: S.of(context).replaceDamageCard,
                                 tileIcon: AssetUtils.damageCard,
-                                isEnabled:
-                                    model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                        PrimarySecondaryCardEnum.PRIMARY,
-                                isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                    PrimarySecondaryCardEnum.SECONDARY,
+                                // isEnabled:
+                                //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                //         PrimarySecondaryCardEnum.PRIMARY,
+                                // isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                //     PrimarySecondaryCardEnum.SECONDARY,
+                                isEnabled: false,
+                                isNotify: true,
                               );
                             }),
                         IgnorePointer(

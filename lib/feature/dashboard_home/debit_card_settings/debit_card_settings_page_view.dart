@@ -306,10 +306,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                                 title: S.of(context).reportCardIssue,
                                 tileIcon: AssetUtils.report,
-                                isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                    PrimarySecondaryEnum.PRIMARY,
-                                isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                    PrimarySecondaryEnum.SECONDARY,
+                                // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                //     PrimarySecondaryEnum.PRIMARY,
+                                // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                //     PrimarySecondaryEnum.SECONDARY,
+                                isEnabled: false,
+                                isNotify: true,
                               );
                             }),
                         AppStreamBuilder<Resource<bool>>(
@@ -346,10 +348,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                                 title: S.of(context).replaceDamageCard,
                                 tileIcon: AssetUtils.replaceCard,
-                                isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                    PrimarySecondaryEnum.PRIMARY,
-                                isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                    PrimarySecondaryEnum.SECONDARY,
+                                // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                //     PrimarySecondaryEnum.PRIMARY,
+                                // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                //     PrimarySecondaryEnum.SECONDARY,
+                                isEnabled: false,
+                                isNotify: true,
                               );
                             }),
                         AppStreamBuilder<Resource<CardIssuanceDetails>>(
@@ -430,6 +434,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                           },
                                           title: S.of(context).cancelThisCard,
                                           tileIcon: AssetUtils.cancelCard,
+                                          isEnabled: false,
+                                          isNotify: true,
                                         );
                                       },
                                     );
