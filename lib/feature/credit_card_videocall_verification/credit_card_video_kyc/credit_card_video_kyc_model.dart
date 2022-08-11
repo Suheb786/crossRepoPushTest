@@ -27,33 +27,26 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   List<int> remoteUid = [];
 
   /// call status initiate update
-  PublishSubject<CreditCardCallStatusUpdateUseCaseParams>
-      _callStatusUpdateRequest = PublishSubject();
+  PublishSubject<CreditCardCallStatusUpdateUseCaseParams> _callStatusUpdateRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _callStatusUpdateResponse = PublishSubject();
 
-  Stream<Resource<bool>> get callStatusUpdateStream =>
-      _callStatusUpdateResponse.stream;
+  Stream<Resource<bool>> get callStatusUpdateStream => _callStatusUpdateResponse.stream;
 
   /// call status end update
-  PublishSubject<CreditCardCallStatusUpdateUseCaseParams>
-      _callEndStatusUpdateRequest = PublishSubject();
+  PublishSubject<CreditCardCallStatusUpdateUseCaseParams> _callEndStatusUpdateRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _callEndStatusUpdateResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _callEndStatusUpdateResponse = PublishSubject();
 
-  Stream<Resource<bool>> get callEndStatusUpdateStream =>
-      _callEndStatusUpdateResponse.stream;
+  Stream<Resource<bool>> get callEndStatusUpdateStream => _callEndStatusUpdateResponse.stream;
 
-  CreditCardVideoKycViewModel(
-      this.agoraCredentials, this._callStatusUpdateUseCase) {
+  CreditCardVideoKycViewModel(this.agoraCredentials, this._callStatusUpdateUseCase) {
     channelId = agoraCredentials.channelName;
     tempToken = agoraCredentials.token;
     _initEngine();
 
     _callStatusUpdateRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _callStatusUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         //updateLoader();
@@ -65,8 +58,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
     });
 
     _callEndStatusUpdateRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _callStatusUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _callStatusUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         //updateLoader();
@@ -93,8 +85,7 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(
-        RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
+    _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
       debugPrint("joinChannelSuccess $uid");
       isJoined = true;
       notifyListeners();
@@ -148,13 +139,17 @@ class CreditCardVideoKycViewModel extends BasePageViewModel {
   }
 
   void callStatusUpdate(String? status) {
-    _callStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(
-        cardId: agoraCredentials.cardId, status: status));
+    _callStatusUpdateRequest
+        .safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
   }
 
   void callEndStatusUpdate(String? status) {
-    _callEndStatusUpdateRequest.safeAdd(CreditCardCallStatusUpdateUseCaseParams(
-        cardId: agoraCredentials.cardId, status: status));
+    _callEndStatusUpdateRequest
+        .safeAdd(CreditCardCallStatusUpdateUseCaseParams(cardId: agoraCredentials.cardId, status: status));
+  }
+
+  void leaveChannelWhenAppInBackground() {
+    _engine.leaveChannel();
   }
 
   @override

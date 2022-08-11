@@ -153,8 +153,11 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   void getCallStatus() {
-    _getCallStatusRequest
-        .safeAdd(GetCallStatusUseCaseParams(session: tempToken));
+    _getCallStatusRequest.safeAdd(GetCallStatusUseCaseParams(session: tempToken));
+  }
+
+  void leaveChannelWhenAppInBackground() {
+    _engine.leaveChannel();
   }
 
   @override

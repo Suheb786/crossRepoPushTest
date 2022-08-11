@@ -103,7 +103,9 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                           arguments: VideKycCredentials(
                               token: requestCall.data!.conferenceLink,
                               channelName: requestCall.data!.callId));
-                      model.checkUserStatus();
+                      if (result != null && result as bool) {
+                        model.checkUserStatus();
+                      }
                     } else if (requestCall.status == Status.ERROR) {
                       model.showToastWithError(requestCall.appError!);
                     }
