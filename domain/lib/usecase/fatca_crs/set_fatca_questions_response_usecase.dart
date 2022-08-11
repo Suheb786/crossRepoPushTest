@@ -8,8 +8,8 @@ import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
-    SetFatcaQuestionsResponseUseCaseParams, SetFatcResponse> {
+class SetFatcaQuestionsResponseUseCase
+    extends BaseUseCase<NetworkError, SetFatcaQuestionsResponseUseCaseParams, SetFatcResponse> {
   final FatcaCrsRepository _repository;
 
   SetFatcaQuestionsResponseUseCase(this._repository);
@@ -57,25 +57,18 @@ class SetFatcaQuestionsResponseUseCaseParams extends Params {
     if (response5) {
       if (relationShipPEP.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_RELATIONSHIP,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_RELATIONSHIP, cause: Exception()));
       } else if (personName.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_PERSON_NAME,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_PERSON_NAME, cause: Exception()));
       } else if (personRole.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_PERSON_ROLE,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_PERSON_ROLE, cause: Exception()));
       }
-    } else if (response4 && country.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_TAX_COUNTRY,
-          cause: Exception()));
+    }
+    if (response4 && country.isEmpty) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_TAX_COUNTRY, cause: Exception()));
     }
 
     return Right(true);

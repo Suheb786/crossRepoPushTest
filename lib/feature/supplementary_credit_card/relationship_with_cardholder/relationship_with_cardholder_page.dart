@@ -28,9 +28,7 @@ class RelationshipWithCardholderPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(RelationshipWithCardholderPageViewModel model) {
-    print(
-        'cardId---->${ProviderScope.containerOf(context).read(supplementaryCreditCardViewModelProvider).creditCard.cardId ?? ''}');
-    model.getCreditCardRelationship(
+     model.getCreditCardRelationship(
         cardId: ProviderScope.containerOf(context)
                 .read(supplementaryCreditCardViewModelProvider)
                 .creditCard

@@ -49,6 +49,7 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                         initialData: Resource.none(),
                         onData: (createAccountData) {
                           if (createAccountData.status == Status.SUCCESS) {
+                            model.saveUserData();
                             model.checkUserStatus();
                           }
                         },

@@ -52,6 +52,7 @@ class DocumentUploadLaterPageView extends BasePageViewWidget<DocumentUploadLater
                         initialData: Resource.none(),
                         onData: (createAccountData) {
                           if (createAccountData.status == Status.SUCCESS) {
+                            model.saveUserData();
                             model.getCustomerStatus();
                           }
                         },

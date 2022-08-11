@@ -19,7 +19,7 @@ class ChangeCardSettlementPercentagePageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> settlementPercentageKey =
       GlobalKey(debugLabel: "settlementPercentage");
 
-  List<String> percentageList = ["5 %", "25 %", "50 %", "100 %"];
+  List<String> percentageList = ["25 %", "50 %", "100 %"];
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);

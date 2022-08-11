@@ -20,7 +20,9 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           if (model.creditCardApplicationFailureArguments.creditFailureState ==
-              CreditFailureState.InEligible) {
+                  CreditFailureState.InEligible ||
+              model.creditCardApplicationFailureArguments.creditFailureState ==
+                  CreditFailureState.ZERO_BALANCE) {
             Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
             ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
           } else if (model.creditCardApplicationFailureArguments.creditFailureState ==
@@ -54,7 +56,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
             Padding(
               padding: EdgeInsets.only(top: 46),
               child: Text(
-                S.of(context).applicationNotSuccessful,
+                getTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
                 textAlign: TextAlign.center,
                 maxLines: 3,
                 style: TextStyle(
@@ -71,10 +73,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                 end: 40,
               ),
               child: Text(
-                  model.creditCardApplicationFailureArguments.creditFailureState ==
-                          CreditFailureState.InEligible
-                      ? S.of(context).applicationFailureMsg
-                      : S.of(context).applicationRejectedByEngagementTeam,
+                  getSubTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
@@ -107,5 +106,28 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
         ),
       ),
     );
+  }
+
+  String getTitle(BuildContext context, CreditFailureState creditFailureState) {
+    switch (creditFailureState) {
+      case CreditFailureState.InEligible:
+      case CreditFailureState.EngagementTeamRejection:
+        return S.of(context).applicationNotSuccessful;
+
+      case CreditFailureState.ZERO_BALANCE:
+        return S.of(context).creditZeroBalanceRejtitle;
+    }
+  }
+
+  String getSubTitle(BuildContext context, CreditFailureState creditFailureState) {
+    switch (creditFailureState) {
+      case CreditFailureState.InEligible:
+        return S.of(context).applicationFailureMsg;
+      case CreditFailureState.EngagementTeamRejection:
+        return S.of(context).applicationRejectedByEngagementTeam;
+
+      case CreditFailureState.ZERO_BALANCE:
+        return S.of(context).creditZeroBalanceRejDesc;
+    }
   }
 }

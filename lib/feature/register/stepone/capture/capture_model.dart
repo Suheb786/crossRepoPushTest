@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -52,7 +53,7 @@ class CaptureViewModel extends BasePageViewModel {
       XFile file = await controller.takePicture();
       uploadImage(file);
     } on CameraException catch (e) {
-      print(e);
+      debugPrint('$e');
     }
   }
 

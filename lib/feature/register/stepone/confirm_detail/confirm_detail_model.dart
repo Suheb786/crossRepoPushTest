@@ -228,7 +228,6 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
           issuingPlaceController.text = countryData!.countryName!;
           if (firstLoad) {
-            print('firstLoad');
             notifyListeners();
             firstLoad = false;
           }

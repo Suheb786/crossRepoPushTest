@@ -402,7 +402,6 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void updateIncomeDocumentField(String value) {
-    print('income value:--->$value');
     incomeController.text = value.split("/").last;
     uploadIncomeProof(value);
     updateIncomeUploadedStream(true);

@@ -34,6 +34,7 @@ class AppOtpFields extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: PinCodeTextField(
+          enablePinAutofill: false,
           appContext: context,
           length: length!,
           autoFocus: autoFocus!,

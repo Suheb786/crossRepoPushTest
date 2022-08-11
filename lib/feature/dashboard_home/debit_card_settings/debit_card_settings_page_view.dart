@@ -212,18 +212,21 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                           tileIcon: AssetUtils.settingBars,
                         ),
                         SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.ManageCardPin,
-                                arguments: ManageCardPinArguments(
-                                    cardType: CardType.DEBIT,
-                                    cardNumber: model.debitCardSettingsArguments.debitCard.cardNumber!,
-                                    tokenizedPan: model.debitCardSettingsArguments.debitCard.code!,
-                                    freezeCardStatusEnum:
-                                        model.debitCardSettingsArguments.debitCard.cardStatus!));
-                          },
-                          title: S.of(context).manageCardPin,
-                          tileIcon: AssetUtils.cardShield,
-                        ),
+                            onTap: () {
+                              Navigator.pushNamed(context, RoutePaths.ManageCardPin,
+                                  arguments: ManageCardPinArguments(
+                                      cardType: CardType.DEBIT,
+                                      cardNumber: model.debitCardSettingsArguments.debitCard.cardNumber!,
+                                      tokenizedPan: model.debitCardSettingsArguments.debitCard.code!,
+                                      freezeCardStatusEnum:
+                                          model.debitCardSettingsArguments.debitCard.cardStatus!));
+                            },
+                            title: S.of(context).manageCardPin,
+                            tileIcon: AssetUtils.cardShield,
+                            isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                PrimarySecondaryEnum.PRIMARY,
+                            isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                PrimarySecondaryEnum.SECONDARY),
                         SettingTile(
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
@@ -240,10 +243,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                           },
                           title: S.of(context).requestSupplementarycard,
                           tileIcon: AssetUtils.cardIcon,
-                          isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                              PrimarySecondaryEnum.PRIMARY,
-                          isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                              PrimarySecondaryEnum.SECONDARY,
+                          isEnabled: false,
+                          isNotify: true,
+                          // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                          //     PrimarySecondaryEnum.PRIMARY,
+                          // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                          //     PrimarySecondaryEnum.SECONDARY,
                         ),
                         IgnorePointer(
                           ignoring: true,

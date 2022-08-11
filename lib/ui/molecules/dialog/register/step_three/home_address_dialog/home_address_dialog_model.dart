@@ -42,7 +42,6 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
       _currentAddressResponseSubject.stream;
 
   void getAddress(LatLng latLng) {
-    print("latitude: ${latLng.latitude}");
     _currentAddressRequestSubject.safeAdd(HomeAddressDialogUseCaseParams(
         latitude: latLng.latitude, longitude: latLng.longitude));
   }
@@ -69,7 +68,6 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
           ),
           cause: Exception()));
     }
-    print(permission);
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
@@ -93,7 +91,6 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
   Future setCurrentUserLocation() async {
     var userCurrentPosition = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.best);
-    print('location---->${userCurrentPosition.longitude}');
     _currentUserLocationValidatorSubject.add(
         LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
     getAddress(
@@ -121,7 +118,6 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
           .listen((event) {
         if (event.status == Status.SUCCESS) {
           _currentAddressResponseSubject.safeAdd(event);
-          print("data : ${event.data!.completeAddress ?? "name"}");
         }
       });
     });

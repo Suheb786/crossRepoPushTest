@@ -8080,10 +8080,10 @@ class S {
     );
   }
 
-  /// `You requested`
+  /// `You requested `
   String get youRequested {
     return Intl.message(
-      'You requested',
+      'You requested ',
       name: 'youRequested',
       desc: '',
       args: [],
@@ -11930,10 +11930,10 @@ class S {
     );
   }
 
-  /// `Get ready and verify yourself now to complete your credit card application.`
+  /// `Get ready to verify yourself now to complete your credit card application. \nWe may ask you for some documents related to your occupational status.`
   String get verifyViaVideoCallCC {
     return Intl.message(
-      'Get ready and verify yourself now to complete your credit card application.',
+      'Get ready to verify yourself now to complete your credit card application. \nWe may ask you for some documents related to your occupational status.',
       name: 'verifyViaVideoCallCC',
       desc: '',
       args: [],
@@ -13390,6 +13390,46 @@ class S {
     );
   }
 
+  /// `You can not apply for credit card due to insufficient funds`
+  String get cannotApplyCCInsufficientFunds {
+    return Intl.message(
+      'You can not apply for credit card due to insufficient funds',
+      name: 'cannotApplyCCInsufficientFunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello!`
+  String get helloE {
+    return Intl.message(
+      'Hello!',
+      name: 'helloE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount to pay should be greater than 0`
+  String get amountGreaterThan0 {
+    return Intl.message(
+      'Amount to pay should be greater than 0',
+      name: 'amountGreaterThan0',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry, onboarding is currently only available to Jordanian nationals.`
+  String get cannotProceedNoAhwalDataFound {
+    return Intl.message(
+      'Sorry, onboarding is currently only available to Jordanian nationals.',
+      name: 'cannotProceedNoAhwalDataFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.`
   String get eVoucherDetailDescption {
     return Intl.message(
@@ -13435,56 +13475,6 @@ class S {
     return Intl.message(
       'from ',
       name: 'fromS',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No Transaction to display`
-  String get noTransactionToDisplay {
-    return Intl.message(
-      'No Transaction to display',
-      name: 'noTransactionToDisplay',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You can not apply for credit card due to insufficient funds`
-  String get cannotApplyCCInsufficientFunds {
-    return Intl.message(
-      'You can not apply for credit card due to insufficient funds',
-      name: 'cannotApplyCCInsufficientFunds',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Hello!`
-  String get helloE {
-    return Intl.message(
-      'Hello!',
-      name: 'helloE',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Amount to pay should be greater than 0`
-  String get amountGreaterThan0 {
-    return Intl.message(
-      'Amount to pay should be greater than 0',
-      name: 'amountGreaterThan0',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Can not proceed on-boarding since there is no data found against the national id no`
-  String get cannotProceedNoAhwalDataFound {
-    return Intl.message(
-      'Can not proceed on-boarding since there is no data found against the national id no',
-      name: 'cannotProceedNoAhwalDataFound',
       desc: '',
       args: [],
     );
@@ -13545,6 +13535,46 @@ class S {
     return Intl.message(
       'IdNo Already Exist',
       name: 'idAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Transaction to display`
+  String get noTransactionToDisplay {
+    return Intl.message(
+      'No Transaction to display',
+      name: 'noTransactionToDisplay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, we are unable to start your credit card application.`
+  String get creditZeroBalanceRejtitle {
+    return Intl.message(
+      'Unfortunately, we are unable to start your credit card application.',
+      name: 'creditZeroBalanceRejtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fund your account in order to apply for a credit card.`
+  String get creditZeroBalanceRejDesc {
+    return Intl.message(
+      'Please fund your account in order to apply for a credit card.',
+      name: 'creditZeroBalanceRejDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your call was disconnected. Please try again.`
+  String get callDisconnected {
+    return Intl.message(
+      'Your call was disconnected. Please try again.',
+      name: 'callDisconnected',
       desc: '',
       args: [],
     );

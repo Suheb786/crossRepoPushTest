@@ -71,7 +71,6 @@ class HomeAddressDialogView extends StatelessWidget {
                                   zoom: 12),
                               onMapCreated: (GoogleMapController controller) {
                                 model.mapController = controller;
-                                print(currentLocation.longitude);
                                 model.setPinPointMarker();
                               },
                               onTap: (latLng) {

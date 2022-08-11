@@ -94,7 +94,6 @@ class RegisterStepTwoPageView extends BasePageViewWidget<RegisterStepTwoViewMode
                   initialData: [Container()],
                   stream: model.registrationStepTwoPage,
                   dataBuilder: (context, data) {
-                    print("dataBuilder $data");
                     return AppSwiper(
                       pageController: model.registrationStepTwoPageController,
                       appSwiperController: model.appSwiperController,

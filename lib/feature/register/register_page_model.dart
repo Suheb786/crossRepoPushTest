@@ -36,7 +36,6 @@ class RegisterViewModel extends BasePageViewModel {
   }
 
   void navigateToPage(int index) {
-    print('navigate');
     registrationStepsController.jumpToPage(
       index,
     );

@@ -36,11 +36,14 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.ERROR) {
-                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE ||
-                        data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
+                    if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
                       Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                           arguments: CreditCardApplicationFailureArguments(
                               creditFailureState: CreditFailureState.InEligible));
+                    } else if (data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
+                      Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
+                          arguments: CreditCardApplicationFailureArguments(
+                              creditFailureState: CreditFailureState.ZERO_BALANCE));
                     } else {
                       model.showToastWithError(data.appError!);
                     }
@@ -60,11 +63,14 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                             model.minimumSettlementKey.currentState!.isValid = false;
                             model.showErrorState();
                             model.showToastWithError(data.appError!);
-                          } else if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE ||
-                              data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
+                          } else if (data.appError!.type == ErrorType.USER_NOT_ELIGIBLE) {
                             Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
                                 arguments: CreditCardApplicationFailureArguments(
                                     creditFailureState: CreditFailureState.InEligible));
+                          } else if (data.appError!.type == ErrorType.CANNOT_APPLY_CC_INSUFFICIENT_FUNDS) {
+                            Navigator.pushReplacementNamed(context, RoutePaths.CreditCardApplicationFailure,
+                                arguments: CreditCardApplicationFailureArguments(
+                                    creditFailureState: CreditFailureState.ZERO_BALANCE));
                           } else {
                             model.showToastWithError(data.appError!);
                           }

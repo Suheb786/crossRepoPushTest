@@ -55,6 +55,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         //   "properties": {"validated": true}
                         // };
                         // InfobipMobilemessaging.submitEventImmediately(event);
+                        model.saveUserData();
                         Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);

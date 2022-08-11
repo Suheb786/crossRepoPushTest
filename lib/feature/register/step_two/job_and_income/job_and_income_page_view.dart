@@ -62,8 +62,6 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
               }
             },
             dataBuilder: (context, response) {
-              print(
-                  "model.employmentStatusEnum ${model.employmentStatusEnum} /// ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
                   FocusScope.of(context).unfocus();
@@ -205,6 +203,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             inputType: TextInputType.numberWithOptions(decimal: true),
                             inputAction: TextInputAction.done,
                             inputFormatters: [
+                              LengthLimitingTextInputFormatter(14),
                               FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
                             ],
                             prefixIcon: () {

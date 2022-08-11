@@ -58,7 +58,7 @@ class VideoKycPageState extends BaseStatefulPage<VideoKycViewModel, VideoKycPage
           image: AssetUtils.alert,
           title: S.of(context).videoCall,
           descriptionWidget: Text(
-            "Your call was disconnected. Please try again.",
+            S.of(context).callDisconnected,
             style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
           ),
           onDismissed: () {}, onSelected: () {

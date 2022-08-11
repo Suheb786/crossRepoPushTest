@@ -297,6 +297,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
+        "callDisconnected": MessageLookupByLibrary.simpleMessage(
+            "Your call was disconnected. Please try again."),
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
@@ -319,7 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cannotApplyCCInsufficientFunds": MessageLookupByLibrary.simpleMessage(
             "You can not apply for credit card due to insufficient funds"),
         "cannotProceedNoAhwalDataFound": MessageLookupByLibrary.simpleMessage(
-            "Can not proceed on-boarding since there is no data found against the national id no"),
+            "Sorry, onboarding is currently only available to Jordanian nationals."),
         "cardApplyMsg": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
         "cardDelivered":
@@ -553,6 +555,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Your credit card settlement percentages has been updated with your new selected account"),
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
+        "creditZeroBalanceRejDesc": MessageLookupByLibrary.simpleMessage(
+            "Please fund your account in order to apply for a credit card."),
+        "creditZeroBalanceRejtitle": MessageLookupByLibrary.simpleMessage(
+            "Unfortunately, we are unable to start your credit card application."),
         "cridUpdateError":
             MessageLookupByLibrary.simpleMessage("Error in crif update"),
         "currentPassword":
@@ -2400,7 +2406,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
-            "Get ready and verify yourself now to complete your credit card application."),
+            "Get ready to verify yourself now to complete your credit card application. \nWe may ask you for some documents related to your occupational status."),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "Your video call is due now. Swipe to initiate the call when you’re ready."),
@@ -2478,7 +2484,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "You can change the above details in the card settings "),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "Oops! Your account is locked. Please contact our Engagement Team on 06-5200100 to unlock."),
-        "youRequested": MessageLookupByLibrary.simpleMessage("You requested"),
+        "youRequested": MessageLookupByLibrary.simpleMessage("You requested "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your request \n is accepted and money is \n added into your account."),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(

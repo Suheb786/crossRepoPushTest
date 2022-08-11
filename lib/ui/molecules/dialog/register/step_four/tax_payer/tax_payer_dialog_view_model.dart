@@ -25,9 +25,9 @@ class TaxPayerDialogViewModel extends BasePageViewModel {
   List<String> getList(TaxPayerTypeEnum typeEnum) {
     switch (typeEnum) {
       case TaxPayerTypeEnum.W8:
-        return Intl.systemLocale == 'en' ? taxPayerListW8 : taxPayerListW8Ar;
+        return Intl.getCurrentLocale() == 'en' ? taxPayerListW8 : taxPayerListW8Ar;
       case TaxPayerTypeEnum.W9:
-        return Intl.systemLocale == 'en' ? taxPayerListW9 : taxPayerListW9Ar;
+        return Intl.getCurrentLocale() == 'en' ? taxPayerListW9 : taxPayerListW9Ar;
       default:
         return taxPayerListW8;
     }

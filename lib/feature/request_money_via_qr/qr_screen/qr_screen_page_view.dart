@@ -181,8 +181,6 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
           subject: 'QR',
           text: 'Scan QR or click on link below to pay JOD 20 to Zein Malhas\n\n blinkURL',
           sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 }

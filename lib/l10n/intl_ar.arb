@@ -826,7 +826,7 @@
   "deviceNotSupported": "تم اكتشاف جهاز كشف الحماية",
   "deviceNotSupportedNote": "لحماية عملائنا ، قمنا بتعطيل Blink على الأجهزة عالية الخطورة. بتقدر تستخدم Blink على جهاز آخر أو تعمل إعادة ضبط لجهازك على إعداداته الأصلية.",
   "residentCity": "مدينة الإقامة",
-  "youRequested": "إنت طلبت",
+  "youRequested": "إنت طلبت ",
   "from": "من",
   "addRequestMoney": "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال.",
   "errorWhileProcessLoanRequest": "خطأ خلال طلب القرض",
@@ -1210,7 +1210,7 @@
   "timeForQuickVideoCall": "صار الوقت لمكالمة فيديو  سريعة",
   "verificationCallEnded": "انتهت مكالمة التحقق",
   "verificationCallEndedDesc": "اكتملت المكالمة. رح نبلغك بحالة الطلب.",
-  "verifyViaVideoCallCC": "خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية",
+  "verifyViaVideoCallCC": " خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية.\nقد نطلب منك وثائق إضافية للتحقق من حالتك الوظيفية",
   "verifyNow": "ابدأ مكالمة الفيديو",
   "creditCardApplicationUnderReviewDesc": "طلبك قيد المراجعة. رح نبلغك بالتفاصيل قريباً.",
   "getCreditCardNowDesc": "تمت الموافقة على طلبك. صار وقت اصدار البطاقة.",
@@ -1331,5 +1331,8 @@
   "accountNoCopied": "تم نسخ رقم الحساب",
   "ibanCopied": "نسخ IBAN",
   "cardNumberCopied": "تم نسخ رقم البطاقة",
-  "idAlreadyExists": "رقم الهوية موجود بالفعل"
+  "idAlreadyExists": "رقم الهوية موجود بالفعل",
+  "creditZeroBalanceRejtitle": "عذرا، لا يمكننك التقدم لطلب البطاقة الائتمانية.",
+  "creditZeroBalanceRejDesc": "يرجى تمويل حسابك من أجل التقدم بطلب للحصول على بطاقة ائتمان",
+  "callDisconnected": "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"
 }

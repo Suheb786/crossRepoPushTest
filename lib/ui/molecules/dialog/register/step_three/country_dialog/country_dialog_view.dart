@@ -91,7 +91,6 @@ class CountryDialogView extends StatelessWidget {
                                   hintText: S.of(context).searchCountry,
                                   containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   onChanged: (value) {
-                                    print(value);
                                     model.searchCountry(value);
                                   },
                                   suffixIcon: (value, data) {

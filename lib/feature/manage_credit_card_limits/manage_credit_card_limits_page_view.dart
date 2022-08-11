@@ -277,6 +277,7 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                                 num.parse(onlinePurchaseLimitValue);
                                                             model.showSaveButton();
                                                           },
+                                                          readOnly: true,
                                                           onDone: (onlinePurchaseLimitValue) {},
                                                         ),
                                                         ManageLimitsWidget(

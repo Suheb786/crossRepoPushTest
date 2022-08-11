@@ -89,7 +89,6 @@ class MobileNumberDialogView extends StatelessWidget {
                                   hintText: S.of(context).searchCountry,
                                   containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   onChanged: (value) {
-                                    print(value);
                                     model.searchMobileNumber(value);
                                   },
                                   suffixIcon: (value, data) {

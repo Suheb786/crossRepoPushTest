@@ -70,7 +70,6 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   }
 
   void getPurpose() {
-    print("beneficiary iban: ${beneficiary!.accountNo}");
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
         toAccount: beneficiary!.accountNo!,
         transferType: type == TransactionType.RTP ? "RTP" : "TransferI",

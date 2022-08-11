@@ -35,6 +35,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
       initialData: Resource.none(),
       onData: (createAccountData) {
         if (createAccountData.status == Status.SUCCESS) {
+          model.saveUserData();
           model.checkUserStatus();
         }
       },
@@ -100,7 +101,9 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                           arguments: VideKycCredentials(
                               token: requestCall.data!.conferenceLink,
                               channelName: requestCall.data!.callId));
-                      model.checkUserStatus();
+                      if (result != null && result as bool) {
+                        model.checkUserStatus();
+                      }
                     } else if (requestCall.status == Status.ERROR) {
                       model.showToastWithError(requestCall.appError!);
                     }

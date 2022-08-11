@@ -37,7 +37,7 @@ class EnterCodeForChangeEmailAddressPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  model.showSuccessToast(data.data!.data!.data!);
+                  model.showSuccessToast(S.of(context).emailAddressUpdated);
                   model.saveUserData();
                   Navigator.pop(context, true);
                 } else if (data.status == Status.ERROR) {

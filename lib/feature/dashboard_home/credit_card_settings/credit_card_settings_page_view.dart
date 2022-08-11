@@ -266,12 +266,14 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                       onTap: () {
                                         model.getSupplementaryCreditCardApplication();
                                       },
-                                      isEnabled:
-                                          model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                              PrimarySecondaryCardEnum.PRIMARY,
-                                      isNotify:
-                                          model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
-                                              PrimarySecondaryCardEnum.SECONDARY,
+                                      isEnabled: false,
+                                      isNotify: true,
+                                      // isEnabled:
+                                      //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                      //         PrimarySecondaryCardEnum.PRIMARY,
+                                      // isNotify:
+                                      //     model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                                      //         PrimarySecondaryCardEnum.SECONDARY,
                                       title: S.of(context).requestSupplementarycard,
                                       tileIcon: AssetUtils.cardIcon,
                                     );

@@ -280,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06   (Err-028)"),
         "businessType": MessageLookupByLibrary.simpleMessage("نوع العمل"),
+        "callDisconnected": MessageLookupByLibrary.simpleMessage(
+            "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"),
         "callHangupError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إنهاء المكالمة"),
         "callHasEnded":
@@ -527,6 +529,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "تم تحديث نسب السداد لبطاقتك الائتمانية  بالحساب الجديد اللي اخترته بنجاح"),
         "creditTc": MessageLookupByLibrary.simpleMessage("الشروط والأحكام "),
+        "creditZeroBalanceRejDesc": MessageLookupByLibrary.simpleMessage(
+            "يرجى تمويل حسابك من أجل التقدم بطلب للحصول على بطاقة ائتمان"),
+        "creditZeroBalanceRejtitle": MessageLookupByLibrary.simpleMessage(
+            "عذرا، لا يمكننك التقدم لطلب البطاقة الائتمانية."),
         "cridUpdateError":
             MessageLookupByLibrary.simpleMessage("خطأ في تحديث الشهادة"),
         "currentPassword":
@@ -2295,7 +2301,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyTransferApiV2Error": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "verifyViaVideoCallCC": MessageLookupByLibrary.simpleMessage(
-            "خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية"),
+            " خليك جاهز وأكّد هويتك هلأ لتكمّل طلب بطاقتك الائتمانية.\nقد نطلب منك وثائق إضافية للتحقق من حالتك الوظيفية"),
         "videoCall": MessageLookupByLibrary.simpleMessage("مكالمة فيديو"),
         "videoCallDueNow": MessageLookupByLibrary.simpleMessage(
             "صار وقت مكالمة الفيديو. اسحب الشاشة لتبدأ المكالمة لما تكون جاهز."),
@@ -2369,7 +2375,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "بتقدر تغيّر المعلومات أعلاه من خلال إعدادات البطاقة"),
         "youLocked": MessageLookupByLibrary.simpleMessage(
             "عفواً! تم قفل حسابك. الرجاء التواصل معنا على 5200100-06 لفك القفل."),
-        "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت"),
+        "youRequested": MessageLookupByLibrary.simpleMessage("إنت طلبت "),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(

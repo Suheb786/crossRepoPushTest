@@ -117,7 +117,6 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
   }
 
   void getError(Resource<bool> event) {
-    print(event.appError!.type);
     switch (event.appError!.type) {
       case ErrorType.INVALID_TAX_COUNTRY:
         countrySelectorKey.currentState!.isValid = false;

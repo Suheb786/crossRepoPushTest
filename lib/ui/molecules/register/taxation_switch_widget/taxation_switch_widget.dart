@@ -186,7 +186,6 @@ class FatcaDropDownField extends StatelessWidget {
               FatcaOptionDialog.show(context, title: data.label ?? "", onDismissed: () {
                 Navigator.pop(context);
               }, onSelected: (value) {
-                print('value-->${value.name}');
                 model?.controller.text = value.name!;
                 onSelect?.call(value);
                 // Navigator.pop(context);

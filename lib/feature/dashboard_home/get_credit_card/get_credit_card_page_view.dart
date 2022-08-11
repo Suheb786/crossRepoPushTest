@@ -29,7 +29,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
   Widget build(BuildContext context, model) {
     bool isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
         model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
-    return cardData.somethingWrong!
+    return cardData.somethingWrong ?? false
         ? Center(
             child: Padding(
               padding: const EdgeInsets.all(15),

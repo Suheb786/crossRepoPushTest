@@ -5,6 +5,7 @@ import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -204,15 +205,11 @@ class AppViewModel extends BaseViewModel {
 
   PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
-
   static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream => _initInfobipMessageResponseSubject.stream;
-
-  Stream<Resource<bool>> get saveUserResponseStream => _saveuserResponseSubject.stream;
 
   AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase) {
     _getTokenRequest.listen((value) {
@@ -220,7 +217,7 @@ class AppViewModel extends BaseViewModel {
           .asFlow()
           .listen((event) {
         if (event.status == Status.ERROR) {
-          print("error");
+          //print("error");
         }
         _getTokenResponse.safeAdd(event);
       });
@@ -234,13 +231,6 @@ class AppViewModel extends BaseViewModel {
       });
     });
 
-    _saveUserRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        return _saveUserUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        _saveuserResponseSubject.safeAdd(event);
-      });
-    });
     //
     // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     //   print('Got a message whilst in the foreground!');
@@ -255,10 +245,6 @@ class AppViewModel extends BaseViewModel {
 
   initInfobipMessagePlugin() async {
     _initInfobipMessageRequestSubject.safeAdd(InfobipMessagePluginUseCaseParams());
-  }
-
-  void saveUserData() {
-    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   void getToken() async {

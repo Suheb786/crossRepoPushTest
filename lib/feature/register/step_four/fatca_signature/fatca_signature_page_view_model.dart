@@ -188,7 +188,6 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void signatureUpload() {
-    print('${signatureController.text}');
     _uploadSignatureRequest
         .safeAdd(UploadSignatureUseCaseParams(signature: selectedFile));
   }

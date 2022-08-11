@@ -17,8 +17,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class TaxationDetailsPageView
-    extends BasePageViewWidget<TaxationDetailsPageViewModel> {
+class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageViewModel> {
   TaxationDetailsPageView(ProviderBase model) : super(model);
 
   @override
@@ -48,8 +47,7 @@ class TaxationDetailsPageView
                         if (data.status == Status.SUCCESS) {
                           ///storing response to main page
                           model.updateData(context);
-                          switch (data
-                              .data!.setFatcaResponseContent!.requestResponse) {
+                          switch (data.data!.setFatcaResponseContent!.requestResponse) {
                             case FatcaEnum.w8:
                               Future.delayed(Duration(milliseconds: 500), () {
                                 ProviderScope.containerOf(context)
@@ -72,14 +70,10 @@ class TaxationDetailsPageView
                                 ProviderScope.containerOf(context)
                                     .read(registerViewModelProvider)
                                     .registrationStepsController
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
+                                    .nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeInOut);
                               });
                               break;
                           }
-                        } else if (data.status == Status.ERROR) {
-                          model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, response) {
@@ -90,7 +84,7 @@ class TaxationDetailsPageView
                                     .appSwiperController
                                     .page ==
                                 0.0) {
-                              FocusScope.of(context).unfocus();
+                              //FocusScope.of(context).unfocus();
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (!details.primaryVelocity!.isNegative) {
                                   model.setFatcaQuestionResponse();
@@ -102,8 +96,7 @@ class TaxationDetailsPageView
                               }
                             }
                           },
-                          child: AppStreamBuilder<
-                              Resource<GetFatcaQuestionsResponse>>(
+                          child: AppStreamBuilder<Resource<GetFatcaQuestionsResponse>>(
                             stream: model.getFatcaQuestionsStream,
                             initialData: Resource.none(),
                             onData: (data) {
@@ -119,64 +112,45 @@ class TaxationDetailsPageView
                                 case Status.SUCCESS:
                                   return Padding(
                                     padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context)
-                                                        .viewInsets
-                                                        .bottom -
-                                                    50 <=
-                                                0
+                                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                             ? 0
-                                            : MediaQuery.of(context)
-                                                    .viewInsets
-                                                    .bottom -
-                                                48),
+                                            : MediaQuery.of(context).viewInsets.bottom - 48),
                                     child: SingleChildScrollView(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                      padding: EdgeInsets.symmetric(horizontal: 24),
                                       physics: ClampingScrollPhysics(),
                                       primary: true,
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
                                         children: [
                                           ListView.builder(
                                               key: ValueKey(1),
                                               physics: ClampingScrollPhysics(),
-                                              itemCount: questions
-                                                  .data!
-                                                  .getFatcaQuestionsResponseContent!
-                                                  .fatcaQuestionsList!
-                                                  .length,
+                                              itemCount: questions.data!.getFatcaQuestionsResponseContent!
+                                                  .fatcaQuestionsList!.length,
                                               itemBuilder: (context, index) {
                                                 return TaxationSwitchWidget(
                                                   key: ValueKey(questions
                                                       .data!
                                                       .getFatcaQuestionsResponseContent!
-                                                      .fatcaQuestionsList![
-                                                          index]
+                                                      .fatcaQuestionsList![index]
                                                       .orderNo),
-                                                  data: questions
-                                                      .data!
-                                                      .getFatcaQuestionsResponseContent!
+                                                  data: questions.data!.getFatcaQuestionsResponseContent!
                                                       .fatcaQuestionsList![index],
                                                   onToggle: (value) {
-                                                    model.toggleSelection(
-                                                        value, index);
+                                                    model.toggleSelection(value, index);
+                                                    if (!value) {
+                                                      model.resetValue(index);
+                                                    }
                                                   },
-                                                  onDropDownSelection: (selection,
-                                                      selectedAdditionalData) {
+                                                  onDropDownSelection: (selection, selectedAdditionalData) {
                                                     model.setDropDownSelection(
-                                                        selectedAdditionalData,
-                                                        selection);
+                                                        selectedAdditionalData, selection);
                                                   },
-                                                  onTextUpdate: (selection,
-                                                      changedValue) {
-                                                    model.setOtherData(
-                                                        selection,
-                                                        changedValue);
+                                                  onTextUpdate: (selection, changedValue) {
+                                                    model.setOtherData(selection, changedValue);
                                                   },
                                                   onInfoClick: () {
-                                                    PEPDialog.show(context,
-                                                        onSelected: () {
+                                                    PEPDialog.show(context, onSelected: () {
                                                       Navigator.pop(context);
                                                     });
                                                   },
@@ -186,12 +160,8 @@ class TaxationDetailsPageView
                                               primary: false),
                                           Center(
                                             child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 32),
-                                              child: AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed),
+                                              padding: EdgeInsets.symmetric(vertical: 32),
+                                              child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                             ),
                                           )
                                         ],
@@ -201,8 +171,8 @@ class TaxationDetailsPageView
                                 case Status.LOADING:
                                   return Center(
                                     child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Theme.of(context).primaryColor),
+                                      valueColor:
+                                          AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
                                       strokeWidth: 2,
                                     ),
                                   );

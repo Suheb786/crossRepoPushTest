@@ -30,13 +30,10 @@ class VideoKycViewModel extends BasePageViewModel {
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
 
-  PublishSubject<GetCallStatusUseCaseParams> _getCallStatusRequest =
-      PublishSubject();
-  PublishSubject<Resource<VideoKycStatus>> _getCallStatusResponse =
-      PublishSubject();
+  PublishSubject<GetCallStatusUseCaseParams> _getCallStatusRequest = PublishSubject();
+  PublishSubject<Resource<VideoKycStatus>> _getCallStatusResponse = PublishSubject();
 
-  Stream<Resource<VideoKycStatus>> get callStatusStream =>
-      _getCallStatusResponse.stream;
+  Stream<Resource<VideoKycStatus>> get callStatusStream => _getCallStatusResponse.stream;
 
   ///logout
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
@@ -44,11 +41,9 @@ class VideoKycViewModel extends BasePageViewModel {
 
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
-  VideoKycViewModel(
-      this._getCallStatusUseCase, this.agoraCredentials, this._logoutUseCase) {
+  VideoKycViewModel(this._getCallStatusUseCase, this.agoraCredentials, this._logoutUseCase) {
     _getCallStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCallStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCallStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         //updateLoader();
@@ -60,10 +55,7 @@ class VideoKycViewModel extends BasePageViewModel {
     });
 
     _logoutRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _logoutResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -87,7 +79,6 @@ class VideoKycViewModel extends BasePageViewModel {
       await _engine.setChannelProfile(ChannelProfile.Communication);
       await _engine.setClientRole(ClientRole.Broadcaster);
     } catch (e) {
-      print('----Catch----');
       joinAgoraChannel();
     }
   }
@@ -97,8 +88,7 @@ class VideoKycViewModel extends BasePageViewModel {
   }
 
   _addAgoraEventHandlers() {
-    _engine.setEventHandler(
-        RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
+    _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (channel, uid, elapsed) {
       debugPrint("joinChannelSuccess $uid");
       isJoined = true;
       notifyListeners();
@@ -141,9 +131,7 @@ class VideoKycViewModel extends BasePageViewModel {
     _engine.switchCamera().then((value) {
       switchCamera = !switchCamera;
       notifyListeners();
-    }).catchError((err) {
-      print('switchCamera $err');
-    });
+    }).catchError((err) {});
   }
 
   switchAgoraRender() {

@@ -67,7 +67,6 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                print('file id from ui--->${data.data!.id}');
                                 model.fileId = data.data!.id!;
                               }
                             },

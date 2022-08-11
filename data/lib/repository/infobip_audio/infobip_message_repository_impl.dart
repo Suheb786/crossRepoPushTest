@@ -1,12 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/di/local_module.dart';
-import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/source/infobip_audio/infobip_message_datasource.dart';
-import 'package:data/source/infobip_audio/local/infobip_message_local_datasource_implementation.dart';
 import 'package:domain/error/network_error.dart';
-import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:infobip_mobilemessaging/models/UserData.dart';
 
 class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
@@ -31,8 +28,7 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   Future<Either<NetworkError, bool>> showChat() async {
     var infobipMessageResult = await _infobipMessageDs.showChat();
     if (!infobipMessageResult) {
-      return Left(
-          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
     } else {
       return Right(true);
     }
@@ -40,14 +36,11 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
 
   @override
   Future<Either<NetworkError, bool>> saveUser() async {
-    return (await _repository.getCurrentUser()).fold(
-        (l) => Left(
-            NetworkError(httpError: 1502, cause: Exception(), message: '')),
-        (user) async {
-      print("USER CIF NUMBER " + user.cifNumber.toString());
-      print("MOBILE NUMBER " +
-          user.mobileCode.toString() +
-          user.mobile.toString());
+    return (await _repository.getCurrentUser())
+        .fold((l) => Left(NetworkError(httpError: 1502, cause: Exception(), message: '')), (user) async {
+      debugPrint("USER CIF NUMBER " + user.cifNumber.toString());
+      debugPrint("EMAIL " + user.email.toString());
+      debugPrint("MOBILE NUMBER " + user.mobileCode.toString() + user.mobile.toString());
       var saveUserResult = await _infobipMessageDs.saveUser(UserData(
           firstName: user.firstName!,
           lastName: user.lastName!,
@@ -59,11 +52,13 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
             "accountNumber": user.accountNumber.toString()
           },
           phones: [
-            user.mobileCode!.substring(2).toString() + user.mobile.toString()
+            (user.mobileCode!.contains("00")
+                    ? user.mobileCode!.replaceAll("00", "").toString()
+                    : user.mobileCode!.toString()) +
+                user.mobile.toString()
           ]));
       if (!saveUserResult) {
-        return Left(
-            NetworkError(httpError: 1501, cause: Exception(), message: ''));
+        return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
       } else {
         return Right(true);
       }
@@ -74,8 +69,7 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   Either<NetworkError, bool> depersonalizeUser() {
     var depersonalizeUserResult = _infobipMessageDs.depersonalizeUser();
     if (!depersonalizeUserResult) {
-      return Left(
-          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
     } else {
       return Right(true);
     }
