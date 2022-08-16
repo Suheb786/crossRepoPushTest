@@ -6,15 +6,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RegisterProspectUseCase
-    extends BaseUseCase<BaseError, RegisterProspectUseCaseParams, User> {
+class RegisterProspectUseCase extends BaseUseCase<BaseError, RegisterProspectUseCaseParams, User> {
   final UserRepository _repository;
 
   RegisterProspectUseCase(this._repository);
 
   @override
-  Future<Either<BaseError, User>> execute(
-      {required RegisterProspectUseCaseParams params}) async {
+  Future<Either<BaseError, User>> execute({required RegisterProspectUseCaseParams params}) async {
     return Future.value(
       (await _repository.registerProspectUser(
               mobileNumber: params.mobileNumber,
@@ -25,6 +23,7 @@ class RegisterProspectUseCase
               confirmPassword: params.confirmPassword,
               email: params.email))
           .fold((l) => Left(l), (user) async {
+        user.email = params.email;
         return _repository.saveUser(user);
       }),
     );

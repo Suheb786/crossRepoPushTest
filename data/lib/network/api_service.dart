@@ -247,7 +247,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
       @Body() KYCStatusRequest kycStatusRequest);
 
-  @POST("/idcard/CheckAhwal")
+  @POST("/idcard/CheckAhwalV2")
   Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 
@@ -564,11 +564,11 @@ abstract class ApiService {
   @POST("/CardTracking/GetCardApplications")
   Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(@Body() BaseRequest baseRequest);
 
-  @POST("/CardTracking/GetLoanValues")
+  @POST("/CardTracking/GetLoanValuesV2")
   Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
       @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
 
-  @POST("/CardTracking/ProccessLoanRequest")
+  @POST("/CardTracking/ProccessLoanRequestV2")
   Future<HttpResponse<ResponseEntity>> processLoanRequest(
       @Body() ProcessLoanRequestEntity processLoanRequestEntity);
 
