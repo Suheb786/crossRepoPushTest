@@ -17,13 +17,10 @@ class InfobipMessageService {
       Configuration(
         applicationCode: KeyHelper.INFOBIP_APPLICATION_CODE,
         inAppChatEnabled: true,
-        androidSettings: AndroidSettings(
-            firebaseSenderId: InfobipUtilsConstants.FIREBASE_SENDER_ID),
+        androidSettings: AndroidSettings(firebaseSenderId: InfobipUtilsConstants.FIREBASE_SENDER_ID),
         defaultMessageStorage: true,
-        iosSettings: IOSSettings(
-            notificationTypes: ["alert", "badge", "sound"],
-            forceCleanup: false,
-            logging: true),
+        iosSettings:
+            IOSSettings(notificationTypes: ["alert", "badge", "sound"], forceCleanup: false, logging: true),
       ),
     );
 
@@ -43,22 +40,17 @@ class InfobipMessageService {
                       message.body!),
                   addLibraryEvent("Message Received"),
                   print("defaultMessageStorage().findAll():"),
-                  print(
-                      InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+                  print(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
                 }
             });
     InfobipMobilemessaging.on(
         LibraryEvent.USER_UPDATED,
-        (event) => {
-              print("Callback. USER_UPDATED event:" + event.toString()),
-              addLibraryEvent("User Updated")
-            });
+        (event) =>
+            {print("Callback. USER_UPDATED event:" + event.toString()), addLibraryEvent("User Updated")});
     InfobipMobilemessaging.on(
         LibraryEvent.PERSONALIZED,
-        (event) => {
-              print("Callback. PERSONALIZED event:" + event.toString()),
-              addLibraryEvent("Personalized")
-            });
+        (event) =>
+            {print("Callback. PERSONALIZED event:" + event.toString()), addLibraryEvent("Personalized")});
     InfobipMobilemessaging.on(
         LibraryEvent.INSTALLATION_UPDATED,
         (String event) => {
@@ -67,22 +59,18 @@ class InfobipMessageService {
             });
     InfobipMobilemessaging.on(
         LibraryEvent.DEPERSONALIZED,
-        (event) => {
-              print("Callback. DEPERSONALIZED event:" + event.toString()),
-              addLibraryEvent("Depersonalized")
-            });
+        (event) =>
+            {print("Callback. DEPERSONALIZED event:" + event.toString()), addLibraryEvent("Depersonalized")});
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_ACTION_TAPPED,
         (event) => {
-              print("Callback. NOTIFICATION_ACTION_TAPPED event:" +
-                  event.toString()),
+              print("Callback. NOTIFICATION_ACTION_TAPPED event:" + event.toString()),
               addLibraryEvent("Notification Action Tapped")
             });
     InfobipMobilemessaging.on(
         LibraryEvent.NOTIFICATION_TAPPED,
         (Message message) => {
-              print(
-                  "Callback. NOTIFICATION_TAPPED event:" + message.toString()),
+              print("Callback. NOTIFICATION_TAPPED event:" + message.toString()),
               // callback(true),
               addLibraryEvent("Notification Tapped"),
               if (message.chat!) {print('Chat Message Tapped')}
@@ -132,8 +120,8 @@ class InfobipMessageService {
       phones: userData.phones,
     );
     InfobipMobilemessaging.saveUser(user);
-    InfobipMobilemessaging.personalize(PersonalizeContext(
-        forceDepersonalize: false, userIdentity: userIdentity));
+    InfobipMobilemessaging.personalize(
+        PersonalizeContext(forceDepersonalize: true, userIdentity: userIdentity));
     return true;
   }
 }

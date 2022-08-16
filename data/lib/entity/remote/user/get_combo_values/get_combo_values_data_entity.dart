@@ -46,7 +46,7 @@ class GetComboValuesDataEntity
         id: this.id,
         type: this.type,
         orderNo: this.orderNo,
-        labelEn: Intl.getCurrentLocale() == 'en' ? this.labelEn : this.labelAr,
+        labelEn: Intl.getCurrentLocale() == 'en' ? this.labelEn ?? '' : this.labelAr ?? '',
         labelAr: this.labelAr,
         ageGroup: this.ageGroup,
         intCode: this.intCode,

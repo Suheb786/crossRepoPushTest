@@ -49,10 +49,10 @@ class StateCityDataEntity implements BaseLayerDataTransformer<StateCityDataEntit
         createTime: this.createTime,
         countryId: this.countryID,
         stateId: this.stateID,
-        stateName: Intl.getCurrentLocale() == 'en' ? this.stateName : this.stateNameAR,
+        stateName: Intl.getCurrentLocale() == 'en' ? this.stateName ?? '' : this.stateNameAR ?? '',
         stateNameAR: this.stateNameAR ?? '',
         cityId: this.cityID,
-        cityName: Intl.getCurrentLocale() == 'en' ? this.cityName : this.cityNameAR,
+        cityName: Intl.getCurrentLocale() == 'en' ? this.cityName ?? '' : this.cityNameAR ?? '',
         cityNameAR: this.cityNameAR ?? '');
   }
 }

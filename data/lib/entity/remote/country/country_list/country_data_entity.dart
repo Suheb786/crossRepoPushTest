@@ -61,7 +61,7 @@ class CountryDataEntity implements BaseLayerDataTransformer<CountryDataEntity, C
   @override
   CountryData transform() {
     return CountryData(
-        countryName: Intl.getCurrentLocale() == 'en' ? this.countryName : this.countryNameAR,
+        countryName: Intl.getCurrentLocale() == 'en' ? this.countryName ?? '' : this.countryNameAR ?? '',
         nationality: this.nationality,
         isoCode3: this.isoCode3,
         isoCode: this.isoCode,

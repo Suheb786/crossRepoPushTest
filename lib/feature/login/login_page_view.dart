@@ -231,6 +231,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     model.mobileCode = data.data!.mobileCode!;
                                                                     model.applicationId =
                                                                         data.data!.applicationId!;
+                                                                    model.saveUserData();
 
                                                                     ///refresh token api
                                                                     // ProviderScope.containerOf(

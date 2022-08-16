@@ -32,7 +32,7 @@ class PurposeEntity implements BaseLayerDataTransformer<PurposeEntity, Purpose> 
   Purpose transform() {
     return Purpose(
       code: this.code,
-      labelEn: Intl.getCurrentLocale() == 'en' ? this.labelEn : this.labelAr,
+      labelEn: Intl.getCurrentLocale() == 'en' ? this.labelEn ?? '' : this.labelAr ?? '',
       labelAr: this.labelAr,
       purposeDetails: this.purposeDetails!.map((e) => e.transform()).toList(),
     );
