@@ -309,8 +309,8 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   children: [
                                     AppSwitchLabelWidget(
                                       label: S.of(context).doYouHaveAdditionalSourceOfIncome,
-                                      inActiveText: S.of(context).no,
-                                      activeText: S.of(context).yes,
+                                      inActiveText: S.of(context).no.toUpperCase(),
+                                      activeText: S.of(context).yes.toUpperCase(),
                                       onToggle: (value) {
                                         model.updateSwitchValue(value);
                                       },

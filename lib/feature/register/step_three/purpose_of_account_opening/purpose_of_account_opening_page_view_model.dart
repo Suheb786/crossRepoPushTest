@@ -30,10 +30,12 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
   final TextEditingController expectedMonthlyTransactionController = TextEditingController();
   final GlobalKey<AppTextFieldState> expectedMonthlyTransactionKey =
       GlobalKey(debugLabel: "expectedMonthlyTransaction");
+  String englishValue = '';
 
   ///update purpose of account opening  textfield value
-  void updatePurposeOfAccountOpening(String value) {
+  void updatePurposeOfAccountOpening(String value, String englishVal) {
     purposeOfAccountOpeningController.text = value;
+    englishValue = englishVal;
   }
 
   ///purpose of account opening request subject holder
@@ -73,10 +75,10 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     ExpectedTransactions(type: 'Others')
   ];
   List<ExpectedTransactions> expectedTransactionsListAr = [
-    ExpectedTransactions(type: 'يداع نقدي'),
-    ExpectedTransactions(type: 'والات'),
-    ExpectedTransactions(type: 'فع فواتير'),
-    ExpectedTransactions(type: 'خرى')
+    ExpectedTransactions(type: 'ايداع نقدي'),
+    ExpectedTransactions(type: 'تحويلات مالية '),
+    ExpectedTransactions(type: 'دفع فواتير'),
+    ExpectedTransactions(type: 'اخرى')
   ];
 
   ///get expected Transactions response holder
@@ -146,6 +148,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     checkTransactionSelected();
     _purposeOfAccountOpeningRequest.safeAdd(PurposeOfAccountOpeningUseCaseParams(
         purposeOfAccountOpening: purposeOfAccountOpeningController.text,
+        englishVal: englishValue,
         expectedAnnualTransaction: '0.0',
         expectedMonthlyTransaction: expectedMonthlyTransactionController.text,
         getToken: true,

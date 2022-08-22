@@ -17,7 +17,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class PurposeOfAccountOpeningDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(String, String)? onSelected;
 
   const PurposeOfAccountOpeningDialogView({
     this.onDismissed,
@@ -114,7 +114,8 @@ class PurposeOfAccountOpeningDialogView extends StatelessWidget {
                             )),
                             InkWell(
                               onTap: () {
-                                onSelected!.call(data.data![currentIndex!]);
+                                onSelected!
+                                    .call(data.data![currentIndex!], model.purposeListEn[currentIndex]);
                               },
                               child: Container(
                                 padding: EdgeInsets.all(16),

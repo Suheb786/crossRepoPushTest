@@ -102,8 +102,8 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                     ProfileRowItem(
                                       title: S.of(context).doYouHaveAnyOtherNationality,
                                       initialValue: false,
-                                      activeText: S.of(context).yes,
-                                      inactiveText: S.of(context).no,
+                                      activeText: S.of(context).yes.toUpperCase(),
+                                      inactiveText: S.of(context).no.toUpperCase(),
                                       providerBase: anyOtherNationalityViewModelProvider,
                                       onToggle: (isActive) {
                                         model.isAnyOtherNationality = isActive;
@@ -143,8 +143,8 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                     ProfileRowItem(
                                       title: S.of(context).profileDetailsQ1,
                                       initialValue: false,
-                                      activeText: S.of(context).yes,
-                                      inactiveText: S.of(context).no,
+                                      activeText: S.of(context).yes.toUpperCase(),
+                                      inactiveText: S.of(context).no.toUpperCase(),
                                       providerBase: profileQ1ViewModelProvider,
                                       onToggle: (isActive) {
                                         model.isMarried = isActive;
@@ -169,8 +169,8 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                         title: S.of(context).profileDetailsQ2,
                                         initialValue: false,
                                         providerBase: profileQ2ViewModelProvider,
-                                        activeText: S.of(context).yes,
-                                        inactiveText: S.of(context).no,
+                                        activeText: S.of(context).yes.toUpperCase(),
+                                        inactiveText: S.of(context).no.toUpperCase(),
                                         onToggle: (isActive) {
                                           model.isPerson = isActive;
                                           return Visibility(
@@ -210,8 +210,8 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                           title: S.of(context).areYouBeneficialOwnerAccount,
                                           initialValue: true,
                                           providerBase: areYouBeneficialOwnerAccountProvider,
-                                          activeText: S.of(context).yes,
-                                          inactiveText: S.of(context).no,
+                                          activeText: S.of(context).yes.toUpperCase(),
+                                          inactiveText: S.of(context).no.toUpperCase(),
                                           labelColor: !isValid! ? AppColor.vivid_red : AppColor.text_color,
                                           onToggle: (isActive) {
                                             model.updateBeneficialOwnerAccountErrorVisibility(isActive);
@@ -247,9 +247,9 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                       onPressed: () {
                                         EmploymentStatusDialog.show(context, onDismissed: () {
                                           Navigator.pop(context);
-                                        }, onSelected: (value) {
+                                        }, onSelected: (value, englishValue) {
                                           Navigator.pop(context);
-                                          model.updateRelationShipWithPEP(value);
+                                          model.updateRelationShipWithPEP(value, englishValue);
                                           model.updateJobNameVisibility();
                                           model.validate();
                                         });

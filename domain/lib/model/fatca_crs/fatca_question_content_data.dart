@@ -25,13 +25,12 @@ class FatcaQuestionContentData {
 
 class AdditionalData {
   final String? label;
+  final String? labelAr;
   final AdditionalDataTypeEnum? type;
   final List<AdditionalDataDropDownData>? additionalDropDownData;
 
   AdditionalData(
-      {this.label: "",
-      this.type: AdditionalDataTypeEnum.NONE,
-      this.additionalDropDownData});
+      {this.label: "", this.type: AdditionalDataTypeEnum.NONE, this.additionalDropDownData, this.labelAr});
 }
 
 class AdditionalDataDropDownData {
@@ -39,6 +38,5 @@ class AdditionalDataDropDownData {
   final String? value;
   bool isSelected;
 
-  AdditionalDataDropDownData(
-      {this.name: "", this.value: "", this.isSelected: false});
+  AdditionalDataDropDownData({this.name: "", this.value: "", this.isSelected: false});
 }

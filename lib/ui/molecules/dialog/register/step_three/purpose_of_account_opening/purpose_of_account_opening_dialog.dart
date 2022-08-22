@@ -5,8 +5,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_acco
 class PurposeOfAccountOpeningDialog {
   PurposeOfAccountOpeningDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String, String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => PurposeOfAccountOpeningDialogView(

@@ -300,8 +300,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                   AppSwitchLabelWidget(
                                                                     label:
                                                                         S.of(context).addRecipientToContact,
-                                                                    inActiveText: S.of(context).no,
-                                                                    activeText: S.of(context).yes,
+                                                                    inActiveText:
+                                                                        S.of(context).no.toUpperCase(),
+                                                                    activeText:
+                                                                        S.of(context).yes.toUpperCase(),
                                                                     onToggle: (value) {
                                                                       model.isFriend = value;
                                                                       model.addNickNameController.clear();

@@ -88,9 +88,9 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                   onPressed: () {
                                     PurposeOfAccountOpeningDialog.show(context, onDismissed: () {
                                       Navigator.pop(context);
-                                    }, onSelected: (value) {
+                                    }, onSelected: (value, englishValue) {
                                       Navigator.pop(context);
-                                      model.updatePurposeOfAccountOpening(value);
+                                      model.updatePurposeOfAccountOpening(value, englishValue);
                                       model.isValid();
                                     });
                                   },

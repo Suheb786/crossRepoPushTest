@@ -470,7 +470,10 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     .isCashDeposit!,
                                                                 child: ReviewApplicationEditableItem(
                                                                   title: S.of(context).expectedTransactions,
-                                                                  initialValue: "CashDeposit",
+                                                                  initialValue:
+                                                                      StringUtils.isDirectionRTL(context)
+                                                                          ? 'ايداع نقدي '
+                                                                          : "CashDeposit",
                                                                 ),
                                                               ),
                                                               Visibility(
@@ -482,7 +485,10 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     .isTransfer!,
                                                                 child: ReviewApplicationEditableItem(
                                                                   title: S.of(context).expectedTransactions,
-                                                                  initialValue: "Transfers",
+                                                                  initialValue:
+                                                                      StringUtils.isDirectionRTL(context)
+                                                                          ? 'تحويلات مالية '
+                                                                          : "Transfers",
                                                                 ),
                                                               ),
                                                               Visibility(
@@ -494,7 +500,10 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     .isBillPayment!,
                                                                 child: ReviewApplicationEditableItem(
                                                                   title: S.of(context).expectedTransactions,
-                                                                  initialValue: "Bill Payment",
+                                                                  initialValue:
+                                                                      StringUtils.isDirectionRTL(context)
+                                                                          ? 'دفع فواتير'
+                                                                          : "Bill Payment",
                                                                 ),
                                                               ),
                                                               ReviewApplicationEditableItem(
@@ -559,48 +568,58 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                               ),
                                                               ReviewApplicationNonEditableItem(
                                                                 title: S.of(context).areYouUSCitizen,
-                                                                value: getValue(getConfirmApplicationData
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .fatcaCrsInfo!
-                                                                    .response1!),
+                                                                value: getValue(
+                                                                    getConfirmApplicationData
+                                                                        .data!
+                                                                        .getApplicationData!
+                                                                        .getConfirmApplicationDataContent!
+                                                                        .fatcaCrsInfo!
+                                                                        .response1!,
+                                                                    context),
                                                               ),
                                                               ReviewApplicationNonEditableItem(
                                                                 title: S.of(context).areYouUSTaxResident,
-                                                                value: getValue(getConfirmApplicationData
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .fatcaCrsInfo!
-                                                                    .response2!),
+                                                                value: getValue(
+                                                                    getConfirmApplicationData
+                                                                        .data!
+                                                                        .getApplicationData!
+                                                                        .getConfirmApplicationDataContent!
+                                                                        .fatcaCrsInfo!
+                                                                        .response2!,
+                                                                    context),
                                                               ),
                                                               ReviewApplicationNonEditableItem(
                                                                 title: S.of(context).wereBornInUS,
-                                                                value: getValue(getConfirmApplicationData
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .fatcaCrsInfo!
-                                                                    .response3!),
+                                                                value: getValue(
+                                                                    getConfirmApplicationData
+                                                                        .data!
+                                                                        .getApplicationData!
+                                                                        .getConfirmApplicationDataContent!
+                                                                        .fatcaCrsInfo!
+                                                                        .response3!,
+                                                                    context),
                                                               ),
                                                               ReviewApplicationNonEditableItem(
                                                                 title: S.of(context).areYouTaxResidentQ,
-                                                                value: getValue(getConfirmApplicationData
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .fatcaCrsInfo!
-                                                                    .response4!),
+                                                                value: getValue(
+                                                                    getConfirmApplicationData
+                                                                        .data!
+                                                                        .getApplicationData!
+                                                                        .getConfirmApplicationDataContent!
+                                                                        .fatcaCrsInfo!
+                                                                        .response4!,
+                                                                    context),
                                                               ),
                                                               ReviewApplicationNonEditableItem(
                                                                 title: S.of(context).areYouAnyFirstDegreeQ,
-                                                                value: getValue(getConfirmApplicationData
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .fatcaCrsInfo!
-                                                                    .response5!),
+                                                                value: getValue(
+                                                                    getConfirmApplicationData
+                                                                        .data!
+                                                                        .getApplicationData!
+                                                                        .getConfirmApplicationDataContent!
+                                                                        .fatcaCrsInfo!
+                                                                        .response5!,
+                                                                    context),
                                                               ),
                                                               Visibility(
                                                                   visible: getConfirmApplicationData
@@ -746,13 +765,13 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
     );
   }
 
-  String getValue(bool value) {
+  String getValue(bool value, BuildContext context) {
     switch (value) {
       case false:
-        return 'No';
+        return S.of(context).no;
 
       default:
-        return 'Yes';
+        return S.of(context).yes;
     }
   }
 }

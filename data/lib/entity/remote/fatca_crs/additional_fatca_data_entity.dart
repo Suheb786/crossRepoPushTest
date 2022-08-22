@@ -7,16 +7,17 @@ import 'package:json_annotation/json_annotation.dart';
 part 'additional_fatca_data_entity.g.dart';
 
 @JsonSerializable()
-class AdditionalFatcaDataEntity extends BaseLayerDataTransformer<
-    AdditionalFatcaDataEntity, AdditionalData> {
+class AdditionalFatcaDataEntity extends BaseLayerDataTransformer<AdditionalFatcaDataEntity, AdditionalData> {
   @JsonKey(name: "label")
   final String? label;
+  @JsonKey(name: "labelAr")
+  final String? labelAr;
   @JsonKey(name: "type")
   final String? type;
   @JsonKey(name: "dropDownValues")
   final List<AdditionalDropDownDataEntity>? dropDownValues;
 
-  AdditionalFatcaDataEntity({this.label, this.type, this.dropDownValues});
+  AdditionalFatcaDataEntity({this.label, this.type, this.dropDownValues, this.labelAr});
 
   factory AdditionalFatcaDataEntity.fromJson(Map<String, dynamic> json) =>
       _$AdditionalFatcaDataEntityFromJson(json);
@@ -28,9 +29,9 @@ class AdditionalFatcaDataEntity extends BaseLayerDataTransformer<
     return AdditionalData(
         type: mapToTypeEnum(this.type),
         label: label,
-        additionalDropDownData: this.dropDownValues != null
-            ? this.dropDownValues!.map((e) => e.transform()).toList()
-            : []);
+        labelAr: labelAr ?? '',
+        additionalDropDownData:
+            this.dropDownValues != null ? this.dropDownValues!.map((e) => e.transform()).toList() : []);
   }
 
   AdditionalDataTypeEnum mapToTypeEnum(String? type) {

@@ -253,8 +253,8 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                 children: [
                                                   AppSwitchLabelWidget(
                                                     label: S.of(context).wantToClaimTaxTreatyBenefits,
-                                                    inActiveText: S.of(context).no,
-                                                    activeText: S.of(context).yes,
+                                                    inActiveText: S.of(context).no.toUpperCase(),
+                                                    activeText: S.of(context).yes.toUpperCase(),
                                                     onToggle: (value) {
                                                       model.updateTaxTreatyBenefitsValue(value);
                                                       model.isValid();

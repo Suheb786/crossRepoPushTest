@@ -22,10 +22,12 @@ class FatcaOptionDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(AdditionalDataDropDownData)? onSelected;
   final String? title;
+  final String? titleAr;
   final List<AdditionalDataDropDownData> dropDownData;
   bool _keyboardVisible = false;
 
-  FatcaOptionDialogView({this.onDismissed, this.onSelected, this.title, required this.dropDownData});
+  FatcaOptionDialogView(
+      {this.onDismissed, this.onSelected, this.title, required this.dropDownData, this.titleAr = ''});
 
   ProviderBase providerBase() {
     return fatcaOptionsDialogViwModelProvider;
@@ -67,7 +69,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                title!,
+                                StringUtils.isDirectionRTL(context) ? titleAr ?? '' : title!,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontSize: 14,
@@ -168,7 +170,6 @@ class FatcaOptionDialogView extends StatelessWidget {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
-                                    print('selectedData--->${model.selectedOptionData!.name}');
                                     Navigator.pop(context);
                                     onSelected!.call(model.selectedOptionData!);
                                   },

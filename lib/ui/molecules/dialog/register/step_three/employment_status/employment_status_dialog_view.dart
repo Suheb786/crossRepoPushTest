@@ -16,7 +16,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class EmploymentStatusDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(String, String)? onSelected;
 
   const EmploymentStatusDialogView({this.onDismissed, this.onSelected});
 
@@ -110,9 +110,11 @@ class EmploymentStatusDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(StringUtils.isDirectionRTL(context)
-                                ? model.employmentStatusListAr[currentIndex!]
-                                : model.employmentStatusList[currentIndex!]);
+                            onSelected!.call(
+                                StringUtils.isDirectionRTL(context)
+                                    ? model.employmentStatusListAr[currentIndex!]
+                                    : model.employmentStatusList[currentIndex!],
+                                model.employmentStatusList[currentIndex]);
                           },
                           child: Container(
                             padding: EdgeInsetsDirectional.all(16),

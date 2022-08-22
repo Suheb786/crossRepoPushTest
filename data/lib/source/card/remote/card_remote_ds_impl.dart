@@ -209,10 +209,9 @@ class CardRemoteDsImpl extends CardRemoteDs {
       required String cardNumber,
       required String tokenizedPan}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    print('card No--->$cardNumber');
     return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
         otp: otp,
-        pinCode: EncryptDecryptHelper.generateBlockPin(cardNo: cardNumber, pinCode: otp),
+        pinCode: EncryptDecryptHelper.generateBlockPin(cardNo: cardNumber, pinCode: pin),
         baseData: baseData.toJson(),
         tokenizedPan: tokenizedPan,
         getToken: true));

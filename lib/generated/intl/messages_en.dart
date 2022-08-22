@@ -1585,7 +1585,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "niHandlerError": MessageLookupByLibrary.simpleMessage(
             "We apologies, you are not eligible to a credit card at the moment. You can still enjoy the benefits of our services."),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
-        "no": MessageLookupByLibrary.simpleMessage("NO"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noATMData": MessageLookupByLibrary.simpleMessage(
             "ATM data cannot be retrieved. Please try again later."),
         "noAccountFound": MessageLookupByLibrary.simpleMessage(
@@ -2473,7 +2473,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your supplementary Rebellious Red credit card. Please try again later."),
         "yearly": MessageLookupByLibrary.simpleMessage("YEARLY"),
-        "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
                 "You are accepting a money\nrequest via QR"),

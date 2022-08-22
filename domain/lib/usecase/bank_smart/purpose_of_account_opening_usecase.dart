@@ -8,8 +8,8 @@ import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PurposeOfAccountOpeningUseCase extends BaseUseCase<NetworkError,
-    PurposeOfAccountOpeningUseCaseParams, PurposeOfAccountOpeningResponse> {
+class PurposeOfAccountOpeningUseCase
+    extends BaseUseCase<NetworkError, PurposeOfAccountOpeningUseCaseParams, PurposeOfAccountOpeningResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   PurposeOfAccountOpeningUseCase(this._bankSmartRepository);
@@ -19,7 +19,7 @@ class PurposeOfAccountOpeningUseCase extends BaseUseCase<NetworkError,
       {required PurposeOfAccountOpeningUseCaseParams params}) {
     return _bankSmartRepository.addAccountPurpose(
         getToken: params.getToken!,
-        purpose: params.purposeOfAccountOpening,
+        purpose: params.englishVal,
         annualTransaction: double.parse(params.expectedAnnualTransaction!),
         monthlyTransaction: double.parse(params.expectedMonthlyTransaction!),
         isCashDeposit: params.isCashDeposit,
@@ -39,6 +39,7 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
   final bool? isBillPayment;
   final bool? isOther;
   final bool expectedTransactionSelected;
+  final String? englishVal;
 
   PurposeOfAccountOpeningUseCaseParams(
       {this.getToken,
@@ -49,7 +50,8 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
       this.isOther,
       this.isTransfer,
       this.isCashDeposit,
-      required this.expectedTransactionSelected});
+      required this.expectedTransactionSelected,
+      this.englishVal = ''});
 
   @override
   Either<AppError, bool> verify() {
@@ -60,9 +62,7 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
           cause: Exception()));
     } else if (!expectedTransactionSelected) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.SELECT_EXPECTED_TRANSACTION,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.SELECT_EXPECTED_TRANSACTION, cause: Exception()));
     } else if (expectedMonthlyTransaction!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),

@@ -267,8 +267,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                           label: S
                                                               .of(context)
                                                               .mailingAddressDifferentFromResidence,
-                                                          inActiveText: S.of(context).no,
-                                                          activeText: S.of(context).yes,
+                                                          inActiveText: S.of(context).no.toUpperCase(),
+                                                          activeText: S.of(context).yes.toUpperCase(),
                                                           onToggle: (value) {
                                                             if (!value) {
                                                               model.differentMailingStateController.clear();

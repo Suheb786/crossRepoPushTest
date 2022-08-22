@@ -6,11 +6,9 @@ import 'employment_status_dialog_view.dart';
 class EmploymentStatusDialog {
   EmploymentStatusDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String, String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => EmploymentStatusDialogView(
-            onDismissed: onDismissed, onSelected: onSelected));
+        builder: (context) => EmploymentStatusDialogView(onDismissed: onDismissed, onSelected: onSelected));
   }
 }

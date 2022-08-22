@@ -14,47 +14,41 @@ import 'package:rxdart/rxdart.dart';
 class ProfileDetailsPageViewModel extends BasePageViewModel {
   final ProfileDetailsUseCase _profileUseCase;
 
-  final GlobalKey<AppTextFieldState> spouseNameKey =
-      GlobalKey(debugLabel: "spouseName");
-  final GlobalKey<AppTextFieldState> natureOfSpecialNeedKey =
-      GlobalKey(debugLabel: "natureOfSpecialNeed");
-  final GlobalKey<AppTextFieldState> employeeStatusKey =
-      GlobalKey(debugLabel: "employeeStatus");
-  final GlobalKey<AppTextFieldState> jobNameKey =
-      GlobalKey(debugLabel: "jobName");
-  final GlobalKey<AppTextFieldState> otherNationalityKey =
-      GlobalKey(debugLabel: "otherNationality");
+  final GlobalKey<AppTextFieldState> spouseNameKey = GlobalKey(debugLabel: "spouseName");
+  final GlobalKey<AppTextFieldState> natureOfSpecialNeedKey = GlobalKey(debugLabel: "natureOfSpecialNeed");
+  final GlobalKey<AppTextFieldState> employeeStatusKey = GlobalKey(debugLabel: "employeeStatus");
+  final GlobalKey<AppTextFieldState> jobNameKey = GlobalKey(debugLabel: "jobName");
+  final GlobalKey<AppTextFieldState> otherNationalityKey = GlobalKey(debugLabel: "otherNationality");
 
   final TextEditingController spouseNameController = TextEditingController();
   final TextEditingController natureController = TextEditingController();
-  final TextEditingController employeeStatusController =
-      TextEditingController();
+  final TextEditingController employeeStatusController = TextEditingController();
   final TextEditingController jobNameController = TextEditingController();
-  final TextEditingController otherNationalityController =
-      TextEditingController();
+  final TextEditingController otherNationalityController = TextEditingController();
 
   bool isMarried = false;
   bool isPerson = false;
   bool isRelative = false;
   bool isAnyOtherNationality = false;
 
-  PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest =
-      PublishSubject();
+  PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest = PublishSubject();
 
-  PublishSubject<Resource<SaveProfileStatusResponse>> _profileDetailsResponse =
-      PublishSubject();
+  PublishSubject<Resource<SaveProfileStatusResponse>> _profileDetailsResponse = PublishSubject();
 
-  Stream<Resource<SaveProfileStatusResponse>> get profileDetailsStream =>
-      _profileDetailsResponse.stream;
+  Stream<Resource<SaveProfileStatusResponse>> get profileDetailsStream => _profileDetailsResponse.stream;
 
   ///nature of special needs text field value
   void updateNatureOfNeeds(String value) {
     natureController.text = value;
     employeeStatusController.clear();
+    englishValue = '';
   }
 
-  void updateRelationShipWithPEP(String value) {
+  String englishValue = '';
+
+  void updateRelationShipWithPEP(String value, String englishVal) {
     employeeStatusController.text = value;
+    englishValue = englishVal;
   }
 
   /// show button Subject holder
@@ -65,8 +59,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   void validate() {
     bool isValid = false;
     if (_jobNameVisibilitySubject.value) {
-      if (jobNameController.text.isNotEmpty &&
-          employeeStatusController.text.isNotEmpty) {
+      if (jobNameController.text.isNotEmpty && employeeStatusController.text.isNotEmpty) {
         isValid = true;
       }
     } else if (employeeStatusController.text.isNotEmpty) {
@@ -76,14 +69,12 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   }
 
   /// job name visibility Subject holder
-  BehaviorSubject<bool> _jobNameVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _jobNameVisibilitySubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get jobNameVisibilityStream => _jobNameVisibilitySubject.stream;
 
   void updateJobNameVisibility() {
-    if (employeeStatusController.text.fromEmploymentValue() ==
-        EmploymentStatusEnum.OTHER) {
+    if (employeeStatusController.text.fromEmploymentValue() == EmploymentStatusEnum.OTHER) {
       _jobNameVisibilitySubject.safeAdd(true);
     } else {
       _jobNameVisibilitySubject.safeAdd(false);
@@ -91,8 +82,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   }
 
   /// show beneficial Owner Account Error visibility Subject holder
-  BehaviorSubject<bool> _beneficialOwnerAccountErrorVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _beneficialOwnerAccountErrorVisibilitySubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get beneficialOwnerAccountErrorVisibilityStream =>
       _beneficialOwnerAccountErrorVisibilitySubject.stream;
@@ -103,8 +93,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   ProfileDetailsPageViewModel(this._profileUseCase) {
     _profileDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _profileUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _profileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -152,11 +141,11 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
         natureOfNeeds: natureController.text,
         employeeStatus: employeeStatusController.text,
         isEmploymentStatusOthers: _jobNameVisibilitySubject.value,
-        isBeneficialOwnerACcount:
-            _beneficialOwnerAccountErrorVisibilitySubject.value,
+        isBeneficialOwnerACcount: _beneficialOwnerAccountErrorVisibilitySubject.value,
         jobName: jobNameController.text,
         isAnyOtherNationality: isAnyOtherNationality,
-        otherNationality: otherNationalityController.text));
+        otherNationality: otherNationalityController.text,
+        englishValue: englishValue));
   }
 
   void clearField() {

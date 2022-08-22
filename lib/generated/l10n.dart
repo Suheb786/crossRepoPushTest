@@ -1480,20 +1480,20 @@ class S {
     );
   }
 
-  /// `YES`
+  /// `Yes`
   String get yes {
     return Intl.message(
-      'YES',
+      'Yes',
       name: 'yes',
       desc: '',
       args: [],
     );
   }
 
-  /// `NO`
+  /// `No`
   String get no {
     return Intl.message(
-      'NO',
+      'No',
       name: 'no',
       desc: '',
       args: [],

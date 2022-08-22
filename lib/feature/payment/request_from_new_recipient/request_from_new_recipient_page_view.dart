@@ -242,8 +242,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                 child: ProfileRowItem(
                                                   title: S.of(context).addRecipientToContact,
                                                   initialValue: false,
-                                                  activeText: S.of(context).yes,
-                                                  inactiveText: S.of(context).no,
+                                                  activeText: S.of(context).yes.toUpperCase(),
+                                                  inactiveText: S.of(context).no.toUpperCase(),
                                                   providerBase: anyOtherNationalityViewModelProvider,
                                                   onToggle: (isActive) {
                                                     model.addContact = isActive;

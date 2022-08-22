@@ -35,8 +35,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
         children: [
           Expanded(
             child: Card(
-              margin:
-                  EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
+              margin: EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 child: AppStreamBuilder<Resource<ProfileInfoResponse>>(
@@ -280,7 +279,6 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                   initialData: Resource.none(),
                                                   onData: (data) {
                                                     if (data.status == Status.SUCCESS) {
-                                                      print('authenticated success');
                                                       if (data.data!) {
                                                         model.generateKeyPair();
                                                       }
@@ -292,7 +290,6 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                       initialData: Resource.none(),
                                                       onData: (data) {
                                                         if (data.status == Status.SUCCESS) {
-                                                          print('success');
                                                           model.authenticateBioMetric(
                                                               title: S.of(context).enableBiometricLoginTitle,
                                                               localisedReason: Platform.isAndroid
@@ -316,8 +313,8 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                           isActive: isActive,
                                                           title: S.of(context).biometricLogin,
                                                           image: AssetUtils.biometric,
-                                                          inActiveText: S.of(context).no,
-                                                          activeText: S.of(context).yes,
+                                                          inActiveText: S.of(context).no.toUpperCase(),
+                                                          activeText: S.of(context).yes.toUpperCase(),
                                                         );
                                                       },
                                                     );

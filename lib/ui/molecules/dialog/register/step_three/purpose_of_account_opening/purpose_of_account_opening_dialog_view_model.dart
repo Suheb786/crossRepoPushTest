@@ -9,8 +9,7 @@ import 'package:rxdart/rxdart.dart';
 class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
   final GetPurposeOfAccountOpeningUseCase _getPurposeOfAccountOpeningUseCase;
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -22,24 +21,29 @@ class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
     _currentSelectIndex.add(index);
   }
 
+  List<String> purposeListEn = [
+    'Salary Transfer',
+    'Normal Daily Banking',
+    'Saving',
+    'Credit Card',
+    'Facilities',
+    'Others'
+  ];
+
   ///get purpose of account opening request holder
-  PublishSubject<GetPurposeOfAccountOpeningUseCaseParams>
-      _getPurposeOfAccountOpeningRequest = PublishSubject();
+  PublishSubject<GetPurposeOfAccountOpeningUseCaseParams> _getPurposeOfAccountOpeningRequest =
+      PublishSubject();
 
   ///get purpose of account opening response holder
-  PublishSubject<Resource<List<String>>> _getPurposeOfAccountOpeningResponse =
-      PublishSubject();
+  PublishSubject<Resource<List<String>>> _getPurposeOfAccountOpeningResponse = PublishSubject();
 
   ///get purpose of account opening stream
   Stream<Resource<List<String>>> get getPurposeOfAccountOpeningStream =>
       _getPurposeOfAccountOpeningResponse.stream;
 
-  PurposeOfAccountOpeningDialogViewModel(
-      this._getPurposeOfAccountOpeningUseCase) {
+  PurposeOfAccountOpeningDialogViewModel(this._getPurposeOfAccountOpeningUseCase) {
     _getPurposeOfAccountOpeningRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getPurposeOfAccountOpeningUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPurposeOfAccountOpeningUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getPurposeOfAccountOpeningResponse.safeAdd(event);
@@ -49,8 +53,7 @@ class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
   }
 
   void getPurposeOfAccountOpeningList() {
-    _getPurposeOfAccountOpeningRequest
-        .safeAdd(GetPurposeOfAccountOpeningUseCaseParams());
+    _getPurposeOfAccountOpeningRequest.safeAdd(GetPurposeOfAccountOpeningUseCaseParams());
   }
 
   @override

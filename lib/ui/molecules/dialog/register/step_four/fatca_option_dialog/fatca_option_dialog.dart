@@ -10,12 +10,14 @@ class FatcaOptionDialog {
       {Function? onDismissed,
       Function(AdditionalDataDropDownData)? onSelected,
       List<AdditionalDataDropDownData>? fatcaOptionData,
-      String? title}) {
+      String? title,
+      String? titleAr}) {
     AppDialog.show(mContext,
         builder: (context) => FatcaOptionDialogView(
             onDismissed: onDismissed,
             dropDownData: fatcaOptionData!,
             onSelected: onSelected,
-            title: title));
+            title: title,
+            titleAr: titleAr));
   }
 }

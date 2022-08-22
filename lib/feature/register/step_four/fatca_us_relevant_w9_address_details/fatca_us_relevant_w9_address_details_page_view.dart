@@ -323,8 +323,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                         padding: const EdgeInsets.symmetric(vertical: 26.0),
                                                         child: AppSwitchLabelWidget(
                                                           label: S.of(context).additionalRequester,
-                                                          inActiveText: S.of(context).no,
-                                                          activeText: S.of(context).yes,
+                                                          inActiveText: S.of(context).no.toUpperCase(),
+                                                          activeText: S.of(context).yes.toUpperCase(),
                                                           onToggle: (value) {
                                                             if (!value) {
                                                               model.additionalRequesterStateController

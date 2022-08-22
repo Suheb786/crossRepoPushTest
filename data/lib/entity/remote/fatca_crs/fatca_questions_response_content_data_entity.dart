@@ -21,6 +21,8 @@ class FatcaQuestionsResponseContentDataEntity
   final String? type;
   @JsonKey(name: "infoText")
   final String? infoText;
+  @JsonKey(name: "infoTextAr")
+  final String? infoTextAr;
   @JsonKey(name: "showOption")
   final bool? showOption;
   @JsonKey(name: "isInfo")
@@ -37,7 +39,8 @@ class FatcaQuestionsResponseContentDataEntity
       this.infoText: "",
       this.showOption: false,
       this.isInfo: false,
-      this.additionData});
+      this.additionData,
+      this.infoTextAr});
 
   factory FatcaQuestionsResponseContentDataEntity.fromJson(Map<String, dynamic> json) =>
       _$FatcaQuestionsResponseContentDataEntityFromJson(json);
@@ -59,7 +62,7 @@ class FatcaQuestionsResponseContentDataEntity
         type: this.type,
         showOption: this.showOption ?? false,
         showInfo: this.isInfo,
-        infoText: this.infoText ?? "",
+        infoText: Intl.getCurrentLocale() == 'en' ? this.infoText ?? "" : this.infoTextAr,
         additionalData:
             this.additionData != null ? this.additionData!.map((e) => e.transform()).toList() : []);
   }
