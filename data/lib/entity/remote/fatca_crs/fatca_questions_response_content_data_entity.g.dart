@@ -22,6 +22,7 @@ FatcaQuestionsResponseContentDataEntity
         ?.map((e) =>
             AdditionalFatcaDataEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
+    infoTextAr: json['infoTextAr'] as String?,
   );
 }
 
@@ -34,6 +35,7 @@ Map<String, dynamic> _$FatcaQuestionsResponseContentDataEntityToJson(
       'orderNo': instance.orderNo,
       'type': instance.type,
       'infoText': instance.infoText,
+      'infoTextAr': instance.infoTextAr,
       'showOption': instance.showOption,
       'isInfo': instance.isInfo,
       'datas': instance.additionData,

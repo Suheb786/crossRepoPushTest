@@ -15,6 +15,7 @@ AdditionalFatcaDataEntity _$AdditionalFatcaDataEntityFromJson(
         ?.map((e) =>
             AdditionalDropDownDataEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
+    labelAr: json['labelAr'] as String?,
   );
 }
 
@@ -22,6 +23,7 @@ Map<String, dynamic> _$AdditionalFatcaDataEntityToJson(
         AdditionalFatcaDataEntity instance) =>
     <String, dynamic>{
       'label': instance.label,
+      'labelAr': instance.labelAr,
       'type': instance.type,
       'dropDownValues': instance.dropDownValues,
     };

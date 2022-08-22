@@ -134,7 +134,9 @@ class TaxationSwitchWidget extends StatelessWidget {
                             return Container(
                               margin: EdgeInsets.only(top: 16),
                               child: AppTextField(
-                                  labelText: data.additionalData![index].label!,
+                                  labelText: StringUtils.isDirectionRTL(context)
+                                      ? data.additionalData![index].labelAr!
+                                      : data.additionalData![index].label!,
                                   hintText: S.of(context).pleaseEnter,
                                   inputType: TextInputType.text,
                                   onChanged: (value) {
@@ -178,12 +180,13 @@ class FatcaDropDownField extends StatelessWidget {
         return Container(
           margin: EdgeInsets.only(top: 16),
           child: AppTextField(
-            labelText: data.label ?? "",
+            labelText: StringUtils.isDirectionRTL(context) ? data.labelAr ?? '' : data.label ?? "",
             hintText: S.of(context).pleaseSelect,
             readOnly: true,
             controller: model?.controller,
             onPressed: () {
-              FatcaOptionDialog.show(context, title: data.label ?? "", onDismissed: () {
+              FatcaOptionDialog.show(context, titleAr: data.labelAr, title: data.label ?? "",
+                  onDismissed: () {
                 Navigator.pop(context);
               }, onSelected: (value) {
                 model?.controller.text = value.name!;
