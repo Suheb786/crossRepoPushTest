@@ -9,7 +9,7 @@ class OccupationDialog {
 
   static show(BuildContext mContext,
       {Function? onDismissed,
-      Function(String)? onSelected,
+      Function(String, String)? onSelected,
       String? title,
       List<GetComboValuesData>? businessTypeList,
       required EmploymentStatusEnum employmentStatusEnum}) {

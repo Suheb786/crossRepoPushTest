@@ -261,10 +261,12 @@ class ManageCreditCardLimitsPageView extends BasePageViewWidget<ManageCreditCard
                                                             //               '0'));
                                                             // }
                                                           },
+                                                          noToggle: true,
                                                           title: S.of(context).onlinePurchase,
-                                                          initialValue: creditCardLimitResponse
-                                                                  .data!.cardLimit!.isOnlinePurchase ??
-                                                              false,
+                                                          initialValue: false,
+                                                          // initialValue: creditCardLimitResponse
+                                                          //         .data!.cardLimit!.isOnlinePurchase ??
+                                                          //     false,
                                                           amountSet: creditCardLimitResponse.data!.cardLimit!
                                                                   .onlinePurchaseCurrentLimit ??
                                                               '0',

@@ -146,8 +146,9 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                         employmentStatusEnum: model.employmentStatusEnum,
                                         title: S.of(context).businessType, onDismissed: () {
                                       Navigator.pop(context);
-                                    }, onSelected: (data) {
+                                    }, onSelected: (data, englishValue) {
                                       Navigator.pop(context);
+                                      model.businessTypeEnglishValue = englishValue;
                                       model.businessTypeController.text = data;
                                       model.updateBusinessTypeOtherVisibility();
                                       model.isValid();
@@ -254,7 +255,8 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   Navigator.pop(context);
                                 }, onSelected: (value) {
                                   Navigator.pop(context);
-                                  model.updateEmployerCountry(value.countryName!);
+                                  model.updateEmployerCountry(
+                                      value.countryName!, value.countryEnglishName ?? '');
                                   model.isValid();
                                 });
                               });

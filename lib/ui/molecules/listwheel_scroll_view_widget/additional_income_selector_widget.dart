@@ -41,7 +41,7 @@ class AdditionalIncomeSelectorWidget extends StatelessWidget {
             ),
             Flexible(
               child: Text(
-                additionalIncome.type!,
+                StringUtils.isDirectionRTL(context) ? additionalIncome.typeAr ?? '' : additionalIncome.type!,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: textColor ?? AppColor.black,

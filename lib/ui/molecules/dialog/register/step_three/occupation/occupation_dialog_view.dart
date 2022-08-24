@@ -20,7 +20,7 @@ import 'occupation_dialog_view_model.dart';
 
 class OccupationDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(String, String)? onSelected;
   final String? title;
   final EmploymentStatusEnum? employmentStatusEnum;
   final List<GetComboValuesData>? businessTypeList;
@@ -118,7 +118,8 @@ class OccupationDialogView extends StatelessWidget {
                           )),
                           InkWell(
                             onTap: () {
-                              onSelected!.call(model.businessTypeList[currentIndex!].labelEn!);
+                              onSelected!.call(model.businessTypeList[currentIndex!].labelEn!,
+                                  model.businessTypeList[currentIndex].labelEnglishData ?? '');
                             },
                             child: Container(
                               padding: EdgeInsets.all(16),

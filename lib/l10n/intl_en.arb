@@ -1379,5 +1379,7 @@
   "noTransactionToDisplay": "No Transaction to display",
   "creditZeroBalanceRejtitle": "Unfortunately, we are unable to start your credit card application.",
   "creditZeroBalanceRejDesc": "Please fund your account in order to apply for a credit card.",
-  "callDisconnected": "Your call was disconnected. Please try again."
+  "callDisconnected": "Your call was disconnected. Please try again.",
+  "depositViaeFawateercom": "Deposit via eFawateercom",
+  "depositViaeFawateercomDesc": "Deposit money directly from any of eFawateercom agents or through your bank application using your account number."
 }

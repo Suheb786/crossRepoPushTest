@@ -1,14 +1,14 @@
 class GetComboValuesData {
-  GetComboValuesData({
-    this.id,
-    this.type,
-    this.intCode,
-    this.strCode,
-    this.labelEn,
-    this.labelAr,
-    this.ageGroup,
-    this.orderNo,
-  });
+  GetComboValuesData(
+      {this.id,
+      this.type,
+      this.intCode,
+      this.strCode,
+      this.labelEn,
+      this.labelAr,
+      this.ageGroup,
+      this.orderNo,
+      this.labelEnglishData});
 
   int? id;
   String? type;
@@ -18,4 +18,5 @@ class GetComboValuesData {
   String? labelAr;
   String? ageGroup;
   int? orderNo;
+  String? labelEnglishData;
 }

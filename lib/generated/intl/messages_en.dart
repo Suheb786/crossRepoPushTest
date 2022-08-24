@@ -621,6 +621,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
+        "depositViaeFawateercom":
+            MessageLookupByLibrary.simpleMessage("Deposit via eFawateercom"),
+        "depositViaeFawateercomDesc": MessageLookupByLibrary.simpleMessage(
+            "Deposit money directly from any of eFawateercom agents or through your bank application using your account number."),
         "deviceIsRequired": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "deviceNotFound":

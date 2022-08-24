@@ -13579,6 +13579,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Deposit via eFawateercom`
+  String get depositViaeFawateercom {
+    return Intl.message(
+      'Deposit via eFawateercom',
+      name: 'depositViaeFawateercom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit money directly from any of eFawateercom agents or through your bank application using your account number.`
+  String get depositViaeFawateercomDesc {
+    return Intl.message(
+      'Deposit money directly from any of eFawateercom agents or through your bank application using your account number.',
+      name: 'depositViaeFawateercomDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

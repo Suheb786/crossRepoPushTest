@@ -32,7 +32,9 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Text(
-                    additionalIncomeSourceParams!.additionalIncomeSource!,
+                    StringUtils.isDirectionRTL(context)
+                        ? additionalIncomeSourceParams?.additionalIncomeSourceAr ?? ''
+                        : additionalIncomeSourceParams!.additionalIncomeSource!,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,

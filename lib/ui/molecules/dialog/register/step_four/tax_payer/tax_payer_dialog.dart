@@ -8,13 +8,11 @@ class TaxPayerDialog {
 
   static show(BuildContext mContext,
       {Function? onDismissed,
-      Function(String)? onSelected,
+      Function(String, String)? onSelected,
       required TaxPayerTypeEnum taxPayerTypeEnum}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => TaxPayerDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            taxPayerTypeEnum: taxPayerTypeEnum));
+            onDismissed: onDismissed, onSelected: onSelected, taxPayerTypeEnum: taxPayerTypeEnum));
   }
 }

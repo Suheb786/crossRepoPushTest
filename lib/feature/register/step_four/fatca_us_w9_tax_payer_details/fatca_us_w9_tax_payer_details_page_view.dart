@@ -19,8 +19,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class FatcaUSW9TaxPayersDetailsPageView
-    extends BasePageViewWidget<FatcaUSW9TaxPayersDetailsPageViewModel> {
+class FatcaUSW9TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW9TaxPayersDetailsPageViewModel> {
   FatcaUSW9TaxPayersDetailsPageView(ProviderBase model) : super(model);
 
   @override
@@ -89,21 +88,14 @@ class FatcaUSW9TaxPayersDetailsPageView
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
-                        color: Theme.of(context)
-                            .cardTheme
-                            .copyWith(color: AppColor.white)
-                            .color,
+                        color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                         margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
+                        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -113,30 +105,21 @@ class FatcaUSW9TaxPayersDetailsPageView
                                     child: Column(
                                       children: [
                                         AppTextField(
-                                          labelText:
-                                              S.of(context).whichTaxPayerAreYou,
+                                          labelText: S.of(context).whichTaxPayerAreYou,
                                           hintText: S.of(context).pleaseSelect,
-                                          controller:
-                                              model.taxPayerTypeController,
+                                          controller: model.taxPayerTypeController,
                                           key: model.taxPayerTypeKey,
                                           readOnly: true,
                                           onPressed: () {
                                             TaxPayerDialog.show(context,
-                                                taxPayerTypeEnum:
-                                                    TaxPayerTypeEnum.W9,
-                                                onDismissed: () {
+                                                taxPayerTypeEnum: TaxPayerTypeEnum.W9, onDismissed: () {
                                               Navigator.pop(context);
-                                            }, onSelected: (value) {
+                                            }, onSelected: (value, englishValue) {
                                               Navigator.pop(context);
-                                              model.updateTaxVisibilityValue(
-                                                  true);
-                                              model.updateTaxPayerTypeField(
-                                                  value);
-                                              model
-                                                  .socialSecurityNumberController
-                                                  .clear();
-                                              model.employerIdNumberController
-                                                  .clear();
+                                              model.updateTaxVisibilityValue(true);
+                                              model.updateTaxPayerTypeField(value, englishValue);
+                                              model.socialSecurityNumberController.clear();
+                                              model.employerIdNumberController.clear();
                                               model.isValid();
                                             });
                                           },
@@ -144,12 +127,9 @@ class FatcaUSW9TaxPayersDetailsPageView
                                             return Container(
                                                 height: 16,
                                                 width: 16,
-                                                padding:
-                                                    EdgeInsetsDirectional.only(end: 8),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow,
-                                                    color:
-                                                        AppColor.dark_gray_1));
+                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                child: AppSvg.asset(AssetUtils.downArrow,
+                                                    color: AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -162,44 +142,26 @@ class FatcaUSW9TaxPayersDetailsPageView
                                               return Visibility(
                                                 visible: isVisible!,
                                                 child: AppStreamBuilder<bool>(
-                                                  stream: model
-                                                      .socialSecurityVisibilityStream,
+                                                  stream: model.socialSecurityVisibilityStream,
                                                   initialData: false,
-                                                  dataBuilder:
-                                                      (context, isVisible) {
+                                                  dataBuilder: (context, isVisible) {
                                                     return isVisible!
                                                         ? AppTextField(
-                                                            labelText: S
-                                                                .of(context)
-                                                                .socialSecurityNUmber,
-                                                            hintText: S
-                                                                .of(context)
-                                                                .pleaseEnter,
-                                                            controller: model
-                                                                .socialSecurityNumberController,
-                                                            key: model
-                                                                .socialSecurityNumberKey,
-                                                            inputAction:
-                                                                TextInputAction
-                                                                    .go,
+                                                            labelText: S.of(context).socialSecurityNUmber,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.socialSecurityNumberController,
+                                                            key: model.socialSecurityNumberKey,
+                                                            inputAction: TextInputAction.go,
                                                             onChanged: (value) {
                                                               model.isValid();
                                                             },
                                                           )
                                                         : AppTextField(
-                                                            labelText: S
-                                                                .of(context)
-                                                                .employerIdNumber,
-                                                            hintText: S
-                                                                .of(context)
-                                                                .pleaseEnter,
-                                                            controller: model
-                                                                .employerIdNumberController,
-                                                            key: model
-                                                                .employerIdNumberKey,
-                                                            inputAction:
-                                                                TextInputAction
-                                                                    .go,
+                                                            labelText: S.of(context).employerIdNumber,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.employerIdNumberController,
+                                                            key: model.employerIdNumberKey,
+                                                            inputAction: TextInputAction.go,
                                                             onChanged: (value) {
                                                               model.isValid();
                                                             },
@@ -209,9 +171,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                               );
                                             }),
                                         SizedBox(
-                                          height: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
+                                          height: MediaQuery.of(context).viewInsets.bottom,
                                         ),
                                       ],
                                     ),
@@ -226,9 +186,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
+                                                  buttonText: S.of(context).swipeToProceed,
                                                   buttonHeight: 50,
                                                 )
                                               : Container();

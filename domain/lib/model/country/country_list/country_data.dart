@@ -22,7 +22,8 @@ class CountryData {
       this.isNationalityAllowed,
       this.isIssuerAllowed,
       this.isSelected: false,
-      this.countryNameAR});
+      this.countryNameAR,
+      this.countryEnglishName = ''});
 
   final String? isoCode3;
   final dynamic? score;
@@ -47,4 +48,5 @@ class CountryData {
   final bool? isNationalityAllowed;
   final bool? isIssuerAllowed;
   bool isSelected;
+  final String? countryEnglishName;
 }

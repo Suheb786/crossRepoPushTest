@@ -17,7 +17,7 @@ import 'package:neo_bank/utils/string_utils.dart';
 
 class TaxPayerDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(String, String)? onSelected;
   final TaxPayerTypeEnum? taxPayerTypeEnum;
 
   const TaxPayerDialogView({this.onDismissed, this.onSelected, this.taxPayerTypeEnum});
@@ -106,7 +106,11 @@ class TaxPayerDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(model.getList(taxPayerTypeEnum!)[currentIndex!]);
+                            onSelected!.call(
+                                model.getList(taxPayerTypeEnum!)[currentIndex!],
+                                taxPayerTypeEnum == TaxPayerTypeEnum.W8
+                                    ? model.taxPayerListW8[currentIndex]
+                                    : model.taxPayerListW9[currentIndex]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),

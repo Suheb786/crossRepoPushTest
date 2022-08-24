@@ -10,22 +10,20 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class JobAndIncomeUseCase extends BaseUseCase<NetworkError,
-    JobAndIncomeUseCaseParams, SaveJobDetailsResponse> {
+class JobAndIncomeUseCase
+    extends BaseUseCase<NetworkError, JobAndIncomeUseCaseParams, SaveJobDetailsResponse> {
   final UserRepository _repository;
 
   JobAndIncomeUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, SaveJobDetailsResponse>> execute(
-      {required JobAndIncomeUseCaseParams params}) {
+  Future<Either<NetworkError, SaveJobDetailsResponse>> execute({required JobAndIncomeUseCaseParams params}) {
     return _repository.saveJobInformation(
         occupation: params.occupation,
-        businessType: params.businessType,
-        annualIncome:
-            '${double.parse("${double.parse(params.annualIncome!) * 12}").toStringAsFixed(3)}',
+        businessType: params.businessTypeEnglishValue,
+        annualIncome: '${double.parse("${double.parse(params.annualIncome!) * 12}").toStringAsFixed(3)}',
         employeeName: params.employerName,
-        employerCountry: params.employerCountry,
+        employerCountry: params.employerCountryEnglish,
         employerCity: params.employerCity,
         employerContact: params.employerContact,
         additionalIncome: params.isAdditionalIncome,
@@ -41,11 +39,13 @@ class JobAndIncomeUseCaseParams extends Params {
   final String? employerCity;
   final String? employerContact;
   final String? businessType;
+  final String? businessTypeEnglishValue;
   final String? specifyBusiness;
   final EmploymentStatusEnum employmentStatusEnum;
   final bool businessTypeOther;
   final bool isAdditionalIncome;
   final List<AdditionalIncomeType> additionalIncomeList;
+  final String employerCountryEnglish;
 
   JobAndIncomeUseCaseParams(
       {this.employerContact,
@@ -59,58 +59,42 @@ class JobAndIncomeUseCaseParams extends Params {
       required this.employmentStatusEnum,
       required this.businessTypeOther,
       required this.isAdditionalIncome,
-      required this.additionalIncomeList});
+      required this.additionalIncomeList,
+      this.employerCountryEnglish = '',
+      this.businessTypeEnglishValue});
 
   @override
   Either<AppError, bool> verify() {
     if (employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER) {
       if (businessTypeOther && specifyBusiness!.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_BUSINESS,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_BUSINESS, cause: Exception()));
       } else if (businessType!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_BUSINESS_TYPE,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_BUSINESS_TYPE, cause: Exception()));
       }
     } else if (occupation!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OCCUPATION,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OCCUPATION, cause: Exception()));
     }
     if (annualIncome!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_ANNUAL_INCOME,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_ANNUAL_INCOME, cause: Exception()));
     } else if (!(num.parse(annualIncome!) > 0)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_ANNUAL_INCOME_VALUE,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_ANNUAL_INCOME_VALUE, cause: Exception()));
     } else if (employerName!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMPLOYER_NAME,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMPLOYER_NAME, cause: Exception()));
     } else if (employerCountry!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMPLOYER_COUNTRY,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMPLOYER_COUNTRY, cause: Exception()));
     } else if (employerCity!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMPLOYER_CITY,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMPLOYER_CITY, cause: Exception()));
     } else if (employerContact!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EMPLOYER_CONTACT,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_EMPLOYER_CONTACT, cause: Exception()));
     }
     return Right(true);
   }

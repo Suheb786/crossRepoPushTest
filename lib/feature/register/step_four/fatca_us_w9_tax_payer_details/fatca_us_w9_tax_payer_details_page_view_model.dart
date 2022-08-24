@@ -22,30 +22,22 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> taxPayerTypeKey =
-      GlobalKey(debugLabel: "taxPayerType");
+  final GlobalKey<AppTextFieldState> taxPayerTypeKey = GlobalKey(debugLabel: "taxPayerType");
 
-  final TextEditingController socialSecurityNumberController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> socialSecurityNumberKey =
-      GlobalKey(debugLabel: "socialSecurityNumber");
+  final TextEditingController socialSecurityNumberController = TextEditingController();
+  final GlobalKey<AppTextFieldState> socialSecurityNumberKey = GlobalKey(debugLabel: "socialSecurityNumber");
 
-  final TextEditingController employerIdNumberController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> employerIdNumberKey =
-      GlobalKey(debugLabel: "employerIdNumber");
+  final TextEditingController employerIdNumberController = TextEditingController();
+  final GlobalKey<AppTextFieldState> employerIdNumberKey = GlobalKey(debugLabel: "employerIdNumber");
 
   ///fatca us w9 taxPayer details request subject holder
-  PublishSubject<FatcaUSW9TaxPayerDetailsUseCaseParams>
-      _fatcaUSW9taxPayerDetailsRequest = PublishSubject();
+  PublishSubject<FatcaUSW9TaxPayerDetailsUseCaseParams> _fatcaUSW9taxPayerDetailsRequest = PublishSubject();
 
   ///fatca us w9 taxPayer details response holder
-  PublishSubject<Resource<bool>> _fatcaUSW9taxPayerDetailsResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _fatcaUSW9taxPayerDetailsResponse = PublishSubject();
 
   ///fatca us w9 taxPayer details stream
-  Stream<Resource<bool>> get fatcaUSW9taxPayerDetailsStream =>
-      _fatcaUSW9taxPayerDetailsResponse.stream;
+  Stream<Resource<bool>> get fatcaUSW9taxPayerDetailsStream => _fatcaUSW9taxPayerDetailsResponse.stream;
 
   ///all field validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -54,15 +46,12 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
   ///social security number field visibility subject
-  final BehaviorSubject<bool> _socialSecurityVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  final BehaviorSubject<bool> _socialSecurityVisibilitySubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get socialSecurityVisibilityStream =>
-      _socialSecurityVisibilitySubject.stream;
+  Stream<bool> get socialSecurityVisibilityStream => _socialSecurityVisibilitySubject.stream;
 
   ///tax visibility subject
-  final BehaviorSubject<bool> _taxVisibilitySubject =
-      BehaviorSubject.seeded(false);
+  final BehaviorSubject<bool> _taxVisibilitySubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get taxVisibilityStream => _taxVisibilitySubject.stream;
 
@@ -77,13 +66,11 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   bool isValid() {
     bool valid = false;
     if (_socialSecurityVisibilitySubject.value) {
-      if (taxPayerTypeController.text.isNotEmpty &&
-          socialSecurityNumberController.text.isNotEmpty) {
+      if (taxPayerTypeController.text.isNotEmpty && socialSecurityNumberController.text.isNotEmpty) {
         valid = true;
       }
     } else {
-      if (taxPayerTypeController.text.isNotEmpty &&
-          employerIdNumberController.text.isNotEmpty) {
+      if (taxPayerTypeController.text.isNotEmpty && employerIdNumberController.text.isNotEmpty) {
         valid = true;
       }
     }
@@ -91,12 +78,9 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  FatcaUSW9TaxPayersDetailsPageViewModel(
-      this._fatcaUSW9taxPayerDetailsUseCase, this._uploadDocumentUseCase) {
+  FatcaUSW9TaxPayersDetailsPageViewModel(this._fatcaUSW9taxPayerDetailsUseCase, this._uploadDocumentUseCase) {
     _fatcaUSW9taxPayerDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _fatcaUSW9taxPayerDetailsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fatcaUSW9taxPayerDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -126,16 +110,18 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   }
 
   void validateFatcaUSW9TaxPayersDetails() {
-    _fatcaUSW9taxPayerDetailsRequest.safeAdd(
-        FatcaUSW9TaxPayerDetailsUseCaseParams(
-            isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
-            isEmployer: !_socialSecurityVisibilitySubject.value,
-            employerIdNumber: employerIdNumberController.text,
-            socialSecurityNumber: socialSecurityNumberController.text,
-            taxPayerType: taxPayerTypeController.text));
+    _fatcaUSW9taxPayerDetailsRequest.safeAdd(FatcaUSW9TaxPayerDetailsUseCaseParams(
+        isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
+        isEmployer: !_socialSecurityVisibilitySubject.value,
+        employerIdNumber: employerIdNumberController.text,
+        socialSecurityNumber: socialSecurityNumberController.text,
+        taxPayerType: taxPayerTypeController.text));
   }
 
-  void updateTaxPayerTypeField(String value) {
+  String taxPayerEnglishValue = '';
+
+  void updateTaxPayerTypeField(String value, String taxPayerEnglishVal) {
+    taxPayerEnglishValue = taxPayerEnglishVal;
     taxPayerTypeController.text = value;
     if (value.fromValue() == USRelevantW9TaxPayerEnum.SOCIAL_SECURITY) {
       updateVisibilityValue(true);
@@ -146,16 +132,13 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaW9Data fatcaSetData = ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .getFatcaW9Data;
-    fatcaSetData.taxPayer = taxPayerTypeController.text;
+    FatcaW9Data fatcaSetData =
+        ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).getFatcaW9Data;
+    fatcaSetData.taxPayer = taxPayerEnglishValue;
     fatcaSetData.socialSecurityNumber = socialSecurityNumberController.text;
     fatcaSetData.employerTin = employerIdNumberController.text;
 
-    ProviderScope.containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .setFatcaW9(fatcaSetData);
+    ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).setFatcaW9(fatcaSetData);
 
     ///update tax Payer Type
     ProviderScope.containerOf(context)

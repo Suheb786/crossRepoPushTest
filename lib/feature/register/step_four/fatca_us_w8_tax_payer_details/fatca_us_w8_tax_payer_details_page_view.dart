@@ -118,10 +118,10 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                             TaxPayerDialog.show(context,
                                                 taxPayerTypeEnum: TaxPayerTypeEnum.W8, onDismissed: () {
                                               Navigator.pop(context);
-                                            }, onSelected: (value) {
+                                            }, onSelected: (value, englishValue) {
                                               Navigator.pop(context);
                                               model.taxPayerVisibility(true);
-                                              model.updateTaxPayerTypeField(value);
+                                              model.updateTaxPayerTypeField(value, englishValue);
                                               model.identificationNumberController.clear();
                                               model.foreignIdentificationNumberController.clear();
                                               model.referenceNumberController.clear();

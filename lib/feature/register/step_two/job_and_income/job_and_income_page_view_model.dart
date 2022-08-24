@@ -45,6 +45,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   final TextEditingController employerContactController = TextEditingController();
   GlobalKey<AppTextFieldState> employerContactKey = new GlobalKey(debugLabel: "employerContact");
 
+  String businessTypeEnglishValue = '';
+
   ///update occupation  textfield value
   void updateOccupation(String value) {
     occupationController.text = value;
@@ -52,9 +54,12 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   EmploymentStatusEnum employmentStatusEnum = EmploymentStatusEnum.OTHER;
 
+  String employerCountryEnglish = '';
+
   ///update employer country textfield value
-  void updateEmployerCountry(String value) {
+  void updateEmployerCountry(String value, String countryNameEnglish) {
     employerCountryController.text = value;
+    employerCountryEnglish = countryNameEnglish;
   }
 
   /// business type other visibility Subject holder
@@ -236,11 +241,13 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         employerName: employerNameController.text,
         occupation: occupationController.text,
         businessType: businessTypeController.text,
+        businessTypeEnglishValue: businessTypeEnglishValue,
         businessTypeOther: _businessTypeOtherVisibilitySubject.value,
         employmentStatusEnum: employmentStatusEnum,
         specifyBusiness: businessTypeOtherController.text,
         isAdditionalIncome: _switchSubject.value,
-        additionalIncomeList: additionalSourceIncome));
+        additionalIncomeList: additionalSourceIncome,
+        employerCountryEnglish: employerCountryEnglish));
   }
 
   void getComboValues() {

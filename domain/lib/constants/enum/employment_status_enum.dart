@@ -41,11 +41,11 @@ extension EmploymentStatusEnumExt on String {
         return EmploymentStatusEnum.HOUSEWIFE;
       case "Other":
         return EmploymentStatusEnum.OTHER;
-      case "وظف بدوام كامل,":
+      case "موظف دوام كامل":
         return EmploymentStatusEnum.FULL_TIME_EMPLOYEE;
       case "موظف دوام جزئي":
         return EmploymentStatusEnum.PART_TIME_EMPLOYEE;
-      case "احب عمل":
+      case "صاحب عمل":
         return EmploymentStatusEnum.BUSINESS_OWNER;
       case "اعمال حرة":
         return EmploymentStatusEnum.FREELANCE;

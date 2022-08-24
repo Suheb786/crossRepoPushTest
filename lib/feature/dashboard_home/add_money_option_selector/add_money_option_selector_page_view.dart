@@ -57,7 +57,9 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 20, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).accentColor),
                       ),
                     ),
                     SizedBox(
@@ -106,34 +108,18 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       },
                       isVisible: false,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
-                              indent: 12,
-                              endIndent: 8,
-                            ),
-                          ),
-                          Text(
-                            S.of(context).or,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12),
-                          ),
-                          Expanded(
-                            child: AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
-                              endIndent: 0,
-                              indent: 8,
-                            ),
-                          ),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 26,
+                    ),
+                    AddMoneySelectorOptionsWidget(
+                      image: AssetUtils.dollar,
+                      title: S.of(context).depositViaeFawateercom,
+                      desc: S.of(context).depositViaeFawateercomDesc,
+                      buttonText: S.of(context).locateATM,
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutePaths.LocateATM);
+                      },
+                      isVisible: false,
                     ),
                     // Container(
                     //   padding:
@@ -190,25 +176,58 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                           switch (snapshot!.status) {
                             case Status.SUCCESS:
                               return (snapshot.data!.data!.status ?? false)
-                                  ? Padding(
-                                      padding: EdgeInsets.only(top: 0),
-                                      child: Image.memory(
-                                        snapshot.data!.data!.image,
-                                        fit: BoxFit.fill,
-                                      )
-                                      /*Container(
-                                        //height: 120,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: Image.memory(snapshot
-                                                        .data!.data!.image)
-                                                    .image,
-                                                fit: BoxFit.fill),
-                                            borderRadius:
-                                                BorderRadius.circular(16)),
-                                      )*/
-                                      ,
+                                  ? Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 24),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: AppDivider(
+                                                  color: AppColor.white.withOpacity(0.3),
+                                                  indent: 12,
+                                                  endIndent: 8,
+                                                ),
+                                              ),
+                                              Text(
+                                                S.of(context).or,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    color: Theme.of(context).accentColor,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 12),
+                                              ),
+                                              Expanded(
+                                                child: AppDivider(
+                                                  color: AppColor.white.withOpacity(0.3),
+                                                  endIndent: 0,
+                                                  indent: 8,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 0),
+                                          child: Image.memory(
+                                            snapshot.data!.data!.image,
+                                            fit: BoxFit.fill,
+                                          )
+                                          /*Container(
+                                            //height: 120,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: Image.memory(snapshot
+                                                            .data!.data!.image)
+                                                        .image,
+                                                    fit: BoxFit.fill),
+                                                borderRadius:
+                                                    BorderRadius.circular(16)),
+                                          )*/
+                                          ,
+                                        ),
+                                      ],
                                     )
                                   : Container();
                             default:

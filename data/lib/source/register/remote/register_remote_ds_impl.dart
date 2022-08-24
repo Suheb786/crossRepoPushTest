@@ -37,12 +37,12 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       'Others'
     ];
     List<String> purposeListAr = [
-      'حويل الراتب',
-      'حركات بنكية يومية',
-      'وفير',
-      ' بطاقة ائتمانية',
-      'تسهيلات مصرفية',
-      'اخرى'
+      'تحويل راتب',
+      'تعاملات مصرفية يومية',
+      'توفير',
+      'بطاقة ائتمانية',
+      'تسهيلات',
+      'أخرى'
     ];
 
     return Future.value(Future.value(Intl.getCurrentLocale() == 'en' ? purposeListEn : purposeListAr));
@@ -51,28 +51,18 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   @override
   Future<List<AdditionalIncome>> getAdditionalIncomeSourceList() {
     List<AdditionalIncome> additionalIncomeEn = [
-      AdditionalIncome(type: 'Additional Salary'),
-      AdditionalIncome(type: 'Pension'),
-      AdditionalIncome(type: 'Freelance Income'),
-      AdditionalIncome(type: 'Bonus, Incentive, and Commission'),
-      AdditionalIncome(type: 'Rental Income'),
-      AdditionalIncome(type: 'Investments'),
-      AdditionalIncome(type: 'Own Business'),
-      AdditionalIncome(type: 'Family Allowance'),
-      AdditionalIncome(type: 'Other'),
+      AdditionalIncome(type: 'Additional Salary', typeAr: 'راتب إضافي'),
+      AdditionalIncome(type: 'Pension', typeAr: "راتب تقاعد"),
+      AdditionalIncome(type: 'Freelance Income', typeAr: "الدخل المستقل"),
+      AdditionalIncome(type: 'Bonus, Incentive, and Commission', typeAr: "مكافئات وأجور وعمولات"),
+      AdditionalIncome(type: 'Rental Income', typeAr: 'عائد من الإيجارات'),
+      AdditionalIncome(type: 'Investments', typeAr: "استثمارات"),
+      AdditionalIncome(type: 'Own Business', typeAr: 'عمل حر'),
+      AdditionalIncome(type: 'Family Allowance', typeAr: "بدل الأسرة"),
+      AdditionalIncome(type: 'Other', typeAr: 'خرى'),
     ];
-    List<AdditionalIncome> additionalIncomeAr = [
-      AdditionalIncome(type: 'راتب إضافي'),
-      AdditionalIncome(type: "راتب تقاعد"),
-      AdditionalIncome(type: "الدخل المستقل"),
-      AdditionalIncome(type: "مكافئات وأجور وعمولات"),
-      AdditionalIncome(type: 'عائد من الإيجارات'),
-      AdditionalIncome(type: "استثمارات"),
-      AdditionalIncome(type: 'عمل خاص'),
-      AdditionalIncome(type: "بدل الأسرة"),
-      AdditionalIncome(type: 'خرى'),
-    ];
-    return Future.value(Intl.getCurrentLocale() == 'en' ? additionalIncomeEn : additionalIncomeAr);
+
+    return Future.value(additionalIncomeEn);
   }
 
   @override

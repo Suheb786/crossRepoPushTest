@@ -50,6 +50,7 @@ class GetComboValuesDataEntity
         labelAr: this.labelAr,
         ageGroup: this.ageGroup,
         intCode: this.intCode,
-        strCode: this.strCode);
+        strCode: this.strCode,
+        labelEnglishData: this.labelEn ?? '');
   }
 }

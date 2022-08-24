@@ -12,12 +12,12 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
     "Freelance",
     "Retired",
     "Student",
-    "Unemployed", "House Wife",
-    //"Other"
+    "Unemployed",
+    "House Wife",
   ];
   List<String> employmentStatusListAr = [
-    "احب عمل",
-    "وظف بدوام كامل,",
+    "صاحب عمل",
+    "موظف دوام كامل",
     "موظف دوام جزئي",
     "اعمال حرة",
     "متقاعد",
