@@ -112,9 +112,11 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                                 case Status.SUCCESS:
                                   return Padding(
                                     padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                        bottom:
+                                            20 /*MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                             ? 0
-                                            : MediaQuery.of(context).viewInsets.bottom - 48),
+                                            : MediaQuery.of(context).viewInsets.bottom - 48*/
+                                        ),
                                     child: SingleChildScrollView(
                                       padding: EdgeInsets.symmetric(horizontal: 24),
                                       physics: ClampingScrollPhysics(),

@@ -52,6 +52,7 @@ FatcaCrsEntity _$FatcaCrsEntityFromJson(Map<String, dynamic> json) {
     signatureId: json['signatureId'],
     isActive: json['isActive'] as bool?,
     relationshipWithPEPName: json['relationshipWithPEPName'] as String?,
+    relationshipWithPEPNameAr: json['relationshipWithPEPNameAr'] as String?,
   );
 }
 
@@ -71,6 +72,7 @@ Map<String, dynamic> _$FatcaCrsEntityToJson(FatcaCrsEntity instance) =>
       'deactivatedDate': instance.deactivatedDate,
       'relationshipWithPEP': instance.relationshipWithPep,
       'relationshipWithPEPName': instance.relationshipWithPEPName,
+      'relationshipWithPEPNameAr': instance.relationshipWithPEPNameAr,
       'personName': instance.personName,
       'personRole': instance.personRole,
       'signatureId': instance.signatureId,

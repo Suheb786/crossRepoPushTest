@@ -2,6 +2,7 @@ class AccountPurposeInfo {
   final int? id;
   final String? userId;
   final String? purpose;
+  final String? purposeAr;
   final bool? isCashDeposit;
   final bool? isTransfer;
   final bool? isBillPayment;
@@ -15,6 +16,7 @@ class AccountPurposeInfo {
     this.id,
     this.userId,
     this.purpose,
+    this.purposeAr,
     this.isCashDeposit,
     this.isTransfer,
     this.isBillPayment,

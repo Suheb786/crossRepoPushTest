@@ -14,6 +14,7 @@ class FatcaCrsInfo {
   final dynamic signatureId;
   final String? relationshipWithPep;
   final String? relationshipWithPEPName;
+  final String? relationshipWithPEPNameAr;
   final String? personName;
   final String? personRole;
   final dynamic? namePerIncomeTaxReturn;
@@ -55,6 +56,7 @@ class FatcaCrsInfo {
       this.response5,
       this.relationshipWithPep,
       this.relationshipWithPEPName,
+      this.relationshipWithPEPNameAr,
       this.personName,
       this.personRole,
       this.namePerIncomeTaxReturn,

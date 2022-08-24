@@ -1,13 +1,13 @@
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'country_residence_entity.g.dart';
 
 @JsonSerializable()
 class CountryResidenceEntity
-    implements
-        BaseLayerDataTransformer<CountryResidenceEntity, CountryResidenceInfo> {
+    implements BaseLayerDataTransformer<CountryResidenceEntity, CountryResidenceInfo> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "userId")
@@ -26,6 +26,8 @@ class CountryResidenceEntity
   final String? area;
   @JsonKey(name: "city")
   final String? city;
+  @JsonKey(name: "cityAr")
+  final String? cityAr;
   @JsonKey(name: "perCountry")
   final String? perResidantCountry;
   @JsonKey(name: "perCity")
@@ -36,10 +38,16 @@ class CountryResidenceEntity
   final bool? isActive;
   @JsonKey(name: "residantCountryName")
   final String? residentCountryName;
+  @JsonKey(name: "residantCountryNameAr")
+  final String? residentCountryNameAr;
   @JsonKey(name: "perCountryName")
   final String? perResidentCountryName;
+  @JsonKey(name: "perCountryNameAr")
+  final String? perResidentCountryNameAr;
   @JsonKey(name: "perCityName")
   final String? perResidentCityName;
+  @JsonKey(name: "perCityNameAr")
+  final String? perResidentCityNameAr;
 
   CountryResidenceEntity(
       {this.id,
@@ -49,6 +57,7 @@ class CountryResidenceEntity
       this.stateID,
       this.perCity,
       this.city,
+      this.cityAr,
       this.perResidantCountry,
       this.area,
       this.buildingName,
@@ -56,8 +65,11 @@ class CountryResidenceEntity
       this.createdOn,
       this.isActive,
       this.residentCountryName: "",
+      this.residentCountryNameAr: '',
       this.perResidentCountryName: "",
-      this.perResidentCityName: ""});
+      this.perResidentCountryNameAr: '',
+      this.perResidentCityName: "",
+      this.perResidentCityNameAr: ''});
 
   factory CountryResidenceEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryResidenceEntityFromJson(json);
@@ -82,7 +94,11 @@ class CountryResidenceEntity
         userId: response.userId,
         residentCountryName: response.residentCountryName,
         perResidentCountryName: response.perResidentCountryName,
-        perResidentCityName: response.perResidentCityName);
+        perResidentCityName: response.perResidentCityName,
+        perResidentCityNameAr: response.perResidentCityNameAr,
+        cityAr: response.cityAr,
+        perResidentCountryNameAr: response.perResidentCountryNameAr,
+        residentCountryNameAr: response.residentCountryNameAr);
   }
 
   @override
@@ -96,13 +112,23 @@ class CountryResidenceEntity
         createdOn: this.createdOn,
         isActive: this.isActive,
         area: this.area,
-        city: this.city,
+        city: Intl.getCurrentLocale() == 'en' ? this.city : this.cityAr ?? '',
         perResidantCountry: this.perResidantCountry,
         perCity: this.perCity,
         residantCountry: this.residantCountry,
         userId: this.userId,
-        residentCountryName: this.residentCountryName ?? '',
-        perResidentCityName: this.perResidentCityName ?? '',
-        perResidentCountryName: this.perResidentCountryName ?? '');
+        residentCountryName: Intl.getCurrentLocale() == 'en'
+            ? this.residentCountryName ?? ''
+            : this.residentCountryNameAr ?? '',
+        perResidentCityName: Intl.getCurrentLocale() == 'en'
+            ? this.perResidentCityName ?? ''
+            : this.perResidentCityNameAr ?? '',
+        perResidentCountryName: Intl.getCurrentLocale() == 'en'
+            ? this.perResidentCountryName ?? ''
+            : this.perResidentCountryNameAr ?? '',
+        residentCountryNameAr: this.residentCountryNameAr ?? '',
+        cityAr: this.cityAr ?? '',
+        perResidentCountryNameAr: this.perResidentCountryNameAr ?? '',
+        perResidentCityNameAr: this.perResidentCityNameAr ?? '');
   }
 }

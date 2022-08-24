@@ -14,6 +14,8 @@ class JobDetailContentInfo {
   final bool? additionalIncome;
   final DateTime? createdOn;
   final bool? isActive;
+  final String businessTypeAr;
+  final String employerCountryAr;
 
   JobDetailContentInfo(
       {this.id: 0,
@@ -30,5 +32,7 @@ class JobDetailContentInfo {
       this.isActive: false,
       this.businessType: "",
       this.occupation: "",
-      this.businessSpecificType: ""});
+      this.businessSpecificType: "",
+      this.businessTypeAr = '',
+      this.employerCountryAr = ''});
 }

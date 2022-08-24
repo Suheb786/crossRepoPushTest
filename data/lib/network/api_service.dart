@@ -81,7 +81,6 @@ import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
 import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
-import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/report_stolen_cc/report_stolen_cc_request_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
@@ -300,7 +299,7 @@ abstract class ApiService {
       @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 
   ///get confirm application data
-  @POST("/AdditionalDoc/ConfirmApplicationDataGet")
+  @POST("/AdditionalDoc/ConfirmApplicationDataGetV2")
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet(
       @Body() ConfirmApplicationDataGetRequestEntity confirmApplicationDataGetRequestEntity);
 

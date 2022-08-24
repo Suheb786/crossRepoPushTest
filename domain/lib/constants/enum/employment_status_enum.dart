@@ -53,7 +53,7 @@ extension EmploymentStatusEnumExt on String {
         return EmploymentStatusEnum.RETIRED;
       case "طالب":
         return EmploymentStatusEnum.RETIRED;
-      case "عاطل عن العم":
+      case "عاطل عن العمل":
         return EmploymentStatusEnum.UNEMPLOYED;
       case "ربة منزل":
         return EmploymentStatusEnum.HOUSEWIFE;

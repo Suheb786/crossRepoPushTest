@@ -19,6 +19,7 @@ ProfileStatusEntity _$ProfileStatusEntityFromJson(Map<String, dynamic> json) {
         ? null
         : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
+    employmentStatusAr: json['employmentStatusAr'] as String?,
   );
 }
 
@@ -28,6 +29,7 @@ Map<String, dynamic> _$ProfileStatusEntityToJson(
       'id': instance.id,
       'userId': instance.userId,
       'employmentStatus': instance.employmentStatus,
+      'employmentStatusAr': instance.employmentStatusAr,
       'married': instance.married,
       'specialPerson': instance.specialPerson,
       'spauseName': instance.spouseName,

@@ -455,7 +455,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetConfirmApplicationDataResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
-                    _dio.options, '/AdditionalDoc/ConfirmApplicationDataGet',
+                    _dio.options, '/AdditionalDoc/ConfirmApplicationDataGetV2',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =

@@ -21,6 +21,7 @@ AccountPurposeEntity _$AccountPurposeEntityFromJson(Map<String, dynamic> json) {
         ? null
         : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
+    purposeAr: json['purposeAr'] as String?,
   );
 }
 
@@ -30,6 +31,7 @@ Map<String, dynamic> _$AccountPurposeEntityToJson(
       'id': instance.id,
       'userId': instance.userId,
       'purpose': instance.purpose,
+      'purposeAr': instance.purposeAr,
       'isCashDeposit': instance.isCashDeposit,
       'isTransfer': instance.isTransfer,
       'isBillPayment': instance.isBillPayment,

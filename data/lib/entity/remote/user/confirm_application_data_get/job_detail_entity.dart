@@ -8,8 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'job_detail_entity.g.dart';
 
 @JsonSerializable()
-class JobDetailEntity
-    implements BaseLayerDataTransformer<JobDetailEntity, JobDetailInfo> {
+class JobDetailEntity implements BaseLayerDataTransformer<JobDetailEntity, JobDetailInfo> {
   @JsonKey(name: "additionalInfos1")
   final List<AdditionalIncomeEntity>? additionalIncomeList;
   @JsonKey(name: "jobDetail1")
@@ -17,27 +16,22 @@ class JobDetailEntity
 
   JobDetailEntity({this.additionalIncomeList, this.jobDetailContent});
 
-  factory JobDetailEntity.fromJson(Map<String, dynamic> json) =>
-      _$JobDetailEntityFromJson(json);
+  factory JobDetailEntity.fromJson(Map<String, dynamic> json) => _$JobDetailEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$JobDetailEntityToJson(this);
 
   @override
   JobDetailEntity restore(JobDetailInfo response) {
     return JobDetailEntity(
-        additionalIncomeList: response.additionalIncomeInfo!
-            .map((e) => AdditionalIncomeEntity().restore(e))
-            .toList(),
-        jobDetailContent:
-            JobDetailContentEntity().restore(response.jobDetailContentInfo!));
+        additionalIncomeList:
+            response.additionalIncomeInfo!.map((e) => AdditionalIncomeEntity().restore(e)).toList(),
+        jobDetailContent: JobDetailContentEntity().restore(response.jobDetailContentInfo!));
   }
 
   @override
   JobDetailInfo transform() {
     return JobDetailInfo(
-        additionalIncomeInfo:
-            this.additionalIncomeList!.map((e) => e.transform()).toList(),
-        jobDetailContentInfo:
-            this.jobDetailContent?.transform() ?? JobDetailContentInfo());
+        additionalIncomeInfo: this.additionalIncomeList!.map((e) => e.transform()).toList(),
+        jobDetailContentInfo: this.jobDetailContent?.transform() ?? JobDetailContentInfo());
   }
 }

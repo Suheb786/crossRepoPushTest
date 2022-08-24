@@ -1,29 +1,33 @@
 import 'package:domain/model/user/confirm_application_data_get/additional_income_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'additional_income_entity.g.dart';
 
 @JsonSerializable()
 class AdditionalIncomeEntity
-    implements
-        BaseLayerDataTransformer<AdditionalIncomeEntity, AdditionalIncomeInfo> {
+    implements BaseLayerDataTransformer<AdditionalIncomeEntity, AdditionalIncomeInfo> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "userId")
   final String? userId;
   @JsonKey(name: "additionalIncomeSource")
   final String? additionalIncomeSource;
+  @JsonKey(name: "additionalIncomeSourceAr")
+  final String? additionalIncomeSourceAr;
   @JsonKey(name: "totalIncome")
   final String? totalIncome;
   @JsonKey(name: "createdOn")
   final DateTime? createdOn;
 
-  AdditionalIncomeEntity({this.id,
-    this.userId,
-    this.additionalIncomeSource,
-    this.totalIncome,
-    this.createdOn});
+  AdditionalIncomeEntity(
+      {this.id,
+      this.userId,
+      this.additionalIncomeSource,
+      this.totalIncome,
+      this.createdOn,
+      this.additionalIncomeSourceAr});
 
   factory AdditionalIncomeEntity.fromJson(Map<String, dynamic> json) =>
       _$AdditionalIncomeEntityFromJson(json);
@@ -37,7 +41,8 @@ class AdditionalIncomeEntity
         createdOn: response.createdOn,
         additionalIncomeSource: response.additionalIncomeSource,
         totalIncome: response.totalIncome,
-        userId: response.userId);
+        userId: response.userId,
+        additionalIncomeSourceAr: response.additionalIncomeSourceAr);
   }
 
   @override
@@ -46,7 +51,10 @@ class AdditionalIncomeEntity
         id: this.id,
         createdOn: this.createdOn,
         userId: this.userId,
-        additionalIncomeSource: this.additionalIncomeSource,
-        totalIncome: this.totalIncome);
+        additionalIncomeSource: Intl.getCurrentLocale() == 'en'
+            ? this.additionalIncomeSource
+            : this.additionalIncomeSourceAr ?? '',
+        totalIncome: this.totalIncome,
+        additionalIncomeSourceAr: this.additionalIncomeSourceAr);
   }
 }

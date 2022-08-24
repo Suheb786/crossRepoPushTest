@@ -1,19 +1,20 @@
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'account_purpose_entity.g.dart';
 
 @JsonSerializable()
-class AccountPurposeEntity
-    implements
-        BaseLayerDataTransformer<AccountPurposeEntity, AccountPurposeInfo> {
+class AccountPurposeEntity implements BaseLayerDataTransformer<AccountPurposeEntity, AccountPurposeInfo> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "userId")
   final String? userId;
   @JsonKey(name: "purpose")
   final String? purpose;
+  @JsonKey(name: "purposeAr")
+  final String? purposeAr;
   @JsonKey(name: "isCashDeposit")
   final bool? isCashDeposit;
   @JsonKey(name: "isTransfer")
@@ -31,20 +32,21 @@ class AccountPurposeEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  AccountPurposeEntity({this.id,
-    this.userId,
-    this.purpose,
-    this.isCashDeposit,
-    this.isTransfer,
-    this.isBillPayment,
-    this.isOther,
-    this.monthlyTransaction,
-    this.anualTransaction,
-    this.createdOn,
-    this.isActive});
+  AccountPurposeEntity(
+      {this.id,
+      this.userId,
+      this.purpose,
+      this.isCashDeposit,
+      this.isTransfer,
+      this.isBillPayment,
+      this.isOther,
+      this.monthlyTransaction,
+      this.anualTransaction,
+      this.createdOn,
+      this.isActive,
+      this.purposeAr});
 
-  factory AccountPurposeEntity.fromJson(Map<String, dynamic> json) =>
-      _$AccountPurposeEntityFromJson(json);
+  factory AccountPurposeEntity.fromJson(Map<String, dynamic> json) => _$AccountPurposeEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$AccountPurposeEntityToJson(this);
 
@@ -61,6 +63,7 @@ class AccountPurposeEntity
         isTransfer: response.isTransfer,
         monthlyTransaction: response.monthlyTransaction,
         purpose: response.purpose,
+        purposeAr: response.purposeAr,
         userId: response.userId);
   }
 
@@ -77,7 +80,8 @@ class AccountPurposeEntity
       isCashDeposit: this.isCashDeposit,
       isTransfer: this.isTransfer,
       monthlyTransaction: this.monthlyTransaction,
-      purpose: this.purpose,
+      purpose: Intl.getCurrentLocale() == 'en' ? this.purpose : this.purposeAr ?? '',
+      purposeAr: this.purposeAr,
     );
   }
 }

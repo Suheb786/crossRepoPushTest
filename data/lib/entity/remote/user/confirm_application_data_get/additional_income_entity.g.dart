@@ -16,6 +16,7 @@ AdditionalIncomeEntity _$AdditionalIncomeEntityFromJson(
     createdOn: json['createdOn'] == null
         ? null
         : DateTime.parse(json['createdOn'] as String),
+    additionalIncomeSourceAr: json['additionalIncomeSourceAr'] as String?,
   );
 }
 
@@ -25,6 +26,7 @@ Map<String, dynamic> _$AdditionalIncomeEntityToJson(
       'id': instance.id,
       'userId': instance.userId,
       'additionalIncomeSource': instance.additionalIncomeSource,
+      'additionalIncomeSourceAr': instance.additionalIncomeSourceAr,
       'totalIncome': instance.totalIncome,
       'createdOn': instance.createdOn?.toIso8601String(),
     };

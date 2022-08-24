@@ -9,7 +9,6 @@ import 'package:domain/model/user/confirm_application_data_get/country_residence
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
-import 'package:domain/model/user/confirm_application_data_get/job_detail_content_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/status/customer_status.dart';
@@ -52,8 +51,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   }
 
   ///review request subject holder
-  PublishSubject<ReviewApplicationUseCaseParams> _reviewAppRequest =
-      PublishSubject();
+  PublishSubject<ReviewApplicationUseCaseParams> _reviewAppRequest = PublishSubject();
 
   ///review response holder
   PublishSubject<Resource<bool>> _reviewAppResponse = PublishSubject();
@@ -62,73 +60,58 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get reviewAppStream => _reviewAppResponse.stream;
 
   ///check video call status subject holder
-  PublishSubject<CheckVideoCallStatusUseCaseParams> _checkVideoCallRequest =
-      PublishSubject();
+  PublishSubject<CheckVideoCallStatusUseCaseParams> _checkVideoCallRequest = PublishSubject();
 
   ///check video call status response holder
-  PublishSubject<Resource<CheckVideoCallResponse>> _checkVideoCallResponse =
-      PublishSubject();
+  PublishSubject<Resource<CheckVideoCallResponse>> _checkVideoCallResponse = PublishSubject();
 
   ///check video call status stream
-  Stream<Resource<CheckVideoCallResponse>> get checkVideoCallStream =>
-      _checkVideoCallResponse.stream;
+  Stream<Resource<CheckVideoCallResponse>> get checkVideoCallStream => _checkVideoCallResponse.stream;
 
   ///get Account subject holder
   PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
 
   ///get Account response holder
-  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse = PublishSubject();
 
   ///get Account stream
-  Stream<Resource<GetAccountResponse>> get getAccountStream =>
-      _getAccountResponse.stream;
+  Stream<Resource<GetAccountResponse>> get getAccountStream => _getAccountResponse.stream;
 
   ///create Account subject holder
-  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest =
-      PublishSubject();
+  PublishSubject<CreateAccountUseCaseParams> _createAccountRequest = PublishSubject();
 
   ///create Account response holder
-  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse =
-      PublishSubject();
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse = PublishSubject();
 
   ///create Account stream
-  Stream<Resource<CreateAccountResponse>> get createAccountStream =>
-      _createAccountResponse.stream;
+  Stream<Resource<CreateAccountResponse>> get createAccountStream => _createAccountResponse.stream;
 
   ///get confirm  Account data subject holder
-  PublishSubject<ConfirmApplicationDataGetUseCaseParams>
-      _getConfirmApplicationDataRequest = PublishSubject();
+  PublishSubject<ConfirmApplicationDataGetUseCaseParams> _getConfirmApplicationDataRequest = PublishSubject();
 
   ///get confirm  Account data response holder
-  BehaviorSubject<Resource<GetConfirmApplicationDataResponse>>
-      _getConfirmApplicationDataResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetConfirmApplicationDataResponse>> _getConfirmApplicationDataResponse =
+      BehaviorSubject();
 
   ///get confirm  Account data stream
-  Stream<Resource<GetConfirmApplicationDataResponse>>
-      get getConfirmApplicationDataStream =>
-          _getConfirmApplicationDataResponse.stream;
+  Stream<Resource<GetConfirmApplicationDataResponse>> get getConfirmApplicationDataStream =>
+      _getConfirmApplicationDataResponse.stream;
 
   ///User Status subject holder
-  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest =
-      PublishSubject();
+  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest = PublishSubject();
 
   ///User Status response holder
-  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
-      PublishSubject();
+  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse = PublishSubject();
 
   ///User Status stream
-  Stream<Resource<CustomerStatus>> get customerStatusStream =>
-      _checkCustomerStatusResponse.stream;
+  Stream<Resource<CustomerStatus>> get customerStatusStream => _checkCustomerStatusResponse.stream;
 
   ///remove debit lock
-  PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
-      PublishSubject();
+  PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _removeDebitLockResponse = PublishSubject();
 
-  Stream<Resource<bool>> get removeDebitLockStream =>
-      _removeDebitLockResponse.stream;
+  Stream<Resource<bool>> get removeDebitLockStream => _removeDebitLockResponse.stream;
 
   ProfileStatusInfo profileStatusInfo = ProfileStatusInfo();
   CountryResidenceInfo countryResidenceInfo = CountryResidenceInfo();
@@ -145,8 +128,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       this._checkCustomerStatusUseCase,
       this._removeDebitLockUseCase) {
     _reviewAppRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _reviewAppUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _reviewAppUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -159,9 +141,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _checkVideoCallRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkVideoCallStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkVideoCallStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -174,8 +154,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _getAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -188,8 +167,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _createAccountRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createAccountUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -202,9 +180,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _getConfirmApplicationDataRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _applicationDataGetUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _applicationDataGetUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -217,9 +193,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _checkCustomerStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkCustomerStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkCustomerStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -231,8 +205,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     _removeDebitLockRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _removeDebitLockUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _removeDebitLockUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -276,7 +249,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         //     isActive: countryResidenceInfo.isActive,
         //     createdOn: countryResidenceInfo.createdOn,
         //     id: countryResidenceInfo.id),
-        profileStatusInfo: ProfileStatusInfo(
+        profileStatusInfo:
+            profileStatusInfo /*ProfileStatusInfo(
             id: profileStatusInfo.id,
             createdOn: profileStatusInfo.createdOn,
             isActive: profileStatusInfo.isActive,
@@ -285,8 +259,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             specialPerson: profileStatusInfo.specialPerson,
             married: profileStatusInfo.married,
             natureSp: specialNeedsPersonController.text,
-            spauseName: spouseNameController.text),
-        accountPurposeInfo: AccountPurposeInfo(
+            spauseName: spouseNameController.text)*/
+        ,
+        accountPurposeInfo:
+            accountPurposeInfo /*AccountPurposeInfo(
             userId: accountPurposeInfo.userId,
             isActive: accountPurposeInfo.isActive,
             createdOn: accountPurposeInfo.createdOn,
@@ -295,12 +271,12 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             isBillPayment: accountPurposeInfo.isBillPayment,
             isTransfer: accountPurposeInfo.isTransfer,
             isCashDeposit: accountPurposeInfo.isCashDeposit,
-            monthlyTransaction:
-                double.parse(expectedMonthlyTransactionsController.text),
-            anualTransaction:
-                double.parse(expectedAnnualTransactionsController.text),
-            purpose: purposeOfAccountOpeningController.text),
-        jobDetailInfo: JobDetailInfo(
+            monthlyTransaction: double.parse(expectedMonthlyTransactionsController.text),
+            anualTransaction: double.parse(expectedAnnualTransactionsController.text),
+            purpose: purposeOfAccountOpeningController.text)*/
+        ,
+        jobDetailInfo:
+            jobDetailInfo /*JobDetailInfo(
             additionalIncomeInfo: jobDetailInfo.additionalIncomeInfo,
             jobDetailContentInfo: JobDetailContentInfo(
                 id: jobDetailInfo.jobDetailContentInfo!.id,
@@ -315,9 +291,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
                 employerCountry: employerCountryController.text,
                 employerCity: employerCityController.text,
                 employerContact: employerContactController.text,
-                additionalIncome:
-                    jobDetailInfo.jobDetailContentInfo!.additionalIncome,
-                annualIncome: mainAnnualIncomeController.text)),
+                additionalIncome: jobDetailInfo.jobDetailContentInfo!.additionalIncome,
+                annualIncome: mainAnnualIncomeController.text))*/
+        ,
         fatcaCrsInfo: fatcaCrsInfo));
   }
 
@@ -334,15 +310,12 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   }
 
   void getConfirmApplicationData() {
-    _getConfirmApplicationDataRequest
-        .safeAdd(ConfirmApplicationDataGetUseCaseParams());
+    _getConfirmApplicationDataRequest.safeAdd(ConfirmApplicationDataGetUseCaseParams());
   }
 
-  void createAccount(CustomerAccountDetails accountDetails,
-      CustomerInformation customerInformation) {
-    _createAccountRequest.safeAdd(CreateAccountUseCaseParams(
-        accountDetails: accountDetails,
-        customerInformation: customerInformation));
+  void createAccount(CustomerAccountDetails accountDetails, CustomerInformation customerInformation) {
+    _createAccountRequest.safeAdd(
+        CreateAccountUseCaseParams(accountDetails: accountDetails, customerInformation: customerInformation));
   }
 
   ///controllers
@@ -355,10 +328,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   TextEditingController buildingNameOrNoController = TextEditingController();
 
   ///Controllers for permanent address
-  TextEditingController residentPermanentCountryController =
-      TextEditingController();
-  TextEditingController residentPermanentCityController =
-      TextEditingController();
+  TextEditingController residentPermanentCountryController = TextEditingController();
+  TextEditingController residentPermanentCityController = TextEditingController();
 
   ///Controllers for personal details
   TextEditingController otherNationalityController = TextEditingController();
@@ -377,12 +348,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   TextEditingController employerContactController = TextEditingController();
 
   ///Controllers for purpose of account opening
-  TextEditingController purposeOfAccountOpeningController =
-      TextEditingController();
-  TextEditingController expectedMonthlyTransactionsController =
-      TextEditingController();
-  TextEditingController expectedAnnualTransactionsController =
-      TextEditingController();
+  TextEditingController purposeOfAccountOpeningController = TextEditingController();
+  TextEditingController expectedMonthlyTransactionsController = TextEditingController();
+  TextEditingController expectedAnnualTransactionsController = TextEditingController();
 
   // void updateTextFieldData() {
   //   residentCountryController.text = 'Jordan';
@@ -405,115 +373,91 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   //   expectedAnnualTransactionsController.text = '102,000';
   // }
 
-  void updateTextFieldData(
-      GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
-    countryResidenceInfo =
-        getConfirmApplicationDataContent.countryResidenceInfo!;
+  void updateTextFieldData(GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
+    countryResidenceInfo = getConfirmApplicationDataContent.countryResidenceInfo!;
     profileStatusInfo = getConfirmApplicationDataContent.profileStatusInfo!;
     jobDetailInfo = getConfirmApplicationDataContent.jobDetailInfo!;
     fatcaCrsInfo = getConfirmApplicationDataContent.fatcaCrsInfo!;
     accountPurposeInfo = getConfirmApplicationDataContent.accountPurposeInfo!;
 
     ///address
-    residentCountryController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .countryResidenceInfo!.residentCountryName)
-        ? getConfirmApplicationDataContent
-            .countryResidenceInfo!.residentCountryName!
-        : '';
-    streetAddressController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.streetName)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.streetName!
-        : '';
-    buildingNameOrNoController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.buildingName)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.buildingName!
-        : '';
-    districtController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.area)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.area!
-        : '';
-    cityController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.city)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.city!
-        : '';
+    residentCountryController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryName)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryName!
+            : '';
+    streetAddressController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.streetName)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.streetName!
+            : '';
+    buildingNameOrNoController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.buildingName)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.buildingName!
+            : '';
+    districtController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.area)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.area!
+            : '';
+    cityController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.city)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.city!
+            : '';
 
     ///permanent address
     residentPermanentCountryController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .countryResidenceInfo!.perResidentCountryName)
-        ? getConfirmApplicationDataContent
-            .countryResidenceInfo!.perResidentCountryName!
+            getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName)
+        ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName!
         : '';
-    residentPermanentCityController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .countryResidenceInfo!.perResidentCityName)
-        ? getConfirmApplicationDataContent
-            .countryResidenceInfo!.perResidentCityName!
-        : '';
+    residentPermanentCityController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityName)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityName!
+            : '';
 
     ///profile status
-    spouseNameController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.profileStatusInfo!.spauseName)
-        ? getConfirmApplicationDataContent.profileStatusInfo!.spauseName!
-        : '';
-    specialNeedsPersonController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.profileStatusInfo!.natureSp)
-        ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
-        : '';
-    employmentStatusController.text =
-        getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
+    spouseNameController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.profileStatusInfo!.spauseName)
+            ? getConfirmApplicationDataContent.profileStatusInfo!.spauseName!
+            : '';
+    specialNeedsPersonController.text =
+        Validator.isNotEmptyNull(getConfirmApplicationDataContent.profileStatusInfo!.natureSp)
+            ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
+            : '';
+    employmentStatusController.text = getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
 
     ///job details
     occupationController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.occupation)
-        ? (getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.occupation!)
-        : (Validator.isNotEmptyNull(getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.businessType)
-            ? (getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.businessType!)
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation)
+        ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation!)
+        : (Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType)
+            ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType!)
             : '');
     mainAnnualIncomeController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.annualIncome)
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.annualIncome)
         ? '${num.parse(getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.annualIncome!).toStringAsFixed(3)}'
         : '';
     employerNameController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.employeeName)
-        ? getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.employeeName!
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employeeName)
+        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employeeName!
         : '';
     employerCountryController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.employerCountry)
-        ? getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.employerCountry!
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry)
+        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry!
         : '';
     employerCityController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.employerCity)
-        ? getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.employerCity!
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity)
+        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity!
         : '';
     employerContactController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent
-                .jobDetailInfo!.jobDetailContentInfo!.employerContact)
-        ? getConfirmApplicationDataContent
-            .jobDetailInfo!.jobDetailContentInfo!.employerContact!
+            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerContact)
+        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerContact!
         : '';
 
     ///purpose of account opening
-    purposeOfAccountOpeningController.text =
-        getConfirmApplicationDataContent.accountPurposeInfo!.purpose!;
+    purposeOfAccountOpeningController.text = getConfirmApplicationDataContent.accountPurposeInfo!.purpose!;
     expectedMonthlyTransactionsController.text =
-        getConfirmApplicationDataContent.accountPurposeInfo!.monthlyTransaction!
-            .toStringAsFixed(3);
-    expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
-        .accountPurposeInfo!.anualTransaction!
-        .toString();
+        getConfirmApplicationDataContent.accountPurposeInfo!.monthlyTransaction!.toStringAsFixed(3);
+    expectedAnnualTransactionsController.text =
+        getConfirmApplicationDataContent.accountPurposeInfo!.anualTransaction!.toString();
   }
 
   ///remove debit lock

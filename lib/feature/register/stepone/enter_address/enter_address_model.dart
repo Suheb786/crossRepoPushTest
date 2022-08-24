@@ -82,6 +82,16 @@ class EnterAddressViewModel extends BasePageViewModel {
   Stream<Resource<CityListResponse>> get getCitiesByCountryResponseStream =>
       _getCitiesByCountryResponse.stream;
 
+  /// get permanent cities by country request subject holder
+  PublishSubject<GetCityByCountryListUseParams> _getPermanentCitiesByCountryRequest = PublishSubject();
+
+  /// get permanent cities by country response subject holder
+  PublishSubject<Resource<CityListResponse>> _getPermanentCitiesByCountryResponse = PublishSubject();
+
+  /// get permanent cities by country response stream
+  Stream<Resource<CityListResponse>> get getPermanentCitiesByCountryResponseStream =>
+      _getPermanentCitiesByCountryResponse.stream;
+
   CountryData currentCountry = CountryData();
   StateCityData currentCity = StateCityData();
   CountryData permanentCountry = CountryData();
@@ -124,6 +134,18 @@ class EnterAddressViewModel extends BasePageViewModel {
         }
       });
     });
+    _getPermanentCitiesByCountryRequest.listen((value) {
+      RequestManager(value, createCall: () => _getCityByCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPermanentCitiesByCountryResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void enterAddress() {
@@ -144,6 +166,11 @@ class EnterAddressViewModel extends BasePageViewModel {
 
   void getCitiesByCountry(String isoCode) {
     _getCitiesByCountryRequest.safeAdd(GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
+  }
+
+  void getPerCitiesByCountry(String isoCode) {
+    _getPermanentCitiesByCountryRequest
+        .safeAdd(GetCityByCountryListUseParams(isoCode: isoCode, stateId: '001'));
   }
 
   void validateAddress() {

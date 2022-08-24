@@ -16,6 +16,7 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(
     stateID: json['stateID'] as String?,
     perCity: json['perCity'],
     city: json['city'] as String?,
+    cityAr: json['cityAr'] as String?,
     perResidantCountry: json['perCountry'] as String?,
     area: json['area'] as String?,
     buildingName: json['buildingName'] as String?,
@@ -25,8 +26,11 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(
         : DateTime.parse(json['createdOn'] as String),
     isActive: json['isActive'] as bool?,
     residentCountryName: json['residantCountryName'] as String?,
+    residentCountryNameAr: json['residantCountryNameAr'] as String?,
     perResidentCountryName: json['perCountryName'] as String?,
+    perResidentCountryNameAr: json['perCountryNameAr'] as String?,
     perResidentCityName: json['perCityName'] as String?,
+    perResidentCityNameAr: json['perCityNameAr'] as String?,
   );
 }
 
@@ -42,11 +46,15 @@ Map<String, dynamic> _$CountryResidenceEntityToJson(
       'streetName': instance.streetName,
       'area': instance.area,
       'city': instance.city,
+      'cityAr': instance.cityAr,
       'perCountry': instance.perResidantCountry,
       'perCity': instance.perCity,
       'createdOn': instance.createdOn?.toIso8601String(),
       'isActive': instance.isActive,
       'residantCountryName': instance.residentCountryName,
+      'residantCountryNameAr': instance.residentCountryNameAr,
       'perCountryName': instance.perResidentCountryName,
+      'perCountryNameAr': instance.perResidentCountryNameAr,
       'perCityName': instance.perResidentCityName,
+      'perCityNameAr': instance.perResidentCityNameAr,
     };

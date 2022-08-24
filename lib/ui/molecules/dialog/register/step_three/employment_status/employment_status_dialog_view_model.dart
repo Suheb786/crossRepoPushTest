@@ -22,8 +22,8 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
     "اعمال حرة",
     "متقاعد",
     "طالب",
-    "عاطل عن العم", "ربة منزل"
-    //"Other"
+    "عاطل عن العمل",
+    "ربة منزل"
   ];
 
   ///current selected index subject

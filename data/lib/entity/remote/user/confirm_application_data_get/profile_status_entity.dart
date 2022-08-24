@@ -1,19 +1,20 @@
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_status_entity.g.dart';
 
 @JsonSerializable()
-class ProfileStatusEntity
-    implements
-        BaseLayerDataTransformer<ProfileStatusEntity, ProfileStatusInfo> {
+class ProfileStatusEntity implements BaseLayerDataTransformer<ProfileStatusEntity, ProfileStatusInfo> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "userId")
   final String? userId;
   @JsonKey(name: "employmentStatus")
   final String? employmentStatus;
+  @JsonKey(name: "employmentStatusAr")
+  final String? employmentStatusAr;
   @JsonKey(name: "married")
   final bool? married;
   @JsonKey(name: "specialPerson")
@@ -27,18 +28,19 @@ class ProfileStatusEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  ProfileStatusEntity({this.id,
-    this.userId,
-    this.employmentStatus,
-    this.married,
-    this.specialPerson,
-    this.spouseName,
-    this.natureSp,
-    this.createdOn,
-    this.isActive});
+  ProfileStatusEntity(
+      {this.id,
+      this.userId,
+      this.employmentStatus,
+      this.married,
+      this.specialPerson,
+      this.spouseName,
+      this.natureSp,
+      this.createdOn,
+      this.isActive,
+      this.employmentStatusAr});
 
-  factory ProfileStatusEntity.fromJson(Map<String, dynamic> json) =>
-      _$ProfileStatusEntityFromJson(json);
+  factory ProfileStatusEntity.fromJson(Map<String, dynamic> json) => _$ProfileStatusEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProfileStatusEntityToJson(this);
 
@@ -53,21 +55,23 @@ class ProfileStatusEntity
         married: response.married,
         natureSp: response.natureSp,
         specialPerson: response.specialPerson,
-        userId: response.userId);
+        userId: response.userId,
+        employmentStatusAr: response.employmentStatusAr);
   }
 
   @override
   ProfileStatusInfo transform() {
     return ProfileStatusInfo(
-      id: this.id,
-      createdOn: this.createdOn,
-      isActive: this.isActive,
-      userId: this.userId,
-      employmentStatus: this.employmentStatus,
-      spauseName: this.spouseName,
-      married: this.married,
-      natureSp: this.natureSp,
-      specialPerson: this.specialPerson,
-    );
+        id: this.id,
+        createdOn: this.createdOn,
+        isActive: this.isActive,
+        userId: this.userId,
+        employmentStatus:
+            Intl.getCurrentLocale() == 'en' ? this.employmentStatus : this.employmentStatusAr ?? '',
+        spauseName: this.spouseName,
+        married: this.married,
+        natureSp: this.natureSp,
+        specialPerson: this.specialPerson,
+        employmentStatusAr: this.employmentStatusAr ?? '');
   }
 }

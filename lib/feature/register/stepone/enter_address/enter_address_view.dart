@@ -246,111 +246,128 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                           color: AppColor.dark_gray_1));
                                                 },
                                               ),
-                                              AppStreamBuilder<bool>(
-                                                stream: model.permanentAddressVisibilityStream,
-                                                initialData: false,
-                                                dataBuilder: (context, visibility) {
-                                                  return Visibility(
-                                                    visible: visibility!,
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 32,
-                                                        ),
-                                                        Text(
-                                                          S.of(context).permanentAddress,
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              fontSize: 14,
-                                                              fontWeight: FontWeight.w600,
-                                                              color: Theme.of(context).primaryColorDark),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 16,
-                                                        ),
-                                                        AppTextField(
-                                                          labelText:
-                                                              S.of(context).permanentResidence.toUpperCase(),
-                                                          hintText: S.of(context).pleaseSelect,
-                                                          readOnly: true,
-                                                          controller:
-                                                              model.permanentResidentCountryController,
-                                                          onPressed: () {
-                                                            CountryDialog.show(context,
-                                                                title: S.of(context).permanentResidence,
-                                                                onDismissed: () {
-                                                              Navigator.pop(context);
-                                                            }, onSelected: (value) {
-                                                              Navigator.pop(context);
-                                                              model.permanentResidentCountryController.text =
-                                                                  value.countryName!;
-                                                              model.permanentCityController.clear();
-                                                              model.permanentCountry = value;
-                                                              model.getCitiesByCountry(value.isoCode3 ?? '');
-                                                              model.validateAddress();
-                                                            });
-                                                          },
-                                                          suffixIcon: (value, data) {
-                                                            return Container(
+                                              AppStreamBuilder<Resource<CityListResponse>>(
+                                                  stream: model.getPermanentCitiesByCountryResponseStream,
+                                                  initialData: Resource.none(),
+                                                  dataBuilder: (context, perCityList) {
+                                                    return AppStreamBuilder<bool>(
+                                                      stream: model.permanentAddressVisibilityStream,
+                                                      initialData: false,
+                                                      dataBuilder: (context, visibility) {
+                                                        return Visibility(
+                                                          visible: visibility!,
+                                                          child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              SizedBox(
+                                                                height: 32,
+                                                              ),
+                                                              Text(
+                                                                S.of(context).permanentAddress,
+                                                                style: TextStyle(
+                                                                    fontFamily: StringUtils.appFont,
+                                                                    fontSize: 14,
+                                                                    fontWeight: FontWeight.w600,
+                                                                    color:
+                                                                        Theme.of(context).primaryColorDark),
+                                                              ),
+                                                              SizedBox(
                                                                 height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsetsDirectional.only(end: 8),
-                                                                child: AppSvg.asset(AssetUtils.downArrow,
-                                                                    color: AppColor.dark_gray_1));
-                                                          },
-                                                          key: model.permanentResidentCountryKey,
-                                                        ),
-                                                        SizedBox(
-                                                          height: 16,
-                                                        ),
-                                                        AppTextField(
-                                                          labelText: S.of(context).city,
-                                                          hintText: S.of(context).pleaseEnter,
-                                                          inputType: TextInputType.text,
-                                                          controller: model.permanentCityController,
-                                                          key: model.permanentCityKey,
-                                                          readOnly: true,
-                                                          onPressed: () {
-                                                            if (model.permanentResidentCountryController.text
-                                                                .isEmpty) {
-                                                              model.permanentResidentCountryKey.currentState!
-                                                                  .isValid = false;
-                                                              model.showToastWithError(AppError(
-                                                                  cause: Exception(),
-                                                                  error: ErrorInfo(message: ''),
-                                                                  type: ErrorType.INVALID_COUNTRY));
-                                                            } else {
-                                                              StateCityDialog.show(context,
-                                                                  title: S.of(context).residentCity,
-                                                                  onDismissed: () {
-                                                                Navigator.pop(context);
-                                                              }, onSelected: (value) {
-                                                                Navigator.pop(context);
-                                                                model.permanentCityController.text =
-                                                                    value.cityName!;
-                                                                model.permanentCity = value;
-                                                                model.validateAddress();
-                                                              },
-                                                                  stateCityTypeEnum: StateCityTypeEnum.CITY,
-                                                                  stateCityData: cityList!
-                                                                      .data!.cityContent!.stateData!);
-                                                            }
-                                                          },
-                                                          suffixIcon: (value, data) {
-                                                            return Container(
+                                                              ),
+                                                              AppTextField(
+                                                                labelText: S
+                                                                    .of(context)
+                                                                    .permanentResidence
+                                                                    .toUpperCase(),
+                                                                hintText: S.of(context).pleaseSelect,
+                                                                readOnly: true,
+                                                                controller:
+                                                                    model.permanentResidentCountryController,
+                                                                onPressed: () {
+                                                                  CountryDialog.show(context,
+                                                                      title: S.of(context).permanentResidence,
+                                                                      onDismissed: () {
+                                                                    Navigator.pop(context);
+                                                                  }, onSelected: (value) {
+                                                                    Navigator.pop(context);
+                                                                    model.permanentResidentCountryController
+                                                                        .text = value.countryName!;
+                                                                    model.permanentCityController.clear();
+                                                                    model.permanentCountry = value;
+                                                                    model.getPerCitiesByCountry(
+                                                                        value.isoCode3 ?? '');
+                                                                    model.validateAddress();
+                                                                  });
+                                                                },
+                                                                suffixIcon: (value, data) {
+                                                                  return Container(
+                                                                      height: 16,
+                                                                      width: 16,
+                                                                      padding:
+                                                                          EdgeInsetsDirectional.only(end: 8),
+                                                                      child: AppSvg.asset(
+                                                                          AssetUtils.downArrow,
+                                                                          color: AppColor.dark_gray_1));
+                                                                },
+                                                                key: model.permanentResidentCountryKey,
+                                                              ),
+                                                              SizedBox(
                                                                 height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsetsDirectional.only(end: 8),
-                                                                child: AppSvg.asset(AssetUtils.downArrow,
-                                                                    color: AppColor.dark_gray_1));
-                                                          },
-                                                        )
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ),
+                                                              ),
+                                                              AppTextField(
+                                                                labelText: S.of(context).city,
+                                                                hintText: S.of(context).pleaseEnter,
+                                                                inputType: TextInputType.text,
+                                                                controller: model.permanentCityController,
+                                                                key: model.permanentCityKey,
+                                                                readOnly: true,
+                                                                onPressed: () {
+                                                                  if (model.permanentResidentCountryController
+                                                                      .text.isEmpty) {
+                                                                    model.permanentResidentCountryKey
+                                                                        .currentState!.isValid = false;
+                                                                    model.showToastWithError(AppError(
+                                                                        cause: Exception(),
+                                                                        error: ErrorInfo(message: ''),
+                                                                        type: ErrorType.INVALID_COUNTRY));
+                                                                  } else {
+                                                                    StateCityDialog.show(context,
+                                                                        title: S.of(context).residentCity,
+                                                                        onDismissed: () {
+                                                                      Navigator.pop(context);
+                                                                    }, onSelected: (value) {
+                                                                      Navigator.pop(context);
+                                                                      model.permanentCityController.text =
+                                                                          value.cityName!;
+                                                                      model.permanentCity = value;
+                                                                      model.validateAddress();
+                                                                    },
+                                                                        stateCityTypeEnum:
+                                                                            StateCityTypeEnum.CITY,
+                                                                        stateCityData: perCityList!.status ==
+                                                                                Status.SUCCESS
+                                                                            ? perCityList
+                                                                                .data!.cityContent!.stateData!
+                                                                            : []);
+                                                                  }
+                                                                },
+                                                                suffixIcon: (value, data) {
+                                                                  return Container(
+                                                                      height: 16,
+                                                                      width: 16,
+                                                                      padding:
+                                                                          EdgeInsetsDirectional.only(end: 8),
+                                                                      child: AppSvg.asset(
+                                                                          AssetUtils.downArrow,
+                                                                          color: AppColor.dark_gray_1));
+                                                                },
+                                                              )
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  }),
                                               SizedBox(
                                                 height: 32,
                                               ),

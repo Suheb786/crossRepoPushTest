@@ -15,6 +15,10 @@ class CountryResidenceInfo {
   final String? residentCountryName;
   final String? perResidentCountryName;
   final String? perResidentCityName;
+  final String residentCountryNameAr;
+  final String cityAr;
+  final String perResidentCountryNameAr;
+  final String perResidentCityNameAr;
 
   CountryResidenceInfo(
       {this.id,
@@ -32,5 +36,9 @@ class CountryResidenceInfo {
       this.isActive,
       this.perResidentCityName: "",
       this.perResidentCountryName: "",
-      this.residentCountryName: ""});
+      this.residentCountryName: "",
+      this.cityAr = '',
+      this.residentCountryNameAr = '',
+      this.perResidentCityNameAr = '',
+      this.perResidentCountryNameAr = ''});
 }

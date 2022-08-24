@@ -1,12 +1,12 @@
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fatca_crs_entity.g.dart';
 
 @JsonSerializable()
-class FatcaCrsEntity
-    implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCrsInfo> {
+class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCrsInfo> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "userId")
@@ -35,6 +35,8 @@ class FatcaCrsEntity
   final String? relationshipWithPep;
   @JsonKey(name: "relationshipWithPEPName")
   final String? relationshipWithPEPName;
+  @JsonKey(name: "relationshipWithPEPNameAr")
+  final String? relationshipWithPEPNameAr;
   @JsonKey(name: "personName")
   final String? personName;
   @JsonKey(name: "personRole")
@@ -134,10 +136,10 @@ class FatcaCrsEntity
       this.deactivatedDate,
       this.signatureId,
       this.isActive: false,
-      this.relationshipWithPEPName: ""});
+      this.relationshipWithPEPName: "",
+      this.relationshipWithPEPNameAr});
 
-  factory FatcaCrsEntity.fromJson(Map<String, dynamic> json) =>
-      _$FatcaCrsEntityFromJson(json);
+  factory FatcaCrsEntity.fromJson(Map<String, dynamic> json) => _$FatcaCrsEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$FatcaCrsEntityToJson(this);
 
@@ -185,7 +187,8 @@ class FatcaCrsEntity
         signatureId: data.signatureId,
         deactivatedDate: data.deactivatedDate,
         isActive: data.isActive,
-        relationshipWithPEPName: this.relationshipWithPEPName);
+        relationshipWithPEPName: data.relationshipWithPEPName,
+        relationshipWithPEPNameAr: data.relationshipWithPEPNameAr);
   }
 
   @override
@@ -229,9 +232,12 @@ class FatcaCrsEntity
         usAddress: this.usAddress,
         usTaxIdNo: this.usTaxIdNo,
         usTaxpayerIdNoOwner: this.usTaxpayerIdNoOwner,
-        relationshipWithPEPName: this.relationshipWithPEPName,
+        relationshipWithPEPName: Intl.getCurrentLocale() == 'en'
+            ? this.relationshipWithPEPName
+            : this.relationshipWithPEPNameAr ?? '',
         isActive: this.isActive,
         deactivatedDate: this.deactivatedDate,
-        signatureId: this.signatureId);
+        signatureId: this.signatureId,
+        relationshipWithPEPNameAr: this.relationshipWithPEPNameAr);
   }
 }

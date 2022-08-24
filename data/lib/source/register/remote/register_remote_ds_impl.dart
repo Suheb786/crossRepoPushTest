@@ -59,7 +59,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       AdditionalIncome(type: 'Investments', typeAr: "استثمارات"),
       AdditionalIncome(type: 'Own Business', typeAr: 'عمل حر'),
       AdditionalIncome(type: 'Family Allowance', typeAr: "بدل الأسرة"),
-      AdditionalIncome(type: 'Other', typeAr: 'خرى'),
+      AdditionalIncome(type: 'Other', typeAr: 'أخرى'),
     ];
 
     return Future.value(additionalIncomeEn);
