@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fatca_crs_entity.g.dart';
@@ -232,9 +231,7 @@ class FatcaCrsEntity implements BaseLayerDataTransformer<FatcaCrsEntity, FatcaCr
         usAddress: this.usAddress,
         usTaxIdNo: this.usTaxIdNo,
         usTaxpayerIdNoOwner: this.usTaxpayerIdNoOwner,
-        relationshipWithPEPName: Intl.getCurrentLocale() == 'en'
-            ? this.relationshipWithPEPName
-            : this.relationshipWithPEPNameAr ?? '',
+        relationshipWithPEPName: this.relationshipWithPEPName ?? '',
         isActive: this.isActive,
         deactivatedDate: this.deactivatedDate,
         signatureId: this.signatureId,

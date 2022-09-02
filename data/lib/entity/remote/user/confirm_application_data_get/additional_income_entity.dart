@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/additional_income_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'additional_income_entity.g.dart';
@@ -21,13 +20,12 @@ class AdditionalIncomeEntity
   @JsonKey(name: "createdOn")
   final DateTime? createdOn;
 
-  AdditionalIncomeEntity(
-      {this.id,
-      this.userId,
-      this.additionalIncomeSource,
-      this.totalIncome,
-      this.createdOn,
-      this.additionalIncomeSourceAr});
+  AdditionalIncomeEntity({this.id,
+    this.userId,
+    this.additionalIncomeSource,
+    this.totalIncome,
+    this.createdOn,
+    this.additionalIncomeSourceAr});
 
   factory AdditionalIncomeEntity.fromJson(Map<String, dynamic> json) =>
       _$AdditionalIncomeEntityFromJson(json);
@@ -51,9 +49,7 @@ class AdditionalIncomeEntity
         id: this.id,
         createdOn: this.createdOn,
         userId: this.userId,
-        additionalIncomeSource: Intl.getCurrentLocale() == 'en'
-            ? this.additionalIncomeSource
-            : this.additionalIncomeSourceAr ?? '',
+        additionalIncomeSource: this.additionalIncomeSource ?? '',
         totalIncome: this.totalIncome,
         additionalIncomeSourceAr: this.additionalIncomeSourceAr);
   }

@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/job_detail_content_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'job_details_content_entity.g.dart';
@@ -100,13 +99,12 @@ class JobDetailContentEntity
         additionalIncome: this.additionalIncome,
         employerContact: this.employerContact,
         employerCity: this.employerCity,
-        employerCountry:
-            Intl.getCurrentLocale() == 'en' ? this.employerCountry : this.employerCountryAr ?? '',
+        employerCountry: this.employerCountry ?? '',
         employeeName: this.employeeName,
         mainSource: this.mainSource,
         profession: this.profession,
         occupation: this.occupation,
-        businessType: Intl.getCurrentLocale() == 'en' ? this.businessType : this.businessTypeAr ?? '',
+        businessType: this.businessType ?? '',
         businessSpecificType: this.businessSpecificType,
         businessTypeAr: this.businessTypeAr ?? '',
         employerCountryAr: this.employerCountryAr ?? '');

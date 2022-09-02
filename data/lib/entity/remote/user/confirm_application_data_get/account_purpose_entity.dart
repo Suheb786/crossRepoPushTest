@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'account_purpose_entity.g.dart';
@@ -80,7 +79,7 @@ class AccountPurposeEntity implements BaseLayerDataTransformer<AccountPurposeEnt
       isCashDeposit: this.isCashDeposit,
       isTransfer: this.isTransfer,
       monthlyTransaction: this.monthlyTransaction,
-      purpose: Intl.getCurrentLocale() == 'en' ? this.purpose : this.purposeAr ?? '',
+      purpose: this.purpose ?? '',
       purposeAr: this.purposeAr,
     );
   }

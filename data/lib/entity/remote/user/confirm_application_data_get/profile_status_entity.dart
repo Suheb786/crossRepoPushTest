@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_status_entity.g.dart';
@@ -66,8 +65,7 @@ class ProfileStatusEntity implements BaseLayerDataTransformer<ProfileStatusEntit
         createdOn: this.createdOn,
         isActive: this.isActive,
         userId: this.userId,
-        employmentStatus:
-            Intl.getCurrentLocale() == 'en' ? this.employmentStatus : this.employmentStatusAr ?? '',
+        employmentStatus: this.employmentStatus,
         spauseName: this.spouseName,
         married: this.married,
         natureSp: this.natureSp,

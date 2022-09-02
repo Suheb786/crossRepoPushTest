@@ -37,7 +37,9 @@ class AdditionalIncomeListWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  additionalIncomeInfo!.additionalIncomeSource!,
+                  StringUtils.isDirectionRTL(context)
+                      ? additionalIncomeInfo?.additionalIncomeSourceAr ?? ''
+                      : additionalIncomeInfo!.additionalIncomeSource!,
                   softWrap: true,
                   maxLines: 3,
                   style: TextStyle(

@@ -21,6 +21,7 @@ import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -381,9 +382,13 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     accountPurposeInfo = getConfirmApplicationDataContent.accountPurposeInfo!;
 
     ///address
-    residentCountryController.text =
-        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryName)
+    residentCountryController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryName)
             ? getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryName!
+            : ''
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryNameAr)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.residentCountryNameAr
             : '';
     streetAddressController.text =
         Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.streetName)
@@ -397,19 +402,31 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.area)
             ? getConfirmApplicationDataContent.countryResidenceInfo!.area!
             : '';
-    cityController.text =
-        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.city)
+    cityController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.city)
             ? getConfirmApplicationDataContent.countryResidenceInfo!.city!
+            : ''
+        : Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.cityAr)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.cityAr
             : '';
 
     ///permanent address
-    residentPermanentCountryController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName)
-        ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName!
-        : '';
-    residentPermanentCityController.text =
-        Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityName)
+    residentPermanentCountryController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryName!
+            : ''
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryNameAr)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCountryNameAr
+            : '';
+    residentPermanentCityController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityName)
             ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityName!
+            : ''
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityNameAr)
+            ? getConfirmApplicationDataContent.countryResidenceInfo!.perResidentCityNameAr
             : '';
 
     ///profile status
@@ -421,16 +438,26 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         Validator.isNotEmptyNull(getConfirmApplicationDataContent.profileStatusInfo!.natureSp)
             ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
             : '';
-    employmentStatusController.text = getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
+    employmentStatusController.text = Intl.getCurrentLocale() == 'en'
+        ? getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!
+        : getConfirmApplicationDataContent.profileStatusInfo?.employmentStatusAr! ?? '';
 
     ///job details
-    occupationController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation)
-        ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation!)
-        : (Validator.isNotEmptyNull(
-                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType)
-            ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType!)
-            : '');
+    occupationController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation)
+            ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation!)
+            : (Validator.isNotEmptyNull(
+                    getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType)
+                ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessType!)
+                : '')
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation)
+            ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.occupation!)
+            : (Validator.isNotEmptyNull(
+                    getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessTypeAr)
+                ? (getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.businessTypeAr)
+                : '');
     mainAnnualIncomeController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.annualIncome)
         ? '${num.parse(getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.annualIncome!).toStringAsFixed(3)}'
@@ -439,10 +466,15 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employeeName)
         ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employeeName!
         : '';
-    employerCountryController.text = Validator.isNotEmptyNull(
-            getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry)
-        ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry!
-        : '';
+    employerCountryController.text = Intl.getCurrentLocale() == 'en'
+        ? Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry)
+            ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountry!
+            : ''
+        : Validator.isNotEmptyNull(
+                getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountryAr)
+            ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCountryAr
+            : '';
     employerCityController.text = Validator.isNotEmptyNull(
             getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity)
         ? getConfirmApplicationDataContent.jobDetailInfo!.jobDetailContentInfo!.employerCity!
@@ -453,7 +485,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         : '';
 
     ///purpose of account opening
-    purposeOfAccountOpeningController.text = getConfirmApplicationDataContent.accountPurposeInfo!.purpose!;
+    purposeOfAccountOpeningController.text = Intl.getCurrentLocale() == 'en'
+        ? getConfirmApplicationDataContent.accountPurposeInfo!.purpose!
+        : getConfirmApplicationDataContent.accountPurposeInfo!.purposeAr!;
     expectedMonthlyTransactionsController.text =
         getConfirmApplicationDataContent.accountPurposeInfo!.monthlyTransaction!.toStringAsFixed(3);
     expectedAnnualTransactionsController.text =

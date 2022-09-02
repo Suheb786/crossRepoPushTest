@@ -1,6 +1,5 @@
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
-import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'country_residence_entity.g.dart';
@@ -112,20 +111,14 @@ class CountryResidenceEntity
         createdOn: this.createdOn,
         isActive: this.isActive,
         area: this.area,
-        city: Intl.getCurrentLocale() == 'en' ? this.city : this.cityAr ?? '',
+        city: this.city,
         perResidantCountry: this.perResidantCountry,
         perCity: this.perCity,
         residantCountry: this.residantCountry,
         userId: this.userId,
-        residentCountryName: Intl.getCurrentLocale() == 'en'
-            ? this.residentCountryName ?? ''
-            : this.residentCountryNameAr ?? '',
-        perResidentCityName: Intl.getCurrentLocale() == 'en'
-            ? this.perResidentCityName ?? ''
-            : this.perResidentCityNameAr ?? '',
-        perResidentCountryName: Intl.getCurrentLocale() == 'en'
-            ? this.perResidentCountryName ?? ''
-            : this.perResidentCountryNameAr ?? '',
+        residentCountryName: this.residentCountryName ?? '',
+        perResidentCityName: this.perResidentCityName ?? '',
+        perResidentCountryName: this.perResidentCountryName ?? '',
         residentCountryNameAr: this.residentCountryNameAr ?? '',
         cityAr: this.cityAr ?? '',
         perResidentCountryNameAr: this.perResidentCountryNameAr ?? '',

@@ -633,20 +633,36 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                       ReviewApplicationNonEditableItem(
                                                                         title:
                                                                             S.of(context).relationshipWithPEP,
-                                                                        value: Validator.isNotEmptyNull(
-                                                                                getConfirmApplicationData
+                                                                        value: StringUtils.isDirectionRTL(
+                                                                                context)
+                                                                            ? Validator.isNotEmptyNull(
+                                                                                    getConfirmApplicationData
+                                                                                        .data!
+                                                                                        .getApplicationData!
+                                                                                        .getConfirmApplicationDataContent!
+                                                                                        .fatcaCrsInfo!
+                                                                                        .relationshipWithPEPNameAr)
+                                                                                ? getConfirmApplicationData
                                                                                     .data!
                                                                                     .getApplicationData!
                                                                                     .getConfirmApplicationDataContent!
                                                                                     .fatcaCrsInfo!
-                                                                                    .relationshipWithPEPName)
-                                                                            ? getConfirmApplicationData
-                                                                                .data!
-                                                                                .getApplicationData!
-                                                                                .getConfirmApplicationDataContent!
-                                                                                .fatcaCrsInfo!
-                                                                                .relationshipWithPEPName
-                                                                            : '',
+                                                                                    .relationshipWithPEPNameAr
+                                                                                : ''
+                                                                            : Validator.isNotEmptyNull(
+                                                                                    getConfirmApplicationData
+                                                                                        .data!
+                                                                                        .getApplicationData!
+                                                                                        .getConfirmApplicationDataContent!
+                                                                                        .fatcaCrsInfo!
+                                                                                        .relationshipWithPEPName)
+                                                                                ? getConfirmApplicationData
+                                                                                    .data!
+                                                                                    .getApplicationData!
+                                                                                    .getConfirmApplicationDataContent!
+                                                                                    .fatcaCrsInfo!
+                                                                                    .relationshipWithPEPName
+                                                                                : '',
                                                                       ),
                                                                       ReviewApplicationNonEditableItem(
                                                                         title: S.of(context).personsName,

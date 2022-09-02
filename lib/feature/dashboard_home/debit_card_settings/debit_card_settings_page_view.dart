@@ -306,12 +306,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                                 title: S.of(context).reportCardIssue,
                                 tileIcon: AssetUtils.report,
-                                // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                //     PrimarySecondaryEnum.PRIMARY,
-                                // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                //     PrimarySecondaryEnum.SECONDARY,
-                                isEnabled: false,
-                                isNotify: true,
+                                isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                    PrimarySecondaryEnum.PRIMARY,
+                                isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                    PrimarySecondaryEnum.SECONDARY,
+                                // isEnabled: false,
+                                // isNotify: true,
                               );
                             }),
                         AppStreamBuilder<Resource<bool>>(
@@ -348,12 +348,12 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 },
                                 title: S.of(context).replaceDamageCard,
                                 tileIcon: AssetUtils.replaceCard,
-                                // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                //     PrimarySecondaryEnum.PRIMARY,
-                                // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                                //     PrimarySecondaryEnum.SECONDARY,
-                                isEnabled: false,
-                                isNotify: true,
+                                isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                    PrimarySecondaryEnum.PRIMARY,
+                                isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                                    PrimarySecondaryEnum.SECONDARY,
+                                // isEnabled: false,
+                                // isNotify: true,
                               );
                             }),
                         AppStreamBuilder<Resource<CardIssuanceDetails>>(
@@ -397,46 +397,49 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       },
                                       dataBuilder: (context, data) {
                                         return SettingTile(
-                                          onTap: () {
-                                            CardCancelDialog.show(context,
-                                                onSelected: (reasonValue, needsReplacement) {
-                                              model.needsReplacement = needsReplacement;
-                                              Navigator.pop(context);
-                                              if (model.debitCardSettingsArguments.debitCard
-                                                      .primarySecondaryCard ==
-                                                  PrimarySecondaryEnum.PRIMARY) {
-                                                model.cancelCard(
-                                                    status: 'TE',
-                                                    reasonValue: reasonValue,
-                                                    tokenizedPlan:
-                                                        model.debitCardSettingsArguments.debitCard.code,
-                                                    cancellationReason: reasonValue);
-                                              } else if (model.debitCardSettingsArguments.debitCard
-                                                      .primarySecondaryCard ==
-                                                  PrimarySecondaryEnum.SECONDARY) {
-                                                if (needsReplacement) {
-                                                  model.removeOrReapplySuppDebitCardWithResponse(
-                                                      needsReplacement);
-                                                } else {
-                                                  model.removeOrReapplySuppDebitCard(needsReplacement);
+                                            onTap: () {
+                                              CardCancelDialog.show(context,
+                                                  onSelected: (reasonValue, needsReplacement) {
+                                                model.needsReplacement = needsReplacement;
+                                                Navigator.pop(context);
+                                                if (model.debitCardSettingsArguments.debitCard
+                                                        .primarySecondaryCard ==
+                                                    PrimarySecondaryEnum.PRIMARY) {
+                                                  model.cancelCard(
+                                                      status: 'TE',
+                                                      reasonValue: reasonValue,
+                                                      tokenizedPlan:
+                                                          model.debitCardSettingsArguments.debitCard.code,
+                                                      cancellationReason: reasonValue);
+                                                } else if (model.debitCardSettingsArguments.debitCard
+                                                        .primarySecondaryCard ==
+                                                    PrimarySecondaryEnum.SECONDARY) {
+                                                  if (needsReplacement) {
+                                                    model.removeOrReapplySuppDebitCardWithResponse(
+                                                        needsReplacement);
+                                                  } else {
+                                                    model.removeOrReapplySuppDebitCard(needsReplacement);
+                                                  }
                                                 }
-                                              }
-                                            }, onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onError: (AppError error) {
-                                              model.showToastWithError(error);
+                                              }, onDismissed: () {
+                                                Navigator.pop(context);
+                                              }, onError: (AppError error) {
+                                                model.showToastWithError(error);
+                                              },
+                                                  isPrimaryDebitCard:
+                                                      model.debitCardSettingsArguments.isPrimaryDebitCard,
+                                                  reasons: StringUtils.isDirectionRTL(context)
+                                                      ? model.debitCardcancellationReasonAr
+                                                      : model.debitCardcancellationReason);
                                             },
-                                                isPrimaryDebitCard:
-                                                    model.debitCardSettingsArguments.isPrimaryDebitCard,
-                                                reasons: StringUtils.isDirectionRTL(context)
-                                                    ? model.debitCardcancellationReasonAr
-                                                    : model.debitCardcancellationReason);
-                                          },
-                                          title: S.of(context).cancelThisCard,
-                                          tileIcon: AssetUtils.cancelCard,
-                                          isEnabled: false,
-                                          isNotify: true,
-                                        );
+                                            title: S.of(context).cancelThisCard,
+                                            tileIcon: AssetUtils.cancelCard,
+                                            isEnabled: model.debitCardSettingsArguments.debitCard
+                                                    .primarySecondaryCard ==
+                                                PrimarySecondaryEnum.PRIMARY,
+                                            isNotify: model.debitCardSettingsArguments.debitCard
+                                                    .primarySecondaryCard ==
+                                                PrimarySecondaryEnum.SECONDARY);
                                       },
                                     );
                                   });

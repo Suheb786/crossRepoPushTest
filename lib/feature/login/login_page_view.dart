@@ -330,7 +330,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 ));
                                                                           }
                                                                         } else {
-                                                                          model.saveUserData();
                                                                           Navigator.popAndPushNamed(
                                                                               context, RoutePaths.AppHome);
                                                                         }

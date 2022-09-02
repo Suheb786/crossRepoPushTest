@@ -54,7 +54,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       AdditionalIncome(type: 'Additional Salary', typeAr: 'راتب إضافي'),
       AdditionalIncome(type: 'Pension', typeAr: "راتب تقاعد"),
       AdditionalIncome(type: 'Freelance Income', typeAr: "الدخل المستقل"),
-      AdditionalIncome(type: 'Bonus, Incentive, and Commission', typeAr: "مكافئات وأجور وعمولات"),
+      AdditionalIncome(type: 'Bonus, Incentives, and Commission', typeAr: "مكافئات وأجور وعمولات"),
       AdditionalIncome(type: 'Rental Income', typeAr: 'عائد من الإيجارات'),
       AdditionalIncome(type: 'Investments', typeAr: "استثمارات"),
       AdditionalIncome(type: 'Own Business', typeAr: 'عمل حر'),
