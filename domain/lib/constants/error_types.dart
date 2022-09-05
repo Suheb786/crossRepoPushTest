@@ -16,8 +16,10 @@ enum ErrorType {
   DATABASE_NOT_SUPPORTED,
   DB_ERROR1,
   DB_USER_NOT_FOUND,
+  FAILED_TO_INIT_SDK,
+  FAILED_TO_LOG_EVENT,
 
-  //ui
+//ui
   INVALID_PIN,
   INVALID_MOBILE,
   INVALID_OTP,
@@ -80,7 +82,7 @@ enum ErrorType {
   ERROR_ACCESSING_ID,
   ERROR_WHILE_GETTING_DASHBOARD,
 
-  //purpose of account opening error
+//purpose of account opening error
   INVALID_PURPOSE_OF_ACCOUNT_OPENING,
   INVALID_TYPES_OF_TRANSACTION,
   INVALID_EXPECTED_MONTHLY_TRANSACTION,
@@ -89,10 +91,10 @@ enum ErrorType {
   EMPTY_INCOME,
   SELECT_EXPECTED_TRANSACTION,
 
-  // Scanner Error
+// Scanner Error
   NO_DOCUMENT_FOUND,
 
-  //profile
+//profile
   INVALID_NAME,
   INVALID_NATURE,
   INVALID_RELATIONSHIP,
@@ -105,12 +107,12 @@ enum ErrorType {
   INVALID_BENEFICIAL_OWNER_ACCOUNT,
   INVALID_SIGNATURE,
 
-  //us resident
+//us resident
   INVALID_NAME_AS_PER_TAX_RETURN,
   INVALID_DOB,
   INVALID_CITIZENSHIP,
 
-  //us resident address details
+//us resident address details
   INVALID_PERMANENT_ADDRESS_LINE,
   INVALID_COUNTRY,
   INVALID_STATE,
@@ -124,18 +126,18 @@ enum ErrorType {
   DIFFERENT_POSTCODE,
   INVALID_EXEMPTION_FATCA_CODE,
 
-  //additional requester details
+//additional requester details
   INVALID_REQUESTER_NAME,
   INVALID_REQUESTER_ADDRESS,
   INVALID_REQUESTER_STATE,
   INVALID_REQUESTER_CITY,
   INVALID_REQUESTER_POSTCODE,
 
-  //us w9 tax payer
+//us w9 tax payer
   INVALID_TAX_PAYER,
   INVALID_SECURITY_NUMBER,
 
-  //us w8 tax payer
+//us w8 tax payer
   INVALID_IDENTIFICATION_NUMBER,
   INVALID_BENEFICIAL_ADDRESS,
   INVALID_BENEFICIAL_IDENTIFICATION_NUMBER,
@@ -146,7 +148,7 @@ enum ErrorType {
   INVALID_TREATY_CLAIM_RATE,
   INVALID_FOREIGN_IDENTIFICATION_NUMBER,
 
-  //upload
+//upload
   EMPTY_INCOME_PROOF,
   EMPTY_ADDRESS_PROOF,
   EMPTY_INCOME_DOCUMENT,
@@ -154,11 +156,11 @@ enum ErrorType {
   EMPTY_NATIONALITY_DOCUMENT,
   EMPTY_DOCUMENT,
 
-  //schedule video call
+//schedule video call
   INVALID_PREFERRED_DATE,
   INVALID_PREFERRED_TIME,
 
-  //Api error codes
+//Api error codes
   DEVICE_NOT_FOUND,
   INVALID_USERNAME_PASSWORD,
   INVALID_NETWORK_OTP,
@@ -199,13 +201,13 @@ enum ErrorType {
   CURRENT_PASSWORD_INCORRECT,
   ERROR_GETTING_FATCA_CRS,
 
-  //card delivery
+//card delivery
   EMPTY_PIN,
   INVALID_PIN_LENGTH,
   PIN_NOT_MATCH,
   INVALID_ID_CARD,
 
-  //payment
+//payment
   EMPTY_IBAN_MOBILE,
   EMPTY_PURPOSE,
   EMPTY_PURPOSE_DETAIL,
@@ -230,25 +232,25 @@ enum ErrorType {
   ERROR_DECRYPT_CARD,
   ERROR_GENERATE_BLOCK_PIN,
 
-  // blink credit card
+// blink credit card
   INVALID_CHECKED_VALUE,
 
-  // set credit limit
+// set credit limit
   EMPTY_MINIMUM_SETTLEMENT_VALUE,
 
-  //infobip
+//infobip
   CALL_HANGUP_ERROR,
   INIT_INFOBIP_PLUGIN_ERROR,
   GET_CALL_TOKEN_ERROR,
   GET_CALL_DURATION_ERROR,
   ESTABLISH_CALL_ERROR,
 
-  //forget password
+//forget password
   EMPTY_VERIFY_EMAIL,
   EMPTY_VERIFY_EXPIRY_DATE,
   EMPTY_VERIFY_NATIONAL_ID,
 
-  //credit card issuance
+//credit card issuance
   ERROR_PROCESS_WHILE_LOAN_REQUEST,
   ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP,
   INVALID_DOCUMENT,

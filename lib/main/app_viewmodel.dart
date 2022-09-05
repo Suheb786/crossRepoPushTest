@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:domain/constants/enum/language_enum.dart';
+import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
@@ -196,6 +197,7 @@ class AppViewModel extends BaseViewModel {
   final GetTokenUseCase _getTokenUseCase;
   final SaveUserUseCase _saveUserUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
+  final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
 
   PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
@@ -211,7 +213,20 @@ class AppViewModel extends BaseViewModel {
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream => _initInfobipMessageResponseSubject.stream;
 
-  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase) {
+  ///---------------init app flyers------------------///
+  PublishSubject<InitAppFlyerSDKUseCaseParams> _initAppFlyerSDKRequestSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _initAppFlyerSDKResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get initAppFlyerSDKStream => _initAppFlyerSDKResponseSubject.stream;
+
+  void initAppFlyerSDK() async {
+    _initAppFlyerSDKRequestSubject.safeAdd(InitAppFlyerSDKUseCaseParams());
+  }
+
+  ///---------------init app flyers------------------///
+
+  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase,
+      this._initAppFlyerSDKUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
@@ -228,6 +243,14 @@ class AppViewModel extends BaseViewModel {
         return _infobipMessagePluginUseCase.execute(params: value);
       }).asFlow().listen((event) {
         _initInfobipMessageResponseSubject.safeAdd(event);
+      });
+    });
+
+    _initAppFlyerSDKRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _initAppFlyerSDKUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _initAppFlyerSDKResponseSubject.safeAdd(event);
       });
     });
 

@@ -1,9 +1,12 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/helper/app_flyer_helper.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/infobip_audio/infobip_audio_service.dart';
 import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
+import 'package:data/source/app_flyer_source/app_flyer_datasource.dart';
+import 'package:data/source/app_flyer_source/remote/app_flyer_datasource_impl.dart';
 import 'package:data/source/card_processing/card_processing_data_source.dart';
 import 'package:data/source/card_processing/local/card_processing_local_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
@@ -36,8 +39,7 @@ final bioMetricSourceProvider = Provider<BioMetricService>(
 );
 
 var userLocalDSProvider = Provider<UserLocalDS>(
-  (ref) => UserLocalDSImpl(
-      ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
+  (ref) => UserLocalDSImpl(ref.read(bioMetricSourceProvider), ref.read(secureStorageProvider)),
 );
 
 var deviceInfoPluginProvider = Provider<DeviceInfoPlugin>(
@@ -48,21 +50,17 @@ var countryLocalDataProvider = Provider<CountryLocalDs>(
   (ref) => CountryLocalDsImpl(),
 );
 
-var uploadDocumentDataSourceProvider =
-    Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
+var uploadDocumentDataSourceProvider = Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
 
 ///Card Processing data source
-var cardProcessingDataSourceProvider =
-    Provider<CardProcessingLocalDs>((ref) => CardProcessingLocalDsImpl());
+var cardProcessingDataSourceProvider = Provider<CardProcessingLocalDs>((ref) => CardProcessingLocalDsImpl());
 
-var homeAddressDialogDataSourceProvider =
-    Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
+var homeAddressDialogDataSourceProvider = Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
 
-var deviceInfoHelperProvider =
-    Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
+var deviceInfoHelperProvider = Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
 
-var utilityDataSourceProvider = Provider<UtilityDataSource>(
-    (ref) => UtilityDataSourceImpl(ref.read(deviceInfoHelperProvider)));
+var utilityDataSourceProvider =
+    Provider<UtilityDataSource>((ref) => UtilityDataSourceImpl(ref.read(deviceInfoHelperProvider)));
 
 // ///cryptoUtil provider
 // final crytoUtilProvider = Provider<CryptoUtil>(
@@ -86,20 +84,26 @@ final rsaHelperProvider = Provider<RsaKeyHelper>(
   (ref) => RsaKeyHelper(),
 );
 
-final infobipDatasourceProvider = Provider<InfobipAudioLocalDs>(
-    (ref) => InfobipAudioDSImpl(ref.read(infobipAudioServiceProvider)));
+final infobipDatasourceProvider =
+    Provider<InfobipAudioLocalDs>((ref) => InfobipAudioDSImpl(ref.read(infobipAudioServiceProvider)));
 
 //
 // final infobipMessagingProvider = Provider<InfobipMobilemessaging>(
 //   (ref) => InfobipMobilemessaging(),
 // );
 
-final infobipMessagingServiceProvider =
-    Provider<InfobipMessageService>((ref) => InfobipMessageService());
+final infobipMessagingServiceProvider = Provider<InfobipMessageService>((ref) => InfobipMessageService());
 
-final infobipMessagingDatasourceProvider = Provider<InfobipMessageLocalDs>(
-    (ref) => InfobipMessageDSImpl(ref.read(infobipMessagingServiceProvider)));
+final infobipMessagingDatasourceProvider =
+    Provider<InfobipMessageLocalDs>((ref) => InfobipMessageDSImpl(ref.read(infobipMessagingServiceProvider)));
 
 final secureStorageProvider = Provider<SecureStorageHelper>(
   (ref) => SecureStorageHelper(),
 );
+
+final appFlyerHelper = Provider<AppFlyerHelper>(
+  (ref) => AppFlyerHelper(),
+);
+
+final appFlyerSdkDatasourceProvider =
+    Provider<AppFlyerDataSource>((ref) => AppFlyerDataSourceImpl(ref.read(appFlyerHelper)));

@@ -3,6 +3,7 @@ import 'package:data/di/network_module.dart';
 import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/activity/activity_repository_impl.dart';
+import 'package:data/repository/app_flyer_repo/app_flyer_repository_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
@@ -27,6 +28,7 @@ import 'package:data/repository/utility/utility_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/activity/activity_repository.dart';
+import 'package:domain/repository/app_flyer_repository/app_flyer_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/card_processing/card_processing_repository.dart';
@@ -61,8 +63,8 @@ var userRepoProvider = Provider<UserRepository>(
 
 /// inject [CountryRepository] provider
 var countryRepoProvider = Provider<CountryRepository>(
-  (ref) => CountryRepositoryImpl(ref.read(countryLocalDataProvider),
-      ref.read(countryRemoteDataSourceProvider)),
+  (ref) =>
+      CountryRepositoryImpl(ref.read(countryLocalDataProvider), ref.read(countryRemoteDataSourceProvider)),
 );
 
 var registerRepoProvider = Provider<RegisterRepository>(
@@ -77,84 +79,80 @@ var registerStepFourRepoProvider = Provider<RegisterStepFourRepository>(
   (ref) => RegisterStepFourRepositoryImpl(ref.read(registerStepFourRemoteDS)),
 );
 
-var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>(
-    (ref) => UploadDocumentRepositoryImpl(
-        ref.read(uploadDocumentDataSourceProvider),
-        ref.read(uploadDocumentRemoteDataSourceProvider)));
+var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>((ref) =>
+    UploadDocumentRepositoryImpl(
+        ref.read(uploadDocumentDataSourceProvider), ref.read(uploadDocumentRemoteDataSourceProvider)));
 
 var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
-    (ref) => HomeAddressDialogRepositoryImpl(
-        ref.read(homeAddressDialogDataSourceProvider)));
+    (ref) => HomeAddressDialogRepositoryImpl(ref.read(homeAddressDialogDataSourceProvider)));
 
 /// inject [KYCRepository] provider
-var kycRepositoryProvider =
-    Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
+var kycRepositoryProvider = Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
 
 /// inject [CardProcessingRepository] provider
-var cardProcessingRepository = Provider<CardProcessingRepository>((ref) =>
-    CardProcessingRepositoryImpl(ref.read(cardProcessingDataSourceProvider)));
+var cardProcessingRepository = Provider<CardProcessingRepository>(
+    (ref) => CardProcessingRepositoryImpl(ref.read(cardProcessingDataSourceProvider)));
 
 /// inject [IdCardRepository] provider
-var idCardRepositoryProvider = Provider<IdCardRepository>(
-    (ref) => IdCardRepositoryImpl(ref.read(idCardRemoteDS)));
+var idCardRepositoryProvider =
+    Provider<IdCardRepository>((ref) => IdCardRepositoryImpl(ref.read(idCardRemoteDS)));
 
 /// inject [BankSmartRepository] provider
-var bankSmartRepositoryProvider = Provider<BankSmartRepository>(
-    (ref) => BankSmartRepositoryImpl(ref.read(bankSmartRemoteDS)));
+var bankSmartRepositoryProvider =
+    Provider<BankSmartRepository>((ref) => BankSmartRepositoryImpl(ref.read(bankSmartRemoteDS)));
 
 /// inject [FatcaCrsRepository] provider
-var fatcaCrsRepositoryProvider = Provider<FatcaCrsRepository>(
-    (ref) => FatcaCrsRepositoryImpl(ref.read(fatcaCrsRemoteDS)));
+var fatcaCrsRepositoryProvider =
+    Provider<FatcaCrsRepository>((ref) => FatcaCrsRepositoryImpl(ref.read(fatcaCrsRemoteDS)));
 
 /// inject [AccountRepository] provider
-var accountRepositoryProvider = Provider<AccountRepository>(
-    (ref) => AccountRepositoryImpl(ref.read(accountRemoteDS)));
+var accountRepositoryProvider =
+    Provider<AccountRepository>((ref) => AccountRepositoryImpl(ref.read(accountRemoteDS)));
 
 /// inject [CardRepository] provider
-var cardRepositoryProvider = Provider<CardRepository>(
-    (ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));
+var cardRepositoryProvider =
+    Provider<CardRepository>((ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));
 
 /// inject [AccountSettingsRepository] provider
 var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
-    (ref) => AccountSettingsRepositoryImpl(
-        ref.read(accountSettingDataSourceProvider)));
+    (ref) => AccountSettingsRepositoryImpl(ref.read(accountSettingDataSourceProvider)));
 
 /// inject [ManageContactRepository] provider
-var manageContactRepositoryProvider = Provider<ManageContactRepository>((ref) =>
-    ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
+var manageContactRepositoryProvider = Provider<ManageContactRepository>(
+    (ref) => ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
 
 /// inject [ManageContactRepository] provider
-var dashboardRepositoryProvider = Provider<DashboardRepository>(
-    (ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));
+var dashboardRepositoryProvider =
+    Provider<DashboardRepository>((ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));
 
 /// inject [PaymentRepository] provider
-var paymentRepositoryProvider = Provider<PaymentRepository>(
-    (ref) => PaymentRepositoryImpl(ref.read(paymentDataSourceProvider)));
+var paymentRepositoryProvider =
+    Provider<PaymentRepository>((ref) => PaymentRepositoryImpl(ref.read(paymentDataSourceProvider)));
 
 /// inject [HelpCenterRepository] provider
-var helpCenterRepositoryProvider = Provider<HelpCenterRepository>((ref) =>
-    InfobipAudioRepositoryImpl(
-        ref.read(infobipDatasourceProvider), ref.read(userRepoProvider)));
+var helpCenterRepositoryProvider = Provider<HelpCenterRepository>(
+    (ref) => InfobipAudioRepositoryImpl(ref.read(infobipDatasourceProvider), ref.read(userRepoProvider)));
 
 /// inject [InfobipMessageRepository] provider
-var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
-    (ref) => InfobipMessageRepositoryImpl(
-        ref.read(infobipMessagingDatasourceProvider),
-        ref.read(userRepoProvider)));
+var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>((ref) =>
+    InfobipMessageRepositoryImpl(ref.read(infobipMessagingDatasourceProvider), ref.read(userRepoProvider)));
 
 /// inject [ForgetPasswordRepository] provider
 var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(
-    (ref) => ForgetPasswordRepositoryImpl(
-        ref.read(forgetPasswordDataSourceProvider)));
+    (ref) => ForgetPasswordRepositoryImpl(ref.read(forgetPasswordDataSourceProvider)));
 
 /// inject [UtilityRepository] provider
-var utilityRepositoryProvider = Provider<UtilityRepository>(
-    (ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));
+var utilityRepositoryProvider =
+    Provider<UtilityRepository>((ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));
 
 /// inject [ActivityRepository] provider
-var activityRepositoryProvider = Provider<ActivityRepository>(
-    (ref) => ActivityRepositoryImpl(ref.read(activityDataSourceProvider)));
+var activityRepositoryProvider =
+    Provider<ActivityRepository>((ref) => ActivityRepositoryImpl(ref.read(activityDataSourceProvider)));
 
 /// inject [ChangeDeviceRepository] provider
 var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
     (ref) => DeviceChangeRepositoryImpl(ref.read(deviceChangeSourceProvider)));
+
+/// inject [ChangeDeviceRepository] provider
+var appFlyerRepositoryProvider =
+    Provider<AppFlyerRepository>((ref) => AppFlyerRepositoryImpl(ref.read(appFlyerSdkDatasourceProvider)));
