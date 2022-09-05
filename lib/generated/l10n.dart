@@ -13599,6 +13599,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Card requires activation`
+  String get cardRequiresActivation {
+    return Intl.message(
+      'Card requires activation',
+      name: 'cardRequiresActivation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is on the way. Aramex will contact you for delivery details soon.`
+  String get cardRequiresActivationDesc {
+    return Intl.message(
+      'Your card is on the way. Aramex will contact you for delivery details soon.',
+      name: 'cardRequiresActivationDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card settings disabled`
+  String get cardSettingsDisabled {
+    return Intl.message(
+      'Card settings disabled',
+      name: 'cardSettingsDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is on the way. Once it is delivered, you will be able to manage you card via card settings.`
+  String get cardSettingsDisabledDesc {
+    return Intl.message(
+      'Your card is on the way. Once it is delivered, you will be able to manage you card via card settings.',
+      name: 'cardSettingsDisabledDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once your card is delivered, you will be able to retrieve your card information and use it virtually`
+  String get flipBackDesc {
+    return Intl.message(
+      'Once your card is delivered, you will be able to retrieve your card information and use it virtually',
+      name: 'flipBackDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -11,6 +11,7 @@ class SettingTile extends StatelessWidget {
   final Widget? trailing;
   final Function() onTap;
   final bool isEnabled;
+  final bool isCardActivated;
   final isLastTile;
   final isNotify;
 
@@ -21,6 +22,7 @@ class SettingTile extends StatelessWidget {
       this.trailing,
       required this.onTap,
       this.isEnabled: true,
+      this.isCardActivated: true,
       this.isNotify: false,
       this.isLastTile: false})
       : super(key: key);
@@ -28,7 +30,7 @@ class SettingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: isEnabled ? onTap : null,
+      onTap: isEnabled ? (isCardActivated ? onTap : null) : null,
       child: Column(
         children: [
           Container(
@@ -37,9 +39,12 @@ class SettingTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Stack(children: [
-                  AppSvg.asset(tileIcon),
+                  AppSvg.asset(tileIcon,
+                      color: isCardActivated
+                          ? Theme.of(context).primaryColorDark
+                          : Theme.of(context).inputDecorationTheme.hintStyle!.color),
                   Visibility(
-                    visible: isNotify,
+                    visible: isNotify && isCardActivated,
                     child: PositionedDirectional(
                       end: 0,
                       top: 0,
@@ -62,7 +67,9 @@ class SettingTile extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: isEnabled
-                            ? Theme.of(context).primaryColorDark
+                            ? (isCardActivated
+                                ? Theme.of(context).primaryColorDark
+                                : Theme.of(context).inputDecorationTheme.hintStyle!.color ?? AppColor.gray1)
                             : Theme.of(context).inputDecorationTheme.hintStyle!.color ?? AppColor.gray1,
                         fontWeight: FontWeight.w400,
                         fontSize: 14,

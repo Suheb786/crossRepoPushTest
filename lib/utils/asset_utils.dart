@@ -166,6 +166,7 @@ class AssetUtils {
   static const String circleRight = svg + "circle_right.svg";
   static const String replaceCard = svg + "replace_card.svg";
   static const String dashboardSwiggle = svg + "dashboard_swiggle.svg";
+  static const String card_activation = svg + "card_activation.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -200,6 +201,7 @@ class AssetUtils {
   static const String debitCard = drawable + "debit_card.png";
   static const String refresh = drawable + "refresh.png";
   static const String requestedOffer = drawable + "requested_offer.png";
+  static const String creditCardNotDelivered = drawable + "card_not_delivered_bg.png";
 
   //static const String sentOffer = drawable + "sent_offer.png";
   static const String placeholder = drawable + "placeholder.png";

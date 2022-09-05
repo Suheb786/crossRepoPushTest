@@ -358,6 +358,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have successfully unblocked your card\'s PIN"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
             "Your first transaction will be declined, don\'t worry the second one will work."),
+        "cardRequiresActivation":
+            MessageLookupByLibrary.simpleMessage("Card requires activation"),
+        "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
+            "Your card is on the way. Aramex will contact you for delivery details soon."),
+        "cardSettingsDisabled":
+            MessageLookupByLibrary.simpleMessage("Card settings disabled"),
+        "cardSettingsDisabledDesc": MessageLookupByLibrary.simpleMessage(
+            "Your card is on the way. Once it is delivered, you will be able to manage you card via card settings."),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("CARD SETTLEMENT ACCOUNT"),
         "cardSubscription":
@@ -1005,6 +1013,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "firebaseConnectionIssue": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "flipBack": MessageLookupByLibrary.simpleMessage("Flip back"),
+        "flipBackDesc": MessageLookupByLibrary.simpleMessage(
+            "Once your card is delivered, you will be able to retrieve your card information and use it virtually"),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
             "for this Product, cannot proceed."),

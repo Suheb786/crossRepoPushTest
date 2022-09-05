@@ -164,6 +164,9 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                     },
                                     title: S.of(context).freezeThisCard,
                                     tileIcon: AssetUtils.freeze,
+                                    isCardActivated:
+                                        model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                            false,
                                     trailing: Directionality(
                                       textDirection: TextDirection.ltr,
                                       child: FlutterSwitch(
@@ -201,6 +204,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                               );
                             }),
                         SettingTile(
+                          isCardActivated:
+                              model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                           isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
                               PrimarySecondaryCardEnum.PRIMARY,
                           isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
@@ -218,6 +223,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         IgnorePointer(
                           child: SettingTile(
                             isNotify: true,
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             isEnabled: false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ManageCardPin,
@@ -229,6 +236,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         ),
                         IgnorePointer(
                           child: SettingTile(
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
                                   arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.CREDIT));
@@ -276,11 +285,16 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                       //         PrimarySecondaryCardEnum.SECONDARY,
                                       title: S.of(context).requestSupplementarycard,
                                       tileIcon: AssetUtils.cardIcon,
+                                      isCardActivated:
+                                          model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                              false,
                                     );
                                   });
                             }),
                         IgnorePointer(
                           child: SettingTile(
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ChangeCreditLimit);
                             },
@@ -292,6 +306,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         ),
                         IgnorePointer(
                           child: SettingTile(
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ConvertPurchaseToInstallments);
                             },
@@ -303,6 +319,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         ),
                         IgnorePointer(
                           child: SettingTile(
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
                                   arguments: DCChangeLinkedMobileNumberArguments(
@@ -317,6 +335,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                         ),
                         IgnorePointer(
                           child: SettingTile(
+                            isCardActivated:
+                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                             onTap: () {
                               Navigator.pushNamed(context, RoutePaths.ChangeCountryRestriction);
                             },
@@ -327,6 +347,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           ),
                         ),
                         SettingTile(
+                          isCardActivated:
+                              model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.ManageCreditSettlement,
                                 arguments: ManageCreditSettlementArguments(
@@ -351,6 +373,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             },
                             dataBuilder: (context, snapshot) {
                               return SettingTile(
+                                isCardActivated:
+                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                                 onTap: () {
                                   InformationDialog.show(context,
                                       image: AssetUtils.cardCancelIcon,
@@ -394,6 +418,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             },
                             dataBuilder: (context, snapshot) {
                               return SettingTile(
+                                isCardActivated:
+                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                                 onTap: () {
                                   InformationDialog.show(context,
                                       image: AssetUtils.cardCancelIcon,
@@ -430,6 +456,8 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                             onData: (data) {},
                             dataBuilder: (context, data) {
                               return SettingTile(
+                                isCardActivated:
+                                    model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
                                 isNotify: true,
                                 isEnabled: false,
                                 onTap: () {

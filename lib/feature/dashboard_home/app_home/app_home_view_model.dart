@@ -21,6 +21,7 @@ import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_application_under_review_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
+import 'package:neo_bank/ui/molecules/card/credit_card_not_delivered_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
@@ -249,26 +250,49 @@ class AppHomeViewModel extends BasePageViewModel {
         if (dashboardDataContent.creditCard!.length > 0) {
           dashboardDataContent.creditCard!.forEach((creditCard) {
             if (creditCard.isCompleted ?? false) {
-              pages.add(CreditCardWidget(
-                accountBalance: dashboardDataContent.account!.availableBalance,
-                isSmallDevice: isSmallDevices,
-                creditCard: creditCard,
-                key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
-              ));
+              if (creditCard.isCreditDelivered ?? false) {
+                pages.add(CreditCardWidget(
+                  accountBalance: dashboardDataContent.account!.availableBalance,
+                  isSmallDevice: isSmallDevices,
+                  creditCard: creditCard,
+                  key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                ));
 
-              ///time line list  arguments set
-              timeLineListArguments.add(TimeLineListArguments(
-                  cardCardActivated: creditCard.creditCardActivatedDate ?? '',
-                  cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
-                  cardId: creditCard.cardId ?? '',
-                  cardNumber: creditCard.cardNumber ?? '',
-                  accountTitle: creditCard.name ?? '',
-                  cardType: CardType.CREDIT,
-                  isCardDelivered: creditCard.isCreditDelivered));
+                ///time line list  arguments set
+                timeLineListArguments.add(TimeLineListArguments(
+                    cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                    cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
+                    cardId: creditCard.cardId ?? '',
+                    cardNumber: creditCard.cardNumber ?? '',
+                    accountTitle: creditCard.name ?? '',
+                    cardType: CardType.CREDIT,
+                    isCardDelivered: creditCard.isCreditDelivered));
 
-              ///adding cardType
-              cardTypeList
-                  .add(TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+                ///adding cardType
+                cardTypeList.add(
+                    TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+              } else {
+                pages.add(CreditCardNotDeliveredWidget(
+                  isSmallDevice: isSmallDevices,
+                  creditCard: creditCard,
+                  key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
+                ));
+
+                ///TODO:verify timeline arguments
+                ///time line list  arguments set
+                timeLineListArguments.add(TimeLineListArguments(
+                    cardCardActivated: creditCard.creditCardActivatedDate ?? '',
+                    cardDeliveredDatetime: creditCard.creditDeliveredDatetime ?? '',
+                    cardId: creditCard.cardId ?? '',
+                    cardNumber: creditCard.cardNumber ?? '',
+                    accountTitle: creditCard.name ?? '',
+                    cardType: CardType.CREDIT,
+                    isCardDelivered: creditCard.isCreditDelivered));
+
+                ///adding cardType
+                cardTypeList.add(
+                    TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
+              }
             } else {
               if (!(dashboardDataContent.isCreditCard ?? true)) {
                 pages.add(CreditCardIssuanceFailureWidget(
