@@ -13600,20 +13600,20 @@ class S {
     );
   }
 
-  /// `Card requires activation`
+  /// `Your card is out for delivery`
   String get cardRequiresActivation {
     return Intl.message(
-      'Card requires activation',
+      'Your card is out for delivery',
       name: 'cardRequiresActivation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Your card is on the way. Aramex will contact you for delivery details soon.`
+  /// `Once your card is delivered, you will be able to activate it and enjoy its benefits.`
   String get cardRequiresActivationDesc {
     return Intl.message(
-      'Your card is on the way. Aramex will contact you for delivery details soon.',
+      'Once your card is delivered, you will be able to activate it and enjoy its benefits.',
       name: 'cardRequiresActivationDesc',
       desc: '',
       args: [],
@@ -13630,21 +13630,31 @@ class S {
     );
   }
 
-  /// `Your card is on the way. Once it is delivered, you will be able to manage you card via card settings.`
+  /// `Your card is on the way. Once it is delivered, you will be able to manage your card settings.`
   String get cardSettingsDisabledDesc {
     return Intl.message(
-      'Your card is on the way. Once it is delivered, you will be able to manage you card via card settings.',
+      'Your card is on the way. Once it is delivered, you will be able to manage your card settings.',
       name: 'cardSettingsDisabledDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Once your card is delivered, you will be able to retrieve your card information and use it virtually`
+  /// `Once your card is delivered, you will be able to retrieve your card information and use it online.`
   String get flipBackDesc {
     return Intl.message(
-      'Once your card is delivered, you will be able to retrieve your card information and use it virtually',
+      'Once your card is delivered, you will be able to retrieve your card information and use it online.',
       name: 'flipBackDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card\non delivery`
+  String get creditCardOnDelivery {
+    return Intl.message(
+      'Credit card\non delivery',
+      name: 'creditCardOnDelivery',
       desc: '',
       args: [],
     );

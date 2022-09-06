@@ -337,6 +337,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم فك حظر الرمز السري PIN بنجاح"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
             "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح"),
+        "cardRequiresActivation":
+            MessageLookupByLibrary.simpleMessage("بطاقتك في الطريق."),
+        "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
+            "بمجرد استلام بطاقتك، ستتمكن من تفعيلها والاستمتاع بمزاياها."),
+        "cardSettingsDisabled":
+            MessageLookupByLibrary.simpleMessage("إعدادات البطاقة معطلة."),
+        "cardSettingsDisabledDesc": MessageLookupByLibrary.simpleMessage(
+            "بطاقتك في الطريق. بمجرد استلامها، ستتمكن من إدارة إعدادات بطاقتك."),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("حساب تسوية البطاقة"),
         "cardSubscription":
@@ -504,6 +512,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("وصلتك البطاقة الائتمانية؟"),
         "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
             "عفواً! في مشكلة باسترداد معلومات بطاقتك. حاول كمان مرة بعدين."),
+        "creditCardOnDelivery":
+            MessageLookupByLibrary.simpleMessage("Credit card\non delivery"),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
@@ -960,6 +970,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "firebaseConnectionIssue": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-126)"),
         "flipBack": MessageLookupByLibrary.simpleMessage("اقلب للخلف"),
+        "flipBackDesc": MessageLookupByLibrary.simpleMessage(
+            "بمجرد استلام بطاقتك، ستتمكن من الاطلاع على معلوماتها واستخدامها عبر الإنترنت."),
         "flipCard": MessageLookupByLibrary.simpleMessage("اقلب البطاقة"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
             "الحد الأدنى للعمر هو 18 سنة. بنستناك بعيد ميلادك الـ 18."),

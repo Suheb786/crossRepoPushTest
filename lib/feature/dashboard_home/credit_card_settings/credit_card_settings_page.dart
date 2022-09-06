@@ -1,5 +1,6 @@
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
@@ -34,23 +35,26 @@ class CreditCardSettingsPageState
 
   @override
   void onModelReady(CreditCardSettingsViewModel model) {
-    if (!(model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false)) {
-      InformationDialog.show(context,
-          image: AssetUtils.card_activation,
-          title: S.of(context).cardSettingsDisabled,
-          descriptionWidget: Text(
-            S.of(context).cardSettingsDisabledDesc,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: AppColor.veryDarkGray1),
-          ), onSelected: () {
-        Navigator.pop(context);
-      }, onDismissed: () {
-        Navigator.pop(context);
-      });
-    }
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
+      if (!(model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false)) {
+        InformationDialog.show(context,
+            image: AssetUtils.card_activation,
+            title: S.of(context).cardSettingsDisabled,
+            descriptionWidget: Text(
+              S.of(context).cardSettingsDisabledDesc,
+              style: TextStyle(
+                  fontFamily: StringUtils.appFont,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: AppColor.veryDarkGray1),
+            ), onSelected: () {
+          Navigator.pop(context);
+        }, onDismissed: () {
+          Navigator.pop(context);
+        });
+      }
+    });
+
     super.onModelReady(model);
   }
 
