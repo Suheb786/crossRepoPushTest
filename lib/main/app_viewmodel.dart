@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:domain/constants/enum/language_enum.dart';
+import 'package:domain/usecase/app_flyer/init_app_flyer_sdk.dart';
+import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
@@ -196,6 +198,8 @@ class AppViewModel extends BaseViewModel {
   final GetTokenUseCase _getTokenUseCase;
   final SaveUserUseCase _saveUserUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
+  final InitAppFlyerSDKUseCase _initAppFlyerSDKUseCase;
+  final LogAppFlyerSDKEventsUseCase _logAppFlyerSDKEventsUseCase;
 
   PublishSubject<InfobipMessagePluginUseCaseParams> _initInfobipMessageRequestSubject = PublishSubject();
 
@@ -211,7 +215,32 @@ class AppViewModel extends BaseViewModel {
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream => _initInfobipMessageResponseSubject.stream;
 
-  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase) {
+  ///---------------init app flyers------------------///
+  PublishSubject<InitAppFlyerSDKUseCaseParams> _initAppFlyerSDKRequestSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _initAppFlyerSDKResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get initAppFlyerSDKStream => _initAppFlyerSDKResponseSubject.stream;
+
+  void initAppFlyerSDK() async {
+    _initAppFlyerSDKRequestSubject.safeAdd(InitAppFlyerSDKUseCaseParams());
+  }
+
+  ///---------------init app flyers------------------///
+
+  ///---------------log app flyers events------------------///
+  PublishSubject<LogAppFlyerSDKEventsUseCaseParams> _logSDKFlyerEventsRequestSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _logSDKFlyerEventsResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get logSDKFlyerEventsStream => _logSDKFlyerEventsResponseSubject.stream;
+
+  void logAppFlyerSDKEvents({required String eventName, required Map eventValue}) async {
+    _logSDKFlyerEventsRequestSubject
+        .safeAdd(LogAppFlyerSDKEventsUseCaseParams(eventValue: eventValue, eventName: eventName));
+  }
+
+  ///---------------log app flyers events------------------///
+  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase, this._saveUserUseCase,
+      this._initAppFlyerSDKUseCase, this._logAppFlyerSDKEventsUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
@@ -230,6 +259,31 @@ class AppViewModel extends BaseViewModel {
         _initInfobipMessageResponseSubject.safeAdd(event);
       });
     });
+
+    _initAppFlyerSDKRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _initAppFlyerSDKUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _initAppFlyerSDKResponseSubject.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          debugPrint('-----SDK INITIALIZED------');
+          logAppFlyerSDKEvents(eventName: 'app_launch', eventValue: {"app_launched": "First launch"});
+        }
+      });
+    });
+
+    _logSDKFlyerEventsRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _logAppFlyerSDKEventsUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _logSDKFlyerEventsResponseSubject.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          debugPrint('-----EVENT LOGGED------');
+        }
+      });
+    });
+
+    initAppFlyerSDK();
 
     //
     // FirebaseMessaging.onMessage.listen((RemoteMessage message) {

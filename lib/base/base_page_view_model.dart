@@ -1,14 +1,18 @@
 import 'package:domain/error/app_error.dart';
+import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_view_model.dart';
+import 'package:neo_bank/di/usecase/app_flyer/app_flyer_usecase-provider.dart';
 import 'package:neo_bank/di/usecase/help_center/help_center_usecase_provider.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
 class BasePageViewModel extends BaseViewModel {
   late SaveUserUseCase saveUserUseCase;
+  late LogAppFlyerSDKEventsUseCase appFlyerSDKEventsUseCase;
   PublishSubject<AppError> _error = PublishSubject<AppError>();
   PublishSubject<String> _toast = PublishSubject<String>();
 
@@ -38,12 +42,35 @@ class BasePageViewModel extends BaseViewModel {
   ///save user
   PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
+  ///---------------log app flyers events------------------///
+  PublishSubject<LogAppFlyerSDKEventsUseCaseParams> _logAppFlyerSDKEventsRequestSubject = PublishSubject();
+
+  PublishSubject<Resource<bool>> _logAppFlyerSDKEventsResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get logAppFlyerSDKEventsStream => _logAppFlyerSDKEventsResponseSubject.stream;
+
+  void logEventsForAppFlyer({required String eventName, required Map eventValue}) async {
+    _logAppFlyerSDKEventsRequestSubject
+        .safeAdd(LogAppFlyerSDKEventsUseCaseParams(eventName: eventName, eventValue: eventValue));
+  }
+
+  ///---------------log app flyers events------------------///
+
   BasePageViewModel() {
     _saveUserRequestSubject.listen((params) {
       saveUserUseCase = ProviderContainer().read(saveUserUseCaseProvider);
       RequestManager(params, createCall: () {
         return saveUserUseCase.execute(params: params);
       }).asFlow().listen((event) {});
+    });
+
+    _logAppFlyerSDKEventsRequestSubject.listen((params) {
+      appFlyerSDKEventsUseCase = ProviderContainer().read(logAppFlyerEventUseCaseProvider);
+      RequestManager(params, createCall: () {
+        return appFlyerSDKEventsUseCase.execute(params: params);
+      }).asFlow().listen((event) {
+        _logAppFlyerSDKEventsResponseSubject.safeAdd(event);
+      });
     });
   }
 

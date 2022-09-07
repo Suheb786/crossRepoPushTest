@@ -51,6 +51,15 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             print("got event: ${data.data!.requestToPayContent!.dbtrAcct}");
+
+                            ///LOG Evenet to appflyer
+                            model.logEventsForAppFlyer(
+                                eventName: 'request_money_from_new_contact',
+                                eventValue: {
+                                  "money_requested": ProviderScope.containerOf(context)
+                                      .read(requestMoneyViewModelProvider)
+                                      .currentPinValue
+                                });
                             Navigator.pushReplacementNamed(
                                 context, RoutePaths.RequestAmountFromContactSuccess,
                                 arguments: [

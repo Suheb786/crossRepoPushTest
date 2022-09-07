@@ -8,6 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/app_router.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class App extends ConsumerWidget {
@@ -19,6 +20,14 @@ class App extends ConsumerWidget {
       providerBase: appViewModel,
       onModelReady: (model) {
         _appViewModel = watch(appViewModel);
+        // model.initAppFlyerSDKStream.listen((event) {
+        //   if (event.status == Status.SUCCESS) {
+        //     debugPrint('-----SDK INITIALIZED------');
+        //     model.logAppFlyerSDKEvents(eventName: 'APP_LAUNCH', eventValue: {"app_laumched": "APP LAUNCHED"});
+        //   } else if (event.status == Status.ERROR) {
+        //     debugPrint('-----SDK INITIALIZED FAILED------');
+        //   }
+        // });
       },
       builder: (context, appModel, child) {
         return ThemeProvider(

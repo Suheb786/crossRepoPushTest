@@ -21,6 +21,24 @@ Future<Either<DatabaseError, T>> safeDbCall<T>(Future<T> dbCall) async {
                   cause: Exception(exception.toString()),
                 ),
               );
+            case AppLocalExceptionType.FAILED_TO_INIT_SDK:
+              return Left(
+                DatabaseError(
+                  message: exception.toString(),
+                  databaseError: exception.appLocalExceptionType.value,
+                  // Should be error as per the case
+                  cause: Exception(exception.toString()),
+                ),
+              );
+            case AppLocalExceptionType.FAILED_TO_LOG_EVENT:
+              return Left(
+                DatabaseError(
+                  message: exception.toString(),
+                  databaseError: exception.appLocalExceptionType.value,
+                  // Should be error as per the case
+                  cause: Exception(exception.toString()),
+                ),
+              );
             default:
               return Left(
                 DatabaseError(

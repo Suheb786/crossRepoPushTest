@@ -316,6 +316,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
+                    ///LOGGING EVENT TO APP FLYER
+                    model.logEventsForAppFlyer(
+                        eventName: 'send_money_to_contact',
+                        eventValue: {"money_sent": data.data?.transferSuccessContent?.amount ?? 0.0});
                     Navigator.pushNamed(context, RoutePaths.SendAmountToContactSuccess,
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {

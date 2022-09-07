@@ -8,9 +8,7 @@ class DatabaseError extends BaseError {
     required String message,
     required int databaseError,
     required Exception cause,
-  }) : super(
-            error: ErrorInfo(message: message, code: databaseError),
-            cause: cause);
+  }) : super(error: ErrorInfo(message: message, code: databaseError), cause: cause);
 
   @override
   String getFriendlyMessage() {
@@ -21,11 +19,13 @@ class DatabaseError extends BaseError {
   AppError transform() {
     switch (error.code) {
       case 1:
-        return AppError(
-            error: error, cause: cause, type: ErrorType.DATABASE_NOT_SUPPORTED);
+        return AppError(error: error, cause: cause, type: ErrorType.DATABASE_NOT_SUPPORTED);
       case 2:
-        return AppError(
-            error: error, cause: cause, type: ErrorType.DB_USER_NOT_FOUND);
+        return AppError(error: error, cause: cause, type: ErrorType.DB_USER_NOT_FOUND);
+      case 6:
+        return AppError(error: error, cause: cause, type: ErrorType.FAILED_TO_INIT_SDK);
+      case 7:
+        return AppError(error: error, cause: cause, type: ErrorType.FAILED_TO_LOG_EVENT);
       default:
         return AppError(error: error, cause: cause, type: ErrorType.DATABASE);
     }
