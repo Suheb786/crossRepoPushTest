@@ -466,29 +466,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ),
                     )),
               ),
-              Visibility(
-                visible:
-                    !(widget.creditCard.isCreditDelivered != null && widget.creditCard.isCreditDelivered!),
-                child: Positioned(
-                  top: 0,
-                  child: Container(
-                    height: 24,
-                    width: 125,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColorDark, borderRadius: BorderRadius.circular(100)),
-                    child: Center(
-                      child: Text(
-                        S.of(context).cardDelivered,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.w600,
-                            fontSize: widget.isSmallDevice ? 10 : 12),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
               Positioned(
                 bottom: 0,
                 child: Column(

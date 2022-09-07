@@ -1382,9 +1382,10 @@
   "callDisconnected": "Your call was disconnected. Please try again.",
   "depositViaeFawateercom": "Deposit via eFawateercom",
   "depositViaeFawateercomDesc": "Deposit money directly from any of eFawateercom agents or through your bank application using your account number.",
-  "cardRequiresActivation": "Card requires activation",
-  "cardRequiresActivationDesc": "Your card is on the way. Aramex will contact you for delivery details soon.",
+  "cardRequiresActivation": "Your card is out for delivery",
+  "cardRequiresActivationDesc": "Once your card is delivered, you will be able to activate it and enjoy its benefits.",
   "cardSettingsDisabled": "Card settings disabled",
-  "cardSettingsDisabledDesc": "Your card is on the way. Once it is delivered, you will be able to manage you card via card settings.",
-  "flipBackDesc": "Once your card is delivered, you will be able to retrieve your card information and use it virtually"
+  "cardSettingsDisabledDesc": "Your card is on the way. Once it is delivered, you will be able to manage your card settings.",
+  "flipBackDesc": "Once your card is delivered, you will be able to retrieve your card information and use it online.",
+  "creditCardOnDelivery": "Credit card\non delivery"
 }

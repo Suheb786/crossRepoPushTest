@@ -358,14 +358,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have successfully unblocked your card\'s PIN"),
         "cardPinSucccesFullyUnblockedDesc": MessageLookupByLibrary.simpleMessage(
             "Your first transaction will be declined, don\'t worry the second one will work."),
-        "cardRequiresActivation":
-            MessageLookupByLibrary.simpleMessage("Card requires activation"),
+        "cardRequiresActivation": MessageLookupByLibrary.simpleMessage(
+            "Your card is out for delivery"),
         "cardRequiresActivationDesc": MessageLookupByLibrary.simpleMessage(
-            "Your card is on the way. Aramex will contact you for delivery details soon."),
+            "Once your card is delivered, you will be able to activate it and enjoy its benefits."),
         "cardSettingsDisabled":
             MessageLookupByLibrary.simpleMessage("Card settings disabled"),
         "cardSettingsDisabledDesc": MessageLookupByLibrary.simpleMessage(
-            "Your card is on the way. Once it is delivered, you will be able to manage you card via card settings."),
+            "Your card is on the way. Once it is delivered, you will be able to manage your card settings."),
         "cardSettlementAccount":
             MessageLookupByLibrary.simpleMessage("CARD SETTLEMENT ACCOUNT"),
         "cardSubscription":
@@ -538,6 +538,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit card\ndelivered?"),
         "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
             "Oops.. Seems that there’s\nan issue retrieving your card details. Please come back later."),
+        "creditCardOnDelivery":
+            MessageLookupByLibrary.simpleMessage("Credit card\non delivery"),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
@@ -1014,7 +1016,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "flipBack": MessageLookupByLibrary.simpleMessage("Flip back"),
         "flipBackDesc": MessageLookupByLibrary.simpleMessage(
-            "Once your card is delivered, you will be able to retrieve your card information and use it virtually"),
+            "Once your card is delivered, you will be able to retrieve your card information and use it online."),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
         "forThisProductCannotProceed": MessageLookupByLibrary.simpleMessage(
             "for this Product, cannot proceed."),

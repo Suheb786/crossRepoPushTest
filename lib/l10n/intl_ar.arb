@@ -1336,5 +1336,11 @@
   "creditZeroBalanceRejDesc": "يرجى تمويل حسابك من أجل التقدم بطلب للحصول على بطاقة ائتمان",
   "callDisconnected": "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى",
   "depositViaeFawateercom": "إيداع من خلال خدمة إي فواتيركم",
-  "depositViaeFawateercomDesc": "إيداع فوري بحسابك من خلال اي وكيل لخدمة إي فواتيركم او من خلال تطبيق البنك الخاص بك بإستخدام رقم حسابك"
+  "depositViaeFawateercomDesc": "إيداع فوري بحسابك من خلال اي وكيل لخدمة إي فواتيركم او من خلال تطبيق البنك الخاص بك بإستخدام رقم حسابك",
+  "cardRequiresActivation": "بطاقتك في الطريق.",
+  "cardRequiresActivationDesc": "بمجرد استلام بطاقتك، ستتمكن من تفعيلها والاستمتاع بمزاياها.",
+  "cardSettingsDisabled": "إعدادات البطاقة معطلة.",
+  "cardSettingsDisabledDesc": "بطاقتك في الطريق. بمجرد استلامها، ستتمكن من إدارة إعدادات بطاقتك.",
+  "flipBackDesc": "بمجرد استلام بطاقتك، ستتمكن من الاطلاع على معلوماتها واستخدامها عبر الإنترنت.",
+  "creditCardOnDelivery": "Credit card\non delivery"
 }
