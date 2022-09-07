@@ -49,9 +49,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                     // ProviderScope.containerOf(context)
                     //     .read(validateOtpViewModelProvider)
                     //     .initiateSmsListener();
-                    ProviderScope.containerOf(context)
-                        .read(accountRegistrationViewModelProvider)
-                        .nextPage();
+                    ///LOGGING EVENT TO APP FLYER
+                    model.logEventsForAppFlyer(
+                        eventName: 'account_registration', eventValue: {"account_register": true});
+                    ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
                   } else if (registerData.status == Status.ERROR) {
                     model.showToastWithError(registerData.appError!);
                   }
@@ -81,20 +82,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                 '',
                           );
                         } else if (passwordData.status == Status.ERROR) {
-                          if (passwordData.appError!.type ==
-                              ErrorType.PASSWORD_MISMATCH) {
+                          if (passwordData.appError!.type == ErrorType.PASSWORD_MISMATCH) {
                             model.passwordKey.currentState!.isValid = false;
-                            model.confirmPasswordKey.currentState!.isValid =
-                                false;
-                          } else if (passwordData.appError!.type ==
-                              ErrorType.EMPTY_PASSWORD) {
+                            model.confirmPasswordKey.currentState!.isValid = false;
+                          } else if (passwordData.appError!.type == ErrorType.EMPTY_PASSWORD) {
                             model.passwordKey.currentState!.isValid = false;
-                          } else if (passwordData.appError!.type ==
-                              ErrorType.EMPTY_CONFIRM_PASSWORD) {
-                            model.confirmPasswordKey.currentState!.isValid =
-                                false;
-                          } else if (passwordData.appError!.type ==
-                              ErrorType.PASSWORD_NOT_MEET_CRITERIA) {}
+                          } else if (passwordData.appError!.type == ErrorType.EMPTY_CONFIRM_PASSWORD) {
+                            model.confirmPasswordKey.currentState!.isValid = false;
+                          } else if (passwordData.appError!.type == ErrorType.PASSWORD_NOT_MEET_CRITERIA) {}
                           model.showToastWithError(passwordData.appError!);
                         }
                       },
@@ -111,8 +106,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                               if (StringUtils.isDirectionRTL(context)) {
                                 if (details.primaryVelocity!.isNegative) {
                                   ProviderScope.containerOf(context)
-                                      .read(
-                                          accountRegistrationViewModelProvider)
+                                      .read(accountRegistrationViewModelProvider)
                                       .previousPage();
                                 } else {
                                   model.createPassword();
@@ -122,8 +116,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                   model.createPassword();
                                 } else {
                                   ProviderScope.containerOf(context)
-                                      .read(
-                                          accountRegistrationViewModelProvider)
+                                      .read(accountRegistrationViewModelProvider)
                                       .previousPage();
                                 }
                               }
@@ -131,11 +124,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                           },
                           child: Card(
                             child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: SingleChildScrollView(
@@ -143,14 +134,11 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           children: [
                                             AppTextField(
                                               key: model.passwordKey,
-                                              labelText:
-                                                  S.of(context).createPassword,
+                                              labelText: S.of(context).createPassword,
                                               obscureText: true,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
+                                              hintText: S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
-                                              controller: model
-                                                  .createPasswordController,
+                                              controller: model.createPasswordController,
                                               onChanged: (value) {
                                                 model.validatePassword();
                                                 model.validateAllFields();
@@ -158,36 +146,23 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               suffixIcon: (isChecked, value) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    model
-                                                            .passwordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .passwordKey
-                                                            .currentState!
-                                                            .secureText;
+                                                    model.passwordKey.currentState!.secureText =
+                                                        !model.passwordKey.currentState!.secureText;
                                                   },
-                                                  child: model
-                                                          .passwordKey
-                                                          .currentState!
-                                                          .secureText
+                                                  child: model.passwordKey.currentState!.secureText
                                                       ? Container(
                                                           width: 16,
                                                           height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          padding: EdgeInsets.all(4),
+                                                          child: AppSvg.asset(AssetUtils.eye,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .labelStyle!
                                                                   .color),
                                                         )
                                                       : Icon(
                                                           Icons.visibility_off,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .labelStyle!
                                                               .color,
@@ -196,34 +171,25 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               },
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10.0),
+                                              padding: const EdgeInsets.only(top: 10.0),
                                               child: Wrap(
                                                 runSpacing: 10,
                                                 spacing: 8,
                                                 children: [
                                                   PasswordHintWidget(
-                                                    label: S
-                                                        .of(context)
-                                                        .eightCharacters,
-                                                    isValid: model
-                                                        .minimumEightCharacters,
+                                                    label: S.of(context).eightCharacters,
+                                                    isValid: model.minimumEightCharacters,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label: S
-                                                        .of(context)
-                                                        .oneUpperCaseLetter,
+                                                    label: S.of(context).oneUpperCaseLetter,
                                                     isValid: model.hasUpperCase,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label:
-                                                        S.of(context).oneNumber,
-                                                    isValid:
-                                                        model.containsDigit,
+                                                    label: S.of(context).oneNumber,
+                                                    isValid: model.containsDigit,
                                                   ),
                                                   PasswordHintWidget(
-                                                    label:
-                                                        S.of(context).oneSymbol,
+                                                    label: S.of(context).oneSymbol,
                                                     isValid: model.hasSymbol,
                                                   ),
                                                 ],
@@ -234,49 +200,32 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                             ),
                                             AppTextField(
                                               key: model.confirmPasswordKey,
-                                              labelText:
-                                                  S.of(context).confirmPassword,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
+                                              labelText: S.of(context).confirmPassword,
+                                              hintText: S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
                                               obscureText: true,
-                                              onChanged: (value) =>
-                                                  model.validateAllFields(),
-                                              controller: model
-                                                  .confirmPasswordController,
+                                              onChanged: (value) => model.validateAllFields(),
+                                              controller: model.confirmPasswordController,
                                               suffixIcon: (isChecked, value) {
                                                 return InkWell(
                                                   onTap: () {
-                                                    model
-                                                            .confirmPasswordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .confirmPasswordKey
-                                                            .currentState!
-                                                            .secureText;
+                                                    model.confirmPasswordKey.currentState!.secureText =
+                                                        !model.confirmPasswordKey.currentState!.secureText;
                                                   },
-                                                  child: model
-                                                          .confirmPasswordKey
-                                                          .currentState!
-                                                          .secureText
+                                                  child: model.confirmPasswordKey.currentState!.secureText
                                                       ? Container(
                                                           width: 16,
                                                           height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye,
-                                                              color: Theme.of(
-                                                                      context)
+                                                          padding: EdgeInsets.all(4),
+                                                          child: AppSvg.asset(AssetUtils.eye,
+                                                              color: Theme.of(context)
                                                                   .inputDecorationTheme
                                                                   .labelStyle!
                                                                   .color),
                                                         )
                                                       : Icon(
                                                           Icons.visibility_off,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme.of(context)
                                                               .inputDecorationTheme
                                                               .labelStyle!
                                                               .color,
@@ -285,9 +234,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               },
                                             ),
                                             SizedBox(
-                                              height: MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom,
+                                              height: MediaQuery.of(context).viewInsets.bottom,
                                             )
                                           ],
                                         ),
@@ -300,10 +247,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           initialData: false,
                                           dataBuilder: (context, isValid) {
                                             if (isValid!) {
-                                              return AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed);
+                                              return AnimatedButton(buttonText: S.of(context).swipeToProceed);
                                             } else {
                                               return Container();
                                             }

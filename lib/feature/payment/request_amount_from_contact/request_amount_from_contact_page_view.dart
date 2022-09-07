@@ -33,6 +33,10 @@ class RequestAmountFromContactPageView extends BasePageViewWidget<RequestAmountF
             if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             } else if (data.status == Status.SUCCESS) {
+              ///LOGGING EVENT TO APP FLYER
+              model.logEventsForAppFlyer(
+                  eventName: 'request_money_from_contact',
+                  eventValue: {"money_requested": model.currentPinValue});
               Navigator.pushNamed(context, RoutePaths.RequestAmountFromContactSuccess, arguments: [
                 model.currentPinValue,
                 data.data!.requestToPayContent!.dbtrName!,

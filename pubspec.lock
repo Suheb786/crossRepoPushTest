@@ -23,7 +23,7 @@ packages:
     source: hosted
     version: "1.1.0"
   appsflyer_sdk:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: appsflyer_sdk
       url: "https://pub.dartlang.org"

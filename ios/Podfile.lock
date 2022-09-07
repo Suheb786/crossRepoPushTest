@@ -19,6 +19,12 @@ PODS:
     - Flutter
   - AgoraRtcEngine_iOS (3.5.0.3)
   - Alamofire (4.9.1)
+  - appsflyer_sdk (6.8.0):
+    - AppsFlyerFramework (= 6.8.0)
+    - Flutter
+  - AppsFlyerFramework (6.8.0):
+    - AppsFlyerFramework/Main (= 6.8.0)
+  - AppsFlyerFramework/Main (6.8.0)
   - blinkid_flutter (5.14.0):
     - Flutter
     - PPBlinkID (~> 5.14.0)
@@ -220,6 +226,7 @@ PODS:
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
+  - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -257,6 +264,7 @@ SPEC REPOS:
     - AFNetworking
     - AgoraRtcEngine_iOS
     - Alamofire
+    - AppsFlyerFramework
     - CryptoSwift
     - DKImagePickerController
     - DKPhotoGallery
@@ -286,6 +294,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   agora_rtc_engine:
     :path: ".symlinks/plugins/agora_rtc_engine/ios"
+  appsflyer_sdk:
+    :path: ".symlinks/plugins/appsflyer_sdk/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera:
@@ -354,6 +364,8 @@ SPEC CHECKSUMS:
   agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
   AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  appsflyer_sdk: 6d03341418c1acf261fdfde2eb27fdeaf04fa2c2
+  AppsFlyerFramework: a8de532f81b1d3c1dfc451f0ecded91ebb6a0e47
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
   CryptoSwift: a0799ee936271bd2253a006f1e4523df21845000

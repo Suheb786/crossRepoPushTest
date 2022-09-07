@@ -23,7 +23,7 @@ class AppFlyerDataSourceImpl extends AppFlyerDataSource {
   Future<bool> logAppFlyerEvent({required String eventName, required Map eventValue}) async {
     bool? result = await _appFlyerHelper.logEvent(eventName, eventValue);
 
-    if (result) {
+    if (!result) {
       throw AppLocalException(
         appLocalExceptionType: AppLocalExceptionType.FAILED_TO_LOG_EVENT,
       );

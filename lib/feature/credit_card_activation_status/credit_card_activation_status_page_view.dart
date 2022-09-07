@@ -83,6 +83,10 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                             .accountNo!);
                                   });
                                 } else if (response.data!.cardApplicationContent!.first.finalStep!) {
+                                  ///LOGGING EVENT TO APP FLYER
+                                  model.logEventsForAppFlyer(
+                                      eventName: 'credit_card_request',
+                                      eventValue: {"credit_card_requested": true});
                                   Future.delayed(Duration(seconds: 1), () {
                                     Navigator.pushNamed(context, RoutePaths.CreditCardApplySuccess,
                                         arguments: CreditCardApplySuccessArguments(
