@@ -227,51 +227,6 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                 PrimarySecondaryEnum.PRIMARY,
                             isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
                                 PrimarySecondaryEnum.SECONDARY),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
-                                arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.DEBIT));
-                          },
-                          title: S.of(context).viewCardSubSubscription,
-                          tileIcon: AssetUtils.circleRight,
-                          isEnabled: false,
-                          isNotify: true,
-                        ),
-                        SettingTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCard);
-                          },
-                          title: S.of(context).requestSupplementarycard,
-                          tileIcon: AssetUtils.cardIcon,
-                          isEnabled: false,
-                          isNotify: true,
-                          // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                          //     PrimarySecondaryEnum.PRIMARY,
-                          // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
-                          //     PrimarySecondaryEnum.SECONDARY,
-                        ),
-                        IgnorePointer(
-                          ignoring: true,
-                          child: SettingTile(
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
-                                  arguments: DCChangeLinkedMobileNumberArguments(
-                                      cardType: CardType.DEBIT,
-                                      tokenizedPan: model.debitCardSettingsArguments.debitCard.code));
-                            },
-                            title: S.of(context).changeLinkedMobileNumber,
-                            tileIcon: AssetUtils.mobile,
-                            isEnabled: false,
-                            isNotify: true,
-                          ),
-                        ),
-                        SettingTile(
-                          onTap: () {},
-                          title: S.of(context).changeLinkAccount,
-                          tileIcon: AssetUtils.link,
-                          isEnabled: false,
-                          isNotify: true,
-                        ),
                         AppStreamBuilder<Resource<bool>>(
                             initialData: Resource.none(),
                             stream: model.reportStolenLostCardResponseStream,
@@ -444,6 +399,51 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     );
                                   });
                             }),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushNamed(context, RoutePaths.ViewDebitCardSubscription,
+                                arguments: ViewDebitCardSubscriptionArguments(cardType: CardType.DEBIT));
+                          },
+                          title: S.of(context).viewCardSubSubscription,
+                          tileIcon: AssetUtils.circleRight,
+                          isEnabled: false,
+                          isNotify: true,
+                        ),
+                        SettingTile(
+                          onTap: () {
+                            Navigator.pushNamed(context, RoutePaths.SupplementaryDebitCard);
+                          },
+                          title: S.of(context).requestSupplementarycard,
+                          tileIcon: AssetUtils.cardIcon,
+                          isEnabled: false,
+                          isNotify: true,
+                          // isEnabled: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                          //     PrimarySecondaryEnum.PRIMARY,
+                          // isNotify: model.debitCardSettingsArguments.debitCard.primarySecondaryCard ==
+                          //     PrimarySecondaryEnum.SECONDARY,
+                        ),
+                        IgnorePointer(
+                          ignoring: true,
+                          child: SettingTile(
+                            onTap: () {
+                              Navigator.pushNamed(context, RoutePaths.DcChangeLinkedMobileNumber,
+                                  arguments: DCChangeLinkedMobileNumberArguments(
+                                      cardType: CardType.DEBIT,
+                                      tokenizedPan: model.debitCardSettingsArguments.debitCard.code));
+                            },
+                            title: S.of(context).changeLinkedMobileNumber,
+                            tileIcon: AssetUtils.mobile,
+                            isEnabled: false,
+                            isNotify: true,
+                          ),
+                        ),
+                        SettingTile(
+                          onTap: () {},
+                          title: S.of(context).changeLinkAccount,
+                          tileIcon: AssetUtils.link,
+                          isEnabled: false,
+                          isNotify: true,
+                        ),
                         SizedBox(height: 15),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 63.0),

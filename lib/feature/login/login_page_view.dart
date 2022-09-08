@@ -497,6 +497,49 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 onChanged: (value) =>
                                                                                     model.validate(),
                                                                                 obscureText: true,
+                                                                                suffixIcon:
+                                                                                    (isChecked, value) {
+                                                                                  return InkWell(
+                                                                                    onTap: () {
+                                                                                      model
+                                                                                              .passwordKey
+                                                                                              .currentState!
+                                                                                              .secureText =
+                                                                                          !model
+                                                                                              .passwordKey
+                                                                                              .currentState!
+                                                                                              .secureText;
+                                                                                    },
+                                                                                    child: model
+                                                                                            .passwordKey
+                                                                                            .currentState!
+                                                                                            .secureText
+                                                                                        ? Container(
+                                                                                            width: 16,
+                                                                                            height: 16,
+                                                                                            padding:
+                                                                                                EdgeInsets
+                                                                                                    .all(4),
+                                                                                            child: AppSvg.asset(
+                                                                                                AssetUtils
+                                                                                                    .eye,
+                                                                                                color: Theme.of(
+                                                                                                        context)
+                                                                                                    .inputDecorationTheme
+                                                                                                    .labelStyle!
+                                                                                                    .color),
+                                                                                          )
+                                                                                        : Icon(
+                                                                                            Icons
+                                                                                                .visibility_off,
+                                                                                            color: Theme.of(
+                                                                                                    context)
+                                                                                                .inputDecorationTheme
+                                                                                                .labelStyle!
+                                                                                                .color,
+                                                                                          ),
+                                                                                  );
+                                                                                },
                                                                               ),
                                                                             ),
                                                                             Padding(
