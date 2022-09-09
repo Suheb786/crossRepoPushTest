@@ -19,6 +19,12 @@ PODS:
     - Flutter
   - AgoraRtcEngine_iOS (3.5.0.3)
   - Alamofire (4.9.1)
+  - appsflyer_sdk (6.8.0):
+    - AppsFlyerFramework (= 6.8.0)
+    - Flutter
+  - AppsFlyerFramework (6.8.0):
+    - AppsFlyerFramework/Main (= 6.8.0)
+  - AppsFlyerFramework/Main (6.8.0)
   - blinkid_flutter (5.14.0):
     - Flutter
     - PPBlinkID (~> 5.14.0)
@@ -120,6 +126,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - Flutter (1.0.0)
+  - flutter_jailbreak_detection (1.0.0):
+    - DTTJailbreakDetection
+    - Flutter
   - flutter_secure_storage (3.3.1):
     - Flutter
   - flutter_sim_country_code (0.0.1):
@@ -198,9 +207,6 @@ PODS:
   - PromisesObjC (2.0.0)
   - r_get_ip (0.0.1):
     - Flutter
-  - safe_device (1.0.0):
-    - DTTJailbreakDetection
-    - Flutter
   - SDWebImage (5.12.3):
     - SDWebImage/Core (= 5.12.3)
   - SDWebImage/Core (5.12.3)
@@ -220,6 +226,7 @@ PODS:
 
 DEPENDENCIES:
   - agora_rtc_engine (from `.symlinks/plugins/agora_rtc_engine/ios`)
+  - appsflyer_sdk (from `.symlinks/plugins/appsflyer_sdk/ios`)
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
   - camera (from `.symlinks/plugins/camera/ios`)
   - device_info (from `.symlinks/plugins/device_info/ios`)
@@ -228,6 +235,7 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
+  - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -245,7 +253,6 @@ DEPENDENCIES:
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
-  - safe_device (from `.symlinks/plugins/safe_device/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
@@ -257,6 +264,7 @@ SPEC REPOS:
     - AFNetworking
     - AgoraRtcEngine_iOS
     - Alamofire
+    - AppsFlyerFramework
     - CryptoSwift
     - DKImagePickerController
     - DKPhotoGallery
@@ -286,6 +294,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   agora_rtc_engine:
     :path: ".symlinks/plugins/agora_rtc_engine/ios"
+  appsflyer_sdk:
+    :path: ".symlinks/plugins/appsflyer_sdk/ios"
   blinkid_flutter:
     :path: ".symlinks/plugins/blinkid_flutter/ios"
   camera:
@@ -302,6 +312,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
     :path: Flutter
+  flutter_jailbreak_detection:
+    :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
   flutter_sim_country_code:
@@ -336,8 +348,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler/ios"
   r_get_ip:
     :path: ".symlinks/plugins/r_get_ip/ios"
-  safe_device:
-    :path: ".symlinks/plugins/safe_device/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   sms_autofill:
@@ -354,6 +364,8 @@ SPEC CHECKSUMS:
   agora_rtc_engine: 0820b82b3a71a8fcaf8b27c000622e671349f0ba
   AgoraRtcEngine_iOS: ff8e085161ea98c917173783a899882f884dd9ef
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  appsflyer_sdk: 6d03341418c1acf261fdfde2eb27fdeaf04fa2c2
+  AppsFlyerFramework: a8de532f81b1d3c1dfc451f0ecded91ebb6a0e47
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
   CryptoSwift: a0799ee936271bd2253a006f1e4523df21845000
@@ -374,6 +386,7 @@ SPEC CHECKSUMS:
   FirebasePerformance: c40a3bfe5ed9e91f2ab4851d1aa8e0f2f3ca19cf
   FirebaseRemoteConfig: 39462033ba6fe7979eb49499f40f07feaa016b0a
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
@@ -400,7 +413,6 @@ SPEC CHECKSUMS:
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
-  safe_device: 4539eb6bdbeb4b61a763a51c4e73e6b37dea4e3d
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
