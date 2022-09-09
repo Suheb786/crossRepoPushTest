@@ -170,17 +170,26 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                                     trailing: Directionality(
                                       textDirection: TextDirection.ltr,
                                       child: FlutterSwitch(
-                                        value: data!,
-                                        onToggle: (value) {
-                                          if (value) {
-                                            model.updateShowDialog(true);
-                                          }
-                                          model.toggleFreezeCardStatus(value);
-                                          if (!value) {
-                                            model.unFreezeCard(
-                                                model.creditCardSettingsArguments.creditCard.cardId ?? '');
-                                          }
-                                        },
+                                        value:
+                                            model.creditCardSettingsArguments.creditCard.isCreditDelivered ??
+                                                    false
+                                                ? data!
+                                                : false,
+                                        onToggle: model.creditCardSettingsArguments.creditCard
+                                                    .isCreditDelivered ??
+                                                false
+                                            ? (value) {
+                                                if (value) {
+                                                  model.updateShowDialog(true);
+                                                }
+                                                model.toggleFreezeCardStatus(value);
+                                                if (!value) {
+                                                  model.unFreezeCard(
+                                                      model.creditCardSettingsArguments.creditCard.cardId ??
+                                                          '');
+                                                }
+                                              }
+                                            : (v) {},
                                         width: 60,
                                         height: 35,
                                         padding: 4,
