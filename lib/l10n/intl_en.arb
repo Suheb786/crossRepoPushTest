@@ -1387,5 +1387,8 @@
   "cardSettingsDisabled": "Card settings disabled",
   "cardSettingsDisabledDesc": "Your card is on the way. Once it is delivered, you will be able to manage your card settings.",
   "flipBackDesc": "Once your card is delivered, you will be able to retrieve your card information and use it online.",
-  "creditCardOnDelivery": "Credit card\non delivery"
+  "creditCardOnDelivery": "Credit card\non delivery",
+  "bookFligtWithUs": "Book flight with us!",
+  "bookNow": "Book Now",
+  "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."
 }

@@ -244,4 +244,14 @@ class AssetUtils {
   static const String filterMenu = svg + "filter_menu.svg";
   static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
   static const String view_voucher_icon = svg + "view_voucher.svg";
+
+  //Rj PNG Images
+
+  static const String flight = drawable + "flight.png";
+  static const String RjCardBg = drawable + "rj_card_bg.png";
+  static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
+
+//Rj svg
+  static const String rj_card_logo = svg + "rj_card_logo.svg";
+  static const String go_rj_logo = svg + "go_rj_logo.svg";
 }

@@ -13659,6 +13659,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Book flight with us!`
+  String get bookFligtWithUs {
+    return Intl.message(
+      'Book flight with us!',
+      name: 'bookFligtWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get bookNow {
+    return Intl.message(
+      'Book Now',
+      name: 'bookNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.`
+  String get bookFligtWithUsDescrption {
+    return Intl.message(
+      'Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.',
+      name: 'bookFligtWithUsDescrption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
