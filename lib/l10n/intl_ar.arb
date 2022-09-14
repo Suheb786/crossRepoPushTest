@@ -1342,5 +1342,6 @@
   "cardSettingsDisabled": "إعدادات البطاقة معطلة.",
   "cardSettingsDisabledDesc": "بطاقتك في الطريق. بمجرد استلامها، ستتمكن من إدارة إعدادات بطاقتك.",
   "flipBackDesc": "بمجرد استلام بطاقتك، ستتمكن من الاطلاع على معلوماتها واستخدامها عبر الإنترنت.",
-  "creditCardOnDelivery": "Credit card\non delivery"
+  "creditCardOnDelivery": "Credit card\non delivery",
+  "socialSecurityHintText": "###-##-####"
 }

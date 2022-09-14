@@ -13659,6 +13659,16 @@ class S {
       args: [],
     );
   }
+
+  /// `###-##-####`
+  String get socialSecurityHintText {
+    return Intl.message(
+      '###-##-####',
+      name: 'socialSecurityHintText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

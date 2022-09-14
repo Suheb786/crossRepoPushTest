@@ -1387,5 +1387,6 @@
   "cardSettingsDisabled": "Card settings disabled",
   "cardSettingsDisabledDesc": "Your card is on the way. Once it is delivered, you will be able to manage your card settings.",
   "flipBackDesc": "Once your card is delivered, you will be able to retrieve your card information and use it online.",
-  "creditCardOnDelivery": "Credit card\non delivery"
+  "creditCardOnDelivery": "Credit card\non delivery",
+  "socialSecurityHintText": "###-##-####"
 }

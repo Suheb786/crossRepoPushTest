@@ -1,8 +1,10 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
@@ -148,10 +150,18 @@ class FatcaUSW9TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW9TaxP
                                                     return isVisible!
                                                         ? AppTextField(
                                                             labelText: S.of(context).socialSecurityNUmber,
-                                                            hintText: S.of(context).pleaseEnter,
+                                                            hintText: S.of(context).socialSecurityHintText,
                                                             controller: model.socialSecurityNumberController,
+                                                            inputType: TextInputType.number,
                                                             key: model.socialSecurityNumberKey,
                                                             inputAction: TextInputAction.go,
+                                                            inputFormatters: [
+                                                              FilteringTextInputFormatter.allow(
+                                                                  RegExp(r'[0-9]')),
+                                                              MaskTextInputFormatter(
+                                                                  mask: '###-##-####',
+                                                                  filter: {'#': RegExp(r'[0-9]')})
+                                                            ],
                                                             onChanged: (value) {
                                                               model.isValid();
                                                             },

@@ -2149,6 +2149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Social Security Card"),
         "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
             "We need the copy of your physical Social Security Card"),
+        "socialSecurityHintText":
+            MessageLookupByLibrary.simpleMessage("###-##-####"),
         "socialSecurityNUmber":
             MessageLookupByLibrary.simpleMessage("SOCIAL SECURITY NUMBER"),
         "spendJod": MessageLookupByLibrary.simpleMessage(

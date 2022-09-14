@@ -2049,6 +2049,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بطاقة الضمان الاجتماعي"),
         "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
             "بنحتاج منك صورة عن بطاقة الضمان الاجتماعي"),
+        "socialSecurityHintText":
+            MessageLookupByLibrary.simpleMessage("###-##-####"),
         "spendJod": MessageLookupByLibrary.simpleMessage(
             "اصرف 1 دينار واحصل على فرصة ربح 1000 دينار يومياً"),
         "spouseName": MessageLookupByLibrary.simpleMessage("اسم الزوج/ الزوجة"),
