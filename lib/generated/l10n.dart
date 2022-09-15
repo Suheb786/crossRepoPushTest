@@ -13669,6 +13669,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM`
+  String get agentNotAvailablePopUpDesc {
+    return Intl.message(
+      'Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM',
+      name: 'agentNotAvailablePopUpDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

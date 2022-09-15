@@ -141,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العنوان بأمريكا"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
             "فريقنا غير متاح حالياً، حاول بعدين."),
+        "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
+            "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "اختار الموظف المفضل إلك لتحكي معه"),
         "agreeData": MessageLookupByLibrary.simpleMessage("و "),

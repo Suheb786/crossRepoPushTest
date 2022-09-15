@@ -144,6 +144,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
             "Engagement team is currently not available, please try later"),
+        "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
+            "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
         "agreeData": MessageLookupByLibrary.simpleMessage("and "),
