@@ -246,7 +246,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
       @Body() KYCStatusRequest kycStatusRequest);
 
-  @POST("/idcard/CheckAhwalV2")
+  @POST("/idcard/CheckAhwalV3")
   Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 

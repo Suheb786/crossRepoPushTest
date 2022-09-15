@@ -13679,6 +13679,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Service is down please try again later`
+  String get ahwalServiceNotAvailable {
+    return Intl.message(
+      'Service is down please try again later',
+      name: 'ahwalServiceNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

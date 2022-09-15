@@ -1085,6 +1085,8 @@ class ErrorParser {
         return localisedHelper.accountOpeningDescription;
       case ErrorType.ID_ALREADY_EXISTS:
         return localisedHelper.idAlreadyExists;
+      case ErrorType.AHWAL_SERVICE_NOT_AVAILABLE:
+        return localisedHelper.ahwalServiceNotAvailable;
 
       default:
         return "";

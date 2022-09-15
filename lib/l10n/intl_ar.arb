@@ -1344,5 +1344,6 @@
   "flipBackDesc": "بمجرد استلام بطاقتك، ستتمكن من الاطلاع على معلوماتها واستخدامها عبر الإنترنت.",
   "creditCardOnDelivery": "Credit card\non delivery",
   "socialSecurityHintText": "###-##-####",
-  "agentNotAvailablePopUpDesc": "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM"
+  "agentNotAvailablePopUpDesc": "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM",
+  "ahwalServiceNotAvailable": "Service is down please try again later"
 }
