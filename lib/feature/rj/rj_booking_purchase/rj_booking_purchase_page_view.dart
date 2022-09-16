@@ -96,13 +96,10 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       )),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
-
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 24),
                         child: Row(
-
                           children: [
                             Text(
                               S.of(context).rjFrom,
@@ -112,7 +109,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
                             ),
-                          Spacer(),
+                            SizedBox(
+                              width: 150,
+                            ),
                             Text(
                               S.of(context).to,
                               style: TextStyle(
@@ -121,14 +120,12 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
                             ),
-                            Spacer()
                           ],
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 0),
                         child: Row(
-
                           children: [
                             Text(
                               S.of(context).aMM,
@@ -138,7 +135,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w700,
                                   fontSize: 32),
                             ),
-                            Spacer(),
+                            SizedBox(
+                              width: 105,
+                            ),
                             Text(
                               S.of(context).nRT,
                               style: TextStyle(
@@ -147,14 +146,12 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w700,
                                   fontSize: 32),
                             ),
-                            Spacer(),
                           ],
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               S.of(context).jordan,
@@ -164,7 +161,9 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
                             ),
-                            Spacer(),
+                            SizedBox(
+                              width: 150,
+                            ),
                             Text(
                               S.of(context).japan,
                               textAlign: TextAlign.start,
@@ -174,7 +173,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
                             ),
-                            Spacer()
                           ],
                         ),
                       ),
@@ -185,7 +183,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                         color: AppColor.light_grayish_violet,
                         height: 1,
                       ),
-
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 16),
                         child: Row(
@@ -197,7 +194,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
-
                             ),
                             Spacer(),
                             Text(
@@ -207,9 +203,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
                             Text(
                               S.of(context).purchaseDummyTime,
                               style: TextStyle(
@@ -217,14 +211,10 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.gray5,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
-
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 16),
                         child: Row(
@@ -236,7 +226,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
-
                             ),
                             Spacer(),
                             Text(
@@ -246,9 +235,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
                             Text(
                               S.of(context).purchaseDummyTime,
                               style: TextStyle(
@@ -256,14 +243,10 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.gray5,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
-
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 16),
                         child: Row(
@@ -275,9 +258,8 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
-
                             ),
-                            Spacer(),
+                          Spacer(),
                             Text(
                               S.of(context).purchaseDummyDate,
                               style: TextStyle(
@@ -285,9 +267,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
                             Text(
                               S.of(context).purchaseDummyTime,
                               style: TextStyle(
@@ -295,14 +275,12 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.gray5,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
                           ],
                         ),
                       ),
-
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 16,bottom: 24),
+                        padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 16, bottom: 24),
                         child: Row(
                           children: [
                             Text(
@@ -312,7 +290,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
-
                             ),
                             Spacer(),
                             Text(
@@ -322,17 +299,10 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   color: AppColor.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
-
                             ),
-
-
                           ],
                         ),
                       ),
-
-
-
-
                     ],
                   ),
                 ),
