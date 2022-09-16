@@ -123,4 +123,6 @@ class RoutePaths {
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
 
   static const String EVoucherMainPage = "/eVoucherMainPage";
+  static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
+  static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
 }

@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_dashbord_dialog/rj_dashboard_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RjCardWidget extends StatelessWidget {
@@ -71,24 +70,12 @@ class RjCardWidget extends StatelessWidget {
                   child: Center(
                     child: InkWell(
                       onTap: () {
-                        RjDialog.show(context,
-                            image: AssetUtils.flight,
-                            title: S.of(context).bookFligtWithUs,
-                            descriptionWidget: Text(
-                              S.of(context).bookFligtWithUsDescrption,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.gray_black),
-                            ), onDismissed: () {
+                        /// opening Rj Flight Booking Dialog
+                        RjFlightBookingDialog.show(context, onSelected: (value) {
                           Navigator.pop(context);
-                        }, onSelected: () {
+                        }, onDismissed: () {
                           Navigator.pop(context);
-                          //   Navigator.pushNamed(context, RoutePaths.AppHome);
-                          // model.sendOtpTokenMobile();
                         });
-                        //  Navigator.pushNamed(context, RoutePaths.BlinkCreditCard);
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),

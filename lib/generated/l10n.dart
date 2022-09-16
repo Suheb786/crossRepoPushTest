@@ -13680,6 +13680,206 @@ class S {
     );
   }
 
+  /// `FROM`
+  String get rjFrom {
+    return Intl.message(
+      'FROM',
+      name: 'rjFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TO`
+  String get to {
+    return Intl.message(
+      'TO',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEPART ON`
+  String get departOn {
+    return Intl.message(
+      'DEPART ON',
+      name: 'departOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RETURN ON`
+  String get returnOn {
+    return Intl.message(
+      'RETURN ON',
+      name: 'returnOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passengers`
+  String get passengers {
+    return Intl.message(
+      'Passengers',
+      name: 'passengers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cabin Class`
+  String get cabinClass {
+    return Intl.message(
+      'Cabin Class',
+      name: 'cabinClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase for`
+  String get purchaseFor {
+    return Intl.message(
+      'Purchase for',
+      name: 'purchaseFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM`
+  String get aMM {
+    return Intl.message(
+      'AMM',
+      name: 'aMM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NRT`
+  String get nRT {
+    return Intl.message(
+      'NRT',
+      name: 'nRT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jordan`
+  String get jordan {
+    return Intl.message(
+      'Jordan',
+      name: 'jordan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Japan`
+  String get japan {
+    return Intl.message(
+      'Japan',
+      name: 'japan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart On`
+  String get departOnForPurchasePage {
+    return Intl.message(
+      'Depart On',
+      name: 'departOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return On`
+  String get returnOnForPurchasePage {
+    return Intl.message(
+      'Return On',
+      name: 'returnOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Date`
+  String get purchaseDate {
+    return Intl.message(
+      'Purchase Date',
+      name: 'purchaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `31 Jul 2022 `
+  String get purchaseDummyDate {
+    return Intl.message(
+      '31 Jul 2022 ',
+      name: 'purchaseDummyDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `- 3:30PM`
+  String get purchaseDummyTime {
+    return Intl.message(
+      '- 3:30PM',
+      name: 'purchaseDummyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `984893922`
+  String get refNoDummyData {
+    return Intl.message(
+      '984893922',
+      name: 'refNoDummyData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Booking Summary`
+  String get toBookingSummary {
+    return Intl.message(
+      'to Booking Summary',
+      name: 'toBookingSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of the country. Your destination will appear\non the list.`
+  String get rjFlightBookingToDialogBoxDescription {
+    return Intl.message(
+      'Enter the name of the country. Your destination will appear\non the list.',
+      name: 'rjFlightBookingToDialogBoxDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM - Amman Queen..`
+  String get fromLabelForRJFlightBooking {
+    return Intl.message(
+      'AMM - Amman Queen..',
+      name: 'fromLabelForRJFlightBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.`
   String get bookFligtWithUsDescrption {
     return Intl.message(

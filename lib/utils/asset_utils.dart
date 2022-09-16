@@ -250,6 +250,9 @@ class AssetUtils {
   static const String flight = drawable + "flight.png";
   static const String RjCardBg = drawable + "rj_card_bg.png";
   static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
+  static const String EconomySeat = drawable + "economy_seat.png";
+  static const String BusinessSeat = drawable + "business_icon.png";
+  static const String BigSearchIcon = drawable + "big_search_icon.png";
 
 //Rj svg
   static const String rj_card_logo = svg + "rj_card_logo.svg";

@@ -464,9 +464,12 @@ class AppHomeViewModel extends BasePageViewModel {
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
-/// adding rj card pages
-      ///
-      pages.add(RjCardWidget( isSmallDevices: isSmallDevices,));
+
+      /// adding rj card pages
+
+      pages.add(RjCardWidget(
+        isSmallDevices: isSmallDevices,
+      ));
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);
