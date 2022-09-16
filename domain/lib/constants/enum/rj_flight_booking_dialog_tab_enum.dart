@@ -1,3 +1,0 @@
-enum RjFlightBookingDialogTabEnum{
-  OneWay,Return
-}
