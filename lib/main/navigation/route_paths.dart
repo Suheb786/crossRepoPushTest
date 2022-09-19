@@ -125,4 +125,5 @@ class RoutePaths {
   static const String EVoucherMainPage = "/eVoucherMainPage";
   static const String RjBookingInAppWebView = "/rjBookingInAppWebView";
   static const String RjFlightBookingPurchasePage = "/rjFlightBookingPurchase";
+  static const String RjFlightBookingDetailPage = "/rjFlightBookingDetail";
 }

@@ -23,20 +23,20 @@ class ToDialogViewModel extends BasePageViewModel {
 
   ///search country response holder
   PublishSubject<Resource<List<ToSearchCountry>>> _toSearchCountrySubject = PublishSubject();
-  List<ToSearchCountry> searchCountry = [];
+  List<ToSearchCountry> searchCountryList = [];
 
   void typeSearchCountry(String? searchText) {
-    searchCountry.clear();
+    searchCountryList.clear();
     if (searchText!.isNotEmpty) {
       toSearchCountryList.forEach((element) {
         if (element.searchCountry.toLowerCase().contains(searchText)) {
-          searchCountry.add(element);
+          searchCountryList.add(element);
         }
       });
 
-      _toSearchCountrySubject.safeAdd(Resource.success(data: searchCountry));
+      _toSearchCountrySubject.safeAdd(Resource.success(data: searchCountryList));
     } else {
-      _toSearchCountrySubject.safeAdd(Resource.success(data: searchCountry));
+      _toSearchCountrySubject.safeAdd(Resource.success(data: searchCountryList));
     }
   }
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+
 import 'rj_booking_page_view_model.dart';
 
 class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
@@ -17,6 +18,14 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
         children: [
           InAppWebView(
             initialUrlRequest: URLRequest(url: Uri.parse(model.rjBookingPageArguments.url ?? '')),
+            onWebViewCreated: (controller) {
+              // Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
+            },
+            onPageCommitVisible: (con, uri) {
+              print("url ${uri.toString()}");
+              Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
+              //  con.goBack();
+            },
             onProgressChanged: (controller, progress) {
               model.setIndicatorProgressValue(progress / 100);
             },

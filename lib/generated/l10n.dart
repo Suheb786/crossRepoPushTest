@@ -13860,6 +13860,126 @@ class S {
     );
   }
 
+  /// `Total Amount`
+  String get totalAmount {
+    return Intl.message(
+      'Total Amount',
+      name: 'totalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `659.570`
+  String get dummyAmount {
+    return Intl.message(
+      '659.570',
+      name: 'dummyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart`
+  String get depart {
+    return Intl.message(
+      'Depart',
+      name: 'depart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get returnTitle {
+    return Intl.message(
+      'Return',
+      name: 'returnTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Amount`
+  String get taxAmount {
+    return Intl.message(
+      'Tax Amount',
+      name: 'taxAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\nflight details`
+  String get pleaseConfirmFlightDetail {
+    return Intl.message(
+      'Please confirm your\nflight details',
+      name: 'pleaseConfirmFlightDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howYouLikeToPayment {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howYouLikeToPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Ref No.`
+  String get bookingRefNo {
+    return Intl.message(
+      'Booking Ref No.',
+      name: 'bookingRefNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BOOK FLIGHT`
+  String get bookFlight {
+    return Intl.message(
+      'BOOK FLIGHT',
+      name: 'bookFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Booking`
+  String get cancelBooking {
+    return Intl.message(
+      'Cancel Booking',
+      name: 'cancelBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your booking will expire after 3 days. Would you like to cancel your booking?`
+  String get cancelBookingDetail {
+    return Intl.message(
+      'Your booking will expire after 3 days. Would you like to cancel your booking?',
+      name: 'cancelBookingDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
+  String get departDescription {
+    return Intl.message(
+      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
+      name: 'departDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter the name of the country. Your destination will appear\non the list.`
   String get rjFlightBookingToDialogBoxDescription {
     return Intl.message(

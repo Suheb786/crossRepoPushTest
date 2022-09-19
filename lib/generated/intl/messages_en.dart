@@ -271,11 +271,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
             MessageLookupByLibrary.simpleMessage("Blocked Countries"),
+        "bookFlight": MessageLookupByLibrary.simpleMessage("BOOK FLIGHT"),
         "bookFligtWithUs":
             MessageLookupByLibrary.simpleMessage("Book flight with us!"),
         "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
             "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."),
         "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
         "bornBlink":
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -317,6 +319,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your account will be processed after the video call is completed."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelBooking": MessageLookupByLibrary.simpleMessage("Cancel Booking"),
+        "cancelBookingDetail": MessageLookupByLibrary.simpleMessage(
+            "Your booking will expire after 3 days. Would you like to cancel your booking?"),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
             "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
@@ -634,6 +639,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "deliveryIssue":
             MessageLookupByLibrary.simpleMessage("I have delivery issue"),
+        "depart": MessageLookupByLibrary.simpleMessage("Depart"),
+        "departDescription": MessageLookupByLibrary.simpleMessage(
+            "Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM"),
         "departOn": MessageLookupByLibrary.simpleMessage("DEPART ON"),
         "departOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Depart On"),
@@ -680,6 +688,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
+        "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
@@ -1143,6 +1152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
         "howWouldLikeToPay": MessageLookupByLibrary.simpleMessage(
+            "How would you like to\nmake the payment"),
+        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage(
             "How would you like to\nmake the payment"),
         "iConfirmThatAllInfoAccurateFatca":
             MessageLookupByLibrary.simpleMessage(
@@ -1775,6 +1786,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseAgreeToTheTermAndCondition":
             MessageLookupByLibrary.simpleMessage(
                 "Please agree to the term and condition"),
+        "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your\nflight details"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
@@ -2052,6 +2065,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
         "returnOnForPurchasePage":
             MessageLookupByLibrary.simpleMessage("Return On"),
+        "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
@@ -2253,6 +2267,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditPhoto":
             MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
+        "taxAmount": MessageLookupByLibrary.simpleMessage("Tax Amount"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
@@ -2316,6 +2331,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "totalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),

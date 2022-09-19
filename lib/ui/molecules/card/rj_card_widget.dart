@@ -20,7 +20,7 @@ class RjCardWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
-          color: Theme.of(context).primaryColor,
+          // color: Theme.of(context).primaryColor,
           margin: EdgeInsets.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
@@ -38,7 +38,7 @@ class RjCardWidget extends StatelessWidget {
                   alignment: AlignmentDirectional.topEnd,
                   child: Padding(
                     padding: const EdgeInsetsDirectional.only(top: 32, end: 24, start: 0.0),
-                    child: AppSvg.asset(AssetUtils.rj_card_logo,
+                    child: AppSvg.asset(AssetUtils.RjCardLogo,
                         height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
                   ),
                 ),
@@ -47,7 +47,7 @@ class RjCardWidget extends StatelessWidget {
                   child: Align(
                     alignment: AlignmentDirectional.topStart,
                     child: AppSvg.asset(
-                      AssetUtils.go_rj_logo,
+                      AssetUtils.GoRjLogo,
                     ),
                   ),
                 ),

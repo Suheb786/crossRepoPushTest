@@ -87,8 +87,6 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
               Padding(
                 padding: EdgeInsetsDirectional.only(start: 24, end: 24),
                 child: Container(
-                  width: 327,
-                  height: 288,
                   decoration: BoxDecoration(
                       color: AppColor.white,
                       borderRadius: BorderRadius.all(
@@ -100,78 +98,76 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 24),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              S.of(context).rjFrom,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      S.of(context).rjFrom,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12),
+                                    ),
+                                    Text(
+                                      S.of(context).aMM,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 32),
+                                    ),
+                                    Text(
+                                      S.of(context).jordan,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              width: 150,
-                            ),
-                            Text(
-                              S.of(context).to,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              S.of(context).aMM,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 32),
-                            ),
-                            SizedBox(
-                              width: 105,
-                            ),
-                            Text(
-                              S.of(context).nRT,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 32),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24, end: 24, top: 0),
-                        child: Row(
-                          children: [
-                            Text(
-                              S.of(context).jordan,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12),
-                            ),
-                            SizedBox(
-                              width: 150,
-                            ),
-                            Text(
-                              S.of(context).japan,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontFamily: StringUtils.appFont,
-                                  color: AppColor.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      S.of(context).to,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12),
+                                    ),
+                                    Text(
+                                      S.of(context).nRT,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 32),
+                                    ),
+                                    Text(
+                                      S.of(context).japan,
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -259,7 +255,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12),
                             ),
-                          Spacer(),
+                            Spacer(),
                             Text(
                               S.of(context).purchaseDummyDate,
                               style: TextStyle(

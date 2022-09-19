@@ -255,6 +255,7 @@ class AssetUtils {
   static const String BigSearchIcon = drawable + "big_search_icon.png";
 
 //Rj svg
-  static const String rj_card_logo = svg + "rj_card_logo.svg";
-  static const String go_rj_logo = svg + "go_rj_logo.svg";
+  static const String RjCardLogo = svg + "rj_card_logo.svg";
+  static const String GoRjLogo = svg + "go_rj_logo.svg";
+  static const String cancelFlightIcon = svg + "cancel_flight.svg";
 }

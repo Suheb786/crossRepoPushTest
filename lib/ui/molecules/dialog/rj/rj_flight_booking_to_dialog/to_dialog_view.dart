@@ -185,7 +185,7 @@ class ToDialogView extends StatelessWidget {
                                   if (data.data != null && data.data!.length > 0) {
                                     print('onTaponSelected----->$currentIndex');
 
-                                    onSelected!.call(model.toSearchCountryList[currentIndex!]);
+                                    onSelected!.call(model.searchCountryList[currentIndex!]);
                                   } else {
                                     print('onTapNavigator----->$currentIndex');
                                     Navigator.pop(context);

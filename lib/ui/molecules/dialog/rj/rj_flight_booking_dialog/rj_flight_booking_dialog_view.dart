@@ -369,6 +369,7 @@ class RjFlightBookingDialogView extends StatelessWidget {
                             GestureDetector(
                               onHorizontalDragEnd: (details) {
                                 if (details.primaryVelocity!.isNegative) {
+                                  //  Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
                                   Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
                                       arguments: RjBookingPageArguments('https://www.google.co.in/'));
                                 }
