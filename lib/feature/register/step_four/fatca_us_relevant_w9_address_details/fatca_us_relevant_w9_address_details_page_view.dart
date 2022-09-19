@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -53,464 +54,649 @@ class FatcaUSRelevantW9AddressDetailsPageView
                           stream: model.getStateListResponseStream,
                           initialData: Resource.none(),
                           dataBuilder: (context, stateResponse) {
-                            return AppStreamBuilder<Resource<bool>>(
-                              stream: model.fatcaUSRelevantW9AddressDetailsStream,
-                              initialData: Resource.none(),
-                              onData: (data) {
-                                if (data.status == Status.SUCCESS) {
-                                  model.updateData(context);
-                                  Future.delayed(Duration(milliseconds: 500), () {
-                                    ProviderScope.containerOf(context)
-                                        .read(registerStepFourViewModelProvider)
-                                        .nextPage();
-                                    // .next();
-                                  });
-                                } else if (data.status == Status.ERROR) {
-                                  model.showToastWithError(data.appError!);
-                                }
-                              },
-                              dataBuilder: (context, response) {
-                                return GestureDetector(
-                                  onHorizontalDragEnd: (details) {
-                                    if (ProviderScope.containerOf(context)
-                                            .read(registerStepFourViewModelProvider)
-                                            .appSwiperController
-                                            .page ==
-                                        5.0) {
-                                      FocusScope.of(context).unfocus();
-                                      if (StringUtils.isDirectionRTL(context)) {
-                                        if (!details.primaryVelocity!.isNegative) {
-                                          model.validateFatcaUSRelevantW9AddressDetails();
-                                        } else {
-                                          Future.delayed(Duration(milliseconds: 500), () {
-                                            ProviderScope.containerOf(context)
-                                                .read(registerStepFourViewModelProvider)
-                                                .previousPage();
-                                            // .previous();
-                                          });
-                                        }
-                                      } else {
-                                        if (details.primaryVelocity!.isNegative) {
-                                          model.validateFatcaUSRelevantW9AddressDetails();
-                                        } else {
-                                          Future.delayed(Duration(milliseconds: 500), () {
-                                            ProviderScope.containerOf(context)
-                                                .read(registerStepFourViewModelProvider)
-                                                .previousPage();
-                                            // .previous();
-                                          });
-                                        }
-                                      }
-                                    }
-                                  },
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    elevation: 2,
-                                    color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
-                                    margin: EdgeInsets.zero,
-                                    shadowColor: AppColor.black.withOpacity(0.32),
-                                    child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                                        child: SingleChildScrollView(
-                                          physics: ClampingScrollPhysics(),
-                                          child: Column(
-                                            children: [
-                                              AppTextField(
-                                                labelText: S.of(context).addressInUnitedStates,
-                                                hintText: S.of(context).pleaseEnter,
-                                                controller: model.addressController,
-                                                key: model.addressKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S.of(context).state,
-                                                hintText: S.of(context).pleaseSelect,
-                                                controller: model.stateController,
-                                                key: model.stateKey,
-                                                readOnly: true,
-                                                onPressed: () {
-                                                  StateCityDialog.show(context,
-                                                      title: S.of(context).stateSmall, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    Navigator.pop(context);
-                                                    model.stateController.text = value.stateName!;
-                                                    model.cityController.clear();
-                                                    model.getCityList(value.countryId!, value.stateId!);
-                                                    model.isValid();
-                                                  },
-                                                      stateCityTypeEnum: StateCityTypeEnum.STATE,
-                                                      stateCityData:
-                                                          stateResponse!.data!.stateContent!.stateData!);
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsetsDirectional.only(end: 8),
-                                                      child: AppSvg.asset(AssetUtils.downArrow,
-                                                          color: AppColor.dark_gray_1));
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S.of(context).city,
-                                                hintText: S.of(context).pleaseSelect,
-                                                controller: model.cityController,
-                                                key: model.cityKey,
-                                                readOnly: true,
-                                                onPressed: () {
-                                                  if (model.stateController.text.isEmpty) {
-                                                    model.stateKey.currentState!.isValid = false;
-                                                    model.showToastWithError(AppError(
-                                                        cause: Exception(),
-                                                        error: ErrorInfo(message: ''),
-                                                        type: ErrorType.INVALID_STATE));
+                            return AppStreamBuilder<Resource<StateListResponse>>(
+                                stream: model.getAdditionalRequesterStateListResponseStream,
+                                initialData: Resource.none(),
+                                dataBuilder: (context, additionalRequesterStateResponse) {
+                                  return AppStreamBuilder<Resource<CityListResponse>>(
+                                      stream: model.getAdditionalRequesterCityListResponseStream,
+                                      initialData: Resource.none(),
+                                      dataBuilder: (context, additionalRequesterCityResponse) {
+                                        return AppStreamBuilder<Resource<bool>>(
+                                          stream: model.fatcaUSRelevantW9AddressDetailsStream,
+                                          initialData: Resource.none(),
+                                          onData: (data) {
+                                            if (data.status == Status.SUCCESS) {
+                                              model.updateData(context);
+                                              Future.delayed(Duration(milliseconds: 500), () {
+                                                ProviderScope.containerOf(context)
+                                                    .read(registerStepFourViewModelProvider)
+                                                    .nextPage();
+                                                // .next();
+                                              });
+                                            } else if (data.status == Status.ERROR) {
+                                              model.showToastWithError(data.appError!);
+                                            }
+                                          },
+                                          dataBuilder: (context, response) {
+                                            return GestureDetector(
+                                              onHorizontalDragEnd: (details) {
+                                                if (ProviderScope.containerOf(context)
+                                                        .read(registerStepFourViewModelProvider)
+                                                        .appSwiperController
+                                                        .page ==
+                                                    5.0) {
+                                                  FocusScope.of(context).unfocus();
+                                                  if (StringUtils.isDirectionRTL(context)) {
+                                                    if (!details.primaryVelocity!.isNegative) {
+                                                      model.validateFatcaUSRelevantW9AddressDetails();
+                                                    } else {
+                                                      Future.delayed(Duration(milliseconds: 500), () {
+                                                        ProviderScope.containerOf(context)
+                                                            .read(registerStepFourViewModelProvider)
+                                                            .previousPage();
+                                                        // .previous();
+                                                      });
+                                                    }
                                                   } else {
-                                                    StateCityDialog.show(context,
-                                                        title: S.of(context).citySmall, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model.cityController.text = value.cityName!;
-                                                      model.selectedAddressInUS = value;
-                                                      model.isValid();
-                                                    },
-                                                        stateCityTypeEnum: StateCityTypeEnum.CITY,
-                                                        stateCityData:
-                                                            cityResponse!.data!.cityContent!.stateData!);
+                                                    if (details.primaryVelocity!.isNegative) {
+                                                      model.validateFatcaUSRelevantW9AddressDetails();
+                                                    } else {
+                                                      Future.delayed(Duration(milliseconds: 500), () {
+                                                        ProviderScope.containerOf(context)
+                                                            .read(registerStepFourViewModelProvider)
+                                                            .previousPage();
+                                                        // .previous();
+                                                      });
+                                                    }
                                                   }
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsetsDirectional.only(end: 8),
-                                                      child: AppSvg.asset(AssetUtils.downArrow,
-                                                          color: AppColor.dark_gray_1));
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S.of(context).postCode,
-                                                hintText: S.of(context).pleaseEnter,
-                                                controller: model.postCodeController,
-                                                key: model.postCodeKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S.of(context).accountNumberOptional,
-                                                hintText: S.of(context).pleaseEnter,
-                                                controller: model.accountNumberController,
-                                                // labelIcon: () {
-                                                //   return InkWell(
-                                                //     onTap: () async {},
-                                                //     child: Padding(
-                                                //       padding:
-                                                //           const EdgeInsets.only(left: 5.0),
-                                                //       child: Container(
-                                                //           height: 14,
-                                                //           width: 14,
-                                                //           child: AppSvg.asset(
-                                                //               AssetUtils.info,
-                                                //               color: Theme.of(context)
-                                                //                   .inputDecorationTheme
-                                                //                   .focusedBorder!
-                                                //                   .borderSide
-                                                //                   .color)),
-                                                //     ),
-                                                //   );
-                                                // },
-                                                key: model.accountNumberKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S.of(context).exemptPayeeOptional,
-                                                hintText: S.of(context).pleaseEnter,
-                                                controller: model.exemptPayeeCodeNumberController,
-                                                labelIcon: () {
-                                                  return InkWell(
-                                                    onTap: () async {
-                                                      Navigator.pushNamed(
-                                                          context, RoutePaths.ExemptPayeeCode);
-                                                    },
-                                                    child: Padding(
-                                                      padding: const EdgeInsetsDirectional.only(start: 5.0),
-                                                      child: Container(
-                                                          height: 14,
-                                                          width: 14,
-                                                          child: AppSvg.asset(AssetUtils.info,
-                                                              color: Theme.of(context)
-                                                                  .inputDecorationTheme
-                                                                  .focusedBorder!
-                                                                  .borderSide
-                                                                  .color)),
-                                                    ),
-                                                  );
-                                                },
-                                                key: model.exemptPayeeCodeNumberKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
-                                              AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .exemptionFromFatcaReportingCode
-                                                    .toUpperCase(),
-                                                hintText: S.of(context).pleaseEnter,
-                                                controller: model.exemptFromFatcaReportingController,
-                                                labelIcon: () {
-                                                  return InkWell(
-                                                    onTap: () async {
-                                                      Navigator.pushNamed(context,
-                                                          RoutePaths.ExemptionFromFatcaReportingCode);
-                                                    },
-                                                    child: Padding(
-                                                      padding: const EdgeInsetsDirectional.only(start: 5.0),
-                                                      child: Container(
-                                                          height: 14,
-                                                          width: 14,
-                                                          child: AppSvg.asset(AssetUtils.info,
-                                                              color: Theme.of(context)
-                                                                  .inputDecorationTheme
-                                                                  .focusedBorder!
-                                                                  .borderSide
-                                                                  .color)),
-                                                    ),
-                                                  );
-                                                },
-                                                key: model.exemptFromFatcaReportingKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                              AppStreamBuilder<bool>(
-                                                stream: model.additionalRequesterStream,
-                                                initialData: false,
-                                                dataBuilder: (context, isActive) {
-                                                  return Column(
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.symmetric(vertical: 26.0),
-                                                        child: AppSwitchLabelWidget(
-                                                          label: S.of(context).additionalRequester,
-                                                          inActiveText: S.of(context).no.toUpperCase(),
-                                                          activeText: S.of(context).yes.toUpperCase(),
-                                                          onToggle: (value) {
-                                                            if (!value) {
-                                                              model.additionalRequesterStateController
-                                                                  .clear();
-                                                              model.additionalRequesterCityController.clear();
-                                                              model.additionalRequesterNameController.clear();
-                                                              model.additionalRequesterAddressController
-                                                                  .clear();
-                                                              model.additionalRequesterPostCodeController
-                                                                  .clear();
-                                                              model.selectedAdditionalRequester =
-                                                                  StateCityData();
-                                                            }
-                                                            model.updateSwitchValue(value);
-                                                          },
-                                                          isActive: isActive,
-                                                        ),
-                                                      ),
-                                                      Visibility(
-                                                          visible: isActive!,
-                                                          child: Column(
-                                                            children: [
-                                                              AppTextField(
-                                                                labelText:
-                                                                    S.of(context).requesterName.toUpperCase(),
-                                                                hintText: S.of(context).pleaseEnter,
-                                                                controller:
-                                                                    model.additionalRequesterNameController,
-                                                                key: model.additionalRequesterNameKey,
-                                                                inputAction: TextInputAction.go,
-                                                                onChanged: (value) {
-                                                                  model.isValid();
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 16,
-                                                              ),
-                                                              AppTextField(
-                                                                labelText:
-                                                                    S.of(context).addressInUnitedStates,
-                                                                hintText: S.of(context).pleaseEnter,
-                                                                controller: model
-                                                                    .additionalRequesterAddressController,
-                                                                key: model.additionalRequesterAddressNameKey,
-                                                                inputAction: TextInputAction.go,
-                                                                onChanged: (value) {
-                                                                  model.isValid();
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 16,
-                                                              ),
-                                                              AppTextField(
-                                                                labelText: S.of(context).state,
-                                                                hintText: S.of(context).pleaseSelect,
-                                                                controller:
-                                                                    model.additionalRequesterStateController,
-                                                                key: model.additionalRequesterStateKey,
-                                                                readOnly: true,
-                                                                onPressed: () {
-                                                                  StateCityDialog.show(context,
-                                                                      title: S.of(context).stateSmall,
-                                                                      onDismissed: () {
-                                                                    Navigator.pop(context);
-                                                                  }, onSelected: (value) {
-                                                                    Navigator.pop(context);
-                                                                    model.additionalRequesterStateController
-                                                                        .text = value.stateName!;
-                                                                    model.additionalRequesterCityController
-                                                                        .clear();
-                                                                    model.getCityList(
-                                                                        value.countryId!, value.stateId!);
-                                                                    model.isValid();
-                                                                  },
-                                                                      stateCityTypeEnum:
-                                                                          StateCityTypeEnum.STATE,
-                                                                      stateCityData: stateResponse!
-                                                                          .data!.stateContent!.stateData!);
-                                                                },
-                                                                suffixIcon: (value, data) {
-                                                                  return Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding:
-                                                                          EdgeInsetsDirectional.only(end: 8),
-                                                                      child: AppSvg.asset(
-                                                                          AssetUtils.downArrow,
-                                                                          color: AppColor.dark_gray_1));
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 16,
-                                                              ),
-                                                              AppTextField(
-                                                                labelText: S.of(context).city,
-                                                                hintText: S.of(context).pleaseSelect,
-                                                                controller:
-                                                                    model.additionalRequesterCityController,
-                                                                key: model.additionalRequesterCityKey,
-                                                                readOnly: true,
-                                                                onPressed: () {
-                                                                  if (model.additionalRequesterStateController
-                                                                      .text.isEmpty) {
-                                                                    model.additionalRequesterStateKey
-                                                                        .currentState!.isValid = false;
-                                                                    model.showToastWithError(AppError(
-                                                                        cause: Exception(),
-                                                                        error: ErrorInfo(message: ''),
-                                                                        type: ErrorType.INVALID_STATE));
-                                                                  } else {
-                                                                    StateCityDialog.show(context,
-                                                                        title: S.of(context).citySmall,
-                                                                        onDismissed: () {
-                                                                      Navigator.pop(context);
-                                                                    }, onSelected: (value) {
-                                                                      Navigator.pop(context);
-                                                                      model.additionalRequesterCityController
-                                                                          .text = value.cityName!;
-                                                                      model.selectedAdditionalRequester =
-                                                                          value;
-                                                                      model.isValid();
-                                                                    },
-                                                                        stateCityTypeEnum:
-                                                                            StateCityTypeEnum.CITY,
-                                                                        stateCityData: cityResponse!
-                                                                            .data!.cityContent!.stateData!);
-                                                                  }
-                                                                },
-                                                                suffixIcon: (value, data) {
-                                                                  return Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding:
-                                                                          EdgeInsetsDirectional.only(end: 8),
-                                                                      child: AppSvg.asset(
-                                                                          AssetUtils.downArrow,
-                                                                          color: AppColor.dark_gray_1));
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height: 16,
-                                                              ),
-                                                              AppTextField(
-                                                                labelText: S.of(context).postCode,
-                                                                hintText: S.of(context).pleaseEnter,
-                                                                controller: model
-                                                                    .additionalRequesterPostCodeController,
-                                                                key: model.additionalRequesterPostCodeKey,
-                                                                inputAction: TextInputAction.go,
-                                                                onChanged: (value) {
-                                                                  model.isValid();
-                                                                },
-                                                              ),
-                                                              SizedBox(
-                                                                height:
-                                                                    MediaQuery.of(context).viewInsets.bottom,
-                                                              ),
-                                                            ],
-                                                          ))
-                                                    ],
-                                                  );
-                                                },
-                                              ),
-                                              Center(
+                                                }
+                                              },
+                                              child: Card(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(16)),
+                                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                elevation: 2,
+                                                color: Theme.of(context)
+                                                    .cardTheme
+                                                    .copyWith(color: AppColor.white)
+                                                    .color,
+                                                margin: EdgeInsets.zero,
+                                                shadowColor: AppColor.black.withOpacity(0.32),
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(top: 32),
-                                                  child: AppStreamBuilder<bool>(
-                                                      stream: model.allFieldValidatorStream,
-                                                      initialData: false,
-                                                      dataBuilder: (context, isValid) {
-                                                        return (isValid!)
-                                                            ? AnimatedButton(
-                                                                buttonText: S.of(context).swipeToProceed,
-                                                                buttonHeight: 50,
-                                                              )
-                                                            : Container();
-                                                      }),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                );
-                              },
-                            );
+                                                    padding:
+                                                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                                    child: SingleChildScrollView(
+                                                      physics: ClampingScrollPhysics(),
+                                                      child: Column(
+                                                        children: [
+                                                          AppTextField(
+                                                            labelText: S.of(context).address,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.addressController,
+                                                            key: model.addressKey,
+                                                            inputAction: TextInputAction.go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).country,
+                                                            hintText: S.of(context).pleaseSelect,
+                                                            readOnly: true,
+                                                            controller: model.countryController,
+                                                            onPressed: () {
+                                                              CountryDialog.show(context,
+                                                                  title: S.of(context).country,
+                                                                  onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              }, onSelected: (value) {
+                                                                Navigator.pop(context);
+                                                                model.countryController.text =
+                                                                    value.countryName!;
+                                                                model.stateController.clear();
+                                                                model.currentCountry = value;
+                                                                model.getStateList(value.isoCode3 ?? '');
+                                                                model.isValid();
+                                                              });
+                                                            },
+                                                            suffixIcon: (value, data) {
+                                                              return Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                                                      color: AppColor.dark_gray_1));
+                                                            },
+                                                            key: model.countryKey,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).state,
+                                                            hintText: S.of(context).pleaseSelect,
+                                                            controller: model.stateController,
+                                                            key: model.stateKey,
+                                                            readOnly: true,
+                                                            onPressed: () {
+                                                              if (model.countryController.text.isEmpty) {
+                                                                model.countryKey.currentState!.isValid =
+                                                                    false;
+                                                                model.showToastWithError(AppError(
+                                                                    cause: Exception(),
+                                                                    error: ErrorInfo(message: ''),
+                                                                    type: ErrorType.INVALID_COUNTRY));
+                                                              } else {
+                                                                StateCityDialog.show(context,
+                                                                    title: S.of(context).stateSmall,
+                                                                    onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: (value) {
+                                                                  Navigator.pop(context);
+                                                                  model.stateController.text =
+                                                                      value.stateName!;
+                                                                  model.cityController.clear();
+                                                                  model.getCityList(
+                                                                      value.countryId!, value.stateId!);
+                                                                  model.isValid();
+                                                                },
+                                                                    stateCityTypeEnum:
+                                                                        StateCityTypeEnum.STATE,
+                                                                    stateCityData: stateResponse!
+                                                                        .data!.stateContent!.stateData!);
+                                                              }
+                                                            },
+                                                            suffixIcon: (value, data) {
+                                                              return Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                                                      color: AppColor.dark_gray_1));
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).city,
+                                                            hintText: S.of(context).pleaseSelect,
+                                                            controller: model.cityController,
+                                                            key: model.cityKey,
+                                                            readOnly: true,
+                                                            onPressed: () {
+                                                              if (model.stateController.text.isEmpty) {
+                                                                model.stateKey.currentState!.isValid = false;
+                                                                model.showToastWithError(AppError(
+                                                                    cause: Exception(),
+                                                                    error: ErrorInfo(message: ''),
+                                                                    type: ErrorType.INVALID_STATE));
+                                                              } else {
+                                                                StateCityDialog.show(context,
+                                                                    title: S.of(context).citySmall,
+                                                                    onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: (value) {
+                                                                  Navigator.pop(context);
+                                                                  model.cityController.text = value.cityName!;
+                                                                  model.selectedAddressInUS = value;
+                                                                  model.isValid();
+                                                                },
+                                                                    stateCityTypeEnum: StateCityTypeEnum.CITY,
+                                                                    stateCityData: cityResponse!
+                                                                        .data!.cityContent!.stateData!);
+                                                              }
+                                                            },
+                                                            suffixIcon: (value, data) {
+                                                              return Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                                                      color: AppColor.dark_gray_1));
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).postCode,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.postCodeController,
+                                                            key: model.postCodeKey,
+                                                            inputAction: TextInputAction.go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).accountNumberOptional,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.accountNumberController,
+                                                            // labelIcon: () {
+                                                            //   return InkWell(
+                                                            //     onTap: () async {},
+                                                            //     child: Padding(
+                                                            //       padding:
+                                                            //           const EdgeInsets.only(left: 5.0),
+                                                            //       child: Container(
+                                                            //           height: 14,
+                                                            //           width: 14,
+                                                            //           child: AppSvg.asset(
+                                                            //               AssetUtils.info,
+                                                            //               color: Theme.of(context)
+                                                            //                   .inputDecorationTheme
+                                                            //                   .focusedBorder!
+                                                            //                   .borderSide
+                                                            //                   .color)),
+                                                            //     ),
+                                                            //   );
+                                                            // },
+                                                            key: model.accountNumberKey,
+                                                            inputAction: TextInputAction.go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S.of(context).exemptPayeeOptional,
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller: model.exemptPayeeCodeNumberController,
+                                                            labelIcon: () {
+                                                              return InkWell(
+                                                                onTap: () async {
+                                                                  Navigator.pushNamed(
+                                                                      context, RoutePaths.ExemptPayeeCode);
+                                                                },
+                                                                child: Padding(
+                                                                  padding: const EdgeInsetsDirectional.only(
+                                                                      start: 5.0),
+                                                                  child: Container(
+                                                                      height: 14,
+                                                                      width: 14,
+                                                                      child: AppSvg.asset(AssetUtils.info,
+                                                                          color: Theme.of(context)
+                                                                              .inputDecorationTheme
+                                                                              .focusedBorder!
+                                                                              .borderSide
+                                                                              .color)),
+                                                                ),
+                                                              );
+                                                            },
+                                                            key: model.exemptPayeeCodeNumberKey,
+                                                            inputAction: TextInputAction.go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          ),
+                                                          SizedBox(
+                                                            height: 16,
+                                                          ),
+                                                          AppTextField(
+                                                            labelText: S
+                                                                .of(context)
+                                                                .exemptionFromFatcaReportingCode
+                                                                .toUpperCase(),
+                                                            hintText: S.of(context).pleaseEnter,
+                                                            controller:
+                                                                model.exemptFromFatcaReportingController,
+                                                            labelIcon: () {
+                                                              return InkWell(
+                                                                onTap: () async {
+                                                                  Navigator.pushNamed(
+                                                                      context,
+                                                                      RoutePaths
+                                                                          .ExemptionFromFatcaReportingCode);
+                                                                },
+                                                                child: Padding(
+                                                                  padding: const EdgeInsetsDirectional.only(
+                                                                      start: 5.0),
+                                                                  child: Container(
+                                                                      height: 14,
+                                                                      width: 14,
+                                                                      child: AppSvg.asset(AssetUtils.info,
+                                                                          color: Theme.of(context)
+                                                                              .inputDecorationTheme
+                                                                              .focusedBorder!
+                                                                              .borderSide
+                                                                              .color)),
+                                                                ),
+                                                              );
+                                                            },
+                                                            key: model.exemptFromFatcaReportingKey,
+                                                            inputAction: TextInputAction.go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          ),
+                                                          AppStreamBuilder<bool>(
+                                                            stream: model.additionalRequesterStream,
+                                                            initialData: false,
+                                                            dataBuilder: (context, isActive) {
+                                                              return Column(
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.symmetric(
+                                                                        vertical: 26.0),
+                                                                    child: AppSwitchLabelWidget(
+                                                                      label:
+                                                                          S.of(context).additionalRequester,
+                                                                      inActiveText:
+                                                                          S.of(context).no.toUpperCase(),
+                                                                      activeText:
+                                                                          S.of(context).yes.toUpperCase(),
+                                                                      onToggle: (value) {
+                                                                        if (!value) {
+                                                                          model
+                                                                              .additionalRequesterStateController
+                                                                              .clear();
+                                                                          model
+                                                                              .additionalRequesterCityController
+                                                                              .clear();
+                                                                          model
+                                                                              .additionalRequesterNameController
+                                                                              .clear();
+                                                                          model
+                                                                              .additionalRequesterAddressController
+                                                                              .clear();
+                                                                          model
+                                                                              .additionalRequesterPostCodeController
+                                                                              .clear();
+                                                                          model.selectedAdditionalRequester =
+                                                                              StateCityData();
+                                                                        }
+                                                                        model.updateSwitchValue(value);
+                                                                      },
+                                                                      isActive: isActive,
+                                                                    ),
+                                                                  ),
+                                                                  Visibility(
+                                                                      visible: isActive!,
+                                                                      child: Column(
+                                                                        children: [
+                                                                          AppTextField(
+                                                                            labelText: S
+                                                                                .of(context)
+                                                                                .requesterName
+                                                                                .toUpperCase(),
+                                                                            hintText:
+                                                                                S.of(context).pleaseEnter,
+                                                                            controller: model
+                                                                                .additionalRequesterNameController,
+                                                                            key: model
+                                                                                .additionalRequesterNameKey,
+                                                                            inputAction: TextInputAction.go,
+                                                                            onChanged: (value) {
+                                                                              model.isValid();
+                                                                            },
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 16,
+                                                                          ),
+                                                                          AppTextField(
+                                                                            labelText: S.of(context).address,
+                                                                            hintText:
+                                                                                S.of(context).pleaseEnter,
+                                                                            controller: model
+                                                                                .additionalRequesterAddressController,
+                                                                            key: model
+                                                                                .additionalRequesterAddressNameKey,
+                                                                            inputAction: TextInputAction.go,
+                                                                            onChanged: (value) {
+                                                                              model.isValid();
+                                                                            },
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 16,
+                                                                          ),
+                                                                          AppTextField(
+                                                                            labelText: S.of(context).country,
+                                                                            hintText:
+                                                                                S.of(context).pleaseSelect,
+                                                                            readOnly: true,
+                                                                            controller: model
+                                                                                .additionalRequesterCountryController,
+                                                                            onPressed: () {
+                                                                              CountryDialog.show(context,
+                                                                                  title:
+                                                                                      S.of(context).country,
+                                                                                  onDismissed: () {
+                                                                                Navigator.pop(context);
+                                                                              }, onSelected: (value) {
+                                                                                Navigator.pop(context);
+                                                                                model
+                                                                                    .additionalRequesterCountryController
+                                                                                    .text = value.countryName!;
+                                                                                model
+                                                                                    .additionalRequesterStateController
+                                                                                    .clear();
+                                                                                model.additionalRequesterCurrentCountry =
+                                                                                    value;
+                                                                                model
+                                                                                    .getAdditionalRequesterStateList(
+                                                                                        value.isoCode3 ?? '');
+                                                                                model.isValid();
+                                                                              });
+                                                                            },
+                                                                            suffixIcon: (value, data) {
+                                                                              return Container(
+                                                                                  height: 16,
+                                                                                  width: 16,
+                                                                                  padding:
+                                                                                      EdgeInsetsDirectional
+                                                                                          .only(end: 8),
+                                                                                  child: AppSvg.asset(
+                                                                                      AssetUtils.downArrow,
+                                                                                      color: AppColor
+                                                                                          .dark_gray_1));
+                                                                            },
+                                                                            key: model
+                                                                                .additionalRequesterCountryKey,
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 16,
+                                                                          ),
+                                                                          AppTextField(
+                                                                            labelText: S.of(context).state,
+                                                                            hintText:
+                                                                                S.of(context).pleaseSelect,
+                                                                            controller: model
+                                                                                .additionalRequesterStateController,
+                                                                            key: model
+                                                                                .additionalRequesterStateKey,
+                                                                            readOnly: true,
+                                                                            onPressed: () {
+                                                                              if (model
+                                                                                  .additionalRequesterCountryController
+                                                                                  .text
+                                                                                  .isEmpty) {
+                                                                                model
+                                                                                    .additionalRequesterCountryKey
+                                                                                    .currentState!
+                                                                                    .isValid = false;
+                                                                                model.showToastWithError(
+                                                                                    AppError(
+                                                                                        cause: Exception(),
+                                                                                        error:
+                                                                                            ErrorInfo(
+                                                                                                message: ''),
+                                                                                        type: ErrorType
+                                                                                            .INVALID_COUNTRY));
+                                                                              } else {
+                                                                                StateCityDialog.show(context,
+                                                                                    title: S
+                                                                                        .of(context)
+                                                                                        .stateSmall,
+                                                                                    onDismissed: () {
+                                                                                  Navigator.pop(context);
+                                                                                }, onSelected: (value) {
+                                                                                  Navigator.pop(context);
+                                                                                  model
+                                                                                      .additionalRequesterStateController
+                                                                                      .text = value.stateName!;
+                                                                                  model
+                                                                                      .additionalRequesterCityController
+                                                                                      .clear();
+                                                                                  model
+                                                                                      .getAdditionalRequesterCityList(
+                                                                                          value.countryId!,
+                                                                                          value.stateId!);
+                                                                                  model.isValid();
+                                                                                },
+                                                                                    stateCityTypeEnum:
+                                                                                        StateCityTypeEnum
+                                                                                            .STATE,
+                                                                                    stateCityData:
+                                                                                        additionalRequesterStateResponse!
+                                                                                            .data!
+                                                                                            .stateContent!
+                                                                                            .stateData!);
+                                                                              }
+                                                                            },
+                                                                            suffixIcon: (value, data) {
+                                                                              return Container(
+                                                                                  height: 16,
+                                                                                  width: 16,
+                                                                                  padding:
+                                                                                      EdgeInsetsDirectional
+                                                                                          .only(end: 8),
+                                                                                  child: AppSvg.asset(
+                                                                                      AssetUtils.downArrow,
+                                                                                      color: AppColor
+                                                                                          .dark_gray_1));
+                                                                            },
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 16,
+                                                                          ),
+                                                                          AppTextField(
+                                                                            labelText: S.of(context).city,
+                                                                            hintText:
+                                                                                S.of(context).pleaseSelect,
+                                                                            controller: model
+                                                                                .additionalRequesterCityController,
+                                                                            key: model
+                                                                                .additionalRequesterCityKey,
+                                                                            readOnly: true,
+                                                                            onPressed: () {
+                                                                              if (model
+                                                                                  .additionalRequesterStateController
+                                                                                  .text
+                                                                                  .isEmpty) {
+                                                                                model
+                                                                                    .additionalRequesterStateKey
+                                                                                    .currentState!
+                                                                                    .isValid = false;
+                                                                                model.showToastWithError(
+                                                                                    AppError(
+                                                                                        cause: Exception(),
+                                                                                        error:
+                                                                                            ErrorInfo(
+                                                                                                message: ''),
+                                                                                        type: ErrorType
+                                                                                            .INVALID_STATE));
+                                                                              } else {
+                                                                                StateCityDialog.show(context,
+                                                                                    title: S
+                                                                                        .of(context)
+                                                                                        .citySmall,
+                                                                                    onDismissed: () {
+                                                                                  Navigator.pop(context);
+                                                                                }, onSelected: (value) {
+                                                                                  Navigator.pop(context);
+                                                                                  model
+                                                                                      .additionalRequesterCityController
+                                                                                      .text = value.cityName!;
+                                                                                  model.selectedAdditionalRequester =
+                                                                                      value;
+                                                                                  model.isValid();
+                                                                                },
+                                                                                    stateCityTypeEnum:
+                                                                                        StateCityTypeEnum
+                                                                                            .CITY,
+                                                                                    stateCityData:
+                                                                                        additionalRequesterCityResponse!
+                                                                                            .data!
+                                                                                            .cityContent!
+                                                                                            .stateData!);
+                                                                              }
+                                                                            },
+                                                                            suffixIcon: (value, data) {
+                                                                              return Container(
+                                                                                  height: 16,
+                                                                                  width: 16,
+                                                                                  padding:
+                                                                                      EdgeInsetsDirectional
+                                                                                          .only(end: 8),
+                                                                                  child: AppSvg.asset(
+                                                                                      AssetUtils.downArrow,
+                                                                                      color: AppColor
+                                                                                          .dark_gray_1));
+                                                                            },
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: 16,
+                                                                          ),
+                                                                          AppTextField(
+                                                                            labelText: S.of(context).postCode,
+                                                                            hintText:
+                                                                                S.of(context).pleaseEnter,
+                                                                            controller: model
+                                                                                .additionalRequesterPostCodeController,
+                                                                            key: model
+                                                                                .additionalRequesterPostCodeKey,
+                                                                            inputAction: TextInputAction.go,
+                                                                            onChanged: (value) {
+                                                                              model.isValid();
+                                                                            },
+                                                                          ),
+                                                                          SizedBox(
+                                                                            height: MediaQuery.of(context)
+                                                                                .viewInsets
+                                                                                .bottom,
+                                                                          ),
+                                                                        ],
+                                                                      ))
+                                                                ],
+                                                              );
+                                                            },
+                                                          ),
+                                                          Center(
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(top: 32),
+                                                              child: AppStreamBuilder<bool>(
+                                                                  stream: model.allFieldValidatorStream,
+                                                                  initialData: false,
+                                                                  dataBuilder: (context, isValid) {
+                                                                    return (isValid!)
+                                                                        ? AnimatedButton(
+                                                                            buttonText:
+                                                                                S.of(context).swipeToProceed,
+                                                                            buttonHeight: 50,
+                                                                          )
+                                                                        : Container();
+                                                                  }),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      });
+                                });
                           });
                     }),
               );

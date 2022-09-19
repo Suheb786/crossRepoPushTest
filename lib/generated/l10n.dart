@@ -13689,6 +13689,26 @@ class S {
       args: [],
     );
   }
+
+  /// `ADDRESS`
+  String get address {
+    return Intl.message(
+      'ADDRESS',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your location is restricted from using this app.`
+  String get locationRestricted {
+    return Intl.message(
+      'Your location is restricted from using this app.',
+      name: 'locationRestricted',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -21,11 +21,10 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   FatcaCrsRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<GetFatcaQuestionsResponseEntity>>
-      getFatcaQuestions() async {
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getFatcaQuestions(GetFatcaQuestionsRequestEntity(
-        baseData: baseData.toJson(), getToken: true));
+    return _apiService
+        .getFatcaQuestions(GetFatcaQuestionsRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
@@ -55,12 +54,10 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   }
 
   @override
-  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
-      {String? image}) async {
+  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature({String? image}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.uploadSignature(UploadSignatureRequestEntity(
-        baseData: baseData.toJson(),
-        image: ImageUtils.convertToBase64(image!)));
+    return _apiService.uploadSignature(
+        UploadSignatureRequestEntity(baseData: baseData.toJson(), image: ImageUtils.convertToBase64(image!)));
   }
 
   @override
@@ -142,12 +139,15 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
       String? taxPayer,
       String? socialSecurityNumber,
       String? employerTin,
-      String? signatureId}) async {
+      String? signatureId,
+      String? countryCode,
+      String? requesterCountryCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveFatcaW9(SetFatcaW9RequestEntity(
       namePerIncomeTaxReturn: namePerIncomeTaxReturn,
       businessName: businessName,
       uSAddress: usAddress,
+      countryCode: countryCode,
       cityId: city,
       stateId: state,
       postCode: postCode,
@@ -157,6 +157,7 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
       isAdditionalRequester: additionalRequester,
       requesterName: requesterName,
       requesterUSAddress: requesterUsAddress,
+      requesterCountryCode: requesterCountryCode,
       requesterCity: requesterCity,
       requesterState: requesterState,
       requesterPostCode: requesterPostCode,

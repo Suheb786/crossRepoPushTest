@@ -209,7 +209,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/login")
+  @POST("/auth/loginV1")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("/auth/RegisterV3")
@@ -551,7 +551,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> saveFatcaW8(@Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
 
   ///set fatca w9
-  @POST("/FatcaCrs/SetW9")
+  @POST("/FatcaCrs/SetW9V1")
   Future<HttpResponse<ResponseEntity>> saveFatcaW9(@Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
 
   @POST("/Auth/CheckIssuer")

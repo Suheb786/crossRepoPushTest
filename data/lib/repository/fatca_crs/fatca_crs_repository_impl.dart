@@ -13,8 +13,7 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   FatcaCrsRepositoryImpl(this._crsRemoteDS);
 
   @override
-  Future<Either<NetworkError, GetFatcaQuestionsResponse>>
-      getFatcaQuestions() async {
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions() async {
     final result = await safeApiCall(
       _crsRemoteDS.getFatcaQuestions(),
     );
@@ -55,8 +54,7 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   }
 
   @override
-  Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature(
-      {required String image}) async {
+  Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature({required String image}) async {
     final result = await safeApiCall(
       _crsRemoteDS.uploadSignature(image: image),
     );
@@ -149,7 +147,9 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
       String? taxPayer,
       String? socialSecurityNumber,
       String? employerTin,
-      String? signatureId}) async {
+      String? signatureId,
+      String? countryCode,
+      String? requesterCountryCode}) async {
     final result = await safeApiCall(
       _crsRemoteDS.saveFatcaW9(
           namePerIncomeTaxReturn: namePerIncomeTaxReturn,
@@ -170,7 +170,9 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
           taxPayer: taxPayer,
           socialSecurityNumber: socialSecurityNumber,
           employerTin: employerTin,
-          signatureId: signatureId),
+          signatureId: signatureId,
+          countryCode: countryCode,
+          requesterCountryCode: requesterCountryCode),
     );
     return result!.fold(
         (l) => Left(l),

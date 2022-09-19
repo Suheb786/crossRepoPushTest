@@ -6,17 +6,17 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class FatcaUSRelevantW9AddressDetailsUseCase extends BaseUseCase<LocalError,
-    FatcaUSRelevantW9AddressDetailsUseCaseParams, bool> {
+class FatcaUSRelevantW9AddressDetailsUseCase
+    extends BaseUseCase<LocalError, FatcaUSRelevantW9AddressDetailsUseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required FatcaUSRelevantW9AddressDetailsUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required FatcaUSRelevantW9AddressDetailsUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
 
 class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
   final String? address;
+  final String? country;
   final String? state;
   final String? city;
   final String? postCode;
@@ -26,6 +26,7 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
   bool isAdditionalRequester;
   final String? additionalRequesterName;
   final String? additionalRequesterAddress;
+  final String? additionalRequesterCountry;
   final String? additionalRequesterCity;
   final String? additionalRequesterState;
   final String? additionalRequesterPostCode;
@@ -33,12 +34,14 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
   FatcaUSRelevantW9AddressDetailsUseCaseParams(
       {this.address,
       this.city,
+      this.country,
       this.accountNumber,
       this.postCode,
       this.state,
       this.exemptPayeeCode,
       required this.isAdditionalRequester,
       this.additionalRequesterAddress,
+      this.additionalRequesterCountry,
       this.additionalRequesterCity,
       this.additionalRequesterName,
       this.additionalRequesterPostCode,
@@ -48,56 +51,40 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (address!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_ADDRESS,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_ADDRESS, cause: Exception()));
+    } else if (country!.isEmpty) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_COUNTRY, cause: Exception()));
     } else if (state!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_STATE,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_STATE, cause: Exception()));
     } else if (city!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_CITY,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_CITY, cause: Exception()));
     } else if (postCode!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_POSTCODE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_POSTCODE, cause: Exception()));
     } else if (exemptFromFatcaReportingCode!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EXEMPTION_FATCA_CODE,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_EXEMPTION_FATCA_CODE, cause: Exception()));
     } else if (isAdditionalRequester) {
       if (additionalRequesterName!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REQUESTER_NAME,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_NAME, cause: Exception()));
       } else if (additionalRequesterAddress!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REQUESTER_ADDRESS,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_ADDRESS, cause: Exception()));
+      } else if (additionalRequesterCountry!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_COUNTRY, cause: Exception()));
       } else if (additionalRequesterState!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REQUESTER_STATE,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_STATE, cause: Exception()));
       } else if (additionalRequesterCity!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REQUESTER_CITY,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_CITY, cause: Exception()));
       } else if (additionalRequesterPostCode!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REQUESTER_POSTCODE,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REQUESTER_POSTCODE, cause: Exception()));
       }
     }
     return Right(true);

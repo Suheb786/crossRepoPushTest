@@ -18,8 +18,7 @@ abstract class FatcaCrsRemoteDS {
       String? personRole,
       String? taxResidenceCountry});
 
-  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
-      {String image});
+  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature({String image});
 
   Future<HttpResponse<ResponseEntity>> saveFatcaW8(
       {String? nameIncomeTaxReturn,
@@ -67,7 +66,9 @@ abstract class FatcaCrsRemoteDS {
       String? taxPayer,
       String? socialSecurityNumber,
       String? employerTin,
-      String? signatureId});
+      String? signatureId,
+      String? countryCode,
+      String? requesterCountryCode});
 }
 
 abstract class FatcaCrsLocalDS {}

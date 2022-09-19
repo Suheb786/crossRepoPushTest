@@ -43,9 +43,9 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                         ProviderScope.containerOf(context).read(registerStepFourViewModelProvider).nextPage();
                         // .next();
                       });
-                      ProviderScope.containerOf(context)
-                          .read(fatcaUSRelevantW9AddressPageViewModelProvider)
-                          .getStateList('USA');
+                      // ProviderScope.containerOf(context)
+                      //     .read(fatcaUSRelevantW9AddressPageViewModelProvider)
+                      //     .getStateList('USA');
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }

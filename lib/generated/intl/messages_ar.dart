@@ -137,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("دخل إضافي"),
+        "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("العنوان بأمريكا"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -1419,6 +1420,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-138)"),
         "locateATM": MessageLookupByLibrary.simpleMessage("موقع الصراف الآلي"),
+        "locationRestricted": MessageLookupByLibrary.simpleMessage(
+            "Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(

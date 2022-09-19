@@ -140,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have additional source of income"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -1478,6 +1479,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loanValuesNotFound": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
+        "locationRestricted": MessageLookupByLibrary.simpleMessage(
+            "Your location is restricted from using this app."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
