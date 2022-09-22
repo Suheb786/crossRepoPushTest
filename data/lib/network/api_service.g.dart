@@ -78,7 +78,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RegisterResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/auth/RegisterV3',
+                .compose(_dio.options, '/auth/RegisterV4',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RegisterResponseEntity.fromJson(_result.data!);
@@ -220,7 +220,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CheckKycStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/kyc/getstatus',
+                .compose(_dio.options, '/kyc/getstatusV1',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckKycStatusResponseEntity.fromJson(_result.data!);
@@ -436,7 +436,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<SaveUploadDocumentResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/FileUpload/SaveUploadDocumentsDocs',
+                .compose(_dio.options, '/FileUpload/SaveUploadDocumentsDocsV1',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SaveUploadDocumentResponseEntity.fromJson(_result.data!);
@@ -1802,7 +1802,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CheckForgetPasswordResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/Auth/CheckForgetPasswordCred',
+                .compose(_dio.options, '/Auth/CheckForgetPasswordCredV1',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckForgetPasswordResponseEntity.fromJson(_result.data!);
@@ -2160,7 +2160,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<CurrentVersionResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/AppVersion/currentversionPEV1',
+                .compose(_dio.options, '/AppVersion/currentversionPEV2',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CurrentVersionResponseEntity.fromJson(_result.data!);

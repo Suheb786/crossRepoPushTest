@@ -13709,6 +13709,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Oops, Your verification call has been dropped, please reconnect again`
+  String get callDroppedDesc {
+    return Intl.message(
+      'Oops, Your verification call has been dropped, please reconnect again',
+      name: 'callDroppedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Blink mobile application is not available in your region!`
+  String get applicationNotAvailableInRegion {
+    return Intl.message(
+      'The Blink mobile application is not available in your region!',
+      name: 'applicationNotAvailableInRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attention`
+  String get attention {
+    return Intl.message(
+      'Attention',
+      name: 'attention',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

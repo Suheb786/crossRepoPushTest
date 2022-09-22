@@ -1392,5 +1392,8 @@
   "agentNotAvailablePopUpDesc": "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM",
   "ahwalServiceNotAvailable": "Service is down please try again later",
   "address": "ADDRESS",
-  "locationRestricted": "Your location is restricted from using this app."
+  "locationRestricted": "Your location is restricted from using this app.",
+  "callDroppedDesc": "Oops, Your verification call has been dropped, please reconnect again",
+  "applicationNotAvailableInRegion": "The Blink mobile application is not available in your region!",
+  "attention": "Attention"
 }

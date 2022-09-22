@@ -187,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
         "applicationInProcess": MessageLookupByLibrary.simpleMessage(
             "Your Application Is In Process"),
+        "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
+            "The Blink mobile application is not available in your region!"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
         "applicationRejectedByEngagementTeam": MessageLookupByLibrary.simpleMessage(
@@ -233,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "atmLimitExceeded": MessageLookupByLibrary.simpleMessage(
             "Atm withdrawal limit exceeded."),
         "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
+        "attention": MessageLookupByLibrary.simpleMessage("Attention"),
         "authorization": MessageLookupByLibrary.simpleMessage("authorization."),
         "authorize": MessageLookupByLibrary.simpleMessage(
             "I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card "),
@@ -304,6 +307,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "Your call was disconnected. Please try again."),
+        "callDroppedDesc": MessageLookupByLibrary.simpleMessage(
+            "Oops, Your verification call has been dropped, please reconnect again"),
         "callHangupError": MessageLookupByLibrary.simpleMessage(
             "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),

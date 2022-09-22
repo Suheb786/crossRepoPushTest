@@ -137,13 +137,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك دخل إضافي"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("دخل إضافي"),
-        "address": MessageLookupByLibrary.simpleMessage("ADDRESS"),
+        "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "addressInUnitedStates":
             MessageLookupByLibrary.simpleMessage("العنوان بأمريكا"),
         "agentNotAvailable": MessageLookupByLibrary.simpleMessage(
             "فريقنا غير متاح حالياً، حاول بعدين."),
         "agentNotAvailablePopUpDesc": MessageLookupByLibrary.simpleMessage(
-            "Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM"),
+            "نأسف ، فريقنا غير متاح حالياً، يرجى المحاولة لاحقًا. فريق التواصل المتخصص بطلبات البطاقات الائتمانية متاح 7 أيام في الأسبوع بين الساعة 10:00 صباحًا - 6:00 مساءً"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "اختار الموظف المفضل إلك لتحكي معه"),
         "agreeData": MessageLookupByLibrary.simpleMessage("و "),
@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ahwalFailed": MessageLookupByLibrary.simpleMessage(
             "عفواً! صارخطأ. حاول كمان مرة بعدين أو تواصل معنا على التطبيق أو بالاتصال على 06-5200100 . (Err-301)"),
         "ahwalServiceNotAvailable": MessageLookupByLibrary.simpleMessage(
-            "Service is down please try again later"),
+            "الخدمة معطلة ، جرّب كمان مرة بعدين "),
         "alias": MessageLookupByLibrary.simpleMessage("اسم مستعار"),
         "allTime": MessageLookupByLibrary.simpleMessage("كل الأوقات"),
         "allTransaction": MessageLookupByLibrary.simpleMessage("كل الحركات"),
@@ -182,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "لقد تم تقيم طلبك بناءً على معلوماتك الشخصية والائتمانية وللأسف لم يتم الموافقه غليها. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),
         "applicationInProcess":
             MessageLookupByLibrary.simpleMessage("طلبك قيد المعالجة"),
+        "applicationNotAvailableInRegion": MessageLookupByLibrary.simpleMessage(
+            "تطبيق بلنك غير متاح في منطقتك الجغرافية"),
         "applicationNotSuccessful":
             MessageLookupByLibrary.simpleMessage("للأسف، تم رفض طلبك."),
         "applicationRejectedByEngagementTeam":
@@ -229,6 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم تجاوز سقف السحب من الصراف الآلي"),
         "atmWithDrawal":
             MessageLookupByLibrary.simpleMessage("سحب من صراف آلي"),
+        "attention": MessageLookupByLibrary.simpleMessage("تنويه"),
         "authorization": MessageLookupByLibrary.simpleMessage("تفويض"),
         "authorize": MessageLookupByLibrary.simpleMessage(
             "أقر بأنني قرأت وفهمت ووافقت على الشروط والأحكام العامة لبطاقات Blink الائتمانية"),
@@ -287,6 +290,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessType": MessageLookupByLibrary.simpleMessage("نوع العمل"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "لقد تم انقطاع الاتصال، يرجى المحاولة مرة اخرى"),
+        "callDroppedDesc": MessageLookupByLibrary.simpleMessage(
+            "عفواً! صار خطأ في الأتصال, حاول كمان مرة"),
         "callHangupError":
             MessageLookupByLibrary.simpleMessage("خطأ خلال إنهاء المكالمة"),
         "callHasEnded":
@@ -517,8 +522,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("وصلتك البطاقة الائتمانية؟"),
         "creditCardIssuanceFailure": MessageLookupByLibrary.simpleMessage(
             "عفواً! في مشكلة باسترداد معلومات بطاقتك. حاول كمان مرة بعدين."),
-        "creditCardOnDelivery":
-            MessageLookupByLibrary.simpleMessage("Credit card\non delivery"),
+        "creditCardOnDelivery": MessageLookupByLibrary.simpleMessage(
+            "بطاقة الائتمان\nالبطاقة في الطريق"),
         "creditCardReqError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "creditCardServicesUnavailable": MessageLookupByLibrary.simpleMessage(
@@ -1421,7 +1426,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-138)"),
         "locateATM": MessageLookupByLibrary.simpleMessage("موقع الصراف الآلي"),
         "locationRestricted": MessageLookupByLibrary.simpleMessage(
-            "Your location is restricted from using this app."),
+            " تطبيق بلنك غير متاح في منطقتك الجغرافية."),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
