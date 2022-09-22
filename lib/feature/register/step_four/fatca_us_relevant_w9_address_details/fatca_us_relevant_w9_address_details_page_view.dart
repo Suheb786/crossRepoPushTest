@@ -149,18 +149,20 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             readOnly: true,
                                                             controller: model.countryController,
                                                             onPressed: () {
-                                                              CountryDialog.show(context,
-                                                                  title: S.of(context).country,
-                                                                  onDismissed: () {
-                                                                Navigator.pop(context);
-                                                              }, onSelected: (value) {
-                                                                Navigator.pop(context);
-                                                                model.countryController.text =
-                                                                    value.countryName!;
-                                                                model.stateController.clear();
-                                                                model.currentCountry = value;
-                                                                model.getStateList(value.isoCode3 ?? '');
-                                                                model.isValid();
+                                                              Future.delayed(Duration(milliseconds: 200), () {
+                                                                CountryDialog.show(context,
+                                                                    title: S.of(context).country,
+                                                                    onDismissed: () {
+                                                                  Navigator.pop(context);
+                                                                }, onSelected: (value) {
+                                                                  Navigator.pop(context);
+                                                                  model.countryController.text =
+                                                                      value.countryName!;
+                                                                  model.stateController.clear();
+                                                                  model.currentCountry = value;
+                                                                  model.getStateList(value.isoCode3 ?? '');
+                                                                  model.isValid();
+                                                                });
                                                               });
                                                             },
                                                             suffixIcon: (value, data) {
@@ -467,25 +469,30 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             controller: model
                                                                                 .additionalRequesterCountryController,
                                                                             onPressed: () {
-                                                                              CountryDialog.show(context,
-                                                                                  title:
-                                                                                      S.of(context).country,
-                                                                                  onDismissed: () {
-                                                                                Navigator.pop(context);
-                                                                              }, onSelected: (value) {
-                                                                                Navigator.pop(context);
-                                                                                model
-                                                                                    .additionalRequesterCountryController
-                                                                                    .text = value.countryName!;
-                                                                                model
-                                                                                    .additionalRequesterStateController
-                                                                                    .clear();
-                                                                                model.additionalRequesterCurrentCountry =
-                                                                                    value;
-                                                                                model
-                                                                                    .getAdditionalRequesterStateList(
-                                                                                        value.isoCode3 ?? '');
-                                                                                model.isValid();
+                                                                              Future.delayed(
+                                                                                  Duration(milliseconds: 200),
+                                                                                  () {
+                                                                                CountryDialog.show(context,
+                                                                                    title:
+                                                                                        S.of(context).country,
+                                                                                    onDismissed: () {
+                                                                                  Navigator.pop(context);
+                                                                                }, onSelected: (value) {
+                                                                                  Navigator.pop(context);
+                                                                                  model.additionalRequesterCountryController
+                                                                                          .text =
+                                                                                      value.countryName!;
+                                                                                  model
+                                                                                      .additionalRequesterStateController
+                                                                                      .clear();
+                                                                                  model.additionalRequesterCurrentCountry =
+                                                                                      value;
+                                                                                  model
+                                                                                      .getAdditionalRequesterStateList(
+                                                                                          value.isoCode3 ??
+                                                                                              '');
+                                                                                  model.isValid();
+                                                                                });
                                                                               });
                                                                             },
                                                                             suffixIcon: (value, data) {
