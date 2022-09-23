@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -94,15 +95,15 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                       child: Card(
                         child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom - 48),
+                                    : MediaQuery.of(context).viewInsets.bottom - 48.h),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: SingleChildScrollView(
-                                    padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                    padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,15 +131,15 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                           },
                                           suffixIcon: (value, data) {
                                             return Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsetsDirectional.only(end: 8.w),
                                                 child: AppSvg.asset(AssetUtils.downArrow,
                                                     color: AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 16.h,
                                         ),
                                         AppStreamBuilder<bool>(
                                             stream: model.taxPayerVisibilityStream,
@@ -163,8 +164,8 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                                 inputAction: TextInputAction.go,
                                                                 labelIcon: () {
                                                                   return Padding(
-                                                                    padding: const EdgeInsetsDirectional.only(
-                                                                        start: 4.0),
+                                                                    padding: EdgeInsetsDirectional.only(
+                                                                        start: 4.0.w),
                                                                     child: InkWell(
                                                                       onTap: () {
                                                                         Navigator.pushNamed(
@@ -194,8 +195,8 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                                 inputAction: TextInputAction.go,
                                                                 labelIcon: () {
                                                                   return Padding(
-                                                                    padding: const EdgeInsetsDirectional.only(
-                                                                        start: 4.0),
+                                                                    padding: EdgeInsetsDirectional.only(
+                                                                        start: 4.0.w),
                                                                     child: InkWell(
                                                                       onTap: () {
                                                                         ///TODO: create foreign identification info page
@@ -213,7 +214,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                       },
                                                     ),
                                                     SizedBox(
-                                                      height: 16,
+                                                      height: 16.h,
                                                     ),
                                                     AppTextField(
                                                       labelText: S.of(context).referenceNumber,
@@ -223,7 +224,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                       inputAction: TextInputAction.go,
                                                       labelIcon: () {
                                                         return Padding(
-                                                          padding: const EdgeInsets.only(left: 4.0),
+                                                          padding: EdgeInsets.only(left: 4.0.w),
                                                           child: InkWell(
                                                             onTap: () {
                                                               Navigator.pushNamed(
@@ -247,7 +248,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                           initialData: false,
                                           dataBuilder: (context, isActive) {
                                             return Padding(
-                                              padding: const EdgeInsets.only(top: 24.0),
+                                              padding: EdgeInsets.only(top: 24.0.h),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -262,7 +263,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                     isActive: isActive,
                                                   ),
                                                   SizedBox(
-                                                    height: 8,
+                                                    height: 8.h,
                                                   ),
                                                   InkWell(
                                                     onTap: () {
@@ -280,12 +281,12 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color,
-                                                          fontSize: 12,
+                                                          fontSize: 12.t,
                                                           fontWeight: FontWeight.w600),
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    height: 16,
+                                                    height: 16.h,
                                                   ),
                                                   Visibility(
                                                     visible: isActive!,
@@ -318,15 +319,15 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                           },
                                                           suffixIcon: (value, data) {
                                                             return Container(
-                                                                height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsets.only(right: 8),
+                                                                height: 16.h,
+                                                                width: 16.w,
+                                                                padding: EdgeInsets.only(right: 8.w),
                                                                 child: AppSvg.asset(AssetUtils.downArrow,
                                                                     color: AppColor.dark_gray_1));
                                                           },
                                                         ),
                                                         SizedBox(
-                                                          height: 16,
+                                                          height: 16.h,
                                                         ),
                                                         AppTextField(
                                                           labelText:
@@ -340,7 +341,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                           },
                                                         ),
                                                         SizedBox(
-                                                          height: 16,
+                                                          height: 16.h,
                                                         ),
                                                         AppTextField(
                                                           labelText:
@@ -354,7 +355,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                           },
                                                         ),
                                                         SizedBox(
-                                                          height: 16,
+                                                          height: 16.h,
                                                         ),
                                                         AppTextField(
                                                           labelText: S.of(context).typeOfIncome.toUpperCase(),
@@ -367,7 +368,7 @@ class FatcaUSW8TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW8TaxP
                                                           },
                                                         ),
                                                         SizedBox(
-                                                          height: 16,
+                                                          height: 16.h,
                                                         ),
                                                         AppTextField(
                                                           labelText: S.of(context).explanation,

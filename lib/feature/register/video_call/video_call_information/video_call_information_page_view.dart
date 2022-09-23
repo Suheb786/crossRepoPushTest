@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -76,7 +77,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                         margin: EdgeInsets.zero,
                         shadowColor: AppColor.black.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -85,11 +86,12 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                     child: Column(
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 35.0, bottom: 24),
+                                          padding: EdgeInsets.only(top: 35.0.h, bottom: 24.h),
                                           child: Container(
-                                            height: 78,
-                                            width: 78,
-                                            padding: EdgeInsets.symmetric(horizontal: 25.07, vertical: 22.29),
+                                            height: 78.h,
+                                            width: 78.w,
+                                            padding:
+                                                EdgeInsets.symmetric(horizontal: 25.07.w, vertical: 22.29.h),
                                             decoration: BoxDecoration(
                                               color: AppColor.vividYellow,
                                               shape: BoxShape.circle,
@@ -103,12 +105,12 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 20,
+                                              fontSize: 20.t,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).primaryColorDark),
                                         ),
                                         SizedBox(
-                                          height: 43,
+                                          height: 43.h,
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -123,7 +125,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   fontWeight: FontWeight.w600)),
                                         ),
                                       ],
@@ -131,7 +133,7 @@ class VideoCallInformationPageView extends BasePageViewWidget<VideoCallInformati
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
+                                  padding: EdgeInsets.only(top: 8.0.h),
                                   child: AnimatedButton(
                                     buttonText: S.of(context).swipeToProceed,
                                   ),

@@ -10,9 +10,9 @@ class DcSettingVisaCardPage extends BasePage<DcSettingVisaCardPageViewModel> {
   DcSettingVisaCardPageState createState() => DcSettingVisaCardPageState();
 }
 
-class DcSettingVisaCardPageState extends BaseStatefulPage<
-    DcSettingVisaCardPageViewModel,
-    DcSettingVisaCardPage> with TickerProviderStateMixin {
+class DcSettingVisaCardPageState
+    extends BaseStatefulPage<DcSettingVisaCardPageViewModel, DcSettingVisaCardPage>
+    with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return dcSettingVisaCardViewModelProvider;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardIssuanceFailureWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsetsDirectional.all(15),
+        padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -26,7 +27,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
           margin: EdgeInsets.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(AssetUtils.creditBlurCard),
@@ -39,7 +40,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
               children: [
                 AppSvg.asset(AssetUtils.failure),
                 SizedBox(
-                  height: 16,
+                  height: 16.0.h,
                 ),
                 Text(
                   getLabel(type, context),
@@ -47,7 +48,7 @@ class CreditCardIssuanceFailureWidget extends StatelessWidget {
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
-                      fontSize: isSmallDevices ? 12 : 14,
+                      fontSize: 14.0.t,
                       fontWeight: FontWeight.w600),
                 ),
               ],

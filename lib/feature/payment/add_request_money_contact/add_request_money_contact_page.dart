@@ -6,19 +6,17 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_page_view.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
 
-class AddRequestMoneyContactPage
-    extends BasePage<AddRequestMoneyContactViewModel> {
+class AddRequestMoneyContactPage extends BasePage<AddRequestMoneyContactViewModel> {
   final List<Beneficiary>? beneficiaries;
 
   AddRequestMoneyContactPage({this.beneficiaries});
 
   @override
-  AddRequestMoneyContactPageState createState() =>
-      AddRequestMoneyContactPageState();
+  AddRequestMoneyContactPageState createState() => AddRequestMoneyContactPageState();
 }
 
-class AddRequestMoneyContactPageState extends BaseStatefulPage<
-    AddRequestMoneyContactViewModel, AddRequestMoneyContactPage> {
+class AddRequestMoneyContactPageState
+    extends BaseStatefulPage<AddRequestMoneyContactViewModel, AddRequestMoneyContactPage> {
   @override
   ProviderBase provideBase() {
     return addRequestMoneyContactViewModelProvider;

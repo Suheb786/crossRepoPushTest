@@ -6,19 +6,17 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_page_view.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 
-class RequestAmountFromContactPage
-    extends BasePage<RequestAmountFromContactViewModel> {
+class RequestAmountFromContactPage extends BasePage<RequestAmountFromContactViewModel> {
   Beneficiary? beneficiary;
 
   RequestAmountFromContactPage({this.beneficiary});
 
   @override
-  RequestAmountFromContactPageState createState() =>
-      RequestAmountFromContactPageState();
+  RequestAmountFromContactPageState createState() => RequestAmountFromContactPageState();
 }
 
-class RequestAmountFromContactPageState extends BaseStatefulPage<
-    RequestAmountFromContactViewModel, RequestAmountFromContactPage> {
+class RequestAmountFromContactPageState
+    extends BaseStatefulPage<RequestAmountFromContactViewModel, RequestAmountFromContactPage> {
   @override
   ProviderBase provideBase() {
     return requestAmountFromContactViewModelProvider.call(widget.beneficiary!);

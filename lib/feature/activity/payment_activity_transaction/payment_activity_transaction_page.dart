@@ -5,15 +5,13 @@ import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page_view.dart';
 import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_view_model.dart';
 
-class PaymentActivityTransactionPage
-    extends BasePage<PaymentActivityTransactionViewModel> {
+class PaymentActivityTransactionPage extends BasePage<PaymentActivityTransactionViewModel> {
   @override
-  PaymentActivityTransactionPageState createState() =>
-      PaymentActivityTransactionPageState();
+  PaymentActivityTransactionPageState createState() => PaymentActivityTransactionPageState();
 }
 
-class PaymentActivityTransactionPageState extends BaseStatefulPage<
-    PaymentActivityTransactionViewModel, PaymentActivityTransactionPage> {
+class PaymentActivityTransactionPageState
+    extends BaseStatefulPage<PaymentActivityTransactionViewModel, PaymentActivityTransactionPage> {
   @override
   ProviderBase provideBase() {
     return paymentActivityTransactionViewModelProvider;
@@ -25,8 +23,7 @@ class PaymentActivityTransactionPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, PaymentActivityTransactionViewModel model) {
+  Widget buildView(BuildContext context, PaymentActivityTransactionViewModel model) {
     return PaymentActivityTransactionPageView(provideBase());
   }
 }

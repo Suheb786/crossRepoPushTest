@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -91,11 +92,11 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                       ? 0
-                                      : MediaQuery.of(context).viewInsets.bottom - 48),
+                                      : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
                               child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.0.h, horizontal: 24.0.w),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -110,7 +111,7 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                         return Visibility(
                                           visible: isActive,
                                           child: Padding(
-                                            padding: EdgeInsets.only(top: 16.0),
+                                            padding: EdgeInsets.only(top: 16.0.h),
                                             child: AppTextField(
                                               labelText: S.of(context).otherNationality.toUpperCase(),
                                               hintText: S.of(context).pleaseSelect,
@@ -129,9 +130,9 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                               },
                                               suffixIcon: (value, data) {
                                                 return Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding: EdgeInsetsDirectional.only(end: 8),
+                                                    height: 16.0.h,
+                                                    width: 16.0.w,
+                                                    padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                     child: AppSvg.asset(AssetUtils.downArrow,
                                                         color: AppColor.dark_gray_1));
                                               },
@@ -151,7 +152,7 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                         return Visibility(
                                           visible: isActive,
                                           child: Padding(
-                                            padding: EdgeInsets.only(top: 16.0),
+                                            padding: EdgeInsets.only(top: 16.0.h),
                                             child: AppTextField(
                                               labelText: S.of(context).spouseNameCaps,
                                               hintText: S.of(context).pleaseEnter,
@@ -176,7 +177,7 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                           return Visibility(
                                             visible: isActive,
                                             child: Padding(
-                                              padding: EdgeInsets.only(top: 16.0),
+                                              padding: EdgeInsets.only(top: 16.0.h),
                                               child: AppTextField(
                                                 labelText: S.of(context).natureOfSpecialNeed,
                                                 hintText: S.of(context).pleaseSelect,
@@ -194,7 +195,7 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                                 },
                                                 suffixIcon: (enabled, value) {
                                                   return AppSvg.asset(AssetUtils.dropDown,
-                                                      color: AppColor.dark_gray_1, width: 16, height: 16);
+                                                      color: AppColor.dark_gray_1, width: 16.w, height: 16.h);
                                                 },
                                               ),
                                             ),
@@ -224,18 +225,18 @@ class ProfileDetailsPageView extends BasePageViewWidget<ProfileDetailsPageViewMo
                                       },
                                     ),
                                     SizedBox(
-                                      height: 20,
+                                      height: 20.h,
                                     ),
                                     Text(
                                       S.of(context).whatIsYourEmploymentStatus,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).primaryColorDark),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).employmentStatus,

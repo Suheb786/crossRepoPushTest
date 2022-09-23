@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSettlementViewModel> {
@@ -20,7 +21,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         SizedBox(
-          height: 50,
+          height: 50.h,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +31,7 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(start: 24.0),
+                padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: AppSvg.asset(AssetUtils.leftArrow,
                     matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
@@ -41,18 +42,18 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14),
+                  fontSize: 14.t),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 18.0),
+              padding: EdgeInsetsDirectional.only(end: 18.0.w),
               child: Container(
-                width: 28,
+                width: 28.w,
               ),
             )
           ],
         ),
         SizedBox(
-          height: 35,
+          height: 35.h,
         ),
         Expanded(
             child: Container(
@@ -88,13 +89,13 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   color: Theme.of(context).inputDecorationTheme.hintStyle!.color ??
                                       AppColor.gray1),
                             )),
                             AppSvg.asset(AssetUtils.rightChevron,
-                                width: 20,
-                                height: 20,
+                                width: 20.w,
+                                height: 20.h,
                                 color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                           ],
                         ),
@@ -109,18 +110,18 @@ class ManageCreditSettlementPageView extends BasePageViewWidget<ManageCreditSett
                               creditCard: model.arguments!.creditCard));
                     },
                     child: Padding(
-                      padding: EdgeInsets.all(24),
+                      padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 24.0.h),
                       child: Row(
                         children: [
                           Expanded(
                               child: Text(
                             S.of(context).changeSettlementOptions,
                             style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14),
+                                fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.t),
                           )),
                           AppSvg.asset(AssetUtils.rightChevron,
-                              width: 20,
-                              height: 20,
+                              width: 20.w,
+                              height: 20.t,
                               color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                         ],
                       ),

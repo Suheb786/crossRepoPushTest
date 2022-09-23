@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_d
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -23,7 +24,7 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
   @override
   Widget build(BuildContext context, model) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.w),
       child: Scaffold(
         primary: true,
         extendBody: true,
@@ -112,13 +113,13 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                                 case Status.SUCCESS:
                                   return Padding(
                                     padding: EdgeInsets.only(
-                                        bottom:
-                                            20 /*MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                        bottom: 20
+                                            .h /*MediaQuery.of(context).viewInsets.bottom - 50 <= 0
                                             ? 0
                                             : MediaQuery.of(context).viewInsets.bottom - 48*/
                                         ),
                                     child: SingleChildScrollView(
-                                      padding: EdgeInsets.symmetric(horizontal: 24),
+                                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                                       physics: ClampingScrollPhysics(),
                                       primary: true,
                                       child: Column(
@@ -162,7 +163,7 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                                               primary: false),
                                           Center(
                                             child: Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 32),
+                                              padding: EdgeInsets.symmetric(vertical: 32.h),
                                               child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                             ),
                                           )
@@ -171,16 +172,10 @@ class TaxationDetailsPageView extends BasePageViewWidget<TaxationDetailsPageView
                                     ),
                                   );
                                 case Status.LOADING:
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      valueColor:
-                                          AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-                                      strokeWidth: 2,
-                                    ),
-                                  );
+                                  return Container();
                                 default:
                                   return Center(
-                                    child: Text('Something went wrong'),
+                                    child: Text(S.of(context).somethingWentWrong),
                                   );
                               }
                             },

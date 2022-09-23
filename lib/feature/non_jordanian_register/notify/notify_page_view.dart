@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -43,7 +44,7 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                         if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(context, RoutePaths.NotifySuccess,
                               arguments: NotifySuccessArguments(
-                                  referenceNo: data.data!.registerInterestContent!.referenceNo!));
+                                  referenceNo: data.data?.registerInterestContent?.referenceNo ?? '-'));
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }
@@ -70,7 +71,7 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                             margin: EdgeInsets.zero,
                             shadowColor: AppColor.black.withOpacity(0.32),
                             child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -85,33 +86,37 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                         model.validate();
                                       },
                                     ),
-                                    SizedBox(
-                                      height: MediaQuery.of(context).viewInsets.bottom,
-                                    ),
-                                    AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonText: S.of(context).swipeToProceed,
-                                            ),
-                                          );
-                                        }),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        S.of(context).backToRegistration,
-                                        style: TextStyle(
-                                          fontFamily: StringUtils.appFont,
-                                          color: AppColor.brightBlue,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                    Column(
+                                      children: [
+                                        AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return Visibility(
+                                                visible: isValid!,
+                                                child: AnimatedButton(
+                                                  buttonText: S.of(context).swipeToProceed,
+                                                ),
+                                              );
+                                            }),
+                                        SizedBox(
+                                          height: 10.h,
                                         ),
-                                      ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            S.of(context).backToRegistration,
+                                            style: TextStyle(
+                                              fontFamily: StringUtils.appFont,
+                                              color: AppColor.brightBlue,
+                                              fontSize: 14.t,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 )),

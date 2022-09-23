@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BiometricLoginDialogView extends StatelessWidget {
@@ -26,23 +27,23 @@ class BiometricLoginDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
               child: SingleChildScrollView(
                 physics: ClampingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 56),
+                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     AppSvg.asset(AssetUtils.biometricIcon, color: AppColor.dark_gray_1),
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.only(top: 41),
+                        padding: EdgeInsets.only(top: 41.h),
                         child: Text(
                           S.of(context).enableBiometricLogin,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).primaryColorDark),
                         ),
@@ -50,12 +51,12 @@ class BiometricLoginDialogView extends StatelessWidget {
                     ),
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.only(top: 24, bottom: 90),
+                        padding: EdgeInsets.only(top: 24.h, bottom: 90.h),
                         child: Text(
                           S.of(context).biometricLoginDesc,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 14,
+                              fontSize: 14.t,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).primaryColorDark),
                         ),
@@ -83,7 +84,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                           child: Text(S.of(context).enable,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: 1,
                                   color: AppColor.white)),
@@ -91,7 +92,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 25.0),
+                      padding: EdgeInsets.only(top: 25.0.h),
                       child: Center(
                         child: InkWell(
                           onTap: () {
@@ -101,7 +102,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                             S.of(context).mayBeLater,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 14,
+                                fontSize: 14.t,
                                 letterSpacing: 1,
                                 fontWeight: FontWeight.w600,
                                 color: AppColor.brightBlue),

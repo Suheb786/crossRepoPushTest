@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/register/step_three/register_step_three_page.da
 import 'package:neo_bank/feature/register/step_two/register_step_two_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   RegisterPageView(ProviderBase model) : super(model);
@@ -23,11 +24,11 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageSubject,

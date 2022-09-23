@@ -21,12 +21,10 @@ class NotifyPageViewModel extends BasePageViewModel {
   PublishSubject<NotifyUseCaseParams> _notifyRequest = PublishSubject();
 
   ///notify response holder
-  PublishSubject<Resource<RegisterInterestResponse>> _notifyResponse =
-      PublishSubject();
+  PublishSubject<Resource<RegisterInterestResponse>> _notifyResponse = PublishSubject();
 
   ///notify request stream
-  Stream<Resource<RegisterInterestResponse>> get notifyStream =>
-      _notifyResponse.stream;
+  Stream<Resource<RegisterInterestResponse>> get notifyStream => _notifyResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -35,10 +33,7 @@ class NotifyPageViewModel extends BasePageViewModel {
 
   NotifyPageViewModel(this._notifyUseCase) {
     _notifyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _notifyUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _notifyUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _notifyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

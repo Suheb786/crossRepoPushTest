@@ -7,14 +7,15 @@ import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_con
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class ManageContactListPage extends BasePage<ManageContactListPageViewModel> {
   @override
   ManageContactListPageState createState() => ManageContactListPageState();
 }
 
-class ManageContactListPageState extends BaseStatefulPage<
-    ManageContactListPageViewModel, ManageContactListPage> {
+class ManageContactListPageState
+    extends BaseStatefulPage<ManageContactListPageViewModel, ManageContactListPage> {
   @override
   ProviderBase provideBase() {
     return manageContactsListViewModelProvider;
@@ -23,7 +24,7 @@ class ManageContactListPageState extends BaseStatefulPage<
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-      preferredSize: Size(double.maxFinite, 85),
+      preferredSize: Size(double.maxFinite, 85.0.h),
       child: GestureDetector(
           onVerticalDragEnd: (details) {
             Navigator.pop(context);
@@ -37,23 +38,20 @@ class ManageContactListPageState extends BaseStatefulPage<
                   Navigator.pop(context);
                 },
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.only(start: 24.0),
+                  padding: EdgeInsetsDirectional.only(start: 24.0.w),
                   child: AppSvg.asset(AssetUtils.leftArrow,
-                      matchTextDirection: true,
-                      color: Theme.of(context).accentColor),
+                      matchTextDirection: true, color: Theme.of(context).accentColor),
                 ),
               ),
               Text(
                 S.of(context).manageContacts,
                 style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    fontSize: 14.t, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.only(end: 18.0),
+                padding: EdgeInsetsDirectional.only(end: 18.0.w),
                 child: Container(
-                  width: 28,
+                  width: 28.w,
                 ),
               )
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CustomBulletWithTitle extends StatelessWidget {
@@ -19,15 +20,15 @@ class CustomBulletWithTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          width: 4,
-          height: 4,
-          margin: const EdgeInsets.only(top: 10),
+          width: 4.w,
+          height: 4.h,
+          margin: EdgeInsets.only(top: 10.h),
           decoration: BoxDecoration(
             color: AppColor.veryDarkGray1,
             shape: BoxShape.circle,
           ),
         ),
-        SizedBox(width: 5),
+        SizedBox(width: 5.w),
         Expanded(
           child: Text(
             title,

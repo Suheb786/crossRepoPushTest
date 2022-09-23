@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -23,7 +24,7 @@ class RequestPaymentFromNewRecipientPageView
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 56, bottom: 56),
+      padding: EdgeInsets.only(top: 56.0.h, bottom: 36.0.h),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
         initialData: 0,
@@ -40,7 +41,7 @@ class RequestPaymentFromNewRecipientPageView
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                   child: DotsIndicator(
                     dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
@@ -55,7 +56,7 @@ class RequestPaymentFromNewRecipientPageView
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 37),
+                  padding: EdgeInsets.only(top: 37.0.h),
                   child: ShowUpAnimation(
                     key: ValueKey(currentStep),
                     delayStart: Duration(milliseconds: 50),
@@ -69,10 +70,10 @@ class RequestPaymentFromNewRecipientPageView
                           children: [
                             Text(
                               S.of(context).requesting,
-                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20),
+                              style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 20.0.t),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 6),
+                              padding: EdgeInsets.only(top: 6.0.h),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -82,13 +83,13 @@ class RequestPaymentFromNewRecipientPageView
                                       dataBuilder: (context, isEdit) {
                                         return isEdit!
                                             ? Container(
-                                                height: 28,
-                                                width: 100,
+                                                height: 28.0.h,
+                                                width: 100.0.w,
                                                 child: TextFormField(
                                                   autofocus: true,
                                                   style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    fontSize: 28,
+                                                    fontSize: 28.0.t,
                                                     fontWeight: FontWeight.w700,
                                                   ),
                                                   cursorColor: Theme.of(context).accentColor,
@@ -96,7 +97,7 @@ class RequestPaymentFromNewRecipientPageView
                                                   keyboardType: TextInputType.number,
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
-                                                    contentPadding: EdgeInsets.only(bottom: 10),
+                                                    contentPadding: EdgeInsets.only(bottom: 10.0.h),
                                                   ),
                                                   onChanged: (value) {
                                                     if (value != ".") {
@@ -119,18 +120,18 @@ class RequestPaymentFromNewRecipientPageView
                                                     .toStringAsFixed(3),
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    fontSize: 28,
+                                                    fontSize: 28.0.t,
                                                     fontWeight: FontWeight.w700),
                                               );
                                       }),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 8),
+                                    padding: EdgeInsets.only(top: 8.0.h),
                                     child: Text(
                                       S.of(context).JOD,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.very_dark_gray1,
-                                          fontSize: 14,
+                                          fontSize: 14.0.t,
                                           fontWeight: FontWeight.w700),
                                     ),
                                   ),
@@ -138,7 +139,7 @@ class RequestPaymentFromNewRecipientPageView
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 3),
+                              padding: EdgeInsets.only(top: 3.0.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.editAmountStream,
                                   initialData: false,
@@ -154,7 +155,7 @@ class RequestPaymentFromNewRecipientPageView
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 12,
+                                            fontSize: 12.0.t,
                                             color: AppColor.very_dark_gray1),
                                       ),
                                     );
@@ -167,17 +168,19 @@ class RequestPaymentFromNewRecipientPageView
                             Text(
                               S.of(context).requestMoney,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 10),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 10.0.t),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 8),
+                              padding: EdgeInsets.only(top: 8.0.h),
                               child: Text(
                                 S.of(context).enterCode,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 20,
+                                  fontSize: 20.0.t,
                                 ),
                               ),
                             )
@@ -187,7 +190,7 @@ class RequestPaymentFromNewRecipientPageView
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 22),
+                    padding: EdgeInsets.only(top: 22.0.h),
                     child: AppSwiper(
                       pages: pages,
                       appSwiperController: model.appSwiperController,

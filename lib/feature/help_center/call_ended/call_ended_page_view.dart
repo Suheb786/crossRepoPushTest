@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
@@ -30,7 +31,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 92),
+              padding: EdgeInsets.only(top: 92.h),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -38,7 +39,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      height: 112.37,
+                      height: 112.37.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColor.vividYellow,
@@ -49,7 +50,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 24.h),
             AppStreamBuilder<String>(
                 stream: model.callDurationStream,
                 initialData: '00 : 00',
@@ -59,7 +60,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w700,
-                          fontSize: 32),
+                          fontSize: 32.t),
                     )),
             Text(
               S.of(context).callHasEnded,
@@ -67,9 +68,9 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w500,
-                  fontSize: 24),
+                  fontSize: 24.t),
             ),
-            SizedBox(height: 56),
+            SizedBox(height: 56.h),
             Text(
               S.of(context).thankYouForContacting,
               textAlign: TextAlign.center,
@@ -78,7 +79,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                   height: 1.5,
                   color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14),
+                  fontSize: 14.t),
             ),
             Spacer(),
             Column(
@@ -89,19 +90,19 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
                   borderColor: Theme.of(context).accentColor,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 14.0),
+                  padding: EdgeInsets.only(top: 14.0.h),
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w500,
-                      fontSize: 12,
+                      fontSize: 12.t,
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 32,
+                  height: 32.h,
                 )
               ],
             )

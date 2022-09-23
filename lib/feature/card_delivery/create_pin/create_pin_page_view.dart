@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -34,9 +35,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(cardDeliveryViewModelProvider)
-                      .nextPage();
+                  ProviderScope.containerOf(context).read(cardDeliveryViewModelProvider).nextPage();
                   // .next(animation: true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
@@ -75,8 +74,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -85,9 +83,8 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth:
-                                      MediaQuery.of(context).size.width / 6.4,
-                                  fieldHeight: 52,
+                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
+                                  fieldHeight: 52.h,
                                   onChanged: (val) {
                                     model.validate(val);
                                   },
@@ -95,7 +92,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 16.0),
+                              padding: EdgeInsets.only(top: 16.0.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.showButtonStream,
                                   initialData: false,
@@ -104,8 +101,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

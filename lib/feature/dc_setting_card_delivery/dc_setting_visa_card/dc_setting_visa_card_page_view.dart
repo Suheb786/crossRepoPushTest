@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -49,7 +50,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
           child: Card(
             margin: EdgeInsets.zero,
             child: Container(
-                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,10 +64,10 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                           alignment: Alignment.center,
                           children: [
                             ClipRRect(
-                                borderRadius: BorderRadius.circular(16),
+                                borderRadius: BorderRadius.circular(16.w),
                                 child: AppSvg.asset(AssetUtils.visaCard)),
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(30.w),
                               clipBehavior: Clip.antiAlias,
                               child: InkWell(
                                   onTap: () {
@@ -75,8 +76,8 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                   child: BackdropFilter(
                                     filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
                                     child: Container(
-                                      height: 60,
-                                      width: 60,
+                                      height: 60.w,
+                                      width: 60.w,
                                       child: AppSvg.asset(AssetUtils.flipButton),
                                     ),
                                   )),
@@ -89,26 +90,26 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                             Container(
                                 decoration: BoxDecoration(
                                   color: AppColor.vividYellow,
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(16.w),
                                 ),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 18.52, bottom: 52),
+                                      padding: EdgeInsets.only(top: 18.52.h, bottom: 52.h),
                                       child: Container(
-                                        height: 42,
+                                        height: 42.h,
                                         color: Theme.of(context).primaryColorDark,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Flexible(
                                             child: Padding(
-                                              padding: EdgeInsets.only(right: 8.0),
+                                              padding: EdgeInsets.only(right: 8.0.w),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -119,7 +120,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
-                                                        fontSize: 12,
+                                                        fontSize: 12.t,
                                                         color: Theme.of(context).primaryColorDark),
                                                   ),
                                                   Text(
@@ -132,7 +133,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
-                                                        fontSize: 10,
+                                                        fontSize: 10.t,
                                                         color: Theme.of(context).primaryColorDark),
                                                   ),
                                                 ],
@@ -146,13 +147,13 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                     Align(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(top: 5.0, bottom: 15.2, right: 20),
+                                        padding: EdgeInsets.only(top: 5.0.h, bottom: 15.2.h, right: 20.w),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 10,
+                                              fontSize: 10.t,
                                               color: Theme.of(context).primaryColorDark),
                                         ),
                                       ),
@@ -163,14 +164,14 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                 onTap: () {
                                   model.cardController.toggleCard();
                                 },
-                                child: AppSvg.asset(AssetUtils.flipButton, width: 50, height: 50))
+                                child: AppSvg.asset(AssetUtils.flipButton, width: 50.w, height: 50.h))
                           ],
                         ),
                       ),
                     ),
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.only(top: 16.0),
+                        padding: EdgeInsets.only(top: 16.0.h),
                         child: AnimatedButton(
                           buttonHeight: 50,
                           buttonText: S.of(context).swipeToProceed,
@@ -178,7 +179,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 23),
+                      padding: EdgeInsets.only(top: 23.h),
                       child: Center(
                         child: InkWell(
                           onTap: () {
@@ -189,7 +190,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.brightBlue,
-                                fontSize: 14,
+                                fontSize: 14.t,
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -210,23 +211,23 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Container(
-              height: 530,
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              height: 530.h,
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Image.asset(
                 image,
                 fit: BoxFit.fill,
               ),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             GestureDetector(
               onTap: () {
                 Navigator.pop(context);
               },
               child: Container(
-                  height: 55,
-                  width: 55,
+                  height: 55.h,
+                  width: 55.w,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColor.white,

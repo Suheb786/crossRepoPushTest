@@ -5,14 +5,13 @@ import 'package:neo_bank/di/dc_setting_card_delivery/dc_setting_card_delivery_mo
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_confirm_pin/dc_setting_confirm_pin_page_view.dart';
 import 'package:neo_bank/feature/dc_setting_card_delivery/dc_setting_confirm_pin/dc_setting_confirm_pin_page_view_model.dart';
 
-class DcSettingConfirmPinPage
-    extends BasePage<DcSettingConfirmPinPageViewModel> {
+class DcSettingConfirmPinPage extends BasePage<DcSettingConfirmPinPageViewModel> {
   @override
   DcSettingConfirmPinPageState createState() => DcSettingConfirmPinPageState();
 }
 
-class DcSettingConfirmPinPageState extends BaseStatefulPage<
-    DcSettingConfirmPinPageViewModel, DcSettingConfirmPinPage> {
+class DcSettingConfirmPinPageState
+    extends BaseStatefulPage<DcSettingConfirmPinPageViewModel, DcSettingConfirmPinPage> {
   @override
   ProviderBase provideBase() {
     return dcSettingConfirmPinViewModelProvider;
@@ -24,8 +23,7 @@ class DcSettingConfirmPinPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, DcSettingConfirmPinPageViewModel model) {
+  Widget buildView(BuildContext context, DcSettingConfirmPinPageViewModel model) {
     return DcSettingConfirmPinPageView(provideBase());
   }
 }

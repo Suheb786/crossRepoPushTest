@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaOptionItemWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsetsDirectional.only(start: 24, end: 20, top: 16, bottom: 16),
+      padding: EdgeInsetsDirectional.only(start: 24.w, end: 20.w, top: 16.h, bottom: 16.h),
       width: double.infinity,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
@@ -23,9 +24,9 @@ class FatcaOptionItemWidget extends StatelessWidget {
           Visibility(
             visible: showFlag,
             child: Container(
-              height: 32,
-              width: 32,
-              margin: EdgeInsetsDirectional.only(end: 16),
+              height: 32.w,
+              width: 32.w,
+              margin: EdgeInsetsDirectional.only(end: 16.w),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Theme.of(context).primaryColorDark,
@@ -42,7 +43,7 @@ class FatcaOptionItemWidget extends StatelessWidget {
             maxLines: 2,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
-                fontSize: 14,
+                fontSize: 14.t,
                 fontWeight: FontWeight.w400,
                 color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
           ),

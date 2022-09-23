@@ -27,6 +27,7 @@ import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -161,9 +162,9 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                           child: Card(
                                             child: Padding(
                                               padding: EdgeInsets.only(
-                                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                                                       ? 0
-                                                      : MediaQuery.of(context).viewInsets.bottom - 48),
+                                                      : MediaQuery.of(context).viewInsets.bottom - 48.h),
                                               child: AppStreamBuilder<
                                                   Resource<GetConfirmApplicationDataResponse>>(
                                                 stream: model.getConfirmApplicationDataStream,
@@ -203,7 +204,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                               ),
                                                               Visibility(
                                                                 visible: false,
-                                                                child: SizedBox(height: 32),
+                                                                child: SizedBox(height: 32.h),
                                                               ),
 
                                                               ///address details
@@ -256,7 +257,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                   children: [
                                                                     Padding(
                                                                       padding: EdgeInsets.symmetric(
-                                                                          vertical: 24.0),
+                                                                          vertical: 24.0.h),
                                                                       child: Container(
                                                                         height: 1,
                                                                         color: AppColor.white_gray,
@@ -285,7 +286,8 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
 
                                                               /// personal details
                                                               Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                                                padding:
+                                                                    EdgeInsets.symmetric(vertical: 24.0.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.white_gray,
@@ -324,7 +326,8 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
 
                                                               ///occupation
                                                               Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                                                padding:
+                                                                    EdgeInsets.symmetric(vertical: 24.0.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.white_gray,
@@ -447,7 +450,8 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
 
                                                               ///purpose of account opening
                                                               Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                                                padding:
+                                                                    EdgeInsets.symmetric(vertical: 24.0.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.white_gray,
@@ -515,14 +519,14 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                     .expectedMonthlyTransactionsController
                                                                     .text,
                                                                 prefixWidget: Padding(
-                                                                  padding: const EdgeInsetsDirectional.only(
-                                                                      start: 40.0, bottom: 12),
+                                                                  padding: EdgeInsetsDirectional.only(
+                                                                      start: 40.0.w, bottom: 12.h),
                                                                   child: Text(
                                                                     S.of(context).JOD,
                                                                     textAlign: TextAlign.end,
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
-                                                                        fontSize: 12,
+                                                                        fontSize: 12.t,
                                                                         fontWeight: FontWeight.w600,
                                                                         color: Theme.of(context)
                                                                             .primaryColorDark),
@@ -541,14 +545,14 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                       .text,
                                                                   isPrefix: true,
                                                                   prefixWidget: Padding(
-                                                                    padding: const EdgeInsetsDirectional.only(
-                                                                        start: 40.0, bottom: 12),
+                                                                    padding: EdgeInsetsDirectional.only(
+                                                                        start: 40.0.w, bottom: 12.h),
                                                                     child: Text(
                                                                       S.of(context).JOD,
                                                                       textAlign: TextAlign.end,
                                                                       style: TextStyle(
                                                                           fontFamily: StringUtils.appFont,
-                                                                          fontSize: 12,
+                                                                          fontSize: 12.t,
                                                                           fontWeight: FontWeight.w600,
                                                                           color: Theme.of(context)
                                                                               .primaryColorDark),
@@ -560,7 +564,8 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
 
                                                               ///Tax and PEP questions
                                                               Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                                                padding:
+                                                                    EdgeInsets.symmetric(vertical: 24.0.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.white_gray,
@@ -702,7 +707,8 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                                   )),
 
                                                               Padding(
-                                                                padding: EdgeInsets.symmetric(vertical: 24.0),
+                                                                padding:
+                                                                    EdgeInsets.symmetric(vertical: 24.0.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.white_gray,
@@ -737,7 +743,7 @@ class ReviewApplicationPageView extends BasePageViewWidget<ReviewApplicationPage
                                                               ),
                                                               Center(
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(top: 24),
+                                                                  padding: EdgeInsets.only(top: 24.h),
                                                                   child: AppStreamBuilder<bool>(
                                                                       stream: model.declarationSelectedStream,
                                                                       initialData: false,

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
@@ -13,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -50,10 +52,10 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                       alignment: Alignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 25.0),
+                          padding: EdgeInsets.only(bottom: 25.0.h),
                           child: Container(
-                            height: 50,
-                            width: 281,
+                            height: 50.0.h,
+                            width: 281.0.w,
                             decoration: BoxDecoration(
                               color: Theme.of(context).canvasColor,
                               borderRadius: BorderRadius.only(
@@ -64,37 +66,36 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                           ),
                         ),
                         Positioned(
-                          bottom: -1,
-                          child: Column(
-                            children: [
-                              AppSvg.asset(AssetUtils.downArrow),
-                              Padding(
-                                padding: EdgeInsets.only(top: 6.0),
-                                child: Text(
-                                  S.of(context).backToPayments,
-                                  style: TextStyle(
-                                      fontFamily: StringUtils.appFont,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.dark_gray_2),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                            bottom: -2,
+                            child: LottieBuilder.asset(
+                              AssetUtils.swipeDownAnimation,
+                              width: 28.0.w,
+                              height: 28.0.h,
+                            )),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 80),
+                    padding: EdgeInsets.only(top: 8.0.h),
                     child: Text(
-                      S.of(context).requestMoney,
+                      S.of(context).backToPayments,
                       style: TextStyle(
-                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 12.0.t,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.dark_gray_2),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 47, start: 24, end: 24),
+                    padding: EdgeInsets.only(top: 80.0.h),
+                    child: Text(
+                      S.of(context).requestMoney,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18.0.t),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(top: 88.0.h, start: 24.0.w, end: 24.0.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -109,17 +110,17 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 40,
+                                    fontSize: 40.0.t,
                                     color: AppColor.black),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.only(top: 15, start: 4),
+                                padding: EdgeInsetsDirectional.only(top: 15.0.h, start: 4.0.w),
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.verLightGray4,
-                                      fontSize: 16,
+                                      fontSize: 16.0.t,
                                       fontWeight: FontWeight.w700),
                                 ),
                               ),
@@ -138,18 +139,18 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 49),
+                    padding: EdgeInsets.only(top: 85.0.h),
                     child: Text(
                       S.of(context).accountBalance,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
-                          fontSize: 10,
+                          fontSize: 10.0.t,
                           color: AppColor.dark_gray_1),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 2),
+                    padding: EdgeInsets.only(top: 2.0.h, bottom: 32.h),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -162,17 +163,17 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14,
+                            fontSize: 14.0.t,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
+                          padding: EdgeInsetsDirectional.only(start: 4.0.w, top: 2.0.h),
                           child: Text(
                             S.of(context).JOD,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 12,
+                                fontSize: 12.0.t,
                                 color: AppColor.dark_gray_1),
                           ),
                         ),
@@ -196,7 +197,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                             size: 5,
                           ),
                           rightWidget: CircleAvatar(
-                            radius: 30,
+                            radius: 30.0.w,
                             backgroundColor: Color(0xFF3CB4E5),
                             child: Center(
                               child: AppSvg.asset(AssetUtils.next),

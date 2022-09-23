@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ContactListWidget extends StatelessWidget {
@@ -17,20 +18,20 @@ class ContactListWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 22,
+            horizontal: 22.w,
           ),
           child: Row(
             children: [
               beneficiary!.imageUrl.toString().isNotEmpty
                   ? CircleAvatar(
-                      radius: 25,
+                      radius: 25.w,
                       backgroundImage: Image.memory(
                         beneficiary!.imageUrl,
                         fit: BoxFit.cover,
                       ).image,
                     )
                   : CircleAvatar(
-                      radius: 25,
+                      radius: 25.w,
                       backgroundColor: Theme.of(context).primaryColor,
                       child: Text(
                         ///TODO:check whether full name
@@ -40,12 +41,12 @@ class ContactListWidget extends StatelessWidget {
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             color: Theme.of(context).accentColor),
                       ),
                     ),
               SizedBox(
-                width: 14,
+                width: 14.w,
               ),
               Expanded(
                 child: Text(
@@ -53,7 +54,7 @@ class ContactListWidget extends StatelessWidget {
                       ? beneficiary!.nickName!
                       : beneficiary!.fullName!,
                   style:
-                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
+                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w600),
                 ),
               ),
               InkWell(
@@ -61,8 +62,8 @@ class ContactListWidget extends StatelessWidget {
                   onTap?.call();
                 },
                 child: AppSvg.asset(AssetUtils.rightChevron,
-                    width: 18,
-                    height: 18,
+                    width: 18.w,
+                    height: 18.h,
                     matchTextDirection: true,
                     color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
               )
@@ -70,7 +71,7 @@ class ContactListWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
+          padding: EdgeInsets.symmetric(vertical: 15.0.h),
           child: Container(
             height: 1,
             color: AppColor.light_grayish_violet,

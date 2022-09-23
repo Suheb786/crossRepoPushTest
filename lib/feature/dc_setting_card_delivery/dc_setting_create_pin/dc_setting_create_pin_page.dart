@@ -10,8 +10,8 @@ class DcSettingCreatePinPage extends BasePage<DcSettingCreatePinPageViewModel> {
   DcSettingCreatePinPageState createState() => DcSettingCreatePinPageState();
 }
 
-class DcSettingCreatePinPageState extends BaseStatefulPage<
-        DcSettingCreatePinPageViewModel, DcSettingCreatePinPage>
+class DcSettingCreatePinPageState
+    extends BaseStatefulPage<DcSettingCreatePinPageViewModel, DcSettingCreatePinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   DcSettingCreatePinPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,8 +32,7 @@ class DcSettingCreatePinPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, DcSettingCreatePinPageViewModel model) {
+  Widget buildView(BuildContext context, DcSettingCreatePinPageViewModel model) {
     return DcSettingCreatePinPageView(provideBase());
   }
 

@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/cla
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ClaimOfTaxTreatyBenefitsPageView extends BasePageViewWidget<ClaimOfTaxTreatyBenefitsPageViewModel> {
@@ -14,7 +15,7 @@ class ClaimOfTaxTreatyBenefitsPageView extends BasePageViewWidget<ClaimOfTaxTrea
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       height: double.infinity,
       decoration: BoxDecoration(
           color: AppColor.white,
@@ -35,7 +36,7 @@ class ClaimOfTaxTreatyBenefitsPageView extends BasePageViewWidget<ClaimOfTaxTrea
                     : S.of(context).creditBureauAuthorizationDesc,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),

@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/in
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -32,7 +33,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               title: S.of(context).deviceNotSupported,
               descriptionWidget: Text(
                 S.of(context).deviceNotSupportedNote,
-                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
+                style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
               ), onDismissed: () {
             exit(0);
           }, onSelected: () {
@@ -70,7 +71,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
                     }),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 20),
+                    margin: EdgeInsets.only(top: 10.0.h, bottom: 20.0.h),
                     child: AppStreamBuilder<String>(
                       initialData: '',
                       stream: model.appVersionStream,
@@ -79,7 +80,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
                           version!,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 12,
+                              fontSize: 12.0.t,
                               color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w600),
                         );

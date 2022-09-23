@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AddIncomeWidget extends StatelessWidget {
@@ -14,8 +15,8 @@ class AddIncomeWidget extends StatelessWidget {
         onTap?.call();
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        height: 50,
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        height: 50.h,
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
@@ -27,7 +28,7 @@ class AddIncomeWidget extends StatelessWidget {
               label!,
               style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
-                  fontSize: 12,
+                  fontSize: 12.t,
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600),
             ),

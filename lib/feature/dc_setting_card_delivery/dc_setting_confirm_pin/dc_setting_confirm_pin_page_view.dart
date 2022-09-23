@@ -12,11 +12,11 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class DcSettingConfirmPinPageView
-    extends BasePageViewWidget<DcSettingConfirmPinPageViewModel> {
+class DcSettingConfirmPinPageView extends BasePageViewWidget<DcSettingConfirmPinPageViewModel> {
   DcSettingConfirmPinPageView(ProviderBase model) : super(model);
 
   @override
@@ -36,8 +36,7 @@ class DcSettingConfirmPinPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushReplacementNamed(
-                      context, RoutePaths.DcSettingCardReady);
+                  Navigator.pushReplacementNamed(context, RoutePaths.DcSettingCardReady);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -85,8 +84,7 @@ class DcSettingConfirmPinPageView
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -95,9 +93,8 @@ class DcSettingConfirmPinPageView
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth:
-                                      MediaQuery.of(context).size.width / 6.4,
-                                  fieldHeight: 52,
+                                  fieldWidth: MediaQuery.of(context).size.width / 6.4,
+                                  fieldHeight: 52.h,
                                   onChanged: (val) {
                                     model.validate(val);
                                   },
@@ -105,7 +102,7 @@ class DcSettingConfirmPinPageView
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 16.0),
+                              padding: EdgeInsets.only(top: 16.0.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.showButtonStream,
                                   initialData: false,
@@ -114,8 +111,7 @@ class DcSettingConfirmPinPageView
                                       visible: isValid!,
                                       child: AnimatedButton(
                                         buttonHeight: 50,
-                                        buttonText:
-                                            S.of(context).swipeToProceed,
+                                        buttonText: S.of(context).swipeToProceed,
                                       ),
                                     );
                                   }),

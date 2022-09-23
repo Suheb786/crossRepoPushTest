@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CardCancelDialogView extends StatelessWidget {
@@ -36,7 +37,7 @@ class CardCancelDialogView extends StatelessWidget {
       providerBase: providerBase(),
       builder: (context, model, child) => Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
         child: Container(
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
@@ -48,24 +49,24 @@ class CardCancelDialogView extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  SizedBox(height: 34),
+                  SizedBox(height: 34.h),
                   AppSvg.asset(
                     AssetUtils.cardCancelIcon,
-                    height: 42,
-                    width: 46,
+                    height: 42.h,
+                    width: 46.w,
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
                   Text(
                     S.of(context).cancelTheCard,
                     style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 20,
+                      fontSize: 20.t,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: 35.h),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                     child: InkWell(
                       onTap: () {
                         CancellationReasonDialog.show(
@@ -101,9 +102,9 @@ class CardCancelDialogView extends StatelessWidget {
                         },
                         suffixIcon: (isChecked, value) {
                           return Container(
-                            width: 16,
-                            height: 16,
-                            padding: EdgeInsets.all(4),
+                            width: 16.w,
+                            height: 16.h,
+                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                             child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1),
                           );
                         },
@@ -111,14 +112,14 @@ class CardCancelDialogView extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                     child: Text(
                       S.of(context).cancelCardDesc,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: Theme.of(context).errorColor,
                         height: 1.5,
-                        fontSize: 14,
+                        fontSize: 14.t,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -126,7 +127,7 @@ class CardCancelDialogView extends StatelessWidget {
                   Visibility(
                     visible: isPrimaryDebitCard ?? true,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                       child: AppStreamBuilder<bool>(
                         stream: model.declarationSelectedStream,
                         initialData: false,
@@ -144,7 +145,7 @@ class CardCancelDialogView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 24,
+                    height: 24.h,
                   ),
                   InkWell(
                     onTap: () {
@@ -172,16 +173,16 @@ class CardCancelDialogView extends StatelessWidget {
                       // }
                     },
                     child: Container(
-                      padding: EdgeInsets.all(16),
-                      height: 57,
-                      width: 57,
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                      height: 57.h,
+                      width: 57.w,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                       child: AppSvg.asset(AssetUtils.tick, color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                    padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                     child: Center(
                       child: InkWell(
                         onTap: () {
@@ -191,7 +192,7 @@ class CardCancelDialogView extends StatelessWidget {
                           S.of(context).swipeDownToCancel,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 10,
+                              fontSize: 10.t,
                               fontWeight: FontWeight.w400,
                               color: AppColor.dark_gray_1),
                         ),

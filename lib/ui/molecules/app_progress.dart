@@ -15,10 +15,7 @@ class AppProgress {
             onWillPop: () async => false,
             child: Center(
                 child: Lottie.asset(AssetUtils.loaderAnimation1,
-                    fit: BoxFit.cover,
-                    alignment: Alignment.center,
-                    width: 60,
-                    height: 60)),
+                    fit: BoxFit.cover, alignment: Alignment.center, width: 60, height: 60)),
           );
         });
   }

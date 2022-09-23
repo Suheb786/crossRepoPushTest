@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -70,11 +71,11 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                         child: Card(
                           child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                       ? 0
-                                      : MediaQuery.of(context).viewInsets.bottom - 48),
+                                      : MediaQuery.of(context).viewInsets.bottom - 48.h),
                               child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
@@ -157,7 +158,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w400,
-                                                          fontSize: 14,
+                                                          fontSize: 14.t,
                                                           height: 1.4,
                                                           color: Theme.of(context)
                                                               .inputDecorationTheme
@@ -170,7 +171,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 fontWeight: FontWeight.w600,
-                                                                fontSize: 14,
+                                                                fontSize: 14.t,
                                                                 color: Theme.of(context)
                                                                     .inputDecorationTheme
                                                                     .focusedBorder!
@@ -183,7 +184,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w400,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     color: Theme.of(context)
                                                                         .inputDecorationTheme
                                                                         .focusedBorder!
@@ -204,7 +205,7 @@ class StudentJobIncomePageView extends BasePageViewWidget<StudentJobIncomePageVi
                                         return Visibility(
                                           visible: data!,
                                           child: Padding(
-                                            padding: const EdgeInsets.only(top: 8.0),
+                                            padding: EdgeInsets.only(top: 8.0.t),
                                             child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
                                           ),
                                         );

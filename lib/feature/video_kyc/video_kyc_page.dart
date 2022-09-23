@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/video_kyc/video_kyc_view.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -59,7 +60,7 @@ class VideoKycPageState extends BaseStatefulPage<VideoKycViewModel, VideoKycPage
           title: S.of(context).videoCall,
           descriptionWidget: Text(
             S.of(context).callDisconnected,
-            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+            style: TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
           ),
           onDismissed: () {}, onSelected: () {
         Navigator.of(context)

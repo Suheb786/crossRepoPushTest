@@ -7,6 +7,7 @@ import 'package:neo_bank/feature/account_settings/account_settings_page_view_mod
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSettingPage extends BasePage<AccountSettingPageViewModel> {
@@ -14,8 +15,7 @@ class AccountSettingPage extends BasePage<AccountSettingPageViewModel> {
   AccountSettingPageState createState() => AccountSettingPageState();
 }
 
-class AccountSettingPageState
-    extends BaseStatefulPage<AccountSettingPageViewModel, AccountSettingPage>
+class AccountSettingPageState extends BaseStatefulPage<AccountSettingPageViewModel, AccountSettingPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AccountSettingPageState() : super(subscribeVisibilityEvents: true);
 
@@ -38,7 +38,7 @@ class AccountSettingPageState
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 85),
+        preferredSize: Size(double.maxFinite, 85.0.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -47,24 +47,23 @@ class AccountSettingPageState
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 24.0),
+                padding: EdgeInsetsDirectional.only(start: 24.0.w),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    matchTextDirection: true,
-                    color: Theme.of(context).accentColor),
+                    matchTextDirection: true, color: Theme.of(context).accentColor),
               ),
             ),
             Text(
               S.of(context).settings,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: 14,
+                  fontSize: 14.t,
                   fontWeight: FontWeight.w600,
                   color: Theme.of(context).accentColor),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.only(end: 18.0),
+              padding: EdgeInsetsDirectional.only(end: 18.0.w),
               child: Container(
-                width: 28,
+                width: 28.w,
               ),
             )
           ],

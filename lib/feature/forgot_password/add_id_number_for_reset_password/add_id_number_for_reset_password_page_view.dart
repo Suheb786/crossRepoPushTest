@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -51,7 +52,6 @@ class AddIDNumberForResetPasswordPageView
                         model.idExpiryDateController.text;
                     ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nextPage();
                     // .next();
-                    print("successful");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -73,7 +73,7 @@ class AddIDNumberForResetPasswordPageView
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -94,7 +94,7 @@ class AddIDNumberForResetPasswordPageView
                                         },
                                       ),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                       AppTextField(
                                           labelText: S.of(context).nationalId,
@@ -107,7 +107,7 @@ class AddIDNumberForResetPasswordPageView
                                             model.validate();
                                           }),
                                       SizedBox(
-                                        height: 16,
+                                        height: 16.h,
                                       ),
                                       AppTextField(
                                         labelText: S.of(context).idExpiryDate,
@@ -136,9 +136,9 @@ class AddIDNumberForResetPasswordPageView
                                                 }, title: S.of(context).issuingDate);
                                               },
                                               child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  height: 16.h,
+                                                  width: 16.w,
+                                                  padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                   child: AppSvg.asset(AssetUtils.calendar,
                                                       color: Theme.of(context).primaryColorDark)));
                                         },
@@ -150,7 +150,7 @@ class AddIDNumberForResetPasswordPageView
                               Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                                    padding: EdgeInsets.symmetric(vertical: 16.0.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
@@ -170,9 +170,10 @@ class AddIDNumberForResetPasswordPageView
                                       },
                                       child: Text(
                                         S.of(context).backToLogin,
-                                        style: TextStyle(fontFamily: StringUtils.appFont,
+                                        style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
                                           color: AppColor.brightBlue,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),

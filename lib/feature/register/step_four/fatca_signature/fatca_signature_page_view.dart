@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/upload_document_selection_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -115,9 +116,9 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                 child: Card(
                                   child: Padding(
                                       padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                          bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                                               ? 0
-                                              : MediaQuery.of(context).viewInsets.bottom - 48),
+                                              : MediaQuery.of(context).viewInsets.bottom - 48.h),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.max,
@@ -125,7 +126,7 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                         children: [
                                           Expanded(
                                             child: SingleChildScrollView(
-                                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                               physics: ClampingScrollPhysics(),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,18 +136,18 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                     softWrap: true,
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        fontSize: 14,
+                                                        fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context).primaryColorDark),
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.only(top: 8.0, bottom: 16),
+                                                    padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                                                     child: Text(
                                                       S.of(context).signatureUploadDes,
                                                       softWrap: true,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
-                                                          fontSize: 12,
+                                                          fontSize: 12.t,
                                                           fontWeight: FontWeight.w400,
                                                           color: Theme.of(context).primaryColorDark),
                                                     ),
@@ -177,9 +178,9 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                                 .bodyText1!
                                                                 .color,
                                                             textColor: Theme.of(context).primaryColorDark,
-                                                            fontSize: 12,
+                                                            fontSize: 12.t,
                                                             containerPadding: EdgeInsets.symmetric(
-                                                                horizontal: 16, vertical: 12),
+                                                                horizontal: 16.w, vertical: 12.h),
                                                             suffixIcon: (value, data) {
                                                               return InkWell(
                                                                 onTap: !(isUploaded!)
@@ -210,9 +211,10 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                                         model.isValid();
                                                                       },
                                                                 child: Container(
-                                                                    height: 16,
-                                                                    width: 16,
-                                                                    padding: EdgeInsets.all(7),
+                                                                    height: 16.h,
+                                                                    width: 16.w,
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        horizontal: 7.w, vertical: 7.h),
                                                                     child: isUploaded
                                                                         ? AppSvg.asset(
                                                                             AssetUtils.delete,
@@ -232,7 +234,7 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                                     },
                                                   ),
                                                   Padding(
-                                                    padding: EdgeInsets.symmetric(vertical: 24),
+                                                    padding: EdgeInsets.symmetric(vertical: 24.h),
                                                     child: Container(
                                                       height: 1,
                                                       color: AppColor.white_gray,
@@ -287,7 +289,7 @@ class FatcaSignaturePageView extends BasePageViewWidget<FatcaSignaturePageViewMo
                                               initialData: false,
                                               dataBuilder: (context, isValid) {
                                                 return Padding(
-                                                  padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+                                                  padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                                   child: Visibility(
                                                     visible: isValid!,
                                                     child: AnimatedButton(

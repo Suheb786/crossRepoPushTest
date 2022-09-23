@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -43,7 +44,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
+                  EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36, top: _keyboardVisible ? 36.h : 204.h),
               child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -52,7 +53,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                   },
                   child: AppKeyBoardHide(
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,7 +88,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                       }, countryDataList: countryDataList);
                                     },
                                     child: Padding(
-                                      padding: EdgeInsets.only(top: 8.0),
+                                      padding: EdgeInsets.only(top: 8.0.h),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
@@ -103,7 +104,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                                 : "assets/flags/jor.svg"),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                                             child: Directionality(
                                               textDirection: TextDirection.ltr,
                                               child: Text(
@@ -113,16 +114,16 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).textTheme.bodyText1!.color,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Container(
-                                              height: 16,
-                                              width: 16,
-                                              margin: EdgeInsetsDirectional.only(end: 8),
+                                              height: 16.h,
+                                              width: 16.w,
+                                              margin: EdgeInsetsDirectional.only(end: 8.w),
                                               child: AppSvg.asset(AssetUtils.downArrow,
                                                   color: Theme.of(context).primaryTextTheme.bodyText1!.color))
                                         ],
@@ -134,7 +135,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                             },
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 16.h,
                           ),
                           Spacer(),
                           InkWell(
@@ -150,9 +151,9 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                               }
                             },
                             child: Container(
-                              padding: EdgeInsets.all(16),
-                              height: 57,
-                              width: 57,
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                              height: 57.h,
+                              width: 57.w,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -160,13 +161,13 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
+                            padding: EdgeInsets.only(top: 8.0.h),
                             child: Center(
                               child: Text(
                                 S.of(context).swipeDownToCancel,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 10,
+                                    fontSize: 10.t,
                                     fontWeight: FontWeight.w400,
                                     color: AppColor.dark_gray_1),
                               ),
@@ -206,7 +207,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
@@ -220,17 +221,17 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
-                              fontSize: 10),
+                              fontSize: 10.t),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          padding: EdgeInsets.only(top: 4.0.h, right: 16.w),
                           child: Text(message,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 12)),
+                                  fontSize: 12.t)),
                         ),
                       ],
                     ),

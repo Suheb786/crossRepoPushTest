@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -85,7 +86,7 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                         },
                         child: Card(
                           child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,9 +114,10 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                                                 },
                                                 child: model.passwordKey.currentState!.secureText
                                                     ? Container(
-                                                        width: 16,
-                                                        height: 16,
-                                                        padding: EdgeInsets.all(4),
+                                                        width: 16.w,
+                                                        height: 16.h,
+                                                        padding: EdgeInsets.symmetric(
+                                                            horizontal: 4.0.w, vertical: 4.h),
                                                         child: AppSvg.asset(AssetUtils.eye,
                                                             color: Theme.of(context)
                                                                 .inputDecorationTheme
@@ -133,7 +135,7 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                                             },
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 10.0),
+                                            padding: EdgeInsets.only(top: 10.0.h),
                                             child: Wrap(
                                               runSpacing: 10,
                                               spacing: 8,
@@ -158,7 +160,7 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 16,
+                                            height: 16.h,
                                           ),
                                           AppTextField(
                                             key: model.confirmPasswordKey,
@@ -176,9 +178,10 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                                                 },
                                                 child: model.confirmPasswordKey.currentState!.secureText
                                                     ? Container(
-                                                        width: 16,
-                                                        height: 16,
-                                                        padding: EdgeInsets.all(4),
+                                                        width: 16.w,
+                                                        height: 16.h,
+                                                        padding: EdgeInsets.symmetric(
+                                                            horizontal: 4.0.w, vertical: 4.h),
                                                         child: AppSvg.asset(AssetUtils.eye,
                                                             color: Theme.of(context)
                                                                 .inputDecorationTheme
@@ -203,7 +206,7 @@ class CreateNewPasswordPageView extends BasePageViewWidget<CreateNewPasswordPage
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 16),
+                                    padding: EdgeInsets.only(top: 16.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,

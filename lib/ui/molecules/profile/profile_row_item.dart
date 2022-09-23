@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ProfileRowItem extends StatelessWidget {
@@ -38,7 +39,7 @@ class ProfileRowItem extends StatelessWidget {
           stream: model!.switchState,
           dataBuilder: (context, isActive) {
             return Container(
-              padding: EdgeInsets.only(top: 12, bottom: 12),
+              padding: EdgeInsets.only(top: 12.0.h, bottom: 12.0.h),
               child: Column(
                 children: [
                   Row(
@@ -50,28 +51,28 @@ class ProfileRowItem extends StatelessWidget {
                           softWrap: true,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryTextTheme.bodyText1!.color!,
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 10.0),
+                        padding: EdgeInsetsDirectional.only(start: 10.0.w),
                         child: FlutterSwitch(
                           value: isActive!,
                           onToggle: (value) {
                             model.updateState(value);
                           },
-                          width: 70,
-                          height: 40,
+                          width: 70.0.w,
+                          height: 40.0.h,
                           padding: 8,
                           activeText: activeText,
                           activeTextColor: AppColor.white,
                           inactiveTextColor: AppColor.darkGray,
                           activeTextFontWeight: FontWeight.w500,
                           showOnOff: true,
-                          valueFontSize: 10,
+                          valueFontSize: 10.0.t,
                           activeToggleColor: AppColor.white,
                           inactiveText: inactiveText,
                           inactiveToggleColor: AppColor.lightGrayishMagenta,

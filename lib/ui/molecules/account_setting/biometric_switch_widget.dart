@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class BiometricSwitchWidget extends StatelessWidget {
@@ -31,9 +32,9 @@ class BiometricSwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AppSvg.asset(image!),
+        AppSvg.asset(image!, height: 24.h, width: 24.w),
         SizedBox(
-          width: 16,
+          width: 16.w,
         ),
         Expanded(
           child: Column(
@@ -43,7 +44,7 @@ class BiometricSwitchWidget extends StatelessWidget {
                 title!,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).textTheme.bodyText1!.color),
               ),
@@ -52,7 +53,7 @@ class BiometricSwitchWidget extends StatelessWidget {
                       subtitle ?? '',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          fontSize: 12,
+                          fontSize: 12.t,
                           fontWeight: FontWeight.w600,
                           color: AppColor.gray),
                     )
@@ -61,22 +62,22 @@ class BiometricSwitchWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 16,
+          width: 16.w,
         ),
         FlutterSwitch(
           value: isActive!,
           onToggle: (value) {
             onToggle?.call(value);
           },
-          width: 70,
-          height: 40,
+          width: 70.w,
+          height: 40.h,
           padding: 8,
           activeText: activeText,
           activeTextColor: AppColor.white,
           inactiveTextColor: AppColor.darkGray,
           activeTextFontWeight: FontWeight.w500,
           showOnOff: true,
-          valueFontSize: 10,
+          valueFontSize: 10.t,
           activeToggleColor: AppColor.white,
           inactiveText: inActiveText!,
           inactiveToggleColor: AppColor.lightGrayishMagenta,

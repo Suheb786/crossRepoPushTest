@@ -10,8 +10,8 @@ class ApplyCreditCardHomePage extends BasePage<ApplyCreditCardHomeViewModel> {
   ApplyCreditCardHomePageState createState() => ApplyCreditCardHomePageState();
 }
 
-class ApplyCreditCardHomePageState extends BaseStatefulPage<
-    ApplyCreditCardHomeViewModel, ApplyCreditCardHomePage> {
+class ApplyCreditCardHomePageState
+    extends BaseStatefulPage<ApplyCreditCardHomeViewModel, ApplyCreditCardHomePage> {
   @override
   ProviderBase provideBase() {
     return applyCreditCardHomeViewModelProvider;

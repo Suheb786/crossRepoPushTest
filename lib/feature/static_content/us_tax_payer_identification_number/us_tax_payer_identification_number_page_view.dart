@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class UsTaxPayerIdentificationNumberPageView
@@ -13,13 +14,13 @@ class UsTaxPayerIdentificationNumberPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Scrollbar(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(right: 12),
+          padding: EdgeInsets.only(right: 12.w),
           physics: ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,7 +54,7 @@ Submitting the form to a partnership that conducts a trade or business in the Un
                 ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),

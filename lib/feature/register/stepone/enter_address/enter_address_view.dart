@@ -21,6 +21,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -107,11 +108,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                     child: Card(
                                       child: Padding(
                                         padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                            bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                                                 ? 0
-                                                : MediaQuery.of(context).viewInsets.bottom - 48),
+                                                : MediaQuery.of(context).viewInsets.bottom - 48.h),
                                         child: SingleChildScrollView(
-                                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
@@ -138,16 +139,16 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      height: 16.h,
+                                                      width: 16.w,
+                                                      padding: EdgeInsetsDirectional.only(end: 8.w),
                                                       child: AppSvg.asset(AssetUtils.downArrow,
                                                           color: AppColor.dark_gray_1));
                                                 },
                                                 key: model.residentCountryKey,
                                               ),
                                               SizedBox(
-                                                height: 16,
+                                                height: 16.h,
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).buildingNameOrNo,
@@ -177,7 +178,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                height: 16,
+                                                height: 16.h,
                                               ),
                                               AppTextField(
                                                 labelText: S.of(context).streetName,
@@ -188,7 +189,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 onChanged: (value) => model.validateAddress(),
                                               ),
                                               SizedBox(
-                                                height: 16,
+                                                height: 16.h,
                                               ),
                                               Visibility(
                                                 visible: false,
@@ -239,9 +240,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      height: 16.h,
+                                                      width: 16.w,
+                                                      padding: EdgeInsetsDirectional.only(end: 8.w),
                                                       child: AppSvg.asset(AssetUtils.downArrow,
                                                           color: AppColor.dark_gray_1));
                                                 },
@@ -260,19 +261,19 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
-                                                                height: 32,
+                                                                height: 32.h,
                                                               ),
                                                               Text(
                                                                 S.of(context).permanentAddress,
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
                                                                         Theme.of(context).primaryColorDark),
                                                               ),
                                                               SizedBox(
-                                                                height: 16,
+                                                                height: 16.h,
                                                               ),
                                                               AppTextField(
                                                                 labelText: S
@@ -301,10 +302,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 },
                                                                 suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding:
-                                                                          EdgeInsetsDirectional.only(end: 8),
+                                                                      height: 16.h,
+                                                                      width: 16.w,
+                                                                      padding: EdgeInsetsDirectional.only(
+                                                                          end: 8.w),
                                                                       child: AppSvg.asset(
                                                                           AssetUtils.downArrow,
                                                                           color: AppColor.dark_gray_1));
@@ -312,7 +313,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 key: model.permanentResidentCountryKey,
                                                               ),
                                                               SizedBox(
-                                                                height: 16,
+                                                                height: 16.h,
                                                               ),
                                                               AppTextField(
                                                                 labelText: S.of(context).city,
@@ -353,10 +354,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 },
                                                                 suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding:
-                                                                          EdgeInsetsDirectional.only(end: 8),
+                                                                      height: 16.h,
+                                                                      width: 16.w,
+                                                                      padding: EdgeInsetsDirectional.only(
+                                                                          end: 8.w),
                                                                       child: AppSvg.asset(
                                                                           AssetUtils.downArrow,
                                                                           color: AppColor.dark_gray_1));
@@ -369,7 +370,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                     );
                                                   }),
                                               SizedBox(
-                                                height: 32,
+                                                height: 32.h,
                                               ),
                                               Center(
                                                 child: AppStreamBuilder<bool>(

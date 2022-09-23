@@ -10,6 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardSettingsPage extends BasePage<CreditCardSettingsViewModel> {
@@ -44,7 +45,7 @@ class CreditCardSettingsPageState
               S.of(context).cardSettingsDisabledDesc,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: 14,
+                  fontSize: 14.t,
                   fontWeight: FontWeight.w400,
                   color: AppColor.veryDarkGray1),
             ), onSelected: () {

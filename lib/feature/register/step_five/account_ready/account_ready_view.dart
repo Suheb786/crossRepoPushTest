@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -72,7 +73,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                   },
                                   dataBuilder: (context, data) {
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 43, end: 30),
+                                      padding: EdgeInsetsDirectional.only(top: 43.h, end: 30.w),
                                       child: InkWell(
                                         onTap: () {
                                           model.logOutUser();
@@ -85,7 +86,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 92),
+                              padding: EdgeInsets.only(top: 92.h),
                               child: Stack(
                                 alignment: Alignment.center,
                                 children: [
@@ -93,7 +94,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                   Align(
                                     alignment: Alignment.center,
                                     child: Container(
-                                      height: 111.37,
+                                      height: 111.37.h,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: AppColor.vividYellow,
@@ -105,7 +106,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               ),
                             ),
                             SizedBox(
-                              height: 34,
+                              height: 34.h,
                             ),
                             AccountReadyHeader(
                                 title: S.of(context).accountReadyMsg,
@@ -113,21 +114,21 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                     ? S.of(context).uploadDocWithinTendays
                                     : S.of(context).yourFreeVirtualDebitCardHasBeenIssued),
                             SizedBox(
-                              height: 40,
+                              height: 40.h,
                             ),
                             Container(
                               decoration: BoxDecoration(
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(16)),
-                              margin: EdgeInsets.symmetric(horizontal: 24),
-                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                              margin: EdgeInsets.symmetric(horizontal: 24.w),
+                              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                               child: Column(
                                 children: [
                                   AccountDetails(
                                       title: S.of(context).accountNumber,
                                       value: response.data!.getAccountDetailsContent!.data!.accountNumber),
                                   SizedBox(
-                                    height: 16,
+                                    height: 16.h,
                                   ),
                                   AccountDetails(
                                     title: S.of(context).iban,
@@ -150,7 +151,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               borderColor: Theme.of(context).accentColor,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 14.0),
+                              padding: EdgeInsets.only(top: 14.0.h),
                               child: Text(
                                 S.of(context).cardDelivery,
                                 style: TextStyle(
@@ -162,7 +163,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               ),
                             ),
                             SizedBox(
-                              height: 32,
+                              height: 32.h,
                             )
                           ],
                         ),
@@ -179,9 +180,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                   );
 
                 default:
-                  return Center(
-                    child: Text('Something went wrong'),
-                  );
+                  return Container();
               }
             },
           )),

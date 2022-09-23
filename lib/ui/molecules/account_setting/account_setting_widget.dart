@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AccountSettingWidget extends StatelessWidget {
@@ -22,9 +23,9 @@ class AccountSettingWidget extends StatelessWidget {
       },
       child: Row(
         children: [
-          AppSvg.asset(image!),
+          AppSvg.asset(image!,height: 24.h,width: 24.w),
           SizedBox(
-            width: 16,
+            width: 16.w,
           ),
           Expanded(
             child: Column(
@@ -34,12 +35,12 @@ class AccountSettingWidget extends StatelessWidget {
                   title!,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
                 SizedBox(
-                  height: 2,
+                  height: 2.h,
                 ),
                 subtitle!.isNotEmpty
                     ? Directionality(
@@ -48,7 +49,7 @@ class AccountSettingWidget extends StatelessWidget {
                           subtitle ?? '',
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 12,
+                              fontSize: 12.t,
                               fontWeight: FontWeight.w600,
                               color: AppColor.gray),
                         ),
@@ -58,11 +59,11 @@ class AccountSettingWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 16,
+            width: 16.w,
           ),
           Container(
-              height: 24,
-              width: 24,
+              height: 24.h,
+              width: 24.w,
               child: AppSvg.asset(AssetUtils.rightChevron,
                   matchTextDirection: true, color: Theme.of(context).inputDecorationTheme.hintStyle!.color))
         ],

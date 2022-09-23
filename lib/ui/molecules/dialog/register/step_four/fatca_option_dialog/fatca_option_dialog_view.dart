@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import '../../../../app_scollable_list_view_widget.dart';
@@ -46,7 +47,8 @@ class FatcaOptionDialogView extends StatelessWidget {
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
+            insetPadding:
+                EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
                 if (details.primaryVelocity! > 0) {
@@ -66,7 +68,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 32.0),
+                            padding: EdgeInsets.only(top: 32.0.h),
                             child: Center(
                               child: Text(
                                 StringUtils.isDirectionRTL(context) ? titleAr ?? '' : title!,
@@ -80,7 +82,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                           Visibility(
                             visible: title == 'TAX COUNTRY' ? true : false,
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
                               child: AppTextField(
                                 labelText: '',
                                 controller: model.mobileNumberSearchController,
@@ -88,7 +90,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                 hintTextColor: AppColor.gray_2,
                                 textColor: Theme.of(context).primaryColorDark,
                                 hintText: S.of(context).searchCountry,
-                                containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                                 onChanged: (value) {
                                   model.searchMobileNumber(value);
                                 },
@@ -96,9 +98,9 @@ class FatcaOptionDialogView extends StatelessWidget {
                                   return InkWell(
                                     onTap: () async {},
                                     child: Container(
-                                        height: 16,
-                                        width: 16,
-                                        padding: EdgeInsets.all(6),
+                                        height: 16.h,
+                                        width: 16.w,
+                                        padding: EdgeInsets.symmetric(horizontal: 6.0.w, vertical: 6.h),
                                         child: AppSvg.asset(AssetUtils.search,
                                             color: Theme.of(context).primaryColorDark)),
                                   );
@@ -112,12 +114,12 @@ class FatcaOptionDialogView extends StatelessWidget {
                                       alignment: Alignment.center,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                          padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                           child: Container(
-                                            height: 64,
+                                            height: 64.h,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(16),
+                                              borderRadius: BorderRadius.circular(16.w),
                                               color: AppColor.vividYellow,
                                             ),
                                           ),
@@ -128,14 +130,14 @@ class FatcaOptionDialogView extends StatelessWidget {
                                             key: ValueKey(data.data!.length),
                                             child: ClickableListWheelScrollView(
                                               scrollController: model.scrollController,
-                                              itemHeight: 64,
+                                              itemHeight: 64.h,
                                               itemCount: data.data!.length,
                                               onItemTapCallback: (index) {
                                                 model.selectMobileNumber(index);
                                               },
                                               child: ListWheelScrollView.useDelegate(
                                                   controller: model.scrollController,
-                                                  itemExtent: 64,
+                                                  itemExtent: 64.h,
                                                   onSelectedItemChanged: (int index) {
                                                     model.selectMobileNumber(index);
                                                   },
@@ -156,10 +158,10 @@ class FatcaOptionDialogView extends StatelessWidget {
                                     )
                                   : Center(
                                       child: Text(
-                                        "No Options Available",
+                                        S.of(context).noDataFound,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_violet_4),
                                       ),
@@ -174,9 +176,9 @@ class FatcaOptionDialogView extends StatelessWidget {
                                     onSelected!.call(model.selectedOptionData!);
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    height: 57,
-                                    width: 57,
+                                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                                    height: 57.h,
+                                    width: 57.w,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -185,13 +187,13 @@ class FatcaOptionDialogView extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                                  padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                                   child: Center(
                                     child: Text(
                                       S.of(context).swipeDownToCancel,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 10,
+                                          fontSize: 10.t,
                                           fontWeight: FontWeight.w400,
                                           color: AppColor.dark_gray_1),
                                     ),

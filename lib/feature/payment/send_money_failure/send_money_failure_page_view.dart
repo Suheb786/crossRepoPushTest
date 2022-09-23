@@ -7,6 +7,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewModel> {
@@ -21,78 +22,92 @@ class SendMoneyFailurePageView extends BasePageViewWidget<SendMoneyFailureViewMo
         }
       },
       child: Padding(
-        padding: EdgeInsets.only(top: 92),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 111.37,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).canvasColor,
+        padding: EdgeInsets.only(top: 92.h),
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: 111.37.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context).canvasColor,
+                            ),
+                            child: Center(
+                                child: AppSvg.asset(AssetUtils.cancel,
+                                    color: Theme.of(context).primaryColorDark)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                        padding: EdgeInsetsDirectional.only(top: 47.h, start: 24.w, end: 24.w),
+                        child: Text(
+                          S.of(context).sendMoneyNotSuccessful,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 24.t,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).accentColor),
+                        )),
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(top: 51.h, start: 24.w, end: 24.w),
+                      child: Text(
+                        S.of(context).tryAgainLater,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14.t,
+                            color: Theme.of(context).accentColor),
                       ),
-                      child: Center(
-                          child: AppSvg.asset(AssetUtils.cancel, color: Theme.of(context).primaryColorDark)),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Padding(
-                  padding: EdgeInsetsDirectional.only(top: 47, start: 24, end: 24),
-                  child: Text(
-                    S.of(context).sendMoneyNotSuccessful,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: TextStyle(
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 10.h),
+                  child: AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).accentColor,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 9.h),
+                    child: Text(
+                      S.of(context).toDashboard,
+                      style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).accentColor),
-                  )),
-              Padding(
-                padding: EdgeInsetsDirectional.only(top: 51, start: 24, end: 24),
-                child: Text(
-                  S.of(context).tryAgainLater,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 262),
-                child: AnimatedButton(
-                  buttonText: S.of(context).swipeToProceed,
-                  borderColor: Theme.of(context).accentColor,
-                  textColor: Theme.of(context).accentColor,
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.only(top: 9),
-                  child: Text(
-                    S.of(context).toDashboard,
-                    style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Theme.of(context).accentColor,
+                        fontSize: 12.t,
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+                SizedBox(
+                  height: 24.0.h,
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

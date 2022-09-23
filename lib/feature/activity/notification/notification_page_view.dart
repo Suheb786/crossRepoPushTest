@@ -8,6 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
@@ -42,14 +43,14 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
           margin: EdgeInsetsDirectional.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Padding(
-            padding: EdgeInsetsDirectional.only(top: 30, start: 24, end: 24),
+            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 24.0.w, end: 24.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   S.of(context).notifications,
-                  style:
-                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont, fontSize: 12.0.t, fontWeight: FontWeight.w600),
                 ),
                 Expanded(
                   child: AppStreamBuilder<Resource<ActivityResponse>>(
@@ -62,7 +63,7 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                             ? ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: activities.data!.activityContent!.activities!.length,
-                                padding: EdgeInsetsDirectional.only(top: 20),
+                                padding: EdgeInsetsDirectional.only(top: 20.0.h),
                                 itemBuilder: (context, index) {
                                   return Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,33 +71,33 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                       Row(
                                         children: [
                                           Container(
-                                            height: 6,
-                                            width: 6,
+                                            height: 6.0.h,
+                                            width: 6.0.w,
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 color: Theme.of(context).primaryColor),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 7),
+                                            padding: EdgeInsetsDirectional.only(start: 7.0.w),
                                             child: Text(
                                               activities.data!.activityContent!.activities![index].heading!,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w800,
-                                                  fontSize: 12),
+                                                  fontSize: 12.0.t),
                                             ),
                                           )
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 6, bottom: 12),
+                                        padding: EdgeInsetsDirectional.only(top: 6.0.h, bottom: 12.0.h),
                                         child: Text(
                                           activities.data!.activityContent!.activities![index].description!,
                                           maxLines: 2,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
-                                              fontSize: 12,
+                                              fontSize: 12.0.t,
                                               color: AppColor.dark_gray_1),
                                         ),
                                       )

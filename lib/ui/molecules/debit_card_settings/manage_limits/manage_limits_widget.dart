@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_limits_widget_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageLimitsWidget extends StatelessWidget {
@@ -56,7 +57,7 @@ class ManageLimitsWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 13, horizontal: 24),
+                    padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 24.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -72,11 +73,11 @@ class ManageLimitsWidget extends StatelessWidget {
                                     ? Theme.of(context).inputDecorationTheme.hintStyle!.color
                                     : Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                                fontSize: 14.t),
                           ),
                         ),
                         SizedBox(
-                          width: 16,
+                          width: 16.w,
                         ),
                         IgnorePointer(
                           ignoring: noToggle,
@@ -86,15 +87,15 @@ class ManageLimitsWidget extends StatelessWidget {
                               onToggle?.call(value);
                               model.updateSwitchValue(value);
                             },
-                            width: 70,
-                            height: 40,
+                            width: 70.w,
+                            height: 40.h,
                             padding: 8,
                             activeText: S.of(context).yes.toUpperCase(),
                             activeTextColor: AppColor.white,
                             inactiveTextColor: AppColor.darkGray,
                             activeTextFontWeight: FontWeight.w500,
                             showOnOff: true,
-                            valueFontSize: 10,
+                            valueFontSize: 10.t,
                             activeToggleColor: AppColor.white,
                             inactiveText: S.of(context).no.toUpperCase(),
                             inactiveToggleColor: AppColor.lightGrayishMagenta,
@@ -114,10 +115,10 @@ class ManageLimitsWidget extends StatelessWidget {
                           ? BorderRadius.vertical(bottom: Radius.circular(16))
                           : BorderRadius.vertical(),
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 13),
+                        padding: EdgeInsets.symmetric(vertical: 13.h),
                         color: Theme.of(context).backgroundColor,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24),
+                          padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -130,7 +131,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).primaryColorDark,
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 12),
+                                        fontSize: 12.t),
                                   ),
                                   Text(
                                     S.of(context).maximumLimit(maxAmount),
@@ -138,7 +139,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 10),
+                                        fontSize: 10.t),
                                   ),
                                 ],
                               ),
@@ -155,7 +156,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                   cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                   decoration: InputDecoration(
@@ -164,12 +165,12 @@ class ManageLimitsWidget extends StatelessWidget {
                                       hintText: amountSet,
                                       suffixIconConstraints: BoxConstraints.tightForFinite(),
                                       suffixIcon: Padding(
-                                        padding: const EdgeInsetsDirectional.only(start: 5.0),
+                                        padding: EdgeInsetsDirectional.only(start: 5.0.w),
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             fontWeight: FontWeight.w600,
                                           ),

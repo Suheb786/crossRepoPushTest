@@ -10,9 +10,8 @@ class AddNewEmailAddressPage extends BasePage<AddNewEmailAddressPageViewModel> {
   AddNewEmailAddressPageState createState() => AddNewEmailAddressPageState();
 }
 
-class AddNewEmailAddressPageState extends BaseStatefulPage<
-    AddNewEmailAddressPageViewModel,
-    AddNewEmailAddressPage>
+class AddNewEmailAddressPageState
+    extends BaseStatefulPage<AddNewEmailAddressPageViewModel, AddNewEmailAddressPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AddNewEmailAddressPageState() : super(subscribeVisibilityEvents: true);
 
@@ -33,8 +32,7 @@ class AddNewEmailAddressPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(BuildContext context,
-      AddNewEmailAddressPageViewModel model) {
+  Widget buildView(BuildContext context, AddNewEmailAddressPageViewModel model) {
     return AddNewEmailAddressPageView(provideBase());
   }
 

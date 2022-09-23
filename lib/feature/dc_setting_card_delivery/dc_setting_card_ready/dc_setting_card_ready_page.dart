@@ -10,8 +10,8 @@ class DcSettingCardReadyPage extends BasePage<DcSettingCardReadyViewModel> {
   DcSettingCardReadyPageState createState() => DcSettingCardReadyPageState();
 }
 
-class DcSettingCardReadyPageState extends BaseStatefulPage<
-    DcSettingCardReadyViewModel, DcSettingCardReadyPage> {
+class DcSettingCardReadyPageState
+    extends BaseStatefulPage<DcSettingCardReadyViewModel, DcSettingCardReadyPage> {
   @override
   ProviderBase provideBase() {
     return dcSettingCardReadyViewModelProvider;

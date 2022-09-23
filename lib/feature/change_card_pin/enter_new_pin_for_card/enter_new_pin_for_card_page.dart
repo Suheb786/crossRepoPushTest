@@ -11,8 +11,8 @@ class EnterNewPinForCardPage extends BasePage<EnterNewPinForCardPageViewModel> {
   EnterNewPinForCardPageState createState() => EnterNewPinForCardPageState();
 }
 
-class EnterNewPinForCardPageState extends BaseStatefulPage<
-        EnterNewPinForCardPageViewModel, EnterNewPinForCardPage>
+class EnterNewPinForCardPageState
+    extends BaseStatefulPage<EnterNewPinForCardPageViewModel, EnterNewPinForCardPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   EnterNewPinForCardPageState() : super(subscribeVisibilityEvents: true);
 
@@ -39,8 +39,7 @@ class EnterNewPinForCardPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterNewPinForCardPageViewModel model) {
+  Widget buildView(BuildContext context, EnterNewPinForCardPageViewModel model) {
     return EnterNewPinForCardPageView(provideBase());
   }
 

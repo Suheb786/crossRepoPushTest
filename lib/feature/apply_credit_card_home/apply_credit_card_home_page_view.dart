@@ -7,6 +7,7 @@ import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHomeViewModel> {
@@ -17,7 +18,7 @@ class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHome
   @override
   Widget build(BuildContext context, ApplyCreditCardHomeViewModel model) {
     return Padding(
-      padding: EdgeInsets.only(top: 56, bottom: 56),
+      padding: EdgeInsets.only(bottom: 36.h),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
         initialData: 0,
@@ -33,31 +34,31 @@ class ApplyCreditCardHomePageView extends BasePageViewWidget<ApplyCreditCardHome
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 96),
+                  padding: EdgeInsets.only(top: 66.0.h),
                   child: Text(
                     S.of(context).applyCreditCardTitle,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
-                        fontSize: 10,
+                        fontSize: 10.t,
                         color: Theme.of(context).accentColor),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.only(top: 8, start: 10, end: 10),
+                  padding: EdgeInsetsDirectional.only(top: 8.h, start: 10.w, end: 10.w),
                   child: Text(
                     S.of(context).personalizeCreditCard,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                        fontSize: 20.t,
                         color: Theme.of(context).accentColor),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 22),
+                    padding: EdgeInsets.only(top: 22.h),
                     child: AppSwiper(
                       pages: pages,
                       pageController: model.pageController,

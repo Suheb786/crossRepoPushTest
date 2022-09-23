@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -86,7 +87,7 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                         margin: EdgeInsets.zero,
                         shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -106,7 +107,7 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                                           },
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 16.h,
                                         ),
                                         AppTextField(
                                           labelText: S.of(context).businessNameOptional,
@@ -120,16 +121,16 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                                           },
                                         ),
                                         SizedBox(
-                                          height: 8,
+                                          height: 8.h,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                                          padding: EdgeInsets.symmetric(horizontal: 16.w),
                                           child: Text(
                                             S.of(context).isBusinessNameDifferent,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 12,
+                                                fontSize: 12.t,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).primaryColorDark),
                                           ),
@@ -143,7 +144,7 @@ class FatcaUSRelevantW9PageView extends BasePageViewWidget<FatcaUSRelevantW9Page
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 32),
+                                    padding: EdgeInsets.only(top: 32.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

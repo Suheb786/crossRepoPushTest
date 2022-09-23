@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPageViewModel> {
@@ -12,13 +13,13 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 30.h),
       decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Scrollbar(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(right: 12),
+          padding: EdgeInsets.only(right: 12.w),
           physics: ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,15 +31,15 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
                 'Under penalties of perjury, I certify that:',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),
               SizedBox(
-                height: 16,
+                height: 16.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                 child: Text(
                   /*StringUtils.isDirectionRTL(context)
                       ? '''١. الرقم الموضح في هذا النموذج هو رقم التعريف الصحيح لدافعي الضرائب (أو في انتظار إصدار رقم لي) ؛ و
@@ -54,13 +55,13 @@ class FatcaCertificationPageView extends BasePageViewWidget<FatcaCertificationPa
                   ''',
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).primaryTextTheme.bodyText1!.color),
                 ),
               ),
               SizedBox(
-                height: 32,
+                height: 32.h,
               ),
               Text(
                 /*StringUtils.isDirectionRTL(context)
@@ -77,7 +78,7 @@ other than interest and dividends, you are not required to sign the certificatio
                   ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),

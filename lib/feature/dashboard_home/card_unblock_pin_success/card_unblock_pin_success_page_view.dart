@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuccessPageViewModel> {
@@ -35,7 +36,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 92),
+                      padding: EdgeInsets.only(top: 92.h),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -46,7 +47,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              height: 111.37,
+                              height: 111.37.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
@@ -66,7 +67,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                       ),
                     ),
                     SizedBox(
-                      height: 34.7,
+                      height: 34.7.h,
                     ),
                     Center(
                       child: Column(
@@ -78,23 +79,23 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 24,
+                                fontSize: 24.t,
                                 color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                     ? Theme.of(context).accentColor
                                     : Theme.of(context).textTheme.bodyText1!.color),
                           ),
                           SizedBox(
-                            height: 4,
+                            height: 4.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                             child: Text(
                               S.of(context).cardPinSucccesFullyUnblockedDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   color: model.manageCardPinArguments.cardType == CardType.CREDIT
                                       ? Theme.of(context).accentColor
                                       : Theme.of(context).textTheme.bodyText1!.color),
@@ -119,11 +120,11 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                         : Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
+                    padding: EdgeInsets.only(
+                      bottom: 32.h,
                     ),
                     child: Center(
                       child: Text(
@@ -134,7 +135,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                               ? Theme.of(context).accentColor
                               : Theme.of(context).textTheme.bodyText1!.color,
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 12.t,
                         ),
                       ),
                     ),

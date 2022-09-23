@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -74,7 +75,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -93,7 +94,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 16,
+                                      fontSize: 16.t,
                                       color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                   widgetBuilder: (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
@@ -105,7 +106,7 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                               S.of(context).resendCode,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                             ))
                                         : Text(
@@ -113,13 +114,13 @@ class EnterOTPForResetPasswordPageView extends BasePageViewWidget<EnterOTPForRes
                                                 '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 14,
+                                                fontSize: 14.t,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           );
                                   },
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 16.0),
+                                  padding: EdgeInsets.only(top: 16.0.h),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.showButtonStream,
                                       initialData: false,

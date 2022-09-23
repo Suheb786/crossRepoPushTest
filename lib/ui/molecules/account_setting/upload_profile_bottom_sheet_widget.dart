@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class UploadProfileBottomSheetWidget extends StatelessWidget {
@@ -27,12 +28,12 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
         child: Wrap(
           children: <Widget>[
             Padding(
-              padding: EdgeInsetsDirectional.only(start: 24, top: 32.0, bottom: 8.0),
+              padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.0.h, bottom: 8.0.h),
               child: Text(
                 title ?? "",
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).primaryColorDark),
               ),
@@ -46,7 +47,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                   S.of(context).selectFromLibrary,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).primaryColorDark),
                 ),
@@ -59,7 +60,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 S.of(context).takePhoto,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryColorDark),
               ),
@@ -73,7 +74,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 S.of(context).removePhoto,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryColorDark),
               ),
@@ -82,7 +83,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               },
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Container(
                 height: 1,
                 color: Theme.of(context).primaryColorDark,
@@ -94,12 +95,12 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               },
               child: Center(
                   child: Padding(
-                padding: EdgeInsets.only(bottom: 24.0),
+                padding: EdgeInsets.only(bottom: 24.0.h),
                 child: Text(
                   S.of(context).cancel,
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),

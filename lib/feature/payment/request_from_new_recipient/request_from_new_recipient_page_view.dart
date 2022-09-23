@@ -24,6 +24,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -100,11 +101,12 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                    bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                         ? 0
-                                        : MediaQuery.of(context).viewInsets.bottom - 48),
+                                        : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
                                 child: Container(
-                                  padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
+                                  padding:
+                                      EdgeInsetsDirectional.only(top: 32.0.h, start: 24.0.w, end: 24.0.w),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -117,11 +119,11 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                 S.of(context).requestedMoneyVia,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    fontSize: 14,
+                                                    fontSize: 14.0.t,
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 16.0),
+                                                padding: EdgeInsets.only(top: 16.0.h),
                                                 child: Focus(
                                                   child: AppTextField(
                                                     labelText: S.of(context).ibanOrMobileRequest,
@@ -142,7 +144,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   dataBuilder: (context, value) {
                                                     if (!(value!.isEmpty)) {
                                                       return Padding(
-                                                          padding: EdgeInsets.only(top: 16),
+                                                          padding: EdgeInsets.only(top: 16.0.h),
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +154,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                   S.of(context).nameOfBeneficiary,
                                                                   style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 12,
+                                                                    fontSize: 12.0.t,
                                                                     fontWeight: FontWeight.w400,
                                                                   ),
                                                                 ),
@@ -163,7 +165,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                   maxLines: 2,
                                                                   style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 12,
+                                                                    fontSize: 12.0.t,
                                                                     fontWeight: FontWeight.w600,
                                                                   ),
                                                                 ),
@@ -175,17 +177,17 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                     }
                                                   }),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 24),
+                                                padding: EdgeInsets.only(top: 24.0.h),
                                                 child: Text(
                                                   S.of(context).selectPurpose,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
-                                                      fontSize: 14,
+                                                      fontSize: 14.0.t,
                                                       fontWeight: FontWeight.w600),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 16),
+                                                padding: EdgeInsets.only(top: 16.0.h),
                                                 child: AppTextField(
                                                   labelText: S.of(context).purpose,
                                                   hintText: S.of(context).pleaseEnter,
@@ -207,16 +209,16 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   },
                                                   suffixIcon: (value, data) {
                                                     return Container(
-                                                        height: 16,
-                                                        width: 16,
-                                                        padding: EdgeInsetsDirectional.only(end: 8),
+                                                        height: 16.0.h,
+                                                        width: 16.0.w,
+                                                        padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                         child: AppSvg.asset(AssetUtils.downArrow,
                                                             color: AppColor.dark_gray_1));
                                                   },
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 16),
+                                                padding: EdgeInsets.only(top: 16.0.h),
                                                 child: AppTextField(
                                                   labelText: S.of(context).purposeDetails,
                                                   hintText: S.of(context).pleaseEnter,
@@ -238,16 +240,16 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                   },
                                                   suffixIcon: (value, data) {
                                                     return Container(
-                                                        height: 16,
-                                                        width: 16,
-                                                        padding: EdgeInsetsDirectional.only(end: 8),
+                                                        height: 16.0.h,
+                                                        width: 16.0.w,
+                                                        padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                         child: AppSvg.asset(AssetUtils.downArrow,
                                                             color: AppColor.dark_gray_1));
                                                   },
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(top: 24),
+                                                padding: EdgeInsets.only(top: 24.0.h),
                                                 child: ProfileRowItem(
                                                   title: S.of(context).addRecipientToContact,
                                                   initialValue: false,
@@ -259,7 +261,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                     return Visibility(
                                                       visible: isActive,
                                                       child: Container(
-                                                        padding: EdgeInsets.only(top: 16),
+                                                        padding: EdgeInsets.only(top: 16.0.h),
                                                         child: Row(
                                                           children: [
                                                             AppStreamBuilder<String>(
@@ -302,8 +304,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                 .pleaseSelectYourAction);
                                                                       },
                                                                       child: Container(
-                                                                        height: 50,
-                                                                        width: 50,
+                                                                        height: 50.0.h,
+                                                                        width: 50.0.w,
                                                                         decoration: BoxDecoration(
                                                                             shape: BoxShape.circle),
                                                                         child: ClipOval(
@@ -326,7 +328,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional.only(start: 14),
+                                                                    EdgeInsetsDirectional.only(start: 14.0.w),
                                                                 child: AppStreamBuilder<bool>(
                                                                     stream: model.addNickNameStream,
                                                                     initialData: false,
@@ -336,12 +338,12 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                           model.updateNickName(hasFocus);
                                                                         },
                                                                         child: Container(
-                                                                          height: 28,
+                                                                          height: 28.0.h,
                                                                           child: TextField(
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
-                                                                                fontSize: 14,
+                                                                                fontSize: 14.0.t,
                                                                                 fontWeight: FontWeight.w600,
                                                                                 color: Theme.of(context)
                                                                                     .accentTextTheme
@@ -359,7 +361,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                               hintStyle: TextStyle(
                                                                                   fontFamily:
                                                                                       StringUtils.appFont,
-                                                                                  fontSize: 14,
+                                                                                  fontSize: 14.0.t,
                                                                                   fontWeight: FontWeight.w600,
                                                                                   color: val!
                                                                                       ? Colors.transparent
@@ -368,8 +370,8 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                                                                           .bodyText1!
                                                                                           .color),
                                                                               border: InputBorder.none,
-                                                                              contentPadding:
-                                                                                  EdgeInsets.only(bottom: 18),
+                                                                              contentPadding: EdgeInsets.only(
+                                                                                  bottom: 18.0.h),
                                                                             ),
                                                                             onSubmitted: (value) {
                                                                               model.addNickNameVal = value;
@@ -389,7 +391,7 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                  top: 16,
+                                                  top: 16.0.h,
                                                 ),
                                                 child: Align(
                                                   alignment: Alignment.center,
@@ -415,13 +417,13 @@ class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewR
                                           Navigator.pop(context);
                                         },
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 20, bottom: 16),
+                                          padding: EdgeInsets.only(top: 20.0.h, bottom: 16.0.h),
                                           child: Text(
                                             S.of(context).backToPayments,
                                             style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: AppColor.brightBlue,
-                                              fontSize: 12,
+                                              fontSize: 12.0.t,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),

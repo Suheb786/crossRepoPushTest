@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -88,7 +89,7 @@ class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPa
                           child: Card(
                             margin: EdgeInsets.zero,
                             child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -110,7 +111,7 @@ class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPa
                                             onChanged: (value) => model.validate(),
                                           ),
                                           SizedBox(
-                                            height: 16,
+                                            height: 16.h,
                                           ),
                                           AppTextField(
                                             labelText: S.of(context).confirmNewPin.toUpperCase(),
@@ -131,7 +132,7 @@ class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPa
                                     Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.only(top: 16.0, bottom: 24),
+                                          padding: EdgeInsets.only(top: 16.0.h, bottom: 24.h),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
@@ -156,7 +157,7 @@ class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPa
                                                 fontFamily: StringUtils.appFont,
                                                 color: AppColor.brightBlue,
                                                 letterSpacing: 1,
-                                                fontSize: 14,
+                                                fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),

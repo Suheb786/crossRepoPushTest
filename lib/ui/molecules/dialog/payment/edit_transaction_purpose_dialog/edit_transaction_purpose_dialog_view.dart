@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -41,10 +42,10 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
+                padding: EdgeInsetsDirectional.only(top: 32.h, start: 24.w, end: 24.w),
                 child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -57,33 +58,33 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         S.of(context).editTransactionPurpose,
                         style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          fontSize: 14,
+                          fontSize: 14.t,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 30.h),
                         child: Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: Text(
                             beneficiary!.fullName ?? '',
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 14,
+                              fontSize: 14.t,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 2),
+                        padding: EdgeInsets.only(top: 2.h),
                         child: Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: Text(
                             beneficiary!.iban ?? '',
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 12,
+                              fontSize: 12.t,
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -91,7 +92,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 28),
+                        padding: EdgeInsets.only(top: 28.h),
                         child: AppTextField(
                           labelText: S.of(context).purpose,
                           hintText: S.of(context).pleaseSelect,
@@ -112,12 +113,12 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           },
                           suffixIcon: (enabled, value) {
                             return AppSvg.asset(AssetUtils.dropDown,
-                                color: AppColor.dark_gray_1, width: 16, height: 16);
+                                color: AppColor.dark_gray_1, width: 16.w, height: 16.h);
                           },
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 18),
+                        padding: EdgeInsets.only(top: 18.h),
                         child: AppTextField(
                           labelText: S.of(context).purposeDetails,
                           hintText: S.of(context).pleaseSelect,
@@ -138,12 +139,12 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                           },
                           suffixIcon: (enabled, value) {
                             return AppSvg.asset(AssetUtils.dropDown,
-                                color: AppColor.dark_gray_1, width: 16, height: 16);
+                                color: AppColor.dark_gray_1, width: 16.w, height: 16.h);
                           },
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 147),
+                        padding: EdgeInsets.only(top: 147.h),
                         child: InkWell(
                           onTap: () {
                             if (model.purpose != null && model.purposeDetail != null) {
@@ -153,9 +154,9 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             }
                           },
                           child: Container(
-                            padding: EdgeInsets.all(16),
-                            height: 57,
-                            width: 57,
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                            height: 57.h,
+                            width: 57.w,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -164,13 +165,13 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                        padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                         child: Center(
                           child: Text(
                             S.of(context).swipeDownToCancel,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 10,
+                                fontSize: 10.t,
                                 fontWeight: FontWeight.w400,
                                 color: AppColor.dark_gray_1),
                           ),
@@ -210,9 +211,9 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
@@ -226,17 +227,17 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
-                              fontSize: 10),
+                              fontSize: 10.t),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          padding: EdgeInsets.only(top: 4.0.h, right: 16.w),
                           child: Text(message,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 12)),
+                                  fontSize: 12.t)),
                         ),
                       ],
                     ),

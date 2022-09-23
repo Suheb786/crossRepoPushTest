@@ -5,8 +5,7 @@ import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/
 class EngagementTeamDialog {
   EngagementTeamDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => EngagementTeamDialogView(

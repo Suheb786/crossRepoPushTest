@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -55,12 +56,12 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                           },
                           dataBuilder: (context, currentStep) {
                             return Padding(
-                              padding: EdgeInsets.only(top: 56),
+                              padding: EdgeInsets.only(top: 56.h),
                               child: Column(
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 36),
+                                        padding: EdgeInsets.symmetric(vertical: 36.h),
                                         child: Column(
                                           children: [
                                             Text(
@@ -68,12 +69,12 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
-                                                  fontSize: 10,
+                                                  fontSize: 10.t,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional.only(
-                                                  top: 8.0, bottom: 32, start: 24, end: 24),
+                                                  top: 8.0.h, bottom: 32.h, start: 24.w, end: 24.w),
                                               child: ShowUpAnimation(
                                                 key: ValueKey(currentStep),
                                                 delayStart: Duration(milliseconds: 50),
@@ -87,7 +88,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
-                                                      fontSize: 20,
+                                                      fontSize: 20.t,
                                                       fontWeight: FontWeight.w600),
                                                 ),
                                               ),
@@ -107,10 +108,10 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                   margin: EdgeInsets.zero,
                                                   shadowColor: AppColor.black.withOpacity(0.32),
                                                   child: Padding(
-                                                      padding: EdgeInsets.symmetric(horizontal: 24),
+                                                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                                                       child: Column(
                                                         children: [
-                                                          SizedBox(height: 59),
+                                                          SizedBox(height: 59.h),
                                                           GestureDetector(
                                                             onTap: () {
                                                               // model.onCallEstablish();
@@ -118,7 +119,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                             child: Align(
                                                               alignment: Alignment.center,
                                                               child: Container(
-                                                                height: 80.37,
+                                                                height: 80.37.h,
                                                                 decoration: BoxDecoration(
                                                                   shape: BoxShape.circle,
                                                                   color: AppColor.vividYellow,
@@ -129,29 +130,29 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                               ),
                                                             ),
                                                           ),
-                                                          SizedBox(height: 24.0),
+                                                          SizedBox(height: 24.0.h),
                                                           Text(
                                                             S.of(context).weWillConnectYou,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 color: Theme.of(context).primaryColorDark,
-                                                                fontSize: 20,
+                                                                fontSize: 20.t,
                                                                 fontWeight: FontWeight.w600),
                                                           ),
-                                                          SizedBox(height: 24.0),
+                                                          SizedBox(height: 24.0.h),
                                                           Text(
                                                             S.of(context).thankYouForWaiting,
                                                             textAlign: TextAlign.center,
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
                                                                 color: AppColor.very_dark_gray1,
-                                                                fontSize: 12,
+                                                                fontSize: 12.t,
                                                                 fontWeight: FontWeight.w400),
                                                           ),
                                                           Spacer(),
                                                           Padding(
-                                                            padding: const EdgeInsets.only(bottom: 26),
+                                                            padding: EdgeInsets.only(bottom: 26.h),
                                                             child: InkWell(
                                                               onTap: () {
                                                                 Navigator.pop(context);
@@ -162,7 +163,7 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                                                                   style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
                                                                     color: AppColor.brightBlue,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     fontWeight: FontWeight.w500,
                                                                   ),
                                                                 ),

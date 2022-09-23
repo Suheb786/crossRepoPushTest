@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -71,11 +72,11 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                       child: Card(
                         child: Padding(
                           padding: EdgeInsetsDirectional.only(
-                              bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                              bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                                   ? 0
-                                  : MediaQuery.of(context).viewInsets.bottom - 48),
+                                  : MediaQuery.of(context).viewInsets.bottom - 48.h),
                           child: SingleChildScrollView(
-                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                             physics: ClampingScrollPhysics(),
                             child: Column(
                               children: [
@@ -96,15 +97,15 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
-                                        height: 16,
-                                        width: 16,
-                                        padding: EdgeInsetsDirectional.only(end: 8),
+                                        height: 16.h,
+                                        width: 16.w,
+                                        padding: EdgeInsetsDirectional.only(end: 8.w),
                                         child:
                                             AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                                   },
                                 ),
                                 SizedBox(
-                                  height: 24,
+                                  height: 24.h,
                                 ),
                                 AppStreamBuilder<Resource<List<ExpectedTransactions>>>(
                                   stream: model.getExpectedTransactionsStream,
@@ -119,7 +120,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                               fontFamily: StringUtils.appFont,
                                               color: Theme.of(context).primaryColorDark,
                                               fontWeight: FontWeight.w600,
-                                              fontSize: 14),
+                                              fontSize: 14.t),
                                         ),
                                         ListView.builder(
                                           itemBuilder: (context, index) {
@@ -131,7 +132,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                             );
                                           },
                                           physics: ClampingScrollPhysics(),
-                                          padding: EdgeInsetsDirectional.only(top: 16, bottom: 8),
+                                          padding: EdgeInsetsDirectional.only(top: 16.h, bottom: 8.h),
                                           itemCount: expectedTransactions!.data!.length,
                                           shrinkWrap: true,
                                         )
@@ -148,12 +149,12 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                   inputAction: TextInputAction.done,
                                   prefixIcon: () {
                                     return Padding(
-                                      padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
+                                      padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
                                       child: Text(
                                         S.of(context).JOD,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
                                       ),
@@ -166,7 +167,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                 Visibility(
                                   visible: false,
                                   child: SizedBox(
-                                    height: 16,
+                                    height: 16.h,
                                   ),
                                 ),
                                 Visibility(
@@ -180,12 +181,12 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                     inputAction: TextInputAction.done,
                                     prefixIcon: () {
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
+                                        padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
                                         ),
@@ -197,7 +198,7 @@ class PurposeOfAccountOpeningPageView extends BasePageViewWidget<PurposeOfAccoun
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 24),
+                                  padding: EdgeInsetsDirectional.only(top: 24.h),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.allFieldValidatorStream,
                                       initialData: false,

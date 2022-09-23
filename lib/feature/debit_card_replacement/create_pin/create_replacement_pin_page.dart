@@ -5,15 +5,13 @@ import 'package:neo_bank/di/debit_card_replacement/debit_card_replacement_module
 import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page_view.dart';
 import 'package:neo_bank/feature/debit_card_replacement/create_pin/create_replacement_pin_page_view_model.dart';
 
-class CreateReplacementPinPage
-    extends BasePage<CreateReplacementPinPageViewModel> {
+class CreateReplacementPinPage extends BasePage<CreateReplacementPinPageViewModel> {
   @override
-  CreateReplacementPinPageState createState() =>
-      CreateReplacementPinPageState();
+  CreateReplacementPinPageState createState() => CreateReplacementPinPageState();
 }
 
-class CreateReplacementPinPageState extends BaseStatefulPage<
-        CreateReplacementPinPageViewModel, CreateReplacementPinPage>
+class CreateReplacementPinPageState
+    extends BaseStatefulPage<CreateReplacementPinPageViewModel, CreateReplacementPinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   CreateReplacementPinPageState() : super(subscribeVisibilityEvents: true);
 
@@ -34,8 +32,7 @@ class CreateReplacementPinPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CreateReplacementPinPageViewModel model) {
+  Widget buildView(BuildContext context, CreateReplacementPinPageViewModel model) {
     return CreateReplacementPinPageView(provideBase());
   }
 

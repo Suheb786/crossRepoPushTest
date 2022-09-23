@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -99,13 +100,13 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                             shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                                       ? 0
-                                      : MediaQuery.of(context).viewInsets.bottom - 48),
+                                      : MediaQuery.of(context).viewInsets.bottom - 48.h),
                               child: SingleChildScrollView(
                                 child: Container(
                                   decoration: BoxDecoration(color: Theme.of(context).accentColor),
-                                  padding: EdgeInsets.only(top: 38),
+                                  padding: EdgeInsets.only(top: 38.h),
                                   child: AppStreamBuilder<SliderLimitValues>(
                                       stream: model.sliderValueStream,
                                       initialData:
@@ -118,10 +119,10 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: 10),
+                                                  fontSize: 10.t),
                                             ),
                                             SizedBox(
-                                              height: 8,
+                                              height: 8.h,
                                             ),
                                             Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,12 +135,12 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                         value!.toInt().toString(),
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            fontSize: 24,
+                                                            fontSize: 24.t,
                                                             fontWeight: FontWeight.w700),
                                                       );
                                                     }),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.only(start: 4, top: 5),
+                                                  padding: EdgeInsetsDirectional.only(start: 4.w, top: 5.h),
                                                   child: Text(
                                                     S.of(context).JOD,
                                                     style: TextStyle(
@@ -155,13 +156,13 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                               height: 16,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 24),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.w),
                                               child: Container(
                                                 height: 48,
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
                                                     color: Theme.of(context).backgroundColor,
-                                                    borderRadius: BorderRadius.circular(100)),
+                                                    borderRadius: BorderRadius.circular(100.w)),
                                                 child: AppStreamBuilder<double>(
                                                     stream: model.valueStream,
                                                     initialData: sliderLimitValues.minValue!,
@@ -171,7 +172,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                             sliderThemeData: SfSliderThemeData(
                                                                 activeTrackColor: Colors.transparent,
                                                                 activeTrackHeight: 0,
-                                                                thumbRadius: 20,
+                                                                thumbRadius: 20.w,
                                                                 inactiveTrackColor: Colors.transparent,
                                                                 thumbColor: Theme.of(context)
                                                                     .accentTextTheme
@@ -192,10 +193,10 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 8,
+                                              height: 8.h,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -205,7 +206,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                         fontFamily: StringUtils.appFont,
                                                         color: AppColor.gray,
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: 10),
+                                                        fontSize: 10.t),
                                                   ),
                                                   Text(
                                                     "${'${sliderLimitValues.maxValue!}'} ${S.of(context).JOD}",
@@ -213,16 +214,16 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                         fontFamily: StringUtils.appFont,
                                                         color: AppColor.gray,
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: 10),
+                                                        fontSize: 10.t),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 24,
+                                              height: 24.h,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                                               child: AppTextField(
                                                 labelText: S.of(context).minimumSettlement,
                                                 hintText: S.of(context).pleaseEnter,
@@ -242,19 +243,19 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsetsDirectional.only(end: 8),
+                                                      height: 16.h,
+                                                      width: 16.w,
+                                                      padding: EdgeInsetsDirectional.only(end: 8.w),
                                                       child: AppSvg.asset(AssetUtils.downArrow,
                                                           color: AppColor.dark_gray_1));
                                                 },
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 15,
+                                              height: 15.h,
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                                               child: AppTextField(
                                                 key: model.nickNameKey,
                                                 labelText: S.of(context).nickName,
@@ -263,10 +264,10 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 16,
+                                              height: 16.h,
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(vertical: 16),
+                                              padding: EdgeInsets.symmetric(vertical: 16.h),
                                               child: InkWell(
                                                 onTap: () {
                                                   Navigator.pop(context);
@@ -277,7 +278,7 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.brightBlue,
-                                                      fontSize: 14,
+                                                      fontSize: 14.t,
                                                       fontWeight: FontWeight.w500,
                                                     ),
                                                   ),
@@ -285,14 +286,14 @@ class SetCreditLimitPageView extends BasePageViewWidget<SetCreditLimitViewModel>
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 16,
+                                              height: 16.h,
                                             ),
                                             AnimatedButton(
                                               buttonText: S.of(context).swipeToProceed,
                                               borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                               textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
                                             ),
-                                            SizedBox(height: 28),
+                                            SizedBox(height: 28.h),
                                           ],
                                         );
                                       }),

@@ -1,5 +1,6 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentBeneficiaryWidget extends StatelessWidget {
@@ -20,14 +21,14 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
             },
             child: beneficiary!.imageUrl.toString().isNotEmpty
                 ? CircleAvatar(
-                    radius: 32,
+                    radius: 32.0.w,
                     backgroundImage: Image.memory(
                       beneficiary!.imageUrl,
                       fit: BoxFit.cover,
                     ).image,
                   )
                 : CircleAvatar(
-                    radius: 32,
+                    radius: 32.0.w,
                     backgroundColor: transferEnum == TransferEnum.send
                         ? Theme.of(context).canvasColor
                         : Theme.of(context).primaryColor,
@@ -38,14 +39,14 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w700,
-                          fontSize: 20,
+                          fontSize: 20.0.t,
                           color: transferEnum == TransferEnum.send
                               ? Theme.of(context).primaryTextTheme.bodyText1!.color
                               : Theme.of(context).accentColor),
                     ),
                   )),
         Padding(
-          padding: EdgeInsets.only(top: 6),
+          padding: EdgeInsets.only(top: 6.0.h),
           child: Text(
             (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
                 ? beneficiary!.nickName!

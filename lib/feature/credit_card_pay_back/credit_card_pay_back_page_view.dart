@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -50,35 +51,35 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                     alignment: Alignment.bottomCenter,
                     children: [
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 48),
-                        height: 50,
+                        margin: EdgeInsets.symmetric(horizontal: 48.w),
+                        height: 50.h,
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
                       ),
                       Positioned(
-                          bottom: -8,
+                          bottom: -8.h,
                           child: LottieBuilder.asset(
                             AssetUtils.swipeDownAnimation,
-                            width: 28.0,
-                            height: 28.0,
+                            width: 28.0.w,
+                            height: 28.0.h,
                           )),
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8),
+                    padding: EdgeInsets.only(top: 8.h),
                     child: Text(
                       S.of(context).backToDashboard,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
-                          fontSize: 12,
+                          fontSize: 12.t,
                           color: AppColor.dark_gray_1),
                     ),
                   ),
                   SizedBox(
-                    height: 48,
+                    height: 48.h,
                   ),
                   SingleChildScrollView(
                     child: Column(
@@ -86,14 +87,14 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                         Text(
                           S.of(context).payBack,
                           style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20),
+                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 20.t),
                         ),
                         Text(
                           S.of(context).myCreditCard,
                           style: TextStyle(
-                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20),
+                              fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 20.t),
                         ),
-                        SizedBox(height: 32),
+                        SizedBox(height: 32.h),
                         Directionality(
                           textDirection: TextDirection.ltr,
                           child: Row(
@@ -118,20 +119,20 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                               maxLines: 1,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 40,
+                                                  fontSize: 40.t,
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.black)),
                                         ),
                                         SizedBox(
-                                          width: 4,
+                                          width: 4.w,
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(bottom: 8.0),
+                                          padding: EdgeInsets.only(bottom: 8.0.h),
                                           child: Text(S.of(context).JOD,
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.verLightGray4)),
                                         ),
@@ -156,31 +157,31 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 36.h,
                         ),
                         Row(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width / 2.45,
-                              padding: EdgeInsets.symmetric(vertical: 15),
+                              padding: EdgeInsets.symmetric(vertical: 15.h),
                               margin: EdgeInsetsDirectional.only(
                                   start: MediaQuery.of(context).size.width / 13.5, end: 10),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.blue),
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20.w)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(S.of(context).minDue,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 10,
+                                          fontSize: 10.t,
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.verLightGray4)),
                                   Text(model.payBackArguments.minDuePayBackAmount,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black))
                                 ],
@@ -188,25 +189,25 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width / 2.45,
-                              padding: EdgeInsets.symmetric(vertical: 15),
+                              padding: EdgeInsets.symmetric(vertical: 15.h),
                               margin:
                                   EdgeInsetsDirectional.only(end: MediaQuery.of(context).size.width / 13.5),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.blue),
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20.w)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(S.of(context).totalDue,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 10,
+                                          fontSize: 10.t,
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.verLightGray4)),
                                   Text(model.payBackArguments.totalMinDueAmount,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black))
                                 ],
@@ -215,14 +216,14 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                           ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 37.h,
                         ),
                         Center(
                             child: Column(children: [
                           Text(S.of(context).accountBalance,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 10,
+                                  fontSize: 10.t,
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.verLightGray4)),
                           Center(
@@ -232,21 +233,24 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                               Text(model.payBackArguments.accountBalance,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black)),
                               SizedBox(
-                                width: 5,
+                                width: 5.w,
                               ),
                               Text(S.of(context).JOD,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 12,
+                                      fontSize: 12.t,
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.verLightGray4))
                             ],
                           )),
                         ])),
+                        SizedBox(
+                          height: 45.h,
+                        ),
                         Directionality(
                           textDirection: TextDirection.ltr,
                           child: NumericKeyboard(
@@ -294,7 +298,7 @@ class CreditCardPayBackPageView extends BasePageViewWidget<CreditCardPayBackPage
                                 size: 5,
                               ),
                               rightWidget: CircleAvatar(
-                                radius: 30,
+                                radius: 30.w,
                                 backgroundColor: Color(0xFF3CB4E5),
                                 child: Center(child: AppSvg.asset(AssetUtils.next)),
                               ),

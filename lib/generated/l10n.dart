@@ -8100,10 +8100,10 @@ class S {
     );
   }
 
-  /// `You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.`
+  /// `You don't have any contacts yet. Your Blink contacts can be saved while requesting money.`
   String get addRequestMoney {
     return Intl.message(
-      'You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.',
+      'You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money.',
       name: 'addRequestMoney',
       desc: '',
       args: [],
@@ -13735,6 +13735,36 @@ class S {
     return Intl.message(
       'Attention',
       name: 'attention',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Data Found`
+  String get noDataFound {
+    return Intl.message(
+      'No Data Found',
+      name: 'noDataFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Again`
+  String get searchAgain {
+    return Intl.message(
+      'Search Again',
+      name: 'searchAgain',
       desc: '',
       args: [],
     );

@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -24,11 +25,11 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
       children: [
         Expanded(
           child: Card(
-            margin: EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
+            margin: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 40.h),
             child: Stack(
               children: [
                 SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                  padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,32 +72,32 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                   },
                                   child: CircleAvatar(
                                     backgroundColor: Theme.of(context).primaryColor,
-                                    radius: 48,
+                                    radius: 48.w,
                                     child: CircleAvatar(
-                                      radius: 48,
+                                      radius: 48.w,
                                       child: image!.isEmpty
                                           ? (model.beneficiary.imageUrl!.isNotEmpty
                                               ? CircleAvatar(
-                                                  radius: 48,
+                                                  radius: 48.w,
                                                   backgroundImage: Image.memory(
                                                     model.beneficiary.imageUrl!,
                                                     fit: BoxFit.cover,
                                                   ).image,
                                                 )
                                               : CircleAvatar(
-                                                  radius: 48,
+                                                  radius: 48.w,
                                                   backgroundColor: Theme.of(context).primaryColor,
                                                   child: Text(
                                                     StringUtils.getFirstInitials(model.beneficiary.fullName),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w700,
-                                                        fontSize: 14,
+                                                        fontSize: 14.t,
                                                         color: Theme.of(context).accentColor),
                                                   ),
                                                 ))
                                           : CircleAvatar(
-                                              radius: 48,
+                                              radius: 48.w,
                                               backgroundImage: Image.file(
                                                 File(image),
                                                 fit: BoxFit.cover,
@@ -113,14 +114,14 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 8,
+                              height: 8.h,
                             ),
                             Center(
                               child: Text(
                                 S.of(context).tapToEditPhoto,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     fontWeight: FontWeight.w600,
                                     color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                               ),
@@ -129,7 +130,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         ),
                       ),
                       SizedBox(
-                        height: 19,
+                        height: 19.h,
                       ),
                       AppTextField(
                         labelText: S.of(context).nickName.toUpperCase(),
@@ -144,7 +145,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                           model.updateType = UpdateType.details;
                         },
                       ),
-                      SizedBox(height: 13),
+                      SizedBox(height: 13.h),
                       AppTextField(
                         labelText: S.of(context).ibanMobileNoAlias.toUpperCase(),
                         hintText: S.of(context).pleaseEnter,
@@ -154,7 +155,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         readOnly: true,
                         textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
-                      SizedBox(height: 13),
+                      SizedBox(height: 13.h),
                       AppTextField(
                         labelText: S.of(context).accountHolderName.toUpperCase(),
                         hintText: S.of(context).pleaseEnter,
@@ -164,7 +165,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         readOnly: true,
                         textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
-                      SizedBox(height: 13),
+                      SizedBox(height: 13.h),
                       AppTextField(
                         labelText: S.of(context).bankName,
                         hintText: S.of(context).pleaseEnter,
@@ -174,7 +175,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         readOnly: true,
                         textColor: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                       ),
-                      SizedBox(height: 13),
+                      SizedBox(height: 13.h),
                       AppTextField(
                         labelText: S.of(context).purpose,
                         // hintText: S.of(context).pleaseSelect,
@@ -208,7 +209,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                         //           color: AppColor.dark_gray_1));
                         // },
                       ),
-                      SizedBox(height: 13),
+                      SizedBox(height: 13.h),
                       AppTextField(
                         labelText: S.of(context).purposeDetail,
                         // hintText: S.of(context).pleaseSelect,
@@ -255,19 +256,19 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                               model.deleteBeneficiary();
                             },
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(top: 45, bottom: 11),
+                              padding: EdgeInsetsDirectional.only(top: 45.h, bottom: 11.h),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   AppSvg.asset(AssetUtils.delete, color: Theme.of(context).primaryColor),
                                   SizedBox(
-                                    width: 15,
+                                    width: 15.w,
                                   ),
                                   Text(
                                     S.of(context).removeFromContact,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         fontWeight: FontWeight.w600,
                                         color: Theme.of(context).primaryColor),
                                   ),
@@ -313,8 +314,8 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                       model.updateBeneficiary();
                                     },
                                     child: Container(
-                                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                                      height: 56,
+                                      margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+                                      height: 56.h,
                                       decoration: BoxDecoration(
                                           color: Theme.of(context).accentTextTheme.bodyText1!.color,
                                           borderRadius: BorderRadius.circular(100)),
@@ -323,7 +324,7 @@ class ManageContactDetailsPageView extends BasePageViewWidget<ManageContactDetai
                                           S.of(context).saveChanges,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).accentColor),
                                         ),

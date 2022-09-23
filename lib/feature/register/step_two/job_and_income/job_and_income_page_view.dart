@@ -28,6 +28,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -78,11 +79,11 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                 child: Card(
                   child: Padding(
                     padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                        bottom: MediaQuery.of(context).viewInsets.bottom - 50.h <= 0
                             ? 0
-                            : MediaQuery.of(context).viewInsets.bottom - 48),
+                            : MediaQuery.of(context).viewInsets.bottom - 48.h),
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                       physics: ClampingScrollPhysics(),
                       child: Column(
                         children: [
@@ -126,7 +127,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   // },
                                 ),
                                 SizedBox(
-                                  height: 16,
+                                  height: 16.h,
                                 ),
                               ],
                             ),
@@ -156,15 +157,15 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
-                                        height: 16,
-                                        width: 16,
-                                        padding: EdgeInsetsDirectional.only(end: 8),
+                                        height: 16.h,
+                                        width: 16.w,
+                                        padding: EdgeInsetsDirectional.only(end: 8.w),
                                         child:
                                             AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                                   },
                                 ),
                                 SizedBox(
-                                  height: 16,
+                                  height: 16.h,
                                 ),
                               ],
                             ),
@@ -189,7 +190,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                       },
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                   ],
                                 ),
@@ -209,12 +210,12 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             ],
                             prefixIcon: () {
                               return Padding(
-                                padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
+                                padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
                                 child: Text(
                                   S.of(context).JOD,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryTextTheme.bodyText1!.color!),
                                 ),
@@ -225,7 +226,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             },
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 16.h,
                           ),
                           AppTextField(
                             labelText: S.of(context).employerName,
@@ -239,7 +240,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             },
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 16.h,
                           ),
                           AppTextField(
                             labelText: S.of(context).employerCountry,
@@ -263,14 +264,14 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             },
                             suffixIcon: (value, data) {
                               return Container(
-                                  height: 16,
-                                  width: 16,
-                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsetsDirectional.only(end: 8.w),
                                   child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
                             },
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 16.h,
                           ),
                           AppTextField(
                             labelText: S.of(context).employerCity,
@@ -284,7 +285,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             },
                           ),
                           SizedBox(
-                            height: 16,
+                            height: 16.h,
                           ),
                           AppTextField(
                             labelText: S.of(context).employerContact,
@@ -306,7 +307,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                             initialData: false,
                             dataBuilder: (context, isActive) {
                               return Padding(
-                                padding: const EdgeInsets.only(top: 32.0),
+                                padding: EdgeInsets.only(top: 32.0.h),
                                 child: Column(
                                   children: [
                                     AppSwitchLabelWidget(
@@ -366,7 +367,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                 });
                                           } else {
                                             return Padding(
-                                              padding: const EdgeInsets.only(top: 16.0),
+                                              padding: EdgeInsets.only(top: 16.0.h),
                                               child: AddIncomeWidget(
                                                 label: S.of(context).addIncome,
                                                 onTap: () {
@@ -400,7 +401,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w400,
-                                                              fontSize: 14,
+                                                              fontSize: 14.t,
                                                               height: 1.4,
                                                               color: Theme.of(context)
                                                                   .inputDecorationTheme
@@ -413,7 +414,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w600,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     color: Theme.of(context)
                                                                         .inputDecorationTheme
                                                                         .focusedBorder!
@@ -427,7 +428,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                                                                     style: TextStyle(
                                                                         fontFamily: StringUtils.appFont,
                                                                         fontWeight: FontWeight.w400,
-                                                                        fontSize: 14,
+                                                                        fontSize: 14.t,
                                                                         color: Theme.of(context)
                                                                             .inputDecorationTheme
                                                                             .focusedBorder!
@@ -450,7 +451,7 @@ class JobAndIncomePageView extends BasePageViewWidget<JobAndIncomePageViewModel>
                           ),
                           Center(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 32),
+                              padding: EdgeInsets.only(top: 32.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.allFieldValidatorStream,
                                   initialData: false,

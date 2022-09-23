@@ -15,8 +15,7 @@ class DebitCardTimeLinePage extends BasePage<DebitCardTimeLineViewModel> {
   DebitCardTimeLinePageState createState() => DebitCardTimeLinePageState();
 }
 
-class DebitCardTimeLinePageState extends BaseStatefulPage<
-    DebitCardTimeLineViewModel, DebitCardTimeLinePage> {
+class DebitCardTimeLinePageState extends BaseStatefulPage<DebitCardTimeLineViewModel, DebitCardTimeLinePage> {
   @override
   ProviderBase provideBase() {
     return debitCardTimeLineViewModelProvider.call(widget._timeLineArguments);
@@ -37,7 +36,5 @@ class TimeLinePageArguments {
   final TimeLineArguments timeLineArguments;
   final CardType cardType;
 
-  TimeLinePageArguments(
-      {required this.timeLineArguments,
-       this.cardType: CardType.ACCOUNT});
+  TimeLinePageArguments({required this.timeLineArguments, this.cardType: CardType.ACCOUNT});
 }

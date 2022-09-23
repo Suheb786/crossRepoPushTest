@@ -1350,5 +1350,8 @@
   "locationRestricted": " تطبيق بلنك غير متاح في منطقتك الجغرافية.",
   "callDroppedDesc": "عفواً! صار خطأ في الأتصال, حاول كمان مرة",
   "applicationNotAvailableInRegion": "تطبيق بلنك غير متاح في منطقتك الجغرافية",
-  "attention": "تنويه"
+  "attention": "تنويه",
+  "noDataFound": "لاتوجد بيانات",
+  "somethingWentWrong": "هناك خطأ ما",
+  "searchAgain": "البحث مرة أخرى"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -19,8 +20,8 @@ class AppOtpFields extends StatelessWidget {
   const AppOtpFields(
       {Key? key,
       @required this.length,
-      this.fieldHeight: 50,
-      this.fieldWidth: 35,
+      this.fieldHeight,
+      this.fieldWidth,
       this.onCompleted,
       this.controller,
       this.onChanged,
@@ -54,8 +55,8 @@ class AppOtpFields extends StatelessWidget {
           showCursor: false,
           pinTheme: PinTheme(
               shape: PinCodeFieldShape.box,
-              fieldHeight: fieldHeight,
-              fieldWidth: fieldWidth,
+              fieldHeight: fieldHeight ?? 50.0.h,
+              fieldWidth: fieldWidth ?? 35.0.w,
               selectedFillColor: selectedFillColor,
               activeFillColor: AppColor.white,
               inactiveColor: Theme.of(context).inputDecorationTheme.enabledBorder!.borderSide.color,
@@ -66,8 +67,8 @@ class AppOtpFields extends StatelessWidget {
               selectedColor: Theme.of(context).inputDecorationTheme.focusedBorder!.borderSide.color),
           obscureText: true,
           obscuringWidget: Container(
-            height: 18.92,
-            width: 6.62,
+            height: 18.92.h,
+            width: 6.62.w,
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).textTheme.bodyText1!.color),
           ),
@@ -75,7 +76,7 @@ class AppOtpFields extends StatelessWidget {
               fontFamily: StringUtils.appFont,
               // color: AppColor.very_pale_blue,
               fontWeight: FontWeight.w600,
-              fontSize: 19),
+              fontSize: 19.0.t),
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),
       ),

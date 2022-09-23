@@ -10,8 +10,7 @@ class RequestMoneyPage extends BasePage<RequestMoneyViewModel> {
   RequestMoneyPageState createState() => RequestMoneyPageState();
 }
 
-class RequestMoneyPageState
-    extends BaseStatefulPage<RequestMoneyViewModel, RequestMoneyPage> {
+class RequestMoneyPageState extends BaseStatefulPage<RequestMoneyViewModel, RequestMoneyPage> {
   @override
   ProviderBase provideBase() {
     return requestMoneyViewModelProvider;

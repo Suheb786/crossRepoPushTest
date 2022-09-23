@@ -6,28 +6,24 @@ import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_un
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 
-class CardPinUnBlockSuccessPage
-    extends BasePage<CardPinUnBlockSuccessPageViewModel> {
+class CardPinUnBlockSuccessPage extends BasePage<CardPinUnBlockSuccessPageViewModel> {
   final ManageCardPinArguments manageCardPinArguments;
 
   CardPinUnBlockSuccessPage({required this.manageCardPinArguments});
 
   @override
-  CardPinUnBlockSuccessPageState createState() =>
-      CardPinUnBlockSuccessPageState();
+  CardPinUnBlockSuccessPageState createState() => CardPinUnBlockSuccessPageState();
 }
 
-class CardPinUnBlockSuccessPageState extends BaseStatefulPage<
-    CardPinUnBlockSuccessPageViewModel, CardPinUnBlockSuccessPage> {
+class CardPinUnBlockSuccessPageState
+    extends BaseStatefulPage<CardPinUnBlockSuccessPageViewModel, CardPinUnBlockSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return cardPinUnblockSuccessViewModelProvider
-        .call(widget.manageCardPinArguments);
+    return cardPinUnblockSuccessViewModelProvider.call(widget.manageCardPinArguments);
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CardPinUnBlockSuccessPageViewModel model) {
+  Widget buildView(BuildContext context, CardPinUnBlockSuccessPageViewModel model) {
     return CardPinUnBlockSuccessPageView(provideBase());
   }
 }

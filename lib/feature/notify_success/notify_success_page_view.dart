@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewModel> {
@@ -35,7 +36,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 92),
+                      padding: EdgeInsets.only(top: 92.h),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -43,7 +44,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              height: 111.37,
+                              height: 111.37.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColor.vividYellow,
@@ -55,7 +56,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                       ),
                     ),
                     SizedBox(
-                      height: 34.7,
+                      height: 34.7.h,
                     ),
                     Center(
                       child: Column(
@@ -66,11 +67,11 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 24,
+                                fontSize: 24.t,
                                 color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
-                            height: 4,
+                            height: 4.h,
                           ),
                           Text(
                             S.of(context).thankYouForInterestWillSendUpdate,
@@ -78,20 +79,20 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14,
+                                fontSize: 14.t,
                                 color: Theme.of(context).accentColor),
                           ),
                         ],
                       ),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 40.h,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
                           color: Theme.of(context).accentColor, borderRadius: BorderRadius.circular(16)),
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
                       child:
                           AccountDetails(title: S.of(context).refTitle, value: model.arguments.referenceNo),
                     ),
@@ -107,11 +108,11 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                     borderColor: Theme.of(context).accentColor,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
+                    padding: EdgeInsets.only(
+                      bottom: 32.h,
                     ),
                     child: Center(
                       child: Text(
@@ -120,7 +121,7 @@ class NotifySuccessPageView extends BasePageViewWidget<NotifySuccessPageViewMode
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 12.t,
                         ),
                       ),
                     ),

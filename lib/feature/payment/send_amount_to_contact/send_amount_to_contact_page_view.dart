@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -45,10 +46,10 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                 alignment: Alignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 25.0),
+                    padding: EdgeInsets.only(bottom: 25.0.h),
                     child: Container(
-                      height: 50,
-                      width: 281,
+                      height: 50.h,
+                      width: 281.w,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.only(
@@ -64,12 +65,12 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       children: [
                         AppSvg.asset(AssetUtils.downArrow),
                         Padding(
-                          padding: EdgeInsets.only(top: 6.0),
+                          padding: EdgeInsets.only(top: 6.0.h),
                           child: Text(
                             S.of(context).backToPayments,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 12,
+                                fontSize: 12.t,
                                 fontWeight: FontWeight.w600,
                                 color: AppColor.dark_gray_2),
                           ),
@@ -81,36 +82,36 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 24.0),
+              padding: EdgeInsets.only(top: 24.0.h),
               child: model.beneficiary.imageUrl.toString().isNotEmpty
                   ? CircleAvatar(
-                      radius: 28,
+                      radius: 28.w,
                       backgroundImage: Image.memory(
                         model.beneficiary.imageUrl,
                         fit: BoxFit.cover,
                       ).image,
                     )
                   : CircleAvatar(
-                      radius: 28,
+                      radius: 28.w,
                       backgroundColor: Theme.of(context).canvasColor,
                       child: Text(
                         StringUtils.getFirstInitials(model.beneficiary.fullName),
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w700,
-                            fontSize: 20,
+                            fontSize: 20.t,
                             color: Theme.of(context).primaryTextTheme.bodyText1!.color),
                       ),
                     ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 8),
+              padding: EdgeInsets.only(top: 8.h),
               child: Text(
                 S.of(context).sendMoneyTo,
                 style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: 20.t,
                 ),
               ),
             ),
@@ -121,17 +122,17 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
-                fontSize: 20,
+                fontSize: 20.t,
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 16, end: 24, start: 24),
+              padding: EdgeInsetsDirectional.only(top: 16.h, end: 24.w, start: 24.w),
               child: Container(
                 decoration: BoxDecoration(
                     color: Theme.of(context).accentColor,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
-                padding: EdgeInsetsDirectional.only(top: 14, bottom: 14, start: 26, end: 34),
+                padding: EdgeInsetsDirectional.only(top: 14.h, bottom: 14.h, start: 26.w, end: 34.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -140,11 +141,11 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           color: AppColor.dark_gray_1,
-                          fontSize: 10,
+                          fontSize: 10.t,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 2),
+                      padding: EdgeInsets.only(top: 2.h),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -159,7 +160,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                   value!,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 12,
+                                      fontSize: 12.t,
                                       fontWeight: FontWeight.w600),
                                 );
                               }),
@@ -188,7 +189,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                 S.of(context).edit,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     fontWeight: FontWeight.w700,
                                     color: Theme.of(context).accentTextTheme.bodyText1!.color),
                               ),
@@ -198,7 +199,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 2),
+                      padding: EdgeInsets.only(top: 2.h),
                       child: AppStreamBuilder<String>(
                           stream: model.purposeDetailStream,
                           initialData: (model.beneficiary.purposeDetails != null &&
@@ -209,7 +210,9 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                             return Text(
                               value!,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 12.t,
+                                  fontWeight: FontWeight.w600),
                             );
                           }),
                     ),
@@ -218,7 +221,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 27, start: 24, end: 24),
+              padding: EdgeInsetsDirectional.only(top: 27.h, start: 24.w, end: 24.w),
               child: Directionality(
                 textDirection: TextDirection.ltr,
                 child: Row(
@@ -238,17 +241,17 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 40,
+                                  fontSize: 40.t,
                                   color: AppColor.black),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(top: 15, start: 4),
+                              padding: EdgeInsetsDirectional.only(top: 15.h, start: 4.w),
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.verLightGray4,
-                                    fontSize: 16,
+                                    fontSize: 16.t,
                                     fontWeight: FontWeight.w700),
                               ),
                             ),
@@ -270,18 +273,18 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 24),
+              padding: EdgeInsets.only(top: 24.h),
               child: Text(
                 S.of(context).accountBalance,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,
-                    fontSize: 10,
+                    fontSize: 10.t,
                     color: AppColor.dark_gray_1),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 2),
+              padding: EdgeInsets.only(top: 2.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -294,17 +297,17 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                     style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       fontWeight: FontWeight.w700,
-                      fontSize: 14,
+                      fontSize: 14.t,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(start: 4.0, top: 2),
+                    padding: EdgeInsetsDirectional.only(start: 4.0.w, top: 2.h),
                     child: Text(
                       S.of(context).JOD,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w700,
-                          fontSize: 12,
+                          fontSize: 12.t,
                           color: AppColor.dark_gray_1),
                     ),
                   ),
@@ -367,7 +370,7 @@ class SendAmountToContactPageView extends BasePageViewWidget<SendAmountToContact
                                   size: 5,
                                 ),
                                 rightWidget: CircleAvatar(
-                                  radius: 30,
+                                  radius: 30.w,
                                   backgroundColor: Color(0xFF3CB4E5),
                                   child: Center(
                                     child: AppSvg.asset(AssetUtils.next),

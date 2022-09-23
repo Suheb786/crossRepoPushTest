@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/button/app_icon_button.dart';
 import 'package:neo_bank/ui/molecules/register/notify_me_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionViewModel> {
@@ -34,14 +35,14 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 128, right: 128, bottom: 8, top: 44),
+              padding: EdgeInsets.only(left: 128.0.w, right: 128.0.w, bottom: 8.0.h, top: 44.0.h),
               width: double.infinity,
               decoration: BoxDecoration(
                   color: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
               child: Container(
-                height: 4,
-                width: 128,
+                height: 4.0.h,
+                width: 128.0.w,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), color: AppColor.whiteGray),
               ),
             ),
@@ -49,8 +50,8 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
               child: SingleChildScrollView(
                 physics: ClampingScrollPhysics(),
                 child: Container(
-                  padding: EdgeInsets.only(top: 74),
-                  width: 295,
+                  padding: EdgeInsets.only(top: 74.0.h),
+                  width: 295.0.w,
                   child: Column(
                     children: [
                       Text(
@@ -59,11 +60,11 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
-                            fontSize: 32,
+                            fontSize: 32.0.t,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 41),
+                        margin: EdgeInsets.only(top: 41.0.h),
                         child: NotifyMeWidget(
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.NonJordanianRegister);
@@ -73,14 +74,14 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 56),
+                        padding: EdgeInsets.only(top: 56.h),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.AccountRegistration,
                                 arguments: AccountRegistrationParams());
                           },
                           child: Container(
-                            padding: EdgeInsets.all(18),
+                            padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
                             width: double.maxFinite,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
@@ -90,7 +91,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                               child: Text(S.of(context).registerViaEmail,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 1,
                                       color: Theme.of(context).accentColor)),
@@ -101,14 +102,14 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                       Visibility(
                         visible: false,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24),
+                          padding: EdgeInsets.symmetric(vertical: 24.h),
                           child: Row(
                             children: <Widget>[
                               Expanded(
                                 child: AppDivider(
                                   color: Theme.of(context).accentColor,
                                   indent: 0,
-                                  endIndent: 12,
+                                  endIndent: 12.w,
                                 ),
                               ),
                               Text(
@@ -116,13 +117,13 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).accentColor,
-                                    fontSize: 12),
+                                    fontSize: 12.t),
                               ),
                               Expanded(
                                 child: AppDivider(
                                   color: Theme.of(context).accentColor,
                                   endIndent: 0,
-                                  indent: 12,
+                                  indent: 12.w,
                                 ),
                               ),
                             ],
@@ -139,7 +140,7 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
                                 icon: AssetUtils.apple,
                                 iconSize: 28,
                               )),
-                              Container(width: 16),
+                              Container(width: 16.w),
                               Expanded(
                                 child: AppIconButton(
                                   icon: AssetUtils.google,
@@ -156,12 +157,12 @@ class RegisterSelectionPageView extends BasePageViewWidget<RegisterSelectionView
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 25),
+              margin: EdgeInsets.symmetric(vertical: 25.h),
               child: Text(
                 S.of(context).swipeDownToLogin,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     color: Theme.of(context).accentColor,
                     letterSpacing: 1,
                     fontWeight: FontWeight.w500),

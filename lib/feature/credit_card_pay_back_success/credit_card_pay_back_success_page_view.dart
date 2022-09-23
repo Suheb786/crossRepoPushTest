@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayBackSuccessViewModel> {
@@ -29,7 +30,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 92),
+                padding: EdgeInsets.only(top: 92.h),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
@@ -37,7 +38,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                     Align(
                       alignment: Alignment.center,
                       child: Container(
-                        height: 111.37,
+                        height: 111.37.h,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColor.vividYellow,
@@ -49,7 +50,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(top: 24.0.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -60,24 +61,24 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w700,
-                          fontSize: 32),
+                          fontSize: 32.t),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
+                      padding: EdgeInsetsDirectional.only(top: 8.h, start: 5.0.w),
                       child: Text(
                         S.of(context).JOD,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: AppColor.very_light_red,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14),
+                            fontSize: 14.t),
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 6.0),
+                padding: EdgeInsets.only(top: 6.0.h),
                 child: Text(
                   S.of(context).paidTo,
                   textAlign: TextAlign.center,
@@ -85,11 +86,11 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w500,
-                      fontSize: 24),
+                      fontSize: 24.t),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(top: 24.0.h),
                 child: Text(
                   S.of(context).myCreditCard,
                   textAlign: TextAlign.center,
@@ -97,11 +98,11 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w600,
-                      fontSize: 14),
+                      fontSize: 14.t),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4.0),
+                padding: EdgeInsets.only(top: 4.0.h),
                 child: Text(
                   model.creditCardPayBackSuccessArguments.accountHolderName,
                   textAlign: TextAlign.center,
@@ -109,13 +110,13 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                       fontFamily: StringUtils.appFont,
                       color: AppColor.very_light_red,
                       fontWeight: FontWeight.w600,
-                      fontSize: 12),
+                      fontSize: 12.t),
                 ),
               ),
               Visibility(
                 visible: false,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 23),
+                  padding: EdgeInsets.only(top: 23.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -128,7 +129,7 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 14,
+                              fontSize: 14.t,
                               color: Theme.of(context).accentTextTheme.bodyText1!.color),
                         ),
                       )
@@ -146,13 +147,13 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                 textColor: Theme.of(context).accentColor,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 9, bottom: 16),
+                padding: EdgeInsets.only(top: 9.h, bottom: 16.h),
                 child: Text(
                   S.of(context).toDashboard,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
-                      fontSize: 12,
+                      fontSize: 12.t,
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -161,23 +162,23 @@ class CreditCardPayBackSuccessPageView extends BasePageViewWidget<CreditCardPayB
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 33),
+                      padding: EdgeInsets.only(top: 33.h),
                       child: Text(
                         S.of(context).undoTransaction,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentTextTheme.bodyText1!.color),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 4),
+                      padding: EdgeInsets.only(top: 4.h),
                       child: Text(
                         "0:07",
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),

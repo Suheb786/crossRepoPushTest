@@ -23,6 +23,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -91,7 +92,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     child: Card(
                       margin: EdgeInsets.zero,
                       child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                           child: Column(
                             children: [
                               AppStreamBuilder<Resource<CheckUsername>>(
@@ -122,7 +123,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 },
                               ),
                               SizedBox(
-                                height: 16,
+                                height: 16.h,
                               ),
                               AppStreamBuilder<Resource<AllowedCountryListResponse>>(
                                 initialData: Resource.success(data: AllowedCountryListResponse()),
@@ -191,13 +192,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           country!.data!.contentData!.countryData);
                                                 },
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(top: 8.0),
+                                                  padding: EdgeInsets.only(top: 8.0.h),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
                                                       Container(
-                                                        height: 16,
-                                                        width: 16,
+                                                        height: 16.h,
+                                                        width: 16.w,
                                                         decoration: BoxDecoration(
                                                           color: Theme.of(context).primaryColorDark,
                                                           shape: BoxShape.circle,
@@ -207,7 +208,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                             : "assets/flags/jor.svg"),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                                                         child: Directionality(
                                                           textDirection: TextDirection.ltr,
                                                           child: Text(
@@ -219,7 +220,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                                   .textTheme
                                                                   .bodyText1!
                                                                   .color,
-                                                              fontSize: 14,
+                                                              fontSize: 14.t,
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600,
                                                             ),
@@ -227,9 +228,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                         ),
                                                       ),
                                                       Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          margin: EdgeInsets.only(right: 8),
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          margin: EdgeInsets.only(right: 8.w),
                                                           child: AppSvg.asset(AssetUtils.downArrow,
                                                               color: Theme.of(context)
                                                                   .primaryTextTheme
@@ -257,13 +258,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                   style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: AppColor.brightBlue,
-                                    fontSize: 14,
+                                    fontSize: 14.t,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 12.0),
+                                padding: EdgeInsets.symmetric(vertical: 12.0.h),
                                 child: AppStreamBuilder<bool>(
                                     stream: model.showButtonStream,
                                     initialData: false,

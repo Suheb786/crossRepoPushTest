@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
   NavigationType? navigationType;
@@ -43,8 +44,8 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
                 Navigator.pop(context);
               },
               child: Container(
-                height: 80,
-                width: 80,
+                height: 80.0.h,
+                width: 80.0.w,
                 decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
                 child: Center(
                   child: AppSvg.asset(AssetUtils.logoWhite),

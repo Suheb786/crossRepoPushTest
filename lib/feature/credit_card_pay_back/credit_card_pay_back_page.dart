@@ -14,12 +14,10 @@ class CreditCardPayBackPage extends BasePage<CreditCardPayBackPageModel> {
   CreditCardPayBackPageState createState() => CreditCardPayBackPageState();
 }
 
-class CreditCardPayBackPageState extends BaseStatefulPage<
-    CreditCardPayBackPageModel, CreditCardPayBackPage> {
+class CreditCardPayBackPageState extends BaseStatefulPage<CreditCardPayBackPageModel, CreditCardPayBackPage> {
   @override
   ProviderBase provideBase() {
-    return creditCardPayBackViewModelProvider
-        .call(widget._creditCardPayBackArguments);
+    return creditCardPayBackViewModelProvider.call(widget._creditCardPayBackArguments);
   }
 
   @override

@@ -8,6 +8,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardNotDeliveredWidget extends StatefulWidget {
@@ -35,7 +36,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
         direction: FlipDirection.HORIZONTAL,
         front: Container(
           child: Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
             child: Container(
                 key: ValueKey(true),
                 child: Card(
@@ -50,9 +51,9 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                          top: widget.isSmallDevice ? 21 : 30.0,
-                          right: 23,
-                          left: 23,
+                          top: 30.0.h,
+                          right: 23.0.w,
+                          left: 23.0.w,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +64,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: widget.isSmallDevice ? 10 : 12,
+                                  fontSize: 12.0.t,
                                   color: Colors.white),
                             ),
                             InkWell(
@@ -72,7 +73,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                 widget.flipCardController!.toggleCard();
                               },
                               child: Container(
-                                height: 50,
+                                height: 24.0.h,
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).flipCard,
@@ -80,7 +81,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: widget.isSmallDevice ? 12 : 14,
+                                      fontSize: 14.0.t,
                                       color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                 ),
                               ),
@@ -89,23 +90,22 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
-                        child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                            height: widget.isSmallDevice ? 26 : 33.64, width: widget.isSmallDevice ? 52 : 72),
+                        padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
+                        child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
+                        padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
                         child: Text(
                           widget.creditCard.name ?? "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: widget.isSmallDevice ? 10 : 14,
+                              fontSize: 14.0.t,
                               color: Colors.white),
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 30.0.h,
                       ),
                       Image.asset(
                         AssetUtils.line_black_white,
@@ -114,22 +114,23 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                       ),
                       Spacer(),
                       Padding(
-                        padding: const EdgeInsetsDirectional.only(top: 8.0, start: 23),
+                        padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 23.0.w),
                         child: Text(
                           S.of(context).cardRequiresActivation,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
-                            fontSize: widget.isSmallDevice ? 12 : 14,
+                            fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 4.0.h,
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.only(top: 8.0, start: 23, bottom: 40, end: 23),
+                        padding: EdgeInsetsDirectional.only(
+                            top: 8.0.h, start: 23.0.w, bottom: 40.0.h, end: 23.0.w),
                         child: Row(
                           children: [
                             Expanded(
@@ -138,13 +139,13 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryLightRed,
-                                  fontSize: widget.isSmallDevice ? 12 : 14,
+                                  fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
                             SizedBox(
-                              width: 25,
+                              width: 25.0.w,
                             ),
                             InkWell(
                                 onTap: () async {
@@ -163,7 +164,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
           ),
         ),
         back: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -179,7 +180,7 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                       scale: widget.isSmallDevice ? 1.3 : 1,
                       matchTextDirection: true)),
               child: Padding(
-                padding: EdgeInsetsDirectional.only(start: 29.0, top: 32, end: 25, bottom: 30),
+                padding: EdgeInsetsDirectional.only(start: 29.0.w, top: 32.0.t, end: 25.0.w, bottom: 30.0.t),
                 child: Stack(
                   alignment: AlignmentDirectional.topEnd,
                   children: [
@@ -188,22 +189,22 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: 96,
-                          width: 96,
+                          height: 96.0.h,
+                          width: 96.0.w,
                           alignment: Alignment.center,
                           decoration:
                               BoxDecoration(color: Theme.of(context).accentColor, shape: BoxShape.circle),
                           child: AppSvg.asset(AssetUtils.card_activation),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top: 16),
+                          padding: EdgeInsetsDirectional.only(top: 16.0.h),
                           child: Text(
                             S.of(context).flipBackDesc,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
-                              fontSize: widget.isSmallDevice ? 12 : 14,
+                              fontSize: 14.0.t,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -214,8 +215,8 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: 50,
-                          width: 50,
+                          height: 50.0.h,
+                          width: 50.0.w,
                         ),
                         InkWell(
                           splashFactory: NoSplash.splashFactory,
@@ -223,14 +224,14 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                             widget.flipCardController!.toggleCard();
                           },
                           child: Container(
-                            height: 50,
+                            height: 50.0.h,
                             alignment: Alignment.center,
                             child: Text(
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                  fontSize: widget.isSmallDevice ? 12 : 14,
+                                  fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),

@@ -15,8 +15,8 @@ class DownloadTransactionPage extends BasePage<DownloadTransactionViewModel> {
   DownloadTransactionPageState createState() => DownloadTransactionPageState();
 }
 
-class DownloadTransactionPageState extends BaseStatefulPage<
-    DownloadTransactionViewModel, DownloadTransactionPage> {
+class DownloadTransactionPageState
+    extends BaseStatefulPage<DownloadTransactionViewModel, DownloadTransactionPage> {
   @override
   ProviderBase provideBase() {
     return downloadTransactionViewModelProvider.call(widget._arguments);
@@ -40,8 +40,5 @@ class DownloadStatementArguments {
   final String transactionDate;
   final String cardId;
 
-  DownloadStatementArguments(
-      {required this.statementType,
-      required this.transactionDate,
-      this.cardId: ''});
+  DownloadStatementArguments({required this.statementType, required this.transactionDate, this.cardId: ''});
 }

@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -26,7 +27,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
         }
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,8 +40,8 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: AppSvg.asset(AssetUtils.swiggleHello, height: 241),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: AppSvg.asset(AssetUtils.swiggleHello, height: 241.h),
                     ),
                     AppStreamBuilder<Resource<LogoutResponse>>(
                         stream: model.logoutStream,
@@ -52,7 +53,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                         },
                         dataBuilder: (context, data) {
                           return Padding(
-                            padding: const EdgeInsets.only(top: 62.0),
+                            padding: EdgeInsets.only(top: 62.0.h),
                             child: InkWell(
                               onTap: () {
                                 model.logOutUser();
@@ -64,21 +65,21 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                   ],
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 40.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: Text(
                     S.of(context).videoCallDueNow,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        fontSize: 20,
+                        fontSize: 20.t,
                         fontWeight: FontWeight.w500,
                         color: Theme.of(context).accentColor),
                   ),
                 ),
                 SizedBox(
-                  height: 24,
+                  height: 24.h,
                 ),
               ],
             ),
@@ -97,7 +98,7 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                   ),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 50.h,
                 ),
                 InkWell(
                   onTap: () {
@@ -107,14 +108,14 @@ class CheckScheduledVideoCallPageView extends BasePageViewWidget<CheckScheduledV
                     S.of(context).rescheduleTheCall,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        fontSize: 14,
+                        fontSize: 14.t,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1,
                         color: Theme.of(context).accentColor),
                   ),
                 ),
                 SizedBox(
-                  height: 36,
+                  height: 36.h,
                 ),
               ],
             )

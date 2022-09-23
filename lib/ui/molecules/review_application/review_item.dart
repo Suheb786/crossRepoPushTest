@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 // class ReviewApplicationEditableItem extends StatelessWidget {
@@ -86,7 +87,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 8, bottom: 8),
+      padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -97,7 +98,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
               softWrap: true,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: 12,
+                  fontSize: 12.t,
                   fontWeight: FontWeight.w400,
                   color: AppColor.very_dark_gray),
             ),
@@ -113,13 +114,13 @@ class ReviewApplicationEditableItem extends StatelessWidget {
                         textAlign: TextAlign.end,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 12,
+                            fontSize: 12.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryColorDark),
                       )
                     : Container(),
                 SizedBox(
-                  width: 5,
+                  width: 5.w,
                 ),
                 // Flexible(
                 //   child: TextFormField(
@@ -152,7 +153,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
                     textAlign: TextAlign.end,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        fontSize: 12,
+                        fontSize: 12.t,
                         fontWeight: FontWeight.w600,
                         color: Theme.of(context).primaryColorDark),
                   ),

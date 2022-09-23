@@ -4,6 +4,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class InformationDialogView extends StatelessWidget {
@@ -25,7 +26,7 @@ class InformationDialogView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+        insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: WillPopScope(
           onWillPop: () async => false,
@@ -36,31 +37,31 @@ class InformationDialogView extends StatelessWidget {
               }
             },
             child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                 child: SingleChildScrollView(
                   physics: ClampingScrollPhysics(),
                   child: Column(
                     children: [
-                      SizedBox(height: 32),
-                      image != null ? AppSvg.asset(image!, height: 50, width: 50) : Container(),
-                      SizedBox(height: 25),
+                      SizedBox(height: 32.h),
+                      image != null ? AppSvg.asset(image!, height: 50.h, width: 50.w) : Container(),
+                      SizedBox(height: 25.h),
                       Text(
                         title,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
+                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(height: 31),
+                      SizedBox(height: 31.h),
                       descriptionWidget,
-                      SizedBox(height: 30),
+                      SizedBox(height: 30.h),
                       InkWell(
                         onTap: () {
                           onSelected!.call();
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),
-                          height: 57,
-                          width: 57,
+                          height: 57.h,
+                          width: 57.w,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -68,7 +69,7 @@ class InformationDialogView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                        padding: EdgeInsets.only(top: 8.0, bottom: 16.h),
                         child: Visibility(
                           visible: isSwipeToCancel ?? true,
                           child: InkWell(
@@ -80,7 +81,7 @@ class InformationDialogView extends StatelessWidget {
                                 S.of(context).swipeDownToCancel,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 10,
+                                    fontSize: 10.t,
                                     fontWeight: FontWeight.w400,
                                     color: AppColor.dark_gray_1),
                               ),

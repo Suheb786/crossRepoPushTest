@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class TaxationSwitchWidget extends StatelessWidget {
@@ -50,7 +51,7 @@ class TaxationSwitchWidget extends StatelessWidget {
           },
           dataBuilder: (context, isActive) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 24.0),
+              padding: EdgeInsets.only(bottom: 24.0.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,26 +68,26 @@ class TaxationSwitchWidget extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w600,
-                              fontSize: 14),
+                              fontSize: 14.t),
                         ),
                       ),
                       SizedBox(
-                        width: 16,
+                        width: 16.w,
                       ),
                       FlutterSwitch(
                         value: isActive!,
                         onToggle: (value) {
                           model.updateSwitchValue(value);
                         },
-                        width: 70,
-                        height: 40,
+                        width: 70.w,
+                        height: 40.h,
                         padding: 8,
                         activeText: S.of(context).yes.toUpperCase(),
                         activeTextColor: AppColor.white,
                         inactiveTextColor: AppColor.darkGray,
                         activeTextFontWeight: FontWeight.w500,
                         showOnOff: true,
-                        valueFontSize: 10,
+                        valueFontSize: 10.t,
                         activeToggleColor: AppColor.white,
                         inactiveText: S.of(context).no.toUpperCase(),
                         inactiveToggleColor: AppColor.lightGrayishMagenta,
@@ -104,12 +105,12 @@ class TaxationSwitchWidget extends StatelessWidget {
                         onInfoClick?.call();
                       },
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        padding: EdgeInsets.symmetric(vertical: 8.0.h),
                         child: Text(data.infoText ?? "",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                fontSize: 12,
+                                fontSize: 12.t,
                                 fontWeight: FontWeight.w600)),
                       ),
                     ),
@@ -132,7 +133,7 @@ class TaxationSwitchWidget extends StatelessWidget {
 
                           case AdditionalDataTypeEnum.TEXT_FIELD:
                             return Container(
-                              margin: EdgeInsets.only(top: 16),
+                              margin: EdgeInsets.only(top: 16.h),
                               child: AppTextField(
                                   labelText: StringUtils.isDirectionRTL(context)
                                       ? data.additionalData![index].labelAr!
@@ -145,7 +146,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                             );
                           default:
                             return Container(
-                              height: 16,
+                              height: 16.h,
                             );
                         }
                       },
@@ -196,9 +197,9 @@ class FatcaDropDownField extends StatelessWidget {
             },
             suffixIcon: (value, data) {
               return Container(
-                  height: 16,
-                  width: 16,
-                  padding: EdgeInsetsDirectional.only(end: 8),
+                  height: 16.h,
+                  width: 16.w,
+                  padding: EdgeInsetsDirectional.only(end: 8.w),
                   child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
             },
           ),

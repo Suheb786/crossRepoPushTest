@@ -10,8 +10,8 @@ class SendToNewRecipientPage extends BasePage<SendToNewRecipientViewModel> {
   SendToNewRecipientPageState createState() => SendToNewRecipientPageState();
 }
 
-class SendToNewRecipientPageState extends BaseStatefulPage<
-    SendToNewRecipientViewModel, SendToNewRecipientPage> {
+class SendToNewRecipientPageState
+    extends BaseStatefulPage<SendToNewRecipientViewModel, SendToNewRecipientPage> {
   @override
   ProviderBase provideBase() {
     return sendToNewRecipientViewModelProvider;

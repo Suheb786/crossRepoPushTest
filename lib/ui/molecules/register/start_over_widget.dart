@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class StartOverWidget extends StatelessWidget {
@@ -12,14 +13,14 @@ class StartOverWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       decoration: BoxDecoration(color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(
             title!,
             style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.t,
                 fontWeight: FontWeight.w600,
                 fontFamily: StringUtils.isDirectionRTL(context) ? 'Tajawal' : 'Montserrat',
                 color: Theme.of(context).primaryColorDark),

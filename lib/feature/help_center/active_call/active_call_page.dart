@@ -10,8 +10,7 @@ class ActiveCallPage extends BasePage<ActiveCallPageViewModel> {
   ActiveCallPagePageState createState() => ActiveCallPagePageState();
 }
 
-class ActiveCallPagePageState
-    extends BaseStatefulPage<ActiveCallPageViewModel, ActiveCallPage> {
+class ActiveCallPagePageState extends BaseStatefulPage<ActiveCallPageViewModel, ActiveCallPage> {
   @override
   ProviderBase provideBase() {
     return activeCallPageViewModelProvider;

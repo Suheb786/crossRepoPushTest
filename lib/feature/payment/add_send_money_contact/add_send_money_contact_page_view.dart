@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_empty_widget.d
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContactViewModel> {
@@ -26,7 +27,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
         alignment: Alignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 15),
+            padding: EdgeInsets.only(bottom: 15.0.h),
             child: GestureDetector(
               onHorizontalDragEnd: (details) {
                 if (StringUtils.isDirectionRTL(context)) {
@@ -57,12 +58,12 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                            padding: EdgeInsetsDirectional.only(top: 30, start: 27),
+                            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 27.0.w),
                             child: Text(S.of(context).sendMoney,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 12,
+                                    fontSize: 12.0.t,
                                     color: Theme.of(context).accentColor))),
                         beneficiaries!.length > 0
                             ? Column(
@@ -74,7 +75,8 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 3, childAspectRatio: 0.8, mainAxisSpacing: 6),
                                       shrinkWrap: true,
-                                      padding: EdgeInsetsDirectional.only(top: 22, end: 28, start: 27),
+                                      padding:
+                                          EdgeInsetsDirectional.only(top: 22.0.h, end: 28.0.w, start: 27.0.w),
                                       itemBuilder: (context, index) {
                                         if (index >= beneficiaries!.length) {
                                           return PaymentBeneficiaryEmptyWidget();
@@ -91,7 +93,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(bottom: 29.0),
+                                    padding: EdgeInsets.only(bottom: 29.0.h),
                                     child: Visibility(
                                       visible: beneficiaries!.length >= 9,
                                       child: InkWell(
@@ -103,8 +105,9 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Container(
-                                            height: 36,
-                                            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+                                            height: 36.0.h,
+                                            padding:
+                                                EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 14.0.w),
                                             decoration: BoxDecoration(
                                                 color: Theme.of(context).accentColor,
                                                 borderRadius: BorderRadius.circular(20)),
@@ -112,7 +115,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                               S.of(context).seeAllContacts,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
+                                                  fontSize: 14.0.t,
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                             ),
@@ -126,14 +129,16 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                             : Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(top: 90),
+                                    padding: EdgeInsets.only(top: 90.0.h),
                                     child: Align(
                                       alignment: Alignment.center,
-                                      child: AppSvg.asset(AssetUtils.profileCircle),
+                                      child: AppSvg.asset(AssetUtils.profileCircle,
+                                          height: 96.0.h, width: 96.0.w),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 12, start: 24, end: 24),
+                                    padding:
+                                        EdgeInsetsDirectional.only(top: 12.0.h, start: 24.0.w, end: 24.0.w),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
@@ -142,7 +147,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 12,
+                                          fontSize: 12.0.t,
                                           color: Theme.of(context).accentColor,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -162,13 +167,13 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
               children: [
                 AppSvg.asset(AssetUtils.swipeUp),
                 Padding(
-                  padding: EdgeInsets.only(top: 6),
+                  padding: EdgeInsets.only(top: 6.0.h),
                   child: Text(
                     S.of(context).swipeToSend,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                        fontSize: 12.0.t,
                         color: AppColor.dark_gray_1),
                   ),
                 )

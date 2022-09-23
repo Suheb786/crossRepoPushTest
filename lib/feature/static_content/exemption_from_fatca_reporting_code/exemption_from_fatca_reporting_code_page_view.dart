@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ExemptionFromFatcaReportingCodePageView
@@ -13,13 +14,13 @@ class ExemptionFromFatcaReportingCodePageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       decoration: BoxDecoration(
           color: AppColor.white,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Scrollbar(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(right: 12),
+          padding: EdgeInsets.only(right: 12.w),
           physics: ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -32,12 +33,12 @@ class ExemptionFromFatcaReportingCodePageView
                 ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),
               SizedBox(
-                height: 32,
+                height: 32.h,
               ),
               Text(
                 /*StringUtils.isDirectionRTL(context)
@@ -98,12 +99,12 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                 ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),
               SizedBox(
-                height: 32,
+                height: 32.h,
               ),
               Text(
                 /*StringUtils.isDirectionRTL(context)
@@ -113,7 +114,7 @@ M. A tax exempt trust under a section 403(b) plan or section 457(g) plan.
                   ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),

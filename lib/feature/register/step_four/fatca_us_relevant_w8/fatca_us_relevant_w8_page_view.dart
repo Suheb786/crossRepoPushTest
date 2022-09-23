@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -87,7 +88,7 @@ class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8Page
                         color: Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
                         shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -107,7 +108,7 @@ class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8Page
                                           },
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 16.h,
                                         ),
                                         AppTextField(
                                           labelText: S.of(context).dateOfBirth,
@@ -130,15 +131,15 @@ class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8Page
                                           },
                                           suffixIcon: (value, data) {
                                             return Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding: EdgeInsets.symmetric(horizontal: 7),
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsetsDirectional.only(end: 7.w),
                                                 child: AppSvg.asset(AssetUtils.calendar,
                                                     color: Theme.of(context).primaryColorDark));
                                           },
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 16.h,
                                         ),
                                         AppTextField(
                                           labelText: S.of(context).countryOfCitizenship,
@@ -160,7 +161,7 @@ class FatcaUSRelevantW8PageView extends BasePageViewWidget<FatcaUSRelevantW8Page
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 32),
+                                    padding: EdgeInsets.only(top: 32.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

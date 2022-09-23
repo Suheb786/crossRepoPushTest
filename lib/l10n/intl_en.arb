@@ -828,7 +828,7 @@
   "residentCity": "Resident City",
   "youRequested": "You requested ",
   "from": "\nfrom",
-  "addRequestMoney": "You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.",
+  "addRequestMoney": "You don't have any contacts yet. Your Blink contacts can be saved while requesting money.",
   "errorWhileProcessLoanRequest": "Error While Process Loan Request.",
   "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp.",
   "cardFrozen": "Card frozen",
@@ -1395,5 +1395,8 @@
   "locationRestricted": "Your location is restricted from using this app.",
   "callDroppedDesc": "Oops, Your verification call has been dropped, please reconnect again",
   "applicationNotAvailableInRegion": "The Blink mobile application is not available in your region!",
-  "attention": "Attention"
+  "attention": "Attention",
+  "noDataFound": "No Data Found",
+  "somethingWentWrong": "Something went wrong",
+  "searchAgain": "Search Again"
 }

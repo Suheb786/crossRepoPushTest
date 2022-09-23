@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AppTextField extends StatefulWidget {
@@ -36,7 +37,7 @@ class AppTextField extends StatefulWidget {
   final FloatingLabelBehavior floatingLabelBehavior;
   final bool filled;
   final Color filledColor;
-  final double fontSize;
+  final double? fontSize;
   final double labelFontSize;
   final Function(bool hasFocus, bool isValid, String value)? textHintWidget;
   final EdgeInsets dividerPadding;
@@ -46,9 +47,9 @@ class AppTextField extends StatefulWidget {
   final Color? hintTextColor;
   final Color? textColor;
   final Color? labelColor;
-  final double suffixIconSize;
+  final double? suffixIconSize;
   final Color? color;
-  final EdgeInsets containerPadding;
+  final EdgeInsets? containerPadding;
 
   AppTextField({
     this.height,
@@ -80,7 +81,7 @@ class AppTextField extends StatefulWidget {
     this.minLines: 1,
     this.onChanged,
     this.filled: false,
-    this.fontSize: 14,
+    this.fontSize,
     this.labelFontSize: 14,
     this.filledColor: AppColor.white,
     this.onFieldSubmitted,
@@ -94,8 +95,8 @@ class AppTextField extends StatefulWidget {
     this.textColor,
     this.labelColor,
     this.textHintWidget,
-    this.suffixIconSize: 30,
-    this.containerPadding: const EdgeInsets.all(16.0),
+    this.suffixIconSize,
+    this.containerPadding,
   }) : super(key: key);
 
   @override
@@ -146,7 +147,8 @@ class AppTextFieldState extends State<AppTextField> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: widget.containerPadding,
+                  padding:
+                      widget.containerPadding ?? EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
                   decoration: BoxDecoration(
                       color: widget.color,
                       borderRadius: BorderRadius.circular(8),
@@ -173,7 +175,7 @@ class AppTextFieldState extends State<AppTextField> {
                               style: TextStyle(
                                 color: widget.labelColor ??
                                     Theme.of(context).inputDecorationTheme.labelStyle!.color,
-                                fontSize: 10,
+                                fontSize: 10.0.t,
                                 fontFamily: StringUtils.appFont,
                               )),
                           WidgetSpan(child: widget.labelIcon?.call() ?? Container())
@@ -185,7 +187,7 @@ class AppTextFieldState extends State<AppTextField> {
                         textAlign: widget.textAlign,
                         style: TextStyle(
                           color: widget.textColor ?? Theme.of(context).primaryColorDark,
-                          fontSize: widget.fontSize,
+                          fontSize: widget.fontSize ?? 14.0.t,
                           fontWeight: FontWeight.w600,
                           fontFamily: StringUtils.appFont,
                         ),
@@ -204,7 +206,7 @@ class AppTextFieldState extends State<AppTextField> {
                             prefix: widget.prefix?.call(),
                             prefixIcon: widget.prefixIcon?.call(),
                             prefixIconConstraints: BoxConstraints.tightForFinite(),
-                            contentPadding: EdgeInsets.only(top: 8),
+                            contentPadding: EdgeInsets.only(top: 8.0.h),
                             hintText: widget.hintText,
                             hintMaxLines: 1,
                             counterText: "",
@@ -215,13 +217,13 @@ class AppTextFieldState extends State<AppTextField> {
                             hintStyle: TextStyle(
                               color: widget.hintTextColor ??
                                   Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                              fontSize: widget.fontSize,
+                              fontSize: widget.fontSize ?? 14.0.t,
                               fontWeight: FontWeight.w600,
                               fontFamily: StringUtils.appFont,
                             ),
                             suffixIcon: widget.suffixIcon?.call(isValid, widget.controller!.text),
-                            suffixIconConstraints:
-                                BoxConstraints.tight(Size(widget.suffixIconSize, widget.suffixIconSize)),
+                            suffixIconConstraints: BoxConstraints.tight(
+                                Size(widget.suffixIconSize ?? 30.0.w, widget.suffixIconSize ?? 30.0.h)),
                             enabled: widget.enabled,
                             floatingLabelBehavior: widget.floatingLabelBehavior),
                         controller: widget.controller,

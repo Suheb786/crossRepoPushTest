@@ -12,7 +12,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -23,8 +23,6 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    bool isSmallDevices = model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
-        model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT;
     return AppKeyBoardHide(
       child: Center(
         child: Stack(
@@ -33,7 +31,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
             Directionality(
               textDirection: TextDirection.ltr,
               child: Container(
-                margin: EdgeInsetsDirectional.all(15),
+                margin: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
                 child: Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -46,12 +44,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                       image: DecorationImage(
                           image: AssetImage(AssetUtils.zigzagRed),
                           alignment: AlignmentDirectional.topEnd,
-                          scale: isSmallDevices ? 1.3 : 1,
+                          scale: 1,
                           matchTextDirection: true),
                     ),
                     child: LayoutBuilder(builder: (context, constraints) {
                       return Padding(
-                          padding: EdgeInsetsDirectional.only(start: isSmallDevices ? 20 : 27.0),
+                          padding: EdgeInsetsDirectional.only(start: 27.0.w),
                           child: ConstrainedBox(
                             constraints: BoxConstraints(
                                 minWidth: constraints.maxWidth, minHeight: constraints.maxHeight),
@@ -60,7 +58,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 21 : 30.0),
+                                    padding: EdgeInsetsDirectional.only(top: 30.0.h),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -69,12 +67,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               fontWeight: FontWeight.w600,
-                                              fontSize: isSmallDevices ? 10 : 12,
+                                              fontSize: 12.0.t,
                                               color: Theme.of(context).accentColor),
                                         ),
                                         Padding(
                                           padding: EdgeInsetsDirectional.only(
-                                            top: isSmallDevices ? 40 : 66,
+                                            top: 66.0.h,
                                           ),
                                           child: Text(
                                             account.accountTitle != null
@@ -83,13 +81,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             maxLines: 3,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: isSmallDevices ? 10 : 16,
+                                                fontSize: 16.0.t,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context).accentColor),
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsetsDirectional.only(top: 23),
+                                          padding: EdgeInsetsDirectional.only(top: 23.0.h),
                                           child: Row(
                                             crossAxisAlignment: CrossAxisAlignment.center,
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -97,20 +95,20 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               Text(account.availableBalance!,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
-                                                      fontSize: isSmallDevices ? 12 : 20,
+                                                      fontSize: 20.0.t,
                                                       fontWeight: FontWeight.w700,
                                                       color: Theme.of(context).accentColor)),
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(top: 5, start: 5.0),
+                                                padding: EdgeInsetsDirectional.only(top: 5.0.h, start: 5.0.w),
                                                 child: Text(S.of(context).JOD,
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: 10,
+                                                        fontSize: 10.0.t,
                                                         color:
                                                             Theme.of(context).accentColor.withOpacity(0.4))),
                                               ),
-                                              const SizedBox(width: 10),
+                                              SizedBox(width: 10.0.w),
                                               InkWell(
                                                 onTap: () {
                                                   ProviderScope.containerOf(context)
@@ -118,8 +116,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       .balenceUpdate();
                                                 },
                                                 child: Container(
-                                                    height: 14,
-                                                    width: 14,
+                                                    height: 14.0.h,
+                                                    width: 14.0.w,
                                                     child: Image.asset(
                                                       AssetUtils.refresh,
                                                       color: AppColor.brightBlue,
@@ -129,13 +127,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           ),
                                         ),
                                         Padding(
-                                          padding: EdgeInsetsDirectional.only(top: 4),
+                                          padding: EdgeInsetsDirectional.only(top: 4.0.h),
                                           child: Text(
                                             S.of(context).availableBalance,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: isSmallDevices ? 8 : 10,
+                                                fontSize: 10.0.t,
                                                 color: Theme.of(context).accentColor.withOpacity(0.4)),
                                           ),
                                         ),
@@ -143,7 +141,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 29),
+                                    padding: EdgeInsetsDirectional.only(top: 29.0.h),
                                     child: Row(
                                       children: [
                                         Text(
@@ -151,7 +149,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           maxLines: 2,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: isSmallDevices ? 10 : 12,
+                                              fontSize: 12.0.t,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).accentColor),
                                         ),
@@ -162,7 +160,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     msg: S.of(context).accountNoCopied));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 8),
+                                            padding: EdgeInsetsDirectional.only(start: 8.0.w),
                                             child: AppSvg.asset(
                                               AssetUtils.copy,
                                             ),
@@ -172,18 +170,18 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 5),
+                                    padding: EdgeInsetsDirectional.only(top: 5.0.h),
                                     child: Text(
                                       S.of(context).accountNo,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).accentColor.withOpacity(0.4),
-                                          fontSize: isSmallDevices ? 8 : 10,
+                                          fontSize: 10.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 20, end: 25),
+                                    padding: EdgeInsetsDirectional.only(top: 20.0.h, end: 25.0.w),
                                     child: Row(
                                       children: [
                                         Text(
@@ -193,7 +191,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               overflow: TextOverflow.ellipsis,
                                               color: Theme.of(context).accentColor,
                                               fontWeight: FontWeight.w600,
-                                              fontSize: isSmallDevices ? 9 : 12),
+                                              fontSize: 12.0.t),
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -202,7 +200,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     Fluttertoast.showToast(msg: S.of(context).ibanCopied));
                                           },
                                           child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 8),
+                                            padding: EdgeInsetsDirectional.only(start: 8.0.w),
                                             child: AppSvg.asset(AssetUtils.copy),
                                           ),
                                         )
@@ -210,13 +208,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 6),
+                                    padding: EdgeInsetsDirectional.only(top: 6.0.h),
                                     child: Text(
                                       S.of(context).iban,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: Theme.of(context).accentColor.withOpacity(0.4),
-                                          fontSize: isSmallDevices ? 8 : 10,
+                                          fontSize: 10.0.t,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
@@ -227,8 +225,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         : TextDirection.ltr,
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.only(
-                                        top: 15.0,
-                                        start: StringUtils.isDirectionRTL(context) ? 27 : 0,
+                                        top: 15.0.h,
+                                        start: StringUtils.isDirectionRTL(context) ? 27.0.w : 0,
                                       ),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -238,8 +236,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               Navigator.pushNamed(context, RoutePaths.AddMoneyOptionSelector);
                                             },
                                             child: Container(
-                                              height: 40,
-                                              width: 105,
+                                              height: 40.0.h,
+                                              width: 105.0.w,
                                               decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.circular(20),
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -249,7 +247,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: isSmallDevices ? 10 : 12,
+                                                      fontSize: 12.0.t,
                                                       color: Theme.of(context).accentColor),
                                                 ),
                                               ),
@@ -260,18 +258,18 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               _shareFiles(model, context, account);
                                             },
                                             child: Padding(
-                                              padding: EdgeInsets.only(right: 33.0),
+                                              padding: EdgeInsets.only(right: 33.0.w),
                                               child: AppSvg.asset(AssetUtils.share,
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                                  height: 24,
-                                                  width: 24),
+                                                  height: 24.0.h,
+                                                  width: 24.0.w),
                                             ),
                                           )
                                         ],
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: isSmallDevices ? 30 : 50),
+                                  SizedBox(height: 50.0.h),
                                 ],
                               ),
                             ),
@@ -287,13 +285,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                 children: [
                   AppSvg.asset(AssetUtils.swipeUp),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 6),
+                    padding: EdgeInsetsDirectional.only(top: 6.0.h),
                     child: Text(
                       S.of(context).swipeUpToViewTransaction,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
-                          fontSize: isSmallDevices ? 10 : 12,
+                          fontSize: 12.0.t,
                           color: AppColor.dark_gray_1),
                     ),
                   )

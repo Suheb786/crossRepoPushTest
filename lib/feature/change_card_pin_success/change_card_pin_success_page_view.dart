@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSuccessPageViewModel> {
@@ -38,7 +39,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 92),
+                      padding: EdgeInsets.only(top: 92.h),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -51,7 +52,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              height: 111.37,
+                              height: 111.37.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: model.arguments.cardType == CardType.DEBIT
@@ -69,38 +70,38 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                       ),
                     ),
                     SizedBox(
-                      height: 34.7,
+                      height: 34.7.h,
                     ),
                     Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                             child: Text(
                               S.of(context).cardPinChangedSuccessfully,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 24,
+                                  fontSize: 24.t,
                                   color: model.arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
                                       : Theme.of(context).accentColor),
                             ),
                           ),
                           SizedBox(
-                            height: 4,
+                            height: 4.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                             child: Text(
                               S.of(context).cardPinChangedDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   color: model.arguments.cardType == CardType.DEBIT
                                       ? Theme.of(context).primaryColorDark
                                       : Theme.of(context).accentColor),
@@ -125,11 +126,11 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                         : Theme.of(context).accentColor,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
+                    padding: EdgeInsets.only(
+                      bottom: 32.h,
                     ),
                     child: Center(
                       child: Text(
@@ -140,7 +141,7 @@ class ChangeCardPinSuccessPageView extends BasePageViewWidget<ChangeCardPinSucce
                               ? Theme.of(context).primaryColorDark
                               : Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 12.t,
                         ),
                       ),
                     ),

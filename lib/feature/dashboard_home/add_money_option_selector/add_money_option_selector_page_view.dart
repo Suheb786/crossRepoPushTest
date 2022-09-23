@@ -15,6 +15,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
@@ -31,7 +32,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
         }
       },
       child: Container(
-        margin: EdgeInsetsDirectional.only(top: 53, start: 29, end: 29),
+        margin: EdgeInsetsDirectional.only(top: 53.h, start: 29.w, end: 29.w),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -47,23 +48,23 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                         matchTextDirection: true, color: Theme.of(context).accentColor),
                   )),
               Padding(
-                padding: EdgeInsetsDirectional.only(start: 11, bottom: 53),
+                padding: EdgeInsetsDirectional.only(start: 11.w, bottom: 53.h),
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 28),
+                      padding: EdgeInsets.only(top: 28.h),
                       child: Text(
                         S.of(context).waysYocCanAddMoneyToAccount,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 20,
+                            fontSize: 20.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),
                     ),
                     SizedBox(
-                      height: 46,
+                      height: 46.h,
                     ),
                     AddMoneySelectorOptionsWidget(
                       image: AssetUtils.moneyIn,
@@ -76,7 +77,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       },
                     ),
                     SizedBox(
-                      height: 26,
+                      height: 26.h,
                     ),
                     AppStreamBuilder<GetDashboardDataContent>(
                       stream: ProviderScope.containerOf(context)
@@ -96,7 +97,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       },
                     ),
                     SizedBox(
-                      height: 26,
+                      height: 26.h,
                     ),
                     AddMoneySelectorOptionsWidget(
                       image: AssetUtils.dollar,
@@ -109,7 +110,7 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                       isVisible: false,
                     ),
                     SizedBox(
-                      height: 26,
+                      height: 26.h,
                     ),
                     AddMoneySelectorOptionsWidget(
                       image: AssetUtils.dollar,
@@ -179,14 +180,14 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                                   ? Column(
                                       children: [
                                         Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 24),
+                                          padding: EdgeInsets.symmetric(vertical: 24.h),
                                           child: Row(
                                             children: <Widget>[
                                               Expanded(
                                                 child: AppDivider(
                                                   color: AppColor.white.withOpacity(0.3),
-                                                  indent: 12,
-                                                  endIndent: 8,
+                                                  indent: 12.w,
+                                                  endIndent: 8.w,
                                                 ),
                                               ),
                                               Text(
@@ -195,13 +196,13 @@ class AddMoneyOptionSelectorPageView extends BasePageViewWidget<AddMoneyOptionSe
                                                     fontFamily: StringUtils.appFont,
                                                     color: Theme.of(context).accentColor,
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: 12),
+                                                    fontSize: 12.t),
                                               ),
                                               Expanded(
                                                 child: AppDivider(
                                                   color: AppColor.white.withOpacity(0.3),
                                                   endIndent: 0,
-                                                  indent: 8,
+                                                  indent: 8.w,
                                                 ),
                                               ),
                                             ],

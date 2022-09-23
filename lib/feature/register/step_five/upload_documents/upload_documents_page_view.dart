@@ -27,6 +27,7 @@ import 'package:neo_bank/ui/molecules/upload_document_selection_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -144,15 +145,15 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                 child: Card(
                                                   child: Padding(
                                                       padding: EdgeInsets.only(
-                                                          bottom:
-                                                              MediaQuery.of(context).viewInsets.bottom - 50 <=
-                                                                      0
-                                                                  ? 0
-                                                                  : MediaQuery.of(context).viewInsets.bottom -
-                                                                      48),
+                                                          bottom: MediaQuery.of(context).viewInsets.bottom -
+                                                                      50.h <=
+                                                                  0
+                                                              ? 0
+                                                              : MediaQuery.of(context).viewInsets.bottom -
+                                                                  48.h),
                                                       child: SingleChildScrollView(
                                                           padding: EdgeInsets.symmetric(
-                                                              vertical: 32, horizontal: 24),
+                                                              vertical: 32.h, horizontal: 24.w),
                                                           physics: ClampingScrollPhysics(),
                                                           child: Column(
                                                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,20 +163,20 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                 softWrap: true,
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
                                                                         Theme.of(context).primaryColorDark),
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsets.only(top: 8.0, bottom: 16),
+                                                                    EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                                                                 child: Text(
                                                                   S.of(context).proofOfIncomeDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
-                                                                      fontSize: 12,
+                                                                      fontSize: 12.t,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
                                                                           Theme.of(context).primaryColorDark),
@@ -220,11 +221,11 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                 .uploadDocumentsSmall,
                                                                             controller:
                                                                                 model.incomeController,
-                                                                            fontSize: 12,
+                                                                            fontSize: 12.t,
                                                                             containerPadding:
                                                                                 EdgeInsets.symmetric(
-                                                                                    horizontal: 16,
-                                                                                    vertical: 12),
+                                                                                    horizontal: 16.w,
+                                                                                    vertical: 12.h),
                                                                             // key: model
                                                                             //     .incomeDocumentKey,
                                                                             readOnly: true,
@@ -278,10 +279,12 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                             .validateFields();
                                                                                       },
                                                                                 child: Container(
-                                                                                    height: 16,
-                                                                                    width: 16,
+                                                                                    height: 16.h,
+                                                                                    width: 16.w,
                                                                                     padding:
-                                                                                        EdgeInsets.all(7),
+                                                                                        EdgeInsets.symmetric(
+                                                                                            horizontal: 7.w,
+                                                                                            vertical: 7.h),
                                                                                     child: isUploaded
                                                                                         ? AppSvg.asset(
                                                                                             AssetUtils.delete,
@@ -305,8 +308,8 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                 },
                                                               ),
                                                               Padding(
-                                                                padding:
-                                                                    EdgeInsets.only(top: 24.0, bottom: 24),
+                                                                padding: EdgeInsets.only(
+                                                                    top: 24.0.h, bottom: 24.h),
                                                                 child: Container(
                                                                   height: 1,
                                                                   color: AppColor.whiteGrey,
@@ -317,20 +320,20 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                 softWrap: true,
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     fontWeight: FontWeight.w600,
                                                                     color:
                                                                         Theme.of(context).primaryColorDark),
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsets.only(top: 8.0, bottom: 16),
+                                                                    EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                                                                 child: Text(
                                                                   S.of(context).proofOfAddressDesc,
                                                                   softWrap: true,
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
-                                                                      fontSize: 12,
+                                                                      fontSize: 12.t,
                                                                       fontWeight: FontWeight.w400,
                                                                       color:
                                                                           Theme.of(context).primaryColorDark),
@@ -378,11 +381,11 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                 model.addressController,
                                                                             // key: model
                                                                             //     .addressDocumentKey,
-                                                                            fontSize: 12,
+                                                                            fontSize: 12.t,
                                                                             containerPadding:
                                                                                 EdgeInsets.symmetric(
-                                                                                    horizontal: 16,
-                                                                                    vertical: 12),
+                                                                                    horizontal: 16.w,
+                                                                                    vertical: 12.h),
                                                                             readOnly: true,
                                                                             textFieldBorderColor:
                                                                                 Theme.of(context)
@@ -435,10 +438,12 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                                             .validateFields();
                                                                                       },
                                                                                 child: Container(
-                                                                                    height: 16,
-                                                                                    width: 16,
+                                                                                    height: 16.h,
+                                                                                    width: 16.w,
                                                                                     padding:
-                                                                                        EdgeInsets.all(7),
+                                                                                        EdgeInsets.symmetric(
+                                                                                            horizontal: 7.w,
+                                                                                            vertical: 7.h),
                                                                                     child: isUploaded
                                                                                         ? AppSvg.asset(
                                                                                             AssetUtils.delete,
@@ -649,7 +654,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                               Center(
                                                                 child: Padding(
                                                                     padding: EdgeInsets.only(
-                                                                        top: 40.0, bottom: 16),
+                                                                        top: 40.0.h, bottom: 16.h),
                                                                     child: TextButton(
                                                                         onPressed: () {
                                                                           UploadDocumentLaterDialog.show(
@@ -667,7 +672,7 @@ class UploadDocumentsPageView extends BasePageViewWidget<UploadDocumentsPageView
                                                                           S.of(context).uploadDocumentLater,
                                                                           style: TextStyle(
                                                                               fontFamily: StringUtils.appFont,
-                                                                              fontSize: 14,
+                                                                              fontSize: 14.t,
                                                                               fontWeight: FontWeight.w600,
                                                                               color: Theme.of(context)
                                                                                   .accentTextTheme
