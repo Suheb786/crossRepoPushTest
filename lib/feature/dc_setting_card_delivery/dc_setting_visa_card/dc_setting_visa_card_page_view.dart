@@ -109,7 +109,7 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                         children: [
                                           Flexible(
                                             child: Padding(
-                                              padding: EdgeInsets.only(right: 8.0.w),
+                                              padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                               child: Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -147,7 +147,8 @@ class DcSettingVisaCardPageView extends BasePageViewWidget<DcSettingVisaCardPage
                                     Align(
                                       alignment: AlignmentDirectional.centerEnd,
                                       child: Padding(
-                                        padding: EdgeInsets.only(top: 5.0.h, bottom: 15.2.h, right: 20.w),
+                                        padding:
+                                            EdgeInsetsDirectional.only(top: 5.0.h, bottom: 15.2.h, end: 20.w),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(

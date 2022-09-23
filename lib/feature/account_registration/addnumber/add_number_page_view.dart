@@ -230,7 +230,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                       Container(
                                                           height: 16.h,
                                                           width: 16.w,
-                                                          margin: EdgeInsets.only(right: 8.w),
+                                                          margin: EdgeInsetsDirectional.only(end: 8.w),
                                                           child: AppSvg.asset(AssetUtils.downArrow,
                                                               color: Theme.of(context)
                                                                   .primaryTextTheme

@@ -222,7 +222,7 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                       }
                                     },
                                     child: Padding(
-                                      padding: EdgeInsets.only(right: 30.0.w),
+                                      padding: EdgeInsetsDirectional.only(end: 30.0.w),
                                       child: AppSvg.asset(AssetUtils.settingsRed,
                                           color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                     ),
