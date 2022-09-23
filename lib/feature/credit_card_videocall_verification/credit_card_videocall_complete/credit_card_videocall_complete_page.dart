@@ -5,15 +5,13 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page_view.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_complete/credit_card_videocall_complete_page_view_model.dart';
 
-class CreditCardVideoCallCompletePage
-    extends BasePage<CreditCardVideoCallCompletePageViewModel> {
+class CreditCardVideoCallCompletePage extends BasePage<CreditCardVideoCallCompletePageViewModel> {
   @override
-  CreditCardVideoCallCompletePageState createState() =>
-      CreditCardVideoCallCompletePageState();
+  CreditCardVideoCallCompletePageState createState() => CreditCardVideoCallCompletePageState();
 }
 
-class CreditCardVideoCallCompletePageState extends BaseStatefulPage<
-    CreditCardVideoCallCompletePageViewModel, CreditCardVideoCallCompletePage> {
+class CreditCardVideoCallCompletePageState
+    extends BaseStatefulPage<CreditCardVideoCallCompletePageViewModel, CreditCardVideoCallCompletePage> {
   @override
   ProviderBase provideBase() {
     return creditCardVideoCallCompleteViewModelProvider;
@@ -25,8 +23,7 @@ class CreditCardVideoCallCompletePageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CreditCardVideoCallCompletePageViewModel model) {
+  Widget buildView(BuildContext context, CreditCardVideoCallCompletePageViewModel model) {
     return CreditCardVideoCallCompletePageView(provideBase());
   }
 }

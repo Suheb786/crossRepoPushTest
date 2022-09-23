@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -97,7 +98,7 @@ class FatcaUSW9TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW9TaxP
                         margin: EdgeInsets.zero,
                         shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -127,15 +128,15 @@ class FatcaUSW9TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW9TaxP
                                           },
                                           suffixIcon: (value, data) {
                                             return Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsetsDirectional.only(end: 8.w),
                                                 child: AppSvg.asset(AssetUtils.downArrow,
                                                     color: AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 16.h,
                                         ),
                                         AppStreamBuilder<bool>(
                                             stream: model.taxVisibilityStream,
@@ -189,7 +190,7 @@ class FatcaUSW9TaxPayersDetailsPageView extends BasePageViewWidget<FatcaUSW9TaxP
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 26),
+                                    padding: EdgeInsets.only(top: 26.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

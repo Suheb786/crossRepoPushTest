@@ -25,9 +25,7 @@ extension PageExtensions on BaseStatefulPage {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
-              decoration: BoxDecoration(
-                  color: AppColor.dark_brown,
-                  borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -43,8 +41,7 @@ extension PageExtensions on BaseStatefulPage {
                               fontSize: 10),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
+                          padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
                                   // fontFamily: "Montserrat",
@@ -79,8 +76,7 @@ extension PageExtensions on BaseStatefulPage {
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
               decoration: BoxDecoration(
-                  color: AppColor.darkModerateLimeGreen,
-                  borderRadius: BorderRadius.circular(16)),
+                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -95,13 +91,10 @@ extension PageExtensions on BaseStatefulPage {
                               fontSize: 10),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
+                          padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  color: AppColor.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12)),
+                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
                         ),
                       ],
                     ),

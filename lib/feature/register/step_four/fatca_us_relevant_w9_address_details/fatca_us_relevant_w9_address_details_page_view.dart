@@ -24,6 +24,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -124,8 +125,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                 margin: EdgeInsets.zero,
                                                 shadowColor: AppColor.black.withOpacity(0.32),
                                                 child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: 32.h, horizontal: 24.w),
                                                     child: SingleChildScrollView(
                                                       physics: ClampingScrollPhysics(),
                                                       child: Column(
@@ -141,7 +142,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).country,
@@ -167,16 +168,17 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                             suffixIcon: (value, data) {
                                                               return Container(
-                                                                  height: 16,
-                                                                  width: 16,
-                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  height: 16.h,
+                                                                  width: 16.w,
+                                                                  padding:
+                                                                      EdgeInsetsDirectional.only(end: 8.w),
                                                                   child: AppSvg.asset(AssetUtils.downArrow,
                                                                       color: AppColor.dark_gray_1));
                                                             },
                                                             key: model.countryKey,
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).state,
@@ -214,15 +216,16 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                             suffixIcon: (value, data) {
                                                               return Container(
-                                                                  height: 16,
-                                                                  width: 16,
-                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  height: 16.h,
+                                                                  width: 16.w,
+                                                                  padding:
+                                                                      EdgeInsetsDirectional.only(end: 8.w),
                                                                   child: AppSvg.asset(AssetUtils.downArrow,
                                                                       color: AppColor.dark_gray_1));
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).city,
@@ -255,15 +258,16 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                             suffixIcon: (value, data) {
                                                               return Container(
-                                                                  height: 16,
-                                                                  width: 16,
-                                                                  padding: EdgeInsetsDirectional.only(end: 8),
+                                                                  height: 16.h,
+                                                                  width: 16.w,
+                                                                  padding:
+                                                                      EdgeInsetsDirectional.only(end: 8.w),
                                                                   child: AppSvg.asset(AssetUtils.downArrow,
                                                                       color: AppColor.dark_gray_1));
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).postCode,
@@ -276,7 +280,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).accountNumberOptional,
@@ -308,7 +312,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S.of(context).exemptPayeeOptional,
@@ -321,11 +325,11 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                       context, RoutePaths.ExemptPayeeCode);
                                                                 },
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional.only(
-                                                                      start: 5.0),
+                                                                  padding: EdgeInsetsDirectional.only(
+                                                                      start: 5.0.w),
                                                                   child: Container(
-                                                                      height: 14,
-                                                                      width: 14,
+                                                                      height: 14.h,
+                                                                      width: 14.w,
                                                                       child: AppSvg.asset(AssetUtils.info,
                                                                           color: Theme.of(context)
                                                                               .inputDecorationTheme
@@ -342,7 +346,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            height: 16,
+                                                            height: 16.h,
                                                           ),
                                                           AppTextField(
                                                             labelText: S
@@ -361,11 +365,11 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                           .ExemptionFromFatcaReportingCode);
                                                                 },
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional.only(
-                                                                      start: 5.0),
+                                                                  padding: EdgeInsetsDirectional.only(
+                                                                      start: 5.0.w),
                                                                   child: Container(
-                                                                      height: 14,
-                                                                      width: 14,
+                                                                      height: 14.h,
+                                                                      width: 14.w,
                                                                       child: AppSvg.asset(AssetUtils.info,
                                                                           color: Theme.of(context)
                                                                               .inputDecorationTheme
@@ -388,8 +392,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                               return Column(
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsets.symmetric(
-                                                                        vertical: 26.0),
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        vertical: 26.0.h),
                                                                     child: AppSwitchLabelWidget(
                                                                       label:
                                                                           S.of(context).additionalRequester,
@@ -443,7 +447,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                           ),
                                                                           SizedBox(
-                                                                            height: 16,
+                                                                            height: 16.h,
                                                                           ),
                                                                           AppTextField(
                                                                             labelText: S.of(context).address,
@@ -459,7 +463,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                           ),
                                                                           SizedBox(
-                                                                            height: 16,
+                                                                            height: 16.h,
                                                                           ),
                                                                           AppTextField(
                                                                             labelText: S.of(context).country,
@@ -497,11 +501,11 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                             suffixIcon: (value, data) {
                                                                               return Container(
-                                                                                  height: 16,
-                                                                                  width: 16,
+                                                                                  height: 16.h,
+                                                                                  width: 16.w,
                                                                                   padding:
                                                                                       EdgeInsetsDirectional
-                                                                                          .only(end: 8),
+                                                                                          .only(end: 8.w),
                                                                                   child: AppSvg.asset(
                                                                                       AssetUtils.downArrow,
                                                                                       color: AppColor
@@ -511,7 +515,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                                 .additionalRequesterCountryKey,
                                                                           ),
                                                                           SizedBox(
-                                                                            height: 16,
+                                                                            height: 16.h,
                                                                           ),
                                                                           AppTextField(
                                                                             labelText: S.of(context).state,
@@ -572,11 +576,11 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                             suffixIcon: (value, data) {
                                                                               return Container(
-                                                                                  height: 16,
-                                                                                  width: 16,
+                                                                                  height: 16.h,
+                                                                                  width: 16.w,
                                                                                   padding:
                                                                                       EdgeInsetsDirectional
-                                                                                          .only(end: 8),
+                                                                                          .only(end: 8.w),
                                                                                   child: AppSvg.asset(
                                                                                       AssetUtils.downArrow,
                                                                                       color: AppColor
@@ -584,7 +588,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                           ),
                                                                           SizedBox(
-                                                                            height: 16,
+                                                                            height: 16.h,
                                                                           ),
                                                                           AppTextField(
                                                                             labelText: S.of(context).city,
@@ -640,11 +644,11 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                             suffixIcon: (value, data) {
                                                                               return Container(
-                                                                                  height: 16,
-                                                                                  width: 16,
+                                                                                  height: 16.h,
+                                                                                  width: 16.w,
                                                                                   padding:
                                                                                       EdgeInsetsDirectional
-                                                                                          .only(end: 8),
+                                                                                          .only(end: 8.w),
                                                                                   child: AppSvg.asset(
                                                                                       AssetUtils.downArrow,
                                                                                       color: AppColor
@@ -652,7 +656,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                                             },
                                                                           ),
                                                                           SizedBox(
-                                                                            height: 16,
+                                                                            height: 16.h,
                                                                           ),
                                                                           AppTextField(
                                                                             labelText: S.of(context).postCode,
@@ -680,7 +684,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                           ),
                                                           Center(
                                                             child: Padding(
-                                                              padding: EdgeInsets.only(top: 32),
+                                                              padding: EdgeInsets.only(top: 32.h),
                                                               child: AppStreamBuilder<bool>(
                                                                   stream: model.allFieldValidatorStream,
                                                                   initialData: false,

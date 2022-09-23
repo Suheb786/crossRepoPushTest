@@ -26,6 +26,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -35,7 +36,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(top: 52),
+      padding: EdgeInsetsDirectional.only(top: 52.h),
       child: GestureDetector(
         onVerticalDragEnd: (details) {
           int sensitivity = 8;
@@ -53,8 +54,8 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 48),
-                  height: 50,
+                  margin: EdgeInsets.symmetric(horizontal: 48.w),
+                  height: 50.h,
                   decoration: BoxDecoration(
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
@@ -64,19 +65,19 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                     bottom: -8,
                     child: LottieBuilder.asset(
                       AssetUtils.swipeDownAnimation,
-                      width: 28.0,
-                      height: 28.0,
+                      width: 28.0.w,
+                      height: 28.0.h,
                     )),
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 8),
+              padding: EdgeInsetsDirectional.only(top: 8.h),
               child: Text(
                 S.of(context).backToDashboard,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w600,
-                    fontSize: 12,
+                    fontSize: 12.t,
                     color: AppColor.dark_gray_1),
               ),
             ),
@@ -89,7 +90,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                 children: [
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Column(children: [
                         AppStreamBuilder<bool>(
                             stream: model.showDialogStream,
@@ -103,34 +104,34 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsetsDirectional.only(start: 8.0, bottom: 10),
+                                          padding: EdgeInsetsDirectional.only(start: 8.0.w, bottom: 10.h),
                                           child: Text(S.of(context).acknowledgeBeforeFreezingCard,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 14,
+                                                  fontSize: 14.t,
                                                   height: 1.7)),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                                          padding: EdgeInsets.symmetric(horizontal: 24.w),
                                           child: CustomBulletWithTitle(
                                             title: S.of(context).cardcantBeUsedForTransactions,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             lineHeight: 1.7,
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                                          padding: EdgeInsets.symmetric(horizontal: 24.w),
                                           child: CustomBulletWithTitle(
                                             title: S.of(context).directDebitsWontBeMade,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             lineHeight: 1.7,
                                           ),
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                                          padding: EdgeInsets.symmetric(horizontal: 24.w),
                                           child: CustomBulletWithTitle(
                                             title: S.of(context).freezeAndActiveAtAnyTime,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             lineHeight: 1.7,
                                           ),
                                         ),
@@ -177,15 +178,15 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                                     model.debitCardSettingsArguments.debitCard.code);
                                           }
                                         },
-                                        width: 60,
-                                        height: 35,
+                                        width: 60.w,
+                                        height: 35.h,
                                         padding: 4,
                                         activeText: S.of(context).yes.toUpperCase(),
                                         activeTextColor: AppColor.white,
                                         inactiveTextColor: AppColor.darkGray,
                                         activeTextFontWeight: FontWeight.w500,
                                         showOnOff: true,
-                                        valueFontSize: 10,
+                                        valueFontSize: 10.t,
                                         activeToggleColor: AppColor.white,
                                         inactiveText: S.of(context).no.toUpperCase(),
                                         inactiveToggleColor: AppColor.lightGrayishMagenta,
@@ -245,7 +246,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
                                       ), onSelected: () {
@@ -287,7 +288,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                         S.of(context).reportStolenLostCardDesc,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 14,
+                                            fontSize: 14.t,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_brown),
                                       ), onSelected: () {
@@ -446,7 +447,7 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                         ),
                         SizedBox(height: 15),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 63.0),
+                          padding: EdgeInsets.symmetric(horizontal: 63.0.w),
                           child: Text(
                             S.of(context).actionComeToYouSoon,
                             textAlign: TextAlign.center,
@@ -454,11 +455,11 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                               fontFamily: StringUtils.appFont,
                               color: AppColor.gray_1,
                               fontWeight: FontWeight.bold,
-                              fontSize: 11,
+                              fontSize: 11.t,
                             ),
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 10.h),
                       ]),
                     ),
                   ),

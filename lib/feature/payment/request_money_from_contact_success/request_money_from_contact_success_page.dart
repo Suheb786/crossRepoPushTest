@@ -5,24 +5,20 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page_view.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
 
-class RequestAmountFromContactSuccessPage
-    extends BasePage<RequestAmountFromContactSuccessViewModel> {
+class RequestAmountFromContactSuccessPage extends BasePage<RequestAmountFromContactSuccessViewModel> {
   List<String>? successValues;
 
   RequestAmountFromContactSuccessPage({this.successValues});
 
   @override
-  RequestAmountFromContactSuccessPageState createState() =>
-      RequestAmountFromContactSuccessPageState();
+  RequestAmountFromContactSuccessPageState createState() => RequestAmountFromContactSuccessPageState();
 }
 
-class RequestAmountFromContactSuccessPageState extends BaseStatefulPage<
-    RequestAmountFromContactSuccessViewModel,
-    RequestAmountFromContactSuccessPage> {
+class RequestAmountFromContactSuccessPageState
+    extends BaseStatefulPage<RequestAmountFromContactSuccessViewModel, RequestAmountFromContactSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return requestAmountFromContactSuccessViewModelProvider
-        .call(widget.successValues!);
+    return requestAmountFromContactSuccessViewModelProvider.call(widget.successValues!);
   }
 
   @override
@@ -31,8 +27,7 @@ class RequestAmountFromContactSuccessPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, RequestAmountFromContactSuccessViewModel model) {
+  Widget buildView(BuildContext context, RequestAmountFromContactSuccessViewModel model) {
     return RequestAmountFromContactSuccessPageView(provideBase());
   }
 }

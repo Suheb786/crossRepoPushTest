@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/information_text.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -38,7 +39,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
         }
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -49,19 +50,19 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Stack(
                       clipBehavior: Clip.none,
                       alignment: AlignmentDirectional.bottomCenter,
                       children: [
                         AppSvg.asset(AssetUtils.dashboardSwiggle, matchTextDirection: true),
                         PositionedDirectional(
-                          start: 120,
+                          start: 120.w,
                           child: Text(
                             S.of(context).helloE,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 32,
+                                fontSize: 32.t,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),
                           ),
@@ -70,24 +71,24 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 40.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Text(
                       S.of(context).successfullyCreatedLoginAccount,
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
-                          fontSize: 20,
+                          fontSize: 20.t,
                           fontWeight: FontWeight.w500,
                           color: Theme.of(context).accentColor),
                     ),
                   ),
                   SizedBox(
-                    height: 24,
+                    height: 24.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    padding: EdgeInsets.symmetric(horizontal: 24.0.w),
                     child: InformationText(
                       image: AssetUtils.informationSave,
                       title: S.of(context).informationSave,
@@ -117,7 +118,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   //   ),
                   // ),
                   SizedBox(
-                    height: 92,
+                    height: 92.h,
                   ),
                   Center(
                     child: AnimatedButton(
@@ -182,7 +183,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 ],
               ),
               SizedBox(
-                height: 76,
+                height: 76.h,
               ),
               AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
@@ -196,7 +197,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 dataBuilder: (context, data) {
                   return Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 36.0),
+                      padding: EdgeInsets.only(bottom: 36.0.h),
                       child: InkWell(
                         onTap: () {
                           model.logout();
@@ -205,7 +206,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           S.of(context).logoutAndContinueLater,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 14,
+                              fontSize: 14.t,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1,
                               color: Theme.of(context).accentColor),

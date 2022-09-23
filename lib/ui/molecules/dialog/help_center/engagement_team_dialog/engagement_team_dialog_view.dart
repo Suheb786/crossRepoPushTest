@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagement_team_dialog_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class EngagementTeamDialogView extends StatelessWidget {
@@ -32,7 +33,7 @@ class EngagementTeamDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 340),
+            insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 340.h),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
                 if (details.primaryVelocity! > 0) {
@@ -44,46 +45,46 @@ class EngagementTeamDialogView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 32.0),
+                    padding: EdgeInsets.only(top: 32.0.h),
                     child: Center(
                       child: Text(
                         S.of(context).engagementTeam,
                         style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontSize: 20, fontWeight: FontWeight.w600),
+                            fontFamily: StringUtils.appFont, fontSize: 20.t, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.only(top: 32.0, start: 24.0, end: 24.0),
+                      padding: EdgeInsetsDirectional.only(top: 32.0.h, start: 24.0.w, end: 24.0.w),
                       child: Text(
                         S.of(context).engagementTeamDescription,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             height: 1.5,
                             fontWeight: FontWeight.w400,
                             color: AppColor.very_dark_gray_black),
                       ),
                     ),
                   ),
-                  SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                   InkWell(
                     onTap: () {
                       Navigator.pushReplacementNamed(context, RoutePaths.HelpCenter);
                     },
                     child: Container(
-                      height: 72,
-                      margin: EdgeInsets.symmetric(horizontal: 24),
+                      height: 72.h,
+                      margin: EdgeInsets.symmetric(horizontal: 24.w),
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColor.brightBlue),
                           borderRadius: BorderRadius.circular(8)),
                       child: Row(
                         children: [
                           Container(
-                              margin: EdgeInsets.symmetric(horizontal: 18.11),
-                              height: 25,
-                              width: 25,
+                              margin: EdgeInsets.symmetric(horizontal: 18.11.w),
+                              height: 25.h,
+                              width: 25.w,
                               child: AppSvg.asset(
                                 AssetUtils.voiceCall,
                                 color: Theme.of(context).primaryColorDark,
@@ -91,7 +92,9 @@ class EngagementTeamDialogView extends StatelessWidget {
                           Text(
                             S.of(context).voiceCall,
                             style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontSize: 14.0, fontWeight: FontWeight.w600),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 14.0.t,
+                                fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
@@ -113,17 +116,17 @@ class EngagementTeamDialogView extends StatelessWidget {
                       // }
                     },
                     child: Container(
-                      height: 72,
-                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
+                      height: 72.h,
+                      margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.0.h),
                       decoration: BoxDecoration(
                           border: Border.all(color: AppColor.brightBlue),
                           borderRadius: BorderRadius.circular(8)),
                       child: Row(
                         children: [
                           Container(
-                              margin: EdgeInsets.symmetric(horizontal: 18.11),
-                              height: 25,
-                              width: 25,
+                              margin: EdgeInsets.symmetric(horizontal: 18.11.w),
+                              height: 25.h,
+                              width: 25.w,
                               child: AppSvg.asset(
                                 AssetUtils.liveChat,
                                 color: Theme.of(context).primaryColorDark,
@@ -131,22 +134,24 @@ class EngagementTeamDialogView extends StatelessWidget {
                           Text(
                             S.of(context).liveChat,
                             style: TextStyle(
-                                fontFamily: StringUtils.appFont, fontSize: 14.0, fontWeight: FontWeight.w600),
+                                fontFamily: StringUtils.appFont,
+                                fontSize: 14.0.t,
+                                fontWeight: FontWeight.w600),
                           )
                         ],
                       ),
                     ),
                   ),
                   // ),
-                  SizedBox(height: 56),
+                  SizedBox(height: 56.h),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                    padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                     child: Center(
                       child: Text(
                         S.of(context).swipeDownToCancel,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 10,
+                            fontSize: 10.t,
                             fontWeight: FontWeight.w400,
                             color: AppColor.dark_gray_1),
                       ),

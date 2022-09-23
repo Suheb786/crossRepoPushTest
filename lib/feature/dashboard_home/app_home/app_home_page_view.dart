@@ -23,7 +23,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:neo_bank/utils/screen_size_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
@@ -34,11 +34,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   Widget build(BuildContext context, model) {
     listenPopUps(model, context);
     return Padding(
-      padding: EdgeInsets.only(
-          top: model.deviceSize.height < ScreenSizeBreakPoints.SMALL_DEVICE_HEIGHT ||
-                  model.deviceSize.height < ScreenSizeBreakPoints.MEDIUM_DEVICE_HEIGHT
-              ? 48
-              : 70),
+      padding: EdgeInsets.only(top: 70.0.h),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
         initialData: 1,
@@ -84,11 +80,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 18,
+                                fontSize: 18.0.t,
                                 color: AppColor.black),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 5.0),
+                            padding: EdgeInsets.only(top: 5.0.h),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,16 +92,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Text('${cardData!.data!.dashboardDataContent!.account!.availableBalance!} ',
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontSize: 24,
+                                        fontSize: 24.0.t,
                                         fontWeight: FontWeight.w700,
                                         color: Theme.of(context).primaryColorDark)),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 5, left: 5.0),
+                                  padding: EdgeInsets.only(top: 5.0.h, left: 5.0.w),
                                   child: Text(S.of(context).JOD,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 14,
+                                          fontSize: 14.0.t,
                                           color: AppColor.verLightGray4)),
                                 )
                               ],
@@ -117,15 +113,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                          padding: EdgeInsets.only(top: 18),
+                                          padding: EdgeInsets.only(top: 18.0.h),
                                           child: LottieBuilder.asset(
                                             'assets/animation/Swipe_Down.json',
-                                            width: 28.0,
-                                            height: 28.0,
+                                            width: 28.0.w,
+                                            height: 28.0.h,
                                           )),
                                       Expanded(
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 4),
+                                          padding: EdgeInsets.only(top: 4.0.h),
                                           child: AppStreamBuilder<List>(
                                               stream: model.pageStream,
                                               initialData: [Container()],
@@ -194,7 +190,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
-                                          padding: EdgeInsets.only(top: 35, bottom: 24),
+                                          padding: EdgeInsets.only(top: 35.0.h, bottom: 24.0.h),
                                           child: ConvexAppBar(
                                             elevation: 0,
                                             style: TabStyle.fixedCircle,
@@ -203,8 +199,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                               TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
                                               TabItem(
                                                 icon: Container(
-                                                  height: 120,
-                                                  width: 120,
+                                                  height: 80.0.h,
+                                                  width: 80.0.w,
                                                   decoration: BoxDecoration(
                                                       color: Theme.of(context).primaryColorDark,
                                                       shape: BoxShape.circle),

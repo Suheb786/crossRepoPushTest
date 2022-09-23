@@ -8,14 +8,13 @@ import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class OtpForChangeCardPinPage
-    extends BasePage<OtpForChangeCardPinPageViewModel> {
+class OtpForChangeCardPinPage extends BasePage<OtpForChangeCardPinPageViewModel> {
   @override
   OtpForChangeCardPinPageState createState() => OtpForChangeCardPinPageState();
 }
 
-class OtpForChangeCardPinPageState extends BaseStatefulPage<
-        OtpForChangeCardPinPageViewModel, OtpForChangeCardPinPage>
+class OtpForChangeCardPinPageState
+    extends BaseStatefulPage<OtpForChangeCardPinPageViewModel, OtpForChangeCardPinPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   OtpForChangeCardPinPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,8 +31,7 @@ class OtpForChangeCardPinPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(OtpForChangeCardPinPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -48,8 +46,7 @@ class OtpForChangeCardPinPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, OtpForChangeCardPinPageViewModel model) {
+  Widget buildView(BuildContext context, OtpForChangeCardPinPageViewModel model) {
     return OtpForChangeCardPinPageView(provideBase());
   }
 

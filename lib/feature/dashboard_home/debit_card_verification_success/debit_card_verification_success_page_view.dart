@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardVerificationSuccessViewModel> {
@@ -27,77 +28,78 @@ class DebitCardVerificationSuccessPageView extends BasePageViewWidget<DebitCardV
           }
         },
         child: Padding(
-          padding: EdgeInsets.only(top: 92),
-          child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Column(
-              children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset(
-                      AssetUtils.line,
-                      color: Theme.of(context).accentColor,
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        height: 111.37,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        child: Center(
-                            child: AppSvg.asset(
-                          AssetUtils.right,
-                        )),
+          padding: EdgeInsets.only(top: 92.0.h),
+          child: Column(
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    AssetUtils.line,
+                    color: Theme.of(context).accentColor,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: 111.37.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
                       ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 34.0),
-                  child: Text(
-                    S.of(context).debitCardVerified,
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w800, fontSize: 24),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: Text(
-                    S.of(context).physicalCardUse,
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 16),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 285),
-                  child: AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).primaryColorDark,
-                    textColor: Theme.of(context).primaryColorDark,
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                      ..pop()
-                      ..pop();
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 9),
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont, fontSize: 12, fontWeight: FontWeight.w600),
+                      child: Center(
+                          child: AppSvg.asset(
+                        AssetUtils.right,
+                      )),
                     ),
                   ),
-                )
-              ],
-            ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 34.0.h),
+                child: Text(
+                  S.of(context).debitCardVerified,
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w800, fontSize: 24.t),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16.0.h),
+                child: Text(
+                  S.of(context).physicalCardUse,
+                  textAlign: TextAlign.center,
+                  style:
+                      TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 16.t),
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.only(top: 10.h),
+                child: AnimatedButton(
+                  buttonText: S.of(context).swipeToProceed,
+                  borderColor: Theme.of(context).primaryColorDark,
+                  textColor: Theme.of(context).primaryColorDark,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context)
+                    ..pop()
+                    ..pop();
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(top: 9.h),
+                  child: Text(
+                    S.of(context).toDashboard,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont, fontSize: 12.t, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10.0.h,
+              )
+            ],
           ),
         ),
       ),

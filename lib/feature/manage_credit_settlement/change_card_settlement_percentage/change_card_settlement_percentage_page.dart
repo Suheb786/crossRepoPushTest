@@ -6,22 +6,17 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_settlement_percentage/change_card_settlement_percentage_page_view_model.dart';
 
-class ChangeCardSettlementPercentagePage
-    extends BasePage<ChangeCardSettlementPercentagePageViewModel> {
-  final ChangeCardSettlementPercentageArguments
-      changeCardSettlementPercentageArguments;
+class ChangeCardSettlementPercentagePage extends BasePage<ChangeCardSettlementPercentagePageViewModel> {
+  final ChangeCardSettlementPercentageArguments changeCardSettlementPercentageArguments;
 
-  ChangeCardSettlementPercentagePage(
-      {required this.changeCardSettlementPercentageArguments});
+  ChangeCardSettlementPercentagePage({required this.changeCardSettlementPercentageArguments});
 
   @override
-  ChangeCardSettlementPercentagePageState createState() =>
-      ChangeCardSettlementPercentagePageState();
+  ChangeCardSettlementPercentagePageState createState() => ChangeCardSettlementPercentagePageState();
 }
 
 class ChangeCardSettlementPercentagePageState extends BaseStatefulPage<
-    ChangeCardSettlementPercentagePageViewModel,
-    ChangeCardSettlementPercentagePage> {
+    ChangeCardSettlementPercentagePageViewModel, ChangeCardSettlementPercentagePage> {
   @override
   ProviderBase provideBase() {
     return changeCardSettlementPercentagePageViewModelProvider;
@@ -39,8 +34,7 @@ class ChangeCardSettlementPercentagePageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ChangeCardSettlementPercentagePageViewModel model) {
+  Widget buildView(BuildContext context, ChangeCardSettlementPercentagePageViewModel model) {
     return ChangeCardSettlementPercentagePageView(provideBase());
   }
 }

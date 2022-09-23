@@ -14,6 +14,7 @@ import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -60,7 +61,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                             image: AssetImage(AssetUtils.zigzagWhite), alignment: Alignment.topLeft)),
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.only(top: 55, start: 24),
+                        padding: EdgeInsetsDirectional.only(top: 55.h, start: 24.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -69,24 +70,24 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                   Navigator.pop(context);
                                 },
                                 child: AppSvg.asset(AssetUtils.leftArrow,
-                                    matchTextDirection: true, height: 24, width: 24)),
+                                    matchTextDirection: true, height: 24.h, width: 24.w)),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(start: 62, end: 86),
+                              padding: EdgeInsetsDirectional.only(start: 62.w, end: 86.w),
                               child: Card(
                                 child: Container(
-                                  height: 325,
+                                  height: 325.h,
                                   decoration: BoxDecoration(
                                       color: Theme.of(context).primaryColor,
-                                      borderRadius: BorderRadius.circular(12)),
-                                  padding: EdgeInsetsDirectional.only(top: 29, bottom: 16),
+                                      borderRadius: BorderRadius.circular(12.w)),
+                                  padding: EdgeInsetsDirectional.only(top: 29.h, bottom: 16.h),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(start: 29, end: 52),
+                                        padding: EdgeInsetsDirectional.only(start: 29.w, end: 52.w),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -97,7 +98,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                       ),
                                       Image.asset(AssetUtils.line_black_white),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(end: 15.0),
+                                        padding: EdgeInsetsDirectional.only(end: 15.0.w),
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: AppSvg.asset(AssetUtils.visaWhite),
@@ -109,26 +110,26 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                               ),
                             ),
                             SizedBox(
-                              height: 28,
+                              height: 28.h,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(end: 24.0),
+                              padding: EdgeInsetsDirectional.only(end: 24.0.w),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).blinkCreditCardTitle,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 16,
+                                      fontSize: 16.t,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 24,
+                              height: 24.h,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(end: 55.0, start: 31),
+                              padding: EdgeInsetsDirectional.only(end: 55.0.w, start: 31.w),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
@@ -138,15 +139,15 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 14),
+                                      fontSize: 14.t),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 48,
+                              height: 48.h,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(start: 25.0, end: 49),
+                              padding: EdgeInsetsDirectional.only(start: 25.0.w, end: 49.w),
                               child: Row(
                                 children: [
                                   AppStreamBuilder<bool>(
@@ -159,8 +160,8 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                             model.updateCheckBox(!value!);
                                           },
                                           child: Container(
-                                            height: 40,
-                                            width: 40,
+                                            height: 40.h,
+                                            width: 40.w,
                                             decoration: BoxDecoration(
                                                 color: !value!
                                                     ? Theme.of(context).accentColor
@@ -180,7 +181,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                         );
                                       }),
                                   SizedBox(
-                                    width: 16,
+                                    width: 16.w,
                                   ),
                                   Expanded(
                                     child: RichText(
@@ -189,7 +190,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                             text: S.of(context).authorize,
                                             style: TextStyle(
                                                 color: Theme.of(context).primaryColorDark,
-                                                fontSize: 12,
+                                                fontSize: 12.t,
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600),
                                             children: [
@@ -204,7 +205,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                             .CREDIT_CARD_TERMS_CONDITION_LINK_LIVE),
                                               style: TextStyle(
                                                   color: Theme.of(context).accentTextTheme.bodyText1!.color!,
-                                                  fontSize: 12,
+                                                  fontSize: 12.t,
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w600),
                                               children: [
@@ -212,7 +213,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                     text: S.of(context).agreeData,
                                                     style: TextStyle(
                                                         color: Theme.of(context).primaryColorDark,
-                                                        fontSize: 12,
+                                                        fontSize: 12.t,
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600),
                                                     children: [
@@ -229,7 +230,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                                   .accentTextTheme
                                                                   .bodyText1!
                                                                   .color!,
-                                                              fontSize: 12,
+                                                              fontSize: 12.t,
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600),
                                                           children: [
@@ -238,7 +239,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                                                 style: TextStyle(
                                                                     color: Theme.of(context).primaryColorDark,
                                                                     fontFamily: StringUtils.appFont,
-                                                                    fontSize: 12,
+                                                                    fontSize: 12.t,
                                                                     fontWeight: FontWeight.w600)),
                                                           ])
                                                     ])
@@ -249,7 +250,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                               ),
                             ),
                             SizedBox(
-                              height: 25,
+                              height: 25.h,
                             ),
                             AppStreamBuilder<bool>(
                                 stream: model.isCheckedStream,
@@ -258,7 +259,7 @@ class BlinkCreditCardPageView extends BasePageViewWidget<BlinkCreditCardViewMode
                                   return Visibility(
                                     visible: value!,
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.only(end: 24, bottom: 28),
+                                      padding: EdgeInsetsDirectional.only(end: 24.w, bottom: 28.h),
                                       child: Center(
                                         child: AnimatedButton(
                                           buttonText: S.of(context).swipeToProceed,

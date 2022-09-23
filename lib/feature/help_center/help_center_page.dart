@@ -10,8 +10,7 @@ class HelpCenterPage extends BasePage<HelpCenterPageViewModel> {
   HelpCenterPagePageState createState() => HelpCenterPagePageState();
 }
 
-class HelpCenterPagePageState
-    extends BaseStatefulPage<HelpCenterPageViewModel, HelpCenterPage> {
+class HelpCenterPagePageState extends BaseStatefulPage<HelpCenterPageViewModel, HelpCenterPage> {
   @override
   ProviderBase provideBase() {
     return helpCenterViewModelProvider;

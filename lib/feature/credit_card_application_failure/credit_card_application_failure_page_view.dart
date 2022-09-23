@@ -9,6 +9,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCardApplicationFailureViewModel> {
@@ -32,7 +33,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 72.0, bottom: 24),
+        padding: EdgeInsets.only(top: 72.0.h, bottom: 24.h),
         child: Column(
           children: [
             Stack(
@@ -42,7 +43,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    height: 111.37,
+                    height: 111.37.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Theme.of(context).canvasColor,
@@ -54,7 +55,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 46),
+              padding: EdgeInsets.only(top: 46.h),
               child: Text(
                 getTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
                 textAlign: TextAlign.center,
@@ -62,15 +63,15 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     fontWeight: FontWeight.w500,
-                    fontSize: 24,
+                    fontSize: 24.t,
                     color: Theme.of(context).accentColor),
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.only(
-                top: 16,
-                start: 40,
-                end: 40,
+                top: 16.h,
+                start: 40.w,
+                end: 40.w,
               ),
               child: Text(
                   getSubTitle(context, model.creditCardApplicationFailureArguments.creditFailureState),
@@ -78,7 +79,7 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
-                      fontSize: 14,
+                      fontSize: 14.t,
                       fontWeight: FontWeight.w600)),
             ),
             Spacer(),
@@ -90,12 +91,12 @@ class CreditCardApplicationFailurePageView extends BasePageViewWidget<CreditCard
             InkWell(
               onTap: () {},
               child: Padding(
-                padding: EdgeInsets.only(top: 9),
+                padding: EdgeInsets.only(top: 9.h),
                 child: Text(
                   S.of(context).toDashboard,
                   style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 12,
+                    fontSize: 12.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).accentColor,
                   ),

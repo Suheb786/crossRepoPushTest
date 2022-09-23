@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class UploadProfileBottomSheetView extends StatefulWidget {
   final Function()? onTakePhoto;
@@ -10,19 +11,14 @@ class UploadProfileBottomSheetView extends StatefulWidget {
   final Function()? onRemoveTap;
   final String? title;
 
-  const UploadProfileBottomSheetView({this.onTakePhoto,
-    this.onGalleryTap,
-    this.title,
-    this.onCancel,
-    this.onRemoveTap});
+  const UploadProfileBottomSheetView(
+      {this.onTakePhoto, this.onGalleryTap, this.title, this.onCancel, this.onRemoveTap});
 
   @override
-  _UploadProfileBottomSheetViewState createState() =>
-      _UploadProfileBottomSheetViewState();
+  _UploadProfileBottomSheetViewState createState() => _UploadProfileBottomSheetViewState();
 }
 
-class _UploadProfileBottomSheetViewState
-    extends State<UploadProfileBottomSheetView> {
+class _UploadProfileBottomSheetViewState extends State<UploadProfileBottomSheetView> {
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
@@ -31,60 +27,50 @@ class _UploadProfileBottomSheetViewState
         style: TextStyle(
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w600,
-            fontSize: 13,
+            fontSize: 13.t,
             color: AppColor.black.withOpacity(0.4)),
       ),
       actions: [
         CupertinoActionSheetAction(
-          child: Text(S
-              .of(context)
-              .takePhoto,
+          child: Text(S.of(context).takePhoto,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: 20.t,
                   color: AppColor.pure_blue)),
           onPressed: () {
             widget.onTakePhoto?.call();
           },
         ),
         CupertinoActionSheetAction(
-          child: Text(S
-              .of(context)
-              .selectFromLibrary,
+          child: Text(S.of(context).selectFromLibrary,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                  fontSize: 20.t,
                   color: AppColor.pure_blue)),
           onPressed: () {
             widget.onGalleryTap?.call();
           },
         ),
         CupertinoActionSheetAction(
-          child: Text(S
-              .of(context)
-              .removePhoto,
+          child: Text(S.of(context).removePhoto,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                  color: Theme
-                      .of(context)
-                      .errorColor)),
+                  fontSize: 20.t,
+                  color: Theme.of(context).errorColor)),
           onPressed: () {
             widget.onRemoveTap?.call();
           },
         ),
       ],
       cancelButton: CupertinoActionSheetAction(
-        child: Text(S
-            .of(context)
-            .cancel,
+        child: Text(S.of(context).cancel,
             style: TextStyle(
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w600,
-                fontSize: 20,
+                fontSize: 20.t,
                 color: AppColor.pure_blue)),
         onPressed: () {
           widget.onCancel?.call();

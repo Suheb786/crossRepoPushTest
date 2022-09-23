@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RequestAmountFromContactSuccessPageView
@@ -30,150 +31,152 @@ class RequestAmountFromContactSuccessPageView
           }
         },
         child: Padding(
-          padding: EdgeInsets.only(top: 92),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Stack(
-                  alignment: Alignment.center,
+          padding: EdgeInsets.only(top: 92.0.h),
+          child: Column(
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: 111.37.h,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child:
+                          Center(child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 11.0.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(AssetUtils.line, color: Theme.of(context).accentColor.withOpacity(0.4)),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        height: 111.37,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        child: Center(
-                            child: AppSvg.asset(AssetUtils.right, color: Theme.of(context).accentColor)),
+                    Text(
+                      model.successValues[0],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28.0.t),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h, start: 5.0.w),
+                      child: Text(
+                        S.of(context).JOD,
+                        style: TextStyle(
+                            fontFamily: StringUtils.appFont,
+                            color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14.0.t),
                       ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 11.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        model.successValues[0],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont, fontWeight: FontWeight.w700, fontSize: 28),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
-                        child: Text(
-                          S.of(context).JOD,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              color: Theme.of(context).primaryColorDark.withOpacity(0.5),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 6.0.h),
+                child: Text(
+                  S.of(context).requestedFrom,
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24.0.t),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 6.0),
-                  child: Text(
-                    S.of(context).requestedFrom,
-                    maxLines: 3,
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w500, fontSize: 24),
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16.0.h),
+                child: Text(
+                  model.successValues[1],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14.0.t),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: Text(
-                    model.successValues[1],
-                    textAlign: TextAlign.center,
-                    style:
-                        TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600, fontSize: 14),
-                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 4.0.h),
+                child: Text(
+                  model.successValues[2],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.0.t),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 4.0),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 64.0.h),
+                child: Text(
+                  S.of(context).youWillBeNotified,
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.t),
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.only(top: 10.0.h),
+                child: AnimatedButton(
+                  buttonText: S.of(context).swipeToProceed,
+                  borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                  textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.only(top: 9.h),
                   child: Text(
-                    model.successValues[2],
-                    textAlign: TextAlign.center,
+                    S.of(context).toDashboard,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).primaryColorDark.withOpacity(0.5),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 64.0),
-                  child: Text(
-                    S.of(context).youWillBeNotified,
-                    maxLines: 3,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: StringUtils.appFont,
-                        color: Theme.of(context).primaryColorDark.withOpacity(0.5),
+                        fontSize: 12.t,
                         fontWeight: FontWeight.w400,
-                        fontSize: 14),
+                        color: Theme.of(context).accentTextTheme.bodyText1!.color),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 130),
-                  child: AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                    textColor: Theme.of(context).accentTextTheme.bodyText1!.color,
-                  ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 9),
-                    child: Text(
-                      S.of(context).toDashboard,
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                    ),
-                  ),
-                ),
-                Visibility(
-                  visible: false,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 33),
-                        child: Text(
-                          S.of(context).undoRequest,
-                          style: TextStyle(
-                              fontFamily: StringUtils.appFont,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 4),
-                        child: Text(
-                          "0:07",
-                          style: TextStyle(
+              ),
+              Visibility(
+                visible: false,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 33.h),
+                      child: Text(
+                        S.of(context).undoRequest,
+                        style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             fontWeight: FontWeight.w600,
-                          ),
+                            color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 4.h),
+                      child: Text(
+                        "0:07",
+                        style: TextStyle(
+                          fontFamily: StringUtils.appFont,
+                          fontSize: 14.t,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10.h,
+              )
+            ],
           ),
         ),
       ),

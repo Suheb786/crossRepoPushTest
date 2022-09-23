@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -127,11 +128,11 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           margin: EdgeInsets.zero,
                           child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom - 48),
+                                    : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
                             child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.0.h, horizontal: 24.0.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -157,7 +158,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                           endTime: model.endTime,
                                           textStyle: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 16,
+                                              fontSize: 16.0.t,
                                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
@@ -169,7 +170,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                       S.of(context).resendCode,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
-                                                          fontSize: 14,
+                                                          fontSize: 14.0.t,
                                                           color: Theme.of(context)
                                                               .accentTextTheme
                                                               .bodyText1!
@@ -180,7 +181,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        fontSize: 14,
+                                                        fontSize: 14.0.t,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
                                                             .bodyText1!
@@ -189,7 +190,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                                           },
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 16.0),
+                                          padding: EdgeInsets.only(top: 16.0.t),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,

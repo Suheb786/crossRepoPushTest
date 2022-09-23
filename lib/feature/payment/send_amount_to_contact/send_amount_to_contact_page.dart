@@ -15,8 +15,8 @@ class SendAmountToContactPage extends BasePage<SendAmountToContactViewModel> {
   SendAmountToContactPageState createState() => SendAmountToContactPageState();
 }
 
-class SendAmountToContactPageState extends BaseStatefulPage<
-    SendAmountToContactViewModel, SendAmountToContactPage> {
+class SendAmountToContactPageState
+    extends BaseStatefulPage<SendAmountToContactViewModel, SendAmountToContactPage> {
   @override
   ProviderBase provideBase() {
     return sendAmountToContactViewModelProvider.call(widget._beneficiary);

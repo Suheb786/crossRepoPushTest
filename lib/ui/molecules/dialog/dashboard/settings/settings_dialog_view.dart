@@ -19,6 +19,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -55,8 +56,8 @@ class SettingsDialogView extends StatelessWidget {
                                   }
                                 : () {},
                             child: Container(
-                              height: 174,
-                              width: 112,
+                              height: 174.0.h,
+                              width: 112.0.w,
                               decoration: BoxDecoration(
                                   color: currentStep == 0
                                       ? Theme.of(context).accentTextTheme.bodyText1!.color
@@ -67,10 +68,10 @@ class SettingsDialogView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                      height: 64,
-                                      width: 64,
-                                      padding: EdgeInsets.all(14),
-                                      margin: EdgeInsets.only(bottom: 16),
+                                      height: 64.0.h,
+                                      width: 64.0.w,
+                                      padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                      margin: EdgeInsets.only(bottom: 16.0.h),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -87,7 +88,7 @@ class SettingsDialogView extends StatelessWidget {
                                         color: currentStep == 0
                                             ? Theme.of(context).accentColor
                                             : Theme.of(context).primaryColorDark,
-                                        fontSize: 12),
+                                        fontSize: 12.0.t),
                                   )
                                 ],
                               ),
@@ -100,8 +101,8 @@ class SettingsDialogView extends StatelessWidget {
                                   }
                                 : () {},
                             child: Container(
-                              height: 174,
-                              width: 112,
+                              height: 174.0.h,
+                              width: 112.0.w,
                               decoration: BoxDecoration(
                                   color: currentStep == 1
                                       ? Theme.of(context).accentTextTheme.bodyText1!.color
@@ -112,10 +113,10 @@ class SettingsDialogView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                      height: 64,
-                                      width: 64,
-                                      padding: EdgeInsets.all(14),
-                                      margin: EdgeInsets.only(bottom: 16),
+                                      height: 64.0.h,
+                                      width: 64.0.w,
+                                      padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                      margin: EdgeInsets.only(bottom: 16.0.h),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -132,7 +133,7 @@ class SettingsDialogView extends StatelessWidget {
                                         color: currentStep == 1
                                             ? Theme.of(context).accentColor
                                             : Theme.of(context).primaryColorDark,
-                                        fontSize: 12),
+                                        fontSize: 12.0.t),
                                   )
                                 ],
                               ),
@@ -145,8 +146,8 @@ class SettingsDialogView extends StatelessWidget {
                                   }
                                 : () {},
                             child: Container(
-                              height: 174,
-                              width: 112,
+                              height: 174.0.h,
+                              width: 112.0.w,
                               decoration: BoxDecoration(
                                   color: currentStep == 2
                                       ? Theme.of(context).accentTextTheme.bodyText1!.color
@@ -157,10 +158,10 @@ class SettingsDialogView extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                      height: 64,
-                                      width: 64,
-                                      padding: EdgeInsets.all(14),
-                                      margin: EdgeInsets.only(bottom: 16),
+                                      height: 64.0.h,
+                                      width: 64.0.w,
+                                      padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                      margin: EdgeInsets.only(bottom: 16.0.h),
                                       decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                           border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -177,7 +178,7 @@ class SettingsDialogView extends StatelessWidget {
                                         color: currentStep == 2
                                             ? Theme.of(context).accentColor
                                             : Theme.of(context).primaryColorDark,
-                                        fontSize: 12),
+                                        fontSize: 12.0.t),
                                   )
                                 ],
                               ),
@@ -190,8 +191,8 @@ class SettingsDialogView extends StatelessWidget {
                                     }
                                   : () {},
                               child: Container(
-                                height: 174,
-                                width: 112,
+                                height: 174.0.h,
+                                width: 112.0.w,
                                 decoration: BoxDecoration(
                                     color: currentStep == 3
                                         ? Theme.of(context).accentTextTheme.bodyText1!.color
@@ -202,10 +203,10 @@ class SettingsDialogView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                        height: 64,
-                                        width: 64,
-                                        // padding: EdgeInsets.all(14),
-                                        margin: EdgeInsets.only(bottom: 16),
+                                        height: 64.0.h,
+                                        width: 64.0.w,
+                                        padding: EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                        margin: EdgeInsets.only(bottom: 16.0.h),
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                             border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -223,7 +224,7 @@ class SettingsDialogView extends StatelessWidget {
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w700,
-                                                              fontSize: 18,
+                                                              fontSize: 18.0.t,
                                                               color: currentStep == 3
                                                                   ? Theme.of(context).accentColor
                                                                   : Theme.of(context).primaryColorDark),
@@ -247,7 +248,7 @@ class SettingsDialogView extends StatelessWidget {
                                           color: currentStep == 3
                                               ? Theme.of(context).accentColor
                                               : Theme.of(context).primaryColorDark,
-                                          fontSize: 12),
+                                          fontSize: 12.0.t),
                                     )
                                   ],
                                 ),
@@ -269,8 +270,8 @@ class SettingsDialogView extends StatelessWidget {
                                         }
                                       : () {},
                                   child: Container(
-                                    height: 174,
-                                    width: 112,
+                                    height: 174.0.h,
+                                    width: 112.0.w,
                                     decoration: BoxDecoration(
                                         color: currentStep == 4
                                             ? Theme.of(context).accentTextTheme.bodyText1!.color
@@ -281,10 +282,11 @@ class SettingsDialogView extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                            height: 64,
-                                            width: 64,
-                                            padding: EdgeInsets.all(14),
-                                            margin: EdgeInsets.only(bottom: 16),
+                                            height: 64.0.h,
+                                            width: 64.0.w,
+                                            padding:
+                                                EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 14.0.h),
+                                            margin: EdgeInsets.only(bottom: 16.0.h),
                                             decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                                 border: Border.all(color: AppColor.whiteGrey, width: 1)),
@@ -301,7 +303,7 @@ class SettingsDialogView extends StatelessWidget {
                                               color: currentStep == 4
                                                   ? Theme.of(context).accentColor
                                                   : Theme.of(context).primaryColorDark,
-                                              fontSize: 12),
+                                              fontSize: 12.0.t),
                                         )
                                       ],
                                     ),
@@ -326,7 +328,7 @@ class SettingsDialogView extends StatelessWidget {
                                     carouselController: model.controller,
                                     itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
                                         Padding(
-                                      padding: const EdgeInsets.only(bottom: 5.0),
+                                      padding: EdgeInsets.only(bottom: 5.0.h),
                                       child: AppTiltCard(
                                           pageViewIndex: pageViewIndex,
                                           degree: 8,
@@ -334,7 +336,7 @@ class SettingsDialogView extends StatelessWidget {
                                           child: pages[itemIndex]),
                                     ),
                                     options: CarouselOptions(
-                                      height: 180,
+                                      height: 180.0.h,
                                       pageSnapping: true,
                                       viewportFraction: 0.4,
                                       enableInfiniteScroll: false,
@@ -346,7 +348,7 @@ class SettingsDialogView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: 41.45,
+                                height: 41.45.h,
                               ),
                               InkWell(
                                 onTap: () {
@@ -355,7 +357,7 @@ class SettingsDialogView extends StatelessWidget {
                                 child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).accentColor),
                               ),
                               SizedBox(
-                                height: 50,
+                                height: 50.0.h,
                               ),
                             ],
                           ),
@@ -404,9 +406,9 @@ class SettingsDialogView extends StatelessWidget {
         Material(
           color: AppColor.white.withOpacity(0),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
               decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
@@ -420,17 +422,17 @@ class SettingsDialogView extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,
-                              fontSize: 10),
+                              fontSize: 10.0.t),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          padding: EdgeInsets.only(top: 4.0.h, right: 16.0.w),
                           child: Text(message,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   // fontFamily: "Montserrat",
                                   color: AppColor.white,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 12)),
+                                  fontSize: 12.0.t)),
                         ),
                       ],
                     ),

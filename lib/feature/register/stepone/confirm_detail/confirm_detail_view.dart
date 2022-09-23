@@ -22,6 +22,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -130,11 +131,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                  bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                       ? 0
-                                      : MediaQuery.of(context).viewInsets.bottom - 48),
+                                      : MediaQuery.of(context).viewInsets.bottom - 48.h),
                               child: SingleChildScrollView(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   children: [
                                     AppTextField(
@@ -151,7 +152,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).nationalId,
@@ -166,7 +167,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).dob,
@@ -195,16 +196,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 }, title: S.of(context).dateOfBirthSmall);
                                               },
                                               child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  height: 16.h,
+                                                  width: 16.w,
+                                                  padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                   child: AppSvg.asset(AssetUtils.calendar,
                                                       color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).placeOfBirth.toUpperCase(),
@@ -228,16 +229,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       },
                                       suffixIcon: (value, data) {
                                         return Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsetsDirectional.only(end: 8),
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsetsDirectional.only(end: 8.w),
                                             child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).gender,
@@ -252,7 +253,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).motherName,
@@ -267,7 +268,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).legalDocumentNo,
@@ -282,7 +283,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).issuingDate.toUpperCase(),
@@ -311,16 +312,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 }, title: S.of(context).issuingDate);
                                               },
                                               child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  height: 16.h,
+                                                  width: 16.w,
+                                                  padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                   child: AppSvg.asset(AssetUtils.calendar,
                                                       color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).expiryDate,
@@ -350,16 +351,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 }, title: S.of(context).expiryDate);
                                               },
                                               child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(horizontal: 7),
+                                                  height: 16.h,
+                                                  width: 16.w,
+                                                  padding: EdgeInsets.symmetric(horizontal: 7.w),
                                                   child: AppSvg.asset(AssetUtils.calendar,
                                                       color: Theme.of(context).primaryColorDark))),
                                         );
                                       },
                                     ),
                                     SizedBox(
-                                      height: 16,
+                                      height: 16.h,
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).issuingPlace.toUpperCase(),
@@ -388,9 +389,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                           : () {},
                                       suffixIcon: (value, data) {
                                         return Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsetsDirectional.only(end: 8),
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsetsDirectional.only(end: 8.w),
                                             child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
@@ -399,7 +400,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       onChanged: (value) => model.validateDetails(),
                                     ),
                                     SizedBox(
-                                      height: 24,
+                                      height: 24.h,
                                     ),
                                     TextButton(
                                         onPressed: () {
@@ -411,12 +412,12 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
                                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                         )),
                                     SizedBox(
-                                      height: 32,
+                                      height: 32.h,
                                     ),
                                     Row(
                                       children: [
@@ -430,8 +431,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   model.validateDetails();
                                                 },
                                                 child: Container(
-                                                  height: 40,
-                                                  width: 40,
+                                                  height: 40.h,
+                                                  width: 40.w,
                                                   decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                       color: isChecked!
@@ -444,9 +445,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                               .color!)),
                                                   child: isChecked
                                                       ? Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding: EdgeInsets.all(10),
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          padding: EdgeInsets.symmetric(
+                                                              horizontal: 10.w, vertical: 10.h),
                                                           child: AppSvg.asset(
                                                             AssetUtils.checkIcon,
                                                             color: Theme.of(context).primaryColorDark,
@@ -457,7 +459,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               );
                                             }),
                                         SizedBox(
-                                          width: 16,
+                                          width: 16.h,
                                         ),
                                         Expanded(
                                           child: Text(
@@ -465,7 +467,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 12),
+                                                fontSize: 12.t),
                                           ),
                                         )
                                       ],
@@ -475,7 +477,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           return Padding(
-                                            padding: const EdgeInsets.only(top: 26.0),
+                                            padding: EdgeInsets.only(top: 26.0.h),
                                             child: Visibility(
                                               visible: isValid!,
                                               child: AnimatedButton(buttonText: S.of(context).swipeToProceed),

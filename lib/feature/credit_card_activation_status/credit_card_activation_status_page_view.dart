@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -106,7 +107,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(top: 92),
+                                              padding: EdgeInsets.only(top: 92.h),
                                               child: Stack(
                                                 alignment: Alignment.center,
                                                 children: [
@@ -114,7 +115,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                                   Align(
                                                     alignment: Alignment.center,
                                                     child: Container(
-                                                      height: 111.37,
+                                                      height: 111.37.h,
                                                       decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                         color: AppColor.vividYellow,
@@ -126,18 +127,18 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 56,
+                                              height: 56.h,
                                             ),
                                             Text(
                                               S.of(context).preparingYourCard,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: 24,
+                                                  fontSize: 24.t,
                                                   color: Theme.of(context).accentColor),
                                             ),
                                             SizedBox(
-                                              height: 16,
+                                              height: 16.h,
                                             ),
                                             CreditCardActivationStatusWidget(
                                               label: S.of(context).creatingCreditCardLimit,
@@ -146,7 +147,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                                   false,
                                             ),
                                             SizedBox(
-                                              height: 16,
+                                              height: 16.h,
                                             ),
                                             CreditCardActivationStatusWidget(
                                               label: S.of(context).issuingYourCreditCard,
@@ -155,7 +156,7 @@ class CreditCardActivationStatusPageView extends BasePageViewWidget<CreditCardAc
                                                   false,
                                             ),
                                             SizedBox(
-                                              height: 16,
+                                              height: 16.h,
                                             ),
                                             CreditCardActivationStatusWidget(
                                               label: S.of(context).activatingCreditCard,

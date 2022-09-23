@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
@@ -24,7 +25,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: EdgeInsets.only(top: 52),
+        padding: EdgeInsets.only(top: 52.0.h),
         child: GestureDetector(
           onVerticalDragUpdate: (details) {
             if (details.primaryDelta!.isNegative) {
@@ -39,7 +40,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
           child: Column(
             children: [
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 48.0),
+                  padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                   child: Center(
                     child: Text(
                       model.arguments.transactionDate + " ${S.of(context).statement}",
@@ -47,12 +48,12 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w600,
-                          fontSize: 14),
+                          fontSize: 14.0.t),
                     ),
                   )),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: EdgeInsets.only(top: 35.0.h),
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -60,13 +61,13 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                         borderRadius:
                             BorderRadius.only(topRight: Radius.circular(16), topLeft: Radius.circular(16))),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 8),
+                      padding: EdgeInsets.only(top: 8.0.h),
                       child: Column(
                         children: [
                           Center(
                             child: Container(
-                              height: 4,
-                              width: 64,
+                              height: 4.0.h,
+                              width: 64.0.w,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4), color: AppColor.white_gray),
                             ),
@@ -79,7 +80,8 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                   children: [
                                     statementResponse!.status == Status.SUCCESS
                                         ? Padding(
-                                            padding: EdgeInsetsDirectional.only(top: 38, start: 24, end: 24),
+                                            padding: EdgeInsetsDirectional.only(
+                                                top: 38.0.h, start: 24.0.w, end: 24.0.w),
                                             child: Container(
                                               height: MediaQuery.of(context).size.height / 2,
                                               decoration: BoxDecoration(
@@ -104,15 +106,16 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                         }
                                       },
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 32, start: 48, end: 48),
+                                        padding: EdgeInsetsDirectional.only(
+                                            top: 32.0.h, start: 48.0.w, end: 48.0.w),
                                         child: Container(
-                                          height: 50,
+                                          height: 50.0.h,
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
                                                   color:
                                                       Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                                          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -120,7 +123,7 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                                 S.of(context).sharePdf,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
-                                                    fontSize: 12,
+                                                    fontSize: 12.0.t,
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               AppSvg.asset(AssetUtils.share,
@@ -131,14 +134,14 @@ class DownloadTransactionPageView extends BasePageViewWidget<DownloadTransaction
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 24),
+                                      padding: EdgeInsets.only(top: 24.0.h),
                                       child: InkWell(
                                         onTap: () {
                                           Navigator.pop(context);
                                         },
                                         child: Container(
-                                          height: 57,
-                                          width: 57,
+                                          height: 57.0.h,
+                                          width: 57.0.w,
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: Theme.of(context).accentTextTheme.bodyText1!.color),

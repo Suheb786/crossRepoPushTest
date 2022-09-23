@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,9 +22,6 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   NavigationType? navigationType;
 
   PaymentHomePageView(ProviderBase model, this.navigationType) : super(model);
-
-  // final List pages = [
-  // ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -39,7 +37,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         dataBuilder: (context, data) {
           if (data!.status == Status.SUCCESS) {
             return Padding(
-              padding: EdgeInsets.only(bottom: 47),
+              padding: EdgeInsets.only(bottom: 47.0.h),
               child: AppStreamBuilder<int>(
                 stream: model.currentStep,
                 initialData: navigationType == NavigationType.DASHBOARD ? 0 : 1,
@@ -62,60 +60,59 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     },
                     behavior: HitTestBehavior.translucent,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 75),
+                      padding: EdgeInsets.only(top: 75.0.h),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           AppSvg.asset(AssetUtils.payments),
                           Padding(
-                            padding: EdgeInsets.only(top: 9),
+                            padding: EdgeInsets.only(top: 9.0.h),
                             child: Text(
                               S.of(context).payments,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0.t),
                             ),
                           ),
                           Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 30),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: 4),
-                                      child: PaymentSwiper(
-                                        appSwiperController: model.appSwiperController,
-                                        pages: [
-                                          AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
-                                          AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
-                                          Container()
-                                        ],
-                                        pageController: model.pageController,
-                                        onIndexChanged: (index) {
-                                          model.updatePage(index);
-                                          model.updatePageControllerStream(index);
-                                        },
-                                        currentStep: currentStep,
-                                      ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 20.0.h),
+                                    child: PaymentSwiper(
+                                      appSwiperController: model.appSwiperController,
+                                      pages: [
+                                        AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
+                                        AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
+                                        Container()
+                                      ],
+                                      pageController: model.pageController,
+                                      onIndexChanged: (index) {
+                                        model.updatePage(index);
+                                        model.updatePageControllerStream(index);
+                                      },
+                                      currentStep: currentStep,
                                     ),
                                   ),
-                                  SmoothPageIndicator(
-                                    controller: model.controller,
-                                    count: 2,
-                                    effect: ScrollingDotsEffect(
-                                      activeStrokeWidth: 2.6,
-                                      activeDotScale: 1.3,
-                                      activeDotColor: Theme.of(context).primaryColorDark,
-                                      dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
-                                      maxVisibleDots: 5,
-                                      radius: 8,
-                                      spacing: 10,
-                                      dotHeight: 10,
-                                      dotWidth: 10,
-                                    ),
+                                ),
+                                SmoothPageIndicator(
+                                  controller: model.controller,
+                                  count: 2,
+                                  effect: ScrollingDotsEffect(
+                                    activeStrokeWidth: 2.6,
+                                    activeDotScale: 1.3,
+                                    activeDotColor: Theme.of(context).primaryColorDark,
+                                    dotColor: Theme.of(context).primaryColorDark.withOpacity(0.6),
+                                    maxVisibleDots: 5,
+                                    radius: 8,
+                                    spacing: 10,
+                                    dotHeight: 10,
+                                    dotWidth: 10,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           )
                         ],

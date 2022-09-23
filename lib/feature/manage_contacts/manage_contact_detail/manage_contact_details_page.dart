@@ -7,20 +7,19 @@ import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_co
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-class ManageContactDetailsPage
-    extends BasePage<ManageContactDetailsPageViewModel> {
+class ManageContactDetailsPage extends BasePage<ManageContactDetailsPageViewModel> {
   final Beneficiary _beneficiary;
 
   ManageContactDetailsPage(this._beneficiary);
 
   @override
-  ManageContactDetailsPageState createState() =>
-      ManageContactDetailsPageState();
+  ManageContactDetailsPageState createState() => ManageContactDetailsPageState();
 }
 
-class ManageContactDetailsPageState extends BaseStatefulPage<
-    ManageContactDetailsPageViewModel, ManageContactDetailsPage> {
+class ManageContactDetailsPageState
+    extends BaseStatefulPage<ManageContactDetailsPageViewModel, ManageContactDetailsPage> {
   @override
   ProviderBase provideBase() {
     return manageContactDetailsViewModelProvider.call(widget._beneficiary);
@@ -29,7 +28,7 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 85),
+        preferredSize: Size(double.maxFinite, 85.h),
         child: Align(
           alignment: AlignmentDirectional.centerStart,
           child: InkWell(
@@ -37,10 +36,9 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
               Navigator.pop(context);
             },
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 24.0),
+              padding: EdgeInsetsDirectional.only(start: 24.0.w),
               child: AppSvg.asset(AssetUtils.leftArrow,
-                  matchTextDirection: true,
-                  color: Theme.of(context).accentColor),
+                  matchTextDirection: true, color: Theme.of(context).accentColor),
             ),
           ),
         ));
@@ -49,8 +47,7 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
   @override
   void onModelReady(ManageContactDetailsPageViewModel model) {
     getViewModel().setData();
-    getViewModel()
-        .getPurpose(getViewModel().beneficiary.accountNo!, "TransferI");
+    getViewModel().getPurpose(getViewModel().beneficiary.accountNo!, "TransferI");
   }
 
   @override
@@ -64,8 +61,7 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ManageContactDetailsPageViewModel model) {
+  Widget buildView(BuildContext context, ManageContactDetailsPageViewModel model) {
     return ManageContactDetailsPageView(provideBase());
   }
 }

@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardVideoCallCompletePageView
@@ -28,7 +29,7 @@ class CreditCardVideoCallCompletePageView
         }
       },
       child: Padding(
-        padding: EdgeInsetsDirectional.only(top: 56.0, start: 24, end: 24, bottom: 36),
+        padding: EdgeInsetsDirectional.only(top: 56.0.h, start: 24.w, end: 24.w, bottom: 36.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -37,11 +38,11 @@ class CreditCardVideoCallCompletePageView
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
-                  fontSize: 10,
+                  fontSize: 10.t,
                   color: Theme.of(context).accentColor),
             ),
             SizedBox(
-              height: 8,
+              height: 8.h,
             ),
             Text(
               S.of(context).verificationCallEnded,
@@ -49,11 +50,11 @@ class CreditCardVideoCallCompletePageView
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   fontWeight: FontWeight.w600,
-                  fontSize: 20,
+                  fontSize: 20.t,
                   color: Theme.of(context).accentColor),
             ),
             SizedBox(
-              height: 32,
+              height: 32.h,
             ),
             Expanded(
                 child: Card(
@@ -66,17 +67,17 @@ class CreditCardVideoCallCompletePageView
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 35.0, bottom: 24),
+                        padding: EdgeInsets.only(top: 35.0.h, bottom: 24.h),
                         child: Container(
                           // height: 78,
                           // width: 78,
-                          padding: EdgeInsets.all(24),
+                          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                           decoration: BoxDecoration(
                             color: AppColor.vividYellow,
                             shape: BoxShape.circle,
                           ),
                           child: AppSvg.asset(AssetUtils.ccAgent,
-                              width: 32, height: 32, color: Theme.of(context).primaryColorDark),
+                              width: 32.w, height: 32.h, color: Theme.of(context).primaryColorDark),
                         ),
                       ),
                       Text(
@@ -85,13 +86,13 @@ class CreditCardVideoCallCompletePageView
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
-                            fontSize: 20,
+                            fontSize: 20.t,
                             color: Theme.of(context).primaryColorDark),
                       ),
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 40.0),
+                    padding: EdgeInsets.only(bottom: 40.0.h),
                     child: Center(
                       child: AnimatedButton(
                         buttonText: S.of(context).swipeToProceed,

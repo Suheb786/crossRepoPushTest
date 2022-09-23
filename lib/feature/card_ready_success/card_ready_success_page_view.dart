@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageViewModel> {
@@ -33,7 +34,7 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 92),
+                      padding: EdgeInsets.only(top: 92.h),
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -41,7 +42,7 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              height: 111.37,
+                              height: 111.37.h,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: AppColor.vividYellow,
@@ -53,7 +54,7 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                       ),
                     ),
                     SizedBox(
-                      height: 34.7,
+                      height: 34.7.h,
                     ),
                     Center(
                       child: Column(
@@ -64,21 +65,21 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 24,
+                                fontSize: 24.t,
                                 color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
-                            height: 24,
+                            height: 24.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                            padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                             child: Text(
                               S.of(context).youCanAddMoney,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   color: Theme.of(context).accentColor),
                             ),
                           ),
@@ -97,11 +98,11 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                     borderColor: Theme.of(context).accentColor,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 32,
+                    padding: EdgeInsets.only(
+                      bottom: 32.h,
                     ),
                     child: Center(
                       child: Text(
@@ -110,7 +111,7 @@ class CardReadySuccessPageView extends BasePageViewWidget<CardReadySuccessPageVi
                           fontFamily: StringUtils.appFont,
                           color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
-                          fontSize: 12,
+                          fontSize: 12.t,
                         ),
                       ),
                     ),

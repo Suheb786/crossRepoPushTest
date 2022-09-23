@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
@@ -32,7 +33,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 272),
+                    padding: EdgeInsets.only(top: 272.0.h),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -40,7 +41,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                         Align(
                           alignment: Alignment.center,
                           child: Container(
-                            height: 144.37,
+                            height: 144.37.h,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: AppColor.vividYellow,
@@ -52,7 +53,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 26),
+                  SizedBox(height: 26.h),
                   AppStreamBuilder<String>(
                       stream: model.callDurationStream,
                       initialData: '00 : 00',
@@ -62,11 +63,11 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 32),
+                                fontSize: 32.t),
                           )),
-                  SizedBox(height: 206),
+                  SizedBox(height: 206.h),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 56.0),
+                    padding: EdgeInsets.symmetric(horizontal: 56.0.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -78,8 +79,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Container(
-                                      height: 72.0,
-                                      width: 72.0,
+                                      height: 72.0.h,
+                                      width: 72.0.w,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: AppColor.white,
@@ -87,8 +88,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       child: Center(
                                           child: AppSvg.asset(
                                               data!.data! ? AssetUtils.speaker : AssetUtils.speakerOff,
-                                              height: 30.32,
-                                              width: 30.32)),
+                                              height: 30.32.h,
+                                              width: 30.32.w)),
                                     ),
                                   ),
                                 )),
@@ -100,8 +101,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Container(
-                                      height: 72.0,
-                                      width: 72.0,
+                                      height: 72.0.h,
+                                      width: 72.0.w,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: AppColor.white,
@@ -109,8 +110,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       child: Center(
                                           child: AppSvg.asset(
                                               !data!.data! ? AssetUtils.micBlue : AssetUtils.muteMicBlue,
-                                              height: 30.32,
-                                              width: 30.32)),
+                                              height: 30.32.h,
+                                              width: 30.32.w)),
                                     ),
                                   ),
                                 )),
@@ -130,16 +131,16 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Container(
-                                      height: 72.0,
-                                      width: 72.0,
-                                      padding: EdgeInsets.all(18.92),
+                                      height: 72.0.h,
+                                      width: 72.0.w,
+                                      padding: EdgeInsets.symmetric(horizontal: 18.92.w, vertical: 18.92.h),
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: AppColor.dark_brown,
                                       ),
                                       child: Center(
-                                          child:
-                                              AppSvg.asset(AssetUtils.hangUp, height: 30.32, width: 30.32)),
+                                          child: AppSvg.asset(AssetUtils.hangUp,
+                                              height: 30.32.h, width: 30.32.w)),
                                     ),
                                   ),
                                 )),

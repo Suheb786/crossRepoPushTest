@@ -8,8 +8,9 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/app_router.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:device_preview/device_preview.dart';
 
 class App extends ConsumerWidget {
   late AppViewModel _appViewModel;
@@ -33,34 +34,38 @@ class App extends ConsumerWidget {
         return ThemeProvider(
           initTheme: _appViewModel.themeData,
           builder: (_, theme) {
-            return MaterialApp(
-                navigatorKey: appLevelKey,
-                builder: (context, widget) => ResponsiveWrapper.builder(
-                      ClampingScrollWrapper.builder(context, widget!),
-                      maxWidth: 1400,
-                      minWidth: 320,
-                      defaultScale: true,
-                      breakpoints: [
-                        ResponsiveBreakpoint.resize(320, name: MOBILE),
-                        ResponsiveBreakpoint.autoScale(800, name: TABLET),
-                        ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-                        ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-                        ResponsiveBreakpoint.autoScale(2460, name: "4K"),
-                      ],
-                    ),
-                localizationsDelegates: [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate
-                ],
-                supportedLocales: S.delegate.supportedLocales,
-                onGenerateTitle: (context) => S.of(context).appName,
-                debugShowCheckedModeBanner: false,
-                locale: _appViewModel.currentLocale,
-                initialRoute: RoutePaths.Splash,
-                theme: theme,
-                onGenerateRoute: AppRouter.generateRoute);
+            return LayoutBuilder(builder: (context, constraints) {
+              SizeHelperUtil.setWidthHeight(constraints);
+              return MaterialApp(
+                  navigatorKey: appLevelKey,
+                  // builder: (context, widget) => ResponsiveWrapper.builder(
+                  //       ClampingScrollWrapper.builder(context, widget!),
+                  //       maxWidth: 1400,
+                  //       minWidth: 320,
+                  //       defaultScale: true,
+                  //       breakpoints: [
+                  //         ResponsiveBreakpoint.resize(320, name: MOBILE),
+                  //         ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                  //         ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+                  //         ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+                  //         ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+                  //       ],
+                  //     ),
+                  builder: DevicePreview.appBuilder,
+                  localizationsDelegates: [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  onGenerateTitle: (context) => S.of(context).appName,
+                  debugShowCheckedModeBanner: false,
+                  locale: _appViewModel.currentLocale,
+                  initialRoute: RoutePaths.Splash,
+                  theme: theme,
+                  onGenerateRoute: AppRouter.generateRoute);
+            });
           },
         );
       },

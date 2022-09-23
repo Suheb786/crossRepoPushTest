@@ -6,23 +6,20 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page_view.dart';
 import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_videocall_initiate/credit_card_videocall_initiate_page_view_model.dart';
 
-class CreditCardVideoCallInitiatePage
-    extends BasePage<CreditCardVideoCallInitiatePageViewModel> {
+class CreditCardVideoCallInitiatePage extends BasePage<CreditCardVideoCallInitiatePageViewModel> {
   final CreditCardVideoCallInitiateArgs _creditCardVideoCallInitiateArgs;
 
   CreditCardVideoCallInitiatePage(this._creditCardVideoCallInitiateArgs);
 
   @override
-  CreditCardVideoCallInitiatePageState createState() =>
-      CreditCardVideoCallInitiatePageState();
+  CreditCardVideoCallInitiatePageState createState() => CreditCardVideoCallInitiatePageState();
 }
 
-class CreditCardVideoCallInitiatePageState extends BaseStatefulPage<
-    CreditCardVideoCallInitiatePageViewModel, CreditCardVideoCallInitiatePage> {
+class CreditCardVideoCallInitiatePageState
+    extends BaseStatefulPage<CreditCardVideoCallInitiatePageViewModel, CreditCardVideoCallInitiatePage> {
   @override
   ProviderBase provideBase() {
-    return creditCardVideoCallInitiateViewModelProvider
-        .call(widget._creditCardVideoCallInitiateArgs);
+    return creditCardVideoCallInitiateViewModelProvider.call(widget._creditCardVideoCallInitiateArgs);
   }
 
   @override
@@ -39,8 +36,7 @@ class CreditCardVideoCallInitiatePageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CreditCardVideoCallInitiatePageViewModel model) {
+  Widget buildView(BuildContext context, CreditCardVideoCallInitiatePageViewModel model) {
     return CreditCardVideoCallInitiatePageView(provideBase());
   }
 }

@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -22,7 +23,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: EdgeInsetsDirectional.only(top: 40, end: 24),
+        padding: EdgeInsetsDirectional.only(top: 40.h, end: 24.w),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -43,7 +44,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
               Stack(
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.only(top: 106.0, start: 24),
+                    padding: EdgeInsetsDirectional.only(top: 106.0.h, start: 24.w),
                     child: AppStreamBuilder<Resource<bool>>(
                         stream: model.confirmDebitCardDeliveryStream,
                         onData: (data) {
@@ -66,7 +67,7 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                               child: SingleChildScrollView(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.only(top: 226),
+                                  padding: EdgeInsetsDirectional.only(top: 226.h),
                                   child: Column(
                                     children: [
                                       Center(
@@ -74,13 +75,13 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                           S.of(context).numberOnCard,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 10,
+                                              fontSize: 10.t,
                                               fontWeight: FontWeight.w400,
                                               color: AppColor.gray4),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 9),
+                                        padding: EdgeInsetsDirectional.only(top: 9.h),
                                         child: Text(
                                           model.debitCard.cardNumber!.isNotEmpty
                                               ? StringUtils.getLastFourDigitOfCardNo(
@@ -88,24 +89,25 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                               : '-',
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 30,
+                                              fontSize: 30.t,
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 78, start: 30, end: 24),
+                                        padding:
+                                            EdgeInsetsDirectional.only(top: 78.h, start: 30.w, end: 24.w),
                                         child: Text(
                                           S.of(context).cardDelivery,
                                           maxLines: 4,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w500,
                                               color: AppColor.gray4),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 75, bottom: 31),
+                                        padding: EdgeInsetsDirectional.only(top: 75.h, bottom: 31.h),
                                         child: AnimatedButton(
                                             buttonText: S.of(context).swipeToConfirm,
                                             borderColor: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -119,17 +121,17 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                         }),
                   ),
                   PositionedDirectional(
-                      start: 40,
-                      end: 16,
-                      top: 72,
+                      start: 40.w,
+                      end: 16.w,
+                      top: 72.h,
                       child: Stack(
                         children: [
                           Directionality(
                             textDirection: TextDirection.ltr,
                             child: Container(
-                                height: 186,
+                                height: 186.h,
                                 width: double.infinity,
-                                padding: EdgeInsetsDirectional.only(top: 111, start: 20),
+                                padding: EdgeInsetsDirectional.only(top: 111.h, start: 20.w),
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         matchTextDirection: true,
@@ -146,11 +148,11 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 12,
+                                        fontSize: 12.t,
                                       ),
                                     ),
                                     Padding(
-                                        padding: EdgeInsetsDirectional.only(top: 10),
+                                        padding: EdgeInsetsDirectional.only(top: 10.h),
                                         child: Text(
                                             model.debitCard.cardNumber!.isNotEmpty
                                                 ? StringUtils.getLastFourDigitOfCardNo(
@@ -158,12 +160,19 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
                                                 : '-',
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 12,
+                                                fontSize: 12.t,
                                                 fontWeight: FontWeight.w700)))
                                   ],
                                 )),
                           ),
-                          Positioned(left: 7, bottom: 19, child: Image.asset(AssetUtils.ellipseRed))
+                          Positioned(
+                              left: 7.w,
+                              bottom: 19.h,
+                              child: Image.asset(
+                                AssetUtils.ellipseRed,
+                                height: 55.h,
+                                width: 55.w,
+                              ))
                         ],
                       ))
                 ],
@@ -171,13 +180,13 @@ class DebitCardDeliveredPageView extends BasePageViewWidget<DebitCardDeliveredVi
               Visibility(
                 visible: false,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(top: 36),
+                  padding: EdgeInsetsDirectional.only(top: 36.h),
                   child: Text(
                     S.of(context).deliveryIssue,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                        fontSize: 14,
+                        fontSize: 14.t,
                         fontWeight: FontWeight.w600),
                   ),
                 ),

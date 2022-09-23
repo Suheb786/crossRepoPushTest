@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -70,7 +71,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -116,7 +117,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                           country!.data!.contentData!.countryData);
                                                 },
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(top: 8.0),
+                                                  padding: EdgeInsets.only(top: 8.0.h),
                                                   child: Row(
                                                     mainAxisSize: MainAxisSize.min,
                                                     children: <Widget>[
@@ -132,7 +133,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                             : "assets/flags/jor.svg"),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                        padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                                                         child: Directionality(
                                                           textDirection: TextDirection.ltr,
                                                           child: Text(
@@ -145,16 +146,16 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                                                   .textTheme
                                                                   .bodyText1!
                                                                   .color,
-                                                              fontSize: 14,
+                                                              fontSize: 14.t,
                                                               fontWeight: FontWeight.w600,
                                                             ),
                                                           ),
                                                         ),
                                                       ),
                                                       Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          margin: EdgeInsetsDirectional.only(end: 8),
+                                                          height: 16.h,
+                                                          width: 16.w,
+                                                          margin: EdgeInsetsDirectional.only(end: 8.w),
                                                           child: AppSvg.asset(AssetUtils.downArrow,
                                                               color: Theme.of(context)
                                                                   .primaryTextTheme
@@ -172,7 +173,7 @@ class AddNewMobileNumberPageView extends BasePageViewWidget<AddNewMobileNumberPa
                                   )),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 16.0),
+                              padding: EdgeInsets.only(top: 16.0.h),
                               child: AppStreamBuilder<bool>(
                                   stream: model.showButtonStream,
                                   initialData: false,

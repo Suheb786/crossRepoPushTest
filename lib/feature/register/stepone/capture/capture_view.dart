@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -72,8 +73,8 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                             //   ),
                             // ),
                             PositionedDirectional(
-                              end: 16,
-                              top: 40,
+                              end: 16.w,
+                              top: 40.h,
                               child: IconButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(false);
@@ -103,32 +104,32 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SizedBox(height: 8),
+                                    SizedBox(height: 8.h),
                                     Text(
                                       S.of(context).selfieCheck,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 20,
+                                          fontSize: 20.t,
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).accentColor),
                                     ),
-                                    SizedBox(height: 8),
+                                    SizedBox(height: 8.h),
                                     Text(
                                       S.of(context).makeSureYourFaceFitsTheFrame,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w400,
                                           color: Theme.of(context).accentColor),
                                     ),
-                                    SizedBox(height: 8),
+                                    SizedBox(height: 8.h),
                                     InkWell(
                                         onTap: () {
                                           model.takePicture();
                                         },
                                         child: AppSvg.asset(AssetUtils.capture)),
-                                    SizedBox(height: 20),
+                                    SizedBox(height: 20.h),
                                   ],
                                 ),
                               ),

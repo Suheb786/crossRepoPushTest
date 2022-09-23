@@ -14,6 +14,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
@@ -47,7 +48,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
             alignment: Alignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.all(15),
+                padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
                 child: Container(
                     key: ValueKey(true),
                     child: Card(
@@ -64,9 +65,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                              top: widget.isSmallDevice ? 21 : 30.0,
-                              right: 23,
-                              left: 23,
+                              top: 30.0.h,
+                              right: 23.0.w,
+                              left: 23.0.w,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,20 +78,20 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: widget.isSmallDevice ? 10 : 12,
+                                      fontSize: 12.0.t,
                                       color: Colors.white),
                                 ),
                                 widget.creditCard.cardStatus == FreezeCardStatusEnum.F
                                     ? Container(
-                                        height: 45,
+                                        height: 24.0.h,
                                         alignment: Alignment.center,
-                                        padding: EdgeInsets.only(right: 23.0),
+                                        padding: EdgeInsets.only(right: 23.0.w),
                                         child: Text(
                                           S.of(context).cardFrozen,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
                                               color: Theme.of(context).accentColor.withOpacity(0.5),
-                                              fontSize: widget.isSmallDevice ? 12 : 14,
+                                              fontSize: 14.0.t,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       )
@@ -112,7 +113,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                           // }
                                         },
                                         child: Container(
-                                          height: 50,
+                                          height: 24.0.h,
                                           alignment: Alignment.center,
                                           child: Text(
                                             S.of(context).flipCard,
@@ -120,7 +121,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: widget.isSmallDevice ? 12 : 14,
+                                                fontSize: 14.0.t,
                                                 color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                           ),
                                         ),
@@ -129,19 +130,18 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
-                            child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                                height: widget.isSmallDevice ? 26 : 33.64,
-                                width: widget.isSmallDevice ? 52 : 72),
+                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
+                            child:
+                                AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 23.0.w, vertical: 5.0.h),
                             child: Text(
                               widget.creditCard.name ?? "",
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: widget.isSmallDevice ? 10 : 14,
+                                  fontSize: 14.0.t,
                                   color: Colors.white),
                             ),
                           ),
@@ -152,8 +152,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             // height: widget.isSmallDevice ? 93 : 118,
                           ),
                           Padding(
-                            padding:
-                                EdgeInsets.only(left: 24, top: widget.isSmallDevice ? 30 : 53, right: 11),
+                            padding: EdgeInsets.only(left: 24.0.w, top: 53.0.h, right: 11.0.w),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: StringUtils.isDirectionRTL(context)
@@ -175,14 +174,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             borderRadius: BorderRadius.circular(20),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 8, horizontal: widget.isSmallDevice ? 15 : 25),
+                                            padding:
+                                                EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
                                             child: Text(
                                               S.of(context).payBack,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 color: Theme.of(context).accentColor,
-                                                fontSize: widget.isSmallDevice ? 12 : 14,
+                                                fontSize: 14.0.t,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -200,23 +199,23 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                     fontFamily: StringUtils.appFont,
                                                     color: Theme.of(context).accentColor,
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: widget.isSmallDevice ? 14 : 20),
+                                                    fontSize: 20.0.t),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(left: 5.0),
+                                                padding: EdgeInsets.only(left: 5.0.w),
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
-                                                      fontSize: widget.isSmallDevice ? 12 : 14,
+                                                      fontSize: 14.0.t,
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               )
                                             ],
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 5),
+                                            padding: EdgeInsets.only(top: 5.0.h),
                                             child: Row(
                                               children: [
                                                 Text(
@@ -225,7 +224,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryLightRed,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: widget.isSmallDevice ? 8 : 10),
+                                                      fontSize: 10.0.t),
                                                 ),
                                                 Text(
                                                   widget.creditCard.nextPaymentDate!.isNotEmpty
@@ -236,7 +235,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: widget.isSmallDevice ? 8 : 10),
+                                                      fontSize: 10.0.t),
                                                 ),
                                               ],
                                             ),
@@ -255,22 +254,22 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: widget.isSmallDevice ? 14 : 20),
+                                                  fontSize: 20.0.t),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.only(left: 5.0),
+                                              padding: EdgeInsets.only(left: 5.0.w),
                                               child: Text(
                                                 S.of(context).JOD,
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     color: Theme.of(context).accentColor.withOpacity(0.5),
-                                                    fontSize: widget.isSmallDevice ? 12 : 14,
+                                                    fontSize: 14.0.t,
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             )
                                           ]),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 5),
+                                            padding: EdgeInsets.only(top: 5.0.h),
                                             child: Row(
                                               children: [
                                                 Text(
@@ -279,7 +278,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryLightRed,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: widget.isSmallDevice ? 8 : 10),
+                                                      fontSize: 10.0.t),
                                                 ),
                                                 Text(
                                                   widget.creditCard.nextPaymentDate!.isNotEmpty
@@ -290,7 +289,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor,
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: widget.isSmallDevice ? 8 : 10),
+                                                      fontSize: 10.0.t),
                                                 ),
                                               ],
                                             ),
@@ -314,14 +313,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             borderRadius: BorderRadius.circular(20),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 8, horizontal: widget.isSmallDevice ? 15 : 25),
+                                            padding:
+                                                EdgeInsets.symmetric(vertical: 8.0.h, horizontal: 25.0.w),
                                             child: Text(
                                               S.of(context).payBack,
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 color: Theme.of(context).accentColor,
-                                                fontSize: widget.isSmallDevice ? 12 : 14,
+                                                fontSize: 14.0.t,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
@@ -333,10 +332,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: 19,
-                              left: 24,
-                              right: 23,
-                              bottom: widget.isSmallDevice ? 30 : 50,
+                              top: 19.0.h,
+                              left: 24.0.w,
+                              right: 23.0.w,
+                              bottom: 50.0.h,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -371,31 +370,31 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: widget.isSmallDevice ? 14 : 20,
+                                                  fontSize: 20.0.t,
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional.only(start: 5.0),
+                                                padding: EdgeInsetsDirectional.only(start: 5.0.w),
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
-                                                      fontSize: widget.isSmallDevice ? 12 : 14,
+                                                      fontSize: 14.0.t,
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               )
                                             ],
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 5),
+                                            padding: EdgeInsets.only(top: 5.0.h),
                                             child: Text(
                                               S.of(context).availableAmount,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryLightRed,
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: widget.isSmallDevice ? 8 : 10),
+                                                  fontSize: 10.0.t),
                                             ),
                                           ),
                                         ],
@@ -413,31 +412,31 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: widget.isSmallDevice ? 14 : 20,
+                                                  fontSize: 20.0.t,
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(left: 5.0),
+                                                padding: EdgeInsets.only(left: 5.0.h),
                                                 child: Text(
                                                   S.of(context).JOD,
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: Theme.of(context).accentColor.withOpacity(0.5),
-                                                      fontSize: widget.isSmallDevice ? 12 : 14,
+                                                      fontSize: 14.0.t,
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               )
                                             ],
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 5),
+                                            padding: EdgeInsets.only(top: 5.0.h),
                                             child: Text(
                                               S.of(context).availableAmount,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
                                                   color: AppColor.veryLightRed,
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: widget.isSmallDevice ? 8 : 10),
+                                                  fontSize: 10.0.t),
                                             ),
                                           ),
                                         ],
@@ -472,13 +471,13 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                   children: [
                     AppSvg.asset(AssetUtils.swipeUp),
                     Padding(
-                      padding: EdgeInsets.only(top: 6),
+                      padding: EdgeInsets.only(top: 6.0.h),
                       child: Text(
                         S.of(context).swipeUpToViewTransaction,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
-                            fontSize: widget.isSmallDevice ? 10 : 12,
+                            fontSize: 12.0.t,
                             color: AppColor.dark_gray_1),
                       ),
                     )
@@ -489,7 +488,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
           ),
         ),
         back: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
           child: Container(
             key: ValueKey(false),
             child: Card(
@@ -500,7 +499,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               margin: EdgeInsets.zero,
               shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
               child: Padding(
-                padding: EdgeInsets.only(left: 29.0, top: 32, right: 25, bottom: 30),
+                padding: EdgeInsets.only(left: 29.0.w, top: 32.0.h, right: 25.0.w, bottom: 30.0.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -513,7 +512,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
-                              fontSize: widget.isSmallDevice ? 10 : 12,
+                              fontSize: 12.0.t,
                               fontWeight: FontWeight.w600),
                         ),
                         InkWell(
@@ -522,14 +521,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             widget.flipCardController!.toggleCard();
                           },
                           child: Container(
-                            height: 50,
+                            height: 24.0.h,
                             alignment: Alignment.center,
                             child: Text(
                               S.of(context).flipBack,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                                  fontSize: widget.isSmallDevice ? 12 : 14,
+                                  fontSize: 14.0.t,
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -537,7 +536,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 63),
+                      padding: EdgeInsets.only(top: 63.0.h),
                       child: Row(
                         children: [
                           Text(
@@ -548,11 +547,11 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).accentColor,
-                              fontSize: widget.isSmallDevice ? 12 : 14,
+                              fontSize: 14.0.t,
                             ),
                           ),
                           SizedBox(
-                            width: 8,
+                            width: 8.0.w,
                           ),
                           InkWell(
                             onTap: () {
@@ -567,20 +566,20 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 4),
+                      padding: EdgeInsets.only(top: 4.0.h),
                       child: Text(
                         S.of(context).cardNumber,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor.withOpacity(0.6),
-                            fontSize: widget.isSmallDevice ? 8 : 10),
+                            fontSize: 10.0.t),
                       ),
                     ),
                     Visibility(
                       visible: false,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 19),
+                        padding: EdgeInsets.only(top: 19.0.h),
                         child: Divider(
                           height: 1,
                         ),
@@ -589,14 +588,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     Visibility(
                       visible: false,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 21),
+                        padding: EdgeInsets.only(top: 21.0.h),
                         child: Text(
                           "140591314151414",
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             color: Theme.of(context).accentColor,
                             fontWeight: FontWeight.w600,
-                            fontSize: 16,
+                            fontSize: 16.0.t,
                           ),
                         ),
                       ),
@@ -604,18 +603,18 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                     Visibility(
                       visible: false,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 8),
+                        padding: EdgeInsets.only(top: 8.0.h),
                         child: Text(S.of(context).linkedAccountNumber,
                             style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 10,
+                              fontSize: 10.0.t,
                               color: Theme.of(context).accentColor.withOpacity(0.6),
                             )),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 24, bottom: 24),
+                      padding: EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
                       child: Row(
                         children: [
                           Column(
@@ -626,17 +625,17 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: widget.isSmallDevice ? 10 : 12,
+                                  fontSize: 12.0.t,
                                   color: Theme.of(context).accentColor,
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 4),
+                                padding: EdgeInsets.only(top: 4.0.h),
                                 child: Text(
                                   S.of(context).expiryDate,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: widget.isSmallDevice ? 8 : 10,
+                                      fontSize: 10.0.t,
                                       color: Theme.of(context).accentColor.withOpacity(0.6),
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -644,7 +643,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 59.0),
+                            padding: EdgeInsets.only(left: 59.0.w),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -656,16 +655,16 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w700,
                                     color: Theme.of(context).accentColor,
-                                    fontSize: widget.isSmallDevice ? 10 : 12,
+                                    fontSize: 12.0.t,
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 4),
+                                  padding: EdgeInsets.only(top: 4.0.h),
                                   child: Text(
                                     S.of(context).cvv,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontSize: widget.isSmallDevice ? 8 : 10,
+                                        fontSize: 10.0.t,
                                         color: Theme.of(context).accentColor.withOpacity(0.6),
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -680,7 +679,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       height: 1,
                     ),
                     SizedBox(
-                      height: 24,
+                      height: 24.0.h,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -693,31 +692,31 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: widget.isSmallDevice ? 12 : 14,
+                                fontSize: 14.0.t,
                                 color: Theme.of(context).accentColor,
                               ),
                             ),
                             SizedBox(
-                              width: 4,
+                              width: 4.0.w,
                             ),
                             Text(
                               S.of(context).JOD,
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: widget.isSmallDevice ? 8 : 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                               ),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
                             S.of(context).totalUsedAmount,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: widget.isSmallDevice ? 8 : 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                                 fontWeight: FontWeight.w600),
                           ),
@@ -725,7 +724,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                       ],
                     ),
                     SizedBox(
-                      height: 24,
+                      height: 24.0.h,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -738,31 +737,31 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: widget.isSmallDevice ? 12 : 14,
+                                fontSize: 14.0.t,
                                 color: Theme.of(context).accentColor,
                               ),
                             ),
                             SizedBox(
-                              width: 4,
+                              width: 4.0.w,
                             ),
                             Text(
                               S.of(context).JOD,
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w700,
-                                fontSize: widget.isSmallDevice ? 8 : 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                               ),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
                             S.of(context).yourCardLimit,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).accentColor.withOpacity(0.6),
                                 fontWeight: FontWeight.w600),
                           ),

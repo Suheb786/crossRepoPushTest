@@ -6,19 +6,17 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page_view.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 
-class SendAmountToContactSuccessPage
-    extends BasePage<SendAmountToContactSuccessViewModel> {
+class SendAmountToContactSuccessPage extends BasePage<SendAmountToContactSuccessViewModel> {
   final TransferSuccessContent arguments;
 
   SendAmountToContactSuccessPage({required this.arguments});
 
   @override
-  SendAmountToContactSuccessPageState createState() =>
-      SendAmountToContactSuccessPageState();
+  SendAmountToContactSuccessPageState createState() => SendAmountToContactSuccessPageState();
 }
 
-class SendAmountToContactSuccessPageState extends BaseStatefulPage<
-    SendAmountToContactSuccessViewModel, SendAmountToContactSuccessPage> {
+class SendAmountToContactSuccessPageState
+    extends BaseStatefulPage<SendAmountToContactSuccessViewModel, SendAmountToContactSuccessPage> {
   @override
   ProviderBase provideBase() {
     return sendAmountToContactSuccessViewModelProvider.call(widget.arguments);
@@ -30,8 +28,7 @@ class SendAmountToContactSuccessPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, SendAmountToContactSuccessViewModel model) {
+  Widget buildView(BuildContext context, SendAmountToContactSuccessViewModel model) {
     return SendAmountToContactSuccessPageView(provideBase());
   }
 }

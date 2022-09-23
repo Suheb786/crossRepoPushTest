@@ -15,8 +15,8 @@ class DebitCardDeliveredPage extends BasePage<DebitCardDeliveredViewModel> {
   DebitCardDeliveredPageState createState() => DebitCardDeliveredPageState();
 }
 
-class DebitCardDeliveredPageState extends BaseStatefulPage<
-    DebitCardDeliveredViewModel, DebitCardDeliveredPage> {
+class DebitCardDeliveredPageState
+    extends BaseStatefulPage<DebitCardDeliveredViewModel, DebitCardDeliveredPage> {
   @override
   ProviderBase provideBase() {
     return cardDeliveredViewModelProvider.call(widget.debitCard);

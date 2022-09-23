@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AddMoneySelectorOptionsWidget extends StatelessWidget {
@@ -28,7 +29,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
       children: [
         AppSvg.asset(image!, matchTextDirection: true, color: Theme.of(context).accentColor),
         SizedBox(
-          width: 12,
+          width: 12.w,
         ),
         Expanded(
           child: Column(
@@ -40,12 +41,12 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 maxLines: 3,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentColor),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Text(
                 desc!,
@@ -54,12 +55,12 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 maxLines: 3,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 12,
+                    fontSize: 12.t,
                     fontWeight: FontWeight.w500,
                     color: Theme.of(context).accentColor),
               ),
               SizedBox(
-                height: 16,
+                height: 16.h,
               ),
               Visibility(
                 visible: isVisible!,
@@ -68,7 +69,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                     onTap?.call();
                   },
                   child: Container(
-                    height: 48,
+                    height: 48.h,
                     decoration: BoxDecoration(
                         color: Theme.of(context).accentTextTheme.bodyText1!.color,
                         borderRadius: BorderRadius.circular(100)),
@@ -78,7 +79,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),

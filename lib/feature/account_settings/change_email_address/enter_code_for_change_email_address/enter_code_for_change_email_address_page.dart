@@ -7,19 +7,15 @@ import 'package:neo_bank/feature/account_settings/change_email_address/enter_cod
 import 'package:neo_bank/feature/account_settings/change_email_address/enter_code_for_change_email_address/enter_code_for_change_email_address_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class EnterCodeForChangeEmailAddressPage
-    extends BasePage<EnterCodeForChangeEmailAddressPageViewModel> {
+class EnterCodeForChangeEmailAddressPage extends BasePage<EnterCodeForChangeEmailAddressPageViewModel> {
   @override
-  EnterCodeForChangeEmailAddressPageState createState() =>
-      EnterCodeForChangeEmailAddressPageState();
+  EnterCodeForChangeEmailAddressPageState createState() => EnterCodeForChangeEmailAddressPageState();
 }
 
-class EnterCodeForChangeEmailAddressPageState extends BaseStatefulPage<
-        EnterCodeForChangeEmailAddressPageViewModel,
-        EnterCodeForChangeEmailAddressPage>
+class EnterCodeForChangeEmailAddressPageState
+    extends BaseStatefulPage<EnterCodeForChangeEmailAddressPageViewModel, EnterCodeForChangeEmailAddressPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
-  EnterCodeForChangeEmailAddressPageState()
-      : super(subscribeVisibilityEvents: true);
+  EnterCodeForChangeEmailAddressPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -34,8 +30,7 @@ class EnterCodeForChangeEmailAddressPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(EnterCodeForChangeEmailAddressPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -44,8 +39,7 @@ class EnterCodeForChangeEmailAddressPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterCodeForChangeEmailAddressPageViewModel model) {
+  Widget buildView(BuildContext context, EnterCodeForChangeEmailAddressPageViewModel model) {
     return EnterCodeForChangeEmailAddressPageView(provideBase());
   }
 

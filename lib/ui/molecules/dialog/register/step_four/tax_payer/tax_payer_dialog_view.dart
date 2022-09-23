@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class TaxPayerDialogView extends StatelessWidget {
@@ -32,7 +33,7 @@ class TaxPayerDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              insetPadding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 36.h, top: 204.h),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -48,12 +49,14 @@ class TaxPayerDialogView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
+                          padding: EdgeInsets.only(top: 32.0.h),
                           child: Center(
                             child: Text(
                               S.of(context).whichTaxPayerAreYouSmall,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -62,12 +65,12 @@ class TaxPayerDialogView extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                               child: Container(
-                                height: 64,
+                                height: 64.h,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(16.w),
                                   color: AppColor.vividYellow,
                                 ),
                               ),
@@ -76,14 +79,14 @@ class TaxPayerDialogView extends StatelessWidget {
                               key: ValueKey(model.getList(taxPayerTypeEnum!).length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
-                                itemHeight: 64,
+                                itemHeight: 64.h,
                                 itemCount: model.getList(taxPayerTypeEnum!).length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
                                 child: ListWheelScrollView.useDelegate(
                                     controller: model.scrollController,
-                                    itemExtent: 64,
+                                    itemExtent: 64.h,
                                     onSelectedItemChanged: (int index) {
                                       model.currentIndexUpdate(index);
                                     },
@@ -113,9 +116,9 @@ class TaxPayerDialogView extends StatelessWidget {
                                     : model.taxPayerListW9[currentIndex]);
                           },
                           child: Container(
-                            padding: EdgeInsets.all(16),
-                            height: 57,
-                            width: 57,
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                            height: 57.h,
+                            width: 57.w,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -123,13 +126,13 @@ class TaxPayerDialogView extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                          padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                           child: Center(
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  fontSize: 10,
+                                  fontSize: 10.t,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),
                             ),

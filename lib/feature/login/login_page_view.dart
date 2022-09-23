@@ -28,6 +28,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/launch_urls_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -67,10 +68,10 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               return Align(
                                 alignment: AlignmentDirectional.centerEnd,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.only(top: 64, end: 40),
+                                  padding: EdgeInsetsDirectional.only(top: 64.0.h, end: 40.0.w),
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
-                                      horizontal: 16, /*vertical: 8.5*/
+                                      horizontal: 16.0.w, /*vertical: 8.5*/
                                     ),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(200),
@@ -82,14 +83,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             .map((LanguageEnum e) => DropdownMenuItem(
                                                 value: e,
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional.only(end: 12),
+                                                  padding: EdgeInsetsDirectional.only(end: 12.0.w),
                                                   child: Text(
                                                     e.fromLanguage(),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         color: Theme.of(context).accentColor,
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: 14),
+                                                        fontSize: 14.0.t),
                                                   ),
                                                 )))
                                             .toList(),
@@ -106,20 +107,20 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                             }),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 40.0),
+                        padding: EdgeInsets.only(top: 40.0.h),
                         child: AppSvg.asset(
                           AssetUtils.blinkLogo,
-                          width: 195,
-                          height: 91.14,
+                          width: 195.0.w,
+                          height: 91.14.h,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 100.0),
+                        padding: EdgeInsets.only(top: 100.0.h),
                         child: Text(
                           S.of(context).enterLoginDetails,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
-                              fontSize: 14,
+                              fontSize: 14.0.t,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w500),
                         ),
@@ -137,7 +138,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       S.of(context).updateRequiredDesc,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
+                                          fontSize: 14.0.t,
                                           height: 1.7,
                                           color: Theme.of(context)
                                               .inputDecorationTheme
@@ -160,7 +161,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     descriptionWidget: Text(
                                       S.of(context).applicationNotAvailableInRegion,
                                       style: TextStyle(
-                                          fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
+                                          fontFamily: StringUtils.appFont, fontSize: 14.0.t, height: 1.7),
                                     ), onDismissed: () {
                                   exit(0);
                                 }, onSelected: () {
@@ -269,7 +270,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             style: TextStyle(
                                                                                 fontFamily:
                                                                                     StringUtils.appFont,
-                                                                                fontSize: 14,
+                                                                                fontSize: 14.0.t,
                                                                                 fontWeight: FontWeight.w400),
                                                                           ), onDismissed: () {
                                                                         Navigator.pop(context);
@@ -351,7 +352,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     dataBuilder: (context, kycResponse) {
                                                                       return Padding(
                                                                         padding: EdgeInsets.only(
-                                                                            left: 40, right: 40, top: 25),
+                                                                            left: 40.0.w,
+                                                                            right: 40.0.w,
+                                                                            top: 25.0.h),
                                                                         child: Column(
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.stretch,
@@ -487,8 +490,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 onChanged: (value) =>
                                                                                     model.validate()),
                                                                             Padding(
-                                                                              padding:
-                                                                                  EdgeInsets.only(top: 16),
+                                                                              padding: EdgeInsets.only(
+                                                                                  top: 16.0.h),
                                                                               child: AppTextField(
                                                                                 textFieldBorderColor:
                                                                                     AppColor.whiteGray,
@@ -528,8 +531,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                             .currentState!
                                                                                             .secureText
                                                                                         ? Container(
-                                                                                            width: 16,
-                                                                                            height: 16,
+                                                                                            width: 16.0.w,
+                                                                                            height: 16.0.h,
                                                                                             padding:
                                                                                                 EdgeInsets
                                                                                                     .all(4),
@@ -556,8 +559,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding:
-                                                                                  EdgeInsets.only(top: 24),
+                                                                              padding: EdgeInsets.only(
+                                                                                  top: 24.0.h),
                                                                               child: InkWell(
                                                                                 onTap: () =>
                                                                                     Navigator.pushNamed(
@@ -572,7 +575,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                   style: TextStyle(
                                                                                       fontFamily:
                                                                                           StringUtils.appFont,
-                                                                                      fontSize: 14,
+                                                                                      fontSize: 14.0.t,
                                                                                       fontWeight:
                                                                                           FontWeight.w500,
                                                                                       color: Theme.of(context)
@@ -592,7 +595,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                       child: Padding(
                                                                                         padding:
                                                                                             EdgeInsets.only(
-                                                                                                top: 24),
+                                                                                                top: 24.0.h),
                                                                                         child: AnimatedButton(
                                                                                           buttonText: S
                                                                                               .of(context)
@@ -649,14 +652,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   Container(
                     height: 4,
                     width: 128,
-                    margin: EdgeInsets.only(bottom: 8, top: 8),
+                    margin: EdgeInsets.only(bottom: 8.0.h, top: 8.0.h),
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(2), color: AppColor.whiteGray),
                   ),
                   Container(
                       padding: Platform.isAndroid
-                          ? EdgeInsets.only(bottom: 28, top: 16)
-                          : EdgeInsets.only(bottom: 68, top: 16),
+                          ? EdgeInsets.only(bottom: 28.0.h, top: 16.0.h)
+                          : EdgeInsets.only(bottom: 68.0.h, top: 16.0.h),
                       width: double.maxFinite,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -666,7 +669,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         S.of(context).swipeUpToJoinOurCommunity,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 14,
+                            fontSize: 14.0.t,
                             color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500),

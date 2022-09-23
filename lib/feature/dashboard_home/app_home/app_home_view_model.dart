@@ -19,7 +19,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/ui/molecules/card/apply_credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/apply_debit_card_widget.dart';
-import 'package:neo_bank/ui/molecules/card/credit_card_application_under_review_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_issuance_failure_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_not_delivered_widget.dart';
 import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';

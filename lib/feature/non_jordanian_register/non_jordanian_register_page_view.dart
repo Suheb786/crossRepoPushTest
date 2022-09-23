@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/non_jordanian_register/notify/notify_page.dart'
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -20,11 +21,11 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageStream,
@@ -54,7 +55,7 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
               },
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 36),
+                  padding: EdgeInsets.symmetric(vertical: 36.h),
                   child: AppStreamBuilder<int>(
                     stream: model.currentPageStream,
                     initialData: 0,
@@ -66,11 +67,12 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
-                                fontSize: 10,
+                                fontSize: 10.t,
                                 fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(top: 8.0, bottom: 32, start: 24, end: 24),
+                            padding:
+                                EdgeInsetsDirectional.only(top: 8.0.h, bottom: 32.h, start: 24.w, end: 24.w),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
                               delayStart: Duration(milliseconds: 50),
@@ -84,7 +86,7 @@ class NonJordanianRegisterPageView extends BasePageViewWidget<NonJordanianRegist
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     color: Theme.of(context).accentColor,
-                                    fontSize: 20,
+                                    fontSize: 20.t,
                                     fontWeight: FontWeight.w600),
                               ),
                             ),

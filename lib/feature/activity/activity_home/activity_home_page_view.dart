@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -25,7 +26,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
     return GestureDetector(
       onVerticalDragEnd: (details) {},
       child: Padding(
-        padding: EdgeInsetsDirectional.only(bottom: 47),
+        padding: EdgeInsetsDirectional.only(bottom: 47.0.h),
         child: AppStreamBuilder<Resource<List<PaymentActivityData>>>(
             stream: model.paymentActivityListStream,
             initialData: Resource.none(),
@@ -48,33 +49,35 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                     },
                     behavior: HitTestBehavior.translucent,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.only(top: 75),
+                      padding: EdgeInsetsDirectional.only(top: 75.0.h),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           AppSvg.asset(AssetUtils.book),
                           Padding(
-                            padding: EdgeInsetsDirectional.only(top: 9),
+                            padding: EdgeInsetsDirectional.only(top: 9.0.h),
                             child: Text(
                               S.of(context).activity,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontWeight: FontWeight.w400, fontSize: 18),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.0.t),
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(top: 30),
+                              padding: EdgeInsetsDirectional.only(top: 30.0.h),
                               child: Column(
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.only(top: 4),
+                                      padding: EdgeInsetsDirectional.only(top: 4.0.h),
                                       child: Stack(
                                         alignment: Alignment.center,
                                         fit: StackFit.expand,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsetsDirectional.only(bottom: 20.0),
+                                            padding: EdgeInsetsDirectional.only(bottom: 20.0.h),
                                             child: AppSwiper(
                                               appSwiperController: model.appSwiperController,
                                               pages: [NotificationPage(), PaymentActivityPage(), Container()],
@@ -94,13 +97,13 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                                 children: [
                                                   AppSvg.asset(AssetUtils.swipeUp),
                                                   Padding(
-                                                    padding: EdgeInsetsDirectional.only(top: 2),
+                                                    padding: EdgeInsetsDirectional.only(top: 2.0.h),
                                                     child: Text(
                                                       S.of(context).swipeToViewMore,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           color: AppColor.dark_gray_2,
-                                                          fontSize: 12,
+                                                          fontSize: 12.0.t,
                                                           fontWeight: FontWeight.w600),
                                                     ),
                                                   )
@@ -113,7 +116,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(top: 5),
+                                    padding: EdgeInsetsDirectional.only(top: 5.0.h),
                                     child: SmoothPageIndicator(
                                       controller: model.controller,
                                       count: 2,

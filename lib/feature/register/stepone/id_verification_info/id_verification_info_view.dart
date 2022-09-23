@@ -20,6 +20,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -164,7 +165,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                         },
                                         child: Card(
                                           child: Padding(
-                                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                               child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 mainAxisSize: MainAxisSize.max,
@@ -175,7 +176,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                           image: AssetUtils.sun,
                                                           title: S.of(context).idVerificationPlaceInfo),
                                                       SizedBox(
-                                                        height: 24,
+                                                        height: 24.h,
                                                       ),
                                                       InformationText(
                                                           image: AssetUtils.scanIcon,
@@ -200,7 +201,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                             S.of(context).uploadIdInstead,
                                                             style: TextStyle(
                                                                 fontFamily: StringUtils.appFont,
-                                                                fontSize: 14,
+                                                                fontSize: 14.t,
                                                                 fontWeight: FontWeight.w600,
                                                                 letterSpacing: 1,
                                                                 color: Theme.of(context)
@@ -227,8 +228,8 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                                     }
                                                                   },
                                                                   child: Container(
-                                                                    height: 40,
-                                                                    width: 40,
+                                                                    height: 40.h,
+                                                                    width: 40.w,
                                                                     decoration: BoxDecoration(
                                                                         shape: BoxShape.circle,
                                                                         color: isChecked!
@@ -247,9 +248,11 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                                                     .color!)),
                                                                     child: isChecked
                                                                         ? Container(
-                                                                            height: 16,
-                                                                            width: 16,
-                                                                            padding: EdgeInsets.all(10),
+                                                                            height: 16.h,
+                                                                            width: 16.w,
+                                                                            padding: EdgeInsets.symmetric(
+                                                                                horizontal: 10.w,
+                                                                                vertical: 10.h),
                                                                             child: AppSvg.asset(
                                                                               AssetUtils.checkIcon,
                                                                               color: Theme.of(context)
@@ -261,7 +264,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                                 );
                                                               }),
                                                           SizedBox(
-                                                            width: 16,
+                                                            width: 16.h,
                                                           ),
                                                           Expanded(
                                                             child: Text(
@@ -269,7 +272,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   fontWeight: FontWeight.w600,
-                                                                  fontSize: 12),
+                                                                  fontSize: 12.t),
                                                             ),
                                                           )
                                                         ],
@@ -280,7 +283,7 @@ class IdVerificationInfoView extends BasePageViewWidget<IdVerificationInfoViewMo
                                                           dataBuilder: (context, isChecked) {
                                                             return Padding(
                                                               padding:
-                                                                  const EdgeInsets.only(top: 32, bottom: 8),
+                                                                  EdgeInsets.only(top: 32.h, bottom: 8.h),
                                                               child: Visibility(
                                                                 visible: isChecked!,
                                                                 child: AnimatedButton(

@@ -6,19 +6,17 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/manage_credit_settlement_page_view_model.dart';
 
-class ManageCreditSettlementPage
-    extends BasePage<ManageCreditSettlementViewModel> {
+class ManageCreditSettlementPage extends BasePage<ManageCreditSettlementViewModel> {
   final ManageCreditSettlementArguments manageCreditSettlementArguments;
 
   ManageCreditSettlementPage({required this.manageCreditSettlementArguments});
 
   @override
-  ManageCreditSettlementPageState createState() =>
-      ManageCreditSettlementPageState();
+  ManageCreditSettlementPageState createState() => ManageCreditSettlementPageState();
 }
 
-class ManageCreditSettlementPageState extends BaseStatefulPage<
-    ManageCreditSettlementViewModel, ManageCreditSettlementPage> {
+class ManageCreditSettlementPageState
+    extends BaseStatefulPage<ManageCreditSettlementViewModel, ManageCreditSettlementPage> {
   @override
   ProviderBase provideBase() {
     return manageCreditSettlementPageViewModelProvider;
@@ -36,8 +34,7 @@ class ManageCreditSettlementPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ManageCreditSettlementViewModel model) {
+  Widget buildView(BuildContext context, ManageCreditSettlementViewModel model) {
     return ManageCreditSettlementPageView(provideBase());
   }
 }

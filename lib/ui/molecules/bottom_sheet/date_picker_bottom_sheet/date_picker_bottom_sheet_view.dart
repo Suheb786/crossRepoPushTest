@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class DatePickerBottomSheetView extends StatefulWidget {
   final Function(DateTime)? onDateSelected;
@@ -10,14 +11,10 @@ class DatePickerBottomSheetView extends StatefulWidget {
   final DateTime initialDate;
 
   const DatePickerBottomSheetView(
-      {this.onDateSelected,
-      this.title,
-      this.onCancel,
-      required this.initialDate});
+      {this.onDateSelected, this.title, this.onCancel, required this.initialDate});
 
   @override
-  _DatePickerBottomSheetViewState createState() =>
-      _DatePickerBottomSheetViewState();
+  _DatePickerBottomSheetViewState createState() => _DatePickerBottomSheetViewState();
 }
 
 class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
@@ -31,14 +28,14 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
         style: TextStyle(
             fontFamily: 'SF Pro Text',
             fontWeight: FontWeight.w700,
-            fontSize: 13,
+            fontSize: 13.t,
             color: AppColor.dark_grayish_blue),
       ),
       message: Text(S.of(context).scrollToSetDate(widget.title!.toLowerCase()),
           style: TextStyle(
               fontFamily: 'SF Pro Text',
               fontWeight: FontWeight.w400,
-              fontSize: 13,
+              fontSize: 13.t,
               color: AppColor.dark_grayish_blue)),
       actions: [
         Container(
@@ -53,10 +50,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
         ),
         CupertinoActionSheetAction(
           child: Text(S.of(context).confirm,
-              style: TextStyle(
-                  fontFamily: 'SF Pro Text',
-                  fontSize: 17,
-                  color: AppColor.pure_blue)),
+              style: TextStyle(fontFamily: 'SF Pro Text', fontSize: 17.t, color: AppColor.pure_blue)),
           onPressed: () {
             widget.onDateSelected?.call(selectedDateTime);
           },
@@ -67,7 +61,7 @@ class _DatePickerBottomSheetViewState extends State<DatePickerBottomSheetView> {
             style: TextStyle(
                 fontFamily: 'SF Pro Text',
                 fontWeight: FontWeight.w600,
-                fontSize: 17,
+                fontSize: 17.t,
                 color: AppColor.pure_blue)),
         onPressed: () {
           widget.onCancel?.call();

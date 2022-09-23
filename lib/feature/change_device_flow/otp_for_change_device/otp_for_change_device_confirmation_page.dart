@@ -7,19 +7,15 @@ import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_fo
 import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class OtpForChangeDeviceConfirmationPage
-    extends BasePage<OtpForChangeDeviceConfirmationPageViewModel> {
+class OtpForChangeDeviceConfirmationPage extends BasePage<OtpForChangeDeviceConfirmationPageViewModel> {
   @override
-  OtpForChangeDeviceConfirmationPageState createState() =>
-      OtpForChangeDeviceConfirmationPageState();
+  OtpForChangeDeviceConfirmationPageState createState() => OtpForChangeDeviceConfirmationPageState();
 }
 
-class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
-        OtpForChangeDeviceConfirmationPageViewModel,
-        OtpForChangeDeviceConfirmationPage>
+class OtpForChangeDeviceConfirmationPageState
+    extends BaseStatefulPage<OtpForChangeDeviceConfirmationPageViewModel, OtpForChangeDeviceConfirmationPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
-  OtpForChangeDeviceConfirmationPageState()
-      : super(subscribeVisibilityEvents: true);
+  OtpForChangeDeviceConfirmationPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -34,8 +30,7 @@ class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(OtpForChangeDeviceConfirmationPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -44,8 +39,7 @@ class OtpForChangeDeviceConfirmationPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, OtpForChangeDeviceConfirmationPageViewModel model) {
+  Widget buildView(BuildContext context, OtpForChangeDeviceConfirmationPageViewModel model) {
     return OtpForChangeDeviceConfirmationPageView(provideBase());
   }
 

@@ -9,14 +9,14 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class ActivityHomePage extends BasePage<ActivityHomeViewModel> {
   @override
   ActivityHomePageState createState() => ActivityHomePageState();
 }
 
-class ActivityHomePageState
-    extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
+class ActivityHomePageState extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
     with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
@@ -31,7 +31,7 @@ class ActivityHomePageState
   @override
   Widget? buildBottomNavigationBar() {
     return Padding(
-      padding: EdgeInsets.only(bottom: 24),
+      padding: EdgeInsets.only(bottom: 24.0.h),
       child: ConvexAppBar(
         elevation: 0,
         style: TabStyle.fixedCircle,
@@ -42,20 +42,16 @@ class ActivityHomePageState
             icon: InkWell(
               onTap: () => Navigator.pop(context),
               child: Container(
-                height: 80,
-                width: 80,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorDark,
-                    shape: BoxShape.circle),
+                height: 80.0.h,
+                width: 80.0.w,
+                decoration: BoxDecoration(color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
                 child: Center(
                   child: AppSvg.asset(AssetUtils.logoWhite),
                 ),
               ),
             ),
           ),
-          TabItem(
-              icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
-              title: " "),
+          TabItem(icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)), title: " "),
         ],
         initialActiveIndex: 0,
         onTap: (i) {

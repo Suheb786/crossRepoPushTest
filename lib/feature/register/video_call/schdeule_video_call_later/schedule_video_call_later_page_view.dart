@@ -22,6 +22,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -191,7 +192,8 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                                               shadowColor:
                                                   Theme.of(context).primaryColorDark.withOpacity(0.32),
                                               child: Padding(
-                                                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                                  padding:
+                                                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                                   child: Column(
                                                     children: [
                                                       Expanded(
@@ -223,17 +225,17 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                                                                 },
                                                                 suffixIcon: (value, data) {
                                                                   return Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding:
-                                                                          EdgeInsets.symmetric(horizontal: 7),
+                                                                      height: 16.h,
+                                                                      width: 16.w,
+                                                                      padding: EdgeInsets.symmetric(
+                                                                          horizontal: 7.w),
                                                                       child: AppSvg.asset(AssetUtils.calendar,
                                                                           color: Theme.of(context)
                                                                               .primaryColorDark));
                                                                 },
                                                               ),
                                                               SizedBox(
-                                                                height: 16,
+                                                                height: 16.h,
                                                               ),
                                                               AppStreamBuilder<
                                                                   Resource<List<AvailableTimeSlots>>>(
@@ -263,10 +265,10 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                                                                     },
                                                                     suffixIcon: (value, data) {
                                                                       return Container(
-                                                                          height: 16,
-                                                                          width: 16,
+                                                                          height: 16.h,
+                                                                          width: 16.w,
                                                                           padding: EdgeInsetsDirectional.only(
-                                                                              end: 8),
+                                                                              end: 8.w),
                                                                           child: AppSvg.asset(
                                                                               AssetUtils.downArrow,
                                                                               color: AppColor.dark_gray_1));
@@ -284,7 +286,7 @@ class ScheduleVideoCallLaterPageView extends BasePageViewWidget<ScheduleVideoCal
                                                       ),
                                                       Center(
                                                         child: Padding(
-                                                          padding: EdgeInsets.only(top: 8),
+                                                          padding: EdgeInsets.only(top: 8.h),
                                                           child: AppStreamBuilder<bool>(
                                                               stream: model.allFieldValidatorStream,
                                                               initialData: false,

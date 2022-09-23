@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
 class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
@@ -36,17 +37,17 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                   color: AppColor.white,
                   child: Center(
                       child: Lottie.asset(AssetUtils.loaderAnimation,
-                          fit: BoxFit.cover, alignment: Alignment.center, width: 60, height: 60)),
+                          fit: BoxFit.cover, alignment: Alignment.center, width: 60.w, height: 60.h)),
                 ),
           Align(
             alignment: AlignmentDirectional.topStart,
             child: Container(
-              margin: EdgeInsets.all(22),
+              margin: EdgeInsets.symmetric(horizontal: 22.w, vertical: 22.h),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Container(
-                  width: 97,
-                  height: 128,
+                  width: 97.w,
+                  height: 128.h,
                   child: RtcLocalView.SurfaceView(),
                 ),
               ),
@@ -55,7 +56,7 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
           PositionedDirectional(
             start: 0,
             end: 0,
-            bottom: 50,
+            bottom: 50.h,
             child: AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
                 initialData: Resource.none(),
@@ -94,9 +95,9 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
                           model.leaveAgoraChannel();
                         },
                         child: Container(
-                          width: 57,
-                          height: 57,
-                          padding: EdgeInsets.all(15),
+                          width: 57.w,
+                          height: 57.h,
+                          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
                           decoration: BoxDecoration(
                             color: AppColor.vivid_red,
                             shape: BoxShape.circle,

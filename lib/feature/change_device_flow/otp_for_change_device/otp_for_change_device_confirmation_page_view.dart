@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -24,14 +25,14 @@ class OtpForChangeDeviceConfirmationPageView
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 56),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 56.h),
       child: AppKeyBoardHide(
         child: Column(
           children: [
             Padding(
-                padding: EdgeInsets.only(bottom: 36),
+                padding: EdgeInsets.only(bottom: 36.h),
                 child: Container(
-                  height: 4,
+                  height: 4.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
@@ -42,11 +43,11 @@ class OtpForChangeDeviceConfirmationPageView
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).accentColor,
-                  fontSize: 10,
+                  fontSize: 10.t,
                   fontWeight: FontWeight.w600),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 0),
+              padding: EdgeInsets.only(top: 8.0.h, bottom: 0),
               child: ShowUpAnimation(
                 key: ValueKey(0),
                 delayStart: Duration(milliseconds: 50),
@@ -60,13 +61,13 @@ class OtpForChangeDeviceConfirmationPageView
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
                       color: Theme.of(context).accentColor,
-                      fontSize: 20,
+                      fontSize: 20.t,
                       fontWeight: FontWeight.w600),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 32),
+              padding: EdgeInsets.only(bottom: 32.h),
               child: ShowUpAnimation(
                 delayStart: Duration(milliseconds: 500),
                 animationDuration: Duration(milliseconds: 750),
@@ -81,7 +82,7 @@ class OtpForChangeDeviceConfirmationPageView
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
-                        fontSize: 20,
+                        fontSize: 20.t,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -119,7 +120,7 @@ class OtpForChangeDeviceConfirmationPageView
                           child: Card(
                             margin: EdgeInsets.zero,
                             child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -146,7 +147,7 @@ class OtpForChangeDeviceConfirmationPageView
                                           endTime: model.endTime,
                                           textStyle: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 16,
+                                              fontSize: 16.t,
                                               color: Theme.of(context).accentTextTheme.bodyText1!.color!),
                                           widgetBuilder: (context, currentTimeRemaining) {
                                             return currentTimeRemaining == null
@@ -158,7 +159,7 @@ class OtpForChangeDeviceConfirmationPageView
                                                       S.of(context).resendCode,
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
-                                                          fontSize: 14,
+                                                          fontSize: 14.t,
                                                           fontWeight: FontWeight.w600,
                                                           color: Theme.of(context)
                                                               .accentTextTheme
@@ -170,7 +171,7 @@ class OtpForChangeDeviceConfirmationPageView
                                                         '${currentTimeRemaining.min != null ? (currentTimeRemaining.min! < 10 ? "0${currentTimeRemaining.min}" : currentTimeRemaining.min) : "00"}:${currentTimeRemaining.sec != null ? (currentTimeRemaining.sec! < 10 ? "0${currentTimeRemaining.sec}" : currentTimeRemaining.sec) : "00"}'),
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
-                                                        fontSize: 14,
+                                                        fontSize: 14.t,
                                                         fontWeight: FontWeight.w600,
                                                         color: Theme.of(context)
                                                             .accentTextTheme
@@ -180,7 +181,7 @@ class OtpForChangeDeviceConfirmationPageView
                                           },
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(top: 16.0),
+                                          padding: EdgeInsets.only(top: 16.0.h),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,

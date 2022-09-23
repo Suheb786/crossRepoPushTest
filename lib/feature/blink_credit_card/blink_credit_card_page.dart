@@ -10,8 +10,7 @@ class BlinkCreditCardPage extends BasePage<BlinkCreditCardViewModel> {
   BlinkCreditCardPageState createState() => BlinkCreditCardPageState();
 }
 
-class BlinkCreditCardPageState
-    extends BaseStatefulPage<BlinkCreditCardViewModel, BlinkCreditCardPage> {
+class BlinkCreditCardPageState extends BaseStatefulPage<BlinkCreditCardViewModel, BlinkCreditCardPage> {
   @override
   ProviderBase provideBase() {
     return blinkCreditCardViewModelProvider;

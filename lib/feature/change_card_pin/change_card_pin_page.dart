@@ -12,8 +12,7 @@ class ChangeCardPinPage extends BasePage<ChangeCardPinPageViewModel> {
   ChangeCardPinPageState createState() => ChangeCardPinPageState();
 }
 
-class ChangeCardPinPageState
-    extends BaseStatefulPage<ChangeCardPinPageViewModel, ChangeCardPinPage> {
+class ChangeCardPinPageState extends BaseStatefulPage<ChangeCardPinPageViewModel, ChangeCardPinPage> {
   @override
   ProviderBase provideBase() {
     return changeCardPinViewModelProvider;
@@ -21,9 +20,8 @@ class ChangeCardPinPageState
 
   @override
   void onModelReady(ChangeCardPinPageViewModel model) {
-    model.changeCardPinArguments = ProviderScope.containerOf(context)
-        .read(appHomeViewModelProvider)
-        .changeCardPinArguments;
+    model.changeCardPinArguments =
+        ProviderScope.containerOf(context).read(appHomeViewModelProvider).changeCardPinArguments;
   }
 
   @override
@@ -37,8 +35,5 @@ class ChangeCardPinArguments {
   final String? tokenizedPan;
   final String? cardNumber;
 
-  ChangeCardPinArguments(
-      {this.cardType: CardType.DEBIT,
-      this.tokenizedPan: "",
-      this.cardNumber: ""});
+  ChangeCardPinArguments({this.cardType: CardType.DEBIT, this.tokenizedPan: "", this.cardNumber: ""});
 }

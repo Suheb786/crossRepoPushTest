@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 
 class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewModel> {
@@ -39,7 +40,7 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
                 },
                 dataBuilder: (context, data) {
                   return Padding(
-                    padding: EdgeInsetsDirectional.only(top: 43, end: 30),
+                    padding: EdgeInsetsDirectional.only(top: 43.h, end: 30.w),
                     child: InkWell(
                       onTap: () {
                         model.logOutUser();
@@ -51,7 +52,7 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: EdgeInsets.only(top: 30.h),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -59,7 +60,7 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
                   Align(
                     alignment: Alignment.center,
                     child: Container(
-                      height: 111.37,
+                      height: 111.37.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColor.vividYellow,
@@ -71,28 +72,28 @@ class VideoCallScheduledView extends BasePageViewWidget<VideoCallScheduledViewMo
               ),
             ),
             SizedBox(
-              height: 34,
+              height: 34.h,
             ),
             AccountReadyHeader(title: S.of(context).callScheduled, subTitle: S.of(context).callScheduledNote),
             SizedBox(
-              height: 40,
+              height: 40.h,
             ),
             Container(
               decoration:
                   BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(16)),
-              margin: EdgeInsets.symmetric(horizontal: 24),
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              margin: EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AccountDetails(title: S.of(context).refNo, value: model.arguments.applicationId ?? "-"),
                   SizedBox(
-                    height: 16,
+                    height: 16.h,
                   ),
                   AccountDetails(title: S.of(context).preferredDateSmall, value: model.arguments.date ?? "-"),
                   SizedBox(
-                    height: 16,
+                    height: 16.h,
                   ),
                   AccountDetails(title: S.of(context).preferredTimeSmall, value: model.arguments.time ?? "-"),
                 ],

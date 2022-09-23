@@ -6,17 +6,11 @@ class PaymentActivityFilterDialog {
   PaymentActivityFilterDialog._();
 
   static show(BuildContext mContext,
-      {Function? onDismissed,
-      Function(String)? onSelected,
-      List<String>? filterList,
-      FilterType? type}) {
+      {Function? onDismissed, Function(String)? onSelected, List<String>? filterList, FilterType? type}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => PaymentActivityFilterDialogView(
-            onDismissed: onDismissed,
-            onSelected: onSelected,
-            filterType: type,
-            filterList: filterList));
+            onDismissed: onDismissed, onSelected: onSelected, filterType: type, filterList: filterList));
   }
 }
 

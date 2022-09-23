@@ -14,12 +14,10 @@ class CardTransactionPage extends BasePage<CardTransactionViewModel> {
   DebitCardDeliveredPageState createState() => DebitCardDeliveredPageState();
 }
 
-class DebitCardDeliveredPageState
-    extends BaseStatefulPage<CardTransactionViewModel, CardTransactionPage> {
+class DebitCardDeliveredPageState extends BaseStatefulPage<CardTransactionViewModel, CardTransactionPage> {
   @override
   ProviderBase provideBase() {
-    return cardTransactionViewModelProvider
-        .call(widget._creditCardTransactionArguments);
+    return cardTransactionViewModelProvider.call(widget._creditCardTransactionArguments);
   }
 
   @override
@@ -29,8 +27,7 @@ class DebitCardDeliveredPageState
 
   @override
   void onModelReady(CardTransactionViewModel model) {
-    model.getTransactions(
-        cardId: model.cardTransactionArguments.cardId!, noOfDays: 180);
+    model.getTransactions(cardId: model.cardTransactionArguments.cardId!, noOfDays: 180);
   }
 
   @override

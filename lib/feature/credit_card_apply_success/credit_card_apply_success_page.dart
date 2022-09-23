@@ -5,28 +5,24 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
 
-class CreditCardApplySuccessPage
-    extends BasePage<CreditCardApplySuccessPageViewModel> {
+class CreditCardApplySuccessPage extends BasePage<CreditCardApplySuccessPageViewModel> {
   final CreditCardApplySuccessArguments _creditCardApplySuccessArguments;
 
   CreditCardApplySuccessPage(this._creditCardApplySuccessArguments);
 
   @override
-  CreditCardApplySuccessPageState createState() =>
-      CreditCardApplySuccessPageState();
+  CreditCardApplySuccessPageState createState() => CreditCardApplySuccessPageState();
 }
 
-class CreditCardApplySuccessPageState extends BaseStatefulPage<
-    CreditCardApplySuccessPageViewModel, CreditCardApplySuccessPage> {
+class CreditCardApplySuccessPageState
+    extends BaseStatefulPage<CreditCardApplySuccessPageViewModel, CreditCardApplySuccessPage> {
   @override
   ProviderBase provideBase() {
-    return creditCardApplySuccessViewModelProvider
-        .call(widget._creditCardApplySuccessArguments);
+    return creditCardApplySuccessViewModelProvider.call(widget._creditCardApplySuccessArguments);
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CreditCardApplySuccessPageViewModel model) {
+  Widget buildView(BuildContext context, CreditCardApplySuccessPageViewModel model) {
     return CreditCardApplySuccessPageView(provideBase());
   }
 }
@@ -43,6 +39,5 @@ enum CreditSuccessState {
 class CreditCardApplySuccessArguments {
   final CreditSuccessState creditSuccessState;
 
-  CreditCardApplySuccessArguments(
-      {this.creditSuccessState: CreditSuccessState.Applied_Success});
+  CreditCardApplySuccessArguments({this.creditSuccessState: CreditSuccessState.Applied_Success});
 }

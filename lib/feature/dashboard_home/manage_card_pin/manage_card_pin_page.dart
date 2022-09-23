@@ -18,8 +18,7 @@ class ManageCardPinPage extends BasePage<ManageCardPinViewModel> {
   ManageCardPinPageState createState() => ManageCardPinPageState();
 }
 
-class ManageCardPinPageState
-    extends BaseStatefulPage<ManageCardPinViewModel, ManageCardPinPage> {
+class ManageCardPinPageState extends BaseStatefulPage<ManageCardPinViewModel, ManageCardPinPage> {
   @override
   ProviderBase provideBase() {
     return manageCardPinViewModelProvider.call(widget.manageCardPinArguments);
@@ -34,9 +33,7 @@ class ManageCardPinPageState
 
   @override
   void onModelReady(ManageCardPinViewModel model) {
-    ProviderScope.containerOf(context)
-            .read(appHomeViewModelProvider)
-            .changeCardPinArguments =
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).changeCardPinArguments =
         ChangeCardPinArguments(
             cardType: model.manageCardPinArguments!.cardType,
             tokenizedPan: model.manageCardPinArguments!.tokenizedPan,

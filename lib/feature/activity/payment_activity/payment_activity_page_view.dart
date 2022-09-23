@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewModel> {
@@ -45,7 +46,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
           margin: EdgeInsetsDirectional.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
-            padding: EdgeInsetsDirectional.only(top: 30, start: 24, end: 24),
+            padding: EdgeInsetsDirectional.only(top: 30.0.h, start: 24.0.w, end: 24.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -53,12 +54,12 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                   S.of(context).paymentActivity,
                   style: TextStyle(
                       fontFamily: StringUtils.appFont,
-                      fontSize: 12,
+                      fontSize: 12.0.t,
                       fontWeight: FontWeight.w600,
                       color: AppColor.dark_yellow),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.0.h,
                 ),
                 Expanded(
                   child: AppStreamBuilder<Resource<List<PaymentActivityData>>>(
@@ -74,13 +75,13 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                 itemBuilder: (mContext, index) {
                                   return Padding(
                                     padding: EdgeInsetsDirectional.only(
-                                        top: index == 0 ? 0 : 23,
-                                        bottom: index == transaction.data!.length - 1 ? 10 : 0),
+                                        top: index == 0 ? 0 : 23.0.h,
+                                        bottom: index == transaction.data!.length - 1 ? 10.0.h : 0),
                                     child: Row(
                                       children: [
                                         Container(
-                                          height: 50,
-                                          width: 50,
+                                          height: 50.0.h,
+                                          width: 50.0.w,
                                           decoration: BoxDecoration(
                                               color: Theme.of(context).primaryColor, shape: BoxShape.circle),
                                           child: Center(
@@ -93,13 +94,13 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                   fontFamily: StringUtils.appFont,
                                                   color: Theme.of(context).accentColor,
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 14),
+                                                  fontSize: 14.0.t),
                                             ),
                                           ),
                                         ),
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsetsDirectional.only(start: 11),
+                                            padding: EdgeInsetsDirectional.only(start: 11.0.w),
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
@@ -108,7 +109,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w400,
-                                                        fontSize: 12),
+                                                        fontSize: 12.0.t),
                                                     children: [
                                                       TextSpan(
                                                           text:
@@ -116,19 +117,19 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600,
-                                                              fontSize: 12)),
+                                                              fontSize: 12.0.t)),
                                                       TextSpan(
                                                           text: S.of(context).fromS,
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w400,
-                                                              fontSize: 12)),
+                                                              fontSize: 12.0.t)),
                                                       TextSpan(
                                                           text: '${transaction.data![index].name}',
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
                                                               fontWeight: FontWeight.w600,
-                                                              fontSize: 12)),
+                                                              fontSize: 12.0.t)),
                                                     ])),
                                                 // Text(
                                                 //   "You requested ${transaction
@@ -142,9 +143,10 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                 //       fontSize: 12),
                                                 // ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.only(top: 6),
+                                                  padding: EdgeInsetsDirectional.only(top: 6.0.h),
                                                   child: Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 8.0.w, vertical: 2.0.h),
                                                     decoration: BoxDecoration(
                                                         color: getColor(transaction.data![index].status!),
                                                         borderRadius: BorderRadius.circular(100)),
@@ -153,7 +155,7 @@ class PaymentActivityPageView extends BasePageViewWidget<PaymentActivityViewMode
                                                       style: TextStyle(
                                                           color: Theme.of(context).accentColor,
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: 12),
+                                                          fontSize: 12.0.t),
                                                     ),
                                                   ),
                                                 )

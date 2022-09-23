@@ -1557,6 +1557,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما عندك معارف حالياً. رح تقدر تضيفهم لقائمتك لما تحوللهم الأموال."),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("الدولة غير موجودة"),
+        "noDataFound": MessageLookupByLibrary.simpleMessage("لاتوجد بيانات"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
             "خطأ بمعلومات بطاقة الدفع المباشر Yellow Sun. تواصل معنا من التطبيق أو بالاتصال على 5200100-06"),
         "noDebitCardRecordFound": MessageLookupByLibrary.simpleMessage(
@@ -1979,6 +1980,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("تحديد موعد لاحق"),
         "scrollToSetDate": m5,
+        "searchAgain": MessageLookupByLibrary.simpleMessage("البحث مرة أخرى"),
         "searchCity": MessageLookupByLibrary.simpleMessage("البحث عن مدينة"),
         "searchContacts":
             MessageLookupByLibrary.simpleMessage("البحث عن المعارف"),
@@ -2063,6 +2065,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "بنحتاج منك صورة عن بطاقة الضمان الاجتماعي"),
         "socialSecurityHintText":
             MessageLookupByLibrary.simpleMessage("###-##-####"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("هناك خطأ ما"),
         "spendJod": MessageLookupByLibrary.simpleMessage(
             "اصرف 1 دينار واحصل على فرصة ربح 1000 دينار يومياً"),
         "spouseName": MessageLookupByLibrary.simpleMessage("اسم الزوج/ الزوجة"),

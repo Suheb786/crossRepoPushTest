@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
@@ -30,7 +31,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SizedBox(
-            height: 50,
+            height: 50.h,
           ),
           Center(
             child: Text(
@@ -39,11 +40,11 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                   fontFamily: StringUtils.appFont,
                   color: Theme.of(context).primaryColorDark,
                   fontWeight: FontWeight.w600,
-                  fontSize: 14),
+                  fontSize: 14.t),
             ),
           ),
           SizedBox(
-            height: 35,
+            height: 35.h,
           ),
           Expanded(
               child: Container(
@@ -53,15 +54,15 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
             child: Column(
               children: [
                 Container(
-                  height: 4,
-                  width: 64,
-                  margin: EdgeInsets.only(top: 8),
+                  height: 4.h,
+                  width: 64.w,
+                  margin: EdgeInsets.only(top: 8.h),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(4), color: AppColor.whiteGray),
                 ),
                 Card(
                   color: Theme.of(context).accentColor,
-                  margin: EdgeInsets.all(24),
+                  margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                   child: Column(children: [
                     AppStreamBuilder<Resource<bool>>(
                       initialData: Resource.none(),
@@ -81,7 +82,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 descriptionWidget: Text(
                                   S.of(context).unBlockPinDescription,
                                   style:
-                                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
+                                      TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, height: 1.7),
                                 ), onSelected: () {
                               Navigator.pop(context);
                               if (model.manageCardPinArguments!.freezeCardStatusEnum ==
@@ -94,7 +95,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                             });
                           },
                           child: Padding(
-                            padding: EdgeInsets.all(24),
+                            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                             child: Row(
                               children: [
                                 Expanded(
@@ -104,8 +105,8 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                       TextStyle(fontFamily: StringUtils.appFont, fontWeight: FontWeight.w600),
                                 )),
                                 AppSvg.asset(AssetUtils.rightChevron,
-                                    width: 20,
-                                    height: 20,
+                                    width: 20.w,
+                                    height: 20.h,
                                     color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                               ],
                             ),
@@ -119,7 +120,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                         Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
                       },
                       child: Padding(
-                        padding: EdgeInsets.all(24),
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: Row(
                           children: [
                             Expanded(
@@ -131,8 +132,8 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                               ),
                             )),
                             AppSvg.asset(AssetUtils.rightChevron,
-                                width: 20,
-                                height: 20,
+                                width: 20.w,
+                                height: 20.h,
                                 color: Theme.of(context).primaryTextTheme.bodyText1!.color)
                           ],
                         ),

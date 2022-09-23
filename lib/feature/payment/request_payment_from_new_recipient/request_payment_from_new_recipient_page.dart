@@ -5,24 +5,20 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page_view.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 
-class RequestPaymentFromNewRecipientPage
-    extends BasePage<RequestPaymentFromNewRecipientViewModel> {
+class RequestPaymentFromNewRecipientPage extends BasePage<RequestPaymentFromNewRecipientViewModel> {
   String? requestValue;
 
   RequestPaymentFromNewRecipientPage({this.requestValue});
 
   @override
-  RequestPaymentFromNewRecipientPageState createState() =>
-      RequestPaymentFromNewRecipientPageState();
+  RequestPaymentFromNewRecipientPageState createState() => RequestPaymentFromNewRecipientPageState();
 }
 
-class RequestPaymentFromNewRecipientPageState extends BaseStatefulPage<
-    RequestPaymentFromNewRecipientViewModel,
-    RequestPaymentFromNewRecipientPage> {
+class RequestPaymentFromNewRecipientPageState
+    extends BaseStatefulPage<RequestPaymentFromNewRecipientViewModel, RequestPaymentFromNewRecipientPage> {
   @override
   ProviderBase provideBase() {
-    return requestPaymentFromNewRecipientViewModelProvider
-        .call(widget.requestValue!);
+    return requestPaymentFromNewRecipientViewModelProvider.call(widget.requestValue!);
   }
 
   @override
@@ -31,8 +27,7 @@ class RequestPaymentFromNewRecipientPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, RequestPaymentFromNewRecipientViewModel model) {
+  Widget buildView(BuildContext context, RequestPaymentFromNewRecipientViewModel model) {
     return RequestPaymentFromNewRecipientPageView(provideBase());
   }
 }

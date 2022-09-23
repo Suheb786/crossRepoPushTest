@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class AppSwitchLabelWidget extends StatelessWidget {
@@ -30,26 +31,26 @@ class AppSwitchLabelWidget extends StatelessWidget {
                 fontFamily: StringUtils.appFont,
                 color: Theme.of(context).primaryColorDark,
                 fontWeight: FontWeight.w600,
-                fontSize: 14),
+                fontSize: 14.t),
           ),
         ),
         SizedBox(
-          width: 16,
+          width: 16.w,
         ),
         FlutterSwitch(
           value: isActive!,
           onToggle: (value) {
             onToggle?.call(value);
           },
-          width: 70,
-          height: 40,
+          width: 70.w,
+          height: 40.h,
           padding: 8,
           activeText: activeText,
           activeTextColor: AppColor.white,
           inactiveTextColor: AppColor.darkGray,
           activeTextFontWeight: FontWeight.w500,
           showOnOff: true,
-          valueFontSize: 10,
+          valueFontSize: 10.t,
           activeToggleColor: AppColor.white,
           inactiveText: inActiveText!,
           inactiveToggleColor: AppColor.lightGrayishMagenta,

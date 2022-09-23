@@ -6,15 +6,12 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_inco
 class AdditionalIncomeSourceDialog {
   AdditionalIncomeSourceDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(AdditionalIncomeType)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(AdditionalIncomeType)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) =>
-            AdditionIncomeSourceDialogView(
+        builder: (context) => AdditionIncomeSourceDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,
             ));
   }
 }
-

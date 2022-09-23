@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -45,7 +46,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
             child: Card(
               margin: EdgeInsets.zero,
               child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                  padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,10 +60,10 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                             alignment: Alignment.center,
                             children: [
                               ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
+                                  borderRadius: BorderRadius.circular(16.w),
                                   child: AppSvg.asset(AssetUtils.replacementVisaCard)),
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(30.w),
                                 clipBehavior: Clip.antiAlias,
                                 child: InkWell(
                                     onTap: () {
@@ -71,8 +72,8 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                     child: BackdropFilter(
                                       filter: ImageFilter.blur(sigmaY: 15, sigmaX: 15),
                                       child: Container(
-                                        height: 60,
-                                        width: 60,
+                                        height: 60.w,
+                                        width: 60.w,
                                         child: AppSvg.asset(AssetUtils.flipButton),
                                       ),
                                     )),
@@ -85,26 +86,26 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                               Container(
                                   decoration: BoxDecoration(
                                     color: AppColor.vividYellow,
-                                    borderRadius: BorderRadius.circular(16),
+                                    borderRadius: BorderRadius.circular(16.w),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 18.52, bottom: 52),
+                                        padding: EdgeInsets.only(top: 18.52.h, bottom: 52.h),
                                         child: Container(
-                                          height: 42,
+                                          height: 42.h,
                                           color: Theme.of(context).primaryColorDark,
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 20.0.w),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Flexible(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional.only(end: 8.0),
+                                                padding: EdgeInsetsDirectional.only(end: 8.0.w),
                                                 child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
@@ -115,7 +116,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w700,
-                                                          fontSize: 12,
+                                                          fontSize: 12.t,
                                                           color: Theme.of(context).primaryColorDark),
                                                     ),
                                                     Text(
@@ -128,7 +129,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                                       style: TextStyle(
                                                           fontFamily: StringUtils.appFont,
                                                           fontWeight: FontWeight.w700,
-                                                          fontSize: 10,
+                                                          fontSize: 10.t,
                                                           color: Theme.of(context).primaryColorDark),
                                                     ),
                                                   ],
@@ -142,14 +143,14 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                       Align(
                                         alignment: AlignmentDirectional.centerEnd,
                                         child: Padding(
-                                          padding: const EdgeInsetsDirectional.only(
-                                              top: 5.0, bottom: 15.2, end: 20),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 5.0.t, bottom: 15.2.h, end: 20.w),
                                           child: Text(
                                             'Debit',
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 10,
+                                                fontSize: 10.t,
                                                 color: Theme.of(context).primaryColorDark),
                                           ),
                                         ),
@@ -160,10 +161,13 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                                   onTap: () {
                                     model.cardController.toggleCard();
                                   },
-                                  child: AppSvg.asset(AssetUtils.flipButton, width: 50, height: 50))
+                                  child: AppSvg.asset(AssetUtils.flipButton, width: 50.w, height: 50.w))
                             ],
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 10.0.h,
                       ),
                       Center(
                         child: InkWell(
@@ -188,7 +192,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                             S.of(context).backToDashboard,
                             style: TextStyle(
                               color: AppColor.brightBlue,
-                              fontSize: 14,
+                              fontSize: 14.t,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -196,7 +200,7 @@ class ReplacementVisaCardPageView extends BasePageViewWidget<ReplacementVisaCard
                       ),
                       Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 16.0),
+                          padding: EdgeInsets.only(top: 16.0.h),
                           child: AnimatedButton(
                             buttonHeight: 50,
                             buttonText: S.of(context).swipeToProceed,

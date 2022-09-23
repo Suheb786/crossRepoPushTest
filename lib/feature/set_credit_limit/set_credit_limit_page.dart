@@ -10,8 +10,7 @@ class SetCreditLimitPage extends BasePage<SetCreditLimitViewModel> {
   SetCreditLimitPageState createState() => SetCreditLimitPageState();
 }
 
-class SetCreditLimitPageState
-    extends BaseStatefulPage<SetCreditLimitViewModel, SetCreditLimitPage> {
+class SetCreditLimitPageState extends BaseStatefulPage<SetCreditLimitViewModel, SetCreditLimitPage> {
   @override
   ProviderBase provideBase() {
     return setCreditLimitViewModelProvider;

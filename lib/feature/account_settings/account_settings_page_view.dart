@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -35,9 +36,9 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
         children: [
           Expanded(
             child: Card(
-              margin: EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 40),
+              margin: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 40.h),
               child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                 child: AppStreamBuilder<Resource<ProfileInfoResponse>>(
                     initialData: Resource.none(),
                     stream: model.getProfileInfoStream,
@@ -111,15 +112,15 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                     },
                                                     child: CircleAvatar(
                                                       backgroundColor: Theme.of(context).primaryColor,
-                                                      radius: 48,
+                                                      radius: 48.w,
                                                       child: CircleAvatar(
-                                                        radius: 48,
+                                                        radius: 48.w,
                                                         child: image!.isEmpty
                                                             ? ((profileData.data!.content!.profileImage
                                                                     .toString()
                                                                     .isNotEmpty)
                                                                 ? CircleAvatar(
-                                                                    radius: 48,
+                                                                    radius: 48.w,
                                                                     backgroundImage: Image.memory(
                                                                       profileData
                                                                           .data!.content!.profileImage!,
@@ -127,7 +128,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                     ).image,
                                                                   )
                                                                 : CircleAvatar(
-                                                                    radius: 48,
+                                                                    radius: 48.w,
                                                                     backgroundColor:
                                                                         Theme.of(context).primaryColor,
                                                                     child: Text(
@@ -136,13 +137,13 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                                                       style: TextStyle(
                                                                           fontFamily: StringUtils.appFont,
                                                                           fontWeight: FontWeight.w700,
-                                                                          fontSize: 18,
+                                                                          fontSize: 18.t,
                                                                           color:
                                                                               Theme.of(context).accentColor),
                                                                     ),
                                                                   ))
                                                             : CircleAvatar(
-                                                                radius: 48,
+                                                                radius: 48.w,
                                                                 backgroundImage: Image.file(
                                                                   File(image),
                                                                   fit: BoxFit.cover,
@@ -158,20 +159,20 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                     );
                                   }),
                               SizedBox(
-                                height: 8,
+                                height: 8.h,
                               ),
                               Center(
                                 child: Text(
                                   S.of(context).tapToEditPhoto,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 12,
+                                      fontSize: 12.t,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 32.0, bottom: 16),
+                                padding: EdgeInsets.only(top: 32.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -195,7 +196,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+                                padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -219,7 +220,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+                                padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -233,7 +234,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                                 },
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
+                                padding: EdgeInsets.only(top: 16.0.h, bottom: 16.h),
                                 child: Container(
                                   height: 1,
                                   color: Theme.of(context).backgroundColor,
@@ -364,7 +365,7 @@ class AccountSettingPageView extends BasePageViewWidget<AccountSettingPageViewMo
                               //   },
                               // ),
                               SizedBox(
-                                height: 60,
+                                height: 60.h,
                               )
                             ],
                           );

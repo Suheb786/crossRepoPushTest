@@ -23,6 +23,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -126,11 +127,12 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                       shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
                                       child: Padding(
                                         padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context).viewInsets.bottom - 50 <= 0
+                                            bottom: MediaQuery.of(context).viewInsets.bottom - 50.0.h <= 0
                                                 ? 0
-                                                : MediaQuery.of(context).viewInsets.bottom - 48),
+                                                : MediaQuery.of(context).viewInsets.bottom - 48.0.h),
                                         child: Container(
-                                          padding: EdgeInsetsDirectional.only(top: 32, start: 24, end: 24),
+                                          padding: EdgeInsetsDirectional.only(
+                                              top: 32.0.h, start: 24.0.w, end: 24.0.w),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -144,11 +146,11 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                         S.of(context).sendMoneyTo,
                                                         style: TextStyle(
                                                             fontFamily: StringUtils.appFont,
-                                                            fontSize: 14,
+                                                            fontSize: 14.0.t,
                                                             fontWeight: FontWeight.w600),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.only(top: 16.0),
+                                                        padding: EdgeInsets.only(top: 16.0.h),
                                                         child: Focus(
                                                           child: AppTextField(
                                                             labelText: S.of(context).ibanOrMobileOrAccount,
@@ -178,7 +180,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             return Visibility(
                                                               visible: visibility!,
                                                               child: Padding(
-                                                                  padding: EdgeInsets.only(top: 16),
+                                                                  padding: EdgeInsets.only(top: 16.0.h),
                                                                   child: Row(
                                                                     mainAxisAlignment:
                                                                         MainAxisAlignment.spaceBetween,
@@ -190,7 +192,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                           S.of(context).nameOfBeneficiary,
                                                                           style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
-                                                                            fontSize: 12,
+                                                                            fontSize: 12.0.t,
                                                                             fontWeight: FontWeight.w400,
                                                                           ),
                                                                         ),
@@ -206,7 +208,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                           maxLines: 2,
                                                                           style: TextStyle(
                                                                             fontFamily: StringUtils.appFont,
-                                                                            fontSize: 12,
+                                                                            fontSize: 12.0.t,
                                                                             fontWeight: FontWeight.w600,
                                                                           ),
                                                                         ),
@@ -216,17 +218,17 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                             );
                                                           }),
                                                       Padding(
-                                                        padding: EdgeInsets.only(top: 24),
+                                                        padding: EdgeInsets.only(top: 24.0.h),
                                                         child: Text(
                                                           S.of(context).selectPurpose,
                                                           style: TextStyle(
                                                               fontFamily: StringUtils.appFont,
-                                                              fontSize: 14,
+                                                              fontSize: 14.0.t,
                                                               fontWeight: FontWeight.w600),
                                                         ),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.only(top: 16),
+                                                        padding: EdgeInsets.only(top: 16.0.h),
                                                         child: AppTextField(
                                                           labelText: S.of(context).purpose,
                                                           hintText: S.of(context).pleaseEnter,
@@ -250,16 +252,17 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           },
                                                           suffixIcon: (value, data) {
                                                             return Container(
-                                                                height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                                height: 16.0.h,
+                                                                width: 16.0.w,
+                                                                padding:
+                                                                    EdgeInsetsDirectional.only(end: 8.0.w),
                                                                 child: AppSvg.asset(AssetUtils.downArrow,
                                                                     color: AppColor.dark_gray_1));
                                                           },
                                                         ),
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsets.only(top: 16),
+                                                        padding: EdgeInsets.only(top: 16.0.h),
                                                         child: AppTextField(
                                                           labelText: S.of(context).purposeDetails,
                                                           hintText: S.of(context).pleaseEnter,
@@ -281,9 +284,10 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           },
                                                           suffixIcon: (value, data) {
                                                             return Container(
-                                                                height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsetsDirectional.only(end: 8),
+                                                                height: 16.0.h,
+                                                                width: 16.0.w,
+                                                                padding:
+                                                                    EdgeInsetsDirectional.only(end: 8.0.w),
                                                                 child: AppSvg.asset(AssetUtils.downArrow,
                                                                     color: AppColor.dark_gray_1));
                                                           },
@@ -294,7 +298,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                           initialData: false,
                                                           dataBuilder: (context, isActive) {
                                                             return Padding(
-                                                              padding: EdgeInsets.only(top: 24),
+                                                              padding: EdgeInsets.only(top: 24.0.h),
                                                               child: Column(
                                                                 children: [
                                                                   AppSwitchLabelWidget(
@@ -326,7 +330,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                   Visibility(
                                                                     visible: isActive!,
                                                                     child: Container(
-                                                                      padding: EdgeInsets.only(top: 16),
+                                                                      padding: EdgeInsets.only(top: 16.0.h),
                                                                       child: Row(
                                                                         children: [
                                                                           AppStreamBuilder<String>(
@@ -381,8 +385,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                               .pleaseSelectYourAction);
                                                                                     },
                                                                                     child: Container(
-                                                                                      height: 50,
-                                                                                      width: 50,
+                                                                                      height: 50.0.h,
+                                                                                      width: 50.0.w,
                                                                                       decoration:
                                                                                           BoxDecoration(
                                                                                               shape: BoxShape
@@ -411,7 +415,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                             child: Padding(
                                                                               padding:
                                                                                   EdgeInsetsDirectional.only(
-                                                                                      start: 14),
+                                                                                      start: 14.0.w),
                                                                               child: AppStreamBuilder<bool>(
                                                                                   stream:
                                                                                       model.addNickNameStream,
@@ -425,13 +429,14 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                             hasFocus);
                                                                                       },
                                                                                       child: Container(
-                                                                                        height: 28,
+                                                                                        height: 28.0.h,
                                                                                         child: TextField(
                                                                                           style: TextStyle(
                                                                                               fontFamily:
                                                                                                   StringUtils
                                                                                                       .appFont,
-                                                                                              fontSize: 14,
+                                                                                              fontSize:
+                                                                                                  14.0.t,
                                                                                               fontWeight:
                                                                                                   FontWeight
                                                                                                       .w600,
@@ -456,7 +461,8 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                                 fontFamily:
                                                                                                     StringUtils
                                                                                                         .appFont,
-                                                                                                fontSize: 14,
+                                                                                                fontSize:
+                                                                                                    14.0.t,
                                                                                                 fontWeight:
                                                                                                     FontWeight
                                                                                                         .w600,
@@ -474,7 +480,7 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                                                             contentPadding:
                                                                                                 EdgeInsets.only(
                                                                                                     bottom:
-                                                                                                        18),
+                                                                                                        18.0.h),
                                                                                           ),
                                                                                           onSubmitted:
                                                                                               (value) {
@@ -496,141 +502,9 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                               ),
                                                             );
                                                           }),
-                                                      // Padding(
-                                                      //   padding: EdgeInsets.only(
-                                                      //       top: 24),
-                                                      //   child: ProfileRowItem(
-                                                      //     title: S
-                                                      //         .of(context)
-                                                      //         .addRecipientToContact,
-                                                      //     initialValue: false,
-                                                      //     activeText:
-                                                      //         S.of(context).yes,
-                                                      //     inactiveText:
-                                                      //         S.of(context).no,
-                                                      //     providerBase:
-                                                      //         anyOtherNationalityViewModelProvider,
-                                                      //     onToggle: (isActive) {
-                                                      //       print(
-                                                      //           'isActive--->$isActive}');
-                                                      //       model.isFriend =
-                                                      //           isActive;
-                                                      //       return Visibility(
-                                                      //         visible: isActive,
-                                                      //         child: Padding(
-                                                      //           padding: EdgeInsets
-                                                      //               .only(
-                                                      //                   top:
-                                                      //                       16.0),
-                                                      //           child: Container(
-                                                      //             padding: EdgeInsets
-                                                      //                 .only(
-                                                      //                     top:
-                                                      //                         16),
-                                                      //             child: Row(
-                                                      //               children: [
-                                                      //                 AppStreamBuilder<
-                                                      //                     String>(
-                                                      //                   stream: model
-                                                      //                       .uploadProfilePhotoStream,
-                                                      //                   initialData:
-                                                      //                       '',
-                                                      //                   onData:
-                                                      //                       (data) {
-                                                      //                     if (data !=
-                                                      //                             null &&
-                                                      //                         data.isNotEmpty) {
-                                                      //                       model.selectedProfile =
-                                                      //                           data;
-                                                      //                       // model.addImage(
-                                                      //                       //     data);
-                                                      //                       _cropImage(
-                                                      //                           data,
-                                                      //                           model,
-                                                      //                           context);
-                                                      //                       // model.showSuccessToast(
-                                                      //                       //     S.of(context).profilePhotoUpdated);
-                                                      //                     }
-                                                      //                   },
-                                                      //                   dataBuilder:
-                                                      //                       (context,
-                                                      //                           data) {
-                                                      //                     print(
-                                                      //                         "got data : ${data}");
-                                                      //                     return AppStreamBuilder<
-                                                      //                         String>(
-                                                      //                       stream:
-                                                      //                           model.selectedImageValue,
-                                                      //                       initialData:
-                                                      //                           '',
-                                                      //                       dataBuilder:
-                                                      //                           (context, image) {
-                                                      //                         return InkWell(
-                                                      //                           onTap: () {
-                                                      //                             ChooseProfileWidget.show(context, onCameraTap: () {
-                                                      //                               Navigator.pop(context);
-                                                      //                               model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                                      //                             }, onGalleryTap: () {
-                                                      //                               Navigator.pop(context);
-                                                      //                               model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                                      //                             }, onRemoveTap: () {
-                                                      //                               model.removeImage();
-                                                      //                               Navigator.pop(context);
-                                                      //                             }, onCancelled: () {
-                                                      //                               Navigator.pop(context);
-                                                      //                             }, title: S.of(context).pleaseSelectYourAction);
-                                                      //                           },
-                                                      //                           child: Container(
-                                                      //                             height: 50,
-                                                      //                             width: 50,
-                                                      //                             decoration: BoxDecoration(shape: BoxShape.circle),
-                                                      //                             child: ClipOval(
-                                                      //                               child: image!.isEmpty
-                                                      //                                   ? AppSvg.asset(
-                                                      //                                       AssetUtils.personCircle,
-                                                      //                                       fit: BoxFit.fill,
-                                                      //                                     )
-                                                      //                                   : Image.file(
-                                                      //                                       File(image),
-                                                      //                                       fit: BoxFit.fill,
-                                                      //                                     ),
-                                                      //                             ),
-                                                      //                           ),
-                                                      //                         );
-                                                      //                       },
-                                                      //                     );
-                                                      //                   },
-                                                      //                 ),
-                                                      //                 Expanded(
-                                                      //                   child:
-                                                      //                       Padding(
-                                                      //                     padding:
-                                                      //                         EdgeInsets.only(left: 14),
-                                                      //                     child:
-                                                      //                         Text(
-                                                      //                       (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty)
-                                                      //                           ? model.transferResponse.name!
-                                                      //                           : '-',
-                                                      //                       maxLines:
-                                                      //                           2,
-                                                      //                       style: TextStyle(
-                                                      //                           fontSize: 14,
-                                                      //                           fontWeight: FontWeight.w600,
-                                                      //                           color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                      //                     ),
-                                                      //                   ),
-                                                      //                 )
-                                                      //               ],
-                                                      //             ),
-                                                      //           ),
-                                                      //         ),
-                                                      //       );
-                                                      //     },
-                                                      //   ),
-                                                      // ),
                                                       Padding(
                                                         padding: EdgeInsets.only(
-                                                          top: 16,
+                                                          top: 16.0.h,
                                                         ),
                                                         child: Align(
                                                           alignment: Alignment.center,
@@ -657,13 +531,13 @@ class SendToNewRecipientPageView extends BasePageViewWidget<SendToNewRecipientVi
                                                   Navigator.pop(context);
                                                 },
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(top: 20, bottom: 16),
+                                                  padding: EdgeInsets.only(top: 20.0.h, bottom: 16.0.h),
                                                   child: Text(
                                                     S.of(context).backToPayments,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.brightBlue,
-                                                      fontSize: 12,
+                                                      fontSize: 12.0.t,
                                                       fontWeight: FontWeight.w500,
                                                     ),
                                                   ),

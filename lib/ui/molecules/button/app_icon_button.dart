@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class AppIconButton extends StatelessWidget {
   final String icon;
@@ -8,12 +9,7 @@ class AppIconButton extends StatelessWidget {
   final double? iconSize;
   final double? height;
 
-  const AppIconButton(
-      {Key? key,
-      required this.icon,
-      this.onTap,
-      this.iconSize: 28,
-      this.height: 56})
+  const AppIconButton({Key? key, required this.icon, this.onTap, this.iconSize: 28, this.height})
       : super(key: key);
 
   @override
@@ -21,7 +17,7 @@ class AppIconButton extends StatelessWidget {
     return InkWell(
       onTap: onTap?.call(),
       child: Container(
-        height: height,
+        height: height ?? 56.h,
         decoration: BoxDecoration(
           color: Theme.of(context).accentColor,
           borderRadius: BorderRadius.circular(100),
@@ -30,8 +26,8 @@ class AppIconButton extends StatelessWidget {
         alignment: Alignment.center,
         child: AppSvg.asset(icon,
             color: Theme.of(context).primaryColorDark,
-            width: iconSize,
-            height: iconSize,
+            width: iconSize?.w,
+            height: iconSize?.h,
             fit: BoxFit.contain),
       ),
     );

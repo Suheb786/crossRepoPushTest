@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -73,7 +74,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 92),
+                            padding: EdgeInsets.only(top: 92.h),
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
@@ -84,7 +85,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                 Align(
                                   alignment: Alignment.center,
                                   child: Container(
-                                    height: 111.37,
+                                    height: 111.37.h,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: Theme.of(context).canvasColor,
@@ -98,7 +99,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                             ),
                           ),
                           SizedBox(
-                            height: 34.7,
+                            height: 34.7.h,
                           ),
                           Center(
                             child: Column(
@@ -109,21 +110,21 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 24,
+                                      fontSize: 24.t,
                                       color: Theme.of(context).accentColor),
                                 ),
                                 SizedBox(
-                                  height: 24,
+                                  height: 24.h,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                                  padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                                   child: Text(
                                     S.of(context).newDeviceRegisteredSuccessfully,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         color: Theme.of(context).accentColor),
                                   ),
                                 ),
@@ -142,11 +143,11 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                           borderColor: Theme.of(context).accentColor,
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 5.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 32,
+                          padding: EdgeInsets.only(
+                            bottom: 32.h,
                           ),
                           child: Center(
                             child: Text(
@@ -155,7 +156,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 12,
+                                fontSize: 12.t,
                               ),
                             ),
                           ),

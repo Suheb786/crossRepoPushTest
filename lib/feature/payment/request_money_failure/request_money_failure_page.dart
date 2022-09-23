@@ -10,8 +10,8 @@ class RequestMoneyFailurePage extends BasePage<RequestMoneyFailureViewModel> {
   RequestMoneyFailurePageState createState() => RequestMoneyFailurePageState();
 }
 
-class RequestMoneyFailurePageState extends BaseStatefulPage<
-    RequestMoneyFailureViewModel, RequestMoneyFailurePage> {
+class RequestMoneyFailurePageState
+    extends BaseStatefulPage<RequestMoneyFailureViewModel, RequestMoneyFailurePage> {
   @override
   ProviderBase provideBase() {
     return requestMoneyFailureViewModelProvider;

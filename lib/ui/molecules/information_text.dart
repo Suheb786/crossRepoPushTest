@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class InformationText extends StatelessWidget {
@@ -22,9 +23,9 @@ class InformationText extends StatelessWidget {
     return Row(
       children: [
         Container(
-          height: 56,
-          width: 56,
-          padding: EdgeInsets.all(16),
+          height: 56.h,
+          width: 56.w,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           decoration: BoxDecoration(
             color: containerColor,
             shape: BoxShape.circle,
@@ -32,7 +33,7 @@ class InformationText extends StatelessWidget {
           child: AppSvg.asset(image!, color: iconColor),
         ),
         SizedBox(
-          width: 16,
+          width: 16.w,
         ),
         Expanded(
           child: Text(
@@ -41,7 +42,7 @@ class InformationText extends StatelessWidget {
                 fontFamily: StringUtils.appFont,
                 color: textColor ?? Theme.of(context).primaryTextTheme.bodyText1!.color!,
                 fontWeight: FontWeight.w600,
-                fontSize: 14),
+                fontSize: 14.t),
           ),
         )
       ],

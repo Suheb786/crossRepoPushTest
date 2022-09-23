@@ -2,8 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:data/network/utils/app_http_overrides.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,18 +21,23 @@ void main() async {
     await Firebase.initializeApp();
 
     // Pass all uncaught errors from the framework to Crashlytics.
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    // await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
-    runApp(ProviderScope(child: MyApp()));
+    runApp(ProviderScope(
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(), // Wrap your app
+      ),
+    ));
   }, (error, stackTrace) async {
-    FirebaseCrashlytics.instance.recordError(
-      error,
-      stackTrace,
-      fatal: true,
-      reason: 'a fatal error',
-      printDetails: true,
-    );
+    // FirebaseCrashlytics.instance.recordError(
+    //   error,
+    //   stackTrace,
+    //   fatal: true,
+    //   reason: 'a fatal error',
+    //   printDetails: true,
+    // );
   });
 }
 

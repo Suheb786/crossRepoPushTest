@@ -22,6 +22,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -175,7 +176,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                     },
                                     child: Card(
                                       child: Padding(
-                                          padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                                          padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.stretch,
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,12 +184,12 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                               Column(
                                                 children: [
                                                   Padding(
-                                                    padding: const EdgeInsets.only(top: 35.0, bottom: 32),
+                                                    padding: EdgeInsets.only(top: 35.0.h, bottom: 32.h),
                                                     child: Container(
-                                                      height: 78,
-                                                      width: 78,
+                                                      height: 78.h,
+                                                      width: 78.w,
                                                       padding: EdgeInsets.symmetric(
-                                                          horizontal: 25.07, vertical: 22.29),
+                                                          horizontal: 25.07.w, vertical: 22.29.h),
                                                       decoration: BoxDecoration(
                                                         color: AppColor.vividYellow,
                                                         shape: BoxShape.circle,
@@ -203,11 +204,11 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                     style: TextStyle(
                                                         fontFamily: StringUtils.appFont,
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: 20,
+                                                        fontSize: 20.t,
                                                         color: Theme.of(context).primaryColorDark),
                                                   ),
                                                   Padding(
-                                                    padding: const EdgeInsets.only(top: 32.0),
+                                                    padding: EdgeInsets.only(top: 32.0.h),
                                                     child: CountdownTimer(
                                                       controller: model.countDownController,
                                                       onEnd: () {},
@@ -220,10 +221,10 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                                   model.checkAvailableAgent();
                                                                 },
                                                                 child: Text(
-                                                                  'Search Again',
+                                                                  S.of(context).searchAgain,
                                                                   style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
-                                                                      fontSize: 14,
+                                                                      fontSize: 14.t,
                                                                       color: Theme.of(context)
                                                                           .accentTextTheme
                                                                           .bodyText1!
@@ -235,7 +236,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                                 style: TextStyle(
                                                                     fontFamily: StringUtils.appFont,
                                                                     fontWeight: FontWeight.w600,
-                                                                    fontSize: 14,
+                                                                    fontSize: 14.t,
                                                                     color: Theme.of(context)
                                                                         .accentTextTheme
                                                                         .bodyText1!
@@ -253,7 +254,7 @@ class VideoCallAgentSelectionPageView extends BasePageViewWidget<VideoCallAgentS
                                                 style: TextStyle(
                                                     fontFamily: StringUtils.appFont,
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 12,
+                                                    fontSize: 12.t,
                                                     color: Theme.of(context).primaryColorDark),
                                               ),
                                             ],

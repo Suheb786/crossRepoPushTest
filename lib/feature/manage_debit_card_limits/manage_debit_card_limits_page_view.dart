@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_l
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -69,7 +70,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                   Column(
                     children: [
                       SizedBox(
-                        height: 50,
+                        height: 50.h,
                       ),
                       Text(
                         S.of(context).manageCardLimits,
@@ -79,11 +80,11 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                           color: model.cardLimitsArguments.cardType == CardType.DEBIT
                               ? Theme.of(context).primaryColorDark
                               : Theme.of(context).accentColor,
-                          fontSize: 13,
+                          fontSize: 13.t,
                         ),
                       ),
                       SizedBox(
-                        height: 35,
+                        height: 35.h,
                       ),
                     ],
                   ),
@@ -95,16 +96,17 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                 color: AppColor.white,
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-                            padding: const EdgeInsetsDirectional.only(start: 30, end: 30, bottom: 30, top: 5),
+                            padding:
+                                EdgeInsetsDirectional.only(start: 30.w, end: 30.w, bottom: 30.h, top: 5.h),
                             child: Column(
                               children: [
                                 Container(
-                                  width: 60,
-                                  height: 3,
+                                  width: 60.w,
+                                  height: 3.h,
                                   color: AppColor.whiteGrey,
                                 ),
                                 SizedBox(
-                                  height: 45,
+                                  height: 45.h,
                                 ),
                                 debitCardLimitResponse!.status == Status.SUCCESS
                                     ? Expanded(
@@ -115,7 +117,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                             shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(16.0),
                                             ),
-                                            margin: EdgeInsets.only(bottom: 45),
+                                            margin: EdgeInsets.only(bottom: 45.h),
                                             elevation: 20,
                                             child: AppStreamBuilder<Resource<bool>>(
                                                 stream: model.updateCardLimitsStream,
@@ -508,9 +510,9 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                       }
                                     },
                                     child: Container(
-                                      margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                                      padding: EdgeInsets.all(18),
-                                      height: 56,
+                                      margin: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+                                      padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
+                                      height: 56.h,
                                       width: double.maxFinite,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(100),
@@ -520,7 +522,7 @@ class ManageDebitCardLimitsPageView extends BasePageViewWidget<ManageDebitCardLi
                                         child: Text(S.of(context).saveChanges,
                                             style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
-                                                fontSize: 14,
+                                                fontSize: 14.t,
                                                 fontWeight: FontWeight.w600,
                                                 letterSpacing: 1,
                                                 color: Theme.of(context).accentColor)),

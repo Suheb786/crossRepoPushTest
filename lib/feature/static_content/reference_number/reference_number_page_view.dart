@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page_view-model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ReferenceNumberPageView extends BasePageViewWidget<ReferenceNumberPageViewModel> {
@@ -12,7 +13,7 @@ class ReferenceNumberPageView extends BasePageViewWidget<ReferenceNumberPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
       height: double.infinity,
       decoration: BoxDecoration(
           color: AppColor.white,
@@ -31,7 +32,7 @@ class ReferenceNumberPageView extends BasePageViewWidget<ReferenceNumberPageView
                 ''',
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
-                    fontSize: 14,
+                    fontSize: 14.t,
                     fontWeight: FontWeight.w400,
                     color: Theme.of(context).primaryTextTheme.bodyText1!.color),
               ),

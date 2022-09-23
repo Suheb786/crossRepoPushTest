@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ReviewApplicationNonEditableItem extends StatelessWidget {
@@ -13,7 +14,7 @@ class ReviewApplicationNonEditableItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 8, bottom: 8),
+      padding: EdgeInsets.only(top: 8.h, bottom: 8.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,7 +25,7 @@ class ReviewApplicationNonEditableItem extends StatelessWidget {
               softWrap: true,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: 12,
+                  fontSize: 12.t,
                   fontWeight: FontWeight.w400,
                   color: AppColor.very_dark_gray),
             ),
@@ -35,7 +36,7 @@ class ReviewApplicationNonEditableItem extends StatelessWidget {
               softWrap: true,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
-                  fontSize: 12,
+                  fontSize: 12.t,
                   fontWeight: FontWeight.w400,
                   color: AppColor.dark_gray_1),
             ),

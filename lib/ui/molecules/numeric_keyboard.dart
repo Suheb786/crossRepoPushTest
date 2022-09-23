@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 typedef KeyboardTapCallback = void Function(String text);
@@ -80,14 +81,14 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
               InkWell(
                   borderRadius: BorderRadius.circular(45),
                   onTap: widget.leftButtonFn,
-                  child:
-                      Container(alignment: Alignment.center, width: 50, height: 50, child: widget.leftIcon)),
+                  child: Container(
+                      alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.leftIcon)),
               _calcButton('0'),
               InkWell(
                   borderRadius: BorderRadius.circular(45),
                   onTap: widget.rightButtonFn,
                   child: Container(
-                      alignment: Alignment.center, width: 50, height: 50, child: widget.rightWidget))
+                      alignment: Alignment.center, width: 50.0.w, height: 50.0.h, child: widget.rightWidget))
             ],
           ),
         ],
@@ -103,13 +104,13 @@ class _NumericKeyboardState extends State<NumericKeyboard> {
         },
         child: Container(
           alignment: Alignment.center,
-          width: 50,
-          height: 50,
+          width: 50.0.w,
+          height: 50.0.h,
           child: Text(
             value,
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
-                fontSize: 26,
+                fontSize: 26.0.t,
                 fontWeight: FontWeight.normal,
                 color: widget.textColor),
           ),

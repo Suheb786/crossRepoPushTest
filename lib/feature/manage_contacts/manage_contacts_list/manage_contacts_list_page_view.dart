@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageContactListPageView extends BasePageViewWidget<ManageContactListPageViewModel> {
@@ -22,13 +23,13 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
     return Container(
       height: double.infinity,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       decoration: BoxDecoration(
           color: Theme.of(context).accentColor,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Column(
         children: [
-          SizedBox(height: 24),
+          SizedBox(height: 24.h),
           // Container(
           //   margin: EdgeInsetsDirectional.only(top: 8, bottom: 24),
           //   height: 4,
@@ -51,9 +52,9 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
               return InkWell(
                 onTap: () async {},
                 child: Container(
-                    height: 16,
-                    width: 16,
-                    padding: EdgeInsetsDirectional.only(end: 8),
+                    height: 16.h,
+                    width: 16.w,
+                    padding: EdgeInsetsDirectional.only(end: 8.w),
                     child: AppSvg.asset(AssetUtils.search, color: Theme.of(context).primaryColorDark)),
               );
             },
@@ -67,25 +68,25 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Container(
-                                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                                 decoration: BoxDecoration(
-                                    color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
+                                    color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16.w)),
                                 child: Text(
                                   S.of(context).addingContactsDesc,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontWeight: FontWeight.w600,
                                       color: Theme.of(context).primaryColorDark),
                                 )),
                             Expanded(
                               child: Card(
-                                margin: EdgeInsets.symmetric(vertical: 16),
+                                margin: EdgeInsets.symmetric(vertical: 16.h),
                                 child: ListView.builder(
-                                  padding: EdgeInsets.symmetric(vertical: 20),
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
                                   itemBuilder: (context, index) {
                                     ///send data from api response once updated
                                     return ContactListWidget(
@@ -116,15 +117,15 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                height: 96,
-                                width: 96,
-                                margin: EdgeInsetsDirectional.only(bottom: 12),
+                                height: 96.h,
+                                width: 96.w,
+                                margin: EdgeInsetsDirectional.only(bottom: 12.h),
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                         color: Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
                                 child: Container(
-                                    padding: EdgeInsetsDirectional.all(32),
+                                    padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
                                     child: AppSvg.asset(AssetUtils.contacts)),
                               ),
                               Text(
@@ -132,7 +133,7 @@ class ManageContactListPageView extends BasePageViewWidget<ManageContactListPage
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     fontWeight: FontWeight.w600),
                               )
                             ],

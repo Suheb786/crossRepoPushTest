@@ -7,6 +7,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class VerifyCreditCardVideoCallWidget extends StatelessWidget {
@@ -20,7 +21,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsetsDirectional.all(15),
+        padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -40,19 +41,18 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 23, end: 23, start: 23),
-                  child: AppSvg.asset(AssetUtils.blink_updated_logo,
-                      height: isSmallDevices ? 26 : 33.64, width: isSmallDevices ? 52 : 72),
+                  padding: EdgeInsetsDirectional.only(top: 23.0.h, end: 23.0.w, start: 23.0.w),
+                  child: AppSvg.asset(AssetUtils.blink_updated_logo, height: 33.64.h, width: 72.0.w),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.only(top: isSmallDevices ? 20 : 58),
+                  padding: EdgeInsetsDirectional.only(top: 58.0.h),
                   child: Align(
                     alignment: Alignment.center,
-                    child: AppSvg.asset(AssetUtils.cardCircle, height: isSmallDevices ? 72 : 96),
+                    child: AppSvg.asset(AssetUtils.cardCircle, height: 96.0.h),
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsetsDirectional.only(top: 10, start: 23, end: 23),
+                    padding: EdgeInsetsDirectional.only(top: 10.0.h, start: 23.0.w, end: 23.0.w),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
@@ -60,17 +60,17 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: isSmallDevices ? 12 : 14,
+                            fontSize: 14.0.t,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).accentColor),
                       ),
                     )),
                 Padding(
                   padding: EdgeInsetsDirectional.only(
-                      top: isSmallDevices ? 50 : 88,
+                      top: 88.0.h,
                       // bottom: isSmallDevices ? 30 : 50,
-                      start: isSmallDevices ? 34 : 24,
-                      end: isSmallDevices ? 34 : 24),
+                      start: 24.0.w,
+                      end: 24.0.w),
                   child: Center(
                     child: InkWell(
                       onTap: () {
@@ -78,7 +78,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                             arguments: CreditCardVideoCallInitiateArgs(creditCard: creditCard));
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+                        padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 17.0.h),
                         decoration: BoxDecoration(
                             color: Theme.of(context).accentTextTheme.bodyText1?.color,
                             borderRadius: BorderRadius.circular(100)),
@@ -87,7 +87,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                             S.of(context).verifyNow,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
-                                fontSize: isSmallDevices ? 12 : 14,
+                                fontSize: 14.0.t,
                                 fontWeight: FontWeight.w600,
                                 color: Theme.of(context).accentColor),
                           ),

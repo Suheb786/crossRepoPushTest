@@ -12,6 +12,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -30,11 +31,11 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
   Widget build(BuildContext context, model) {
     return Container(
       color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageStream,
@@ -57,7 +58,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 36),
+            padding: EdgeInsets.symmetric(vertical: 36.h),
             child: AppStreamBuilder<int>(
               stream: model.currentPageStream,
               initialData: 0,
@@ -68,13 +69,13 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                       S.of(context).accountRegistration,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
-                          fontSize: 10,
+                          fontSize: 10.t,
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
+                          top: 8.0.h, bottom: currentStep == 2 ? 0 : 32.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -93,7 +94,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -105,7 +106,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                           return Visibility(
                             visible: currentStep == 2,
                             child: Padding(
-                              padding: EdgeInsets.only(bottom: 32),
+                              padding: EdgeInsets.only(bottom: 32.h),
                               child: ShowUpAnimation(
                                 delayStart: Duration(milliseconds: 500),
                                 animationDuration: Duration(milliseconds: 750),
@@ -121,7 +122,7 @@ class AccountRegistrationPageView extends BasePageViewWidget<AccountRegistration
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: Theme.of(context).accentColor,
-                                        fontSize: 20,
+                                        fontSize: 20.t,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),

@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
@@ -21,15 +22,15 @@ class TransactionWidget extends StatelessWidget {
           //transactions!.label!,
           style: TextStyle(
               fontFamily: StringUtils.appFont,
-              fontSize: 15,
+              fontSize: 15.0.t,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).primaryColorDark),
         ),
         Card(
-          margin: EdgeInsets.only(top: 16, bottom: 32),
+          margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Row(
@@ -45,19 +46,19 @@ class TransactionWidget extends StatelessWidget {
                           maxLines: 2,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
-                            fontSize: 12,
+                            fontSize: 12.0.t,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: EdgeInsets.only(top: 4.0.h),
                           child: Text(
                             TimeUtils.getFormattedTimeForTransaction(
                                 transactions!.transactions![index].time!.toString()),
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
-                                fontSize: 12,
+                                fontSize: 12.0.t,
                                 fontWeight: FontWeight.w600),
                           ),
                         )
@@ -84,20 +85,20 @@ class TransactionWidget extends StatelessWidget {
                                     ? AppColor.dark_brown
                                     : AppColor.darkModerateLimeGreen,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 14),
+                                fontSize: 14.0.t),
                           ),
                           Text(
                             " ${transactions!.transactions![index].amountCur}",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 4,
+                        height: 4.0.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -108,14 +109,14 @@ class TransactionWidget extends StatelessWidget {
                                 fontFamily: StringUtils.appFont,
                                 color: Theme.of(context).inputDecorationTheme.hintStyle!.color,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 12),
+                                fontSize: 12.0.t),
                           ),
                           Text(
                             " ${transactions!.transactions![index].balanceCur}",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 10,
+                                fontSize: 10.0.t,
                                 color: Theme.of(context).inputDecorationTheme.hintStyle!.color),
                           ),
                         ],
@@ -129,7 +130,7 @@ class TransactionWidget extends StatelessWidget {
             itemCount: transactions!.transactions!.length,
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                padding: EdgeInsets.symmetric(vertical: 15.0.h),
                 child: Container(
                   height: 1,
                   color: AppColor.light_grayish_violet,

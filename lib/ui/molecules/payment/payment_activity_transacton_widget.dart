@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
@@ -22,22 +23,22 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
           transactions!.rtpDate!.day.toString() + " " + DateFormat.MMMM().format(transactions!.rtpDate!),
           style: TextStyle(
               fontFamily: StringUtils.appFont,
-              fontSize: 15,
+              fontSize: 15.0.t,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).primaryColorDark),
         ),
         Card(
-          margin: EdgeInsets.only(top: 16, bottom: 32),
+          margin: EdgeInsets.only(top: 16.0.h, bottom: 32.0.h),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
             physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+            padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 17.0.h),
             itemBuilder: (context, index) {
               return Row(
                 children: [
                   Container(
-                      height: 50,
-                      width: 50,
+                      height: 50.0.h,
+                      width: 50.0.w,
                       decoration:
                           BoxDecoration(shape: BoxShape.circle, color: Theme.of(context).primaryColor),
                       child: Center(
@@ -49,24 +50,24 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700,
-                              fontSize: 14),
+                              fontSize: 14.0.t),
                         ),
                       )),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.only(start: 14),
+                      padding: EdgeInsetsDirectional.only(start: 14.0.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Text(
                           //   "You requested ${transactions!.data![index].amount}",
                           //   style: TextStyle(fontFamily: StringUtils.appFont,
-                          //       fontWeight: FontWeight.w800, fontSize: 12),
+                          //       fontWeight: FontWeight.w800, fontSize: 12.0.t),
                           // ),
                           // Text(
                           //   "from ${transactions!.data![index].name}",
                           //   style: TextStyle(fontFamily: StringUtils.appFont,
-                          //       fontWeight: FontWeight.w800, fontSize: 12),
+                          //       fontWeight: FontWeight.w800, fontSize: 12.0.t),
                           // ),
                           RichText(
                               maxLines: 3,
@@ -74,7 +75,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   text: S.of(context).youRequested,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 12,
+                                      fontSize: 12.0.t,
                                       overflow: TextOverflow.ellipsis,
                                       fontWeight: FontWeight.w400,
                                       color: Theme.of(context).primaryColorDark),
@@ -83,7 +84,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                         text: " ${transactions!.data![index].amount} ${S.of(context).JOD}",
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 12,
+                                            fontSize: 12.0.t,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context).primaryColorDark),
                                         children: [
@@ -91,7 +92,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                               text: S.of(context).from,
                                               style: TextStyle(
                                                   fontFamily: StringUtils.appFont,
-                                                  fontSize: 12,
+                                                  fontSize: 12.0.t,
                                                   fontWeight: FontWeight.w400,
                                                   color: Theme.of(context).primaryColorDark),
                                               children: [
@@ -99,7 +100,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                                   text: " ${transactions!.data![index].name}",
                                                   style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
-                                                      fontSize: 12,
+                                                      fontSize: 12.0.t,
                                                       overflow: TextOverflow.ellipsis,
                                                       fontWeight: FontWeight.w600,
                                                       color: Theme.of(context).primaryColorDark),
@@ -108,7 +109,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                         ])
                                   ])),
                           Padding(
-                            padding: EdgeInsets.only(top: 5),
+                            padding: EdgeInsets.only(top: 5.0.h),
                             child: Row(
                               children: [
                                 Text(
@@ -117,13 +118,13 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.gray1,
-                                      fontSize: 12,
+                                      fontSize: 12.0.t,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.only(start: 9),
+                                  padding: EdgeInsetsDirectional.only(start: 9.0.w),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                    padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 2.0.h),
                                     decoration: BoxDecoration(
                                         color: getColor(transactions!.data![index].status!),
                                         borderRadius: BorderRadius.circular(100)),
@@ -134,7 +135,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                                             fontFamily: StringUtils.appFont,
                                             color: Theme.of(context).accentColor,
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 12),
+                                            fontSize: 12.0.t),
                                       ),
                                     ),
                                   ),
@@ -147,7 +148,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16),
+                    padding: EdgeInsets.symmetric(vertical: 16.0.h),
                     child: Divider(
                       thickness: 4,
                       color: Colors.red,
@@ -160,7 +161,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
             itemCount: transactions!.data!.length,
             separatorBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                padding: EdgeInsets.symmetric(vertical: 15.0.h),
                 child: Container(
                   height: 1,
                   color: AppColor.light_grayish_violet,

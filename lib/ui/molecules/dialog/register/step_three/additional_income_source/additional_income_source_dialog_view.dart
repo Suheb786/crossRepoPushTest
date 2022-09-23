@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'additional_income_source_dialog_view_model.dart';
@@ -39,8 +40,8 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
+              insetPadding: EdgeInsets.only(
+                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -56,12 +57,14 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
+                          padding: EdgeInsets.only(top: 32.0.h),
                           child: Center(
                             child: Text(
                               S.of(context).additionalIncome,
                               style: TextStyle(
-                                  fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w600),
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                         ),
@@ -74,7 +77,7 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                             itemBuilder: (context, index) {
                               if (index == data!.data!.length) {
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 24),
+                                  padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 24.h),
                                   child: AppTextField(
                                     labelText: S.of(context).totalAnnualIncome,
                                     hintText: '',
@@ -87,12 +90,12 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                                     labelColor: AppColor.very_dark_gray_black,
                                     prefixIcon: () {
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.only(top: 8.0, end: 8),
+                                        padding: EdgeInsetsDirectional.only(top: 8.0.h, end: 8.w),
                                         child: Text(
                                           S.of(context).JOD,
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w600,
                                               color: AppColor.very_dark_gray_black),
                                         ),
@@ -152,9 +155,9 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                                 totalIncome: model.totalAnnualIncomeController.text));
                           },
                           child: Container(
-                            padding: EdgeInsets.all(16),
-                            height: 57,
-                            width: 57,
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                            height: 57.h,
+                            width: 57.w,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -162,13 +165,13 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                          padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                           child: Center(
                             child: Text(
                               S.of(context).swipeDownToCancel,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
-                                  fontSize: 10,
+                                  fontSize: 10.t,
                                   fontWeight: FontWeight.w400,
                                   color: AppColor.dark_gray_1),
                             ),

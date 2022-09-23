@@ -114,7 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
             "Add this recipient to your Blink contacts"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
-            "You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money."),
+            "You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
@@ -1624,6 +1624,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don’t have any contacts yet.\nAdd your Blink contacts while\nsending money"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "noDataFound": MessageLookupByLibrary.simpleMessage("No Data Found"),
         "noDataFoundInFI": MessageLookupByLibrary.simpleMessage(
             "No data Found in Financial Institutions"),
         "noDebitCardFound": MessageLookupByLibrary.simpleMessage(
@@ -2072,6 +2073,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
         "scrollToSetDate": m5,
+        "searchAgain": MessageLookupByLibrary.simpleMessage("Search Again"),
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchContacts":
             MessageLookupByLibrary.simpleMessage("Search contacts"),
@@ -2165,6 +2167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("###-##-####"),
         "socialSecurityNUmber":
             MessageLookupByLibrary.simpleMessage("SOCIAL SECURITY NUMBER"),
+        "somethingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "spendJod": MessageLookupByLibrary.simpleMessage(
             "Spend 1 JOD and stand a chance\nto win 1,000 JOD daily."),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),

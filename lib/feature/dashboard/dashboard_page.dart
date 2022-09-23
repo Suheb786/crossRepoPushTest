@@ -10,8 +10,7 @@ class DashboardPage extends BasePage<DashboardPageViewModel> {
   DashboardPageState createState() => DashboardPageState();
 }
 
-class DashboardPageState
-    extends BaseStatefulPage<DashboardPageViewModel, DashboardPage> {
+class DashboardPageState extends BaseStatefulPage<DashboardPageViewModel, DashboardPage> {
   @override
   ProviderBase provideBase() {
     return dashboardViewModelProvider;

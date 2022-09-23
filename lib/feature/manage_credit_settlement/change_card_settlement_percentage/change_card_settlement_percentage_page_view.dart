@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -25,7 +26,7 @@ class ChangeCardSettlementPercentagePageView
   @override
   Widget build(BuildContext context, model) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 24),
+      padding: EdgeInsets.symmetric(vertical: 50.0.h, horizontal: 24.0.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -34,11 +35,11 @@ class ChangeCardSettlementPercentagePageView
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
-                fontSize: 10,
+                fontSize: 10.t,
                 color: Theme.of(context).accentColor),
           ),
           SizedBox(
-            height: 8,
+            height: 8.h,
           ),
           Text(
             S.of(context).selectNewPercentage,
@@ -46,11 +47,11 @@ class ChangeCardSettlementPercentagePageView
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 fontWeight: FontWeight.w600,
-                fontSize: 20,
+                fontSize: 20.t,
                 color: Theme.of(context).accentColor),
           ),
           SizedBox(
-            height: 32,
+            height: 32.h,
           ),
           Expanded(
               child: AppStreamBuilder<Resource<bool>>(
@@ -68,7 +69,7 @@ class ChangeCardSettlementPercentagePageView
                   dataBuilder: (context, snapshot) {
                     return Card(
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32),
+                        padding: EdgeInsets.symmetric(vertical: 32.h),
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (StringUtils.isDirectionRTL(context)) {
@@ -88,32 +89,32 @@ class ChangeCardSettlementPercentagePageView
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 24,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 24.w,
                                     ),
                                     child: Text(
                                       S.of(context).currentSettlementPercentage,
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    padding: EdgeInsets.symmetric(vertical: 16.h),
                                     child: AppDivider(
                                       color: AppColor.lightGrayishBlue,
-                                      indent: 12,
-                                      endIndent: 8,
+                                      indent: 12.w,
+                                      endIndent: 8.w,
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
                                     child: Row(
                                       children: [
                                         Container(
-                                          padding: EdgeInsets.all(12),
+                                          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                                           decoration: BoxDecoration(
                                               color: Theme.of(context).backgroundColor,
                                               shape: BoxShape.circle),
@@ -123,7 +124,7 @@ class ChangeCardSettlementPercentagePageView
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 8,
+                                          width: 8.w,
                                         ),
                                         Text(
                                           model.arguments?.creditCard.minimumSettlement != null
@@ -131,22 +132,22 @@ class ChangeCardSettlementPercentagePageView
                                               : "",
                                           style: TextStyle(
                                               fontFamily: StringUtils.appFont,
-                                              fontSize: 14,
+                                              fontSize: 14.t,
                                               fontWeight: FontWeight.w400),
                                         )
                                       ],
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    padding: EdgeInsets.symmetric(vertical: 16.h),
                                     child: AppDivider(
                                       color: AppColor.lightGrayishBlue,
-                                      indent: 12,
-                                      endIndent: 8,
+                                      indent: 12.w,
+                                      endIndent: 8.w,
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                                    padding: EdgeInsets.symmetric(horizontal: 24.w),
                                     child: AppTextField(
                                       labelText: S.of(context).newSettlementPercentage.toUpperCase(),
                                       hintText: S.of(context).pleaseSelect,
@@ -167,9 +168,9 @@ class ChangeCardSettlementPercentagePageView
                                       },
                                       suffixIcon: (value, data) {
                                         return Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsetsDirectional.only(end: 8),
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsetsDirectional.only(end: 8.w),
                                             child: AppSvg.asset(AssetUtils.downArrow,
                                                 color: AppColor.dark_gray_1));
                                       },
@@ -180,7 +181,7 @@ class ChangeCardSettlementPercentagePageView
                               Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                                    padding: EdgeInsets.symmetric(vertical: 12.0.h),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
                                         initialData: false,
@@ -204,7 +205,7 @@ class ChangeCardSettlementPercentagePageView
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.brightBlue,
                                           letterSpacing: 1,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),

@@ -17,6 +17,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -69,8 +70,8 @@ class CreditCardVideoCallInitiatePageView
                   title: S.of(context).videoCall,
                   descriptionWidget: Text(
                     S.of(context).agentNotAvailablePopUpDesc,
-                    style:
-                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont, fontSize: 14.t, fontWeight: FontWeight.w400),
                   ),
                   onDismissed: () {}, onSelected: () {
                 Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
@@ -96,7 +97,7 @@ class CreditCardVideoCallInitiatePageView
               },
               dataBuilder: (context, snapshot) {
                 return Padding(
-                  padding: EdgeInsetsDirectional.only(top: 56.0, start: 24, end: 24, bottom: 36),
+                  padding: EdgeInsetsDirectional.only(top: 56.0.h, start: 24.w, end: 24.w, bottom: 36.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -105,9 +106,9 @@ class CreditCardVideoCallInitiatePageView
                             Navigator.pop(context);
                           },
                           child: AppSvg.asset(AssetUtils.leftArrow,
-                              color: Theme.of(context).accentColor, height: 24, width: 24)),
+                              color: Theme.of(context).accentColor, height: 24.h, width: 24.w)),
                       SizedBox(
-                        height: 16,
+                        height: 16.h,
                       ),
                       Center(
                         child: Text(
@@ -115,12 +116,12 @@ class CreditCardVideoCallInitiatePageView
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 10,
+                              fontSize: 10.t,
                               color: Theme.of(context).accentColor),
                         ),
                       ),
                       SizedBox(
-                        height: 8,
+                        height: 8.h,
                       ),
                       Center(
                         child: Text(
@@ -129,12 +130,12 @@ class CreditCardVideoCallInitiatePageView
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               color: Theme.of(context).accentColor),
                         ),
                       ),
                       SizedBox(
-                        height: 32,
+                        height: 32.h,
                       ),
                       Expanded(
                           child: Card(
@@ -147,17 +148,17 @@ class CreditCardVideoCallInitiatePageView
                             Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 35.0, bottom: 24),
+                                  padding: EdgeInsets.only(top: 35.0.h, bottom: 24.h),
                                   child: Container(
                                     // height: 78,
                                     // width: 78,
-                                    padding: EdgeInsets.all(24),
+                                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                                     decoration: BoxDecoration(
                                       color: AppColor.vividYellow,
                                       shape: BoxShape.circle,
                                     ),
                                     child: AppSvg.asset(AssetUtils.ccAgent,
-                                        width: 32, height: 32, color: Theme.of(context).primaryColorDark),
+                                        width: 32.w, height: 32.h, color: Theme.of(context).primaryColorDark),
                                   ),
                                 ),
                                 Text(
@@ -166,20 +167,20 @@ class CreditCardVideoCallInitiatePageView
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 20,
+                                      fontSize: 20.t,
                                       color: Theme.of(context).primaryColorDark),
                                 ),
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.only(start: 24, end: 24, bottom: 32),
+                              padding: EdgeInsetsDirectional.only(start: 24.w, end: 24.w, bottom: 32.h),
                               child: Text(
                                 S.of(context).thankYouForWaitingCallWillStartAutomatically,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: StringUtils.appFont,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 12,
+                                    fontSize: 12.t,
                                     color: AppColor.very_dark_gray1),
                               ),
                             ),
