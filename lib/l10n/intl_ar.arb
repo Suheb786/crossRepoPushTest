@@ -1342,5 +1342,13 @@
   "cardSettingsDisabled": "إعدادات البطاقة معطلة.",
   "cardSettingsDisabledDesc": "بطاقتك في الطريق. بمجرد استلامها، ستتمكن من إدارة إعدادات بطاقتك.",
   "flipBackDesc": "بمجرد استلام بطاقتك، ستتمكن من الاطلاع على معلوماتها واستخدامها عبر الإنترنت.",
-  "creditCardOnDelivery": "Credit card\non delivery"
+  "creditCardOnDelivery": "بطاقة الائتمان\nالبطاقة في الطريق",
+  "socialSecurityHintText": "###-##-####",
+  "agentNotAvailablePopUpDesc": "نأسف ، فريقنا غير متاح حالياً، يرجى المحاولة لاحقًا. فريق التواصل المتخصص بطلبات البطاقات الائتمانية متاح 7 أيام في الأسبوع بين الساعة 10:00 صباحًا - 6:00 مساءً",
+  "ahwalServiceNotAvailable": "الخدمة معطلة ، جرّب كمان مرة بعدين ",
+  "address": "العنوان",
+  "locationRestricted": " تطبيق بلنك غير متاح في منطقتك الجغرافية.",
+  "callDroppedDesc": "عفواً! صار خطأ في الأتصال, حاول كمان مرة",
+  "applicationNotAvailableInRegion": "تطبيق بلنك غير متاح في منطقتك الجغرافية",
+  "attention": "تنويه"
 }

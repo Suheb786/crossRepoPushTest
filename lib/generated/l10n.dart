@@ -13659,6 +13659,86 @@ class S {
       args: [],
     );
   }
+
+  /// `###-##-####`
+  String get socialSecurityHintText {
+    return Intl.message(
+      '###-##-####',
+      name: 'socialSecurityHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM`
+  String get agentNotAvailablePopUpDesc {
+    return Intl.message(
+      'Apologies, we have no agents available at the moment to verify you, please try later. Our Credit Card verification is accessible, 7 days a week between 10:00 AM - 6:00 PM',
+      name: 'agentNotAvailablePopUpDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service is down please try again later`
+  String get ahwalServiceNotAvailable {
+    return Intl.message(
+      'Service is down please try again later',
+      name: 'ahwalServiceNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADDRESS`
+  String get address {
+    return Intl.message(
+      'ADDRESS',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your location is restricted from using this app.`
+  String get locationRestricted {
+    return Intl.message(
+      'Your location is restricted from using this app.',
+      name: 'locationRestricted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops, Your verification call has been dropped, please reconnect again`
+  String get callDroppedDesc {
+    return Intl.message(
+      'Oops, Your verification call has been dropped, please reconnect again',
+      name: 'callDroppedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Blink mobile application is not available in your region!`
+  String get applicationNotAvailableInRegion {
+    return Intl.message(
+      'The Blink mobile application is not available in your region!',
+      name: 'applicationNotAvailableInRegion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attention`
+  String get attention {
+    return Intl.message(
+      'Attention',
+      name: 'attention',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

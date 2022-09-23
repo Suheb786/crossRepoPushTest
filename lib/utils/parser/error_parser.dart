@@ -151,6 +151,8 @@ class ErrorParser {
         return localisedHelper.nameHint;
       case ErrorType.INVALID_REQUESTER_ADDRESS:
         return localisedHelper.invalidAddress;
+      case ErrorType.INVALID_REQUESTER_COUNTRY:
+        return localisedHelper.invalidCountry;
       case ErrorType.INVALID_REQUESTER_STATE:
         return localisedHelper.invalidState;
       case ErrorType.INVALID_REQUESTER_CITY:
@@ -1085,6 +1087,10 @@ class ErrorParser {
         return localisedHelper.accountOpeningDescription;
       case ErrorType.ID_ALREADY_EXISTS:
         return localisedHelper.idAlreadyExists;
+      case ErrorType.AHWAL_SERVICE_NOT_AVAILABLE:
+        return localisedHelper.ahwalServiceNotAvailable;
+      case ErrorType.LOCATION_RESTRICTED:
+        return localisedHelper.locationRestricted;
 
       default:
         return "";

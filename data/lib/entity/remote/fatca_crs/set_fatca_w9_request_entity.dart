@@ -13,6 +13,8 @@ class SetFatcaW9RequestEntity {
   ///us address
   @JsonKey(name: "USAddress")
   final String? uSAddress;
+  @JsonKey(name: "CountryCode")
+  final String? countryCode;
   @JsonKey(name: "State")
   final String? stateId;
   @JsonKey(name: "City")
@@ -33,6 +35,8 @@ class SetFatcaW9RequestEntity {
   final String? requesterName;
   @JsonKey(name: "RequesterUSAddress")
   final String? requesterUSAddress;
+  @JsonKey(name: "RequesterCountryCode")
+  final String? requesterCountryCode;
   @JsonKey(name: "RequesterState")
   final String? requesterState;
   @JsonKey(name: "RequesterCity")
@@ -60,6 +64,7 @@ class SetFatcaW9RequestEntity {
       {this.namePerIncomeTaxReturn,
       this.businessName,
       this.uSAddress,
+      this.countryCode,
       this.stateId,
       this.cityId,
       this.postCode,
@@ -69,6 +74,7 @@ class SetFatcaW9RequestEntity {
       this.isAdditionalRequester,
       this.requesterName,
       this.requesterUSAddress,
+      this.requesterCountryCode,
       this.requesterState,
       this.requesterCity,
       this.requesterPostCode,

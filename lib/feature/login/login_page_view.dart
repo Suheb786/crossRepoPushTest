@@ -153,6 +153,19 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               AppConstantsUtils.APP_STORE_URL)
                                           : "";
                                 });
+                              } else if (data.appError?.type == ErrorType.LOCATION_RESTRICTED) {
+                                InformationDialog.show(context,
+                                    image: AssetUtils.mobile,
+                                    title: S.of(context).attention,
+                                    descriptionWidget: Text(
+                                      S.of(context).applicationNotAvailableInRegion,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont, fontSize: 14, height: 1.7),
+                                    ), onDismissed: () {
+                                  exit(0);
+                                }, onSelected: () {
+                                  exit(0);
+                                });
                               }
                             } else if (data.status == Status.SUCCESS) {
                               model.initInfobipMessagePlugin();

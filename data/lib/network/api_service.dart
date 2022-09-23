@@ -209,10 +209,10 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/login")
+  @POST("/auth/loginV1")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
-  @POST("/auth/RegisterV3")
+  @POST("/auth/RegisterV4")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
@@ -242,11 +242,11 @@ abstract class ApiService {
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation(
       @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
-  @POST("/kyc/getstatus")
+  @POST("/kyc/getstatusV1")
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
       @Body() KYCStatusRequest kycStatusRequest);
 
-  @POST("/idcard/CheckAhwalV2")
+  @POST("/idcard/CheckAhwalV3")
   Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 
@@ -294,7 +294,7 @@ abstract class ApiService {
       @Body() UploadDocumentRequestEntity uploadDocumentRequestEntity);
 
   ///save upload document
-  @POST("/FileUpload/SaveUploadDocumentsDocs")
+  @POST("/FileUpload/SaveUploadDocumentsDocsV1")
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
       @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 
@@ -551,7 +551,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> saveFatcaW8(@Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
 
   ///set fatca w9
-  @POST("/FatcaCrs/SetW9")
+  @POST("/FatcaCrs/SetW9V1")
   Future<HttpResponse<ResponseEntity>> saveFatcaW9(@Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
 
   @POST("/Auth/CheckIssuer")
@@ -593,7 +593,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
-  @POST("/Auth/CheckForgetPasswordCred")
+  @POST("/Auth/CheckForgetPasswordCredV1")
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
       @Body() CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
 
@@ -669,7 +669,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> payBackCreditCard(
       @Body() PayBackCreditCardRequestEntity payBackCreditCardRequestEntity);
 
-  @POST("/AppVersion/currentversionPEV1")
+  @POST("/AppVersion/currentversionPEV2")
   Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
       @Body() CheckVersionUpdateRequest request);
 

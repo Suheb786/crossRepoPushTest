@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/credit_card_call_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,7 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        S.of(context).verifyViaVideoCallCC,
+                        getDescription(creditCard.callStatus, context),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontFamily: StringUtils.appFont,
@@ -101,5 +102,16 @@ class VerifyCreditCardVideoCallWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String getDescription(CreditCardCallStatusEnum? callStatus, BuildContext context) {
+  switch (callStatus) {
+    case CreditCardCallStatusEnum.CALL_NOT_RECEIVED:
+      return S.of(context).verifyViaVideoCallCC;
+    case CreditCardCallStatusEnum.DROP:
+      return S.of(context).callDroppedDesc;
+    default:
+      return S.of(context).verifyViaVideoCallCC;
   }
 }

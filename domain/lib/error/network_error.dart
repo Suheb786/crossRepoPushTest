@@ -669,6 +669,12 @@ class NetworkError extends BaseError {
           case "err-324":
             return AppError(cause: cause, error: error, type: ErrorType.ID_ALREADY_EXISTS);
 
+          case "err-325":
+            return AppError(cause: cause, error: error, type: ErrorType.AHWAL_SERVICE_NOT_AVAILABLE);
+
+          case "err-326":
+            return AppError(cause: cause, error: error, type: ErrorType.LOCATION_RESTRICTED);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

@@ -25,6 +25,7 @@ class FatcaW9Data {
   String? namePerIncomeTaxReturn;
   String? businessName;
   String? usAddress;
+  String? country;
   String? city;
   String? state;
   String? postCode;
@@ -34,6 +35,7 @@ class FatcaW9Data {
   bool? additionalRequester;
   String? requesterName;
   String? requesterUsAddress;
+  String? requesterCountry;
   String? requesterCity;
   String? requesterState;
   String? requesterPostCode;

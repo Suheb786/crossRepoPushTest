@@ -1,10 +1,7 @@
 import 'dart:io';
 
-import 'package:domain/constants/error_types.dart';
-import 'package:domain/error/app_error.dart';
 import 'package:domain/model/account/agent_gender_status.dart';
 import 'package:domain/model/account/request_call_status.dart';
-import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +12,7 @@ import 'package:neo_bank/feature/credit_card_videocall_verification/credit_card_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -65,10 +63,19 @@ class CreditCardVideoCallInitiatePageView
                 }
               }
             } else {
-              model.showToastWithError(AppError(
-                  cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.AGENT_NOT_AVAILABLE));
-              Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-              ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+              InformationDialog.show(context,
+                  image: AssetUtils.videocallAgent,
+                  isSwipeToCancel: false,
+                  title: S.of(context).videoCall,
+                  descriptionWidget: Text(
+                    S.of(context).agentNotAvailablePopUpDesc,
+                    style:
+                        TextStyle(fontFamily: StringUtils.appFont, fontSize: 14, fontWeight: FontWeight.w400),
+                  ),
+                  onDismissed: () {}, onSelected: () {
+                Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+                ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+              });
             }
           }
         },

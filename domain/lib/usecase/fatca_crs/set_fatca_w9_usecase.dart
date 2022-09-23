@@ -8,21 +8,20 @@ import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SetFatcaW9UseCase
-    extends BaseUseCase<NetworkError, SetFatcaW9UseCaseParams, bool> {
+class SetFatcaW9UseCase extends BaseUseCase<NetworkError, SetFatcaW9UseCaseParams, bool> {
   final FatcaCrsRepository _repository;
 
   SetFatcaW9UseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SetFatcaW9UseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SetFatcaW9UseCaseParams params}) {
     return _repository.saveFatcaW9(
         signatureId: params.fatcaW9Data.signatureId!,
         postCode: params.fatcaW9Data.postCode!,
         taxPayer: params.fatcaW9Data.taxPayer!,
         city: params.fatcaW9Data.city!,
         usAddress: params.fatcaW9Data.usAddress!,
+        countryCode: params.fatcaW9Data.country!,
         state: params.fatcaW9Data.state!,
         namePerIncomeTaxReturn: params.fatcaW9Data.namePerIncomeTaxReturn!,
         exemptPayeeCode: params.fatcaW9Data.exemptPayeeCode!,
@@ -30,11 +29,11 @@ class SetFatcaW9UseCase
         additionalRequester: params.fatcaW9Data.additionalRequester!,
         businessName: params.fatcaW9Data.businessName!,
         employerTin: params.fatcaW9Data.employerTin!,
-        exemptFromFatcaReportingCode:
-            params.fatcaW9Data.exemptFromFatcaReportingCode!,
+        exemptFromFatcaReportingCode: params.fatcaW9Data.exemptFromFatcaReportingCode!,
         requesterCity: params.fatcaW9Data.requesterCity!,
         requesterName: params.fatcaW9Data.requesterName!,
         requesterPostCode: params.fatcaW9Data.requesterPostCode!,
+        requesterCountryCode: params.fatcaW9Data.requesterCountry!,
         requesterState: params.fatcaW9Data.requesterState!,
         requesterUsAddress: params.fatcaW9Data.requesterUsAddress!,
         socialSecurityNumber: params.fatcaW9Data.socialSecurityNumber!);
@@ -55,9 +54,7 @@ class SetFatcaW9UseCaseParams extends Params {
   Either<AppError, bool> verify() {
     if (!declarationSelected) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_DECLARATION_SELECTION, cause: Exception()));
     } else if (!verifyInfoDeclarationSelected) {
       return Left(AppError(
           error: ErrorInfo(message: ''),

@@ -21,8 +21,7 @@ abstract class FatcaCrsRepository {
       String taxResidenceCountry});
 
   /// upload signature
-  Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature(
-      {required String image});
+  Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature({required String image});
 
   /// set fatca w8
   Future<Either<NetworkError, bool>> saveFatcaW8({
@@ -74,5 +73,7 @@ abstract class FatcaCrsRepository {
     String socialSecurityNumber,
     String employerTin,
     String signatureId,
+    String countryCode,
+    String requesterCountryCode,
   });
 }
