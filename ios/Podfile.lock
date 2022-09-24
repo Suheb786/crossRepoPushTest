@@ -212,6 +212,8 @@ PODS:
   - SDWebImage/Core (5.12.3)
   - share_plus (0.0.1):
     - Flutter
+  - shared_preferences_ios (0.0.1):
+    - Flutter
   - sms_autofill (0.0.1):
     - Flutter
   - SwiftyGif (5.4.3)
@@ -254,6 +256,7 @@ DEPENDENCIES:
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
+  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
   - sms_autofill (from `.symlinks/plugins/sms_autofill/ios`)
   - syncfusion_flutter_pdfviewer (from `.symlinks/plugins/syncfusion_flutter_pdfviewer/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -350,6 +353,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/r_get_ip/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
+  shared_preferences_ios:
+    :path: ".symlinks/plugins/shared_preferences_ios/ios"
   sms_autofill:
     :path: ".symlinks/plugins/sms_autofill/ios"
   syncfusion_flutter_pdfviewer:
@@ -415,6 +420,7 @@ SPEC CHECKSUMS:
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
+  shared_preferences_ios: aef470a42dc4675a1cdd50e3158b42e3d1232b32
   sms_autofill: c461043483362c3f1709ee76eaae6eb570b31686
   SwiftyGif: 6c3eafd0ce693cad58bb63d2b2fb9bacb8552780
   syncfusion_flutter_pdfviewer: bb9998884b864cfedf72628df3503bdf57e397c0
