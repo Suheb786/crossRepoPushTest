@@ -8490,10 +8490,10 @@ class S {
     );
   }
 
-  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-mode)`
+  /// `Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)`
   String get errorModelNotCorrect {
     return Intl.message(
-      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-mode)',
+      'Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)',
       name: 'errorModelNotCorrect',
       desc: '',
       args: [],
@@ -9080,10 +9080,10 @@ class S {
     );
   }
 
-  /// `Please bring your face closer to the screen. Say cheese!`
+  /// `Oops! The picture quality is not clear. Please try again.`
   String get invalidLivelinessSCore {
     return Intl.message(
-      'Please bring your face closer to the screen. Say cheese!',
+      'Oops! The picture quality is not clear. Please try again.',
       name: 'invalidLivelinessSCore',
       desc: '',
       args: [],

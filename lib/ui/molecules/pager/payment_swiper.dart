@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 // class PaymentSwiper extends StatelessWidget {
@@ -98,18 +97,15 @@ class _PaymentSwiperState extends State<PaymentSwiper> {
       animation: widget.appSwiperController!,
       builder: (context, child) {
         double value = 0.0;
-        if (widget.currentStep == index) {
-          value = 0.0;
-        } else if ((widget.currentStep ?? 0) > index) {
-          value = -0.01;
-        } else {
-          value = 0.01;
-        }
-        return Transform.rotate(
-            angle: StringUtils.isDirectionRTL(context) ? pi * -value : pi * value,
-            // transform: Matrix4.skewX(-value * 1.5),
+        // if (widget.appSwiperController!.position.haveDimensions) {
+        value = index.toDouble() - (widget.currentStep ?? 0);
+        value = (value * 0.02).clamp(-1, 1);
+        return Transform(
+            transform: StringUtils.isDirectionRTL(context)
+                ? Matrix4.skewX(value * 1.5)
+                : Matrix4.skewX(-value * 1.5),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
               child: widget.pages![index],
             ));
       },

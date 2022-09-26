@@ -890,7 +890,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorInMessage":
             MessageLookupByLibrary.simpleMessage("Error in manage so api"),
         "errorModelNotCorrect": MessageLookupByLibrary.simpleMessage(
-            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-mode)"),
+            "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorSavingIdCard":
@@ -1325,7 +1325,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
             "Limit value cannot be set greater than max limit value"),
         "invalidLivelinessSCore": MessageLookupByLibrary.simpleMessage(
-            "Please bring your face closer to the screen. Say cheese!"),
+            "Oops! The picture quality is not clear. Please try again."),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMaximumAge": MessageLookupByLibrary.simpleMessage(

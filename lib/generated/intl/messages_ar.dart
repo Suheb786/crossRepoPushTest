@@ -849,7 +849,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorInMessage":
             MessageLookupByLibrary.simpleMessage("خطأ في إدارة API"),
         "errorModelNotCorrect": MessageLookupByLibrary.simpleMessage(
-            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-mode)"),
+            "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
         "errorSavingIdCard":
@@ -1269,7 +1269,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
             "القيمة لازم تكون أقل من الحد الاقصى للبطاقة "),
         "invalidLivelinessSCore": MessageLookupByLibrary.simpleMessage(
-            "قرّب وجهك للشاشة، وفرجينا الضحكة الحلوة!"),
+            "عفوًا! جودة الصورة غير واضحة. حاول كمان مرة!"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("أدخل مصدر الدخل"),
         "invalidMaximumAge": MessageLookupByLibrary.simpleMessage(
