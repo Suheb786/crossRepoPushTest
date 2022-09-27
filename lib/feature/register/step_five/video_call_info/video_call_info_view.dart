@@ -146,6 +146,10 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
           ProviderScope.containerOf(context).read(registerStepFiveViewModelProvider).nextPage();
           // .next();
         });
+        Future.delayed(Duration(milliseconds: 500), () {
+          ProviderScope.containerOf(context).read(agentSelectionViewModelProvider).checkAvailableAgent();
+          // .next();
+        });
       }
     } else if (Platform.isIOS) {
       Map<Permission, PermissionStatus> statuses = await [
@@ -159,6 +163,10 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
       } else {
         Future.delayed(Duration(milliseconds: 500), () {
           ProviderScope.containerOf(context).read(registerStepFiveViewModelProvider).nextPage();
+          // .next();
+        });
+        Future.delayed(Duration(milliseconds: 500), () {
+          ProviderScope.containerOf(context).read(agentSelectionViewModelProvider).checkAvailableAgent();
           // .next();
         });
       }

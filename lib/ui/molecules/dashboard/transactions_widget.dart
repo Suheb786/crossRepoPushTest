@@ -43,7 +43,7 @@ class TransactionWidget extends StatelessWidget {
                       children: [
                         Text(
                           transactions!.transactions![index].description!,
-                          maxLines: 2,
+                          maxLines: 10,
                           style: TextStyle(
                             fontFamily: StringUtils.appFont,
                             fontSize: 12.0.t,

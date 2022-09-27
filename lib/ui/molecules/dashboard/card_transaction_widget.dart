@@ -66,7 +66,7 @@ class CardTransactionWidget extends StatelessWidget {
                           children: [
                             Text(
                               transactions!.transactions![index].memo!,
-                              maxLines: 2,
+                              maxLines: 10,
                               style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 12.0.t,
