@@ -687,6 +687,9 @@ class NetworkError extends BaseError {
           case "err-330":
             return AppError(cause: cause, error: error, type: ErrorType.ERROR_CC_UNBLOCK_NI);
 
+          case "err-331":
+            return AppError(cause: cause, error: error, type: ErrorType.LOGIN_REGISTER_DISABLED);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

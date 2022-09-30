@@ -13800,41 +13800,51 @@ class S {
     );
   }
 
-  /// `Error while applying for physical card request (XCS)`
+  /// `Error while applying for physical card request`
   String get errorPhysicalDCXCS {
     return Intl.message(
-      'Error while applying for physical card request (XCS)',
+      'Error while applying for physical card request',
       name: 'errorPhysicalDCXCS',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while requesting for pin translation (XCS)`
+  /// `PIN change error`
   String get errorPinTranslationXCS {
     return Intl.message(
-      'Error while requesting for pin translation (XCS)',
+      'PIN change error',
       name: 'errorPinTranslationXCS',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while requesting for pin change (NI)`
+  /// `Error while requesting for pin change`
   String get errrorForPinChangeNI {
     return Intl.message(
-      'Error while requesting for pin change (NI)',
+      'Error while requesting for pin change',
       name: 'errrorForPinChangeNI',
       desc: '',
       args: [],
     );
   }
 
-  /// `Error while unblocking pin (NI)`
+  /// `Error while unblocking pin`
   String get errorCCUnBlockNI {
     return Intl.message(
-      'Error while unblocking pin (NI)',
+      'Error while unblocking pin',
       name: 'errorCCUnBlockNI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're currently offline and will be back shortly!`
+  String get loginRegisterDisabled {
+    return Intl.message(
+      'We\'re currently offline and will be back shortly!',
+      name: 'loginRegisterDisabled',
       desc: '',
       args: [],
     );

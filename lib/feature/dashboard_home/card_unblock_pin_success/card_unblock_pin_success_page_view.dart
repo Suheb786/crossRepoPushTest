@@ -22,12 +22,14 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          if (model.manageCardPinArguments.successPageRouteEnum == SuccessPageRouteEnum.PHYSICAL_DC) {
-            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
-          } else {
-            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
-          }
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+          // if (model.manageCardPinArguments.successPageRouteEnum == SuccessPageRouteEnum.PHYSICAL_DC) {
+          //   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          //   ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+          // } else {
+          //   Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          // }
         }
       },
       child: Container(

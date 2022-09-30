@@ -25,8 +25,8 @@ class EncryptDecryptHelper {
 
   static String encryptCard({required String cardNo}) {
     final List<int> encrypted;
-    DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB);
-    encrypted = desECB.encrypt(hex.decode(cardNo));
+    DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB, paddingType: DESPaddingType.PKCS5);
+    encrypted = desECB.encrypt(isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
     return base64.encode(encrypted);
   }
 

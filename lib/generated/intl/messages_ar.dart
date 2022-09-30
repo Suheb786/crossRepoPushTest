@@ -827,7 +827,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "errorCCUnBlockNI": MessageLookupByLibrary.simpleMessage(
-            "Error while unblocking pin (NI)"),
+            "واجهتنا مشكلة عند اعادة تفعيل الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
@@ -855,9 +855,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
         "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
-            "Error while applying for physical card request (XCS)"),
-        "errorPinTranslationXCS": MessageLookupByLibrary.simpleMessage(
-            "Error while requesting for pin translation (XCS)"),
+            "واجهتنا مشكلة خلال طلب البطاقة، يرجى المحاولة مرة اخرى"),
+        "errorPinTranslationXCS":
+            MessageLookupByLibrary.simpleMessage("خطأ عند تغيير الرمز السري"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("خطأ خلال حفظ الهوية"),
         "errorSavingStatus":
@@ -925,7 +925,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-106)"),
         "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
-            "Error while requesting for pin change (NI)"),
+            "واجهتنا مشكلة عند تغيير الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ أثناء حدوث خطأ في ESettlement API"),
         "establishCallError":
@@ -1439,6 +1439,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
+        "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
+            "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage(
             "تسجيل الخروج والاستمرار لاحقاً"),
@@ -1898,11 +1900,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestNotCompleted":
             MessageLookupByLibrary.simpleMessage("طلبك غير مكتمل"),
         "requestPhysicalCard":
-            MessageLookupByLibrary.simpleMessage("Request physical card"),
+            MessageLookupByLibrary.simpleMessage("طلب تسليم البطاقة"),
         "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
+            "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
-            "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card."),
+            "عم نطبع بطاقتك، راح تتواصل معك شركة ارامكس قريبا ليوصلولك البطاقة. لحد ما توصلك البطاقة بتقدر تستمر باستخدام البطاقة الافتراضية للشراء على الإنترنت."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2248,7 +2250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unBlockPin":
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
-            "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),
+            "لقد تم ايقاف الرمز السري للبطاقة لإحتياطات أمنية. للاستمرار باستخدام الرمز السري لاجراء عمليات الشراء يرجى القيام باعادة تفعيل الرمز السري. عند اعادة تفعيل الرمز السري، قد يتم رفض أول عملية باستخدامه."),
         "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
             "خطأ! الحركة غير ممكنة حالياً."),
         "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(

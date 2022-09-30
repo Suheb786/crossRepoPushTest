@@ -1099,6 +1099,8 @@ class ErrorParser {
         return localisedHelper.errrorForPinChangeNI;
       case ErrorType.ERROR_CC_UNBLOCK_NI:
         return localisedHelper.errorCCUnBlockNI;
+      case ErrorType.LOGIN_REGISTER_DISABLED:
+        return localisedHelper.loginRegisterDisabled;
 
       default:
         return "";

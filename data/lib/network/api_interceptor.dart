@@ -28,13 +28,12 @@ class ApiInterceptor extends InterceptorsWrapper {
     options.data = _encryptRequest(options.data);
 
     ///PIN BLOCK TEST
-    /*
-    String encryptedCard = EncryptDecryptHelper.encryptCard(cardNo: '4082230007237692');
-    print('encryptedCard------>$encryptedCard');
-    String pinBlock = EncryptDecryptHelper.generateBlockPin(cardNo: '4082230007237692', pinCode: '1234');
-    print('pinblock------>$pinBlock');
 
-     */
+    /*String encryptedCard = EncryptDecryptHelper.encryptCard(cardNo: '4082230007861533');
+    print('encryptedCard------>$encryptedCard');
+
+    String decryptedCard = EncryptDecryptHelper.decryptCard(cardNo: 'rP87ikQxZmTx+88qVtGbpw==');
+    print('decryptedCard------>$decryptedCard');*/
 
     ///TODO:: UNCOMMENT BELOW BLOCK FOR SSL PINNING
 /*

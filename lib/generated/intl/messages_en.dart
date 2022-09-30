@@ -867,8 +867,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
-        "errorCCUnBlockNI": MessageLookupByLibrary.simpleMessage(
-            "Error while unblocking pin (NI)"),
+        "errorCCUnBlockNI":
+            MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
@@ -896,9 +896,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
-            "Error while applying for physical card request (XCS)"),
-        "errorPinTranslationXCS": MessageLookupByLibrary.simpleMessage(
-            "Error while requesting for pin translation (XCS)"),
+            "Error while applying for physical card request"),
+        "errorPinTranslationXCS":
+            MessageLookupByLibrary.simpleMessage("PIN change error"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
@@ -966,7 +966,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
-            "Error while requesting for pin change (NI)"),
+            "Error while requesting for pin change"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while ESettlement API get wrong"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(
@@ -1498,6 +1498,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
+        "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
+            "We\'re currently offline and will be back shortly!"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),

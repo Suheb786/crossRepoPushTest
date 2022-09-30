@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +14,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
@@ -68,7 +70,7 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       initialData: Resource.none(),
                       stream: model.unblockCardPinStream,
                       onData: (data) {
-                        if (data.data!) {
+                        if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(context, RoutePaths.CardPinUnBlockSuccess,
                               arguments: model.manageCardPinArguments);
                         }
@@ -85,10 +87,18 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                       TextStyle(fontFamily: StringUtils.appFont, fontSize: 14.t, height: 1.7),
                                 ), onSelected: () {
                               Navigator.pop(context);
-                              if (model.manageCardPinArguments!.freezeCardStatusEnum ==
-                                  FreezeCardStatusEnum.PRE) {
-                                model.unBlockPin(
-                                    pinCode: '', tokenizedPan: model.manageCardPinArguments!.tokenizedPan);
+                              if (model.manageCardPinArguments?.cardType == CardType.DEBIT) {
+                                if (model.manageCardPinArguments!.freezeCardStatusEnum ==
+                                    FreezeCardStatusEnum.PRE) {
+                                  model.unBlockDebitCardPin(
+                                      pinCode: '', tokenizedPan: model.manageCardPinArguments!.tokenizedPan);
+                                }
+                              } else {
+                                if (model.manageCardPinArguments!.freezeCardStatusEnum ==
+                                    FreezeCardStatusEnum.B) {
+                                  model.unBlockCreditCardPin(
+                                      cardCode: model.manageCardPinArguments!.tokenizedPan);
+                                }
                               }
                             }, onDismissed: () {
                               Navigator.pop(context);

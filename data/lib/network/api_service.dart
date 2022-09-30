@@ -213,10 +213,10 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginV1")
+  @POST("/auth/loginV2")
   Future<HttpResponse<LoginResponseEntity>> loginUser(@Body() LoginUserRequest loginUserRequest);
 
-  @POST("/auth/RegisterV4")
+  @POST("/auth/RegisterV5")
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
@@ -597,7 +597,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
-  @POST("/Auth/CheckForgetPasswordCredV1")
+  @POST("/Auth/CheckForgetPasswordCredV2")
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
       @Body() CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
 
