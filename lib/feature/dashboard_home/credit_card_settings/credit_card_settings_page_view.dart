@@ -245,19 +245,26 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
                               PrimarySecondaryCardEnum.SECONDARY,
                         ),
-                        IgnorePointer(
-                          child: SettingTile(
-                            isNotify: true,
-                            isCardActivated:
-                                model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
-                            isEnabled: false,
-                            onTap: () {
-                              Navigator.pushNamed(context, RoutePaths.ManageCardPin,
-                                  arguments: ManageCardPinArguments(cardType: CardType.CREDIT));
-                            },
-                            title: S.of(context).manageCardPin,
-                            tileIcon: AssetUtils.cardShield,
-                          ),
+                        SettingTile(
+                          isNotify: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.SECONDARY,
+                          isCardActivated:
+                              model.creditCardSettingsArguments.creditCard.isCreditDelivered ?? false,
+                          isEnabled: model.creditCardSettingsArguments.creditCard.primarySecondaryCard ==
+                              PrimarySecondaryCardEnum.PRIMARY,
+                          onTap: () {
+                            Navigator.pushNamed(context, RoutePaths.ManageCardPin,
+                                arguments: ManageCardPinArguments(
+                                    cardType: CardType.CREDIT,
+                                    tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode ?? '',
+                                    freezeCardStatusEnum:
+                                        model.creditCardSettingsArguments.creditCard.cardStatus ??
+                                            FreezeCardStatusEnum.NONE,
+                                    cardNumber:
+                                        model.creditCardSettingsArguments.creditCard.cardNumber ?? ''));
+                          },
+                          title: S.of(context).manageCardPin,
+                          tileIcon: AssetUtils.cardShield,
                         ),
                         IgnorePointer(
                           child: SettingTile(

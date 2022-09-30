@@ -5,21 +5,21 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CreditCardPinUnblockUseCase
-    extends BaseUseCase<NetworkError, CreditCardPinUnblockUseCaseParams, bool> {
+class CreditCardPinUnblockUseCase extends BaseUseCase<NetworkError, CreditCardPinUnblockUseCaseParams, bool> {
   final CardRepository _repository;
 
   CreditCardPinUnblockUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CreditCardPinUnblockUseCaseParams params}) {
-    return _repository.creditCardPinUnblock();
+  Future<Either<NetworkError, bool>> execute({required CreditCardPinUnblockUseCaseParams params}) {
+    return _repository.unblockCreditCardPin(cardCode: params.cardCode);
   }
 }
 
 class CreditCardPinUnblockUseCaseParams extends Params {
-  CreditCardPinUnblockUseCaseParams();
+  final String cardCode;
+
+  CreditCardPinUnblockUseCaseParams({required this.cardCode});
 
   @override
   Either<AppError, bool> verify() {

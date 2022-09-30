@@ -165,4 +165,17 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> getCardInProcess(
       {String minimumSettlement, String nickName, num loanValueId, num creditLimit});
+
+  Future<Either<NetworkError, bool>> requestPhysicalDebitCard({required String tokenizedPan});
+
+  Future<Either<NetworkError, bool>> changeCreditCardPinVerify({required String cardCode});
+
+  Future<Either<NetworkError, bool>> changeCreditCardPin({
+    required String cardCode,
+    required String pin,
+    required String cardNumber,
+    required String otp,
+  });
+
+  Future<Either<NetworkError, bool>> unblockCreditCardPin({required String cardCode});
 }

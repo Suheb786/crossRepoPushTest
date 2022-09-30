@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page.dart';
@@ -399,6 +400,44 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                       },
                                     );
                                   });
+                            }),
+                        AppStreamBuilder<Resource<bool>>(
+                            initialData: Resource.none(),
+                            stream: model.requestPhysicalDebitCardResponseStream,
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                Navigator.pushNamed(context, RoutePaths.CardPinUnBlockSuccess,
+                                    arguments: ManageCardPinArguments(
+                                        cardType: CardType.DEBIT,
+                                        successPageRouteEnum: SuccessPageRouteEnum.PHYSICAL_DC));
+                              }
+                            },
+                            dataBuilder: (context, requestPhysicalDataResponse) {
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardIcon,
+                                      title: S.of(context).requestPhysicalCard,
+                                      descriptionWidget: Text(
+                                        S.of(context).requestPhysicalCardDec,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.gray_black),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    if (!(model.debitCardSettingsArguments.debitCard
+                                            .isPhysicalDebitCardRequested ??
+                                        false)) {
+                                      model.requestPhysicalDebitCard();
+                                    }
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                title: S.of(context).requestPhysicalCard,
+                                tileIcon: AssetUtils.cardIcon,
+                              );
                             }),
                         SettingTile(
                           onTap: () {

@@ -1,5 +1,7 @@
 import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_change_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_change_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -18,6 +20,10 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
 
   final ChangeDebitPinVerifyUseCase _resendOtpUseCase;
 
+  final CreditCardChangePinUseCase _creditCardChangePinUseCase;
+
+  final CreditCardChangePinVerifyUseCase _creditCardChangePinVerifyUseCase;
+
   ///countdown controller
   late CountdownTimerController countDownController;
 
@@ -28,8 +34,7 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   String otp = '';
 
   ///verify otp request subject holder
-  PublishSubject<OtpForChangeCardPinUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<OtpForChangeCardPinUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
   PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
@@ -45,19 +50,16 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///change debit card pin request subject holder
-  PublishSubject<ChangeDebitCardPinUseCaseParams> _changDebitCardPinRequest =
-      PublishSubject();
+  PublishSubject<ChangeDebitCardPinUseCaseParams> _changDebitCardPinRequest = PublishSubject();
 
   ///change debit card pin response holder
   PublishSubject<Resource<bool>> _changDebitCardPinResponse = PublishSubject();
 
   ///change debit card pin stream
-  Stream<Resource<bool>> get changDebitCardPinStream =>
-      _changDebitCardPinResponse.stream;
+  Stream<Resource<bool>> get changDebitCardPinStream => _changDebitCardPinResponse.stream;
 
   ///resend otp request subject holder
-  PublishSubject<ChangeDebitPinVerifyUseCaseParams> _resendOtpRequest =
-      PublishSubject();
+  PublishSubject<ChangeDebitPinVerifyUseCaseParams> _resendOtpRequest = PublishSubject();
 
   ///resend otp response holder
   PublishSubject<Resource<bool>> _resendOtpResponse = PublishSubject();
@@ -65,12 +67,39 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
-  OtpForChangeCardPinPageViewModel(this._otpForChangeCardPinUseCase,
-      this._changeDebitCardPinUseCase, this._resendOtpUseCase) {
+  ///---------------change credit card pin verify -----------------------///
+
+  PublishSubject<CreditCardChangePinVerifyUseCaseParams> _creditCardChangePinVerifyRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _creditCardChangePinVerifyResponse = PublishSubject();
+
+  Stream<Resource<bool>> get creditCardChangePinVerifyStream => _creditCardChangePinVerifyResponse.stream;
+
+  void resendCreditCardOTP({required String cardCode}) {
+    _creditCardChangePinVerifyRequest.safeAdd(CreditCardChangePinVerifyUseCaseParams(cardCode: cardCode));
+  }
+
+  ///---------------change credit card pin verify -----------------------///
+
+  ///---------------change credit card pin  -----------------------///
+
+  PublishSubject<CreditCardChangePinUseCaseParams> _creditCardChangePinRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _creditCardChangePinResponse = PublishSubject();
+
+  Stream<Resource<bool>> get creditCardChangePinStream => _creditCardChangePinResponse.stream;
+
+  void changeCreditCardPin({required String cardCode, required String cardNumber, required String pin}) {
+    _creditCardChangePinRequest.safeAdd(CreditCardChangePinUseCaseParams(
+        cardCode: cardCode, pin: pin, cardNumber: cardNumber, otp: _otpSubject.value));
+  }
+
+  ///---------------change credit card pin  -----------------------///
+
+  OtpForChangeCardPinPageViewModel(this._otpForChangeCardPinUseCase, this._changeDebitCardPinUseCase,
+      this._resendOtpUseCase, this._creditCardChangePinUseCase, this._creditCardChangePinVerifyUseCase) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _otpForChangeCardPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _otpForChangeCardPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -82,9 +111,7 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
     });
 
     _changDebitCardPinRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _changeDebitCardPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _changeDebitCardPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -96,8 +123,7 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
     });
 
     _resendOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _resendOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _resendOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -111,23 +137,44 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _creditCardChangePinVerifyRequest.listen((value) {
+      RequestManager(value, createCall: () => _creditCardChangePinVerifyUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _creditCardChangePinVerifyResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
+          listenForSmsCode();
+        }
+      });
+    });
+
+    _creditCardChangePinRequest.listen((value) {
+      RequestManager(value, createCall: () => _creditCardChangePinUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _creditCardChangePinResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void validateOtp() {
     otp = _otpSubject.value;
-    _verifyOtpRequest
-        .safeAdd(OtpForChangeCardPinUseCaseParams(otp: _otpSubject.value));
+    _verifyOtpRequest.safeAdd(OtpForChangeCardPinUseCaseParams(otp: _otpSubject.value));
   }
 
-  void changeDebitCardPin(
-      {required String pin,
-      required String tokenizedPan,
-      required String cardNumber}) {
+  void changeDebitCardPin({required String pin, required String tokenizedPan, required String cardNumber}) {
     _changDebitCardPinRequest.safeAdd(ChangeDebitCardPinUseCaseParams(
-        pin: pin,
-        otp: _otpSubject.value,
-        tokenizedPan: tokenizedPan,
-        cardNumber: cardNumber));
+        pin: pin, otp: _otpSubject.value, tokenizedPan: tokenizedPan, cardNumber: cardNumber));
   }
 
   void validate(String value) {

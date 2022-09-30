@@ -14,24 +14,18 @@ class ManageCardPinViewModel extends BasePageViewModel {
   final UnblockDebitCardPinUseCase _unblockDebitCardPinUseCase;
   final CreditCardPinUnblockUseCase _unblockCreditCardPinUseCase;
 
-  PublishSubject<UnblockDebitCardPinUseCaseParams>
-      _unblockDebitCardRequestSubject = PublishSubject();
+  PublishSubject<UnblockDebitCardPinUseCaseParams> _unblockDebitCardRequestSubject = PublishSubject();
 
-  PublishSubject<CreditCardPinUnblockUseCaseParams>
-      _unblockCreditCardRequestSubject = PublishSubject();
+  PublishSubject<CreditCardPinUnblockUseCaseParams> _unblockCreditCardRequestSubject = PublishSubject();
 
-  PublishSubject<Resource<bool>> _unblockCardPinResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _unblockCardPinResponseSubject = PublishSubject();
 
-  Stream<Resource<bool>> get unblockCardPinStream =>
-      _unblockCardPinResponseSubject.stream;
+  Stream<Resource<bool>> get unblockCardPinStream => _unblockCardPinResponseSubject.stream;
 
-  ManageCardPinViewModel(this.manageCardPinArguments,
-      this._unblockDebitCardPinUseCase, this._unblockCreditCardPinUseCase) {
+  ManageCardPinViewModel(
+      this.manageCardPinArguments, this._unblockDebitCardPinUseCase, this._unblockCreditCardPinUseCase) {
     _unblockCreditCardRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _unblockCreditCardPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _unblockCreditCardPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -43,9 +37,7 @@ class ManageCardPinViewModel extends BasePageViewModel {
     });
 
     _unblockDebitCardRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _unblockDebitCardPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _unblockDebitCardPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -62,23 +54,21 @@ class ManageCardPinViewModel extends BasePageViewModel {
     required String tokenizedPan,
   }) {
     if (manageCardPinArguments!.cardType == CardType.CREDIT) {
-      unBlockCreditCardPin();
+      unBlockCreditCardPin(cardCode: tokenizedPan);
     } else if (manageCardPinArguments!.cardType == CardType.DEBIT) {
       unBlockDebitCardPin(pinCode: pinCode, tokenizedPan: tokenizedPan);
     }
   }
 
-  void unBlockCreditCardPin() {
-    _unblockCreditCardRequestSubject
-        .safeAdd(CreditCardPinUnblockUseCaseParams());
+  void unBlockCreditCardPin({required String cardCode}) {
+    _unblockCreditCardRequestSubject.safeAdd(CreditCardPinUnblockUseCaseParams(cardCode: cardCode));
   }
 
   void unBlockDebitCardPin({
     required String pinCode,
     required String tokenizedPan,
   }) {
-    _unblockDebitCardRequestSubject.safeAdd(
-        UnblockDebitCardPinUseCaseParams(pin: '', status: tokenizedPan));
+    _unblockDebitCardRequestSubject.safeAdd(UnblockDebitCardPinUseCaseParams(pin: '', status: tokenizedPan));
   }
 
   @override

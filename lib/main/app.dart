@@ -1,4 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +10,6 @@ import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/app_router.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:device_preview/device_preview.dart';
 
 class App extends ConsumerWidget {
   late AppViewModel _appViewModel;

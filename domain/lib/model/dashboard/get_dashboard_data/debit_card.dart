@@ -14,7 +14,8 @@ class DebitCard {
       this.debitDeliveredDatetime,
       this.code,
       this.primarySecondaryCard: PrimarySecondaryEnum.NONE,
-      this.isPINSet: true});
+      this.isPINSet: true,
+      this.isPhysicalDebitCardRequested = false});
 
   String? accountTitle;
   String? cardNumber;
@@ -25,6 +26,7 @@ class DebitCard {
   String? code;
   bool? isDebitDelivered;
   bool? isPINSet;
+  bool? isPhysicalDebitCardRequested;
   dynamic? debitDeliveredDatetime;
   DateTime? debitCardActivated;
   PrimarySecondaryEnum? primarySecondaryCard;

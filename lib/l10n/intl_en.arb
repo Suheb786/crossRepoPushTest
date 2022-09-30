@@ -708,7 +708,7 @@
   "unblockCardPin": "Unblock card PIN",
   "changeCardPin": "Change card PIN",
   "unBlockPin": "Unblock PIN?",
-  "unBlockPinDescription": "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.",
+  "unBlockPinDescription": "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations.",
   "cardPinSucccesFullyUnblocked": "You have successfully unblocked your card's PIN",
   "cardPinSucccesFullyUnblockedDesc": "Your first transaction will be declined, don't worry the second one will work.",
   "backToDashboard": "Back to Dashboard",
@@ -1398,5 +1398,13 @@
   "attention": "Attention",
   "noDataFound": "No Data Found",
   "somethingWentWrong": "Something went wrong",
-  "searchAgain": "Search Again"
+  "searchAgain": "Search Again",
+  "requestPhysicalCard": "Request physical card",
+  "requestPhysicalCardDec": "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?",
+  "requestPhysicalCardSuccessDec": "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.",
+  "errorPhysicalDCXCS": "Error while applying for physical card request",
+  "errorPinTranslationXCS": "PIN change error",
+  "errrorForPinChangeNI": "Error while requesting for pin change",
+  "errorCCUnBlockNI": "Error while unblocking pin",
+  "loginRegisterDisabled": "We're currently offline and will be back shortly!"
 }

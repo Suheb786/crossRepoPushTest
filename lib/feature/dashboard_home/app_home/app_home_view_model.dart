@@ -293,7 +293,7 @@ class AppHomeViewModel extends BasePageViewModel {
                     TimeLineSwipeUpArgs(cardType: CardType.CREDIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
               }
             } else {
-              if (!(dashboardDataContent.isCreditCard ?? true)) {
+              if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? true)) {
                 pages.add(CreditCardIssuanceFailureWidget(
                   isSmallDevices: isSmallDevices,
                   type: IssuanceType.service_unavailable,
@@ -353,7 +353,7 @@ class AppHomeViewModel extends BasePageViewModel {
             }
           });
         } else {
-          if (!(dashboardDataContent.isCreditCard ?? true)) {
+          if (!(dashboardDataContent.dashboardFeatures?.isCreditCardFeatureEnabled ?? true)) {
             pages.add(CreditCardIssuanceFailureWidget(
               isSmallDevices: isSmallDevices,
               type: IssuanceType.service_unavailable,

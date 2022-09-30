@@ -8,8 +8,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "dashboard_debit_card_entity.g.dart";
 
 @JsonSerializable()
-class DashboardDebitCardEntity
-    implements BaseLayerDataTransformer<DashboardDebitCardEntity, DebitCard> {
+class DashboardDebitCardEntity implements BaseLayerDataTransformer<DashboardDebitCardEntity, DebitCard> {
   @JsonKey(name: "accountTitle")
   final String? accountTitle;
   @JsonKey(name: "cardStatus")
@@ -34,6 +33,8 @@ class DashboardDebitCardEntity
   final String? primarySecondaryCard;
   @JsonKey(name: "isPINSet")
   final bool? isPINSet;
+  @JsonKey(name: "isPhysicalDebitCardRequested")
+  final bool? isPhysicalDebitCardRequested;
 
   DashboardDebitCardEntity(
       {this.accountTitle: "",
@@ -47,7 +48,8 @@ class DashboardDebitCardEntity
       this.cardStatus,
       this.code,
       this.primarySecondaryCard: '',
-      this.isPINSet: true});
+      this.isPINSet: true,
+      this.isPhysicalDebitCardRequested = false});
 
   factory DashboardDebitCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDebitCardEntityFromJson(json);
@@ -66,9 +68,7 @@ class DashboardDebitCardEntity
             ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!)
             : "",
         cvv: this.cvv != null
-            ? (this.cvv!.isNotEmpty
-                ? EncryptDecryptHelper.decryptCard(cardNo: this.cvv!)
-                : "")
+            ? (this.cvv!.isNotEmpty ? EncryptDecryptHelper.decryptCard(cardNo: this.cvv!) : "")
             : "",
         expiryDate: this.expiryDate ?? '',
         linkedAccountNumber: this.linkedAccountNumber ?? '',
@@ -79,7 +79,7 @@ class DashboardDebitCardEntity
         code: this.code ?? '',
         isDebitDelivered: this.isDebitDelivered ?? false,
         isPINSet: this.isPINSet ?? true,
-        primarySecondaryCard:
-            this.primarySecondaryCard!.fromPrimarySecondaryCardValue());
+        isPhysicalDebitCardRequested: this.isPhysicalDebitCardRequested ?? false,
+        primarySecondaryCard: this.primarySecondaryCard!.fromPrimarySecondaryCardValue());
   }
 }

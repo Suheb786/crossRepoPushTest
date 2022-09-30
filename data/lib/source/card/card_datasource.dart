@@ -165,4 +165,13 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> getCardInProcess(
       {String? minimumSettlement, String? nickName, num? loanValueId, num? creditLimit});
+
+  Future<HttpResponse<ResponseEntity>> requestPhysicalDebitCard({required String tokenizedPan});
+
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(
+      {required String cardCode, required String pin, required String cardNumber, required String otp});
+
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPinVerify({required String cardCode});
+
+  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin({required String cardCode});
 }

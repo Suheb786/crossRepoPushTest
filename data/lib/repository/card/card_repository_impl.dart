@@ -609,4 +609,45 @@ class CardRepositoryImpl extends CardRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> requestPhysicalDebitCard({required String tokenizedPan}) async {
+    final result = await safeApiCall(_remoteDs.requestPhysicalDebitCard(tokenizedPan: tokenizedPan));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> changeCreditCardPin(
+      {required String cardCode,
+      required String pin,
+      required String cardNumber,
+      required String otp}) async {
+    final result = await safeApiCall(
+        _remoteDs.changeCreditCardPin(cardCode: cardCode, pin: pin, cardNumber: cardNumber, otp: otp));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> changeCreditCardPinVerify({required String cardCode}) async {
+    final result = await safeApiCall(_remoteDs.changeCreditCardPinVerify(cardCode: cardCode));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> unblockCreditCardPin({required String cardCode}) async {
+    final result = await safeApiCall(_remoteDs.unblockCreditCardPin(cardCode: cardCode));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

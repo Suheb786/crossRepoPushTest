@@ -8,6 +8,8 @@ import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecas
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_change_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_change_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_request_usecase.dart';
@@ -34,6 +36,7 @@ import 'package:domain/usecase/card_delivery/relationship_with_card_holder_useca
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supp_debit_card_with_response_usecase.dart';
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supplementary_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/report_lost_stolen_cc_usecase.dart';
+import 'package:domain/usecase/card_delivery/request_physical_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_three_usecase.dart';
 import 'package:domain/usecase/card_delivery/supplementary_credit_card_step_two_usecase.dart';
@@ -205,3 +208,15 @@ final removeOrReapplySuppDebitUseCaseProvider =
 final removeOrReapplySuppDebitWithResponseUseCaseProvider =
     Provider.autoDispose<RemoveOrReapplySuppDebitCardWithResponseUseCase>(
         (ref) => RemoveOrReapplySuppDebitCardWithResponseUseCase(ref.read(cardRepositoryProvider)));
+
+///[RequestPhysicalDebitCardUseCase] provider
+final requestPhysicalDebitCardUseCaseProvider = Provider.autoDispose<RequestPhysicalDebitCardUseCase>(
+    (ref) => RequestPhysicalDebitCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[CreditCardChangePinUseCase] provider
+final creditCardChangePinUseCaseProvider = Provider.autoDispose<CreditCardChangePinUseCase>(
+    (ref) => CreditCardChangePinUseCase(ref.read(cardRepositoryProvider)));
+
+///[CreditCardChangePinVerifyUseCase] provider
+final creditCardChangePinVerifyUseCaseProvider = Provider.autoDispose<CreditCardChangePinVerifyUseCase>(
+    (ref) => CreditCardChangePinVerifyUseCase(ref.read(cardRepositoryProvider)));

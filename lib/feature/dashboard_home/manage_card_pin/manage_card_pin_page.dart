@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
 
@@ -51,10 +52,12 @@ class ManageCardPinArguments {
   final String tokenizedPan;
   final FreezeCardStatusEnum freezeCardStatusEnum;
   final String cardNumber;
+  final SuccessPageRouteEnum successPageRouteEnum;
 
   ManageCardPinArguments(
       {this.cardType: CardType.CREDIT,
       this.tokenizedPan: "",
       this.cardNumber: "",
-      this.freezeCardStatusEnum: FreezeCardStatusEnum.NONE});
+      this.freezeCardStatusEnum: FreezeCardStatusEnum.NONE,
+      this.successPageRouteEnum = SuccessPageRouteEnum.UNBLOCK_DC});
 }

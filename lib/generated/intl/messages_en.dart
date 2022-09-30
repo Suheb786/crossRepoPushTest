@@ -867,6 +867,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "errorCCUnBlockNI":
+            MessageLookupByLibrary.simpleMessage("Error while unblocking pin"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
@@ -893,6 +895,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
+        "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
+            "Error while applying for physical card request"),
+        "errorPinTranslationXCS":
+            MessageLookupByLibrary.simpleMessage("PIN change error"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
@@ -959,6 +965,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred while issuing your Rebellious Red credit card. Please try again later."),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
+            "Error while requesting for pin change"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
             "An Error has Occured while ESettlement API get wrong"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(
@@ -1490,6 +1498,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Location services are disabled. Please allow access to Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "YOur Token is Expired, Login is Not Allowed"),
+        "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
+            "We\'re currently offline and will be back shortly!"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
@@ -1981,6 +1991,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Request new debit card"),
         "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
             "Your Request Is Not Completed"),
+        "requestPhysicalCard":
+            MessageLookupByLibrary.simpleMessage("Request physical card"),
+        "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?"),
+        "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
+            "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2336,7 +2352,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfTransactionsSmall": m6,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
-            "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN."),
+            "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),
         "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
             "An error has occurred and we are unable to complete the transaction"),
         "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(

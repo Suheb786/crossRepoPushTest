@@ -826,6 +826,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "errorAddingUserName": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "errorCCUnBlockNI": MessageLookupByLibrary.simpleMessage(
+            "واجهتنا مشكلة عند اعادة تفعيل الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "errorCreateCreditCard": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين."),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
@@ -852,6 +854,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06     (Err-model)"),
         "errorMultibranchAPIBS": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-116)"),
+        "errorPhysicalDCXCS": MessageLookupByLibrary.simpleMessage(
+            "واجهتنا مشكلة خلال طلب البطاقة، يرجى المحاولة مرة اخرى"),
+        "errorPinTranslationXCS":
+            MessageLookupByLibrary.simpleMessage("خطأ عند تغيير الرمز السري"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("خطأ خلال حفظ الهوية"),
         "errorSavingStatus":
@@ -918,6 +924,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ خلال إصدار بطاقتك الائتمانية Rebellious Red. حاول كمان مرة بعدين. (Err-107)"),
         "errorWhileUpdatingPinStatusRE": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-106)"),
+        "errrorForPinChangeNI": MessageLookupByLibrary.simpleMessage(
+            "واجهتنا مشكلة عند تغيير الرمز السري للبطاقة. يرجى المحاولة مرة اخرى"),
         "esettlementGoneWrong": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ أثناء حدوث خطأ في ESettlement API"),
         "establishCallError":
@@ -1431,6 +1439,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "خدمة تحديد المواقع معطلة. الرجاء تفعيلها على Blink"),
         "loginNotAllowed": MessageLookupByLibrary.simpleMessage(
             "الرمز منتهي الصلاحية، غير مصرح بتسجيل الدخول"),
+        "loginRegisterDisabled": MessageLookupByLibrary.simpleMessage(
+            "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "logoutAndContinueLater": MessageLookupByLibrary.simpleMessage(
             "تسجيل الخروج والاستمرار لاحقاً"),
@@ -1889,6 +1899,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("طلب بطاقة دفع مباشر جديدة"),
         "requestNotCompleted":
             MessageLookupByLibrary.simpleMessage("طلبك غير مكتمل"),
+        "requestPhysicalCard":
+            MessageLookupByLibrary.simpleMessage("طلب تسليم البطاقة"),
+        "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
+            "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
+        "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
+            "عم نطبع بطاقتك، راح تتواصل معك شركة ارامكس قريبا ليوصلولك البطاقة. لحد ما توصلك البطاقة بتقدر تستمر باستخدام البطاقة الافتراضية للشراء على الإنترنت."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(
@@ -2234,7 +2250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unBlockPin":
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
-            "تم حظر الرمز السري PIN على بطاقتك لأسباب أمنية. لتقدر تستخدم الرمز وتكمّل دفعاتك لازم تفك حظر الرمز."),
+            "لقد تم ايقاف الرمز السري للبطاقة لإحتياطات أمنية. للاستمرار باستخدام الرمز السري لاجراء عمليات الشراء يرجى القيام باعادة تفعيل الرمز السري. عند اعادة تفعيل الرمز السري، قد يتم رفض أول عملية باستخدامه."),
         "unableToCompleteTransaction": MessageLookupByLibrary.simpleMessage(
             "خطأ! الحركة غير ممكنة حالياً."),
         "unableToProceedTransaction": MessageLookupByLibrary.simpleMessage(
