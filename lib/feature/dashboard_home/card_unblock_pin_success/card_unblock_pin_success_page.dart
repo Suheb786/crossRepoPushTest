@@ -27,3 +27,8 @@ class CardPinUnBlockSuccessPageState
     return CardPinUnBlockSuccessPageView(provideBase());
   }
 }
+
+enum SuccessPageRouteEnum{
+  PHYSICAL_DC,
+  UNBLOCK_DC
+}

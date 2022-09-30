@@ -11,6 +11,9 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_request_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/card/cc_new_settlement/cc_update_settlement_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_verify_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/unblock_credit_card_pin_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
@@ -48,6 +51,7 @@ import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_reque
 import 'package:data/entity/remote/credit_card_limit/get_credit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
+import 'package:data/entity/remote/debit_card/request_physical_debit_card/request_physical_debit_card_request_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
@@ -562,5 +566,43 @@ class CardRemoteDsImpl extends CardRemoteDs {
         minimumSettlement: minimumSettlement,
         nickName: nickName,
         creditLimit: creditLimit));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> requestPhysicalDebitCard({required String tokenizedPan}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.requestPhysicalDebitCard(RequestPhysicalDebitCardRequestEntity(
+        getToken: true, baseData: baseData.toJson(), tokenizedPan: tokenizedPan));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(
+      {required String cardCode,
+      required String pin,
+      required String cardNumber,
+      required String otp}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.changeCreditCardPin(ChangeCreditCardPinRequestEntity(
+        getToken: true,
+        otp: otp,
+        baseData: baseData.toJson(),
+        cardCode: cardCode,
+        encryptedCardNumber: EncryptDecryptHelper.encryptCard(cardNo: cardNumber),
+        encryptedPinCode:
+            EncryptDecryptHelper.generateBlockPinForCreditCard(cardNo: cardNumber, pinCode: pin)));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPinVerify({required String cardCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.changeCreditPinVerify(ChangeCreditCardPinVerifyRequestEntity(
+        getToken: true, baseData: baseData.toJson(), cardCode: cardCode));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin({required String cardCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.unblockCreditCardPin(
+        UnblockCreditCardPinRequestEntity(getToken: true, baseData: baseData.toJson(), cardCode: cardCode));
   }
 }

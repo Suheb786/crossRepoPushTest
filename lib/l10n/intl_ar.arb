@@ -708,7 +708,7 @@
   "unblockCardPin": "فك حظر الرمز السري PIN على البطاقة",
   "changeCardPin": "تغيير الرمز السري PIN البطاقة",
   "unBlockPin": "فك حظر الرمز السري PIN",
-  "unBlockPinDescription": "تم حظر الرمز السري PIN على بطاقتك لأسباب أمنية. لتقدر تستخدم الرمز وتكمّل دفعاتك لازم تفك حظر الرمز.",
+  "unBlockPinDescription": "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations.",
   "cardPinSucccesFullyUnblocked": "تم فك حظر الرمز السري PIN بنجاح",
   "cardPinSucccesFullyUnblockedDesc": "أول حركة مالية بعد فك الحظر رح تنرفض, ما تقلق الثانية رح إتًم بنجاح",
   "backToDashboard": "العودة لشاشة التحكم",
@@ -1353,5 +1353,12 @@
   "attention": "تنويه",
   "noDataFound": "لاتوجد بيانات",
   "somethingWentWrong": "هناك خطأ ما",
-  "searchAgain": "البحث مرة أخرى"
+  "searchAgain": "البحث مرة أخرى",
+  "requestPhysicalCard": "Request physical card",
+  "requestPhysicalCardDec": "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?",
+  "requestPhysicalCardSuccessDec": "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.",
+  "errorPhysicalDCXCS": "Error while applying for physical card request (XCS)",
+  "errorPinTranslationXCS": "Error while requesting for pin translation (XCS)",
+  "errrorForPinChangeNI": "Error while requesting for pin change (NI)",
+  "errorCCUnBlockNI": "Error while unblocking pin (NI)"
 }

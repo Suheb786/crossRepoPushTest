@@ -2,8 +2,11 @@ import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -19,7 +22,12 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.pop(context);
+          if (model.manageCardPinArguments.successPageRouteEnum == SuccessPageRouteEnum.PHYSICAL_DC) {
+            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+            ProviderScope.containerOf(context).read(appHomeViewModelProvider).getDashboardData();
+          } else {
+            Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          }
         }
       },
       child: Container(
@@ -74,7 +82,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            S.of(context).cardPinSucccesFullyUnblocked,
+                            getSuccessTitle(model.manageCardPinArguments.successPageRouteEnum, context),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
@@ -90,7 +98,7 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 48.0.w),
                             child: Text(
-                              S.of(context).cardPinSucccesFullyUnblockedDesc,
+                              getSuccessSubTitle(model.manageCardPinArguments.successPageRouteEnum, context),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
@@ -145,5 +153,27 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
             ],
           )),
     );
+  }
+
+  String getSuccessTitle(SuccessPageRouteEnum successPageRouteEnum, BuildContext context) {
+    switch (successPageRouteEnum) {
+      case SuccessPageRouteEnum.UNBLOCK_DC:
+        return S.of(context).cardPinSucccesFullyUnblocked;
+      case SuccessPageRouteEnum.PHYSICAL_DC:
+        return S.of(context).yourCardReady;
+      default:
+        return S.of(context).cardPinSucccesFullyUnblocked;
+    }
+  }
+
+  String getSuccessSubTitle(SuccessPageRouteEnum successPageRouteEnum, BuildContext context) {
+    switch (successPageRouteEnum) {
+      case SuccessPageRouteEnum.UNBLOCK_DC:
+        return S.of(context).cardPinSucccesFullyUnblockedDesc;
+      case SuccessPageRouteEnum.PHYSICAL_DC:
+        return S.of(context).requestPhysicalCardSuccessDec;
+      default:
+        return S.of(context).cardPinSucccesFullyUnblockedDesc;
+    }
   }
 }

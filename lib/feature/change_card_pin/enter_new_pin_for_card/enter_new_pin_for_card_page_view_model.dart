@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_change_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -15,23 +16,21 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
 
   final ChangeDebitPinVerifyUseCase _changeDebitPinVerifyUseCase;
 
+  final CreditCardChangePinVerifyUseCase _creditCardChangePinVerifyUseCase;
+
   TextEditingController newPinController = TextEditingController();
   TextEditingController confirmPinController = TextEditingController();
-  final GlobalKey<AppTextFieldState> newPinKey =
-      GlobalKey(debugLabel: "new-pin");
-  final GlobalKey<AppTextFieldState> confirmPinKey =
-      GlobalKey(debugLabel: "confirm-pin");
+  final GlobalKey<AppTextFieldState> newPinKey = GlobalKey(debugLabel: "new-pin");
+  final GlobalKey<AppTextFieldState> confirmPinKey = GlobalKey(debugLabel: "confirm-pin");
 
   ///enter new pin for card request subject holder
-  PublishSubject<EnterNewPinForCardUseCaseParams> _enterNewPinForCardRequest =
-      PublishSubject();
+  PublishSubject<EnterNewPinForCardUseCaseParams> _enterNewPinForCardRequest = PublishSubject();
 
   ///enter new pin for card response holder
   PublishSubject<Resource<bool>> _enterNewPinForCardResponse = PublishSubject();
 
   ///enter new pin for card stream
-  Stream<Resource<bool>> get enterNewPinForCardStream =>
-      _enterNewPinForCardResponse.stream;
+  Stream<Resource<bool>> get enterNewPinForCardStream => _enterNewPinForCardResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -39,23 +38,32 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///change debit card pin verify request subject holder
-  PublishSubject<ChangeDebitPinVerifyUseCaseParams>
-      _changeDebitPinVerifyRequest = PublishSubject();
+  PublishSubject<ChangeDebitPinVerifyUseCaseParams> _changeDebitPinVerifyRequest = PublishSubject();
 
   ///change debit card pin verify response holder
-  PublishSubject<Resource<bool>> _changeDebitPinVerifyResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _changeDebitPinVerifyResponse = PublishSubject();
 
   ///change debit card pin verify stream
-  Stream<Resource<bool>> get changeDebitPinVerifyStream =>
-      _changeDebitPinVerifyResponse.stream;
+  Stream<Resource<bool>> get changeDebitPinVerifyStream => _changeDebitPinVerifyResponse.stream;
 
-  EnterNewPinForCardPageViewModel(
-      this._enterNewPinForCardUsecase, this._changeDebitPinVerifyUseCase) {
+  ///---------------change credit card pin verify -----------------------///
+
+  PublishSubject<CreditCardChangePinVerifyUseCaseParams> _creditCardChangePinVerifyRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _creditCardChangePinVerifyResponse = PublishSubject();
+
+  Stream<Resource<bool>> get creditCardChangePinVerifyStream => _creditCardChangePinVerifyResponse.stream;
+
+  void changeCreditCardPinVerify({required String cardCode}) {
+    _creditCardChangePinVerifyRequest.safeAdd(CreditCardChangePinVerifyUseCaseParams(cardCode: cardCode));
+  }
+
+  ///---------------change credit card pin verify -----------------------///
+
+  EnterNewPinForCardPageViewModel(this._enterNewPinForCardUsecase, this._changeDebitPinVerifyUseCase,
+      this._creditCardChangePinVerifyUseCase) {
     _enterNewPinForCardRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _enterNewPinForCardUsecase.execute(params: value))
+      RequestManager(value, createCall: () => _enterNewPinForCardUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -68,9 +76,7 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
     });
 
     _changeDebitPinVerifyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _changeDebitPinVerifyUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _changeDebitPinVerifyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,13 +86,23 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _creditCardChangePinVerifyRequest.listen((value) {
+      RequestManager(value, createCall: () => _creditCardChangePinVerifyUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _creditCardChangePinVerifyResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void enterNewPinForCard(CardType cardType) {
     _enterNewPinForCardRequest.safeAdd(EnterNewPinForCardUseCaseParams(
-        pin: newPinController.text,
-        confirmPin: confirmPinController.text,
-        cardType: cardType));
+        pin: newPinController.text, confirmPin: confirmPinController.text, cardType: cardType));
   }
 
   void changeDebitPinVerify() {
@@ -94,8 +110,7 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
   }
 
   void validate() {
-    if (newPinController.text.isNotEmpty &&
-        confirmPinController.text.isNotEmpty) {
+    if (newPinController.text.isNotEmpty && confirmPinController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

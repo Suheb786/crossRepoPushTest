@@ -1091,6 +1091,14 @@ class ErrorParser {
         return localisedHelper.ahwalServiceNotAvailable;
       case ErrorType.LOCATION_RESTRICTED:
         return localisedHelper.locationRestricted;
+      case ErrorType.ERROR_PHYSICAL_DC_XCS:
+        return localisedHelper.errorPhysicalDCXCS;
+      case ErrorType.ERROR_FOR_PIN_TRANSLATION_XCS:
+        return localisedHelper.errorPinTranslationXCS;
+      case ErrorType.ERROR_FOR_PIN_CHANGE_NI:
+        return localisedHelper.errrorForPinChangeNI;
+      case ErrorType.ERROR_CC_UNBLOCK_NI:
+        return localisedHelper.errorCCUnBlockNI;
 
       default:
         return "";

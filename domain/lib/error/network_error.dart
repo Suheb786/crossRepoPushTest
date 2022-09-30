@@ -675,6 +675,18 @@ class NetworkError extends BaseError {
           case "err-326":
             return AppError(cause: cause, error: error, type: ErrorType.LOCATION_RESTRICTED);
 
+          case "err-327":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_PHYSICAL_DC_XCS);
+
+          case "err-328":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_FOR_PIN_TRANSLATION_XCS);
+
+          case "err-329":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_FOR_PIN_CHANGE_NI);
+
+          case "err-330":
+            return AppError(cause: cause, error: error, type: ErrorType.ERROR_CC_UNBLOCK_NI);
+
           case "err-150":
             return AppError(cause: cause, error: error, type: ErrorType.RELATIVE_ID_ERROR);
 

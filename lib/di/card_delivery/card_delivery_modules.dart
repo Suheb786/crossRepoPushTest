@@ -36,55 +36,45 @@ import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog_view_model.dart';
 
 ///card delivery view model provider
-final cardDeliveryViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CardDeliveryPageViewModel>(
+final cardDeliveryViewModelProvider = ChangeNotifierProvider.autoDispose<CardDeliveryPageViewModel>(
   (ref) => CardDeliveryPageViewModel(),
 );
 
 ///create pin view model provider
-final createPinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreatePinPageViewModel>(
+final createPinViewModelProvider = ChangeNotifierProvider.autoDispose<CreatePinPageViewModel>(
   (ref) => CreatePinPageViewModel(ref.read(createPinUseCaseProvider)),
 );
 
 ///confirm pin view model provider
-final confirmPinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ConfirmPinPageViewModel>(
+final confirmPinViewModelProvider = ChangeNotifierProvider.autoDispose<ConfirmPinPageViewModel>(
   (ref) => ConfirmPinPageViewModel(ref.read(confirmPinUseCaseProvider)),
 );
 
 ///visa card view model provider
-final visaCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<VisaCardPageViewModel>(
-  (ref) => VisaCardPageViewModel(ref.read(cardIssuanceCaseProvider),
-      ref.read(getPlaceHolderUseCaseProvider)),
+final visaCardViewModelProvider = ChangeNotifierProvider.autoDispose<VisaCardPageViewModel>(
+  (ref) => VisaCardPageViewModel(ref.read(cardIssuanceCaseProvider), ref.read(getPlaceHolderUseCaseProvider)),
 );
 
 ///card ready success view model provider
-final cardReadySuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CardReadySuccessPageViewModel>(
+final cardReadySuccessViewModelProvider = ChangeNotifierProvider.autoDispose<CardReadySuccessPageViewModel>(
   (ref) => CardReadySuccessPageViewModel(),
 );
 
 ///manage card pin viewmodel provider
-final manageCardPinViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<ManageCardPinViewModel, ManageCardPinArguments>(
+final manageCardPinViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<ManageCardPinViewModel, ManageCardPinArguments>(
   (ref, args) => ManageCardPinViewModel(
-      args,
-      ref.read(unBlockDebitCardUseCaseProvider),
-      ref.read(unBlockCreditCardUseCaseProvider)),
+      args, ref.read(unBlockDebitCardUseCaseProvider), ref.read(unBlockCreditCardUseCaseProvider)),
 );
 
 ///Card pin unblock success view model provider
-final cardPinUnblockSuccessViewModelProvider = ChangeNotifierProvider
-    .autoDispose
-    .family<CardPinUnBlockSuccessPageViewModel, ManageCardPinArguments>(
+final cardPinUnblockSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<CardPinUnBlockSuccessPageViewModel, ManageCardPinArguments>(
   (ref, args) => CardPinUnBlockSuccessPageViewModel(args),
 );
 
 ///change card pin view model provider
-final changeCardPinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ChangeCardPinPageViewModel>(
+final changeCardPinViewModelProvider = ChangeNotifierProvider.autoDispose<ChangeCardPinPageViewModel>(
   (ref) => ChangeCardPinPageViewModel(),
 );
 
@@ -94,15 +84,15 @@ final otpForChangeCardPinViewModelProvider =
   (ref) => OtpForChangeCardPinPageViewModel(
       ref.read(otpForChangeCardPinUseCaseProvider),
       ref.read(changeDebitPinUseCaseProvider),
-      ref.read(changeDebitPinVerifyUseCaseProvider)),
+      ref.read(changeDebitPinVerifyUseCaseProvider),
+      ref.read(creditCardChangePinUseCaseProvider),
+      ref.read(creditCardChangePinVerifyUseCaseProvider)),
 );
 
 ///enter new card pin view model provider
-final enterNewCardPinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterNewPinForCardPageViewModel>(
-  (ref) => EnterNewPinForCardPageViewModel(
-      ref.read(enterNewPinForCardUseCaseProvider),
-      ref.read(changeDebitPinVerifyUseCaseProvider)),
+final enterNewCardPinViewModelProvider = ChangeNotifierProvider.autoDispose<EnterNewPinForCardPageViewModel>(
+  (ref) => EnterNewPinForCardPageViewModel(ref.read(enterNewPinForCardUseCaseProvider),
+      ref.read(changeDebitPinVerifyUseCaseProvider), ref.read(creditCardChangePinVerifyUseCaseProvider)),
 );
 
 ///change card pin success view model provider
@@ -120,36 +110,33 @@ final supplementaryCreditCardViewModelProvider =
 ///relationship with card holder view model provider
 final relationShipWithCardHolderViewModelProvider =
     ChangeNotifierProvider.autoDispose<RelationshipWithCardholderPageViewModel>(
-  (ref) => RelationshipWithCardholderPageViewModel(
-      ref.read(relationshipWithCardHolderUseCaseProvider),
+  (ref) => RelationshipWithCardholderPageViewModel(ref.read(relationshipWithCardHolderUseCaseProvider),
       ref.read(getCreditCardRelationshipUseCaseProvider)),
 );
 
 ///relationship with card holder dialog view model provider
-final relationShipWithCardHolderDialogViewModelProvider = ChangeNotifierProvider
-    .autoDispose<RelationshipWithCardHolderDialogViewModel>(
+final relationShipWithCardHolderDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RelationshipWithCardHolderDialogViewModel>(
   (ref) => RelationshipWithCardHolderDialogViewModel(),
 );
 
 ///supplementary id scan view model provider
-final supplementaryIdScanInfoViewModelProvider = ChangeNotifierProvider
-    .autoDispose<SupplementaryIdScanVerificationInfoPageViewModel>(
+final supplementaryIdScanInfoViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryIdScanVerificationInfoPageViewModel>(
   (ref) => SupplementaryIdScanVerificationInfoPageViewModel(
-      ref.read(idVerificationInfoUseCaseProvider),
-      ref.read(scanUserDocumentUseCaseProvider)),
+      ref.read(idVerificationInfoUseCaseProvider), ref.read(scanUserDocumentUseCaseProvider)),
 );
 
 ///personalize credit card view model provider
 final personalizeCreditCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<PersonalizeCreditCardPageViewModel>(
-  (ref) => PersonalizeCreditCardPageViewModel(
-      ref.read(personalizeCreditCardUseCaseProvider),
+  (ref) => PersonalizeCreditCardPageViewModel(ref.read(personalizeCreditCardUseCaseProvider),
       ref.read(supplementaryCreditCardRequestUseCaseProvider)),
 );
 
 ///supplementary credit card ready view model provider
-final supplementaryCreditCardReadyViewModelProvider = ChangeNotifierProvider
-    .autoDispose<SupplementaryCreditCardReadyPageViewModel>(
+final supplementaryCreditCardReadyViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryCreditCardReadyPageViewModel>(
   (ref) => SupplementaryCreditCardReadyPageViewModel(),
 );
 
@@ -160,61 +147,51 @@ final supplementaryDebitCardViewModelProvider =
 );
 
 ///relationship with card holder debit view model provider
-final relationShipWithCardHolderDebitViewModelProvider = ChangeNotifierProvider
-    .autoDispose<RelationshipWithCardholderDebitPageViewModel>(
-  (ref) => RelationshipWithCardholderDebitPageViewModel(
-      ref.read(relationshipWithCardHolderUseCaseProvider)),
+final relationShipWithCardHolderDebitViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RelationshipWithCardholderDebitPageViewModel>(
+  (ref) => RelationshipWithCardholderDebitPageViewModel(ref.read(relationshipWithCardHolderUseCaseProvider)),
 );
 
 ///supplementary debit id scan view model provider
-final supplementaryDebitIdScanInfoViewModelProvider = ChangeNotifierProvider
-    .autoDispose<SupplementaryIdScanVerificationInfoDebitPageViewModel>(
-  (ref) => SupplementaryIdScanVerificationInfoDebitPageViewModel(
-      ref.read(scanUserDocumentUseCaseProvider)),
+final supplementaryDebitIdScanInfoViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryIdScanVerificationInfoDebitPageViewModel>(
+  (ref) => SupplementaryIdScanVerificationInfoDebitPageViewModel(ref.read(scanUserDocumentUseCaseProvider)),
 );
 
 ///personalize debit view model provider
 final personalizeDebitViewModelProvider =
     ChangeNotifierProvider.autoDispose<PersonalizeDebitCardPageViewModel>(
   (ref) => PersonalizeDebitCardPageViewModel(
-      ref.read(personalizeDebitCardUseCaseProvider),
-      ref.read(applySupplementaryDebitUseCaseProvider)),
+      ref.read(personalizeDebitCardUseCaseProvider), ref.read(applySupplementaryDebitUseCaseProvider)),
 );
 
 ///supplementary card in review view model provider
-final supplementaryCardInReviewViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        SupplementaryCardInReviewPageViewModel,
-        SupplementaryCardInReviewArguments>(
+final supplementaryCardInReviewViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SupplementaryCardInReviewPageViewModel, SupplementaryCardInReviewArguments>(
   (ref, args) => SupplementaryCardInReviewPageViewModel(args),
 );
 
 ///credit card apply success view model provider
-final creditCardApplySuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        CreditCardApplySuccessPageViewModel, CreditCardApplySuccessArguments>(
+final creditCardApplySuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardApplySuccessPageViewModel, CreditCardApplySuccessArguments>(
   (ref, args) => CreditCardApplySuccessPageViewModel(args),
 );
 
 ///debit card supplementary success view model provider
-final supplementaryDebitCardSuccessViewModelProvider = ChangeNotifierProvider
-    .autoDispose<SupplementaryDebitCardSuccessPageViewModel>(
+final supplementaryDebitCardSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryDebitCardSuccessPageViewModel>(
   (ref) => SupplementaryDebitCardSuccessPageViewModel(),
 );
 
 ///credit card video call verification initiate view model provider
-final creditCardVideoCallInitiateViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        CreditCardVideoCallInitiatePageViewModel,
-        CreditCardVideoCallInitiateArgs>(
+final creditCardVideoCallInitiateViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardVideoCallInitiatePageViewModel, CreditCardVideoCallInitiateArgs>(
   (ref, args) => CreditCardVideoCallInitiatePageViewModel(
-      ref.read(requestCallUsecaseProvider),
-      args,
-      ref.read(checkGenderStatusUsecaseProvider)),
+      ref.read(requestCallUsecaseProvider), args, ref.read(checkGenderStatusUsecaseProvider)),
 );
 
 ///credit card video call verification complete view model provider
-final creditCardVideoCallCompleteViewModelProvider = ChangeNotifierProvider
-    .autoDispose<CreditCardVideoCallCompletePageViewModel>(
+final creditCardVideoCallCompleteViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreditCardVideoCallCompletePageViewModel>(
   (ref) => CreditCardVideoCallCompletePageViewModel(),
 );

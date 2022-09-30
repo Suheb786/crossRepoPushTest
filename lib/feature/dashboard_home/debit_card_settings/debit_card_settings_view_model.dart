@@ -3,6 +3,7 @@ import 'package:domain/usecase/card_delivery/cancel_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supp_debit_card_with_response_usecase.dart';
 import 'package:domain/usecase/card_delivery/remove_or_reapply_supplementary_debit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/request_physical_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_debit_card_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
@@ -19,6 +20,7 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   final CancelDebitCardUseCase _cancelDebitCardUseCase;
   final RemoveOrReapplySupplementaryDebitCardUseCase _removeOrReapplySupplementaryDebitCardUseCase;
   final RemoveOrReapplySuppDebitCardWithResponseUseCase _removeOrReapplySuppDebitCardWithResponseUseCase;
+  final RequestPhysicalDebitCardUseCase _requestPhysicalDebitCardUseCase;
 
   ///freeze card
   PublishSubject<bool> _freezeCardSubject = PublishSubject();
@@ -73,6 +75,23 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   Stream<Resource<CardIssuanceDetails>> get removeOrReapplySuppDebitCardWithResponseStream =>
       _removeOrReapplySuppDebitCardWithResponseSubject.stream;
 
+  ///----------------request phsical debit card----------------///
+
+  PublishSubject<RequestPhysicalDebitCardUseCaseParams> _requestPhysicalDebitCardRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _requestPhysicalDebitCardResponseSubject = PublishSubject();
+
+  Stream<Resource<bool>> get requestPhysicalDebitCardResponseStream =>
+      _requestPhysicalDebitCardResponseSubject.stream;
+
+  void requestPhysicalDebitCard() {
+    _requestPhysicalDebitCardRequestSubject.safeAdd(
+        RequestPhysicalDebitCardUseCaseParams(tokenizedPan: debitCardSettingsArguments.debitCard.code ?? ''));
+  }
+
+  ///----------------request phsical debit card----------------///
+
   bool isFreezed = false;
   bool isUnFreezed = false;
   bool isCancelled = false;
@@ -103,7 +122,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
       this._cancelDebitCardUseCase,
       this.debitCardSettingsArguments,
       this._removeOrReapplySupplementaryDebitCardUseCase,
-      this._removeOrReapplySuppDebitCardWithResponseUseCase) {
+      this._removeOrReapplySuppDebitCardWithResponseUseCase,
+      this._requestPhysicalDebitCardUseCase) {
     _freezeCardRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _freezeDebitCardUseCase.execute(params: value);
@@ -205,6 +225,18 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         } else if (event.status == Status.SUCCESS) {
           removeOrReapply = true;
         }
+      });
+    });
+
+    _requestPhysicalDebitCardRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _requestPhysicalDebitCardUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _requestPhysicalDebitCardResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {}
       });
     });
   }

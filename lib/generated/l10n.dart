@@ -6940,10 +6940,10 @@ class S {
     );
   }
 
-  /// `Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.`
+  /// `Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations.`
   String get unBlockPinDescription {
     return Intl.message(
-      'Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.',
+      'Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations.',
       name: 'unBlockPinDescription',
       desc: '',
       args: [],
@@ -13765,6 +13765,76 @@ class S {
     return Intl.message(
       'Search Again',
       name: 'searchAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request physical card`
+  String get requestPhysicalCard {
+    return Intl.message(
+      'Request physical card',
+      name: 'requestPhysicalCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want your physical Yellow Sun debit card to be delivered to your address?`
+  String get requestPhysicalCardDec {
+    return Intl.message(
+      'Are you sure you want your physical Yellow Sun debit card to be delivered to your address?',
+      name: 'requestPhysicalCardDec',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.`
+  String get requestPhysicalCardSuccessDec {
+    return Intl.message(
+      'Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.',
+      name: 'requestPhysicalCardSuccessDec',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while applying for physical card request (XCS)`
+  String get errorPhysicalDCXCS {
+    return Intl.message(
+      'Error while applying for physical card request (XCS)',
+      name: 'errorPhysicalDCXCS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting for pin translation (XCS)`
+  String get errorPinTranslationXCS {
+    return Intl.message(
+      'Error while requesting for pin translation (XCS)',
+      name: 'errorPinTranslationXCS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while requesting for pin change (NI)`
+  String get errrorForPinChangeNI {
+    return Intl.message(
+      'Error while requesting for pin change (NI)',
+      name: 'errrorForPinChangeNI',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while unblocking pin (NI)`
+  String get errorCCUnBlockNI {
+    return Intl.message(
+      'Error while unblocking pin (NI)',
+      name: 'errorCCUnBlockNI',
       desc: '',
       args: [],
     );

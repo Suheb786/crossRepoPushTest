@@ -52,6 +52,9 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_request_entity.dart';
 import 'package:data/entity/remote/card/cc_change_linked_mobile_number/cc_change_mobile_number_verify_request_entity.dart';
 import 'package:data/entity/remote/card/cc_new_settlement/cc_update_settlement_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/change_credit_card_pin_verify_request_entity.dart';
+import 'package:data/entity/remote/card/change_credit_card_pin/unblock_credit_card_pin_request_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
@@ -109,6 +112,7 @@ import 'package:data/entity/remote/dashboard/placeholder/get_placeholder_request
 import 'package:data/entity/remote/dashboard/placeholder/placeholder_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
+import 'package:data/entity/remote/debit_card/request_physical_debit_card/request_physical_debit_card_request_entity.dart';
 import 'package:data/entity/remote/device_change/resend_otp_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
 import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
@@ -430,7 +434,7 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 
-  @POST("/Dashboard/GetDashboardDataV3")
+  @POST("/Dashboard/GetDashboardDataV4")
   Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
       @Body() DashboardDataRequest dashboardDataRequest);
 
@@ -742,4 +746,19 @@ abstract class ApiService {
   @POST("/CardTracking/GetCardInProcess")
   Future<HttpResponse<ResponseEntity>> getCardInProcess(
       @Body() GetCardInProcessRequestEntity getCardInProcessRequestEntity);
+
+  @POST("/DebitCard/RequestForPhysicalDebitCard")
+  Future<HttpResponse<ResponseEntity>> requestPhysicalDebitCard(
+      @Body() RequestPhysicalDebitCardRequestEntity requestPhysicalDebitCardRequestEntity);
+
+  @POST("/CardTracking/ChangePinVerify")
+  Future<HttpResponse<ResponseEntity>> changeCreditPinVerify(
+      @Body() ChangeCreditCardPinVerifyRequestEntity changeCreditCardPinVerifyRequestEntity);
+
+  @POST("/CardTracking/ChangeCreditCardPin")
+  Future<HttpResponse<ResponseEntity>> changeCreditCardPin(@Body() ChangeCreditCardPinRequestEntity request);
+
+  @POST("/CardTracking/UnblockCreditCardPin")
+  Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
+      @Body() UnblockCreditCardPinRequestEntity request);
 }

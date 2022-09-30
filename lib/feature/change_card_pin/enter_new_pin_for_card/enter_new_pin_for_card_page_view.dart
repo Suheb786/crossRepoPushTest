@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,137 +41,161 @@ class EnterNewPinForCardPageView extends BasePageViewWidget<EnterNewPinForCardPa
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.changeDebitPinVerifyStream,
+                  stream: model.creditCardChangePinVerifyStream,
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context).read(changeCardPinViewModelProvider).nextPage();
-                      // .next();
                     }
                   },
                   dataBuilder: (context, snapshot) {
                     return AppStreamBuilder<Resource<bool>>(
-                      stream: model.enterNewPinForCardStream,
-                      initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          model.changeDebitPinVerify();
-                        } else if (data.status == Status.ERROR) {
-                          if (data.appError!.type == ErrorType.EMPTY_PIN) {
-                            model.newPinKey.currentState!.isValid = false;
-                          } else if (data.appError!.type == ErrorType.EMPTY_CONFIRM_PIN) {
-                            model.confirmPinKey.currentState!.isValid = false;
-                          } else if (data.appError!.type == ErrorType.PIN_NOT_MATCH) {}
+                        stream: model.changeDebitPinVerifyStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            ProviderScope.containerOf(context)
+                                .read(changeCardPinViewModelProvider)
+                                .nextPage();
+                          }
+                        },
+                        dataBuilder: (context, snapshot) {
+                          return AppStreamBuilder<Resource<bool>>(
+                            stream: model.enterNewPinForCardStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                if (ProviderScope.containerOf(context)
+                                        .read(changeCardPinViewModelProvider)
+                                        .changeCardPinArguments
+                                        .cardType ==
+                                    CardType.DEBIT) {
+                                  model.changeDebitPinVerify();
+                                } else {
+                                  model.changeCreditCardPinVerify(
+                                      cardCode: ProviderScope.containerOf(context)
+                                              .read(changeCardPinViewModelProvider)
+                                              .changeCardPinArguments
+                                              .tokenizedPan ??
+                                          '');
+                                }
+                              } else if (data.status == Status.ERROR) {
+                                if (data.appError!.type == ErrorType.EMPTY_PIN) {
+                                  model.newPinKey.currentState!.isValid = false;
+                                } else if (data.appError!.type == ErrorType.EMPTY_CONFIRM_PIN) {
+                                  model.confirmPinKey.currentState!.isValid = false;
+                                } else if (data.appError!.type == ErrorType.PIN_NOT_MATCH) {}
 
-                          model.showToastWithError(data.appError!);
-                        }
-                      },
-                      dataBuilder: (context, isOtpVerified) {
-                        return GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (StringUtils.isDirectionRTL(context)) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                FocusScope.of(context).unfocus();
-                                model.enterNewPinForCard(ProviderScope.containerOf(context)
-                                    .read(changeCardPinViewModelProvider)
-                                    .changeCardPinArguments
-                                    .cardType!);
+                                model.showToastWithError(data.appError!);
                               }
-                            } else {
-                              if (details.primaryVelocity!.isNegative) {
-                                FocusScope.of(context).unfocus();
-                                model.enterNewPinForCard(ProviderScope.containerOf(context)
-                                    .read(changeCardPinViewModelProvider)
-                                    .changeCardPinArguments
-                                    .cardType!);
-                              }
-                            }
-                          },
-                          child: Card(
-                            margin: EdgeInsets.zero,
-                            child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SingleChildScrollView(
-                                      physics: NeverScrollableScrollPhysics(),
+                            },
+                            dataBuilder: (context, isOtpVerified) {
+                              return GestureDetector(
+                                onHorizontalDragEnd: (details) {
+                                  if (StringUtils.isDirectionRTL(context)) {
+                                    if (!details.primaryVelocity!.isNegative) {
+                                      FocusScope.of(context).unfocus();
+                                      model.enterNewPinForCard(ProviderScope.containerOf(context)
+                                          .read(changeCardPinViewModelProvider)
+                                          .changeCardPinArguments
+                                          .cardType!);
+                                    }
+                                  } else {
+                                    if (details.primaryVelocity!.isNegative) {
+                                      FocusScope.of(context).unfocus();
+                                      model.enterNewPinForCard(ProviderScope.containerOf(context)
+                                          .read(changeCardPinViewModelProvider)
+                                          .changeCardPinArguments
+                                          .cardType!);
+                                    }
+                                  }
+                                },
+                                child: Card(
+                                  margin: EdgeInsets.zero,
+                                  child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          AppTextField(
-                                            labelText: S.of(context).newPin.toUpperCase(),
-                                            hintText: S.of(context).pleaseEnter,
-                                            inputType: TextInputType.number,
-                                            obscureText: true,
-                                            inputFormatters: [
-                                              LengthLimitingTextInputFormatter(4),
-                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                                            ],
-                                            controller: model.newPinController,
-                                            key: model.newPinKey,
-                                            onChanged: (value) => model.validate(),
-                                          ),
-                                          SizedBox(
-                                            height: 16.h,
-                                          ),
-                                          AppTextField(
-                                            labelText: S.of(context).confirmNewPin.toUpperCase(),
-                                            hintText: S.of(context).pleaseEnter,
-                                            obscureText: true,
-                                            inputFormatters: [
-                                              LengthLimitingTextInputFormatter(4),
-                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                                            ],
-                                            inputType: TextInputType.number,
-                                            controller: model.confirmPinController,
-                                            key: model.confirmPinKey,
-                                            onChanged: (value) => model.validate(),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 16.0.h, bottom: 24.h),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                    buttonHeight: 50,
-                                                    buttonText: S.of(context).swipeToProceed,
-                                                  ),
-                                                );
-                                              }),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Center(
-                                            child: Text(
-                                              S.of(context).backToCardSettings,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.brightBlue,
-                                                letterSpacing: 1,
-                                                fontSize: 14.t,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                          SingleChildScrollView(
+                                            physics: NeverScrollableScrollPhysics(),
+                                            child: Column(
+                                              children: [
+                                                AppTextField(
+                                                  labelText: S.of(context).newPin.toUpperCase(),
+                                                  hintText: S.of(context).pleaseEnter,
+                                                  inputType: TextInputType.number,
+                                                  obscureText: true,
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(4),
+                                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                                                  ],
+                                                  controller: model.newPinController,
+                                                  key: model.newPinKey,
+                                                  onChanged: (value) => model.validate(),
+                                                ),
+                                                SizedBox(
+                                                  height: 16.h,
+                                                ),
+                                                AppTextField(
+                                                  labelText: S.of(context).confirmNewPin.toUpperCase(),
+                                                  hintText: S.of(context).pleaseEnter,
+                                                  obscureText: true,
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(4),
+                                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                                                  ],
+                                                  inputType: TextInputType.number,
+                                                  controller: model.confirmPinController,
+                                                  key: model.confirmPinKey,
+                                                  onChanged: (value) => model.validate(),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )),
-                          ),
-                        );
-                      },
-                    );
+                                          Column(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(top: 16.0.h, bottom: 24.h),
+                                                child: AppStreamBuilder<bool>(
+                                                    stream: model.showButtonStream,
+                                                    initialData: false,
+                                                    dataBuilder: (context, isValid) {
+                                                      return Visibility(
+                                                        visible: isValid!,
+                                                        child: AnimatedButton(
+                                                          buttonHeight: 50,
+                                                          buttonText: S.of(context).swipeToProceed,
+                                                        ),
+                                                      );
+                                                    }),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Center(
+                                                  child: Text(
+                                                    S.of(context).backToCardSettings,
+                                                    style: TextStyle(
+                                                      fontFamily: StringUtils.appFont,
+                                                      color: AppColor.brightBlue,
+                                                      letterSpacing: 1,
+                                                      fontSize: 14.t,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                              );
+                            },
+                          );
+                        });
                   }),
             );
           },

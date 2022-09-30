@@ -13,26 +13,43 @@ import 'package:tuple/tuple.dart';
 class EncryptDecryptHelper {
   EncryptDecryptHelper._();
 
+  static String encryptKey = '0123456789ABCDEFFEDCBA98765432100123456789ABCDEF';
+  static String pinBlockKey = 'DC465DC78F8FC40D9E7F34437A1AA1B0';
+
   static String decryptCard({required String cardNo}) {
     final List<int> decrypted;
-    DES3 desECB =
-        DES3(key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY), mode: DESMode.ECB);
-    decrypted = desECB.decrypt(
-        isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
+    DES3 desECB = DES3(key: hex.decode(KeyHelper.CARD_DECRYPTION_KEY), mode: DESMode.ECB);
+    decrypted = desECB.decrypt(isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
     return String.fromCharCodes(decrypted).replaceAll(RegExp(r'[^0-9]'), '');
   }
 
-  static String generateBlockPin(
-      {required String cardNo, required String pinCode}) {
+  static String encryptCard({required String cardNo}) {
+    final List<int> encrypted;
+    DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB);
+    encrypted = desECB.encrypt(hex.decode(cardNo));
+    return base64.encode(encrypted);
+  }
+
+  static String generateBlockPin({required String cardNo, required String pinCode}) {
     final List<int> encrypted;
     String blockPart1 = "0${pinCode.length}$pinCode";
     blockPart1 = blockPart1.padRight(16, 'F');
     String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
-    String finalBlock = (int.tryParse(blockPart1, radix: 16)! ^
-            int.tryParse(blockPart2, radix: 16)!)
-        .toRadixString(16);
-    DES3 desECB =
-        DES3(key: hex.decode(KeyHelper.PIN_BLOCK_KEY), mode: DESMode.ECB);
+    String finalBlock =
+        (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
+    DES3 desECB = DES3(key: hex.decode(KeyHelper.PIN_BLOCK_KEY), mode: DESMode.ECB);
+    encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
+    return hex.encode(encrypted).substring(0, 16).toUpperCase();
+  }
+
+  static String generateBlockPinForCreditCard({required String cardNo, required String pinCode}) {
+    final List<int> encrypted;
+    String blockPart1 = "0${pinCode.length}$pinCode";
+    blockPart1 = blockPart1.padRight(16, 'F');
+    String blockPart2 = cardNo.substring(3, cardNo.length - 1).padLeft(16, '0');
+    String finalBlock =
+        (int.tryParse(blockPart1, radix: 16)! ^ int.tryParse(blockPart2, radix: 16)!).toRadixString(16);
+    DES3 desECB = DES3(key: hex.decode(pinBlockKey), mode: DESMode.ECB);
     encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
     return hex.encode(encrypted).substring(0, 16).toUpperCase();
   }
@@ -60,9 +77,8 @@ class EncryptDecryptHelper {
   ///AES encryption
   static Tuple2<String, String> _finalDataEncrypt(String data) {
     String randomKey = _generateRandomKey();
-    Uint8List random =
-        encrypt.Key.fromBase64(base64Encode(utf8.encode(randomKey)))
-            .bytes; //encrypt.Key.fromLength(16).bytes;
+    Uint8List random = encrypt.Key.fromBase64(base64Encode(utf8.encode(randomKey)))
+        .bytes; //encrypt.Key.fromLength(16).bytes;
     var key = encrypt.Key(random);
     var iv = encrypt.IV(random);
     // print("Key Length " + key.bytes.length.toString());
@@ -75,17 +91,14 @@ class EncryptDecryptHelper {
 
   static String _generateRandomKey() {
     /// TODO::: NEED TO ASK FROM BACKEND
-    const _chars =
-        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 
     Random _rnd = Random();
-    var randomKey = String.fromCharCodes(Iterable.generate(
-        16, (value) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+    var randomKey = String.fromCharCodes(
+        Iterable.generate(16, (value) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
     /// TODO::: CONFIRM LENGTH
-    return randomKey.toString().length > 16
-        ? randomKey.toString().substring(0, 16)
-        : randomKey.toString();
+    return randomKey.toString().length > 16 ? randomKey.toString().substring(0, 16) : randomKey.toString();
   }
 
   ///RSA encryption
@@ -97,16 +110,14 @@ class EncryptDecryptHelper {
         "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiEHA5NjFmyC6dw84pzbpIzhXqH5VjD/fyFBko4z27iD8ZgQ5jzWs4wEC1XnCrYbKdmys+82P8oY38gEJxLcZsjuyYuy64s/gOD173sh054gYqhds9lNT/93KrEjhBUFpGUi+fq3PFCh2qrxd/9XaiMLcmg8y1UuCWKVW+JQCpwaLGK74xdmumnpfzvKHEzAIW3Bgn1wJZAPwMwcMz+uSY9afer4mCTfRRheisAlOMRgq7sN5J21Fxs7KlhSpvDlLbUsUuZ+nsbWjRStlahAHbumoZjiqJmvgY5iu+k6YJyciZYWv2IzL1IZ3plJ7O/SujdEIDL+oJfsVMn63veVZeAT6kxM9itsepINci4MlGlNhwzncpGkOQJeMBRVIbkF4D2Oa/oHRv+N+Olcdw+6Bw3C1bYXZOhB3jYZL6vhAgxcJIMpnGHWItWftm3Rll5nbxoKMHJPVg2ig3kf2Fkbe//7FK3WwiiAsB24rf2jIExx+oFPT8cz68cKBmMxlMzpOTDLvsdGewye6Gszefzvudwx+NQvvpepKoMrwSvDvW0WYEVFisrRKzrdcZ+a+iJRzfdBXubgvoLfBMl8tKf2lb2B+GzKVDH6pYnGpCieHKRxgU7ETadVkpXp8GifzKmbwqqSoZcr/Ebzy0dCM0sGVC00K7ZzmJhM5jBdC5Zj2/2MCAwEAAQ==";
 
     ///RSA encrypt
-    final encrypter = encrypt.Encrypter(encrypt.RSA(
-        publicKey: RsaKeyHelper().parsePublicKeyFromPem(serverPublicKey)));
+    final encrypter =
+        encrypt.Encrypter(encrypt.RSA(publicKey: RsaKeyHelper().parsePublicKeyFromPem(serverPublicKey)));
 
     return encrypter.encrypt(utf8.decode(key.bytes)).base64;
   }
 
-  static String _encryptRequestData(
-      encrypt.Key key, encrypt.IV iv, String data) {
-    final encrypter = encrypt.Encrypter(
-        encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
+  static String _encryptRequestData(encrypt.Key key, encrypt.IV iv, String data) {
+    final encrypter = encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: "PKCS7"));
     return encrypter.encrypt(data, iv: iv).base64;
   }
 }

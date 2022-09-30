@@ -16,18 +16,25 @@ class ApiInterceptor extends InterceptorsWrapper {
   ApiInterceptor(this._userRepository, this._previousDio) {
     Dio newDio = Dio(_previousDio.options);
     newDio.interceptors.add(_previousDio.interceptors.first);
-    apiService =
-        ApiService(newDio, baseUrl: NetworkProperties.BASE_CHANNEL_URL);
+    apiService = ApiService(newDio, baseUrl: NetworkProperties.BASE_CHANNEL_URL);
   }
 
   @override
-  Future onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+  Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
     print('authToken--->$authToken');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
     options.data = _encryptRequest(options.data);
+
+    ///PIN BLOCK TEST
+    /*
+    String encryptedCard = EncryptDecryptHelper.encryptCard(cardNo: '4082230007237692');
+    print('encryptedCard------>$encryptedCard');
+    String pinBlock = EncryptDecryptHelper.generateBlockPin(cardNo: '4082230007237692', pinCode: '1234');
+    print('pinblock------>$pinBlock');
+
+     */
 
     ///TODO:: UNCOMMENT BELOW BLOCK FOR SSL PINNING
 /*
@@ -100,13 +107,9 @@ class ApiInterceptor extends InterceptorsWrapper {
       return super.onError(err, handler);
     }
     if (err.response!.data != null) {
-      if (((err.response!.data as Map<String, dynamic>)['response']['token']
-                  as String?)
-              ?.isNotEmpty ??
+      if (((err.response!.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ??
           false) {
-        authToken = (err.response!.data as Map<String, dynamic>)['response']
-                ['token'] ??
-            '';
+        authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
       }
     }
     super.onError(err, handler);
@@ -124,13 +127,8 @@ class ApiInterceptor extends InterceptorsWrapper {
     }
     if (response.statusCode == 200) {
       if (response.data != null) {
-        if (((response.data as Map<String, dynamic>)['response']['token']
-                    as String?)
-                ?.isNotEmpty ??
-            false) {
-          authToken = (response.data as Map<String, dynamic>)['response']
-                  ['token'] ??
-              '';
+        if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
+          authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
         }
       }
     }
