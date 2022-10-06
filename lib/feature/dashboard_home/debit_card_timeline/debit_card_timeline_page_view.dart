@@ -173,7 +173,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                         model.timeLineArguments.timeLineArguments
                                                                     .timelineListArguments[index].cardType ==
                                                                 CardType.DEBIT
-                                                            ? S.of(context).debitCardDeliveredQ
+                                                            ? ''
                                                             : S.of(context).creditCardOnDelivery,
                                                         textAlign: TextAlign.center,
                                                         style: TextStyle(
@@ -182,9 +182,7 @@ class DebitCardTimeLinePageView extends BasePageViewWidget<DebitCardTimeLineView
                                                             fontSize: 12.t),
                                                       ),
                                                       Visibility(
-                                                        visible: model.timeLineArguments.timeLineArguments
-                                                                .timelineListArguments[index].cardType ==
-                                                            CardType.DEBIT,
+                                                        visible: false,
                                                         child: Padding(
                                                           padding: EdgeInsets.only(top: 5.h),
                                                           child: InkWell(

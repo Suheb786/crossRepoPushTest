@@ -8,7 +8,7 @@ import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.da
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
@@ -80,8 +80,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 20.0.h),
-                                    child: PaymentSwiper(
+                                    padding: EdgeInsets.only(top: 34.0.h, bottom: 5.0.h),
+                                    child: AppSwiper(
                                       appSwiperController: model.appSwiperController,
                                       pages: [
                                         AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),

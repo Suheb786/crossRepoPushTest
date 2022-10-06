@@ -93,12 +93,13 @@ class PaymentHomePageState extends BaseStatefulPage<PaymentHomeViewModel, Paymen
   @override
   void onModelReady(PaymentHomeViewModel model) {
     //model.updatePageControllerStream(widget.navigationType == NavigationType.DASHBOARD ? 0 : 1);
-    model.controller = PageController(
-        viewportFraction: 0.8,
-        keepPage: true,
-        initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1);
-    model.appSwiperController = PageController(
-        initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1, viewportFraction: 0.8);
+    // model.controller = PageController(
+    //     viewportFraction: 0.8,
+    //     keepPage: true,
+    //     initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1);
+    // model.appSwiperController = PageController(
+    //     initialPage: widget.navigationType == NavigationType.DASHBOARD ? 0 : 1, viewportFraction: 0.8);
+    model.navigationType = widget.navigationType ?? NavigationType.DASHBOARD;
 
     super.onModelReady(model);
   }

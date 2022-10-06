@@ -239,7 +239,8 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
 
                 ///delivered button
                 Visibility(
-                  visible: !(widget.debitCard.isDebitDelivered != null && widget.debitCard.isDebitDelivered!),
+                  visible: false,
+                  // visible: !(widget.debitCard.isDebitDelivered != null && widget.debitCard.isDebitDelivered!),
                   child: Positioned(
                     top: 0,
                     child: Container(

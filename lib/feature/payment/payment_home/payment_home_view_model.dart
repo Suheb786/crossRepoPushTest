@@ -5,6 +5,7 @@ import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -12,6 +13,8 @@ import 'package:rxdart/rxdart.dart';
 
 class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
+
+  NavigationType navigationType = NavigationType.DASHBOARD;
 
   PageController appSwiperController = PageController(viewportFraction: 0.8);
 
@@ -69,6 +72,9 @@ class PaymentHomeViewModel extends BasePageViewModel {
             if (element.beneType == "RTP") {
               rtpBeneficiaries.add(element);
             }
+          });
+          Future.delayed(Duration(milliseconds: 50), () {
+            appSwiperController.jumpToPage(navigationType == NavigationType.DASHBOARD ? 0 : 1);
           });
         }
       });
