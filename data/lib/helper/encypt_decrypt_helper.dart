@@ -7,6 +7,7 @@ import 'package:dart_des/dart_des.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:flutter/cupertino.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:tuple/tuple.dart';
 
@@ -14,7 +15,7 @@ class EncryptDecryptHelper {
   EncryptDecryptHelper._();
 
   static String encryptKey = '0123456789ABCDEFFEDCBA98765432100123456789ABCDEF';
-  static String pinBlockKey = 'DC465DC78F8FC40D9E7F34437A1AA1B0';
+  static String pinBlockKey = '6B29CBFE4C46F7D5EFE30229580E2A16';
 
   static String decryptCard({required String cardNo}) {
     final List<int> decrypted;
@@ -26,7 +27,7 @@ class EncryptDecryptHelper {
   static String encryptCard({required String cardNo}) {
     final List<int> encrypted;
     DES3 desECB = DES3(key: hex.decode(encryptKey), mode: DESMode.ECB, paddingType: DESPaddingType.PKCS5);
-    encrypted = desECB.encrypt(isHexadecimal(cardNo) ? hex.decode(cardNo) : base64.decode(cardNo));
+    encrypted = desECB.encrypt(cardNo.codeUnits);
     return base64.encode(encrypted);
   }
 
@@ -58,16 +59,15 @@ class EncryptDecryptHelper {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     try {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
-
-      ///encrypted data
       data['data'] = dataPair.item2;
 
-      /// encrypted key
+      ///encrypted data
       data['data1'] = dataPair.item1;
 
-      print("Request to encrypt " + jsonEncode(request));
-      print('Encrypted key ' + dataPair.item1.toString());
-      print('Encrypted request ' + dataPair.item2.toString());
+      /// encrypted key
+      debugPrint("Request to encrypt " + jsonEncode(request));
+      debugPrint('Encrypted key ' + dataPair.item1.toString());
+      debugPrint('Encrypted request ' + dataPair.item2.toString());
     } catch (e) {
       //print("Error in encryptRequest " + e.toString());
     }

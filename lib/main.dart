@@ -27,7 +27,7 @@ void main() async {
 
     runApp(ProviderScope(
       child: DevicePreview(
-        enabled: !kReleaseMode,
+        enabled: false,
         builder: (context) => MyApp(),
       ),
     ));

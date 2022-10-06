@@ -83,12 +83,12 @@ class AllContactPageView extends BasePageViewWidget<AllContactPageViewModel> {
                                     return ContactWidget(
                                       beneficiary: beneficiaryList.data![index],
                                       onTap: () async {
-                                        if (model.arguments.beneficiaryList[index].beneType == "SM") {
+                                        if (beneficiaryList.data?[index].beneType == "SM") {
                                           Navigator.pushNamed(context, RoutePaths.SendAmountToContact,
-                                              arguments: model.arguments.beneficiaryList[index]);
-                                        } else if (model.arguments.beneficiaryList[index].beneType == "RTP") {
+                                              arguments: beneficiaryList.data?[index]);
+                                        } else if (beneficiaryList.data?[index].beneType == "RTP") {
                                           Navigator.pushNamed(context, RoutePaths.RequestAmountFromContact,
-                                              arguments: model.arguments.beneficiaryList[index]);
+                                              arguments: beneficiaryList.data?[index]);
                                         }
                                       },
                                     );
