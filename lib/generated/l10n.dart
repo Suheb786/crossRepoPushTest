@@ -13790,10 +13790,10 @@ class S {
     );
   }
 
-  /// `Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.`
+  /// `Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD.`
   String get requestPhysicalCardSuccessDec {
     return Intl.message(
-      'Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.',
+      'Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD.',
       name: 'requestPhysicalCardSuccessDec',
       desc: '',
       args: [],

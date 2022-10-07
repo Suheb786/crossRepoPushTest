@@ -83,16 +83,19 @@ class CardPinUnBlockSuccessPageView extends BasePageViewWidget<CardPinUnBlockSuc
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            getSuccessTitle(model.manageCardPinArguments.successPageRouteEnum, context),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 24.t,
-                                color: model.manageCardPinArguments.cardType == CardType.CREDIT
-                                    ? Theme.of(context).accentColor
-                                    : Theme.of(context).textTheme.bodyText1!.color),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+                            child: Text(
+                              getSuccessTitle(model.manageCardPinArguments.successPageRouteEnum, context),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 24.t,
+                                  color: model.manageCardPinArguments.cardType == CardType.CREDIT
+                                      ? Theme.of(context).accentColor
+                                      : Theme.of(context).textTheme.bodyText1!.color),
+                            ),
                           ),
                           SizedBox(
                             height: 4.h,

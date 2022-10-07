@@ -1904,7 +1904,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestPhysicalCardDec": MessageLookupByLibrary.simpleMessage(
             "بدك نوصلك بطاقة الدفع المباشر لعنوانك المسجل عنا؟"),
         "requestPhysicalCardSuccessDec": MessageLookupByLibrary.simpleMessage(
-            "عم نطبع بطاقتك، راح تتواصل معك شركة ارامكس قريبا ليوصلولك البطاقة. لحد ما توصلك البطاقة بتقدر تستمر باستخدام البطاقة الافتراضية للشراء على الإنترنت."),
+            "البطاقة قيد الطباعة.  سيتم التواصل معك من قبل شركة أرامكس قريبًا لتسليم بطاقتك. بامكانك الاستمرار في استخدام بطاقتك الافتراضية عبر الإنترنت.\n\nبمجرد استلام بطاقتك يمكنك استخدامها للدفع والتسوق في أي مكان!\nسيكون حد البطاقة اللاتلامسية 150 دينار عند استلامها."),
         "requestSupplementaryCard":
             MessageLookupByLibrary.simpleMessage("طلب بطاقة تابعة"),
         "requestSupplementaryCardError": MessageLookupByLibrary.simpleMessage(

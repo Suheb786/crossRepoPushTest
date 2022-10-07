@@ -1401,7 +1401,7 @@
   "searchAgain": "Search Again",
   "requestPhysicalCard": "Request physical card",
   "requestPhysicalCardDec": "Are you sure you want your physical Yellow Sun debit card to be delivered to your address?",
-  "requestPhysicalCardSuccessDec": "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card.",
+  "requestPhysicalCardSuccessDec": "Your card is being printed. Aramex will contact you soon to deliver your physical card. In the meantime, you can continue using your virtual card online. \n\nOnce you receive your card you can use it to pay and shop anywhere! Upon delivery your card contactless limit will be 150 JOD.",
   "errorPhysicalDCXCS": "Error while applying for physical card request",
   "errorPinTranslationXCS": "PIN change error",
   "errrorForPinChangeNI": "Error while requesting for pin change",
