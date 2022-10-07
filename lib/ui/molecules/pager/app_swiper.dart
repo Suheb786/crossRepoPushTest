@@ -52,7 +52,8 @@ class _AppSwiperState extends State<AppSwiper> {
           value = index.toDouble() - (widget.appSwiperController!.page ?? 0);
           value = (value * 0.01).clamp(-1, 1);
         } else {
-          value = (index * 0.01).clamp(-1, 1);
+          value = index.toDouble() - (widget.currentStep ?? 0);
+          value = (value * 0.01).clamp(-1, 1);
         }
         return Transform.rotate(
             angle: StringUtils.isDirectionRTL(context) ? pi * -value : pi * value,

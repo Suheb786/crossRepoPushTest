@@ -413,34 +413,33 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                               }
                             },
                             dataBuilder: (context, requestPhysicalDataResponse) {
-                              return Visibility(
-                                visible:
-                                    !(model.debitCardSettingsArguments.debitCard.isDebitDelivered ?? false),
-                                child: SettingTile(
-                                  onTap: () {
-                                    InformationDialog.show(context,
-                                        image: AssetUtils.cardIcon,
-                                        title: S.of(context).requestPhysicalCard,
-                                        descriptionWidget: Text(
-                                          S.of(context).requestPhysicalCardDec,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: AppColor.gray_black),
-                                        ), onSelected: () {
-                                      Navigator.pop(context);
-                                      if (!(model.debitCardSettingsArguments.debitCard
-                                              .isPhysicalDebitCardRequested ??
-                                          false)) {
-                                        model.requestPhysicalDebitCard();
-                                      }
-                                    }, onDismissed: () {
-                                      Navigator.pop(context);
-                                    });
-                                  },
-                                  title: S.of(context).requestPhysicalCard,
-                                  tileIcon: AssetUtils.cardIcon,
-                                ),
+                              return SettingTile(
+                                onTap: () {
+                                  InformationDialog.show(context,
+                                      image: AssetUtils.cardIcon,
+                                      title: S.of(context).requestPhysicalCard,
+                                      descriptionWidget: Text(
+                                        S.of(context).requestPhysicalCardDec,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: AppColor.gray_black),
+                                      ), onSelected: () {
+                                    Navigator.pop(context);
+                                    if (!(model.debitCardSettingsArguments.debitCard
+                                            .isPhysicalDebitCardRequested ??
+                                        false)) {
+                                      model.requestPhysicalDebitCard();
+                                    }
+                                  }, onDismissed: () {
+                                    Navigator.pop(context);
+                                  });
+                                },
+                                isEnabled: !(model
+                                        .debitCardSettingsArguments.debitCard.isPhysicalDebitCardRequested ??
+                                    false),
+                                title: S.of(context).requestPhysicalCard,
+                                tileIcon: AssetUtils.cardIcon,
                               );
                             }),
                         SettingTile(
