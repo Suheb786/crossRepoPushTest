@@ -67,6 +67,7 @@ class CreditCardSettingsPageState
 
 class CreditCardSettingsArguments {
   final CreditCard creditCard;
+  final bool isChangePinEnabled;
 
-  CreditCardSettingsArguments({required this.creditCard});
+  CreditCardSettingsArguments({required this.creditCard, required this.isChangePinEnabled});
 }

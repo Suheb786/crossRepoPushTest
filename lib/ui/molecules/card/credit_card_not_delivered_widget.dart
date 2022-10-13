@@ -15,8 +15,13 @@ class CreditCardNotDeliveredWidget extends StatefulWidget {
   final Key key;
   final CreditCard creditCard;
   final bool isSmallDevice;
+  final bool isChangePinEnabled;
 
-  CreditCardNotDeliveredWidget({required this.key, required this.creditCard, this.isSmallDevice: false});
+  CreditCardNotDeliveredWidget(
+      {required this.key,
+      required this.creditCard,
+      this.isSmallDevice: false,
+      required this.isChangePinEnabled});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -151,7 +156,9 @@ class _CreditCardNotDeliveredWidgetState extends State<CreditCardNotDeliveredWid
                                 onTap: () async {
                                   var result = await Navigator.pushNamed(
                                       context, RoutePaths.CreditCardSettings,
-                                      arguments: CreditCardSettingsArguments(creditCard: widget.creditCard));
+                                      arguments: CreditCardSettingsArguments(
+                                          creditCard: widget.creditCard,
+                                          isChangePinEnabled: widget.isChangePinEnabled));
                                 },
                                 child:
                                     AppSvg.asset(AssetUtils.settingsRed, color: AppColor.light_acccent_blue)),

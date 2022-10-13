@@ -3,10 +3,12 @@ class DashboardFeatures {
   final bool? isRJFeatureEnabled;
   final bool? isLoginFeatureEnabled;
   final bool? isRegisterFeatureEnabled;
+  final bool? isPinChangeEnabled;
 
   DashboardFeatures(
       {this.isCreditCardFeatureEnabled,
       this.isRJFeatureEnabled,
       this.isLoginFeatureEnabled,
-      this.isRegisterFeatureEnabled});
+      this.isRegisterFeatureEnabled,
+      this.isPinChangeEnabled});
 }

@@ -53,11 +53,13 @@ class ManageCardPinArguments {
   final FreezeCardStatusEnum freezeCardStatusEnum;
   final String cardNumber;
   final SuccessPageRouteEnum successPageRouteEnum;
+  final bool isChangePinEnabled;
 
   ManageCardPinArguments(
       {this.cardType: CardType.CREDIT,
       this.tokenizedPan: "",
       this.cardNumber: "",
       this.freezeCardStatusEnum: FreezeCardStatusEnum.NONE,
-      this.successPageRouteEnum = SuccessPageRouteEnum.UNBLOCK_DC});
+      this.successPageRouteEnum = SuccessPageRouteEnum.UNBLOCK_DC,
+      this.isChangePinEnabled = true});
 }

@@ -126,9 +126,11 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                     ),
                     AppDivider(),
                     InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
-                      },
+                      onTap: (model.manageCardPinArguments?.isChangePinEnabled ?? true)
+                          ? () {
+                              Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
+                            }
+                          : () {},
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
                         child: Row(
@@ -137,14 +139,20 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                 child: Text(
                               S.of(context).changeCardPin,
                               style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                fontWeight: FontWeight.w600,
-                              ),
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  color: (model.manageCardPinArguments?.isChangePinEnabled ?? true)
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).inputDecorationTheme.hintStyle!.color ??
+                                          AppColor.gray1),
                             )),
                             AppSvg.asset(AssetUtils.rightChevron,
                                 width: 20.w,
                                 height: 20.h,
-                                color: Theme.of(context).primaryTextTheme.bodyText1!.color)
+                                color: (model.manageCardPinArguments?.isChangePinEnabled ?? true)
+                                    ? Theme.of(context).primaryTextTheme.bodyText1!.color
+                                    : Theme.of(context).inputDecorationTheme.hintStyle!.color ??
+                                        AppColor.gray1),
                           ],
                         ),
                       ),

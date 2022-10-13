@@ -255,6 +255,7 @@ class CreditCardSettingsPageView extends BasePageViewWidget<CreditCardSettingsVi
                           onTap: () {
                             Navigator.pushNamed(context, RoutePaths.ManageCardPin,
                                 arguments: ManageCardPinArguments(
+                                    isChangePinEnabled: model.creditCardSettingsArguments.isChangePinEnabled,
                                     cardType: CardType.CREDIT,
                                     tokenizedPan: model.creditCardSettingsArguments.creditCard.cardCode ?? '',
                                     freezeCardStatusEnum:

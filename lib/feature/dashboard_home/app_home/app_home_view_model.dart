@@ -254,6 +254,7 @@ class AppHomeViewModel extends BasePageViewModel {
                   accountBalance: dashboardDataContent.account!.availableBalance,
                   isSmallDevice: isSmallDevices,
                   creditCard: creditCard,
+                  isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                   key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
                 ));
 
@@ -274,6 +275,7 @@ class AppHomeViewModel extends BasePageViewModel {
                 pages.add(CreditCardNotDeliveredWidget(
                   isSmallDevice: isSmallDevices,
                   creditCard: creditCard,
+                  isChangePinEnabled: dashboardDataContent.dashboardFeatures?.isPinChangeEnabled ?? true,
                   key: ValueKey('credit${creditCard.cardCode}${creditCard.cvv}'),
                 ));
 

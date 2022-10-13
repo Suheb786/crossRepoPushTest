@@ -23,9 +23,14 @@ class CreditCardWidget extends StatefulWidget {
   final CreditCard creditCard;
   final bool isSmallDevice;
   final String? accountBalance;
+  final bool isChangePinEnabled;
 
   CreditCardWidget(
-      {required this.key, required this.creditCard, this.isSmallDevice: false, this.accountBalance: ""});
+      {required this.key,
+      required this.creditCard,
+      this.isSmallDevice: false,
+      this.accountBalance: "",
+      required this.isChangePinEnabled});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -347,7 +352,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             var result = await Navigator.pushNamed(
                                                 context, RoutePaths.CreditCardSettings,
                                                 arguments: CreditCardSettingsArguments(
-                                                    creditCard: widget.creditCard));
+                                                    creditCard: widget.creditCard,
+                                                    isChangePinEnabled: widget.isChangePinEnabled));
                                             if (result != null) {
                                               bool value = result as bool;
                                               if (value) {
@@ -446,7 +452,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                                             var result = await Navigator.pushNamed(
                                                 context, RoutePaths.CreditCardSettings,
                                                 arguments: CreditCardSettingsArguments(
-                                                    creditCard: widget.creditCard));
+                                                    creditCard: widget.creditCard,
+                                                    isChangePinEnabled: widget.isChangePinEnabled));
                                             if (result != null) {
                                               bool value = result as bool;
                                               if (value) {
