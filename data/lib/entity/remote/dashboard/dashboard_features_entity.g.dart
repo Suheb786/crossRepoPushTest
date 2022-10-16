@@ -14,6 +14,8 @@ DashboardFeaturesEntity _$DashboardFeaturesEntityFromJson(
     isGoRJEnabled: json['blink-retail-app-gorj'] as bool?,
     isLoginEnabled: json['blink-retail-app-login'] as bool?,
     isRegisterEnabled: json['blink-retail-app-register'] as bool?,
+    isCreditCardPinChangeEnabled:
+        json['blink-retail-app-creditCards-pinchange'] as bool?,
   );
 }
 
@@ -24,4 +26,6 @@ Map<String, dynamic> _$DashboardFeaturesEntityToJson(
       'blink-retail-app-creditCard-application': instance.isCreditCardEnabled,
       'blink-retail-app-register': instance.isRegisterEnabled,
       'blink-retail-app-gorj': instance.isGoRJEnabled,
+      'blink-retail-app-creditCards-pinchange':
+          instance.isCreditCardPinChangeEnabled,
     };

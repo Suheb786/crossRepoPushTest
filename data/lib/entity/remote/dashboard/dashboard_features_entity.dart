@@ -46,6 +46,6 @@ class DashboardFeaturesEntity
         isLoginFeatureEnabled: isLoginEnabled ?? true,
         isRegisterFeatureEnabled: isRegisterEnabled ?? true,
         isRJFeatureEnabled: isGoRJEnabled ?? true,
-        isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? true);
+        isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false);
   }
 }
