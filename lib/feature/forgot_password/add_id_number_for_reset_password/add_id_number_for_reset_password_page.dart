@@ -5,18 +5,15 @@ import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/add_id_number_for_reset_password/add_id_number_for_reset_password_page_view.dart';
 import 'package:neo_bank/feature/forgot_password/add_id_number_for_reset_password/add_id_number_for_reset_password_page_view_model.dart';
 
-class AddIDNumberForResetPasswordPage
-    extends BasePage<AddIDNumberForResetPasswordPageViewModel> {
+class AddIDNumberForResetPasswordPage extends BasePage<AddIDNumberForResetPasswordPageViewModel> {
   @override
-  AddIDNumberForResetPasswordPageState createState() =>
-      AddIDNumberForResetPasswordPageState();
+  AddIDNumberForResetPasswordPageState createState() => AddIDNumberForResetPasswordPageState();
 }
 
-class AddIDNumberForResetPasswordPageState extends BaseStatefulPage<
-    AddIDNumberForResetPasswordPageViewModel,
-    AddIDNumberForResetPasswordPage> with AutomaticKeepAliveClientMixin {
-  AddIDNumberForResetPasswordPageState()
-      : super(subscribeVisibilityEvents: true);
+class AddIDNumberForResetPasswordPageState
+    extends BaseStatefulPage<AddIDNumberForResetPasswordPageViewModel, AddIDNumberForResetPasswordPage>
+    with AutomaticKeepAliveClientMixin {
+  AddIDNumberForResetPasswordPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -29,8 +26,7 @@ class AddIDNumberForResetPasswordPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, AddIDNumberForResetPasswordPageViewModel model) {
+  Widget buildView(BuildContext context, AddIDNumberForResetPasswordPageViewModel model) {
     return AddIDNumberForResetPasswordPageView(provideBase());
   }
 

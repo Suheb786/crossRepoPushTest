@@ -16,27 +16,22 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController nationalIdController = TextEditingController();
-  final GlobalKey<AppTextFieldState> nationalIdKey =
-      GlobalKey(debugLabel: "nationalId");
+  final GlobalKey<AppTextFieldState> nationalIdKey = GlobalKey(debugLabel: "nationalId");
 
   final TextEditingController emailController = TextEditingController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
 
   final TextEditingController idExpiryDateController = TextEditingController();
-  final GlobalKey<AppTextFieldState> idExpiryDateKey =
-      GlobalKey(debugLabel: "idExpiryDate");
+  final GlobalKey<AppTextFieldState> idExpiryDateKey = GlobalKey(debugLabel: "idExpiryDate");
 
-  PublishSubject<CheckForgetPasswordUseCaseParams> _checkForgetPasswordRequest =
-      PublishSubject();
+  PublishSubject<CheckForgetPasswordUseCaseParams> _checkForgetPasswordRequest = PublishSubject();
 
-  PublishSubject<Resource<CheckForgetPasswordResponse>>
-      _checkForgetPasswordResponse = PublishSubject();
+  PublishSubject<Resource<CheckForgetPasswordResponse>> _checkForgetPasswordResponse = PublishSubject();
 
-  Stream<Resource<CheckForgetPasswordResponse>>
-      get checkForgetPasswordResponseStream =>
-          _checkForgetPasswordResponse.stream;
+  Stream<Resource<CheckForgetPasswordResponse>> get checkForgetPasswordResponseStream =>
+      _checkForgetPasswordResponse.stream;
 
-  String selectedExpiryDate = DateTime.now().toLocal().toString();
+  String selectedExpiryDate = DateTime.now().toString();
 
   DateTime initialDate = DateTime.now();
 
@@ -47,9 +42,7 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   AddIDNumberForResetPasswordPageViewModel(this._checkForgetPasswordUseCase) {
     _checkForgetPasswordRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkForgetPasswordUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkForgetPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -64,9 +57,7 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   void addIdNumberForResetPassword() {
     _checkForgetPasswordRequest.safeAdd(CheckForgetPasswordUseCaseParams(
-        email: emailController.text,
-        expiryDate: idExpiryDateController.text,
-        nationalId: nationalIdController.text));
+        email: emailController.text, expiryDate: selectedExpiryDate, nationalId: nationalIdController.text));
   }
 
   void getError(Resource<bool> event) {

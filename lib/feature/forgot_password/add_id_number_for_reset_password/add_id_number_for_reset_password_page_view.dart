@@ -125,7 +125,12 @@ class AddIDNumberForResetPasswordPageView
                                               onTap: () {
                                                 DatePicker.show(context, initialDate: model.initialDate,
                                                     onSelected: (date) {
-                                                  model.selectedExpiryDate = date.toString();
+                                                  //   model.selectedExpiryDate = date.toString();
+
+                                                  model.selectedExpiryDate = TimeUtils
+                                                      .getFormattedDateForCheckPasswordForOnlyEnglish(
+                                                          date.toString());
+
                                                   model.initialDate = date;
                                                   model.idExpiryDateController.text =
                                                       TimeUtils.getFormattedDateForCheckPassword(
