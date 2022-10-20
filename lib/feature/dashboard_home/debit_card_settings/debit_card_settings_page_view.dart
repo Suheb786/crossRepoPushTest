@@ -435,9 +435,18 @@ class DebitCardSettingsPageView extends BasePageViewWidget<DebitCardSettingsView
                                     Navigator.pop(context);
                                   });
                                 },
-                                isEnabled: !(model
+                                isEnabled:
+                                    (model.debitCardSettingsArguments.debitCardRequestPhysicalCardEnabled ==
+                                            true
+                                        ? (model.debitCardSettingsArguments.debitCard
+                                                    .isPhysicalDebitCardRequested ==
+                                                true
+                                            ? false
+                                            : true)
+                                        : false),
+                                /*isEnabled: !(model
                                         .debitCardSettingsArguments.debitCard.isPhysicalDebitCardRequested ??
-                                    false),
+                                    false),*/
                                 title: S.of(context).requestPhysicalCard,
                                 tileIcon: AssetUtils.cardIcon,
                               );

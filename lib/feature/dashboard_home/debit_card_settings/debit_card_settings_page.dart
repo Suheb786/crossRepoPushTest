@@ -35,6 +35,7 @@ class DebitCardSettingsPageState extends BaseStatefulPage<DebitCardSettingsViewM
 class DebitCardSettingsArguments {
   final DebitCard debitCard;
   final bool isPrimaryDebitCard;
+  final bool debitCardRequestPhysicalCardEnabled;
 
-  DebitCardSettingsArguments({required this.debitCard, required this.isPrimaryDebitCard});
+  DebitCardSettingsArguments({required this.debitCard, required this.isPrimaryDebitCard,  this.debitCardRequestPhysicalCardEnabled:false});
 }

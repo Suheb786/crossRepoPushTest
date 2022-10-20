@@ -22,12 +22,16 @@ class DashboardFeaturesEntity
   @JsonKey(name: "blink-retail-app-creditCards-pinchange")
   final bool? isCreditCardPinChangeEnabled;
 
+  @JsonKey(name: "blink-retail-app-debit-card-physical-card-request")
+  final bool? isDebitCardPhysicalCardRequestEnabled;
+
   DashboardFeaturesEntity(
       {this.isCreditCardEnabled,
       this.isGoRJEnabled,
       this.isLoginEnabled,
       this.isRegisterEnabled,
-      this.isCreditCardPinChangeEnabled});
+      this.isCreditCardPinChangeEnabled,
+      this.isDebitCardPhysicalCardRequestEnabled});
 
   factory DashboardFeaturesEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardFeaturesEntityFromJson(json);
@@ -46,6 +50,8 @@ class DashboardFeaturesEntity
         isLoginFeatureEnabled: isLoginEnabled ?? true,
         isRegisterFeatureEnabled: isRegisterEnabled ?? true,
         isRJFeatureEnabled: isGoRJEnabled ?? true,
-        isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false);
+        isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
+        isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false
+    );
   }
 }

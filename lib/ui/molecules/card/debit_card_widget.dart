@@ -22,12 +22,13 @@ class DebitCardWidget extends StatefulWidget {
   final DebitCard debitCard;
   final bool isSmallDevice;
   final bool isPrimaryDebitCard;
+  final bool isDebitCardRequestPhysicalCardEnabled;
 
   DebitCardWidget(
       {required this.key,
       required this.debitCard,
       this.isSmallDevice: false,
-      required this.isPrimaryDebitCard});
+      required this.isPrimaryDebitCard,  this.isDebitCardRequestPhysicalCardEnabled:false});
 
   FlipCardController? flipCardController = FlipCardController();
 
@@ -211,7 +212,9 @@ class _DebitCardWidgetState extends State<DebitCardWidget> {
                                           context, RoutePaths.DebitCardSettings,
                                           arguments: DebitCardSettingsArguments(
                                               isPrimaryDebitCard: widget.isPrimaryDebitCard,
-                                              debitCard: widget.debitCard));
+                                              debitCard: widget.debitCard,
+                                              debitCardRequestPhysicalCardEnabled: widget.isDebitCardRequestPhysicalCardEnabled
+                                          ));
                                       if (result != null) {
                                         bool value = result as bool;
                                         if (value) {
