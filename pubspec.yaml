@@ -81,6 +81,7 @@ dependencies:
   agora_rtc_engine: ^4.0.7
   permission_handler: ^8.1.6
   geolocator: 7.7.0
+  firebase_analytics: ^9.1.1
   #  package_info: ^2.0.2
   #  infobip_mobilemessaging: ^0.5.2
   infobip_mobilemessaging:
@@ -105,7 +106,8 @@ dependencies:
 
 
 dependency_overrides:
-  firebase_crashlytics_platform_interface: 3.1.2
+  firebase_crashlytics_platform_interface: 3.1.13
+  firebase_analytics_platform_interface: 3.0.5
 
 
 dev_dependencies:
