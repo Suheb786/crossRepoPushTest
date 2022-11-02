@@ -49,7 +49,8 @@ class AddIDNumberForResetPasswordPageView
                     ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).email =
                         model.emailController.text;
                     ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).expiryDate =
-                        model.idExpiryDateController.text;
+                        TimeUtils.getFormattedDateForCheckPasswordForOnlyEnglish(
+                            model.initialDate.toString());
                     ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nextPage();
                     // .next();
                   } else if (data.status == Status.ERROR) {
