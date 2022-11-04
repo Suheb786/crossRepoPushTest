@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fr.antelop.teamIdentifier</key>
+	<string>235F45XS77</string>
+	<key>fr.antelop.applicationGroupIdentifier</key>
+	<string>group.com.blinkapp.cbt</string>
+	<key>fr.antelop.application_id</key>
+	<integer>3831683151831241362</integer>
+	<key>fr.antelop.initialConnectionTimeout</key>
+	<integer>60</integer>
+	<key>fr.antelop.alertLoggingEnabled</key>
+	<string>The Antelop SDK is logging.
+Do not use in production.</string>
+</dict>
+</plist>

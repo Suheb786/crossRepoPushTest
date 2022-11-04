@@ -1,0 +1,5 @@
+framework module SecureCModule {
+  header "BinaryStringLight.h"
+  header "ScmiOS.h"
+  requires objc
+}

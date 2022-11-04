@@ -1,0 +1,1587 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-module-flags: -target armv7s-apple-ios10.3 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AntelopSDK
+import CommonCrypto
+import CoreLocation
+import Foundation
+import LocalAuthentication
+import PassKit
+import SecureCModule
+import Security
+import Swift
+import UIKit
+import UserNotifications
+import UserNotificationsUI
+import _Concurrency
+import os.log
+import os
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class DeviceBiometricCustomerAuthenticationPrompt : AntelopSDK.CustomerAuthenticationPrompt {
+  @objc deinit
+}
+extension AntelopSDK.DeviceBiometricCustomerAuthenticationPrompt {
+  @objc dynamic public var title: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getTitle() instead")
+    get
+  }
+}
+extension AntelopSDK.DeviceBiometricCustomerAuthenticationPrompt {
+  @objc dynamic public func getTitle() -> Swift.String?
+}
+extension Swift.String {
+  public var sha256: Swift.String {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc final public class CustomerConsentPromptBuilder : AntelopSDK.CustomerAuthenticationPromptBuilder {
+  @objc override dynamic public init()
+  @discardableResult
+  @objc final public func setPresentingViewController(_ presentingViewController: UIKit.UIViewController) -> AntelopSDK.CustomerConsentPromptBuilder
+  @discardableResult
+  @objc final public func setTitle(title: Swift.String?) -> AntelopSDK.CustomerConsentPromptBuilder
+  @discardableResult
+  @objc final public func setBody(body: Swift.String?) -> AntelopSDK.CustomerConsentPromptBuilder
+  @discardableResult
+  @objc final public func setCancel(cancel: Swift.String?) -> AntelopSDK.CustomerConsentPromptBuilder
+  @discardableResult
+  @objc final public func setConfirm(confirm: Swift.String?) -> AntelopSDK.CustomerConsentPromptBuilder
+  @objc override final public func build() -> AntelopSDK.CustomerConsentPrompt
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SecureVirtualCardNumberResume {
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureVirtualCardNumberResume : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@objc public enum DisplayType : Swift.Int, Swift.Codable {
+  case cardDetails
+  case pinCode
+}
+extension AntelopSDK.DisplayType : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.DisplayType.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.DisplayType.RawValue)
+}
+extension AntelopSDK.DisplayType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum CustomerAuthenticationMethodStatus : Swift.Int {
+  case notSupported
+  case notConfigured
+  case configured
+  case activated
+}
+extension AntelopSDK.CustomerAuthenticationMethodStatus : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.CustomerAuthenticationMethodStatus.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.CustomerAuthenticationMethodStatus.RawValue)
+}
+extension AntelopSDK.CustomerAuthenticationMethodStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct CustomerAuthenticationPattern : Swift.Equatable {
+  public func getStep(_ index: Swift.Int) -> [AntelopSDK.CustomerAuthenticationMethodType]?
+  public func getStepCount() -> Swift.Int
+  @available(*, deprecated, message: "Use isReady() -> Bool instead")
+  public func isReadyForAuthentication(isProcessOffline: Swift.Bool = false) -> Swift.Bool
+  @available(*, deprecated, message: "Use isReady() -> Bool instead")
+  public func isReadyForAuthentication(isProcessOnline: Swift.Bool) -> Swift.Bool
+  public func isReady() -> Swift.Bool
+  public func getName() -> Swift.String
+  public static func == (a: AntelopSDK.CustomerAuthenticationPattern, b: AntelopSDK.CustomerAuthenticationPattern) -> Swift.Bool
+}
+extension AntelopSDK.CustomerAuthenticationPattern : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum Product : Swift.Int {
+  case sca
+  case digitalCard
+}
+extension AntelopSDK.Product : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.Product.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.Product.RawValue)
+}
+extension AntelopSDK.Product : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum ManageTokenRequestAction : Swift.Int, Swift.Codable {
+  case resume
+  case suspend
+  case delete
+}
+extension AntelopSDK.ManageTokenRequestAction : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.ManageTokenRequestAction.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.ManageTokenRequestAction.RawValue)
+}
+extension AntelopSDK.ManageTokenRequestAction : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol WalletProvisioningProtocol : AnyObject {
+  func onInitializationSuccess()
+  func onInitializationError(error: AntelopSDK.AntelopError)
+  func onCheckEligibilityError(error: AntelopSDK.AntelopError)
+  func onDeviceNotEligible(reason: AntelopSDK.EligibilityDenialReason?, denialReference: Swift.String?)
+  func onDeviceEligible(fingerprintAllowed: Swift.Bool, eligibleProducts: [AntelopSDK.Product])
+  func onProvisioningPending()
+  func onProvisioningSuccess()
+  func onProvisioningError(error: AntelopSDK.AntelopError)
+}
+extension AntelopSDK.WalletProvisioningProtocol {
+  public func onInitializationSuccess()
+  public func onInitializationError(error: AntelopSDK.AntelopError)
+  public func onCheckEligibilityError(error: AntelopSDK.AntelopError)
+  public func onDeviceNotEligible(reason: AntelopSDK.EligibilityDenialReason?, denialReference: Swift.String?)
+  public func onDeviceEligible(fingerprintAllowed: Swift.Bool, eligibleProducts: [AntelopSDK.Product])
+  public func onProvisioningPending()
+  public func onProvisioningSuccess()
+  public func onProvisioningError(error: AntelopSDK.AntelopError)
+}
+public typealias CustomerAuthenticationPromptCallback = (Swift.Result<AntelopSDK.Credentials, AntelopSDK.CustomerAuthenticationFailureReason>) -> Swift.Void
+public protocol AntelopUNNotificationServiceExtensionParserProtocol : AnyObject {
+  func onParsingSuccess(with notification: AntelopSDK.PushAuthenticationRequestInfo)
+  func onParsingError(error: AntelopSDK.AntelopError)
+}
+@_hasMissingDesignatedInitializers public class SecureCardPushToTokenRequestor {
+  public func setReturnUrl(_ returnUrl: Swift.String?) throws
+  public func getCardPushUrl() -> AntelopSDK.CardPushUrl?
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureCardPushToTokenRequestor : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+public struct EmvApplicationGroup : Swift.Equatable {
+  public static func == (a: AntelopSDK.EmvApplicationGroup, b: AntelopSDK.EmvApplicationGroup) -> Swift.Bool
+}
+extension AntelopSDK.EmvApplicationGroup {
+  public func getId() -> Swift.String
+  public func isCredit() -> Swift.Bool
+  public func getLabel() -> Swift.String
+  public func getEmvApplications() -> [AntelopSDK.EmvApplication]
+}
+public struct Token {
+}
+extension AntelopSDK.Token {
+  public func getTokenServiceProvider() -> AntelopSDK.TokenServiceProvider?
+  public func getId() -> Swift.String
+  public func getType() -> AntelopSDK.TokenType?
+  public func getStatus() -> AntelopSDK.TokenStatus?
+  public func getTokenRequestorId() -> Swift.String?
+  public func getTokenRequestorName() -> Swift.String?
+  public func getTokenRequestorLogo() -> UIKit.UIImage?
+  public func isApplePayToken() -> Swift.Bool
+  public func isGooglePayToken() -> Swift.Bool
+  public func isAntelopToken() -> Swift.Bool
+  public func getSecureTokenResume() -> AntelopSDK.SecureTokenResume
+  public func getSecureTokenSuspend() -> AntelopSDK.SecureTokenSuspend
+  public func getSecureTokenDelete() -> AntelopSDK.SecureTokenDelete
+  public func resume(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+  public func suspend(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+  public func delete(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+  public var isOnDeviceApplePayToken: Swift.Bool {
+    get
+  }
+  public var isOnRemotePairedDeviceApplePayToken: Swift.Bool {
+    get
+  }
+}
+@objc public enum TokenServiceProvider : Swift.Int, Swift.Codable {
+  case mdes
+  case vts
+}
+extension AntelopSDK.TokenServiceProvider : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.TokenServiceProvider.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.TokenServiceProvider.RawValue)
+}
+extension AntelopSDK.TokenServiceProvider : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct VirtualCardNumber : Swift.Equatable {
+  public static func == (a: AntelopSDK.VirtualCardNumber, b: AntelopSDK.VirtualCardNumber) -> Swift.Bool
+}
+extension AntelopSDK.VirtualCardNumber {
+  public func getId() -> Swift.String
+  public func getProviderVcnId() -> Swift.String
+  public func getName() -> Swift.String
+  public func getStatus() -> AntelopSDK.VirtualCardNumberStatus
+  public func getLastDigits() -> Swift.String
+  public func getBin() -> Swift.String
+  public func getExpiryDate() -> Foundation.Date
+  public func getCreationDate() -> Foundation.Date?
+  public func getMaxPaymentNumber() -> Swift.Int?
+  public func getSecureVirtualCardNumberDisplay() throws -> AntelopSDK.SecureVirtualCardNumberDisplay
+  public func getSecureVirtualCardNumberResume() throws -> AntelopSDK.SecureVirtualCardNumberResume
+  public func resume(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+  public func suspend(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+  public func delete(completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+}
+@objc public class CustomerAuthenticationPasscode : AntelopSDK.Credentials {
+  @objc public init(passcode: Foundation.NSMutableData)
+  @objc deinit
+}
+@objc final public class WalletProvisioning : ObjectiveC.NSObject {
+  public init(_ delegate: AntelopSDK.WalletProvisioningProtocol)
+  @objc final public func initialize()
+  @objc final public func checkEligibility(forbidJailBrokenDevices: Swift.Bool)
+  @objc final public func launch(clientId: Swift.String?, walletId: Swift.String?, settingsProfileId: Swift.String?, phoneNumber: Swift.String?) throws
+  @objc final public func launch(activationCode: Swift.String, phoneNumber: Swift.String?) throws
+  @available(*, deprecated, message: "Use launch(issuerActivationId:, issuerActivationCode:, phoneNumber:) instead")
+  @objc final public func launch(issuerActivationId: Swift.String, activationCode: Swift.String, phoneNumber: Swift.String?) throws
+  @objc final public func launch(issuerActivationId: Swift.String, issuerActivationCode: Swift.String, phoneNumber: Swift.String?) throws
+  @objc deinit
+}
+public struct DigitalCard : Swift.Equatable, Swift.Comparable {
+  public static func < (lhs: AntelopSDK.DigitalCard, rhs: AntelopSDK.DigitalCard) -> Swift.Bool
+  public static func == (a: AntelopSDK.DigitalCard, b: AntelopSDK.DigitalCard) -> Swift.Bool
+}
+extension AntelopSDK.DigitalCard {
+  public func getId() -> Swift.String
+  public func getStatus() -> AntelopSDK.CardStatus?
+  public func getIssuerData() -> Swift.String?
+  public func getBin() -> Swift.String?
+  public func getExpiryDate() -> Foundation.Date?
+  public func getLastDigits() -> Swift.String?
+  public func getIssuerCardId() -> Swift.String?
+  public func isProvisioned() -> Swift.Bool
+  public func delete(_ completion: @escaping AntelopSDK.AntelopCompletion)
+  public func getGooglePayService() -> AntelopSDK.GooglePayService
+  @available(iOS 13.4, *)
+  public func getApplePayService() -> AntelopSDK.ApplePayService
+  public func getTokenManagementService() -> AntelopSDK.TokenManagementService
+  public mutating func getDisplay() -> AntelopSDK.CardDisplay?
+  public func getCardDisplayService() -> AntelopSDK.CardDisplayService
+  public func getPinDisplayService() -> AntelopSDK.PinDisplayService
+  public func getPushToTokenRequestorService() -> AntelopSDK.PushToTokenRequestorService
+  public func getVirtualCardNumberService() -> AntelopSDK.VirtualCardNumberService
+}
+public protocol PushAuthenticationRequestFetcherProtocol : AnyObject {
+  func onFetchError(error: AntelopSDK.AntelopError)
+  func onFetchSuccess()
+}
+@objc public enum EmvApplicationFormat : Swift.Int {
+  case digitalCard
+}
+extension AntelopSDK.EmvApplicationFormat : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.EmvApplicationFormat.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.EmvApplicationFormat.RawValue)
+}
+extension AntelopSDK.EmvApplicationFormat : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc public class CustomerDeviceBiometricAuthenticationCredentials : AntelopSDK.Credentials {
+  @objc public init(context: LocalAuthentication.LAContext)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SecureTokenResume {
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureTokenResume : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class AntelopAppDelegate : ObjectiveC.NSObject {
+  @objc public static let shared: AntelopSDK.AntelopAppDelegate
+  @discardableResult
+  @objc public func application(_ application: UIKit.UIApplication, didFinishLaunchingWithOptions launchOptions: [UIKit.UIApplication.LaunchOptionsKey : Any]?) -> Swift.Bool
+  @objc public func willResignActiveNotification(_ application: UIKit.UIApplication)
+  @objc public func applicationDidBecomeActive(_ application: UIKit.UIApplication)
+  @objc public func applicationWillTerminate(_ application: UIKit.UIApplication)
+  @objc public func applicationDidEnterBackground(_ application: UIKit.UIApplication)
+  @objc public func application(_ application: UIKit.UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Foundation.Data)
+  @available(*, deprecated, message: "Use didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) instead.")
+  @objc public func application(_ application: UIKit.UIApplication, didReceiveRemoteNotification userInfo: [Swift.AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIKit.UIBackgroundFetchResult) -> Swift.Void)
+  @objc public func didReceiveRemoteNotification(_ userInfo: [Swift.AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIKit.UIBackgroundFetchResult) -> Swift.Void) -> Swift.Bool
+  @objc public func application(_ application: UIKit.UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIKit.UIBackgroundFetchResult) -> Swift.Void)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class Credentials : ObjectiveC.NSObject, Swift.Encodable {
+  public static func == (lhs: AntelopSDK.Credentials, rhs: AntelopSDK.Credentials) -> Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_inheritsConvenienceInitializers @objc final public class LocaleManager : ObjectiveC.NSObject {
+  public static var shared: AntelopSDK.LocaleManager
+  @objc final public func applyLocale(to locale: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SecureCardDisplay {
+  @objc deinit
+}
+extension AntelopSDK.SecureCardDisplay {
+  public func setCardBackground(_ image: UIKit.UIImage?) -> AntelopSDK.SecureCardDisplay
+  public func setCardForegroundColor(_ color: UIKit.UIColor) -> AntelopSDK.SecureCardDisplay
+  public func setAnchorCardView(_ anchorCardView: UIKit.UIView) -> AntelopSDK.SecureCardDisplay
+  @discardableResult
+  public func setViewControllerDelegate(_ delegate: AntelopSDK.CustomerAuthenticatedProcessViewControllerProtocol) -> AntelopSDK.SecureCardDisplay
+  public func launch(delegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(delegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+}
+extension AntelopSDK.SecureCardDisplay : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@objc public class CustomerAuthenticationIssuerPasscode : AntelopSDK.Credentials {
+  @objc public init(passcode: Foundation.NSMutableData, cryptogram: Foundation.NSMutableData?, cryptogramData: Foundation.NSMutableData?)
+  @objc(passcode:cryptogram:cryptogramData:) public init(passcode: Foundation.NSMutableData, cryptogram: Foundation.NSMutableData, cryptogramData: Foundation.NSMutableData?)
+  @objc deinit
+}
+extension AntelopSDK.CustomerAuthenticationIssuerPasscode {
+  public var passcode: Foundation.NSMutableData {
+    @available(*, deprecated, message: "Use getPasscode() instead")
+    get
+  }
+  public var cryptogram: Foundation.NSMutableData? {
+    @available(*, deprecated, message: "Use getCryptogram() instead")
+    get
+  }
+  public var cryptogramExtraData: Foundation.NSMutableData? {
+    @available(*, deprecated, message: "Use getCryptogramExtraData() instead")
+    get
+  }
+}
+extension AntelopSDK.CustomerAuthenticationIssuerPasscode {
+  public func getPasscode() -> Foundation.NSMutableData
+  public func getCryptogram() -> Foundation.NSMutableData
+  public func getCryptogramExtraData() -> Foundation.NSMutableData?
+  public func isValid() -> Swift.Bool
+}
+@objc public enum EligibilityDenialReason : Swift.Int {
+  case osNotSupported
+  case osVersionNotSupported
+  case noTelephony
+  case nfcNotSupported
+  case deviceNotAllowed
+  case deviceSupportExpired
+  case rootNotAllowed
+  case productNotSupportedBySdk
+}
+extension AntelopSDK.EligibilityDenialReason : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.EligibilityDenialReason.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.EligibilityDenialReason.RawValue)
+}
+extension AntelopSDK.EligibilityDenialReason : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class PinDisplayService {
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func getSecurePinDisplay() throws -> AntelopSDK.SecurePinDisplay
+  @objc deinit
+}
+public struct EmvApplication : Swift.Equatable {
+  public static func == (a: AntelopSDK.EmvApplication, b: AntelopSDK.EmvApplication) -> Swift.Bool
+}
+extension AntelopSDK.EmvApplication {
+  public func getId() -> Swift.String
+  public func getTokenExternalId() -> Swift.String?
+  public func getStatus() -> AntelopSDK.EmvApplicationStatus?
+  public func getFormat() -> AntelopSDK.EmvApplicationFormat?
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.4, *)
+public class SecureCardPushToApplePay {
+  @objc deinit
+}
+@available(iOS 13.4, *)
+extension AntelopSDK.SecureCardPushToApplePay {
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol, completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol, completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+}
+@available(iOS 13.4, *)
+extension AntelopSDK.SecureCardPushToApplePay : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+public protocol DefaultCustomerAuthenticatedProcessProtocol {
+  var presenter: UIKit.UIViewController? { get }
+  func onAuthenticationDeclined(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  @available(*, deprecated, message: "Implement onError(:) instead")
+  func onProcessError(error: AntelopSDK.AntelopError)
+  func onError(error: AntelopSDK.AntelopError, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onProcessSuccess(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onProcessStart(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func buildCustomerAuthenticationPrompt(type: AntelopSDK.CustomerAuthenticationMethodType, builder: AntelopSDK.CustomerAuthenticationPromptBuilder) -> AntelopSDK.CustomerAuthenticationPrompt
+}
+extension AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol {
+  public func onProcessError(error: AntelopSDK.AntelopError)
+  public func onError(error: AntelopSDK.AntelopError, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+}
+@objc public enum TokenRequestorType : Swift.Int {
+  case wallet
+  case ecommerce
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum TokenStatus : Swift.Int, Swift.Codable {
+  case inactive
+  case active
+  case suspended
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.TokenStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class SecurePinDisplay {
+  @objc deinit
+}
+extension AntelopSDK.SecurePinDisplay {
+  public func setCardBackground(_ image: UIKit.UIImage?) -> AntelopSDK.SecurePinDisplay
+  @discardableResult
+  public func setViewControllerDelegate(_ delegate: AntelopSDK.CustomerAuthenticatedProcessViewControllerProtocol) -> AntelopSDK.SecurePinDisplay
+  public func launch(delegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(delegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+}
+extension AntelopSDK.SecurePinDisplay : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@objc public enum SignatureType : Swift.Int, Swift.RawRepresentable {
+  case localJws
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.SignatureType.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.SignatureType.RawValue)
+}
+@objc public enum LockReason : Swift.Int {
+  case fraudulentUseSuspected
+  case stopService
+  case strongestCvmAttemptCountExceeded
+  case otherReason
+}
+extension AntelopSDK.LockReason : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.LockReason.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.LockReason.RawValue)
+}
+extension AntelopSDK.LockReason : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@available(iOS 13.4, *)
+extension PassKit.PKSecureElementPass.PassActivationState : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class GooglePayService {
+  public func getStatus(_ completion: @escaping AntelopSDK.OperationCompletion<AntelopSDK.DigitalCardServiceStatus>)
+  @objc deinit
+}
+@available(*, deprecated, message: "Use AsyncRequestType instead")
+@objc public enum WalletManagerAsyncRequestEnum : Swift.Int, Swift.Equatable {
+  case logout
+  case changeCredentials
+  case checkCredentials
+  case activateAuthMethod
+  case deactivateAuthMethod
+  case lock
+  case delete
+  case synchronizeAuthMethod
+}
+extension AntelopSDK.WalletManagerAsyncRequestEnum : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.WalletManagerAsyncRequestEnum.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.WalletManagerAsyncRequestEnum.RawValue)
+}
+extension AntelopSDK.WalletManagerAsyncRequestEnum : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct CardDisplay : Swift.Equatable {
+  public static func == (a: AntelopSDK.CardDisplay, b: AntelopSDK.CardDisplay) -> Swift.Bool
+}
+extension AntelopSDK.CardDisplay {
+  public func getLayoutDescription() -> Swift.String?
+  public func getDescription() -> Swift.String?
+}
+@_inheritsConvenienceInitializers @objc public class CancellationSignal : ObjectiveC.NSObject {
+  @objc public func cancel()
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias OperationCompletion<ResultType> = (Swift.Result<ResultType, AntelopSDK.AntelopError>) -> Swift.Void
+@objc public enum CardStatus : Swift.Int {
+  case activating
+  case activationRefused
+  case activationRequired
+  case active
+  case locked
+  case termsAndConditionsValidationRequired
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.CardStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct CardPushUrl {
+  public var inAppUrl: Swift.String? {
+    get
+  }
+  public var webUrl: Swift.String {
+    get
+  }
+}
+@objc public enum CancellationReason : Swift.Int, Swift.Codable, Swift.RawRepresentable {
+  case cancelledBySender
+  case otherResponded
+  public init(from decoder: Swift.Decoder) throws
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.CancellationReason.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.CancellationReason.RawValue)
+}
+@_inheritsConvenienceInitializers @objc final public class PinCustomerAuthenticationPromptBuilder : AntelopSDK.CustomerAuthenticationPromptBuilder {
+  @objc override dynamic public init()
+  @discardableResult
+  @objc final public func setPresentingViewController(_ presentingViewController: UIKit.UIViewController) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setTitle(_ title: Swift.String?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setSubtitle(_ subtitle: Swift.String?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setPinCheckDisabled(_ pinCheckDisabled: Swift.Bool) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setCloseImage(_ closeImage: UIKit.UIImage?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setDeleteImage(_ deleteImage: UIKit.UIImage?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setErrorTextFormat(_ errorTextFormat: Swift.String?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setShowCancel(_ showCancel: Swift.Bool) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setPinSize(_ pinSize: Swift.Int) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setBackgroundColor(_ backgroundColor: UIKit.UIColor?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setPrimaryColor(_ primaryColor: UIKit.UIColor?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setSecondaryColor(_ secondaryColor: UIKit.UIColor?) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @discardableResult
+  @objc final public func setRandomizeKeyboard(_ randomizeKeyboard: Swift.Bool) -> AntelopSDK.PinCustomerAuthenticationPromptBuilder
+  @objc override final public func build() -> AntelopSDK.PinCustomerAuthenticationPrompt
+  @objc deinit
+}
+@objc public class CustomerAuthenticatedSignature : ObjectiveC.NSObject {
+  @available(*, deprecated, message: "Use init(String:Data:SignatureType:String?) instead")
+  @objc public init(patternName: Swift.String, signatureInputData: Swift.String, signatureType: AntelopSDK.SignatureType = .localJws, message: Swift.String?)
+  @objc(patternName:signatureInputData:signatureType:message:) public init(patternName: Swift.String, signatureInputData: Foundation.Data, signatureType: AntelopSDK.SignatureType = .localJws, message: Swift.String?)
+  @objc deinit
+}
+extension AntelopSDK.CustomerAuthenticatedSignature {
+  public func sign(delegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  public func sign(delegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  @objc dynamic public func getInputData() -> Swift.String?
+  public func getType() -> AntelopSDK.SignatureType?
+  @objc dynamic public func getResult() -> Swift.String?
+}
+extension AntelopSDK.CustomerAuthenticatedSignature : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+  @objc dynamic public func setOnlineAuthentication(_ onlineAuthentication: Swift.Bool)
+}
+@_inheritsConvenienceInitializers @objc final public class DeviceBiometricCustomerAuthenticationPromptBuilder : AntelopSDK.CustomerAuthenticationPromptBuilder {
+  @objc override dynamic public init()
+  @discardableResult
+  @objc final public func setTitle(title: Swift.String?) -> AntelopSDK.DeviceBiometricCustomerAuthenticationPromptBuilder
+  @objc override final public func build() -> AntelopSDK.DeviceBiometricCustomerAuthenticationPrompt
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SecureTokenDelete {
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureTokenDelete : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@_inheritsConvenienceInitializers @objc public class AntelopErrorHelper : ObjectiveC.NSObject {
+  @objc public class func getCode(error: AntelopSDK.AntelopError) -> Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum AntelopError : Swift.Int, Swift.Error, Swift.CaseIterable {
+  public func getCode() -> Swift.String
+  case `internal`
+  case backgroundRefreshNotAvailable
+  case pushNotificationNotAvailable
+  case missingApnsToken
+  case couldNotFindAntelopPlistFile
+  case missingApplicationIdInAntelopPlistFile
+  case networkNotAvailable
+  case networkIssue
+  case noProductAllowed
+  case activationRequired
+  case walletNotActivated
+  case walletDeleted
+  case walletLocked
+  case invalidCredentials
+  case localAuthenticationCancelled
+  case localAuthenticationUserNotRecognized
+  case localAuthenticationUserFallback
+  case localAuthenticationBiometryNotAvailable
+  case localAuthenticationBiometryNotEnrolled
+  case localAuthenticationBiometryLockout
+  case localAuthenticationPinLockout
+  case authenticationPatternUnknown
+  case authenticationPatternCancelled
+  case authenticationPatternFailed
+  case authenticationMethodUnknown
+  case authenticationMethodCancelled
+  case authenticationMethodFallback
+  case authenticationMethodFailed
+  case authenticationFailed
+  case scaCancelledFromBackend
+  case scaDuplicated
+  case scaTimeout
+  case authenticationInternalError
+  case customerAuthenticationImpossible
+  case authenticationOnGoingOperation
+  case expiredActivationCode
+  case invalidActivationCode
+  case lockedActivationCode
+  case alreadyUsedActivationCode
+  case digitalCardAlreadyPushed
+  case userCancelled
+  case cardLocked
+  case cardDeleted
+  case operationRefused
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [AntelopSDK.AntelopError]
+  public typealias RawValue = Swift.Int
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+  public static var allCases: [AntelopSDK.AntelopError] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.AntelopError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.AntelopError : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum WalletValidationError : Swift.Error, Swift.Equatable {
+  public enum Domain : Swift.Equatable {
+    case msisdn
+    case activationCode
+    case clientId
+    case walletId
+    case settingsProfileId
+    case issuerActivationId
+    case issuerActivationCode
+    case phoneNumber
+    case activationId
+    case authenticationProofType
+    case authenticationSignatureData
+    case customerAuthenticationMethod
+    case authenticationPattern
+    case authenticationRequestId
+    case customerAuthenticationCredentials
+    case customerAuthenticationPrompt
+    case initialized
+    case connected
+    case signature
+    case productSCANotSupported
+    case productDigitalCardNotSupported
+    case invalidDigitalCardData
+    case cardSecureInput
+    case product
+    case googlePayService
+    case applePayService
+    case applePayWallet
+    case secureCardPushToApplePay
+    case secureCardPushToTokenRequestor
+    case returnURL
+    case secureDisplay
+    case cardDisplayService
+    case pinDisplayService
+    case tokenManagementService
+    case secureTokenSuspend
+    case secureTokenResume
+    case secureTokenDelete
+    case token
+    case virtualCardNumber
+    case virtualCardNumberService
+    case virtualCardNumberOption
+    case displayCardServiceNotSupported
+    case displayPinServiceNotSupported
+    case card
+    case unexpected
+    case wallet
+    case pushAuthenticationRequest
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: AntelopSDK.WalletValidationError.Domain, b: AntelopSDK.WalletValidationError.Domain) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  case mandatory(AntelopSDK.WalletValidationError.Domain)
+  case unexpected(AntelopSDK.WalletValidationError.Domain)
+  case invalidFormat(AntelopSDK.WalletValidationError.Domain)
+  case unknown(AntelopSDK.WalletValidationError.Domain)
+  case wrongState(AntelopSDK.WalletValidationError.Domain)
+  public static func == (a: AntelopSDK.WalletValidationError, b: AntelopSDK.WalletValidationError) -> Swift.Bool
+}
+public struct Security : Swift.Equatable {
+  public static func == (a: AntelopSDK.Security, b: AntelopSDK.Security) -> Swift.Bool
+}
+extension AntelopSDK.Security {
+  public func getCustomerAuthenticationPatterns() -> [Swift.String : AntelopSDK.CustomerAuthenticationPattern]
+  public func getCustomerAuthenticationMethods() -> [AntelopSDK.CustomerAuthenticationMethodType : AntelopSDK.CustomerAuthenticationMethod]
+}
+@_hasMissingDesignatedInitializers public class SecureVirtualCardNumberDisplay {
+  @objc deinit
+}
+extension AntelopSDK.SecureVirtualCardNumberDisplay {
+  public func setCardBackground(_ image: UIKit.UIImage?) -> AntelopSDK.SecureVirtualCardNumberDisplay
+  public func setCardForegroundColor(_ color: UIKit.UIColor) -> AntelopSDK.SecureVirtualCardNumberDisplay
+  @discardableResult
+  public func setViewControllerDelegate(_ delegate: AntelopSDK.CustomerAuthenticatedProcessViewControllerProtocol) -> AntelopSDK.SecureVirtualCardNumberDisplay
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+}
+extension AntelopSDK.SecureVirtualCardNumberDisplay : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@_hasMissingDesignatedInitializers public class SecureVirtualCardNumberGenerator {
+  public func create(option: AntelopSDK.VirtualCardNumberOption, displayVcnUponCreation: Swift.Bool, defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func create(option: AntelopSDK.VirtualCardNumberOption, displayVcnUponCreation: Swift.Bool, customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureVirtualCardNumberGenerator : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@objc public enum TokenType : Swift.Int, Swift.Codable {
+  case secureElement
+  case hce
+  case cardOnFile
+  case qrCode
+  case other
+}
+extension AntelopSDK.TokenType : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.TokenType.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.TokenType.RawValue)
+}
+extension AntelopSDK.TokenType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum CustomerAuthenticationFailureReason : Swift.Int, Swift.Error {
+  case cancelled
+  case locked
+  case internalError
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class PinCustomerAuthenticationPrompt : AntelopSDK.CustomerAuthenticationPrompt {
+  @objc deinit
+}
+extension AntelopSDK.PinCustomerAuthenticationPrompt {
+  @objc final public var title: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getTitle() instead")
+    get
+  }
+  @objc final public var subtitle: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getSubtitle() instead")
+    get
+  }
+  @objc final public var closeImage: UIKit.UIImage? {
+    @objc @available(*, deprecated, message: "Use getCloseImage() instead")
+    get
+  }
+  @objc final public var deleteImage: UIKit.UIImage? {
+    @objc @available(*, deprecated, message: "Use getDeleteImage() instead")
+    get
+  }
+  @objc final public var errorTextFormat: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getErrorTextFormat() instead")
+    get
+  }
+  final public var showCancel: Swift.Bool? {
+    @available(*, deprecated, message: "Use getShowCancel() instead")
+    get
+  }
+  final public var pinSize: Swift.Int? {
+    @available(*, deprecated, message: "Use getShowCancel() instead")
+    get
+  }
+  @objc final public var backgroundColor: UIKit.UIColor? {
+    @objc @available(*, deprecated, message: "Use getBackgroundColor() instead")
+    get
+  }
+  @objc final public var primaryColor: UIKit.UIColor? {
+    @objc @available(*, deprecated, message: "Use getPrimaryColor() instead")
+    get
+  }
+  @objc final public var secondaryColor: UIKit.UIColor? {
+    @objc @available(*, deprecated, message: "Use getSecondaryColor() instead")
+    get
+  }
+  final public var randomizeKeyboard: Swift.Bool? {
+    @available(*, deprecated, message: "Use getRandomizeKeyboard() instead")
+    get
+  }
+  final public var pinCheckDisabled: Swift.Bool? {
+    @available(*, deprecated, message: "Use getPinCheckDisabled() instead")
+    get
+  }
+}
+extension AntelopSDK.PinCustomerAuthenticationPrompt {
+  @objc final public func getPresentingViewController() -> UIKit.UIViewController?
+  @objc final public func getTitle() -> Swift.String?
+  @objc final public func getSubtitle() -> Swift.String?
+  @objc final public func getCloseImage() -> UIKit.UIImage?
+  @objc final public func getDeleteImage() -> UIKit.UIImage?
+  @objc final public func getErrorTextFormat() -> Swift.String?
+  final public func getShowCancel() -> Swift.Bool?
+  final public func getPinSize() -> Swift.Int?
+  @objc final public func getBackgroundColor() -> UIKit.UIColor?
+  @objc final public func getPrimaryColor() -> UIKit.UIColor?
+  @objc final public func getSecondaryColor() -> UIKit.UIColor?
+  final public func getRandomizeKeyboard() -> Swift.Bool?
+  final public func getPinCheckDisabled() -> Swift.Bool?
+}
+@_hasMissingDesignatedInitializers public class PushToTokenRequestorService {
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func getTokenRequestors(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.TokenRequestor]>) throws
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PushAuthenticationRequestInfo : ObjectiveC.NSObject {
+  @objc final public let requestId: Swift.String
+  @objc final public let authenticationPattern: Swift.String
+  @objc final public let expiryDate: Swift.Double
+  @objc final public let data: Swift.String
+  final public let creationDate: Swift.Double?
+  final public let status: AntelopSDK.CancellationReason?
+  final public let canConfirmFromNotificationCenter: Swift.Bool
+  @objc deinit
+}
+public protocol CustomerAuthenticatedProcess : AnyObject {
+  func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  func getAuthenticationPatternName() -> Swift.String
+  func isOnline() -> Swift.Bool
+  func getMessage() -> Swift.String?
+  func setOnlineAuthentication(_ onlineAuthentication: Swift.Bool)
+}
+extension AntelopSDK.CustomerAuthenticatedProcess {
+  public func setOnlineAuthentication(_ onlineAuthentication: Swift.Bool)
+}
+@objc public enum VirtualCardNumberStatus : Swift.Int, Swift.Codable {
+  case active
+  case suspended
+  case expired
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.VirtualCardNumberStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum EmvApplicationStatus : Swift.Int {
+  case active
+  case locked
+  case deleted
+  case activationRequired
+  case activating
+  case activationRefused
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.EmvApplicationStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc final public class WalletManager : ObjectiveC.NSObject {
+  public init(_ delegate: AntelopSDK.WalletManagerProtocol)
+  @objc final public func connect()
+  @objc final public func connect(currentCredentials: AntelopSDK.Credentials? = nil, newCredentials: AntelopSDK.Credentials? = nil) throws
+  @objc final public func checkCredentials(currentCredentials: AntelopSDK.Credentials) throws
+  @objc final public func changeCredentials(currentCredentials: AntelopSDK.Credentials, newCredentials: AntelopSDK.Credentials) throws
+  @objc final public func logout() throws
+  @objc final public func lock(reason: AntelopSDK.LockReason) throws
+  @objc final public func delete()
+  @objc final public func disconnect()
+  @objc final public func activateAuthenticationMethod(type: AntelopSDK.CustomerAuthenticationMethodType, credentials: AntelopSDK.Credentials? = nil) throws
+  @objc final public func deactivateAuthenticationMethod(type: AntelopSDK.CustomerAuthenticationMethodType, credentials: AntelopSDK.Credentials? = nil) throws
+  @objc final public func synchronizeAuthenticationMethod(type: AntelopSDK.CustomerAuthenticationMethodType, credentials: AntelopSDK.Credentials? = nil) throws
+  @objc deinit
+}
+public struct VirtualCardNumberOption {
+  final public class Builder {
+    public init()
+    final public func setName(_ name: Swift.String?) -> AntelopSDK.VirtualCardNumberOption.Builder
+    final public func setValidityDuration(unit: AntelopSDK.VirtualCardNumberOption.Builder.ValidityUnit, value: Swift.Int) -> AntelopSDK.VirtualCardNumberOption.Builder
+    final public func setMaxPaymentNumber(_ maxPaymentNumber: Swift.Int?) -> AntelopSDK.VirtualCardNumberOption.Builder
+    final public func build() -> AntelopSDK.VirtualCardNumberOption
+    public enum ValidityUnit : Swift.String {
+      case Hour
+      case Day
+      case Year
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    @objc deinit
+  }
+  public func validate() throws
+}
+public protocol WalletManagerProtocol : AnyObject {
+  func onConnectionError(error: AntelopSDK.AntelopError)
+  func onProvisioningRequired()
+  func onCredentialsRequired(reason: AntelopSDK.CustomerCredentialsRequiredReason)
+  func onConnectionSuccess(wallet: AntelopSDK.Wallet)
+  @available(*, deprecated, message: "Implement onAsyncRequestError(asyncRequestType: AsyncRequestType, error: AntelopError) instead")
+  func onAsyncRequestError(asyncRequestCode: AntelopSDK.WalletManagerAsyncRequestEnum, error: AntelopSDK.AntelopError)
+  func onAsyncRequestError(asyncRequestType: AntelopSDK.AsyncRequestType, error: AntelopSDK.AntelopError)
+  @available(*, deprecated, message: "Implement onAsyncRequestSuccess(asyncRequestType: AsyncRequestType) instead")
+  func onAsyncRequestSuccess(asyncRequestCode: AntelopSDK.WalletManagerAsyncRequestEnum)
+  func onAsyncRequestSuccess(asyncRequestType: AntelopSDK.AsyncRequestType)
+}
+extension AntelopSDK.WalletManagerProtocol {
+  public func onConnectionError(error: AntelopSDK.AntelopError)
+  public func onProvisioningRequired()
+  public func onCredentialsRequired(reason: AntelopSDK.CustomerCredentialsRequiredReason)
+  public func onConnectionSuccess(wallet: AntelopSDK.Wallet)
+  public func onAsyncRequestError(asyncRequestCode: AntelopSDK.WalletManagerAsyncRequestEnum, error: AntelopSDK.AntelopError)
+  public func onAsyncRequestSuccess(asyncRequestCode: AntelopSDK.WalletManagerAsyncRequestEnum)
+  public func onAsyncRequestError(asyncRequestType: AntelopSDK.AsyncRequestType, error: AntelopSDK.AntelopError)
+  public func onAsyncRequestSuccess(asyncRequestType: AntelopSDK.AsyncRequestType)
+}
+@_hasMissingDesignatedInitializers public class VirtualCardNumberService {
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func getVirtualCardNumbers(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.VirtualCardNumber]>) throws
+  public func getVirtualCardNumberGenerator() -> AntelopSDK.SecureVirtualCardNumberGenerator
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class CustomerAuthenticationPromptBuilder : ObjectiveC.NSObject {
+  @objc public func build() -> AntelopSDK.CustomerAuthenticationPrompt
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public protocol PushAuthenticationRequestListenerProtocol {
+  @objc func onRequestReceived(request: AntelopSDK.PushAuthenticationRequest)
+  @objc func onRequestCancelled(requestId: Swift.String, reason: AntelopSDK.CancellationReason)
+}
+@_hasMissingDesignatedInitializers @objc final public class PushAuthenticationRequestListener : ObjectiveC.NSObject {
+  @objc public static let shared: AntelopSDK.PushAuthenticationRequestListener
+  @discardableResult
+  @objc final public func register(observer: AntelopSDK.PushAuthenticationRequestListenerProtocol) -> Swift.String
+  @discardableResult
+  @objc final public func remove(identifier: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+public protocol CustomCustomerAuthenticatedProcessProtocol {
+  func onProcessStart(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onAuthenticationDeclined(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  @available(*, deprecated, message: "Implement onError(:) instead")
+  func onProcessError(error: AntelopSDK.AntelopError)
+  func onError(error: AntelopSDK.AntelopError, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onProcessSuccess(customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onCustomerCredentialsRequired(allowedMethods: [AntelopSDK.CustomerAuthenticationMethod], customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+  func onCustomerCredentialsInvalid(errorReason: AntelopSDK.LocalAuthenticationErrorReason, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+}
+extension AntelopSDK.CustomCustomerAuthenticatedProcessProtocol {
+  public func onProcessError(error: AntelopSDK.AntelopError)
+  public func onError(error: AntelopSDK.AntelopError, customerAuthenticatedProcess: AntelopSDK.CustomerAuthenticatedProcess)
+}
+public enum LocalAuthenticationErrorReason {
+  case userNotRecognized
+  case forbidden
+  case invalidFormat
+  case internalError
+  public static func == (a: AntelopSDK.LocalAuthenticationErrorReason, b: AntelopSDK.LocalAuthenticationErrorReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class CardDisplayService {
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func getSecureCardDisplay() throws -> AntelopSDK.SecureCardDisplay
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CustomerAuthenticationPrompt : ObjectiveC.NSObject {
+  @objc deinit
+}
+public protocol CustomerAuthenticatedProcessViewControllerProtocol {
+  func onViewControllerStart()
+  func onViewControllerStop()
+}
+public struct TokenRequestor : Swift.Equatable {
+  public static func == (a: AntelopSDK.TokenRequestor, b: AntelopSDK.TokenRequestor) -> Swift.Bool
+}
+extension AntelopSDK.TokenRequestor {
+  public func getId() -> Swift.String
+  public func getTypes() -> [AntelopSDK.TokenRequestorType]
+  public func getName() -> Swift.String
+  public func getLogo() -> UIKit.UIImage?
+  public func getSecureCardPush() throws -> AntelopSDK.SecureCardPushToTokenRequestor
+  public func pushCard(returnUrl: Swift.String, completion: @escaping AntelopSDK.OperationCompletion<Swift.Void>) throws
+}
+public class PushAuthenticationRequestFetcher {
+  public init(delegate: AntelopSDK.PushAuthenticationRequestFetcherProtocol)
+  public func fetchPendingRequests() throws
+  @objc deinit
+}
+precedencegroup Group {
+  associativity: left
+}
+infix operator >>> : Group
+@objc public enum CustomerCredentialsRequiredReason : Swift.Int {
+  case validationNeeded
+  case notSet
+  case toBeChanged
+}
+extension AntelopSDK.CustomerCredentialsRequiredReason : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.CustomerCredentialsRequiredReason.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.CustomerCredentialsRequiredReason.RawValue)
+}
+extension AntelopSDK.CustomerCredentialsRequiredReason : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public protocol CustomerAuthenticatedProcessProtocol : AnyObject {
+  func onProcessStart()
+  func onProcessSuccess()
+  @available(*, deprecated, message: "Implements onError(:) instead")
+  func onProcessError(error: AntelopSDK.AntelopError)
+  func onError(_ error: AntelopSDK.AntelopError)
+  func onAuthenticationDeclined()
+}
+extension AntelopSDK.CustomerAuthenticatedProcessProtocol {
+  public func onProcessError(error: AntelopSDK.AntelopError)
+  public func onError(_ error: AntelopSDK.AntelopError)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Wallet : ObjectiveC.NSObject {
+  @objc deinit
+}
+extension AntelopSDK.Wallet {
+  public func getId() -> Swift.Int64?
+  public func getAvailableProducts() -> Swift.Set<AntelopSDK.Product>
+  public func getSettings() -> AntelopSDK.Settings
+  @objc dynamic public func getIssuerWalletId() -> Swift.String?
+  @objc dynamic public func getIssuerClientId() -> Swift.String?
+  @objc dynamic public func getIssuerData() -> Swift.String?
+  @objc dynamic public func getCertificate() -> Foundation.Data?
+  @objc dynamic public func getSecureDisplayCertificate() -> Foundation.Data?
+}
+@_hasMissingDesignatedInitializers public class TokenManagementService {
+  public func getStatus() -> AntelopSDK.DigitalCardServiceStatus
+  public func getTokens(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.Token]>) throws
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc public class PushAuthenticationRequest : ObjectiveC.NSObject {
+  public func authenticate(delegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  public func authenticate(delegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  @objc public func cancel()
+  @objc public func cancel(_ completion: @escaping () -> Swift.Void)
+  @objc public func getId() -> Swift.String
+  @objc public func getIssuerData() -> Swift.String
+  @objc public func getExpiryTimestamp() -> Swift.UInt64
+  @objc deinit
+}
+extension AntelopSDK.PushAuthenticationRequest : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+@objc @_inheritsConvenienceInitializers final public class WalletNotifications : ObjectiveC.NSObject {
+  public static func subscribe(observer: AntelopSDK.WalletNotificationsObserver) -> Swift.String
+  public static func unsubscribe(observerWithRegistrationId registrationId: Swift.String)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol WalletNotificationsObserver {
+  @available(*, deprecated, message: "Implements onWalletSettingUpdated instead")
+  func onSettingsUpdated()
+  @available(*, deprecated, message: "Implements onWalletLogout instead")
+  func onLogout()
+  @available(*, deprecated, message: "Implements onDeviceEligibilityLost instead")
+  func onLostEligibility()
+  @available(*, deprecated, message: "Implements onWalletCountersUpdated instead")
+  func onCountersUpdated()
+  func onWalletSettingUpdated()
+  func onWalletLogout()
+  func onWalletLocked(reason: AntelopSDK.LockReason)
+  func onWalletUnlocked()
+  func onWalletDeleted()
+  func onCustomerCredentialsReset()
+  func onWalletLoaded()
+  func onDeviceEligibilityLost()
+  func onWalletCountersUpdated()
+  func onCardsUpdated()
+  func onWalletProductsUpdated()
+}
+extension AntelopSDK.WalletNotificationsObserver {
+  public func onSettingsUpdated()
+  public func onLogout()
+  public func onLostEligibility()
+  public func onCountersUpdated()
+  public func onWalletSettingUpdated()
+  public func onWalletLogout()
+  public func onWalletLocked(reason: AntelopSDK.LockReason)
+  public func onWalletUnlocked()
+  public func onWalletDeleted()
+  public func onCustomerCredentialsReset()
+  public func onWalletLoaded()
+  public func onDeviceEligibilityLost()
+  public func onWalletCountersUpdated()
+  public func onCardsUpdated()
+  public func onWalletProductsUpdated()
+}
+extension AntelopSDK.Wallet {
+  public func enrollDigitalCard(enrollmentData: Swift.String, completion: @escaping AntelopSDK.AntelopCompletion) throws
+  @objc dynamic public func enrollDigitalCard(enrollmentData: Swift.String, success: @escaping () -> Swift.Void, error: @escaping (Swift.Error) -> Swift.Void) throws
+  public func getDigitalCards(includeNotProvisionedCards: Swift.Bool) -> [Swift.String : AntelopSDK.DigitalCard]
+  public func getDigitalCard(cardId: Swift.String) -> AntelopSDK.DigitalCard?
+  public func refreshDigitalCards(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>)
+}
+@objc public enum ApplePayTokenLocation : Swift.Int, Swift.CustomStringConvertible {
+  case currentDevice
+  case remotePairedDevice
+  public var description: Swift.String {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @available(iOS 13.4, *)
+public class ApplePayService {
+  public func getStatus(_ completion: @escaping AntelopSDK.OperationCompletion<AntelopSDK.DigitalCardServiceStatus>)
+  public func isCardInApplePay(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  @objc public func isCardInApplePay(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func isCardInApplePayOnPairedDevice(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  @objc public func isCardInApplePayOnPairedDevice(successHandler: @escaping (Swift.Bool) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func getApplePayTokenLocations(_ completion: @escaping AntelopSDK.OperationCompletion<[AntelopSDK.ApplePayTokenLocation]>) throws
+  @objc public func getApplePayTokenLocations(successHandler: @escaping ([Foundation.NSNumber]) -> (), errorHandler: @escaping (Swift.Error) -> ()) throws
+  public func pushCard(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  public func getSecureCardPush() -> AntelopSDK.SecureCardPushToApplePay
+  public func configureWallet(_ completion: @escaping AntelopSDK.OperationCompletion<Swift.Bool>) throws
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class CustomerConsentCredentials : AntelopSDK.Credentials {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public class AntelopUNNotificationServiceExtensionParser {
+  public init(delegate: AntelopSDK.AntelopUNNotificationServiceExtensionParserProtocol)
+  @available(*, deprecated, message: "Use extensionDidReceive(_ request: UNNotificationRequest) instead.")
+  @objc public func didReceive(_ request: UserNotifications.UNNotificationRequest)
+  @objc public func extensionDidReceive(_ request: UserNotifications.UNNotificationRequest) -> Swift.Bool
+  @objc deinit
+}
+public typealias AntelopCompletion = (Swift.Result<Swift.Void, AntelopSDK.AntelopError>) -> Swift.Void
+@objc public enum ManageVcnRequestAction : Swift.Int, Swift.Codable {
+  case resume
+  case suspend
+  case delete
+}
+extension AntelopSDK.ManageVcnRequestAction : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.ManageVcnRequestAction.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.ManageVcnRequestAction.RawValue)
+}
+extension AntelopSDK.ManageVcnRequestAction : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class CustomerConsentPrompt : AntelopSDK.CustomerAuthenticationPrompt {
+  @objc deinit
+}
+extension AntelopSDK.CustomerConsentPrompt {
+  @objc dynamic public var title: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getTitle() instead")
+    get
+  }
+  @objc dynamic public var body: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getBody() instead")
+    get
+  }
+  @objc dynamic public var cancel: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getCancel() instead")
+    get
+  }
+  @objc dynamic public var confirm: Swift.String? {
+    @objc @available(*, deprecated, message: "Use getConfirm() instead")
+    get
+  }
+}
+extension AntelopSDK.CustomerConsentPrompt {
+  @objc dynamic public func getPresentingViewController() -> UIKit.UIViewController?
+  @objc dynamic public func getTitle() -> Swift.String?
+  @objc dynamic public func getBody() -> Swift.String?
+  @objc dynamic public func getCancel() -> Swift.String?
+  @objc dynamic public func getConfirm() -> Swift.String?
+}
+@_hasMissingDesignatedInitializers public class SecureTokenSuspend {
+  public func launch(defaultProcessDelegate: AntelopSDK.DefaultCustomerAuthenticatedProcessProtocol) throws
+  public func launch(customProcessDelegate: AntelopSDK.CustomCustomerAuthenticatedProcessProtocol) throws
+  @objc deinit
+}
+extension AntelopSDK.SecureTokenSuspend : AntelopSDK.CustomerAuthenticatedProcess {
+  @available(*, deprecated, message: "Use setCustomerCredentials(:) instead")
+  public func setCredentials(credentials: AntelopSDK.Credentials?, method: AntelopSDK.CustomerAuthenticationMethod) throws
+  public func setCustomerCredentials(_ credentials: AntelopSDK.Credentials) throws
+  public func getAuthenticatedMethods() -> [AntelopSDK.CustomerAuthenticationMethod]?
+  @objc dynamic public func getAuthenticationPatternName() -> Swift.String
+  @objc dynamic public func isOnline() -> Swift.Bool
+  @objc dynamic public func getMessage() -> Swift.String?
+}
+extension Foundation.Data {
+  public func sha256String() -> Swift.String
+}
+public struct Settings : Swift.Equatable {
+  public var security: AntelopSDK.Security {
+    @available(*, deprecated, message: "Use getSecurity() instead")
+    get
+  }
+  public func getSecurity() -> AntelopSDK.Security
+  public static func == (a: AntelopSDK.Settings, b: AntelopSDK.Settings) -> Swift.Bool
+}
+public struct CustomerAuthenticationMethod : Swift.Equatable {
+  public static func == (a: AntelopSDK.CustomerAuthenticationMethod, b: AntelopSDK.CustomerAuthenticationMethod) -> Swift.Bool
+}
+extension AntelopSDK.CustomerAuthenticationMethod {
+  public var type: AntelopSDK.CustomerAuthenticationMethodType {
+    @available(*, deprecated, message: "Use getType() instead")
+    get
+  }
+  public var status: AntelopSDK.CustomerAuthenticationMethodStatus {
+    @available(*, deprecated, message: "Use getStatus() instead")
+    get
+  }
+  public var usages: Swift.Set<AntelopSDK.CustomerAuthenticationMethodUsage> {
+    @available(*, deprecated, message: "Use getUsages() instead")
+    get
+  }
+  public var strength: Swift.Int? {
+    @available(*, deprecated, message: "Use getStrength() instead")
+    get
+  }
+  public var maximumAttemptsCount: Swift.Int {
+    @available(*, deprecated, message: "Use getMaximumAttemptsCount() instead")
+    get
+  }
+  public var currentAttemptsCount: Swift.Int {
+    @available(*, deprecated, message: "Use getCurrentAttemptsCount() instead")
+    get
+  }
+  public var authenticationDuration: Swift.Int? {
+    @available(*, deprecated, message: "Use getAuthenticationDuration() instead")
+    get
+  }
+}
+extension AntelopSDK.CustomerAuthenticationMethod {
+  public func getStrength() -> Swift.Int?
+  public func getMaxPaymentAmount() -> Swift.Double?
+  public func getMaxPaymentCumulativeAmount() -> Swift.Double?
+  public func getCurrentPaymentCumulativeAmount() -> Swift.Double?
+  public func getMaxPaymentCount() -> Swift.Int?
+  public func getCurrentPaymentCount() -> Swift.Int?
+  public func getAllowedPaymentAmount() -> Swift.Double?
+  public func getAuthenticationDuration() -> Swift.Int?
+  public func getCurrentAttemptsCount() -> Swift.Int
+  public func getMaximumAttemptsCount() -> Swift.Int
+  public func getStatus() -> AntelopSDK.CustomerAuthenticationMethodStatus
+  public func getType() -> AntelopSDK.CustomerAuthenticationMethodType
+  public func getUsages() -> Swift.Set<AntelopSDK.CustomerAuthenticationMethodUsage>
+  @available(*, deprecated, message: "Implements promptCustomer(completion:prompt:from:cancellationSignal) instead")
+  public func promptCustomer(completion: @escaping AntelopSDK.CustomerAuthenticationPromptCallback, prompt: AntelopSDK.CustomerAuthenticationPrompt, from: UIKit.UIViewController? = nil)
+  public func promptCustomer(completion: @escaping AntelopSDK.CustomerAuthenticationPromptCallback, prompt: AntelopSDK.CustomerAuthenticationPrompt, from: UIKit.UIViewController? = nil, cancellationSignal: AntelopSDK.CancellationSignal? = nil)
+}
+@objc public enum DigitalCardServiceStatus : Swift.Int {
+  case active
+  case disabled
+  case notConfiguredByUser
+  case notSupportedByDevice
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.DigitalCardServiceStatus : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum CustomerAuthenticationMethodType : Swift.Int, Swift.Codable {
+  case none
+  case consent
+  case pin
+  case deviceBiometric
+}
+extension AntelopSDK.CustomerAuthenticationMethodType : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.CustomerAuthenticationMethodType.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.CustomerAuthenticationMethodType.RawValue)
+}
+extension AntelopSDK.CustomerAuthenticationMethodType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum AsyncRequestType : Swift.Int, Swift.Equatable {
+  case logout
+  case lock
+  case delete
+  case checkCredentials
+  case changeCredentials
+  case activateAuthenticationMethod
+  case deactivateAuthenticationMethod
+  case synchronizeAuthenticationMethod
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AntelopSDK.AsyncRequestType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum CustomerAuthenticationMethodUsage : Swift.Int {
+  case walletManagement
+  case sca
+  case digitalCard
+}
+extension AntelopSDK.CustomerAuthenticationMethodUsage : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public var rawValue: AntelopSDK.CustomerAuthenticationMethodUsage.RawValue {
+    get
+  }
+  public init?(rawValue: AntelopSDK.CustomerAuthenticationMethodUsage.RawValue)
+}
+extension AntelopSDK.CustomerAuthenticationMethodUsage : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension AntelopSDK.DisplayType : Swift.Equatable {}
+extension AntelopSDK.DisplayType : Swift.Hashable {}
+extension AntelopSDK.CustomerAuthenticationMethodStatus : Swift.Equatable {}
+extension AntelopSDK.CustomerAuthenticationMethodStatus : Swift.Hashable {}
+extension AntelopSDK.Product : Swift.Equatable {}
+extension AntelopSDK.Product : Swift.Hashable {}
+extension AntelopSDK.ManageTokenRequestAction : Swift.Equatable {}
+extension AntelopSDK.ManageTokenRequestAction : Swift.Hashable {}
+extension AntelopSDK.TokenServiceProvider : Swift.Equatable {}
+extension AntelopSDK.TokenServiceProvider : Swift.Hashable {}
+extension AntelopSDK.EmvApplicationFormat : Swift.Equatable {}
+extension AntelopSDK.EmvApplicationFormat : Swift.Hashable {}
+extension AntelopSDK.EligibilityDenialReason : Swift.Equatable {}
+extension AntelopSDK.EligibilityDenialReason : Swift.Hashable {}
+extension AntelopSDK.TokenRequestorType : Swift.Equatable {}
+extension AntelopSDK.TokenRequestorType : Swift.Hashable {}
+extension AntelopSDK.TokenRequestorType : Swift.RawRepresentable {}
+extension AntelopSDK.TokenStatus : Swift.Equatable {}
+extension AntelopSDK.TokenStatus : Swift.Hashable {}
+extension AntelopSDK.TokenStatus : Swift.RawRepresentable {}
+extension AntelopSDK.SignatureType : Swift.Equatable {}
+extension AntelopSDK.SignatureType : Swift.Hashable {}
+extension AntelopSDK.LockReason : Swift.Equatable {}
+extension AntelopSDK.LockReason : Swift.Hashable {}
+@available(*, deprecated, message: "Use AsyncRequestType instead")
+extension AntelopSDK.WalletManagerAsyncRequestEnum : Swift.Hashable {}
+extension AntelopSDK.CardStatus : Swift.Equatable {}
+extension AntelopSDK.CardStatus : Swift.Hashable {}
+extension AntelopSDK.CardStatus : Swift.RawRepresentable {}
+extension AntelopSDK.CustomerAuthenticationMethodType : Swift.Equatable {}
+extension AntelopSDK.CustomerAuthenticationMethodType : Swift.Hashable {}
+extension AntelopSDK.CancellationReason : Swift.Equatable {}
+extension AntelopSDK.CancellationReason : Swift.Hashable {}
+extension AntelopSDK.AntelopError : Swift.Equatable {}
+extension AntelopSDK.AntelopError : Swift.Hashable {}
+extension AntelopSDK.AntelopError : Swift.RawRepresentable {}
+extension AntelopSDK.WalletValidationError.Domain : Swift.Hashable {}
+extension AntelopSDK.TokenType : Swift.Equatable {}
+extension AntelopSDK.TokenType : Swift.Hashable {}
+extension AntelopSDK.CustomerAuthenticationFailureReason : Swift.Equatable {}
+extension AntelopSDK.CustomerAuthenticationFailureReason : Swift.Hashable {}
+extension AntelopSDK.CustomerAuthenticationFailureReason : Swift.RawRepresentable {}
+extension AntelopSDK.VirtualCardNumberStatus : Swift.Equatable {}
+extension AntelopSDK.VirtualCardNumberStatus : Swift.Hashable {}
+extension AntelopSDK.VirtualCardNumberStatus : Swift.RawRepresentable {}
+extension AntelopSDK.EmvApplicationStatus : Swift.Equatable {}
+extension AntelopSDK.EmvApplicationStatus : Swift.Hashable {}
+extension AntelopSDK.EmvApplicationStatus : Swift.RawRepresentable {}
+extension AntelopSDK.VirtualCardNumberOption.Builder.ValidityUnit : Swift.Equatable {}
+extension AntelopSDK.VirtualCardNumberOption.Builder.ValidityUnit : Swift.Hashable {}
+extension AntelopSDK.VirtualCardNumberOption.Builder.ValidityUnit : Swift.RawRepresentable {}
+extension AntelopSDK.LocalAuthenticationErrorReason : Swift.Equatable {}
+extension AntelopSDK.LocalAuthenticationErrorReason : Swift.Hashable {}
+extension AntelopSDK.CustomerCredentialsRequiredReason : Swift.Equatable {}
+extension AntelopSDK.CustomerCredentialsRequiredReason : Swift.Hashable {}
+extension AntelopSDK.ApplePayTokenLocation : Swift.Equatable {}
+extension AntelopSDK.ApplePayTokenLocation : Swift.Hashable {}
+extension AntelopSDK.ApplePayTokenLocation : Swift.RawRepresentable {}
+extension AntelopSDK.ManageVcnRequestAction : Swift.Equatable {}
+extension AntelopSDK.ManageVcnRequestAction : Swift.Hashable {}
+extension AntelopSDK.DigitalCardServiceStatus : Swift.Equatable {}
+extension AntelopSDK.DigitalCardServiceStatus : Swift.Hashable {}
+extension AntelopSDK.DigitalCardServiceStatus : Swift.RawRepresentable {}
+extension AntelopSDK.AsyncRequestType : Swift.Hashable {}
+extension AntelopSDK.AsyncRequestType : Swift.RawRepresentable {}
+extension AntelopSDK.CustomerAuthenticationMethodUsage : Swift.Equatable {}
+extension AntelopSDK.CustomerAuthenticationMethodUsage : Swift.Hashable {}
