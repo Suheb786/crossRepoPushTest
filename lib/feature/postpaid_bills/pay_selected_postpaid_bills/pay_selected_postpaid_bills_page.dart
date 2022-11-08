@@ -1,30 +1,24 @@
-import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
-import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
-import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page_view.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 
-import 'package:neo_bank/utils/color_utils.dart';
+class PaySelectedBillsPostPaidBillsPage extends BasePage<PaySelectedBillsPostPaidBillsPageViewModel> {
+  final PaySelectedBillsPostPaidBillsPageArguments arguments;
 
-class PayAllPostPaidBillsPage extends BasePage<PayAllPostPaidBillsPageViewModel> {
-  final PayAllPostPaidBillsPageArguments arguments;
-
-  PayAllPostPaidBillsPage(this.arguments);
+  PaySelectedBillsPostPaidBillsPage(this.arguments);
 
   @override
-  PayAllPostPaidBillsPageState createState() => PayAllPostPaidBillsPageState();
+  PaySelectedBillsPostPaidBillsPageState createState() => PaySelectedBillsPostPaidBillsPageState();
 }
 
-class PayAllPostPaidBillsPageState
-    extends BaseStatefulPage<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPage> {
+class PaySelectedBillsPostPaidBillsPageState
+    extends BaseStatefulPage<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return payAllPostPaidBillsPageViewModelProvider;
+    return paySelectedBillsPostPaidBillsPageViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -33,12 +27,14 @@ class PayAllPostPaidBillsPageState
   }
 
   @override
-  Widget buildView(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
-    return PayAllPostPaidBillsPageView(provideBase());
+  Widget buildView(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+    return PaySelectedBillsPostPaidBillsPageView(provideBase());
   }
 }
 
-class PayAllPostPaidBillsPageArguments {
-  final String pageTitle;
-  PayAllPostPaidBillsPageArguments(this.pageTitle);
+class PaySelectedBillsPostPaidBillsPageArguments {
+  final String nosOfBills;
+  final String amt;
+
+  PaySelectedBillsPostPaidBillsPageArguments(this.nosOfBills, this.amt);
 }

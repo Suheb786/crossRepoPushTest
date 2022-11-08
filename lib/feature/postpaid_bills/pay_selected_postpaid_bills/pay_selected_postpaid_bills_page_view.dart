@@ -1,13 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
-import 'package:domain/constants/enum/card_type.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -19,17 +15,18 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
-  PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
+class PaySelectedBillsPostPaidBillsPageView
+    extends BasePageViewWidget<PaySelectedBillsPostPaidBillsPageViewModel> {
+  PaySelectedBillsPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
+  Widget build(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return Padding(
       padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
       child: Column(
         children: [
           Text(
-            S.of(context).payBills,
+            S.of(context).payBills('${model.arguments.nosOfBills}'),
             style: TextStyle(
                 fontFamily: StringUtils.appFont,
                 color: AppColor.white,
@@ -42,7 +39,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
           RichText(
               text: TextSpan(children: [
             TextSpan(
-              text: '370.000',
+              text: model.arguments.amt,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: AppColor.white,

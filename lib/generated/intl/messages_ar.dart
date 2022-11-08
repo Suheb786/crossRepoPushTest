@@ -27,13 +27,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(maximumLimit) => "أقصى ${maximumLimit} دينار";
 
-  static String m3(resendTime) => "إعادة الإرسال خلال ${resendTime}";
+  static String m3(noOfBills) => "Paying ${noOfBills} bills";
 
-  static String m4(accountNo) => "حساب التوفير ${accountNo}";
+  static String m4(resendTime) => "إعادة الإرسال خلال ${resendTime}";
 
-  static String m5(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
+  static String m5(accountNo) => "حساب التوفير ${accountNo}";
 
-  static String m6(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
+  static String m6(scrollToSetDate) => "اختار التاريخ ${scrollToSetDate}";
+
+  static String m7(noOfTransaction) => "نوع الحركة ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -1661,7 +1663,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
         "passwordUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث كلمة المرور بنجاح"),
+        "pay": MessageLookupByLibrary.simpleMessage("Pay"),
+        "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payBack": MessageLookupByLibrary.simpleMessage("سداد"),
+        "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("الدفع من"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
@@ -1930,7 +1935,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("تحديد موعد للمكالمة"),
         "resendCode": MessageLookupByLibrary.simpleMessage("أعد إرسال الرمز"),
-        "resendIn": m3,
+        "resendIn": m4,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "residenceCountryNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1969,12 +1974,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveAdditionalDocumentationError":
             MessageLookupByLibrary.simpleMessage(
                 "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "saveEarningsDigitally":
             MessageLookupByLibrary.simpleMessage("احفظ أرباحك رقمياً وبأمان"),
-        "savingAccount": m4,
+        "savingAccount": m5,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Ex-006)"),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -1995,7 +2001,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("امسح هويتك عشان تكمّل"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("تحديد موعد لاحق"),
-        "scrollToSetDate": m5,
+        "scrollToSetDate": m6,
         "searchAgain": MessageLookupByLibrary.simpleMessage("البحث مرة أخرى"),
         "searchCity": MessageLookupByLibrary.simpleMessage("البحث عن مدينة"),
         "searchContacts":
@@ -2156,6 +2162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "switchDevice": MessageLookupByLibrary.simpleMessage("تحويل الجهاز"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("التقاط صورة"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("اضغط لتعديل المبلغ"),
+        "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
         "tapToEditPhoto":
             MessageLookupByLibrary.simpleMessage("اضغط لتعديل الصورة"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("دولة الضريبة"),
@@ -2246,7 +2253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("نوع الدخل"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("نوع الحركات"),
-        "typeOfTransactionsSmall": m6,
+        "typeOfTransactionsSmall": m7,
         "unBlockPin":
             MessageLookupByLibrary.simpleMessage("فك حظر الرمز السري PIN"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(

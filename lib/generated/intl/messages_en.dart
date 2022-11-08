@@ -23,19 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(additionalIncomeList) =>
       "Add. Income \n${additionalIncomeList}";
 
-  static String m7(String) => "Back to ${String}";
+  static String m8(String) => "Back to ${String}";
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
   static String m2(maximumLimit) => "Maximum ${maximumLimit} JOD";
 
-  static String m3(resendTime) => "Resend in ${resendTime}";
+  static String m3(noOfBills) => "Paying ${noOfBills} bills";
 
-  static String m4(accountNo) => "Savings Account ${accountNo}";
+  static String m4(resendTime) => "Resend in ${resendTime}";
 
-  static String m5(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m5(accountNo) => "Savings Account ${accountNo}";
 
-  static String m6(noOfTransaction) =>
+  static String m6(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+
+  static String m7(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -246,7 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "backToCardSettings":
             MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
-        "backToCategory": m7,
+        "backToCategory": m8,
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
@@ -1734,7 +1736,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password is successfully updated"),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated successfully"),
+        "pay": MessageLookupByLibrary.simpleMessage("Pay"),
+        "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
+        "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
@@ -2021,7 +2026,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rescheduleTheCall":
             MessageLookupByLibrary.simpleMessage("Reschedule the call"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
-        "resendIn": m3,
+        "resendIn": m4,
         "resendOtpError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "resetFilter": MessageLookupByLibrary.simpleMessage("Reset Filter"),
@@ -2062,12 +2067,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-054)"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveCustomerTimeStatusError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
             "Save your earnings digitally and securely"),
-        "savingAccount": m4,
+        "savingAccount": m5,
         "savingCountryResidenceError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "savingFatcaDetailsError": MessageLookupByLibrary.simpleMessage(
@@ -2088,8 +2094,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Scan your Id to proceed further."),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m5,
+        "scrollToSetDate": m6,
         "searchAgain": MessageLookupByLibrary.simpleMessage("Search Again"),
+        "searchBill": MessageLookupByLibrary.simpleMessage("Search bill"),
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchContacts":
             MessageLookupByLibrary.simpleMessage("Search contacts"),
@@ -2256,6 +2263,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "switchDevice": MessageLookupByLibrary.simpleMessage("SWITCH DEVICE"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
+        "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
         "tapToEditPhoto":
             MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
@@ -2349,7 +2357,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m6,
+        "typeOfTransactionsSmall": m7,
         "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
         "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
             "Your card PIN has been blocked due to security measures. To continue using your PIN and payment services, please proceed to unblock your PIN. Once you unblock your PIN, your first transaction will be rejected due to technical limitations."),

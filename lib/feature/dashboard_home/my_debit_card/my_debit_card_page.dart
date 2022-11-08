@@ -1,10 +1,10 @@
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 
 class MyDebitCardPage extends BasePage<MyDebitCardViewModel> {
   final GetDashboardDataContent cardData;
@@ -13,8 +13,7 @@ class MyDebitCardPage extends BasePage<MyDebitCardViewModel> {
   MyDebitCardPageState createState() => MyDebitCardPageState();
 }
 
-class MyDebitCardPageState
-    extends BaseStatefulPage<MyDebitCardViewModel, MyDebitCardPage>
+class MyDebitCardPageState extends BaseStatefulPage<MyDebitCardViewModel, MyDebitCardPage>
     with AutomaticKeepAliveClientMixin {
   MyDebitCardPageState() : super(subscribeVisibilityEvents: true);
 

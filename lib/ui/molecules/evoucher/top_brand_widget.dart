@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 
 class TopBrandListItemWidget extends StatefulWidget {
   const TopBrandListItemWidget({Key? key}) : super(key: key);

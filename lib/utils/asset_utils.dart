@@ -245,4 +245,9 @@ class AssetUtils {
   static const String filterMenu = svg + "filter_menu.svg";
   static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
   static const String view_voucher_icon = svg + "view_voucher.svg";
+
+  ///Postpaid svg
+
+  static const String plusIcon = svg + "plus_icon.svg";
+  static const String electricityIcon = svg + "electricity_icon.svg";
 }

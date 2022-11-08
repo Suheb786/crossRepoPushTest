@@ -1,243 +1,126 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:auto_size_text_field/auto_size_text_field.dart';
-import 'package:domain/constants/enum/card_type.dart';
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
-import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_all_postpaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/pay_bill/pay_bill_multiple_list_selection_widget.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
-  PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
+class ViewPostPaidBillsPageView extends BasePageViewWidget<ViewPostPaidBillsPageViewModel> {
+  ViewPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
-    return Padding(
-      padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
-      child: Column(
-        children: [
-          Text(
-            S.of(context).payBills,
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                color: AppColor.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.0.t),
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          RichText(
-              text: TextSpan(children: [
-            TextSpan(
-              text: '370.000',
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 28.0.t),
+  Widget build(BuildContext context, ViewPostPaidBillsPageViewModel model) {
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+          child: Padding(
+            padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 8.0, bottom: 56),
+            child: Column(
+              children: [
+                Container(
+                    width: 64.0,
+                    height: 4,
+                    decoration: BoxDecoration(
+                        color: AppColor.whiteGrey, borderRadius: BorderRadius.all(Radius.circular(4.0)))),
+                SizedBox(
+                  height: 24.0,
+                ),
+                AppTextField(
+                  labelText: '',
+                  hintText: S.of(context).searchBill,
+                  controller: model.searchBillController,
+                  readOnly: true,
+                  onPressed: () {},
+                  suffixIcon: (value, data) {
+                    return Container(
+                        height: 16.h,
+                        width: 16.w,
+                        padding: EdgeInsets.only(right: 8.w),
+                        child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
+                  },
+                ),
+                AppStreamBuilder<List<ViewPostPaidBillsPageData>>(
+                  stream: model.itemSelectedStream,
+                  initialData: model.viewPostPaidBillsPageDataList,
+                  dataBuilder: (BuildContext context, data) {
+                    return Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
+                        child: ListView.separated(
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  model.selectedItem(index);
+                                },
+                                child: PayBillsMultipleListSelectionWidget(
+                                  icon: data![index].icon,
+                                  billType: data[index].billType,
+                                  billAmtDue: data[index].billAmtDue.toString(),
+                                  isSelected: data[index].isSelected,
+                                  billName: data[index].billName,
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return AppDivider();
+                            },
+                            itemCount: model.viewPostPaidBillsPageDataList.length),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-            TextSpan(
-              text: S.of(context).JOD,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.gray5,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.0.t),
-            ),
-          ])),
-          SizedBox(
-            height: 43.h,
           ),
-          Expanded(
-            child: Card(
-              child: FadingEdgeScrollView.fromSingleChildScrollView(
-                child: SingleChildScrollView(
-                  controller: model.payingBillController,
-                  child: Column(
-                    children: [
-                      ListView.separated(
-                          padding: EdgeInsets.zero,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.all(24.0),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColor.black,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.all(16.0),
-                                      child: Text(
-                                        '1',
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.white,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12.0.t),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Electric Home',
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.black,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14.0.t),
-                                      ),
-                                      Text(
-                                        'Electric Home',
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.veryDarkGray2,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12.0.t),
-                                      )
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          AutoSizeTextField(
-                                            fullwidth: false,
-                                            controller: model.amtController,
-                                            textAlign: TextAlign.center,
-                                            maxLines: 1,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                                isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.brightBlue,
-                                                fontWeight: FontWeight.w700,
-                                                overflow: TextOverflow.ellipsis,
-                                                fontSize: 14.0.t),
-                                          ),
-                                          Text(
-                                            S.of(context).JOD,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.brightBlue,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14.0.t),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        S.of(context).tapToEditAmt,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.gray5,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 12.0.t),
-                                      ),
-
-                                      /*   Text.rich(TextSpan(children: [
-                                        TextSpan(
-                                          text: '65.300',
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: AppColor.brightBlue,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 14.0.t),
-                                        ),
-
-                                      ]))*/
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return AppDivider();
-                          },
-                          itemCount: 16),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24, top: 32, bottom: 16),
-                        child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: Text(
-                            S.of(context).selectAccount,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.veryDarkGray2,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.0.t),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                        child: AppTextField(
-                          labelText: S.of(context).payFrom.toUpperCase(),
-                          hintText: S.of(context).pleaseSelect,
-                          controller: model.savingAccountController,
-                          readOnly: true,
-                          onPressed: () {},
-                          suffixIcon: (value, data) {
-                            return Container(
-                                height: 16.h,
-                                width: 16.w,
-                                padding: EdgeInsets.only(right: 8.w),
-                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      AnimatedButton(
-                        buttonText: S.of(context).swipeToProceed,
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      Text(
-                        S.of(context).backToPayments,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.brightBlue,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.0.t),
-                      ),
-                      SizedBox(
-                        height: 32,
-                      ),
-                    ],
+        ),
+        AppStreamBuilder<List<ViewPostPaidBillsPageData>>(
+          stream: model.itemSelectedStream,
+          initialData: model.viewPostPaidBillsPageDataList,
+          dataBuilder: (BuildContext context, data) {
+            return Visibility(
+              visible: data!.any((item) => item.isSelected == true),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 36.0, left: 24.0, right: 24.0),
+                  child: Container(
+                    width: double.maxFinite,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100.0),
+                      color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                    ),
+                    child: Center(
+                      child: Text(S.of(context).pay + model.calculateTotalDueAmt.toString(),
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              fontSize: 14.t,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                              color: AppColor.white)),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
-      ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

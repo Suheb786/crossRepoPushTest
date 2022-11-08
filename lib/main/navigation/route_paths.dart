@@ -121,6 +121,9 @@ class RoutePaths {
   static const String EvoucherDetail = "/evoucherDetail";
   static const String PurchaseNowDetail = "/purchaseNowDetail";
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
-
   static const String EVoucherMainPage = "/eVoucherMainPage";
+  static const String PaySelectedBillsPostPaidBillsPage = "/paySelectedBillsPostPaidBillsPage";
+  static const String ViewPostPaidBillsPage = "/viewPostPaidBillsPage";
+  static const String PayAllPostPaidBillsPage = "/payAllPostPaidBillsPage";
+  static const String PostPaidUiScreenLauncherPage = "/postPaidUiScreenLauncherPage";
 }

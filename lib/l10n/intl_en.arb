@@ -593,6 +593,7 @@
   "selectFromLibrary": "Select from Library",
   "removePhoto": "Remove Photo",
   "success": "SUCCESS",
+  "tapToEditAmt": "Tap to edit",
   "mobileNumberUpdated": "Your mobile number has been updated successfully",
   "emailAddressUpdated": "Your email address has been updated successfully",
   "profilePhotoUpdated": "Your profile picture has been updated successfully",
@@ -1406,5 +1407,10 @@
   "errorPinTranslationXCS": "PIN change error",
   "errrorForPinChangeNI": "Error while requesting for pin change",
   "errorCCUnBlockNI": "Error while unblocking pin",
-  "loginRegisterDisabled": "We're currently offline and will be back shortly!"
+  "loginRegisterDisabled": "We're currently offline and will be back shortly!",
+  "payBills": "Paying {noOfBills} bills",
+  "saveBills": "Saved Bills",
+  "searchBill": "Search bill",
+  "pay": "Pay",
+  "payAllBills": "Pay All Bills"
 }

@@ -102,6 +102,7 @@ dependencies:
   wakelock: ^0.6.1+2
   mask_text_input_formatter: ^2.4.0
   device_preview: any
+  auto_size_text_field: ^1.0.1
 
 
 

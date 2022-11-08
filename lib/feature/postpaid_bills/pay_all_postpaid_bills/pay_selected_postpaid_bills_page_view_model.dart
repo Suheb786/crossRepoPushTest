@@ -1,44 +1,54 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ViewPostPaidBillsPageViewModel extends BasePageViewModel {
+class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   final TextEditingController searchBillController = TextEditingController();
-  List<ViewPostPaidBillsPageData> viewPostPaidBillsPageDataList = [];
+  List<PallAllPostPaidBillsData> payAllPostPaidBillsDataList = [];
 
-  PublishSubject<List<ViewPostPaidBillsPageData>> _itemSelectedSubject = PublishSubject();
+  PublishSubject<List<PallAllPostPaidBillsData>> _itemSelectedSubject = PublishSubject();
 
-  Stream<List<ViewPostPaidBillsPageData>> get itemSelectedStream => _itemSelectedSubject.stream;
+  Stream<List<PallAllPostPaidBillsData>> get itemSelectedStream => _itemSelectedSubject.stream;
+
+  PublishSubject<double> _totalBillAmtDueSubject = PublishSubject();
+
+  Stream<double> get totalBillAmtDueStream => _totalBillAmtDueSubject.stream;
 
   double calculateTotalDueAmt = 0.0;
+  double totalBillAmt = 0.0;
 
   void selectedItem(int index) {
-    if (viewPostPaidBillsPageDataList.isNotEmpty) {
-      if (viewPostPaidBillsPageDataList[index].isSelected == true) {
-        viewPostPaidBillsPageDataList[index].isSelected = false;
-        calculateTotalDueAmt = calculateTotalDueAmt - viewPostPaidBillsPageDataList[index].billAmtDue;
+    if (payAllPostPaidBillsDataList.isNotEmpty) {
+      if (payAllPostPaidBillsDataList[index].isSelected == true) {
+        payAllPostPaidBillsDataList[index].isSelected = false;
+        totalBillAmt = totalBillAmt - payAllPostPaidBillsDataList[index].billAmtDue;
         debugPrint('multiple selected $calculateTotalDueAmt');
       } else {
-        viewPostPaidBillsPageDataList[index].isSelected = true;
-        calculateTotalDueAmt = viewPostPaidBillsPageDataList[index].billAmtDue + calculateTotalDueAmt;
-        debugPrint('single selected $calculateTotalDueAmt');
+        payAllPostPaidBillsDataList[index].isSelected = true;
+        totalBillAmt = totalBillAmt + payAllPostPaidBillsDataList[index].billAmtDue;
       }
     }
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
+    _itemSelectedSubject.safeAdd(payAllPostPaidBillsDataList);
+  }
 
-    _itemSelectedSubject.safeAdd(viewPostPaidBillsPageDataList);
+  void addAllBillAmt() {
+    payAllPostPaidBillsDataList.forEach((element) {
+      totalBillAmt = element.billAmtDue + totalBillAmt;
+    });
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
 }
 
-class ViewPostPaidBillsPageData {
+class PallAllPostPaidBillsData {
   final String icon;
   final String billType;
   final String billName;
   final double billAmtDue;
   bool isSelected;
 
-  ViewPostPaidBillsPageData(
+  PallAllPostPaidBillsData(
       {this.icon = '',
       this.billType = '',
       this.billName = '',

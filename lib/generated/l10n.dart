@@ -5790,6 +5790,16 @@ class S {
     );
   }
 
+  /// `Tap to edit`
+  String get tapToEditAmt {
+    return Intl.message(
+      'Tap to edit',
+      name: 'tapToEditAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Your mobile number has been updated successfully`
   String get mobileNumberUpdated {
     return Intl.message(
@@ -13845,6 +13855,56 @@ class S {
     return Intl.message(
       'We\'re currently offline and will be back shortly!',
       name: 'loginRegisterDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paying {noOfBills} bills`
+  String payBills(Object noOfBills) {
+    return Intl.message(
+      'Paying $noOfBills bills',
+      name: 'payBills',
+      desc: '',
+      args: [noOfBills],
+    );
+  }
+
+  /// `Saved Bills`
+  String get saveBills {
+    return Intl.message(
+      'Saved Bills',
+      name: 'saveBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search bill`
+  String get searchBill {
+    return Intl.message(
+      'Search bill',
+      name: 'searchBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay`
+  String get pay {
+    return Intl.message(
+      'Pay',
+      name: 'pay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay All Bills`
+  String get payAllBills {
+    return Intl.message(
+      'Pay All Bills',
+      name: 'payAllBills',
       desc: '',
       args: [],
     );
