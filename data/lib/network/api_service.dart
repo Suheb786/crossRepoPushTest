@@ -31,6 +31,8 @@ import 'package:data/entity/remote/activity/activity_request_entity.dart';
 import 'package:data/entity/remote/activity/activity_response_entity.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
+import 'package:data/entity/remote/apple_pay/add_user_wallet_detail_request_entity.dart';
+import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/create_account_response_entity.dart';
@@ -761,4 +763,18 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+  ///Apple Pay
+
+  @POST("/Applepay/GetAllCardList")
+  Future<HttpResponse<ResponseEntity>> getAllCardList(@Body() BaseRequest request);
+
+  @POST("/Applepay/AddUserWalletDetail")
+  Future<HttpResponse<ResponseEntity>> addUserWalletDetail(@Body() AddUserWalletDetailRequestEntity request);
+
+  @POST("/Applepay/GetUserWalletDetail")
+  Future<HttpResponse<ResponseEntity>> getUserWalletDetail(@Body() BaseRequest request);
+
+  @POST("/Applepay/EnrollCards")
+  Future<HttpResponse<ResponseEntity>> enrollCards(@Body() EnrollCardRequestEntity request);
 }

@@ -1,4 +1,5 @@
 import 'package:data/di/local_module.dart';
+import 'package:data/helper/antelop_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/account/account_datasource.dart';
@@ -7,6 +8,8 @@ import 'package:data/source/account_settings/account_settings_datasource.dart';
 import 'package:data/source/account_settings/remote/account_settings_remote_ds_impl.dart';
 import 'package:data/source/activity/activity_datasource.dart';
 import 'package:data/source/activity/remote/activity_remote_datasource_impl.dart';
+import 'package:data/source/apple_pay/apple_pay_datasource.dart';
+import 'package:data/source/apple_pay/remote/apple_pay_remote_datasource_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
@@ -44,8 +47,7 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
-final baseOptions = Provider<BaseOptions>(
-    (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
+final baseOptions = Provider<BaseOptions>((ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
   (ref) => PrettyDioLogger(
@@ -71,8 +73,7 @@ final dioProvider = Provider<Dio>(
 );
 
 final apiServiceProvider = Provider<ApiService>(
-  (ref) => ApiService(ref.read(dioProvider),
-      baseUrl: NetworkProperties.BASE_CHANNEL_URL),
+  (ref) => ApiService(ref.read(dioProvider), baseUrl: NetworkProperties.BASE_CHANNEL_URL),
 );
 
 /// User remoteDS provider
@@ -96,76 +97,69 @@ final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
 
 ///kyc remote data source
 final kycRemoteDS = Provider<KYCRemoteDS>(
-  (ref) => KYCRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+  (ref) => KYCRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///id card remote data source
 final idCardRemoteDS = Provider<IdCardRemoteDS>(
-  (ref) => IdCardRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+  (ref) => IdCardRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///bank smart remote data source
 final bankSmartRemoteDS = Provider<BankSmartRemoteDS>(
-  (ref) => BankSmartRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+  (ref) => BankSmartRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///fatca crs data source
 final fatcaCrsRemoteDS = Provider<FatcaCrsRemoteDS>(
-  (ref) => FatcaCrsRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+  (ref) => FatcaCrsRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///account data source
 final accountRemoteDS = Provider<AccountRemoteDS>(
-  (ref) => AccountRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+  (ref) => AccountRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///upload document remote DS
 var uploadDocumentRemoteDataSourceProvider = Provider<UploadDocumentRemoteDS>(
-    (ref) => UploadDocumentRemoteDSImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+    (ref) => UploadDocumentRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///country remote DS
-var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
-    CountryRemoteDSImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>(
+    (ref) => CountryRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///card remote DS
-var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
-    CardRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var cardRemoteDataSourceProvider = Provider<CardRemoteDs>(
+    (ref) => CardRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Account Settings remote DS
 var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
-    (ref) => AccountSettingsRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+    (ref) => AccountSettingsRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Manage Contacts remote DS
-var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
-    ContactRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var contactsDataSourceProvider = Provider<ContactRemoteDS>(
+    (ref) => ContactRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Dashboard remote DS
-var dashboardDataSourceProvider = Provider<DashboardRemoteDs>((ref) =>
-    DashboardRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var dashboardDataSourceProvider = Provider<DashboardRemoteDs>(
+    (ref) => DashboardRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
-var forgetPasswordDataSourceProvider = Provider<ForgetPasswordRemoteDs>((ref) =>
-    ForgetPasswordRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var forgetPasswordDataSourceProvider = Provider<ForgetPasswordRemoteDs>(
+    (ref) => ForgetPasswordRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
-var paymentDataSourceProvider = Provider<PaymentRemoteDs>((ref) =>
-    PaymentRemoteDataSourceImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var paymentDataSourceProvider = Provider<PaymentRemoteDs>(
+    (ref) => PaymentRemoteDataSourceImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
-var activityDataSourceProvider = Provider<ActivityRemoteDs>((ref) =>
-    ActivityRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var activityDataSourceProvider = Provider<ActivityRemoteDs>(
+    (ref) => ActivityRemoteDsImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
-var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>((ref) =>
-    ChangeDeviceRemoteDSImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>(
+    (ref) => ChangeDeviceRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Antelop helper
+var antelopHelperProvider =
+    Provider<AntelopHelper>((ref) => AntelopHelper(ref.read(applePayRemoteDSProvider)));
+
+///apple pay ds provider
+var applePayRemoteDSProvider = Provider<ApplePayRemoteDataSource>((ref) => AppPayRemoteDSImpl(
+    ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider), ref.read(antelopHelperProvider)));

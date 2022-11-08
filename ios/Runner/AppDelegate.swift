@@ -50,7 +50,9 @@ import AntelopSDK
     }
     
     func onCheckEligibilityError(error: AntelopError) {
+        print("Error while check eligibility of this device : \(error.description)")
         print("Error while check eligibility of this device : \(error.localizedDescription)")
+        print("Error while check eligibility of this device : \(error.rawValue)")
         let deviceEligibilityDic: [String: Any] = [
             "status": error.localizedDescription,
         ]

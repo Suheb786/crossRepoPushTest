@@ -13,6 +13,7 @@ class SecureStorageHelper {
   static const String KEY_PAIR = "keyPair";
   static const String LANGUAGE = "language";
   static const String USER = "user";
+  static const String WALLET_ID = "walletId";
 
   SecureStorageHelper._privateConstructor();
 
@@ -114,5 +115,15 @@ class SecureStorageHelper {
   Future<bool> clearUserData() async {
     await _storage.delete(key: USER);
     return true;
+  }
+
+  ///wallet id set
+  Future<void> saveWalletId({String? walletId}) async {
+    return _storage.write(key: WALLET_ID, value: walletId);
+  }
+
+  ///get wallet id
+  Future<String?> getWalletId() async {
+    return _storage.read(key: WALLET_ID);
   }
 }

@@ -210,6 +210,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       initialData: Resource.none(),
                                                       onData: (data) {
                                                         if (data.status == Status.SUCCESS) {
+                                                          ///apple pay initialize
+                                                          model.antelopSdkInitialize();
+
                                                           ///refresh token api
                                                           // ProviderScope
                                                           //         .containerOf(
@@ -255,6 +258,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //     .getToken();
                                                                     // model
                                                                     //     .checkKycStatus();
+
+                                                                    ///apple pay initialize
+                                                                    model.antelopSdkInitialize();
 
                                                                     ///new device flow check
 
