@@ -7,7 +7,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   final ScrollController payingBillController = ScrollController();
   final TextEditingController savingAccountController = TextEditingController();
-  final TextEditingController amtController = TextEditingController()..text = '13.220';
 
   PaySelectedBillsPostPaidBillsPageViewModel(this.arguments);
 }

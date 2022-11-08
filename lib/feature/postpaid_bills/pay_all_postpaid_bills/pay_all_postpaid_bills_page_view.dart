@@ -101,10 +101,10 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                       padding: const EdgeInsets.only(bottom: 36.0, left: 24.0, right: 24.0),
                       child: InkWell(
                         onTap: () {
+                          var noOfSelectedBills = data.where((c) => c.isSelected == true).toList();
                           Navigator.pushNamed(context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
                               arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                  data.where((c) => c.isSelected == true).toList().length.toString(),
-                                  amt.toString()));
+                                  noOfSelectedBills.length.toString(), amt.toString(), noOfSelectedBills));
                         },
                         child: Container(
                           width: double.maxFinite,

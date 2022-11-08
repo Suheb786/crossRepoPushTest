@@ -1,4 +1,3 @@
-import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +8,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -70,123 +70,17 @@ class PaySelectedBillsPostPaidBillsPageView
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.all(24.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppColor.black,
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsetsDirectional.all(16.0),
-                                            child: Text(
-                                              '1',
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.white,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 12.0.t),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 5.w,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Electric Home ',
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.black,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 14.0.t),
-                                            ),
-                                            Text(
-                                              'Electric Home',
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.veryDarkGray2,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12.0.t),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: AutoSizeTextField(
-                                                wrapWords: false,
-                                                fullwidth: false,
-                                                controller: model.amtController,
-                                                textAlign: TextAlign.center,
-                                                keyboardType: TextInputType.number,
-                                                decoration: InputDecoration(
-                                                    isDense: true, contentPadding: const EdgeInsets.all(0.0)),
-                                                style: TextStyle(
-                                                    fontFamily: StringUtils.appFont,
-                                                    color: AppColor.brightBlue,
-                                                    fontWeight: FontWeight.w700,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    fontSize: 14.0.t),
-                                              ),
-                                            ),
-                                            Text(
-                                              S.of(context).JOD,
-                                              style: TextStyle(
-                                                  fontFamily: StringUtils.appFont,
-                                                  color: AppColor.brightBlue,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14.0.t),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          S.of(context).tapToEditAmt,
-                                          style: TextStyle(
-                                              fontFamily: StringUtils.appFont,
-                                              color: AppColor.gray5,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12.0.t),
-                                        ),
-
-                                        /*   Text.rich(TextSpan(children: [
-                                          TextSpan(
-                                            text: '65.300',
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.brightBlue,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14.0.t),
-                                          ),
-
-                                        ]))*/
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            return SelectedBillsToPaidWidget(
+                              billName: model.arguments.noOfSelectedBills[index].billName,
+                              billType: model.arguments.noOfSelectedBills[index].billType,
+                              itemCount: (index + 1).toString(),
+                              billAmtDue: model.arguments.noOfSelectedBills[index].billAmtDue.toString(),
                             );
                           },
                           separatorBuilder: (context, index) {
                             return AppDivider();
                           },
-                          itemCount: 16),
+                          itemCount: model.arguments.noOfSelectedBills.length),
                       Padding(
                         padding: EdgeInsetsDirectional.only(start: 24, top: 32, bottom: 16),
                         child: Align(

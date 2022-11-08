@@ -42,6 +42,7 @@ import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_vie
 import 'package:neo_bank/ui/molecules/dialog/payment/payment_activity_filter_dialog/payment_activity_filter_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget_model.dart';
 
 final paymentHomeViewModelProvider = ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
   (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
@@ -200,6 +201,16 @@ final sendMoneyQrScanningViewModelProvider =
 final sendMoneyQrSuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<SendMoneyViaQrSuccessPageViewModel>(
         (ref) => SendMoneyViaQrSuccessPageViewModel());
+
+class SelectedBillsToPaidWidgetViewModelProvider {
+  provide() {
+    final selectedBillsToPaidWidgetViewModelProvider =
+        ChangeNotifierProvider.autoDispose<SelectedBillsToPaidWidgetViewModel>(
+      (ref) => SelectedBillsToPaidWidgetViewModel(),
+    );
+    return selectedBillsToPaidWidgetViewModelProvider;
+  }
+}
 
 final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPageArguments>(
