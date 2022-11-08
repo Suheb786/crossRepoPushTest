@@ -1,4 +1,6 @@
+import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -10,6 +12,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class PayAllPostPaidBillsPage extends BasePage<PayAllPostPaidBillsPageViewModel> {
+  final PayAllPostPaidBillsPageArguments arguments;
+
+  PayAllPostPaidBillsPage(this.arguments);
+
   @override
   PayAllPostPaidBillsPageState createState() => PayAllPostPaidBillsPageState();
 }
@@ -18,7 +24,7 @@ class PayAllPostPaidBillsPageState
     extends BaseStatefulPage<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return payAllPostPaidBillsPageViewModelProvider;
+    return payAllPostPaidBillsPageViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -31,13 +37,16 @@ class PayAllPostPaidBillsPageState
     return PreferredSize(
         preferredSize: Size(double.maxFinite, 107),
         child: Padding(
-          padding: const EdgeInsets.only(top: 92.0, bottom: 35.0),
+          padding: const EdgeInsets.only(top: 52.0, bottom: 35.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 24.0),
-                child: AppSvg.asset(AssetUtils.leftArrow, color: AppColor.white, width: 24.0, height: 24.0),
+                child: AppSvg.asset(
+                  AssetUtils.leftArrow,
+                  color: AppColor.white,
+                ),
               ),
               Text(
                 S.of(context).payAllBills,
@@ -51,7 +60,8 @@ class PayAllPostPaidBillsPageState
 
   @override
   Widget buildView(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
-    return PayAllPostPaidBillsPageView(provideBase());
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light, child: PayAllPostPaidBillsPageView(provideBase()));
   }
 
   @override
@@ -97,4 +107,10 @@ class PayAllPostPaidBillsPageState
     model.addAllBillAmt();
     super.onModelReady(model);
   }
+}
+
+class PayAllPostPaidBillsPageArguments {
+  final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
+
+  PayAllPostPaidBillsPageArguments(this.paidBillsPayTypeOptionEnum);
 }

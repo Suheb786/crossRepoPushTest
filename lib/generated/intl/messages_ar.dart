@@ -253,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToRegistration":
             MessageLookupByLibrary.simpleMessage("العودة إلى التسجيل"),
         "bankName": MessageLookupByLibrary.simpleMessage("اسم البنك"),
+        "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "beneficialOwnerIsAResidenceOf":
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
@@ -982,6 +983,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "femaleAgent": MessageLookupByLibrary.simpleMessage("موظفة"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "قربنا نخلص، تحمّلنا بشوية أسئلة"),
+        "financialServices":
+            MessageLookupByLibrary.simpleMessage("Financial Services"),
         "findOutMore": MessageLookupByLibrary.simpleMessage("اعرف أكتر"),
         "fingerPrintAlreadyExistForDevice": MessageLookupByLibrary.simpleMessage(
             "في مشكلة بعملية تسجيل الدخول بالبصمة. الرجاء تسجيل الدخول باستخدام الإيميل وكلمة المرور، وبعدين ادخل على إعدادات الملف الشخصي وعطّل ثم فعل الدخول بالبصمة. إذا واجهتك أي مشكلة تواصل معنا على 5200100-06"),
@@ -1015,6 +1018,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage("من"),
         "fromMe": MessageLookupByLibrary.simpleMessage("لي"),
         "fromS": MessageLookupByLibrary.simpleMessage("من "),
+        "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
         "genderHint": MessageLookupByLibrary.simpleMessage("أدخل الجنس"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("الجنس"),
@@ -1093,6 +1097,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "governmentService":
+            MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "للاستمرار، لازم يكون العمر أكبر من 18 سنة."),
         "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
@@ -1540,6 +1546,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("طبيعة الاحتياجات الخاصة"),
+        "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
         "newDeviceDetected":
             MessageLookupByLibrary.simpleMessage("تم اكتشاف جهاز جديد"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
@@ -2173,6 +2180,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "أؤكد على صحة معلوماتي الضريبية وأوافق على شروط وأحكام البنك. "),
         "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
             "حسب القانون، لازم تفصح عن معلوماتك الضريبية."),
+        "telecommunication":
+            MessageLookupByLibrary.simpleMessage("Telecommunication"),
         "tellUsAboutImportantInformations":
             MessageLookupByLibrary.simpleMessage(
                 "جاوبنا عن مجموعة من المعلومات المهمة"),
@@ -2211,6 +2220,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "toLoginPage":
             MessageLookupByLibrary.simpleMessage("إلى صفحة تسجيل الدخول"),
         "toManageCliq": MessageLookupByLibrary.simpleMessage("إدارة CliQ"),
+        "toPayments": MessageLookupByLibrary.simpleMessage("to Payments"),
         "toViewSubscription":
             MessageLookupByLibrary.simpleMessage("لاستعراض الاشتراكات"),
         "toWelcomePage":
@@ -2244,6 +2254,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-117)"),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-118)"),
+        "travelAndTransportation":
+            MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "معدل مطالبة الاتفاق الضريبي (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
@@ -2384,6 +2396,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "إذا عندك نموذج W9 جاهز حمّله من هون"),
         "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "بدك تطالب بمزايا اتفاق الضريبة؟"),
+        "waterAndElectricity":
+            MessageLookupByLibrary.simpleMessage("Water and Electricity"),
         "waysYocCanAddMoneyToAccount":
             MessageLookupByLibrary.simpleMessage("طرق إضافة أموال لحسابك"),
         "weDoNotRecommendToUsePreviousTenPass":

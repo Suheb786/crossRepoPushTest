@@ -125,5 +125,7 @@ class RoutePaths {
   static const String PaySelectedBillsPostPaidBillsPage = "/paySelectedBillsPostPaidBillsPage";
   static const String ViewPostPaidBillsPage = "/viewPostPaidBillsPage";
   static const String PayAllPostPaidBillsPage = "/payAllPostPaidBillsPage";
-  static const String PostPaidUiScreenLauncherPage = "/postPaidUiScreenLauncherPage";
+  static const String LauncherPage = "/launcherPage";
+  static const String PostPaidBillsSuccessPage = "/postPaidBillsSuccessPage";
+  static const String NewBillsPage = "/newBillsPage";
 }

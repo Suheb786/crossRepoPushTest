@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ViewPostPaidBillsPageViewModel extends BasePageViewModel {
+  final ViewPostPaidBillsPageArguments arguments;
+  ViewPostPaidBillsPageViewModel(this.arguments);
+
   final TextEditingController searchBillController = TextEditingController();
   List<ViewPostPaidBillsPageData> viewPostPaidBillsPageDataList = [];
 

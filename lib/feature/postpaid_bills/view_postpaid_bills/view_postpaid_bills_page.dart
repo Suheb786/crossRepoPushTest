@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -8,8 +9,13 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class ViewPostPaidBillsPage extends BasePage<ViewPostPaidBillsPageViewModel> {
+  final ViewPostPaidBillsPageArguments arguments;
+
+  ViewPostPaidBillsPage(this.arguments);
+
   @override
   ViewPostPaidBillsPageState createState() => ViewPostPaidBillsPageState();
 }
@@ -18,7 +24,7 @@ class ViewPostPaidBillsPageState
     extends BaseStatefulPage<ViewPostPaidBillsPageViewModel, ViewPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return viewPostPaidBillsPageViewModelProvider;
+    return viewPostPaidBillsPageViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -29,9 +35,9 @@ class ViewPostPaidBillsPageState
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 107),
+        preferredSize: Size(double.maxFinite, 107.h),
         child: Padding(
-          padding: const EdgeInsets.only(top: 92.0),
+          padding: EdgeInsets.only(top: 52.0.h, bottom: 35.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -40,7 +46,10 @@ class ViewPostPaidBillsPageState
                 S.of(context).saveBills,
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColor.white),
               ),
-              AppSvg.asset(AssetUtils.plusIcon)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AppSvg.asset(AssetUtils.plusIcon),
+              )
             ],
           ),
         ));
@@ -87,4 +96,10 @@ class ViewPostPaidBillsPageState
     ];
     super.onModelReady(model);
   }
+}
+
+class ViewPostPaidBillsPageArguments {
+  final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
+
+  ViewPostPaidBillsPageArguments(this.paidBillsPayTypeOptionEnum);
 }

@@ -27,11 +27,16 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/launcher_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pall_all_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page_view_model.dart';
-
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
@@ -218,11 +223,24 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvide
 );
 
 final viewPostPaidBillsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ViewPostPaidBillsPageViewModel>(
-  (ref) => ViewPostPaidBillsPageViewModel(),
+    ChangeNotifierProvider.autoDispose.family<ViewPostPaidBillsPageViewModel, ViewPostPaidBillsPageArguments>(
+  (ref, args) => ViewPostPaidBillsPageViewModel(args),
 );
 
-final payAllPostPaidBillsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PayAllPostPaidBillsPageViewModel>(
-  (ref) => PayAllPostPaidBillsPageViewModel(),
+final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
+  (ref, args) => PayAllPostPaidBillsPageViewModel(args),
+);
+
+final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PostPaidBillsSuccessPageViewModel, PostPaidBillsSuccessPageArguments>(
+  (ref, args) => PostPaidBillsSuccessPageViewModel(args),
+);
+
+final launcherPageViewModelProvider = ChangeNotifierProvider.autoDispose<LauncherPageViewModel>(
+  (ref) => LauncherPageViewModel(),
+);
+
+final newBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose<NewBillsPageViewModel>(
+  (ref) => NewBillsPageViewModel(),
 );

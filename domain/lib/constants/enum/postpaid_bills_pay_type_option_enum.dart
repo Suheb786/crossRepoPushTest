@@ -1,0 +1,1 @@
+enum PostPaidBillsPayTypeOptionEnum { VIEWMYBILLS, PAYALLBILLS }

@@ -257,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToRegistration":
             MessageLookupByLibrary.simpleMessage("Back to Registration"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
+        "banks": MessageLookupByLibrary.simpleMessage("Banks"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
@@ -1027,6 +1028,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Almost there, just a few\nmore questions"),
         "filterVouchers":
             MessageLookupByLibrary.simpleMessage("Filter Vouchers"),
+        "financialServices":
+            MessageLookupByLibrary.simpleMessage("Financial Services"),
         "findOutMore": MessageLookupByLibrary.simpleMessage("Find out more"),
         "fingerPrintAlreadyExistForDevice": MessageLookupByLibrary.simpleMessage(
             "Biometric already exists for this device, please log in using your email and password"),
@@ -1061,6 +1064,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "fromS": MessageLookupByLibrary.simpleMessage("from "),
+        "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
         "games": MessageLookupByLibrary.simpleMessage("Games"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
@@ -1139,6 +1143,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "getTransferPurposeError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "governmentService":
+            MessageLookupByLibrary.simpleMessage("Government Service"),
         "guardianAgeMustBe": MessageLookupByLibrary.simpleMessage(
             "Age must be greater than 18 to proceed."),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
@@ -1608,6 +1614,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "newBill": MessageLookupByLibrary.simpleMessage("New Bill"),
         "newDeviceDetected":
             MessageLookupByLibrary.simpleMessage("New device detected"),
         "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
@@ -2274,6 +2281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
         "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
             "By law, you are needed to declare your taxation details"),
+        "telecommunication":
+            MessageLookupByLibrary.simpleMessage("Telecommunication"),
         "tellUsAboutImportantInformations":
             MessageLookupByLibrary.simpleMessage(
                 "Next, please tell us about these important informations"),
@@ -2311,6 +2320,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
         "toManageCliq":
             MessageLookupByLibrary.simpleMessage("to Manage CliQ ID"),
+        "toPayments": MessageLookupByLibrary.simpleMessage("to Payments"),
         "toViewSubscription":
             MessageLookupByLibrary.simpleMessage("to View Subscriptionss"),
         "toViewVoucher":
@@ -2348,6 +2358,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
         "transferTypeNFRTP": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. "),
+        "travelAndTransportation":
+            MessageLookupByLibrary.simpleMessage("Travel and Transportation"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "treaty identified to Claim Rate (%)"),
         "tryAgainLater": MessageLookupByLibrary.simpleMessage(
@@ -2493,6 +2505,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you already have a physical pre-filled W9 form please upload below."),
         "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "Do you want to Claim of Tax Treaty Benefits?"),
+        "waterAndElectricity":
+            MessageLookupByLibrary.simpleMessage("Water and Electricity"),
         "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage(
             "Ways to add\nmoney into your account"),
         "weDoNotRecommendToUsePreviousTenPass":

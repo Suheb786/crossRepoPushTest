@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -13,13 +14,15 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String billName;
   final String billAmtDue;
   final bool isSelected;
+  final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
   const PayBillsMultipleListSelectionWidget(
       {Key? key,
       required this.icon,
       required this.billType,
       required this.billName,
       required this.billAmtDue,
-      required this.isSelected})
+      required this.isSelected,
+      required this.paidBillsPayTypeOptionEnum})
       : super(key: key);
 
   @override
@@ -60,30 +63,58 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 12.0.t),
               ),
-              RichText(
-                  text: TextSpan(
-                      text: 'Due ',
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.veryDarkGray2,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0.t),
-                      children: [
-                    TextSpan(
-                        text: billAmtDue,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.veryDarkGray2,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12.0.t)),
-                    TextSpan(
-                        text: ' ' + S.of(context).JOD,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.veryDarkGray2,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12.0.t)),
-                  ]))
+              this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                  ? RichText(
+                      text: TextSpan(
+                          text: 'Due ',
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.veryDarkGray2,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0.t),
+                          children: [
+                          TextSpan(
+                              text: billAmtDue,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.0.t)),
+                          TextSpan(
+                              text: ' ' + S.of(context).JOD,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.0.t)),
+                        ]))
+                  : Visibility(
+                      visible: this.isSelected,
+                      child: RichText(
+                          text: TextSpan(
+                              text: 'Due ',
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.0.t),
+                              children: [
+                            TextSpan(
+                                text: billAmtDue,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.veryDarkGray2,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.0.t)),
+                            TextSpan(
+                                text: ' ' + S.of(context).JOD,
+                                style: TextStyle(
+                                    fontFamily: StringUtils.appFont,
+                                    color: AppColor.veryDarkGray2,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12.0.t)),
+                          ])),
+                    )
             ],
           ),
           Spacer(),

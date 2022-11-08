@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
@@ -23,130 +24,140 @@ class PaySelectedBillsPostPaidBillsPageView
   Widget build(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return Padding(
       padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
-      child: Column(
-        children: [
-          Text(
-            S.of(context).payBills('${model.arguments.nosOfBills}'),
-            style: TextStyle(
-                fontFamily: StringUtils.appFont,
-                color: AppColor.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.0.t),
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          RichText(
-              text: TextSpan(children: [
-            TextSpan(
-              text: model.arguments.amt,
+      child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.pop(context);
+          }
+        },
+        child: Column(
+          children: [
+            Text(
+              S.of(context).payBills('${model.arguments.nosOfBills}'),
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: AppColor.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 28.0.t),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20.0.t),
             ),
-            TextSpan(
-              text: S.of(context).JOD,
-              style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  color: AppColor.gray5,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.0.t),
+            SizedBox(
+              height: 3.h,
             ),
-          ])),
-          SizedBox(
-            height: 43.h,
-          ),
-          Expanded(
-            child: Card(
-              child: FadingEdgeScrollView.fromSingleChildScrollView(
-                child: SingleChildScrollView(
-                  controller: model.payingBillController,
-                  child: Column(
-                    children: [
-                      ListView.separated(
-                          padding: EdgeInsets.zero,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return SelectedBillsToPaidWidget(
-                              billName: model.arguments.noOfSelectedBills[index].billName,
-                              billType: model.arguments.noOfSelectedBills[index].billType,
-                              itemCount: (index + 1).toString(),
-                              billAmtDue: model.arguments.noOfSelectedBills[index].billAmtDue.toString(),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return AppDivider();
-                          },
-                          itemCount: model.arguments.noOfSelectedBills.length),
-                      Padding(
-                        padding: EdgeInsetsDirectional.only(start: 24, top: 32, bottom: 16),
-                        child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: Text(
-                            S.of(context).selectAccount,
-                            style: TextStyle(
-                                fontFamily: StringUtils.appFont,
-                                color: AppColor.veryDarkGray2,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14.0.t),
+            RichText(
+                text: TextSpan(children: [
+              TextSpan(
+                text: model.arguments.amt,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 28.0.t),
+              ),
+              TextSpan(
+                text: S.of(context).JOD,
+                style: TextStyle(
+                    fontFamily: StringUtils.appFont,
+                    color: AppColor.gray5,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14.0.t),
+              ),
+            ])),
+            SizedBox(
+              height: 43.h,
+            ),
+            Expanded(
+              child: Card(
+                child: FadingEdgeScrollView.fromSingleChildScrollView(
+                  child: SingleChildScrollView(
+                    controller: model.payingBillController,
+                    child: Column(
+                      children: [
+                        ListView.separated(
+                            padding: EdgeInsets.zero,
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return SelectedBillsToPaidWidget(
+                                billName: model.arguments.noOfSelectedBills[index].billName,
+                                billType: model.arguments.noOfSelectedBills[index].billType,
+                                itemCount: (index + 1).toString(),
+                                billAmtDue: model.arguments.noOfSelectedBills[index].billAmtDue.toString(),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return AppDivider();
+                            },
+                            itemCount: model.arguments.noOfSelectedBills.length),
+                        Padding(
+                          padding: EdgeInsetsDirectional.only(start: 24, top: 32, bottom: 16),
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Text(
+                              S.of(context).selectAccount,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  color: AppColor.veryDarkGray2,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.0.t),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                        child: AppTextField(
-                          labelText: S.of(context).payFrom.toUpperCase(),
-                          hintText: S.of(context).pleaseSelect,
-                          controller: model.savingAccountController,
-                          readOnly: true,
-                          onPressed: () {},
-                          suffixIcon: (value, data) {
-                            return Container(
-                                height: 16.h,
-                                width: 16.w,
-                                padding: EdgeInsets.only(right: 8.w),
-                                child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                        Padding(
+                          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                          child: AppTextField(
+                            labelText: S.of(context).payFrom.toUpperCase(),
+                            hintText: S.of(context).pleaseSelect,
+                            controller: model.savingAccountController,
+                            readOnly: true,
+                            onPressed: () {},
+                            suffixIcon: (value, data) {
+                              return Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsets.only(right: 8.w),
+                                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        GestureDetector(
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
+                              Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
+                                  arguments: PostPaidBillsSuccessPageArguments(
+                                    model.arguments.noOfSelectedBills,
+                                    model.arguments.amt,
+                                  ));
+                            }
                           },
+                          child: AnimatedButton(
+                            buttonText: S.of(context).swipeToProceed,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      GestureDetector(
-                        onHorizontalDragEnd: (details) {
-                          if (details.primaryVelocity!.isNegative) {
-                            Navigator.pushNamed(context, RoutePaths.ViewPostPaidBillsPage);
-                            //FirebaseCrashlytics.instance.crash();
-                          }
-                        },
-                        child: AnimatedButton(
-                          buttonText: S.of(context).swipeToProceed,
+                        SizedBox(
+                          height: 24,
                         ),
-                      ),
-                      SizedBox(
-                        height: 24,
-                      ),
-                      Text(
-                        S.of(context).backToPayments,
-                        style: TextStyle(
-                            fontFamily: StringUtils.appFont,
-                            color: AppColor.brightBlue,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14.0.t),
-                      ),
-                      SizedBox(
-                        height: 32,
-                      ),
-                    ],
+                        Text(
+                          S.of(context).backToPayments,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.brightBlue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14.0.t),
+                        ),
+                        SizedBox(
+                          height: 32,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

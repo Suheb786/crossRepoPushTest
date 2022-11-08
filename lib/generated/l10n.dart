@@ -13909,6 +13909,96 @@ class S {
       args: [],
     );
   }
+
+  /// `to Payments`
+  String get toPayments {
+    return Intl.message(
+      'to Payments',
+      name: 'toPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water and Electricity`
+  String get waterAndElectricity {
+    return Intl.message(
+      'Water and Electricity',
+      name: 'waterAndElectricity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Telecommunication`
+  String get telecommunication {
+    return Intl.message(
+      'Telecommunication',
+      name: 'telecommunication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Government Service`
+  String get governmentService {
+    return Intl.message(
+      'Government Service',
+      name: 'governmentService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Banks`
+  String get banks {
+    return Intl.message(
+      'Banks',
+      name: 'banks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financial Services`
+  String get financialServices {
+    return Intl.message(
+      'Financial Services',
+      name: 'financialServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fuel and Gas`
+  String get fuelAndGas {
+    return Intl.message(
+      'Fuel and Gas',
+      name: 'fuelAndGas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travel and Transportation`
+  String get travelAndTransportation {
+    return Intl.message(
+      'Travel and Transportation',
+      name: 'travelAndTransportation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Bill`
+  String get newBill {
+    return Intl.message(
+      'New Bill',
+      name: 'newBill',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

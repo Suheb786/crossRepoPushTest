@@ -1366,5 +1366,14 @@
   "tapToEditAmt": "Tap to edit",
   "saveBills": "Saved Bills",
   "pay": "Pay",
-  "payAllBills": "Pay All Bills"
+  "payAllBills": "Pay All Bills",
+  "toPayments": "to Payments",
+  "waterAndElectricity": "Water and Electricity",
+  "telecommunication": "Telecommunication",
+  "governmentService": "Government Service",
+  "banks": "Banks",
+  "financialServices": "Financial Services",
+  "fuelAndGas": "Fuel and Gas",
+  "travelAndTransportation": "Travel and Transportation",
+  "newBill": "New Bill"
 }

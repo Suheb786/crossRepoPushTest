@@ -1,35 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 
-class PostPaidUiScreenLauncherPage extends StatelessWidget {
-  const PostPaidUiScreenLauncherPage({Key? key}) : super(key: key);
+import 'launcher_page_view.dart';
+import 'launcher_page_view_model.dart';
+
+class LauncherPage extends BasePage<LauncherPageViewModel> {
+  @override
+  LauncherPageState createState() => LauncherPageState();
+}
+
+class LauncherPageState extends BaseStatefulPage<LauncherPageViewModel, LauncherPage> {
+  @override
+  ProviderBase provideBase() {
+    return launcherPageViewModelProvider;
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  RoutePaths.PayAllPostPaidBillsPage,
-                );
-              },
-              child: Text('All Pay Bills')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  RoutePaths.ViewPostPaidBillsPage,
-                );
-              },
-              child: Text('view my Bills')),
-        ],
-      ),
-    );
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColorDark;
+  }
+
+  @override
+  Widget buildView(BuildContext context, LauncherPageViewModel model) {
+    return LauncherPageView(provideBase());
   }
 }

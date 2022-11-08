@@ -94,8 +94,10 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/launcher_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/new_bill/new_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pall_all_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page.dart';
+import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/check_scheduled_videocall/check_scheduled_videocall_page.dart';
@@ -732,18 +734,28 @@ class AppRouter {
 
       case RoutePaths.ViewPostPaidBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => ViewPostPaidBillsPage(),
+            builder: (context) => ViewPostPaidBillsPage(settings.arguments as ViewPostPaidBillsPageArguments),
             settings: RouteSettings(name: RoutePaths.ViewPostPaidBillsPage));
 
       case RoutePaths.PayAllPostPaidBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => PayAllPostPaidBillsPage(),
+            builder: (context) =>
+                PayAllPostPaidBillsPage(settings.arguments as PayAllPostPaidBillsPageArguments),
             settings: RouteSettings(name: RoutePaths.PayAllPostPaidBillsPage));
 
-      case RoutePaths.PostPaidUiScreenLauncherPage:
+      case RoutePaths.LauncherPage:
         return CupertinoPageRoute(
-            builder: (context) => PostPaidUiScreenLauncherPage(),
-            settings: RouteSettings(name: RoutePaths.PostPaidUiScreenLauncherPage));
+            builder: (context) => LauncherPage(), settings: RouteSettings(name: RoutePaths.LauncherPage));
+
+      case RoutePaths.PostPaidBillsSuccessPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                PostPaidBillsSuccessPage(settings.arguments as PostPaidBillsSuccessPageArguments),
+            settings: RouteSettings(name: RoutePaths.PostPaidBillsSuccessPage));
+
+      case RoutePaths.NewBillsPage:
+        return CupertinoPageRoute(
+            builder: (context) => NewBillsPage(), settings: RouteSettings(name: RoutePaths.NewBillsPage));
 
       default:
         return CupertinoPageRoute(
