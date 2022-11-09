@@ -157,8 +157,8 @@ var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>(
     (ref) => ChangeDeviceRemoteDSImpl(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Antelop helper
-var antelopHelperProvider =
-    Provider<AntelopHelper>((ref) => AntelopHelper(ref.read(applePayRemoteDSProvider)));
+var antelopHelperProvider = Provider<AntelopHelper>(
+    (ref) => AntelopHelper(ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///apple pay ds provider
 var applePayRemoteDSProvider = Provider<ApplePayRemoteDataSource>((ref) => AppPayRemoteDSImpl(

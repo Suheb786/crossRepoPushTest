@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
+import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/helper/secure_storage_helper.dart';
-import 'package:data/source/apple_pay/apple_pay_datasource.dart';
+import 'package:data/network/api_service.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:eventify/eventify.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +16,14 @@ class AntelopHelper {
   String result = '';
   bool showText = false;
 
-  final ApplePayRemoteDataSource _applePayRemoteDataSource;
+  final ApiService _apiService;
+  final DeviceInfoHelper _deviceInfoHelper;
   EventChannel eventChannel = EventChannel("continueListining");
   final EventEmitter _eventEmitter = EventEmitter();
   String antelopWalletId = '';
   static String constantAuthToken = "";
 
-  AntelopHelper(this._applePayRemoteDataSource) {
+  AntelopHelper(this._apiService, this._deviceInfoHelper) {
     registerAntelopEvents();
     registerSdkCalback();
     getWalletId();
@@ -90,7 +94,8 @@ class AntelopHelper {
         User? user = await SecureStorageHelper.instance.getUserDataFromSecureStorage();
         if (user != null) {
           clientId = user.id ?? '';
-          phoneNumber = "${user.mobileCode ?? ''}${user.mobile ?? ''}";
+          phoneNumber =
+              "${(user.mobileCode ?? '').isNotEmpty ? (user.mobileCode!.contains('00') ? user.mobileCode!.replaceAll('00', '+') : '+') : ''}${user.mobile ?? ''}";
         }
 
         if (antelopWalletId.isEmpty) {
@@ -100,7 +105,7 @@ class AntelopHelper {
             "clientId": clientId,
             "walletId": randomWalletId,
             "settingsProfileId": "blink",
-            // "phoneNumber": "+962123456789",
+            //"phoneNumber": "+962123456789",
             "phoneNumber": phoneNumber
           };
           debugPrint("on device eligible parameter--->${parameter.toString()}");
@@ -170,11 +175,13 @@ class AntelopHelper {
         await SecureStorageHelper.instance.saveWalletId(walletId: walletData["walletId"].toString());
 
         if (walletData["walletId"] != '') {
-          _applePayRemoteDataSource
-              .enrollCards(
+          BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+          _apiService
+              .enrollCards(EnrollCardRequestEntity(
+                  baseData: baseData.toJson(),
                   walletId: walletData["walletId"] != null ? walletData["walletId"].toString() : "",
                   cardType: "C",
-                  cardId: "")
+                  cardId: ""))
               .then((value) async {
             debugPrint("Final enroll Card length---> " + value.data.content?.cards?.length);
             debugPrint("Final  enroll Card ---> " + value.data.content?.cards?[0]);
