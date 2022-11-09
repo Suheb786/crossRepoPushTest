@@ -93,7 +93,7 @@ class AntelopHelper {
         String phoneNumber = '';
         User? user = await SecureStorageHelper.instance.getUserDataFromSecureStorage();
         if (user != null) {
-          clientId = user.id ?? '';
+          clientId = user.cifNumber ?? '';
           phoneNumber =
               "${(user.mobileCode ?? '').isNotEmpty ? (user.mobileCode!.contains('00') ? user.mobileCode!.replaceAll('00', '+') : '+') : ''}${user.mobile ?? ''}";
         }
