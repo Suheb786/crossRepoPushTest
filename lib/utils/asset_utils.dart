@@ -250,4 +250,9 @@ class AssetUtils {
 
   static const String plusIcon = svg + "plus_icon.svg";
   static const String electricityIcon = svg + "electricity_icon.svg";
+  static const String governmentServiceIcon = svg + "government_service.svg";
+  static const String financialService = svg + "financial_service.svg";
+  static const String gasfuelIcon = svg + "gas_fuel.svg";
+  static const String flightIcon = svg + "flight_icon.svg";
+  static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
 }

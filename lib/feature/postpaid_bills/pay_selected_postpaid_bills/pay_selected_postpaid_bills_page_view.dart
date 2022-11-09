@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/postpaid_bills/pay_selected_postpaid_bills/selected_bills_to_paid_widget.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -43,25 +44,31 @@ class PaySelectedBillsPostPaidBillsPageView
             SizedBox(
               height: 3.h,
             ),
-            RichText(
-                text: TextSpan(children: [
-              TextSpan(
-                text: model.arguments.amt,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 28.0.t),
-              ),
-              TextSpan(
-                text: S.of(context).JOD,
-                style: TextStyle(
-                    fontFamily: StringUtils.appFont,
-                    color: AppColor.gray5,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14.0.t),
-              ),
-            ])),
+            AppStreamBuilder<double>(
+              initialData: model.arguments.amt,
+              stream: model.totalBillAmtDueStream,
+              dataBuilder: (BuildContext context, data) {
+                return RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                    text: data.toString(),
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 28.0.t),
+                  ),
+                  TextSpan(
+                    text: S.of(context).JOD,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        color: AppColor.gray5,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14.0.t),
+                  ),
+                ]));
+              },
+            ),
             SizedBox(
               height: 43.h,
             ),
@@ -81,6 +88,9 @@ class PaySelectedBillsPostPaidBillsPageView
                                 billName: model.arguments.noOfSelectedBills[index].billName,
                                 billType: model.arguments.noOfSelectedBills[index].billType,
                                 itemCount: (index + 1).toString(),
+                                onChanged: (value) {
+                                  model.newAmtEnter(index, double.parse(value));
+                                },
                                 billAmtDue: model.arguments.noOfSelectedBills[index].billAmtDue.toString(),
                               );
                             },
@@ -89,7 +99,7 @@ class PaySelectedBillsPostPaidBillsPageView
                             },
                             itemCount: model.arguments.noOfSelectedBills.length),
                         Padding(
-                          padding: EdgeInsetsDirectional.only(start: 24, top: 32, bottom: 16),
+                          padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
                           child: Align(
                             alignment: AlignmentDirectional.topStart,
                             child: Text(
@@ -103,7 +113,7 @@ class PaySelectedBillsPostPaidBillsPageView
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                          padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w),
                           child: AppTextField(
                             labelText: S.of(context).payFrom.toUpperCase(),
                             hintText: S.of(context).pleaseSelect,
@@ -120,24 +130,30 @@ class PaySelectedBillsPostPaidBillsPageView
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 40.h,
                         ),
-                        GestureDetector(
-                          onHorizontalDragEnd: (details) {
-                            if (details.primaryVelocity!.isNegative) {
-                              Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
-                                  arguments: PostPaidBillsSuccessPageArguments(
-                                    model.arguments.noOfSelectedBills,
-                                    model.arguments.amt,
-                                  ));
-                            }
+                        AppStreamBuilder<double>(
+                          initialData: model.arguments.amt,
+                          stream: model.totalBillAmtDueStream,
+                          dataBuilder: (BuildContext context, data) {
+                            return GestureDetector(
+                              onHorizontalDragEnd: (details) {
+                                if (details.primaryVelocity!.isNegative) {
+                                  Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
+                                      arguments: PostPaidBillsSuccessPageArguments(
+                                        model.arguments.noOfSelectedBills,
+                                        data.toString(),
+                                      ));
+                                }
+                              },
+                              child: AnimatedButton(
+                                buttonText: S.of(context).swipeToProceed,
+                              ),
+                            );
                           },
-                          child: AnimatedButton(
-                            buttonText: S.of(context).swipeToProceed,
-                          ),
                         ),
                         SizedBox(
-                          height: 24,
+                          height: 24.h,
                         ),
                         Text(
                           S.of(context).backToPayments,
@@ -148,7 +164,7 @@ class PaySelectedBillsPostPaidBillsPageView
                               fontSize: 14.0.t),
                         ),
                         SizedBox(
-                          height: 32,
+                          height: 32.h,
                         ),
                       ],
                     ),

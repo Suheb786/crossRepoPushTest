@@ -108,7 +108,8 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                     color: AppColor.black,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.all(16.0),
+                                    padding: EdgeInsetsDirectional.only(
+                                        start: 16.0.w, end: 16.0.w, top: 16.0.h, bottom: 160.h),
                                     child: Text(
                                       (index + 1).toString(),
                                       style: TextStyle(
@@ -178,13 +179,13 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 25.0),
+              padding: EdgeInsets.only(top: 25.0.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
                   SizedBox(
-                    width: 8,
+                    width: 8.w,
                   ),
                   Text(
                     S.of(context).shareMyReceipt,

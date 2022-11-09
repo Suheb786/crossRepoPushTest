@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/postpaid_setting_title_widget.dart';
@@ -23,8 +24,13 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
   @override
   Widget build(BuildContext context, NewBillsPageViewModel model) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(top: 52.h),
+      padding: EdgeInsetsDirectional.only(top: 0.h),
       child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.pop(context);
+          }
+        },
         child: Column(
           children: [
             Stack(
@@ -71,12 +77,11 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                   color: AppColor.gray_black),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 26.0.h, bottom: 32.h, left: 24, right: 24),
+              padding: EdgeInsets.only(top: 26.0.h, bottom: 32.h, left: 24.w, right: 24.w),
               child: AppTextField(
                 labelText: '',
                 hintText: S.of(context).searchBill,
                 controller: model.searchBillController,
-                readOnly: true,
                 onPressed: () {},
                 suffixIcon: (value, data) {
                   return Container(
@@ -98,9 +103,16 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          return PostPaidSettingTitleWidget(
-                              tileIcon: model.newBillsPageDataList[index].icon,
-                              title: model.newBillsPageDataList[index].title);
+                          return InkWell(
+                            onTap: () {
+                              model.title = model.newBillsPageDataList[index].title;
+                              model.titleIcon = model.newBillsPageDataList[index].icon;
+                              Navigator.pushNamed(context, RoutePaths.PayBillPage);
+                            },
+                            child: PostPaidSettingTitleWidget(
+                                tileIcon: model.newBillsPageDataList[index].icon,
+                                title: model.newBillsPageDataList[index].title),
+                          );
                         },
                         separatorBuilder: (context, index) {
                           return AppDivider();

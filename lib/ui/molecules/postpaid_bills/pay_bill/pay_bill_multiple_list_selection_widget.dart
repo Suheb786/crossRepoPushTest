@@ -28,7 +28,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.all(24.0),
+      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
       child: Row(
         children: [
           Container(
@@ -66,7 +66,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                   ? RichText(
                       text: TextSpan(
-                          text: 'Due ',
+                          text: S.of(context).due + "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.veryDarkGray2,
@@ -92,7 +92,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                       visible: this.isSelected,
                       child: RichText(
                           text: TextSpan(
-                              text: 'Due ',
+                              text: S.of(context).due + "",
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,
@@ -120,10 +120,10 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
           Spacer(),
           isSelected
               ? Container(
-                  height: 40,
-                  width: 40,
+                  height: 40.h,
+                  width: 40.w,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.only(start: 10, end: 10, bottom: 10, top: 10),
+                    padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
                     child: AppSvg.asset(AssetUtils.tick, color: AppColor.black),
                   ),
                   decoration: BoxDecoration(
@@ -132,8 +132,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   ),
                 )
               : Container(
-                  width: 40.0,
-                  height: 40.0,
+                  width: 40.0.w,
+                  height: 40.0.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
                     border: Border.all(color: AppColor.gray1),

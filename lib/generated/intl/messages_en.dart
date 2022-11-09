@@ -119,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have any contacts yet. Your Blink contacts can be saved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
+        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
+            "Add this bill to your saved list"),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
             "You will be able to add contacts to your list soon."),
         "additionIncomeSource":
@@ -218,6 +220,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "areYouSureYouEnteredYour": MessageLookupByLibrary.simpleMessage(
             "Are you sure you entered your "),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
@@ -262,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Beneficial owner is a resident of"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
             "Recipient not found. Please try another recipient."),
+        "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
+        "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
@@ -673,6 +678,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have any other nationality?"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
+        "doYouReallyDeleteSavedBills": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
@@ -683,6 +690,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
+        "due": MessageLookupByLibrary.simpleMessage("Due"),
+        "dueAmt": MessageLookupByLibrary.simpleMessage("Due Amount"),
         "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
@@ -1023,6 +1032,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Lorem ipsum dolor sit amet conspec"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "I feel the credit limit is low"),
+        "fees": MessageLookupByLibrary.simpleMessage("Fees"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "Almost there, just a few\nmore questions"),
@@ -1590,6 +1600,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
+        "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
         "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
         "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
@@ -1942,6 +1953,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
+        "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
         "referenceNumber":
             MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
         "referenceNumberSmall":
@@ -2158,6 +2170,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "Server is under maintenance. Please try again in sometime."),
+        "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout":
             MessageLookupByLibrary.simpleMessage("Session Timeout."),
         "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
@@ -2269,6 +2282,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Swipe up to view transactions"),
         "switchDevice": MessageLookupByLibrary.simpleMessage("SWITCH DEVICE"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
+        "tapAmtToEdit":
+            MessageLookupByLibrary.simpleMessage("Tap amount to edit"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
         "tapToEditPhoto":

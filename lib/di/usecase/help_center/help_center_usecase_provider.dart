@@ -7,14 +7,13 @@ import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/mute_unmute_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
-import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
+import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
 import 'package:domain/usecase/infobip_audio/speaker_on_off_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[InfobipAudioPluginUseCase] provider
-final infobipAudioPluginUseCaseProvider =
-    Provider.autoDispose<InfobipAudioPluginUseCase>(
+final infobipAudioPluginUseCaseProvider = Provider.autoDispose<InfobipAudioPluginUseCase>(
   (ref) => InfobipAudioPluginUseCase(ref.read(helpCenterRepositoryProvider)),
 );
 
@@ -49,10 +48,8 @@ final callDurationUseCaseProvider = Provider.autoDispose<CallDurationUseCase>(
 );
 
 ///[InfobipMessagePluginUseCase] provider
-final infobipMessagePluginUseCaseProvider =
-    Provider.autoDispose<InfobipMessagePluginUseCase>(
-  (ref) =>
-      InfobipMessagePluginUseCase(ref.read(infobipMessagingRepositoryProvider)),
+final infobipMessagePluginUseCaseProvider = Provider.autoDispose<InfobipMessagePluginUseCase>(
+  (ref) => InfobipMessagePluginUseCase(ref.read(infobipMessagingRepositoryProvider)),
 );
 
 ///[SaveUserUseCase] provider
@@ -61,10 +58,8 @@ final saveUserUseCaseProvider = Provider.autoDispose<SaveUserUseCase>(
 );
 
 ///[DepersonalizeUserUseCase] provider
-final depersonalizeUserUseCaseProvider =
-    Provider.autoDispose<DepersonalizeUserUseCase>(
-  (ref) =>
-      DepersonalizeUserUseCase(ref.read(infobipMessagingRepositoryProvider)),
+final depersonalizeUserUseCaseProvider = Provider.autoDispose<DepersonalizeUserUseCase>(
+  (ref) => DepersonalizeUserUseCase(ref.read(infobipMessagingRepositoryProvider)),
 );
 
 ///[ShowChatUseCase] provider

@@ -5,6 +5,8 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 class NewBillsPageViewModel extends BasePageViewModel {
   List<NewBillsPageData> newBillsPageDataList = [];
   final TextEditingController searchBillController = TextEditingController();
+  String title = '';
+  String titleIcon = '';
 }
 
 class NewBillsPageData {

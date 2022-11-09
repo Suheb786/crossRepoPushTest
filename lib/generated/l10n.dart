@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -26,9 +27,7 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -13995,6 +13994,126 @@ class S {
     return Intl.message(
       'New Bill',
       name: 'newBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill Name`
+  String get billName {
+    return Intl.message(
+      'Bill Name',
+      name: 'billName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services`
+  String get services {
+    return Intl.message(
+      'Services',
+      name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reference No.`
+  String get referenceNo {
+    return Intl.message(
+      'Reference No.',
+      name: 'referenceNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap amount to edit`
+  String get tapAmtToEdit {
+    return Intl.message(
+      'Tap amount to edit',
+      name: 'tapAmtToEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due Amount`
+  String get dueAmt {
+    return Intl.message(
+      'Due Amount',
+      name: 'dueAmt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fees`
+  String get fees {
+    return Intl.message(
+      'Fees',
+      name: 'fees',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due`
+  String get due {
+    return Intl.message(
+      'Due',
+      name: 'due',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Bills`
+  String get myBills {
+    return Intl.message(
+      'My Bills',
+      name: 'myBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill details`
+  String get billDetails {
+    return Intl.message(
+      'Bill details',
+      name: 'billDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get areYouSure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add this bill to your saved list`
+  String get addThisBillToSaveList {
+    return Intl.message(
+      'Add this bill to your saved list',
+      name: 'addThisBillToSaveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?`
+  String get doYouReallyDeleteSavedBills {
+    return Intl.message(
+      'Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?',
+      name: 'doYouReallyDeleteSavedBills',
       desc: '',
       args: [],
     );

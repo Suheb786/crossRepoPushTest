@@ -10,6 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 
 class PayAllPostPaidBillsPage extends BasePage<PayAllPostPaidBillsPageViewModel> {
   final PayAllPostPaidBillsPageArguments arguments;
@@ -35,24 +36,49 @@ class PayAllPostPaidBillsPageState
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 107),
+        preferredSize: Size(double.maxFinite, 107.h),
         child: Padding(
-          padding: const EdgeInsets.only(top: 52.0, bottom: 35.0),
+          padding: EdgeInsets.only(top: 52.0.h, bottom: 35.0.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: AppSvg.asset(
-                  AssetUtils.leftArrow,
-                  color: AppColor.white,
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Visibility(
+                  visible: widget.arguments.paidBillsPayTypeOptionEnum ==
+                          PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                      ? true
+                      : false,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 24.0.w),
+                    child: AppSvg.asset(
+                      AssetUtils.leftArrow,
+                      color: AppColor.white,
+                    ),
+                  ),
                 ),
               ),
               Text(
-                S.of(context).payAllBills,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColor.white),
+                widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                    ? S.of(context).payAllBills
+                    : S.of(context).myBills,
+                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: AppColor.white),
               ),
-              SizedBox.shrink(),
+              Visibility(
+                visible:
+                    widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                        ? false
+                        : true,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 24.0.w),
+                  child: AppSvg.asset(
+                    AssetUtils.plusIcon,
+                    color: AppColor.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ));
@@ -66,45 +92,83 @@ class PayAllPostPaidBillsPageState
 
   @override
   void onModelReady(PayAllPostPaidBillsPageViewModel model) {
-    model.payAllPostPaidBillsDataList = [
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 1.00,
-          isSelected: true),
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 2.00,
-          isSelected: true),
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 3.00,
-          isSelected: true),
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 4.00,
-          isSelected: true),
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 5.00,
-          isSelected: true),
-      PallAllPostPaidBillsData(
-          billType: 'Electric Home',
-          billName: 'Jordan Electricity',
-          icon: AssetUtils.electricityIcon,
-          billAmtDue: 6.00,
-          isSelected: true),
-    ];
-    model.addAllBillAmt();
+    // model.totalBillAmt = 0.0;
+    if (model.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
+      model.payAllPostPaidBillsDataList = [
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 1.00,
+            isSelected: true),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 2.00,
+            isSelected: true),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 3.00,
+            isSelected: true),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 4.00,
+            isSelected: true),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 5.00,
+            isSelected: true),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 6.00,
+            isSelected: true),
+      ];
+      model.addAllBillAmt();
+    } else if (model.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS) {
+      model.payAllPostPaidBillsDataList = [
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 1.00),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 2.00),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 3.00),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 4.00),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 5.00),
+        PallAllPostPaidBillsData(
+            billType: 'Electric Home',
+            billName: 'Jordan Electricity',
+            icon: AssetUtils.electricityIcon,
+            billAmtDue: 6.00),
+      ];
+    }
+
+    // model.addAllBillAmt();
     super.onModelReady(model);
   }
 }

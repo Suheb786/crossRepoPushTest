@@ -1375,5 +1375,17 @@
   "financialServices": "Financial Services",
   "fuelAndGas": "Fuel and Gas",
   "travelAndTransportation": "Travel and Transportation",
-  "newBill": "New Bill"
+  "newBill": "New Bill",
+  "billName": "Bill Name",
+  "services": "Services",
+  "referenceNo": "Reference No.",
+  "tapAmtToEdit": "Tap amount to edit",
+  "dueAmt": "Due Amount",
+  "fees": "Fees",
+  "due": "Due",
+  "myBills": "My Bills",
+  "billDetails": "Bill details",
+  "areYouSure": "Are you sure?",
+  "addThisBillToSaveList":"Add this bill to your saved list",
+  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
 }

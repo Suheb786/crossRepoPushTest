@@ -1,6 +1,5 @@
 import 'package:domain/constants/enum/new_bills_type_enum.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -21,37 +20,14 @@ class NewBillsPageState extends BaseStatefulPage<NewBillsPageViewModel, NewBills
     return newBillsPageViewModelProvider;
   }
 
-/*
-  @override
-  PreferredSizeWidget? buildAppbar() {
-    return PreferredSize(
-        preferredSize: Size(double.maxFinite, 107),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 52.0, bottom: 35.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: AppSvg.asset(
-                  AssetUtils.leftArrow,
-                  color: AppColor.white,
-                ),
-              ),
-              Text(
-                S.of(context).payAllBills,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColor.white),
-              ),
-              SizedBox.shrink(),
-            ],
-          ),
-        ));
-  }*/
-
   @override
   Widget buildView(BuildContext context, NewBillsPageViewModel model) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark, child: NewBillsPageView(provideBase()));
+    return NewBillsPageView(provideBase());
+  }
+
+  @override
+  bool extendBodyBehindAppBar() {
+    return true;
   }
 
   @override
@@ -60,14 +36,14 @@ class NewBillsPageState extends BaseStatefulPage<NewBillsPageViewModel, NewBills
       NewBillsPageData(AssetUtils.electricityIcon, S.of(context).waterAndElectricity,
           NewBillsTypeEnum.WATERANDELECTRICITY),
       NewBillsPageData(
-          AssetUtils.electricityIcon, S.of(context).telecommunication, NewBillsTypeEnum.TELECOMMUNICATION),
+          AssetUtils.mobile, S.of(context).telecommunication, NewBillsTypeEnum.TELECOMMUNICATION),
+      NewBillsPageData(AssetUtils.governmentServiceIcon, S.of(context).governmentService,
+          NewBillsTypeEnum.GOVERNMENTSERVICE),
+      NewBillsPageData(AssetUtils.dollarSvg, S.of(context).banks, NewBillsTypeEnum.BANKS),
       NewBillsPageData(
-          AssetUtils.electricityIcon, S.of(context).governmentService, NewBillsTypeEnum.GOVERNMENTSERVICE),
-      NewBillsPageData(AssetUtils.electricityIcon, S.of(context).banks, NewBillsTypeEnum.BANKS),
-      NewBillsPageData(
-          AssetUtils.electricityIcon, S.of(context).financialServices, NewBillsTypeEnum.FINANCIALSERVICES),
-      NewBillsPageData(AssetUtils.electricityIcon, S.of(context).fuelAndGas, NewBillsTypeEnum.FUELANDGAS),
-      NewBillsPageData(AssetUtils.electricityIcon, S.of(context).travelAndTransportation,
+          AssetUtils.financialService, S.of(context).financialServices, NewBillsTypeEnum.FINANCIALSERVICES),
+      NewBillsPageData(AssetUtils.gasfuelIcon, S.of(context).fuelAndGas, NewBillsTypeEnum.FUELANDGAS),
+      NewBillsPageData(AssetUtils.flightIcon, S.of(context).travelAndTransportation,
           NewBillsTypeEnum.TRAVELANDTRANSPORTATION),
     ];
     super.onModelReady(model);

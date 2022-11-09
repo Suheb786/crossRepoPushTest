@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pall_all_postpaid_bills_page.dart';
-import 'package:neo_bank/feature/postpaid_bills/view_postpaid_bills/view_postpaid_bills_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
 import 'launcher_page_view_model.dart';
@@ -30,8 +29,9 @@ class LauncherPageView extends BasePageViewWidget<LauncherPageViewModel> {
                 child: Text('All Pay Bills')),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, RoutePaths.ViewPostPaidBillsPage,
-                      arguments: ViewPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
+                  Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage,
+                      arguments:
+                          PayAllPostPaidBillsPageArguments(PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
                 },
                 child: Text('view my Bills')),
             ElevatedButton(

@@ -115,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
+        "addThisBillToSaveList": MessageLookupByLibrary.simpleMessage(
+            "Add this bill to your saved list"),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
             "رح تقدر تضيف المعارف لقائمتك قريباً."),
         "additionIncomeSource":
@@ -213,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إنت المستفيد من الحساب؟"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "إنت أو أي حدا من أقارب الدرجة الأولى عندكم علاقة بأحد السياسيين PEP؟"),
+        "areYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "areYouSureYouEnteredYour":
             MessageLookupByLibrary.simpleMessage("متأكد من إنك أدخلت"),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
@@ -258,6 +261,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("صاحب الحساب المنتفع مقيم في"),
         "beneficiaryNotFound": MessageLookupByLibrary.simpleMessage(
             "المستقبِل غير موجود. حاول مع حدا جديد."),
+        "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
+        "billName": MessageLookupByLibrary.simpleMessage("Bill Name"),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("التسجيل بالبصمة"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
@@ -645,6 +650,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عندك جنسية ثانية؟"),
         "doYouHaveTinAvailable":
             MessageLookupByLibrary.simpleMessage("عندك رقم تعريف ضريبي؟"),
+        "doYouReallyDeleteSavedBills": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"),
         "dob": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "dobHint": MessageLookupByLibrary.simpleMessage("يوم/شهر/سنة"),
         "documentsNotFound": MessageLookupByLibrary.simpleMessage(
@@ -655,6 +662,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تنزيل كشف الحساب"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "اسحب وحرك الخريطة لتضبط الموقع"),
+        "due": MessageLookupByLibrary.simpleMessage("Due"),
+        "dueAmt": MessageLookupByLibrary.simpleMessage("Due Amount"),
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editCliqId": MessageLookupByLibrary.simpleMessage("تعديل حساب CliQ"),
         "editId": MessageLookupByLibrary.simpleMessage("تعديل نوع الحساب"),
@@ -980,6 +989,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
             "بعتقد إنه سقف البطاقة الائتمانية قليل"),
+        "fees": MessageLookupByLibrary.simpleMessage("Fees"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("موظفة"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "قربنا نخلص، تحمّلنا بشوية أسئلة"),
@@ -1525,6 +1535,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مكان ولادة الأم"),
         "mothersName": MessageLookupByLibrary.simpleMessage("اسم الأم"),
         "myAccount": MessageLookupByLibrary.simpleMessage("حسابي"),
+        "myBills": MessageLookupByLibrary.simpleMessage("My Bills"),
         "myCreditCard":
             MessageLookupByLibrary.simpleMessage("بطاقتي الائتمانية"),
         "myDebitCard":
@@ -1852,6 +1863,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refNo": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
+        "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
         "referenceNumber": MessageLookupByLibrary.simpleMessage("رقم المرجع"),
         "referenceNumberSmall":
             MessageLookupByLibrary.simpleMessage("رقم المرجع"),
@@ -2060,6 +2072,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentTo": MessageLookupByLibrary.simpleMessage("إرسال إلى"),
         "serverUnderMaintenance": MessageLookupByLibrary.simpleMessage(
             "السيرفر تحت الصيانة، حاول بعدين."),
+        "services": MessageLookupByLibrary.simpleMessage("Services"),
         "sessionTimeout": MessageLookupByLibrary.simpleMessage("انتهت الجلسة"),
         "setAsDefault":
             MessageLookupByLibrary.simpleMessage("التعيين كحساب اساسي"),
@@ -2168,6 +2181,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اسحب الشاشة لفوق لتستعرض الحركات"),
         "switchDevice": MessageLookupByLibrary.simpleMessage("تحويل الجهاز"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("التقاط صورة"),
+        "tapAmtToEdit":
+            MessageLookupByLibrary.simpleMessage("Tap amount to edit"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("اضغط لتعديل المبلغ"),
         "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
         "tapToEditPhoto":

@@ -123,9 +123,12 @@ class RoutePaths {
   static const String EnterCodeEVoucherPurchase = "/enterCodeEVoucherPurchase";
   static const String EVoucherMainPage = "/eVoucherMainPage";
   static const String PaySelectedBillsPostPaidBillsPage = "/paySelectedBillsPostPaidBillsPage";
-  static const String ViewPostPaidBillsPage = "/viewPostPaidBillsPage";
   static const String PayAllPostPaidBillsPage = "/payAllPostPaidBillsPage";
   static const String LauncherPage = "/launcherPage";
   static const String PostPaidBillsSuccessPage = "/postPaidBillsSuccessPage";
   static const String NewBillsPage = "/newBillsPage";
+  static const String PayBillPage = "/payBillPage";
+  static const String PayBillDetailPage = "/payBillDetailPage";
+  static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
+  static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
 }

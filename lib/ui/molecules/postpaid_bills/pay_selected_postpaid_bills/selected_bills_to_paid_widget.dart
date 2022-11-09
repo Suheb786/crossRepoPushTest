@@ -1,6 +1,7 @@
 import 'package:auto_size_text_field/auto_size_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -15,13 +16,15 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
   final String billType;
   final String billName;
   final String billAmtDue;
+  final Function(String)? onChanged;
 
   SelectedBillsToPaidWidget(
       {Key? key,
       required this.itemCount,
       required this.billType,
       required this.billName,
-      required this.billAmtDue})
+      required this.billAmtDue,
+      this.onChanged})
       : super(key: key);
   ProviderBase provideBase() {
     return SelectedBillsToPaidWidgetViewModelProvider().provide();
@@ -98,9 +101,15 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                           child: AutoSizeTextField(
                             wrapWords: false,
                             fullwidth: false,
+                            /*inputFormatters: [
+                              FilteringTextInputFormatter.allow(RegExp('\^[0-9]*\.?[0-9]*$\')),
+                            ]*/
                             controller: model!.amtController,
                             textAlign: TextAlign.center,
                             keyboardType: TextInputType.number,
+                            onChanged: (value) {
+                              this.onChanged?.call(value);
+                            },
                             decoration:
                                 InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
                             style: TextStyle(
@@ -129,18 +138,6 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 12.0.t),
                     ),
-
-                    /*   Text.rich(TextSpan(children: [
-                    TextSpan(
-                      text: '65.300',
-                      style: TextStyle(
-                          fontFamily: StringUtils.appFont,
-                          color: AppColor.brightBlue,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 14.0.t),
-                    ),
-
-                  ]))*/
                   ],
                 ),
               ),

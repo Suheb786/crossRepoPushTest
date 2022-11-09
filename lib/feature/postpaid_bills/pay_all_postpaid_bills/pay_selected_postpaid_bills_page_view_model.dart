@@ -19,7 +19,6 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   Stream<double> get totalBillAmtDueStream => _totalBillAmtDueSubject.stream;
 
-  double calculateTotalDueAmt = 0.0;
   double totalBillAmt = 0.0;
 
   void selectedItem(int index) {
@@ -27,7 +26,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
       if (payAllPostPaidBillsDataList[index].isSelected == true) {
         payAllPostPaidBillsDataList[index].isSelected = false;
         totalBillAmt = totalBillAmt - payAllPostPaidBillsDataList[index].billAmtDue;
-        debugPrint('multiple selected $calculateTotalDueAmt');
+        debugPrint('multiple selected $totalBillAmt');
       } else {
         payAllPostPaidBillsDataList[index].isSelected = true;
         totalBillAmt = totalBillAmt + payAllPostPaidBillsDataList[index].billAmtDue;
@@ -43,13 +42,28 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
     });
     _totalBillAmtDueSubject.safeAdd(totalBillAmt);
   }
+
+  void removeItem(int index) {
+    // _totalBillAmtDueSubject.safeAdd(totalBillAmt);
+    totalBillAmt = totalBillAmt - payAllPostPaidBillsDataList[index].billAmtDue;
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
+    payAllPostPaidBillsDataList.removeAt(index);
+    _totalBillAmtDueSubject.safeAdd(totalBillAmt);
+    _itemSelectedSubject.safeAdd(payAllPostPaidBillsDataList);
+  }
+
+  @override
+  void dispose() {
+    _itemSelectedSubject.close();
+    super.dispose();
+  }
 }
 
 class PallAllPostPaidBillsData {
   final String icon;
   final String billType;
   final String billName;
-  final double billAmtDue;
+  double billAmtDue;
   bool isSelected;
 
   PallAllPostPaidBillsData(

@@ -7,7 +7,6 @@ import 'package:domain/usecase/app_flyer/log_app_flyers_events.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
-
 //import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_view_model.dart';
