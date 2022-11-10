@@ -42,8 +42,8 @@ class SelectServiceDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
+              insetPadding: EdgeInsets.only(
+                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
               child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -60,13 +60,13 @@ class SelectServiceDialogView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 32.0),
+                              padding: EdgeInsets.only(top: 32.0.h),
                               child: Center(
                                 child: Text(
                                   title!,
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
-                                      fontSize: 14,
+                                      fontSize: 14.t,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ),
@@ -77,9 +77,9 @@ class SelectServiceDialogView extends StatelessWidget {
                                     alignment: Alignment.center,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                         child: Container(
-                                          height: 64,
+                                          height: 64.h,
                                           width: double.infinity,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(16),
@@ -111,9 +111,9 @@ class SelectServiceDialogView extends StatelessWidget {
                                                   childCount: model.serviceList.length,
                                                   builder: (BuildContext context, int index) {
                                                     return Container(
-                                                      margin: EdgeInsets.symmetric(horizontal: 16),
+                                                      margin: EdgeInsets.symmetric(horizontal: 16.w),
                                                       padding: EdgeInsetsDirectional.only(
-                                                          start: 24, end: 20, top: 20, bottom: 20),
+                                                          start: 24.w, end: 20.w, top: 20.h, bottom: 20.h),
                                                       decoration: BoxDecoration(
                                                           borderRadius: BorderRadius.circular(16),
                                                           color: Colors.transparent),
@@ -130,7 +130,7 @@ class SelectServiceDialogView extends StatelessWidget {
                                                                 maxLines: 2,
                                                                 style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
-                                                                  fontSize: 14,
+                                                                  fontSize: 14.t,
                                                                   fontWeight: FontWeight.w400,
                                                                   // color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.very_dark_violet
                                                                 ),
@@ -163,9 +163,9 @@ class SelectServiceDialogView extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               child: Container(
-                                padding: EdgeInsets.all(16),
-                                height: 57,
-                                width: 57,
+                                padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                                height: 57.h,
+                                width: 57.w,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -173,7 +173,7 @@ class SelectServiceDialogView extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                              padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                               child: Center(
                                 child: InkWell(
                                   onTap: () {
@@ -183,7 +183,7 @@ class SelectServiceDialogView extends StatelessWidget {
                                     S.of(context).swipeDownToCancel,
                                     style: TextStyle(
                                         fontFamily: StringUtils.appFont,
-                                        fontSize: 10,
+                                        fontSize: 10.t,
                                         fontWeight: FontWeight.w400,
                                         color: AppColor.dark_gray_1),
                                   ),

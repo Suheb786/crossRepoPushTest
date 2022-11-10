@@ -227,7 +227,15 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                 padding: EdgeInsets.only(top: 32.0.h),
                                 child: GestureDetector(
                                   onHorizontalDragEnd: (details) {
-                                    if (details.primaryVelocity!.isNegative) {}
+                                    if (details.primaryVelocity!.isNegative) {
+                                      ProviderScope.containerOf(context)
+                                          .read(payBillPageViewModelProvider)
+                                          .nextPage();
+                                    } else {
+                                      ProviderScope.containerOf(context)
+                                          .read(payBillPageViewModelProvider)
+                                          .previousPage();
+                                    }
                                   },
                                   child: AnimatedButton(
                                     buttonText: S.of(context).swipeToProceed,

@@ -468,6 +468,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("وافق الشروط والأحكام"),
         "confirmYourInformation":
             MessageLookupByLibrary.simpleMessage("راجع وأكّد المعلومات"),
+        "confirmYourPaymentAmtBelow": MessageLookupByLibrary.simpleMessage(
+            "Confirm your payment\namount below"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
         "congratulations": MessageLookupByLibrary.simpleMessage("مبروك!"),
@@ -791,6 +793,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فريقنا مستعد لخدمتك"),
         "enterAddressHeader":
             MessageLookupByLibrary.simpleMessage("وين ساكن حالياً؟"),
+        "enterBillDetails":
+            MessageLookupByLibrary.simpleMessage("Enter bill details"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
             "أدخل الكود المكون من 6 خانات"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -1684,6 +1688,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payBack": MessageLookupByLibrary.simpleMessage("سداد"),
+        "payBill": MessageLookupByLibrary.simpleMessage("PAY BILL"),
         "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("الدفع من"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(

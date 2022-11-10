@@ -109,7 +109,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(
-                                        start: 16.0.w, end: 16.0.w, top: 16.0.h, bottom: 160.h),
+                                        start: 16.0.w, end: 16.0.w, top: 16.0.h, bottom: 16.h),
                                     child: Text(
                                       (index + 1).toString(),
                                       style: TextStyle(

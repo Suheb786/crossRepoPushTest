@@ -12,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 import 'bill_name_dialog_view_model.dart';
@@ -45,8 +46,8 @@ class PayBillDialogView extends StatelessWidget {
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: _keyboardVisible ? 36 : 204),
+              insetPadding: EdgeInsets.only(
+                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 204.h),
               child: GestureDetector(
                   onVerticalDragEnd: (details) {
                     if (details.primaryVelocity! > 0) {
@@ -67,19 +68,19 @@ class PayBillDialogView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 32.0),
+                                  padding: EdgeInsets.only(top: 32.0.h),
                                   child: Center(
                                     child: Text(
                                       title!,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
                                   child: AppTextField(
                                     labelText: '',
                                     controller: model.searchBillNameController,
@@ -87,7 +88,7 @@ class PayBillDialogView extends StatelessWidget {
                                     hintTextColor: AppColor.gray_2,
                                     textColor: AppColor.black,
                                     hintText: S.of(context).searchCountry,
-                                    containerPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                    containerPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                                     onChanged: (value) {
                                       model.searchBillName(value);
                                     },
@@ -95,9 +96,9 @@ class PayBillDialogView extends StatelessWidget {
                                       return InkWell(
                                         onTap: () async {},
                                         child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.all(6),
+                                            height: 16.h,
+                                            width: 16.w,
+                                            padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 6.w),
                                             child: AppSvg.asset(AssetUtils.search,
                                                 color: Theme.of(context).primaryColorDark)),
                                       );
@@ -110,9 +111,9 @@ class PayBillDialogView extends StatelessWidget {
                                         alignment: Alignment.center,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                            padding: EdgeInsets.symmetric(horizontal: 16.0.w),
                                             child: Container(
-                                              height: 64,
+                                              height: 64.h,
                                               width: double.infinity,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.circular(16),
@@ -144,9 +145,12 @@ class PayBillDialogView extends StatelessWidget {
                                                       childCount: model.billNameList.length,
                                                       builder: (BuildContext context, int index) {
                                                         return Container(
-                                                          margin: EdgeInsets.symmetric(horizontal: 16),
+                                                          margin: EdgeInsets.symmetric(horizontal: 16.w),
                                                           padding: EdgeInsetsDirectional.only(
-                                                              start: 24, end: 20, top: 20, bottom: 20),
+                                                              start: 24.w,
+                                                              end: 20.w,
+                                                              top: 20.h,
+                                                              bottom: 20.h),
                                                           decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.circular(16),
                                                               color: Colors.transparent),
@@ -154,8 +158,8 @@ class PayBillDialogView extends StatelessWidget {
                                                             children: <Widget>[
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets.symmetric(horizontal: 16.0),
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      horizontal: 16.0.w),
                                                                   child: Text(
                                                                     billList[index],
                                                                     //  data.data![index],
@@ -163,7 +167,7 @@ class PayBillDialogView extends StatelessWidget {
                                                                     maxLines: 2,
                                                                     style: TextStyle(
                                                                       fontFamily: StringUtils.appFont,
-                                                                      fontSize: 14,
+                                                                      fontSize: 14.t,
                                                                       fontWeight: FontWeight.w400,
                                                                       // color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.very_dark_violet
                                                                     ),
@@ -203,9 +207,9 @@ class PayBillDialogView extends StatelessWidget {
                                     //}
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    height: 57,
-                                    width: 57,
+                                    padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                                    height: 57.h,
+                                    width: 57.w,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Theme.of(context).accentTextTheme.bodyText1!.color!),
@@ -214,7 +218,7 @@ class PayBillDialogView extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                                  padding: EdgeInsets.only(top: 8.0.h, bottom: 16.h),
                                   child: Center(
                                     child: InkWell(
                                       onTap: () {
@@ -224,7 +228,7 @@ class PayBillDialogView extends StatelessWidget {
                                         S.of(context).swipeDownToCancel,
                                         style: TextStyle(
                                             fontFamily: StringUtils.appFont,
-                                            fontSize: 10,
+                                            fontSize: 10.t,
                                             fontWeight: FontWeight.w400,
                                             color: AppColor.dark_gray_1),
                                       ),

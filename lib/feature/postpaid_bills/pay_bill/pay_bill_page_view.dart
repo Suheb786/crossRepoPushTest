@@ -62,7 +62,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                 return Column(
                   children: [
                     Text(
-                      S.of(context).payAllBills,
+                      S.of(context).payBill,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
                           fontSize: 10.t,
@@ -82,8 +82,8 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                         child: Text(
                           StepTextHelper.registrationTwoStepTextHelper(
                             currentStep ?? 0,
-                            'Enter bill details',
-                            'Confirm your payment amount below',
+                            S.of(context).enterBillDetails,
+                            S.of(context).confirmYourPaymentAmtBelow,
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(

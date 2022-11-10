@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -27,7 +26,9 @@ class S {
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final name = (locale.countryCode?.isEmpty ?? false)
+        ? locale.languageCode
+        : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -14079,6 +14080,16 @@ class S {
     );
   }
 
+  /// `PAY BILL`
+  String get payBill {
+    return Intl.message(
+      'PAY BILL',
+      name: 'payBill',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bill details`
   String get billDetails {
     return Intl.message(
@@ -14089,11 +14100,31 @@ class S {
     );
   }
 
+  /// `Enter bill details`
+  String get enterBillDetails {
+    return Intl.message(
+      'Enter bill details',
+      name: 'enterBillDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure?`
   String get areYouSure {
     return Intl.message(
       'Are you sure?',
       name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your payment\namount below`
+  String get confirmYourPaymentAmtBelow {
+    return Intl.message(
+      'Confirm your payment\namount below',
+      name: 'confirmYourPaymentAmtBelow',
       desc: '',
       args: [],
     );

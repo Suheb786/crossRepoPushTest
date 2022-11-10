@@ -492,6 +492,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Review and confirm\nyour details"),
+        "confirmYourPaymentAmtBelow": MessageLookupByLibrary.simpleMessage(
+            "Confirm your payment\namount below"),
         "confrimCreditCardDeliveryError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "congratulations":
@@ -832,6 +834,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Our Engagement Team\nis getting ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
+        "enterBillDetails":
+            MessageLookupByLibrary.simpleMessage("Enter bill details"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
             "Enter the 6-digit code sent to"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -1757,6 +1761,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payAllBills": MessageLookupByLibrary.simpleMessage("Pay All Bills"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
+        "payBill": MessageLookupByLibrary.simpleMessage("PAY BILL"),
         "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(

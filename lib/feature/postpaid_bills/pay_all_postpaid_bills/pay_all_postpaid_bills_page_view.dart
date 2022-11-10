@@ -90,7 +90,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
                                           onPressed: (context1) => {
                                             InformationDialog.show(context,
-                                                image: AssetUtils.alert,
+                                                image: AssetUtils.deleteBlackIcon,
                                                 isSwipeToCancel: false,
                                                 title: S.of(context).areYouSure,
                                                 descriptionWidget: Text(

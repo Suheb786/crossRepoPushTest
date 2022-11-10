@@ -1430,8 +1430,11 @@
   "fees": "Fees",
   "due": "Due",
   "myBills": "My Bills",
+  "payBill": "PAY BILL",
   "billDetails": "Bill details",
+  "enterBillDetails": "Enter bill details",
   "areYouSure": "Are you sure?",
+  "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
 
