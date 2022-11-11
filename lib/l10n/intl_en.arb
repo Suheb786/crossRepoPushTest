@@ -1406,5 +1406,20 @@
   "errorPinTranslationXCS": "PIN change error",
   "errrorForPinChangeNI": "Error while requesting for pin change",
   "errorCCUnBlockNI": "Error while unblocking pin",
-  "loginRegisterDisabled": "We're currently offline and will be back shortly!"
+  "loginRegisterDisabled": "We're currently offline and will be back shortly!",
+  "blinkWithApplePay": "Blink with Apple Pay",
+  "addToApplePay": "ADD TO APPLE PAY",
+  "yourNowSetWithApplePay": "Your card is now set up with Apple Pay.",
+  "applePaySetFailed": "Apple Pay\nset up failed",
+  "errorSettingApplePay": "An error occurred while setting up\nApple Pay. Please try again later.",
+  "yourAddOtherCardFromCardSettings": "You can add your other cards from\nCard Settings.",
+  "rebelliousRedCreditCard": "Rebellious Red\nCredit Card",
+  "creditCard": "Credit Card",
+  "yellowSunDebitCard": "Yellow Sun\nDebit Card",
+  "applePaySetUpFailed": "Apple Pay\nset up failed",
+  "addOtherCardToAppleWallet": "Add other card to\nApple Wallet?",
+  "errorSettingUpApplePay": "An error occurred while setting up\nApple Pay. Please try again later.",
+  "addOtherCardToAppleWalletDialogDescription": "Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like.",
+  "selectOneCardToAddApplePay": "Select one card that you want to add to Apple Pay",
+  "blinkWithApplePayLandingDialogDescription": "You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps."
 }

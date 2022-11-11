@@ -13849,6 +13849,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Blink with Apple Pay`
+  String get blinkWithApplePay {
+    return Intl.message(
+      'Blink with Apple Pay',
+      name: 'blinkWithApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADD TO APPLE PAY`
+  String get addToApplePay {
+    return Intl.message(
+      'ADD TO APPLE PAY',
+      name: 'addToApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is now set up with Apple Pay.`
+  String get yourNowSetWithApplePay {
+    return Intl.message(
+      'Your card is now set up with Apple Pay.',
+      name: 'yourNowSetWithApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay\nset up failed`
+  String get applePaySetFailed {
+    return Intl.message(
+      'Apple Pay\nset up failed',
+      name: 'applePaySetFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while setting up\nApple Pay. Please try again later.`
+  String get errorSettingApplePay {
+    return Intl.message(
+      'An error occurred while setting up\nApple Pay. Please try again later.',
+      name: 'errorSettingApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add your other cards from\nCard Settings.`
+  String get yourAddOtherCardFromCardSettings {
+    return Intl.message(
+      'You can add your other cards from\nCard Settings.',
+      name: 'yourAddOtherCardFromCardSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rebellious Red\nCredit Card`
+  String get rebelliousRedCreditCard {
+    return Intl.message(
+      'Rebellious Red\nCredit Card',
+      name: 'rebelliousRedCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Card`
+  String get creditCard {
+    return Intl.message(
+      'Credit Card',
+      name: 'creditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yellow Sun\nDebit Card`
+  String get yellowSunDebitCard {
+    return Intl.message(
+      'Yellow Sun\nDebit Card',
+      name: 'yellowSunDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apple Pay\nset up failed`
+  String get applePaySetUpFailed {
+    return Intl.message(
+      'Apple Pay\nset up failed',
+      name: 'applePaySetUpFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add other card to\nApple Wallet?`
+  String get addOtherCardToAppleWallet {
+    return Intl.message(
+      'Add other card to\nApple Wallet?',
+      name: 'addOtherCardToAppleWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while setting up\nApple Pay. Please try again later.`
+  String get errorSettingUpApplePay {
+    return Intl.message(
+      'An error occurred while setting up\nApple Pay. Please try again later.',
+      name: 'errorSettingUpApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like.`
+  String get addOtherCardToAppleWalletDialogDescription {
+    return Intl.message(
+      'Would you like to add your other card to your Apple Wallet, now? You can always do it from your Card Settings, at any time you like.',
+      name: 'addOtherCardToAppleWalletDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select one card that you want to add to Apple Pay`
+  String get selectOneCardToAddApplePay {
+    return Intl.message(
+      'Select one card that you want to add to Apple Pay',
+      name: 'selectOneCardToAddApplePay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.`
+  String get blinkWithApplePayLandingDialogDescription {
+    return Intl.message(
+      'You can now Blink with style using Apple Pay! Simply add your credit or debit cards to your Apple Wallet in only few secure steps.',
+      name: 'blinkWithApplePayLandingDialogDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

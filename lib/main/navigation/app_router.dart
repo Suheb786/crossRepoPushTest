@@ -9,6 +9,9 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mo
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
+import 'package:neo_bank/feature/apple_pay/apple_pay_success/apple_pay_success_and_error_page.dart';
+import 'package:neo_bank/feature/apple_pay/selected_card_for_apple_pay/selected_card_for_apple_pay_page.dart';
+import 'package:neo_bank/feature/apple_pay_luncher_screen/apple_pay_launcher_page.dart';
 import 'package:neo_bank/feature/apply_credit_card_home/apply_credit_card_home_page.dart';
 import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
@@ -719,6 +722,22 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => EnterCodeEVoucherPurchasePage(),
             settings: RouteSettings(name: RoutePaths.EnterCodeEVoucherPurchase));
+
+      case RoutePaths.SelectedCardForApplePayPage:
+        return CupertinoPageRoute(
+            builder: (context) => SelectedCardForApplePayPage(),
+            settings: RouteSettings(name: RoutePaths.SelectedCardForApplePayPage));
+
+      case RoutePaths.ApplePaySuccessAndErrorPage:
+        return CupertinoPageRoute(
+            builder: (context) =>
+                ApplePaySuccessAndErrorPage(settings.arguments as ApplePaySuccessAndErrorPageArguments),
+            settings: RouteSettings(name: RoutePaths.ApplePaySuccessAndErrorPage));
+
+      case RoutePaths.applePayLauncherPage:
+        return CupertinoPageRoute(
+            builder: (context) => ApplePayLauncherPage(),
+            settings: RouteSettings(name: RoutePaths.applePayLauncherPage));
 
       default:
         return CupertinoPageRoute(

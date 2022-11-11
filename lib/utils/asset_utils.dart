@@ -245,4 +245,13 @@ class AssetUtils {
   static const String filterMenu = svg + "filter_menu.svg";
   static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
   static const String view_voucher_icon = svg + "view_voucher.svg";
+
+  ///Apple Pay png
+  static const String applePayLogo = drawable + "apple_pay_logo.png";
+
+  ///Apple Pay svg
+  static const String addAppleWalletIcon = svg + "add_apple_wallet_icon.svg";
+  static const String creditCardRedSmall = svg + "credit_card_red_small.svg";
+  static const String debitCardYellowSmall = svg + "debit_card_yellow_small_icon.svg";
+  static const String applePayIcon = svg + "apple_pay_icon.svg";
 }

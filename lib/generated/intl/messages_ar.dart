@@ -107,12 +107,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("شو رقم موبايلك؟"),
         "addMoney": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
         "addNickName": MessageLookupByLibrary.simpleMessage("إضافة اسم مستعار"),
+        "addOtherCardToAppleWallet":
+            MessageLookupByLibrary.simpleMessage("أضف بطاقة اخرى لأبل باي؟"),
+        "addOtherCardToAppleWalletDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "هل ترغب باضافة بطاقاتك الأخرى لمحفظة أبل التابعة لك؟ بامكانك في أي وقت إضافة أي من بطاقاتك من خلال خدمة اعدادات البطاقة."),
         "addRecipientToContact":
             MessageLookupByLibrary.simpleMessage("إضافة لقائمة المعارف Blink"),
         "addRequestMoney": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف. رح يتم حفظ قائمة المعارف بمجرد ما تبعثلهم طلب الأموال."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "ما عندك معارف لسه. رح يتم حفظ المعارف على Blink لما تحوّللهم الأموال."),
+        "addToApplePay":
+            MessageLookupByLibrary.simpleMessage("أضافة بطاقة بلينك لأبل باي"),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
             "رح تقدر تضيف المعارف لقائمتك قريباً."),
         "additionIncomeSource":
@@ -178,6 +185,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "بتدفع ضرائب بأي دولة أخرى غير الأردن وأمريكا؟"),
         "appName": MessageLookupByLibrary.simpleMessage("Blink"),
+        "applePaySetFailed": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
+        "applePaySetUpFailed": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
             "لقد تم تقيم طلبك بناءً على معلوماتك الشخصية والائتمانية وللأسف لم يتم الموافقه غليها. رح نراجع نتيجتك بانتظام ونبلغك بالوقت اللي لازم تعيد فيه المحاولة. تابعنا لتستفيد من خدماتنا المميزة اللي بنحضرلك اياها على Blink."),
         "applicationInProcess":
@@ -268,6 +279,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "ما تأجل مشترياتك! أصدر بطاقتك الائتمانية الافتراضية Rebellious Red فورا ومجانا\" "),
         "blinkCreditCardTitle": MessageLookupByLibrary.simpleMessage(
             "بطاقة Rebellious Red الائتمانية"),
+        "blinkWithApplePay": MessageLookupByLibrary.simpleMessage(
+            "ادفع مع بطاقات بلينك وخدمة أبل باي"),
+        "blinkWithApplePayLandingDialogDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "دايما في اكثر مع بلينك! تألق بالدفع باستعمال أبل باي! ما عليك سوى إضافة بطاقة الائتمان أو الدفع المباشر الخاصة بك إلى محفظة أبل التابعة لك في بضع خطوات آمنة فقط."),
         "blockThisCountry":
             MessageLookupByLibrary.simpleMessage("حظر هاي الدولة؟"),
         "blockThisCountryDesc": MessageLookupByLibrary.simpleMessage(
@@ -509,6 +525,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تفويض وحدة الائتمان"),
         "creditBureauAuthorizationDesc": MessageLookupByLibrary.simpleMessage(
             "أفوض Blink بشكل غير قابل للنقض بالحصول على بياناتي الائتمانية والاستفسار عن جميع التسهيلات الائتمانية الممنوحة لي من قبل البنوك والمؤسسات المالية الأخرى، بما في ذلك على سبيل المثال لا الحصر جميع الشروط والأحكام والضمانات والجداول الزمنية للسداد وأي تغييرات تطرأ عليها من وقت لآخر من أي جهة ائتمانية مرخصة رسمياً وفقاً لقانون المعلومات الائتمانية لعام 2010، وذلك لغرض (أ) منحي سقفاً لبطاقتي الائتمانية إلى جانب أي زيادة مستقبلية للحد الأقصى أو إعادة هيكلة أو تغييرات في شروط وأحكام البطاقة الائتمانية. أو (ب) الاستفسار عن أسباب أي تأخير أو تقصير في السداد. أحتفظ بالحق في الاطلاع على معلوماتي الائتمانية أو تصحيح أي معلومات خاطئة أو الاعتراض عليها."),
+        "creditCard": MessageLookupByLibrary.simpleMessage("البطاقةالائتمانية"),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("تم تفعيل البطاقة الائتمانية"),
         "creditCardApplicationUnderReviewDesc":
@@ -862,8 +879,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ خلال حفظ الهوية"),
         "errorSavingStatus":
             MessageLookupByLibrary.simpleMessage("خطأ خلال الحفظ"),
+        "errorSettingApplePay": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "errorSettingPinEuronet": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إعداد الرمز السري PIN. حاول كمان مرة بعدين."),
+        "errorSettingUpApplePay": MessageLookupByLibrary.simpleMessage(
+            "نأسف لم يتم تفعيل البطاقة بنجاح، يرجى المحاولة مرة أخرى."),
         "errorUpdatingAccount": MessageLookupByLibrary.simpleMessage(
             "عفواً! صار خطأ. حاول كمان مرة  أو تواصل معنا من التطبيق أو بالاتصال على 5200100-06 (Err-073)"),
         "errorUpdatingCardStatusRuleEngine": MessageLookupByLibrary.simpleMessage(
@@ -1831,6 +1852,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سبب عدم توفر الرقم"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("سبب عدم التوفر"),
+        "rebelliousRedCreditCard": MessageLookupByLibrary.simpleMessage(
+            "البطاقة الائتمانية الحمراء\nالبطاقةالائتمانية"),
         "receiveMoneyFromOthers":
             MessageLookupByLibrary.simpleMessage("استقبال الأموال من الآخرين"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
@@ -2027,6 +2050,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "اختار الحد الأدنى لنسبة السداد "),
         "selectNewPercentage": MessageLookupByLibrary.simpleMessage(
             "اختار نسبة تسوية جديدة لدورة الدفع الجاية"),
+        "selectOneCardToAddApplePay": MessageLookupByLibrary.simpleMessage(
+            "أختار احدى البطاقات لاضافتها على أبل باي"),
         "selectPreferredInstallmentDuration":
             MessageLookupByLibrary.simpleMessage("اختار مدة التقسيط المفضلة"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("اختار السبب"),
@@ -2414,6 +2439,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wsChildError": MessageLookupByLibrary.simpleMessage(
             "خطأ خلال إصدار بطاقتك الائتمانية التابعة Rebellious Red التابعة. حاول كمان مرة. (Err-155)"),
         "yearly": MessageLookupByLibrary.simpleMessage("الدخل السنوي "),
+        "yellowSunDebitCard": MessageLookupByLibrary.simpleMessage(
+            "بطاقة الدفع المباشر الصفراء\nبطاقة الدفع المباشر"),
         "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "youAreAcceptingMoneyRequestViaQr":
             MessageLookupByLibrary.simpleMessage(
@@ -2430,6 +2457,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "رح نذكرك بمجرد الموافقة على طلبك ورح يتم إضافة المبلغ لحسابك"),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
             "ما وصلتك رسالة SMS؟ تواصل معنا."),
+        "yourAddOtherCardFromCardSettings": MessageLookupByLibrary.simpleMessage(
+            "بامكانك أضافة بطاقات بلينك الأخرى التابعة لك من خلال خدمة اعدادات البطاقة"),
         "yourApplicationInReview":
             MessageLookupByLibrary.simpleMessage("طلبك قيد المراجعة"),
         "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
@@ -2450,6 +2479,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "تم إصدار بطاقة الدفع المباشر الافتراضية، وبطاقتك الفعلية بطريقها إلك."),
+        "yourNowSetWithApplePay": MessageLookupByLibrary.simpleMessage(
+            "تم تفعيل بطاقتك على خدمة أبل باي"),
         "yourSignature": MessageLookupByLibrary.simpleMessage("توقيعك"),
         "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
             "تم إصدار بطاقة الدفع المباشر Yellow Sun")
