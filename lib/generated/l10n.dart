@@ -13849,6 +13849,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ID Verification Failed`
+  String get idVerificationFailed {
+    return Intl.message(
+      'ID Verification Failed',
+      name: 'idVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

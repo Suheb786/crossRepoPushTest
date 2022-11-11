@@ -1406,5 +1406,6 @@
   "errorPinTranslationXCS": "PIN change error",
   "errrorForPinChangeNI": "Error while requesting for pin change",
   "errorCCUnBlockNI": "Error while unblocking pin",
-  "loginRegisterDisabled": "We're currently offline and will be back shortly!"
+  "loginRegisterDisabled": "We're currently offline and will be back shortly!",
+  "idVerificationFailed": "ID Verification Failed"
 }
