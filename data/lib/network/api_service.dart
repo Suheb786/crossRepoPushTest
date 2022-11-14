@@ -231,7 +231,7 @@ abstract class ApiService {
   @POST("/IdCard/set")
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
 
-  @POST("/Account/SelfeeCheck")
+  @POST("/Account/SelfeeCheckV1")
   Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
       @Body() SaveSelfieImageRequest saveSelfieImageRequest);
 
