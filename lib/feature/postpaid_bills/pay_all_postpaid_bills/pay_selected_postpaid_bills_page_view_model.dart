@@ -6,13 +6,15 @@ import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/bill_payments/post_paid_bills/get_postpaid_biller_list_usecase.dart';
+import 'package:domain/usecase/bill_payment/get_postpaid_biller_list_usecases.dart';
+import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model.dart';
 
 class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   final PayAllPostPaidBillsPageArguments arguments;
 
   final GetPostpaidBillerListUseCase getPostpaidBillerListUseCase;
+  final RemoveCustomerBillingUseCase removeCustomerBillingUseCase;
 
   final TextEditingController searchBillController = TextEditingController();
   List<PallAllPostPaidBillsData> payAllPostPaidBillsDataList = [];
@@ -29,8 +31,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
 
   double totalBillAmt = 0.0;
 
-  PayAllPostPaidBillsPageViewModel(
-      this.getPostpaidBillerListUseCase, this.arguments) {
+  PayAllPostPaidBillsPageViewModel(this.getPostpaidBillerListUseCase,
+      this.removeCustomerBillingUseCase, this.arguments) {
     getPostpaidBiller();
     postPaidBillerListener();
   }
@@ -69,8 +71,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- Call Api GetPostpaidBillerList -------------------------------- ///
-  PublishSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest =
-      PublishSubject();
+  BehaviorSubject<GetPostpaidBillerListUseCaseParams> _postpaidBillerRequest =
+      BehaviorSubject();
   PublishSubject<Resource<GetPostpaidBillerListModel>> _postpaidBillerResponse =
       PublishSubject();
 

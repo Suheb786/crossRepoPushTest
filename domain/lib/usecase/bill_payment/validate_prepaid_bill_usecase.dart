@@ -1,0 +1,44 @@
+import 'package:dartz/dartz.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bill_payments/validate_prepaid_biller/validate_prepaid_biller.dart';
+import 'package:domain/repository/bill_payment/bill_payment_repository.dart';
+import 'package:domain/usecase/base/base_usecase.dart';
+import 'package:domain/usecase/base/params.dart';
+
+class ValidatePrePaidUseCase extends BaseUseCase<NetworkError,
+    ValidatePrePaidUseCaseParams, ValidatePrePaidBill> {
+  final BillPaymentRepository _repository;
+
+  ValidatePrePaidUseCase(this._repository);
+
+  @override
+  Future<Either<NetworkError, ValidatePrePaidBill>> execute(
+      {required ValidatePrePaidUseCaseParams params}) {
+    return _repository.validatePrePaidBill(params: params);
+  }
+}
+
+class ValidatePrePaidUseCaseParams extends Params {
+  final String? billerCode;
+  final String? amount;
+  final String? serviceType;
+  final String? billingNumber;
+  final String? prepaidCategoryCode;
+  final String? prepaidCategoryType;
+  final bool? billingNumberRequired;
+
+  ValidatePrePaidUseCaseParams(
+      {this.billerCode,
+      this.amount,
+      this.serviceType,
+      this.billingNumber,
+      this.prepaidCategoryCode,
+      this.prepaidCategoryType,
+      this.billingNumberRequired});
+
+  @override
+  Either<AppError, bool> verify() {
+    return Right(true);
+  }
+}

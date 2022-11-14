@@ -230,7 +230,7 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvide
 
 final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
-  (ref, args) => PayAllPostPaidBillsPageViewModel(ref.read(getPostpaidBillerUseCaseProvider),args),
+  (ref, args) => PayAllPostPaidBillsPageViewModel(ref.read(getPostpaidBillerUseCaseProvider),ref.read(removeCustomerBillingUseCaseProvider),args),
 );
 
 final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

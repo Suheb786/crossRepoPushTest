@@ -28,7 +28,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
           child: Container(
             color: Theme.of(context).primaryColorDark,
             child: Padding(
-              padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 40.0.h),
+              padding: EdgeInsets.only(top: 32.0.h, left: 24.0.w, right: 24.0.w, bottom: 38.0.h),
               child: Column(
                 children: [
                   Align(
