@@ -1172,6 +1172,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Home Address"),
         "howWouldLikeToPay": MessageLookupByLibrary.simpleMessage(
             "How would you like to\nmake the payment"),
+        "howWouldLikeToPayPrePaidYourBills":
+            MessageLookupByLibrary.simpleMessage(
+                "How would you like to\npay your prepaid bills?"),
+        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage(
+            "How would you like to\npay your bills?"),
         "iConfirmThatAllInfoAccurateFatca":
             MessageLookupByLibrary.simpleMessage(
                 "I confirm that all information provided is accurate."),
@@ -1610,6 +1615,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "myCreditCard": MessageLookupByLibrary.simpleMessage("My Credit Card"),
         "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
+        "myPostPaidBill":
+            MessageLookupByLibrary.simpleMessage("My Postpaid Bill"),
+        "myPrePaidBills":
+            MessageLookupByLibrary.simpleMessage("My Prepaid Bills"),
         "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
             "Spotify Monthly Subscription"),
         "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
@@ -2512,6 +2521,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("View card subscriptions"),
+        "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
         "viewVoucher": MessageLookupByLibrary.simpleMessage("View Voucher"),
         "viewVoucherDialogDescription": MessageLookupByLibrary.simpleMessage(
             "Your voucher is being processed. You’ll get notification when your voucher is ready to be used."),

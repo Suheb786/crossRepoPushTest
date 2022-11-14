@@ -13080,6 +13080,26 @@ class S {
     );
   }
 
+  /// `How would you like to\npay your bills?`
+  String get howWouldLikeToPayYourBills {
+    return Intl.message(
+      'How would you like to\npay your bills?',
+      name: 'howWouldLikeToPayYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\npay your prepaid bills?`
+  String get howWouldLikeToPayPrePaidYourBills {
+    return Intl.message(
+      'How would you like to\npay your prepaid bills?',
+      name: 'howWouldLikeToPayPrePaidYourBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `REGION`
   String get region {
     return Intl.message(
@@ -14125,6 +14145,36 @@ class S {
     return Intl.message(
       'Are you sure?',
       name: 'areYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Postpaid Bill`
+  String get myPostPaidBill {
+    return Intl.message(
+      'My Postpaid Bill',
+      name: 'myPostPaidBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View my bills`
+  String get viewMyBills {
+    return Intl.message(
+      'View my bills',
+      name: 'viewMyBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Prepaid Bills`
+  String get myPrePaidBills {
+    return Intl.message(
+      'My Prepaid Bills',
+      name: 'myPrePaidBills',
       desc: '',
       args: [],
     );

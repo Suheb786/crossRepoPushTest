@@ -1122,6 +1122,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
         "homeAddressHint": MessageLookupByLibrary.simpleMessage("أدخل عنوانك"),
         "homeAddressSmall": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
+        "howWouldLikeToPayPrePaidYourBills":
+            MessageLookupByLibrary.simpleMessage(
+                "How would you like to\npay your prepaid bills?"),
+        "howWouldLikeToPayYourBills": MessageLookupByLibrary.simpleMessage(
+            "How would you like to\npay your bills?"),
         "iConfirmThatAllInfoAccurateFatca":
             MessageLookupByLibrary.simpleMessage(
                 "أؤكد على أن جميع المعلومات المزودة دقيقة."),
@@ -1547,6 +1552,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "myDebitCard":
             MessageLookupByLibrary.simpleMessage("بطاقة الدفع المباشر"),
         "myDocuments": MessageLookupByLibrary.simpleMessage("الوثائق"),
+        "myPostPaidBill":
+            MessageLookupByLibrary.simpleMessage("My Postpaid Bill"),
+        "myPrePaidBills":
+            MessageLookupByLibrary.simpleMessage("My Prepaid Bills"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("الاسم حسب الهوية"),
         "nameAsPerIncomeTaxReturn":
@@ -2406,6 +2415,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
         "viewCardSubscription":
             MessageLookupByLibrary.simpleMessage("استعراض اشتراكات البطاقة"),
+        "viewMyBills": MessageLookupByLibrary.simpleMessage("View my bills"),
         "visaPlatinumCard": MessageLookupByLibrary.simpleMessage(
             "بطاقة فيزا الائتمانية البلاتينية"),
         "voiceCall": MessageLookupByLibrary.simpleMessage("مكالمة صوتية"),
