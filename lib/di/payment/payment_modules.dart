@@ -3,6 +3,7 @@ import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
@@ -229,7 +230,7 @@ final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvide
 
 final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
-  (ref, args) => PayAllPostPaidBillsPageViewModel(args),
+  (ref, args) => PayAllPostPaidBillsPageViewModel(ref.read(getPostpaidBillerUseCaseProvider),args),
 );
 
 final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

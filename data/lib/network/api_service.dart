@@ -42,6 +42,7 @@ import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_respons
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/bill_payment/get_postpaid_biller_list/get_postpaid_biller_list_entity_response.dart';
 import 'package:data/entity/remote/card/account_card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
 import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
@@ -761,4 +762,10 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+  @GET("/BillPayment/AccountInquiry")
+  Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
+  getPostpaidBillerListData();
+
+
 }
