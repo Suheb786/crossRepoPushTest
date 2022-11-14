@@ -255,6 +255,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
+        "backToManageCliq":
+            MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "backToRegistration":
@@ -1494,6 +1496,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
         "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
             "Link bank account to \nyour new ID"),
+        "linkedAccount": MessageLookupByLibrary.simpleMessage("Linked Account"),
         "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
             "Linked account is debited\nwhenever transaction made\nusing this card"),
         "linkedAccountNumber":

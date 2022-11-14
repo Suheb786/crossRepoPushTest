@@ -1388,6 +1388,8 @@
   "billDetails": "Bill details",
   "enterBillDetails": "Enter bill details",
   "areYouSure": "Are you sure?",
+  "backToManageCliq": "Back to Manage CliQ",
+  "linkedAccount":"Linked Account",
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"

@@ -251,6 +251,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("العودة لشاشة التحكم"),
         "backToLogin":
             MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "backToManageCliq":
+            MessageLookupByLibrary.simpleMessage("Back to Manage CliQ"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("العودة للدفعات"),
         "backToRegistration":
@@ -1435,6 +1437,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "limitExceeded": MessageLookupByLibrary.simpleMessage("تم تجاوز السقف"),
         "linkBankAccountToYourNewId": MessageLookupByLibrary.simpleMessage(
             "اربط حسابك البنكي مع  حساب CliQ الجديد"),
+        "linkedAccount": MessageLookupByLibrary.simpleMessage("Linked Account"),
         "linkedAccountDebited": MessageLookupByLibrary.simpleMessage(
             "رح يتم القيد من الحساب المرتبط لأي حركة بتنعمل من على هاي البطاقة"),
         "linkedAccountNumber":

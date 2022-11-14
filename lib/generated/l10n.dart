@@ -14120,6 +14120,16 @@ class S {
     );
   }
 
+  /// `Back to Manage CliQ`
+  String get backToManageCliq {
+    return Intl.message(
+      'Back to Manage CliQ',
+      name: 'backToManageCliq',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm your payment\namount below`
   String get confirmYourPaymentAmtBelow {
     return Intl.message(
@@ -14135,6 +14145,16 @@ class S {
     return Intl.message(
       'Add this bill to your saved list',
       name: 'addThisBillToSaveList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Linked Account`
+  String get linkedAccount {
+    return Intl.message(
+      'Linked Account',
+      name: 'linkedAccount',
       desc: '',
       args: [],
     );
