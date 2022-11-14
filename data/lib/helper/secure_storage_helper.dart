@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:domain/constants/enum/language_enum.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_content.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageHelper {
@@ -14,6 +15,7 @@ class SecureStorageHelper {
   static const String LANGUAGE = "language";
   static const String USER = "user";
   static const String WALLET_ID = "walletId";
+  static const String TOKEN = "token";
 
   SecureStorageHelper._privateConstructor();
 
@@ -125,5 +127,28 @@ class SecureStorageHelper {
   ///get wallet id
   Future<String?> getWalletId() async {
     return _storage.read(key: WALLET_ID);
+  }
+
+  ///clear wallet id
+  Future<bool> clearWalletId() async {
+    await _storage.delete(key: WALLET_ID);
+    debugPrint('Wallet ID Cleared------:');
+    return true;
+  }
+
+  ///store token
+  Future<void> storeTokenId({String? token}) async {
+    return _storage.write(key: TOKEN, value: token);
+  }
+
+  ///get Token
+  Future<String?> getToken() async {
+    return _storage.read(key: TOKEN);
+  }
+
+  ///clear token
+  Future<bool> clearToken() async {
+    await _storage.delete(key: TOKEN);
+    return true;
   }
 }

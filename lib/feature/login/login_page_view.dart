@@ -211,7 +211,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       onData: (data) {
                                                         if (data.status == Status.SUCCESS) {
                                                           ///apple pay initialize
-                                                          model.antelopSdkInitialize();
+                                                          // model.antelopSdkInitialize();
 
                                                           ///refresh token api
                                                           // ProviderScope
@@ -260,7 +260,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     //     .checkKycStatus();
 
                                                                     ///apple pay initialize
-                                                                    model.antelopSdkInitialize();
+                                                                    // model.antelopSdkInitialize();
 
                                                                     ///new device flow check
 
@@ -350,6 +350,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                                 ));
                                                                           }
                                                                         } else {
+                                                                          model.antelopSdkInitialize();
                                                                           Navigator.popAndPushNamed(
                                                                               context, RoutePaths.AppHome);
                                                                         }

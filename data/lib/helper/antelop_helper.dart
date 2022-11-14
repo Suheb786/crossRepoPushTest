@@ -32,6 +32,7 @@ class AntelopHelper {
   getWalletId() async {
     var id = await SecureStorageHelper.instance.getWalletId();
     if ((id ?? '').isNotEmpty) {
+      debugPrint('Wallet Id from secure Storage---->$id');
       antelopWalletId = id ?? '';
     }
   }
@@ -111,6 +112,8 @@ class AntelopHelper {
           debugPrint("on device eligible parameter--->${parameter.toString()}");
           var launchData = await platform.invokeMethod('getWalletLaunch', parameter);
         } else {
+          debugPrint('Wallet Id not empty');
+          debugPrint('Wallet Id ---->$antelopWalletId');
           var walletConnect = await platform.invokeMethod('walletConnect');
         }
         break;
@@ -180,14 +183,19 @@ class AntelopHelper {
               .enrollCards(EnrollCardRequestEntity(
                   baseData: baseData.toJson(),
                   walletId: walletData["walletId"] != null ? walletData["walletId"].toString() : "",
+                  getToken: false,
                   cardType: "C",
                   cardId: ""))
               .then((value) async {
-            debugPrint("Final enroll Card length---> " + value.data.content?.cards?.length);
-            debugPrint("Final  enroll Card ---> " + value.data.content?.cards?[0]);
+            if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+              var dataValue = value.data.transform().enrollCardList;
+              debugPrint("Final enroll Card length---> ${(dataValue ?? []).length}");
 
-            var parameter = {"enrollmentData": value.data.content?.cards?[0].enrollmentData};
-            var data = await platform.invokeMethod('enrollCard', parameter);
+              var parameter = {"enrollmentData": dataValue?[0].enrollmentData};
+              var data = await platform.invokeMethod('enrollCard', parameter);
+            } else {
+              var cardsData = await platform.invokeMethod('getAllCards');
+            }
           }, onError: (error) async {
             debugPrint("MainError-----------> ${error.toString()}");
             var cardsData = await platform.invokeMethod('getAllCards');

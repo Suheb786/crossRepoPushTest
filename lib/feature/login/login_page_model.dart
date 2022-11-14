@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:domain/constants/enum/language_enum.dart';
@@ -8,7 +7,6 @@ import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/user.dart';
-import 'package:domain/usecase/apple_pay/initialize_antelop_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
@@ -48,7 +46,6 @@ class LoginViewModel extends BasePageViewModel {
   final GetCurrentUserUseCase _getCurrentUserUseCase;
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
-  final InitializeAntelopUseCase _initializeAntelopUseCase;
 
   final TextEditingController emailController = TextEditingController(/*text: 'testrob146@g.com'*/);
   final TextEditingController passwordController = TextEditingController(/*text: 'Asdf@12345'*/);
@@ -173,41 +170,6 @@ class LoginViewModel extends BasePageViewModel {
   /// selected language stream
   Stream<LanguageEnum> get selectedLanguageStream => _selectedLanguage.stream;
 
-  ///------------------Isolate for apple pay initialization-----------///
-
-  late ReceivePort receivePort;
-  Isolate? isolate;
-
-  PublishSubject<InitializeAntelopUseCaseParams> _antelopInitializeRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _antelopInitializeResponse = PublishSubject();
-
-  Stream<Resource<bool>> get antelopInitializeStream => _antelopInitializeResponse.stream;
-
-  /// ISOLATE
-  void antelopSdkInitialize() async {
-    if (isolate != null) {
-      return;
-    }
-    try {
-      receivePort = ReceivePort();
-      isolate = await Isolate.spawn(_getTokenCallBack, receivePort.sendPort);
-      receivePort.listen(_handleMessage, onDone: () {});
-    } on Exception catch (e) {
-      debugPrint("Error from ISOLATE " + e.toString());
-    }
-  }
-
-  void _handleMessage(message) {
-    _antelopInitializeRequest.safeAdd(InitializeAntelopUseCaseParams());
-  }
-
-  static void _getTokenCallBack(SendPort sendPort) async {
-    sendPort.send('Send');
-  }
-
-  ///------------------Isolate for apple pay initialization-----------///
-
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
@@ -221,8 +183,7 @@ class LoginViewModel extends BasePageViewModel {
       this._checkVersionUpdateUseCase,
       this._getCurrentUserUseCase,
       this._generateKeyPairUseCase,
-      this._infobipMessagePluginUseCase,
-      this._initializeAntelopUseCase) {
+      this._infobipMessagePluginUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value, createCall: () => _loginUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
@@ -371,16 +332,6 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
-
-    _antelopInitializeRequest.listen(
-      (params) {
-        RequestManager(params, createCall: () => _initializeAntelopUseCase.execute(params: params))
-            .asFlow()
-            .listen((event) {
-          _antelopInitializeResponse.safeAdd(event);
-        });
-      },
-    );
 
     //getCipher();
   }

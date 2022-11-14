@@ -30,11 +30,9 @@ import 'package:domain/model/user/user.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class UserRemoteDS {
-  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
-      {String email});
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName({String email});
 
-  Future<HttpResponse<LoginResponseEntity>> loginUser(
-      {required String email, required String password});
+  Future<HttpResponse<LoginResponseEntity>> loginUser({required String email, required String password});
 
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
@@ -103,8 +101,7 @@ abstract class UserRemoteDS {
       bool? isEmployed,
       String? natureOfSpecialNeeds});
 
-  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation({
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>> saveResidenceInformation({
     String? residentCountry,
     String? buildingName,
     String? streetName,
@@ -116,28 +113,24 @@ abstract class UserRemoteDS {
     String? cityId,
   });
 
-  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
-      {String? otpCode});
+  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp({String? otpCode});
 
   Future<HttpResponse<ResponseEntity>> uploadSelfieImage({String? imagePath});
 
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
 
-  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-      confirmApplicationDataGet();
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet();
 
-  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
-      {String? email});
+  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest({String? email});
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
 
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-      confirmApplicationDataSet(
-          {CountryResidenceInfo? countryResidenceInfo,
-          ProfileStatusInfo? profileStatusInfo,
-          JobDetailInfo? jobDetailInfo,
-          FatcaCrsInfo? fatcaCrsInfo,
-          AccountPurposeInfo? accountPurposeInfo});
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
+      {CountryResidenceInfo? countryResidenceInfo,
+      ProfileStatusInfo? profileStatusInfo,
+      JobDetailInfo? jobDetailInfo,
+      FatcaCrsInfo? fatcaCrsInfo,
+      AccountPurposeInfo? accountPurposeInfo});
 
   Future<bool> enableFingerPrint({String? cipher});
 
@@ -155,14 +148,11 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> androidLogin({required String cipher});
 
-  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
-      {required String cipher});
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin({required String cipher});
 
-  Future<HttpResponse<ResponseEntity>> changeMyNumber(
-      {String mobileNo, String mobileCode});
+  Future<HttpResponse<ResponseEntity>> changeMyNumber({String mobileNo, String mobileCode});
 
-  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate(
-      {String? clear});
+  Future<HttpResponse<CurrentVersionResponseEntity>> checkVersionUpdate({String? clear});
 }
 
 abstract class UserLocalDS {
@@ -172,10 +162,11 @@ abstract class UserLocalDS {
 
   Future<bool> saveCurrentUser(User user);
 
-  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
-      scanUserDocument();
+  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>> scanUserDocument();
 
   Future<bool> checkBioMetricSupport();
 
   Future<bool> authenticateBioMetric(String title, String localisedReason);
+
+  Future<bool> clearWalletId();
 }

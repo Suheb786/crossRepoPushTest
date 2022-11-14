@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/apple_pay/apple_pay_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/apple_pay/enroll_card_response.dart';
 import 'package:domain/repository/apple_pay/apple_pay_repository.dart';
 
 class ApplePayRepositoryImpl extends ApplePayRepository {
@@ -21,13 +22,13 @@ class ApplePayRepositoryImpl extends ApplePayRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> enrollCards(
+  Future<Either<NetworkError, EnrollCardResponse>> enrollCards(
       {required String walletId, required String cardId, required String cardType}) async {
     final result = await safeApiCall(
         applePayRemoteDataSource.enrollCards(cardId: cardId, walletId: walletId, cardType: cardType));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 

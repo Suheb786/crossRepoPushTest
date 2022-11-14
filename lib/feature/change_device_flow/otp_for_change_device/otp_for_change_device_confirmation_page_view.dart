@@ -105,6 +105,7 @@ class OtpForChangeDeviceConfirmationPageView
                         if (data.status == Status.SUCCESS) {
                           model.depersonalizeUserData();
                           model.saveUserData();
+                          model.clearWallet();
                           Navigator.pushReplacementNamed(context, RoutePaths.ChangeDeviceSuccess);
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);

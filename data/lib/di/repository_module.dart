@@ -59,7 +59,6 @@ var userRepoProvider = Provider<UserRepository>(
   (ref) => UserRepositoryImpl(
     ref.read(userRemoteDSProvider),
     ref.read(userLocalDSProvider),
-    ref.read(dioProvider),
   ),
 );
 

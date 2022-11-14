@@ -4,10 +4,8 @@ import 'package:data/db/safe_db_call.dart';
 import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/helper/key_helper.dart';
 import 'package:data/helper/string_converter.dart';
-import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
-import 'package:dio/dio.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
@@ -39,15 +37,11 @@ import 'package:domain/repository/user/user_repository.dart';
 class UserRepositoryImpl extends UserRepository {
   final UserRemoteDS _remoteDS;
   final UserLocalDS _localDS;
-  final Dio _dio;
 
   UserRepositoryImpl(
     this._remoteDS,
     this._localDS,
-    this._dio,
-  ) {
-    _dio.interceptors.add(ApiInterceptor(this, _dio));
-  }
+  );
 
   @override
   Future<Either<DatabaseError, User>> getCurrentUser() async {
@@ -78,8 +72,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckUsername>> checkUserName(
-      {String? email}) async {
+  Future<Either<NetworkError, CheckUsername>> checkUserName({String? email}) async {
     final result = await safeApiCall(
       _remoteDS.checkUserName(email: email!),
     );
@@ -90,8 +83,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, User>> loginUser(
-      {required String email, required String password}) async {
+  Future<Either<NetworkError, User>> loginUser({required String email, required String password}) async {
     final result = await safeApiCall(
       _remoteDS.loginUser(email: email, password: password),
     );
@@ -105,8 +97,7 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<NetworkError, CheckUsername>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
     final result = await safeApiCall(
-      _remoteDS.checkUserNameMobile(
-          mobileNumber: mobileNumber, countryCode: countryCode),
+      _remoteDS.checkUserNameMobile(mobileNumber: mobileNumber, countryCode: countryCode),
     );
     return result!.fold(
       (l) => Left(l),
@@ -115,8 +106,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> fetchCountryList(
-      {bool? getToken}) async {
+  Future<Either<NetworkError, String>> fetchCountryList({bool? getToken}) async {
     final result = await safeApiCall(
       _remoteDS.fetchCountryList(getToken: getToken),
     );
@@ -250,17 +240,16 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, SaveProfileStatusResponse>>
-      saveProfileInformation(
-          {bool? married,
-          bool? specialPerson,
-          bool? anyOtherNationality,
-          bool? beneficialOwnerAccount,
-          String? otherNationality,
-          String? employmentStatus,
-          String? spouseName,
-          bool? isEmployed,
-          String? natureOfSpecialNeeds}) async {
+  Future<Either<NetworkError, SaveProfileStatusResponse>> saveProfileInformation(
+      {bool? married,
+      bool? specialPerson,
+      bool? anyOtherNationality,
+      bool? beneficialOwnerAccount,
+      String? otherNationality,
+      String? employmentStatus,
+      String? spouseName,
+      bool? isEmployed,
+      String? natureOfSpecialNeeds}) async {
     final result = await safeApiCall(_remoteDS.saveProfileInformation(
         married: married,
         specialPerson: specialPerson,
@@ -278,8 +267,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-      saveResidenceInformation({
+  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>> saveResidenceInformation({
     String? residentCountry,
     String? buildingName,
     String? streetName,
@@ -318,8 +306,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<LocalError, ScannedDocumentInformation>>
-      scanUserDocument() async {
+  Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument() async {
     final document = await _localDS.scanUserDocument();
     return document.fold(
         (l) => Left(l),
@@ -328,64 +315,39 @@ class UserRepositoryImpl extends UserRepository {
                 primaryId: r.mrzResult!.primaryId ?? '',
                 secondaryId: r.mrzResult!.secondaryId ?? '',
                 fullName: r.fullName),
-            firstName: r.mrzResult!.secondaryId
-                    ?.trim()
-                    .split(" ")
-                    .elementAt(0)
-                    .toString() ??
-                r.firstName ??
-                "",
-            middleName:
-                StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
+            firstName:
+                r.mrzResult!.secondaryId?.trim().split(" ").elementAt(0).toString() ?? r.firstName ?? "",
+            middleName: StringConverter.getMiddleName(r.mrzResult!.secondaryId ?? ''),
             familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
             idNumber: r.mrzResult!.sanitizedOpt1 ?? r.personalIdNumber ?? '',
             dob: r.dateOfBirth != null
-                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
-                    r.dateOfBirth!.day!)
+                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!, r.dateOfBirth!.day!)
                 : DateTime(0),
             nationality: r.nationality!.isNotEmpty ? r.nationality : '',
             doe: r.dateOfExpiry != null
-                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
-                    r.dateOfExpiry!.day!)
+                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
                 : DateTime(0),
             gender: r.sex!.isNotEmpty ? r.sex : '',
-            motherName: r.mothersName != null
-                ? (r.mothersName!.isNotEmpty ? r.mothersName : '')
-                : "",
-            documentCode: r.mrzResult!.documentCode!.isNotEmpty
-                ? r.mrzResult!.documentCode
-                : '',
-            documentNumber:
-                r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber ?? '',
-            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
+            motherName: r.mothersName != null ? (r.mothersName!.isNotEmpty ? r.mothersName : '') : "",
+            documentCode: r.mrzResult!.documentCode!.isNotEmpty ? r.mrzResult!.documentCode : '',
+            documentNumber: r.mrzResult!.sanitizedDocumentNumber ?? r.documentNumber ?? '',
+            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             frontCardImage: r.fullDocumentFrontImage,
             backCardImage: r.fullDocumentBackImage,
             personFaceImage: r.faceImage,
-            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
+            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
+            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             issuingDate: r.dateOfIssue != null &&
                     r.dateOfIssue!.year != 0 &&
                     r.dateOfIssue!.month != 0 &&
                     r.dateOfIssue!.day != 0
-                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
-                    r.dateOfIssue!.day!)
+                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!, r.dateOfIssue!.day!)
                 : r.dateOfExpiry != null
-                    ? DateTime(r.dateOfExpiry!.year! - 10,
-                        r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
+                    ? DateTime(r.dateOfExpiry!.year! - 10, r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
                     : DateTime(0),
-            currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
+            currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty ? r.mrzResult!.sanitizedIssuer : '',
             nationalityIsoCode3: r.mrzResult?.nationality ?? "",
-            placeOfBirth: r.placeOfBirth != null
-                ? (r.placeOfBirth!.isNotEmpty ? r.placeOfBirth : "")
-                : "")));
+            placeOfBirth: r.placeOfBirth != null ? (r.placeOfBirth!.isNotEmpty ? r.placeOfBirth : "") : "")));
   }
 
   @override
@@ -400,8 +362,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> uploadSelfieImage(
-      {String? imagePath}) async {
+  Future<Either<NetworkError, bool>> uploadSelfieImage({String? imagePath}) async {
     final result = await safeApiCall(
       _remoteDS.uploadSelfieImage(imagePath: imagePath),
     );
@@ -412,8 +373,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetConfirmApplicationDataResponse>>
-      confirmApplicationDataGet() async {
+  Future<Either<NetworkError, GetConfirmApplicationDataResponse>> confirmApplicationDataGet() async {
     final result = await safeApiCall(
       _remoteDS.confirmApplicationDataGet(),
     );
@@ -424,8 +384,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, RegisterInterestResponse>> registerInterest(
-      {String? email}) async {
+  Future<Either<NetworkError, RegisterInterestResponse>> registerInterest({String? email}) async {
     final result = await safeApiCall(
       _remoteDS.registerInterest(email: email),
     );
@@ -500,11 +459,9 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<LocalError, bool>> authenticateBioMetric(
-      String title, String localisedReason) async {
+  Future<Either<LocalError, bool>> authenticateBioMetric(String title, String localisedReason) async {
     try {
-      bool isAuthenticated =
-          await _localDS.authenticateBioMetric(title, localisedReason);
+      bool isAuthenticated = await _localDS.authenticateBioMetric(title, localisedReason);
       return Right(isAuthenticated);
     } catch (exception) {
       return _handleAppLocalException(exception);
@@ -549,8 +506,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, GenerateKeyPairResponse>>
-      generateKeyPair() async {
+  Future<Either<NetworkError, GenerateKeyPairResponse>> generateKeyPair() async {
     final result = await safeApiCall(
       _remoteDS.generateKeyPair(),
     );
@@ -605,8 +561,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> androidLogin(
-      {required String cipher}) async {
+  Future<Either<NetworkError, bool>> androidLogin({required String cipher}) async {
     final result = await safeApiCall(
       _remoteDS.androidLogin(cipher: cipher),
     );
@@ -617,8 +572,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, User>> iphoneLogin(
-      {required String cipher}) async {
+  Future<Either<NetworkError, User>> iphoneLogin({required String cipher}) async {
     final result = await safeApiCall(
       _remoteDS.iphoneLogin(cipher: cipher),
     );
@@ -629,8 +583,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> changeMyNumber(
-      String mobileNo, String mobileCode) async {
+  Future<Either<NetworkError, bool>> changeMyNumber(String mobileNo, String mobileCode) async {
     final result = await safeApiCall(
       _remoteDS.changeMyNumber(mobileNo: mobileNo, mobileCode: mobileCode),
     );
@@ -650,10 +603,15 @@ class UserRepositoryImpl extends UserRepository {
       if (r.isSuccessful()) {
         response = r.data.transform();
         var decryptedData = decryptAESCryptoJS(
-            encryptedContent: response.content ?? '',
-            decryptionKey: KeyHelper.DECRYPTION_KEY);
+            encryptedContent: response.content ?? '', decryptionKey: KeyHelper.DECRYPTION_KEY);
       }
       return Right(r.isSuccessful());
     });
+  }
+
+  @override
+  Future<Either<DatabaseError, bool>> clearWalletId() async {
+    final cleared = await safeDbCall(_localDS.clearWalletId());
+    return cleared.fold((l) => Left(l), (r) => Right(r));
   }
 }

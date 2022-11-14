@@ -50,6 +50,7 @@ class ChangeDeviceSuccessPageView extends BasePageViewWidget<ChangeDeviceSuccess
                             ProviderScope.containerOf(context).read(loginViewModelProvider).applicationId));
               }
             } else {
+              model.antelopSdkInitialize();
               print('in change device');
               Navigator.popAndPushNamed(context, RoutePaths.AppHome);
             }

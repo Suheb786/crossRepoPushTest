@@ -1,5 +1,6 @@
 import 'package:data/di/local_module.dart';
 import 'package:data/helper/antelop_helper.dart';
+import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/account/account_datasource.dart';
@@ -68,6 +69,7 @@ final dioProvider = Provider<Dio>(
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
     );
+    dio.interceptors.add(ApiInterceptor(dio));
     return dio;
   },
 );

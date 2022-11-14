@@ -1,11 +1,11 @@
 import 'package:data/helper/encypt_decrypt_helper.dart';
+import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
-import 'package:domain/repository/user/user_repository.dart';
+import 'package:flutter/material.dart';
 
 class ApiInterceptor extends InterceptorsWrapper {
-  final UserRepository _userRepository;
   final Dio _previousDio;
   late ApiService apiService;
   String authToken = "";
@@ -13,7 +13,7 @@ class ApiInterceptor extends InterceptorsWrapper {
   late Set<String> verifiedURLs = {};
   Future<String>? secure = Future.value('');
 
-  ApiInterceptor(this._userRepository, this._previousDio) {
+  ApiInterceptor(this._previousDio) {
     Dio newDio = Dio(_previousDio.options);
     newDio.interceptors.add(_previousDio.interceptors.first);
     apiService = ApiService(newDio, baseUrl: NetworkProperties.BASE_CHANNEL_URL);
@@ -21,18 +21,24 @@ class ApiInterceptor extends InterceptorsWrapper {
 
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    if (authToken.isEmpty) {
+      authToken = (await SecureStorageHelper.instance.getToken()) ?? '';
+    }
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
     print('authToken--->$authToken');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
     options.data = _encryptRequest(options.data);
 
+    debugPrint('headers auth token------>${options.headers}');
+
     ///PIN BLOCK TEST
 
     String encryptedCard = EncryptDecryptHelper.encryptCard(cardNo: '4082230000056214');
     print('encryptedCard------>$encryptedCard');
 
-    String pinBlock = EncryptDecryptHelper.generateBlockPinForCreditCard(cardNo: '4082230000056214',pinCode: '1234');
+    String pinBlock =
+        EncryptDecryptHelper.generateBlockPinForCreditCard(cardNo: '4082230000056214', pinCode: '1234');
     print('pinBlock------>$pinBlock');
 
     // String decryptedCard = EncryptDecryptHelper.decryptCard(cardNo: 'q1FqpOl9dwa+8n8FRHP3xS4k7rha70mu');
@@ -106,12 +112,14 @@ class ApiInterceptor extends InterceptorsWrapper {
   void onError(DioError err, ErrorInterceptorHandler handler) {
     if (err.response!.statusCode == 401) {
       authToken = '';
+      SecureStorageHelper.instance.clearToken();
       return super.onError(err, handler);
     }
     if (err.response!.data != null) {
       if (((err.response!.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ??
           false) {
         authToken = (err.response!.data as Map<String, dynamic>)['response']['token'] ?? '';
+        SecureStorageHelper.instance.storeTokenId(token: authToken);
       }
     }
     super.onError(err, handler);
@@ -121,16 +129,19 @@ class ApiInterceptor extends InterceptorsWrapper {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (response.statusCode == 401) {
       authToken = '';
+      SecureStorageHelper.instance.clearToken();
       return super.onResponse(response, handler);
     }
     if (response.realUri.path.contains('logout')) {
       authToken = '';
+      SecureStorageHelper.instance.clearToken();
       return super.onResponse(response, handler);
     }
     if (response.statusCode == 200) {
       if (response.data != null) {
         if (((response.data as Map<String, dynamic>)['response']['token'] as String?)?.isNotEmpty ?? false) {
           authToken = (response.data as Map<String, dynamic>)['response']['token'] ?? '';
+          SecureStorageHelper.instance.storeTokenId(token: authToken);
         }
       }
     }
