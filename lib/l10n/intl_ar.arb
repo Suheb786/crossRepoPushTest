@@ -1391,4 +1391,6 @@
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
+  "loginRegisterDisabled": "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً",
+  "idVerificationFailed": "فشل التحقق من الهوية"
 }

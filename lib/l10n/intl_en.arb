@@ -1408,6 +1408,8 @@
   "errrorForPinChangeNI": "Error while requesting for pin change",
   "errorCCUnBlockNI": "Error while unblocking pin",
   "loginRegisterDisabled": "We're currently offline and will be back shortly!",
+  "idVerificationFailed": "ID Verification Failed"
+  "loginRegisterDisabled": "We're currently offline and will be back shortly!",
   "payBills": "Paying {noOfBills} bills",
   "saveBills": "Saved Bills",
   "searchBill": "Search bill",

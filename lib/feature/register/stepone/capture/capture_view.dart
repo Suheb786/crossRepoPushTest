@@ -1,9 +1,11 @@
 import 'package:camera/camera.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -33,6 +35,10 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                 } else if (isImageUploaded.status == Status.ERROR) {
                   model.showToastWithError(isImageUploaded.appError!);
                   model.cameraController!.resumePreview();
+                  if (isImageUploaded.appError?.type == ErrorType.ID_VERIFICATION_FAILED) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+                  }
                 } else if (isImageUploaded.status == Status.LOADING) {
                   model.cameraController!.pausePreview();
                 }
