@@ -33,16 +33,13 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   }
 
   ///verify otp request subject holder
-  PublishSubject<EnterOtpForResetPasswordUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<EnterOtpForResetPasswordUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<VerifyForgetPasswordOtpResponse>> _verifyOtpResponse =
-      PublishSubject();
+  PublishSubject<Resource<VerifyForgetPasswordOtpResponse>> _verifyOtpResponse = PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<VerifyForgetPasswordOtpResponse>> get verifyOtpStream =>
-      _verifyOtpResponse.stream;
+  Stream<Resource<VerifyForgetPasswordOtpResponse>> get verifyOtpStream => _verifyOtpResponse.stream;
 
   ///error detector subject
   BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
@@ -57,21 +54,16 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///create password request subject holder
-  PublishSubject<CreateNewPasswordUseCaseParams> _createPasswordRequest =
-      PublishSubject();
+  PublishSubject<CreateNewPasswordUseCaseParams> _createPasswordRequest = PublishSubject();
 
   /// create password response subject holder
-  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse =
-      PublishSubject();
+  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream =>
-      _createPasswordResponse.stream;
+  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream => _createPasswordResponse.stream;
 
-  EnterOTPForResetPasswordPageViewModel(
-      this._enterOtpForResetPasswordUsecase, this._createPasswordUseCase) {
+  EnterOTPForResetPasswordPageViewModel(this._enterOtpForResetPasswordUsecase, this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createPasswordUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -89,9 +81,7 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
     });
 
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _enterOtpForResetPasswordUsecase.execute(params: value))
+      RequestManager(value, createCall: () => _enterOtpForResetPasswordUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -116,38 +106,22 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
         minimumEightCharacters: ProviderScope.containerOf(context)
             .read(createNewPasswordViewModelProvider)
             .minimumEightCharacters,
-        hasUpperCase: ProviderScope.containerOf(context)
-            .read(createNewPasswordViewModelProvider)
-            .hasUpperCase,
-        hasSymbol: ProviderScope.containerOf(context)
-            .read(createNewPasswordViewModelProvider)
-            .hasSymbol,
-        containsDigit: ProviderScope.containerOf(context)
-            .read(createNewPasswordViewModelProvider)
-            .containsDigit,
-        email: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .email,
-        idNo: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .nationalId,
-        idExpiry: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .expiryDate));
+        hasUpperCase:
+            ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).hasUpperCase,
+        hasSymbol: ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).hasSymbol,
+        containsDigit:
+            ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).containsDigit,
+        email: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).email,
+        idNo: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nationalId,
+        idExpiry: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).expiryDate));
   }
 
   void validateOtp(BuildContext context) {
     _verifyOtpRequest.safeAdd(EnterOtpForResetPasswordUseCaseParams(
         otp: _otpSubject.value,
-        email: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .email,
-        idExpiry: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .expiryDate,
-        idNo: ProviderScope.containerOf(context)
-            .read(forgotPasswordViewModelProvider)
-            .nationalId,
+        email: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).email,
+        idExpiry: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).expiryDate,
+        idNo: ProviderScope.containerOf(context).read(forgotPasswordViewModelProvider).nationalId,
         password: ProviderScope.containerOf(context)
             .read(createNewPasswordViewModelProvider)
             .createPasswordController

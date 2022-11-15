@@ -21,23 +21,18 @@ class AccountReadyViewModel extends BasePageViewModel {
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
   ///get account details request subject
-  PublishSubject<GetAccountDetailsUseCaseParams> _getAccountDetailsRequest =
-      PublishSubject();
+  PublishSubject<GetAccountDetailsUseCaseParams> _getAccountDetailsRequest = PublishSubject();
 
   ///get account details response subject
-  PublishSubject<Resource<GetAccountDetailsResponse>>
-      _getAccountDetailsResponse = PublishSubject();
+  PublishSubject<Resource<GetAccountDetailsResponse>> _getAccountDetailsResponse = PublishSubject();
 
   ///get account details response stream
   Stream<Resource<GetAccountDetailsResponse>> get getAccountDetailsStream =>
       _getAccountDetailsResponse.stream;
 
-  AccountReadyViewModel(
-      this._getAccountDetailsUseCase, this.arguments, this._logoutUseCase) {
+  AccountReadyViewModel(this._getAccountDetailsUseCase, this.arguments, this._logoutUseCase) {
     _getAccountDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getAccountDetailsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAccountDetailsResponse.safeAdd(event);
@@ -49,10 +44,7 @@ class AccountReadyViewModel extends BasePageViewModel {
     });
 
     _logoutRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _logoutResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

@@ -7,8 +7,7 @@ import 'package:rxdart/rxdart.dart';
 class EditAliasPageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController aliasController = TextEditingController();
-  final GlobalKey<AppTextFieldState> aliasKey =
-      GlobalKey(debugLabel: "alias");
+  final GlobalKey<AppTextFieldState> aliasKey = GlobalKey(debugLabel: "alias");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -21,5 +20,13 @@ class EditAliasPageViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  BehaviorSubject<bool> _isSelectedSubject = BehaviorSubject();
+
+  Stream<bool> get isSelectedStream => _isSelectedSubject.stream;
+
+  void termAndConditionSelected(bool value) {
+    _isSelectedSubject.safeAdd(value);
   }
 }

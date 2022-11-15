@@ -57,8 +57,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
-  Stream<String> get uploadProfilePhotoStream =>
-      _uploadProfilePhotoResponse.stream;
+  Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(false);
@@ -70,33 +69,26 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   }
 
   ///selected image subject
-  final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
 
   ///upload profile
-  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
-  final GlobalKey<AppTextFieldState> ibanOrMobileKey =
-      GlobalKey(debugLabel: "ibanOrMobileNo");
+  final GlobalKey<AppTextFieldState> ibanOrMobileKey = GlobalKey(debugLabel: "ibanOrMobileNo");
 
-  final GlobalKey<AppTextFieldState> purposeKey =
-      GlobalKey(debugLabel: "purpose");
+  final GlobalKey<AppTextFieldState> purposeKey = GlobalKey(debugLabel: "purpose");
 
-  final GlobalKey<AppTextFieldState> purposeDetailKey =
-      GlobalKey(debugLabel: "purposeDetails");
+  final GlobalKey<AppTextFieldState> purposeDetailKey = GlobalKey(debugLabel: "purposeDetails");
 
-  PublishSubject<SendToNewRecipientUseCaseParams> _sendToNewRecipientRequest =
-      PublishSubject();
+  PublishSubject<SendToNewRecipientUseCaseParams> _sendToNewRecipientRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _sendToNewRecipientResponse = PublishSubject();
 
-  Stream<Resource<bool>> get sendToNewRecipientResponseStream =>
-      _sendToNewRecipientResponse.stream;
+  Stream<Resource<bool>> get sendToNewRecipientResponseStream => _sendToNewRecipientResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
@@ -105,53 +97,39 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   TransferResponse transferResponse = TransferResponse();
 
   ///check send money request
-  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest =
-      PublishSubject();
+  PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest = PublishSubject();
 
   ///check send money response
-  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse =
-      PublishSubject();
+  PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse = PublishSubject();
 
   ///check send money response stream
-  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream =>
-      _checkSendMoneyResponse.stream;
+  Stream<Resource<CheckSendMoneyResponse>> get checkSendMoneyStream => _checkSendMoneyResponse.stream;
 
   PublishSubject<bool> _showNameVisibilityRequest = PublishSubject();
 
-  Stream<bool> get showNameVisibilityStream =>
-      _showNameVisibilityRequest.stream;
+  Stream<bool> get showNameVisibilityStream => _showNameVisibilityRequest.stream;
 
-  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-      PublishSubject();
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
 
-  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
-      _getPurposeResponse.stream;
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
   bool isFriend = false;
 
   num? limit;
 
   ///transfer verify request
-  PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest =
-      PublishSubject();
+  PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest = PublishSubject();
 
   ///transfer verify response
   PublishSubject<Resource<bool>> _transferVerifyResponse = PublishSubject();
 
   ///transfer verify response stream
-  Stream<Resource<bool>> get transferVerifyStream =>
-      _transferVerifyResponse.stream;
+  Stream<Resource<bool>> get transferVerifyStream => _transferVerifyResponse.stream;
 
-  SendToNewRecipientViewModel(
-      this._useCase,
-      this._uploadDocumentUseCase,
-      this._checkSendMoneyUseCase,
-      this._transferVerifyUseCase,
-      this._getPurposeUseCase) {
+  SendToNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase, this._checkSendMoneyUseCase,
+      this._transferVerifyUseCase, this._getPurposeUseCase) {
     _sendToNewRecipientRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         _sendToNewRecipientResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -159,8 +137,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
       });
     });
     _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -169,8 +146,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     });
 
     _checkSendMoneyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _checkSendMoneyUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkSendMoneyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -179,19 +155,15 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          transferResponse =
-              event.data!.checkSendMoneyContent!.transferResponse!;
+          transferResponse = event.data!.checkSendMoneyContent!.transferResponse!;
           _showNameVisibilityRequest.safeAdd(true);
-          getPurpose(
-              event.data!.checkSendMoneyContent!.transferResponse!.toAccount!,
-              "TransferI");
+          getPurpose(event.data!.checkSendMoneyContent!.transferResponse!.toAccount!, "TransferI");
         }
       });
     });
 
     _transferVerifyRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _transferVerifyUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _transferVerifyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -204,8 +176,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     });
 
     _getPurposeRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPurposeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -215,8 +186,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
-          purposeList
-              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
           print("got purposeList: $purposeList");
         }
       });
@@ -229,10 +199,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   void getPurpose(String toAccount, String transferType) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-      toAccount: toAccount,
-        transferType: transferType,
-        detCustomerType: "",
-        type: ""));
+        toAccount: toAccount, transferType: transferType, detCustomerType: "", type: ""));
   }
 
   void updatePurposeDetaiList(List<PurposeDetail> list) {
@@ -242,22 +209,19 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   }
 
   void checkSendMoney({required String iban, required String amount}) {
-    _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: iban, toAmount: double.parse(amount)));
+    _checkSendMoneyRequest
+        .safeAdd(CheckSendMoneyUseCaseParams(toAccount: iban, toAmount: double.parse(amount)));
   }
 
   void sendToNewRecipient(BuildContext context) {
     _sendToNewRecipientRequest.safeAdd(SendToNewRecipientUseCaseParams(
         ibanOrMobile: ibanOrMobileController.text,
         purpose: purposeController.text,
-        nickName: addNickNameController.text.isEmpty
-            ? ""
-            : addNickNameController.text,
+        nickName: addNickNameController.text.isEmpty ? "" : addNickNameController.text,
         isFriend: isFriend,
         purposeDetail: purposeDetailController.text,
-        amount: double.parse(ProviderScope.containerOf(context)
-            .read(sendMoneyViewModelProvider)
-            .currentPinValue),
+        amount:
+            double.parse(ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue),
         limit: limit));
   }
 
@@ -266,8 +230,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updatePurpose(Purpose value) {

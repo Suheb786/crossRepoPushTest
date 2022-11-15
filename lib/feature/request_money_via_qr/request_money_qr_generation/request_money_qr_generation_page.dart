@@ -5,15 +5,13 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 
-class RequestMoneyQrGenerationPage
-    extends BasePage<RequestMoneyQrGenerationPageViewModel> {
+class RequestMoneyQrGenerationPage extends BasePage<RequestMoneyQrGenerationPageViewModel> {
   @override
-  RequestMoneyQrGenerationPageState createState() =>
-      RequestMoneyQrGenerationPageState();
+  RequestMoneyQrGenerationPageState createState() => RequestMoneyQrGenerationPageState();
 }
 
-class RequestMoneyQrGenerationPageState extends BaseStatefulPage<
-    RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPage> {
+class RequestMoneyQrGenerationPageState
+    extends BaseStatefulPage<RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPage> {
   @override
   ProviderBase provideBase() {
     return requestMoneyQrGenerationViewModelProvider;
@@ -25,8 +23,7 @@ class RequestMoneyQrGenerationPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, RequestMoneyQrGenerationPageViewModel model) {
+  Widget buildView(BuildContext context, RequestMoneyQrGenerationPageViewModel model) {
     return RequestMoneyQrGenerationPageView(provideBase());
   }
 }

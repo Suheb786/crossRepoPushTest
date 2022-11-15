@@ -20,12 +20,10 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   /// controller
   final TextEditingController mobileController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> mobileKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  final GlobalKey<AppTextFieldState> mobileKey = GlobalKey(debugLabel: "mobileNumber");
 
   ///add new mobile number request subject holder
-  PublishSubject<AddNewMobileNumberUseCaseParams> _addNewMobileRequest =
-      PublishSubject();
+  PublishSubject<AddNewMobileNumberUseCaseParams> _addNewMobileRequest = PublishSubject();
 
   ///add new mobile number response holder
   PublishSubject<Resource<bool>> _addNewMobileResponse = PublishSubject();
@@ -44,30 +42,24 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   String mobileNumberWithCode = '';
 
   ///get allowed code country request holder
-  PublishSubject<GetAllowedCodeCountryListUseCaseParams>
-      _getAllowedCountryRequest = PublishSubject();
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams> _getAllowedCountryRequest = PublishSubject();
 
   ///get allowed code country response holder
-  PublishSubject<Resource<AllowedCountryListResponse>>
-      _getAllowedCountryResponse = PublishSubject();
+  PublishSubject<Resource<AllowedCountryListResponse>> _getAllowedCountryResponse = PublishSubject();
 
   ///get allowed code country response stream
   Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
       _getAllowedCountryResponse.stream;
 
   ///selected country response holder
-  BehaviorSubject<CountryData> _selectedCountryResponse =
-      BehaviorSubject.seeded(CountryData());
+  BehaviorSubject<CountryData> _selectedCountryResponse = BehaviorSubject.seeded(CountryData());
 
   ///get allowed code country response stream
-  Stream<CountryData> get getSelectedCountryStream =>
-      _selectedCountryResponse.stream;
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
-  AddNewMobileNumberPageViewModel(
-      this._addNewMobileUseCase, this._allowedCodeCountryListUseCase) {
+  AddNewMobileNumberPageViewModel(this._addNewMobileUseCase, this._allowedCodeCountryListUseCase) {
     _addNewMobileRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _addNewMobileUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _addNewMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,9 +72,7 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
     });
 
     _getAllowedCountryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _allowedCodeCountryListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _allowedCodeCountryListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAllowedCountryResponse.safeAdd(event);
@@ -106,8 +96,7 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
     mobileNumberWithCode = '+${countryData.phoneCode} ${mobileController.text}';
     mobileNumber = mobileController.text;
     _addNewMobileRequest.safeAdd(AddNewMobileNumberUseCaseParams(
-        mobileCode: '00${countryData.phoneCode}',
-        mobileNumber: mobileController.text));
+        mobileCode: '00${countryData.phoneCode}', mobileNumber: mobileController.text));
   }
 
   void validate() {

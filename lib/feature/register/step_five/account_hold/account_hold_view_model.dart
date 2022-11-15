@@ -19,10 +19,7 @@ class AccountHoldViewModel extends BasePageViewModel {
 
   AccountHoldViewModel(this._logoutUseCase, this.arguments) {
     _logoutRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _logoutResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

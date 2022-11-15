@@ -32,17 +32,12 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   ///upload individual document usecase
   final FileUploadUseCase _fileUploadUseCase;
 
-  final TextEditingController addressController =
-      TextEditingController(text: 'Home-Address.jpg');
-  final TextEditingController incomeController =
-      TextEditingController(text: 'Salam-Income.jpg');
-  final TextEditingController additionalNationalityController =
-      TextEditingController();
+  final TextEditingController addressController = TextEditingController(text: 'Home-Address.jpg');
+  final TextEditingController incomeController = TextEditingController(text: 'Salam-Income.jpg');
+  final TextEditingController additionalNationalityController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> addressDocumentKey =
-      GlobalKey(debugLabel: "addressDocument");
-  final GlobalKey<AppTextFieldState> incomeDocumentKey =
-      GlobalKey(debugLabel: "incomeDocument");
+  final GlobalKey<AppTextFieldState> addressDocumentKey = GlobalKey(debugLabel: "addressDocument");
+  final GlobalKey<AppTextFieldState> incomeDocumentKey = GlobalKey(debugLabel: "incomeDocument");
   final GlobalKey<AppTextFieldState> additionalNationalityKey =
       GlobalKey(debugLabel: "additionalNationality");
 
@@ -54,8 +49,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get documentsStream => _documentsResponse.stream;
 
   ///upload income proof
-  PublishSubject<UploadDocumentUseCaseParams> _uploadIncomePoofRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadIncomePoofRequest = PublishSubject();
 
   PublishSubject<String> _uploadIncomePoofResponse = PublishSubject();
 
@@ -67,13 +61,11 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _documentIncomeRequest = PublishSubject();
 
   ///upload address proof
-  PublishSubject<UploadDocumentUseCaseParams> _uploadAddressPoofRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadAddressPoofRequest = PublishSubject();
 
   PublishSubject<String> _uploadAddressPoofResponse = PublishSubject();
 
-  Stream<String> get uploadAddressPoofStream =>
-      _uploadAddressPoofResponse.stream;
+  Stream<String> get uploadAddressPoofStream => _uploadAddressPoofResponse.stream;
 
   ///is address document uploaded
   Stream<bool> get documentAddressStream => _documentAddressRequest.stream;
@@ -81,69 +73,58 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _documentAddressRequest = PublishSubject();
 
   ///upload additional nationality  proof
-  PublishSubject<UploadDocumentUseCaseParams>
-      _additionalNationalityProofRequest = PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _additionalNationalityProofRequest = PublishSubject();
 
   PublishSubject<String> _additionalNationalityProofResponse = PublishSubject();
 
-  Stream<String> get additionalNationalityProofStream =>
-      _additionalNationalityProofResponse.stream;
+  Stream<String> get additionalNationalityProofStream => _additionalNationalityProofResponse.stream;
 
   ///is additional nationality document uploaded
   PublishSubject<bool> _documentNationalityRequest = PublishSubject();
 
-  Stream<bool> get documentNationalityStream =>
-      _documentNationalityRequest.stream;
+  Stream<bool> get documentNationalityStream => _documentNationalityRequest.stream;
 
   ///check other nationality
-  PublishSubject<CheckOtherNationalityStatusUseCaseParams>
-      _checkOtherNationalityStatusRequest = PublishSubject();
+  PublishSubject<CheckOtherNationalityStatusUseCaseParams> _checkOtherNationalityStatusRequest =
+      PublishSubject();
 
-  PublishSubject<Resource<CheckOtherNationalityResponse>>
-      _checkOtherNationalityStatusResponse = PublishSubject();
+  PublishSubject<Resource<CheckOtherNationalityResponse>> _checkOtherNationalityStatusResponse =
+      PublishSubject();
 
-  Stream<Resource<CheckOtherNationalityResponse>>
-      get checkOtherNationalityStatusStream =>
-          _checkOtherNationalityStatusResponse.stream;
+  Stream<Resource<CheckOtherNationalityResponse>> get checkOtherNationalityStatusStream =>
+      _checkOtherNationalityStatusResponse.stream;
 
   void checkOtherNationality() {
-    _checkOtherNationalityStatusRequest
-        .safeAdd(CheckOtherNationalityStatusUseCaseParams());
+    _checkOtherNationalityStatusRequest.safeAdd(CheckOtherNationalityStatusUseCaseParams());
   }
 
   ///upload income proof
   String incomeProofDocumentId = '';
-  PublishSubject<FileUploadUseCaseParams> _uploadIncomeProofDocumentRequest =
-      PublishSubject();
+  PublishSubject<FileUploadUseCaseParams> _uploadIncomeProofDocumentRequest = PublishSubject();
 
-  PublishSubject<Resource<FileUploadResponse>>
-      _uploadIncomeProofDocumentResponse = PublishSubject();
+  PublishSubject<Resource<FileUploadResponse>> _uploadIncomeProofDocumentResponse = PublishSubject();
 
   Stream<Resource<FileUploadResponse>> get uploadIncomeProofDocumentStream =>
       _uploadIncomeProofDocumentResponse.stream;
 
   ///upload address proof
   String addressProofDocumentId = '';
-  PublishSubject<FileUploadUseCaseParams> _uploadAddressProofDocumentRequest =
-      PublishSubject();
+  PublishSubject<FileUploadUseCaseParams> _uploadAddressProofDocumentRequest = PublishSubject();
 
-  PublishSubject<Resource<FileUploadResponse>>
-      _uploadAddressProofDocumentResponse = PublishSubject();
+  PublishSubject<Resource<FileUploadResponse>> _uploadAddressProofDocumentResponse = PublishSubject();
 
   Stream<Resource<FileUploadResponse>> get uploadAddressProofDocumentStream =>
       _uploadAddressProofDocumentResponse.stream;
 
   ///upload other nationality proof
   String otherNationalityProofDocumentId = '';
-  PublishSubject<FileUploadUseCaseParams>
-      _uploadOtherNationalityProofDocumentRequest = PublishSubject();
+  PublishSubject<FileUploadUseCaseParams> _uploadOtherNationalityProofDocumentRequest = PublishSubject();
 
-  PublishSubject<Resource<FileUploadResponse>>
-      _uploadOtherNationalityProofDocumentResponse = PublishSubject();
+  PublishSubject<Resource<FileUploadResponse>> _uploadOtherNationalityProofDocumentResponse =
+      PublishSubject();
 
-  Stream<Resource<FileUploadResponse>>
-      get uploadOtherNationalityProofDocumentStream =>
-          _uploadOtherNationalityProofDocumentResponse.stream;
+  Stream<Resource<FileUploadResponse>> get uploadOtherNationalityProofDocumentStream =>
+      _uploadOtherNationalityProofDocumentResponse.stream;
 
   bool isOtherNationality = false;
 
@@ -152,26 +133,21 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   bool isOtherNationalityDocumentUploaded = false;
 
   /// animated button visibility subject
-  BehaviorSubject<bool> _showAnimatedButtonSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _showAnimatedButtonSubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get showAnimatedButtonStream =>
-      _showAnimatedButtonSubject.stream;
+  Stream<bool> get showAnimatedButtonStream => _showAnimatedButtonSubject.stream;
 
   ///get customer document id
-  PublishSubject<GetCustomerDocIdUseCaseParams> _getCustomerDocumentIdRequest =
-      PublishSubject();
+  PublishSubject<GetCustomerDocIdUseCaseParams> _getCustomerDocumentIdRequest = PublishSubject();
 
   ///get customer address document
-  PublishSubject<GetCustomerDocumentUseCaseParams>
-      _getCustomerAddressDocumentRequest = PublishSubject();
+  PublishSubject<GetCustomerDocumentUseCaseParams> _getCustomerAddressDocumentRequest = PublishSubject();
 
   // PublishSubject<Resource<GetCustomerDocumentResponse>>
   //     _getCustomerAddressDocumentResponse = PublishSubject();
 
   ///get customer income document
-  PublishSubject<GetCustomerDocumentUseCaseParams>
-      _getCustomerIncomeDocumentRequest = PublishSubject();
+  PublishSubject<GetCustomerDocumentUseCaseParams> _getCustomerIncomeDocumentRequest = PublishSubject();
 
   // PublishSubject<Resource<GetCustomerDocumentResponse>>
   //     _getCustomerIncomeDocumentResponse = PublishSubject();
@@ -184,8 +160,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
       this._getCustomerDocIdUseCase,
       this._getCustomerDocumentUseCase) {
     _documentsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _myDocumentsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _myDocumentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _documentsResponse.safeAdd(event);
@@ -196,8 +171,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _uploadIncomePoofRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadIncomePoofResponse.safeAdd(event.data!);
@@ -205,8 +179,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _uploadAddressPoofRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadAddressPoofResponse.safeAdd(event.data!);
@@ -214,8 +187,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _additionalNationalityProofRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _additionalNationalityProofResponse.safeAdd(event.data!);
@@ -223,8 +195,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _uploadIncomeProofDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadIncomeProofDocumentResponse.safeAdd(event);
@@ -236,8 +207,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _uploadAddressProofDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadAddressProofDocumentResponse.safeAdd(event);
@@ -249,8 +219,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _uploadOtherNationalityProofDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadOtherNationalityProofDocumentResponse.safeAdd(event);
@@ -262,9 +231,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _checkOtherNationalityStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkOtherNationalityStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _checkOtherNationalityStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _checkOtherNationalityStatusResponse.safeAdd(event);
@@ -276,8 +243,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _getCustomerDocumentIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getCustomerDocIdUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCustomerDocIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -285,23 +251,17 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          _getCustomerAddressDocumentRequest.safeAdd(
-              GetCustomerDocumentUseCaseParams(
-                  docId: event.data!.getCustomerDocIdContentData!
-                      .getCustomerDocIdContent!.proofOfAddress!));
+          _getCustomerAddressDocumentRequest.safeAdd(GetCustomerDocumentUseCaseParams(
+              docId: event.data!.getCustomerDocIdContentData!.getCustomerDocIdContent!.proofOfAddress!));
 
-          _getCustomerIncomeDocumentRequest.safeAdd(
-              GetCustomerDocumentUseCaseParams(
-                  docId: event.data!.getCustomerDocIdContentData!
-                      .getCustomerDocIdContent!.proofOfIncome!));
+          _getCustomerIncomeDocumentRequest.safeAdd(GetCustomerDocumentUseCaseParams(
+              docId: event.data!.getCustomerDocIdContentData!.getCustomerDocIdContent!.proofOfIncome!));
         }
       });
     });
 
     _getCustomerAddressDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getCustomerDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCustomerDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -315,9 +275,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     });
 
     _getCustomerIncomeDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getCustomerDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCustomerDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -337,8 +295,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void uploadIncomeDocument(DocumentTypeEnum type) {
-    _uploadIncomePoofRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadIncomePoofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updateIncomeDocumentField(String value) {
@@ -353,8 +310,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void uploadAdditionalNationalityDocument(DocumentTypeEnum type) {
-    _additionalNationalityProofRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _additionalNationalityProofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updateAdditionalNationalityUploadedStream(bool value) {
@@ -368,8 +324,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void uploadAddressDocument(DocumentTypeEnum type) {
-    _uploadAddressPoofRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadAddressPoofRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updateAddressDocumentField(String value) {
@@ -404,18 +359,15 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void uploadIncomeProof(String image) {
-    _uploadIncomeProofDocumentRequest
-        .safeAdd(FileUploadUseCaseParams(path: image));
+    _uploadIncomeProofDocumentRequest.safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void uploadAddressProof(String image) {
-    _uploadAddressProofDocumentRequest
-        .safeAdd(FileUploadUseCaseParams(path: image));
+    _uploadAddressProofDocumentRequest.safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void uploadOtherNationalityProof(String image) {
-    _uploadOtherNationalityProofDocumentRequest
-        .safeAdd(FileUploadUseCaseParams(path: image));
+    _uploadOtherNationalityProofDocumentRequest.safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void validateFields() {
@@ -426,8 +378,7 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
           additionalNationalityController.text.isNotEmpty) {
         isValid = true;
       }
-    } else if (incomeController.text.isNotEmpty &&
-        addressController.text.isNotEmpty) {
+    } else if (incomeController.text.isNotEmpty && addressController.text.isNotEmpty) {
       isValid = true;
     }
     _showAnimatedButtonSubject.safeAdd(isValid);

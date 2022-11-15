@@ -27,43 +27,36 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   final DeleteBeneficiaryUseCase _deleteBeneficiaryUseCase;
 
-  final UploadBeneficiaryProfileImageUseCase
-      _uploadBeneficiaryProfileImageUseCase;
+  final UploadBeneficiaryProfileImageUseCase _uploadBeneficiaryProfileImageUseCase;
 
   ///controllers and keys
   TextEditingController nickNameController = new TextEditingController();
   TextEditingController ibanController = new TextEditingController();
-  TextEditingController accountHolderNameController =
-      new TextEditingController();
+  TextEditingController accountHolderNameController = new TextEditingController();
   TextEditingController bankNameController = new TextEditingController();
   TextEditingController purposeController = new TextEditingController();
   TextEditingController purposeDetailsController = new TextEditingController();
 
   ///selected image subject
-  final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
   String selectedProfile = '';
 
   ///update beneficiary
-  PublishSubject<UpdateBeneficiaryUseCaseParams> _updateBeneficiaryRequest =
-      PublishSubject();
+  PublishSubject<UpdateBeneficiaryUseCaseParams> _updateBeneficiaryRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _updateBeneficiaryResponse = PublishSubject();
 
-  Stream<Resource<bool>> get updateBeneficiaryStream =>
-      _updateBeneficiaryResponse.stream;
+  Stream<Resource<bool>> get updateBeneficiaryStream => _updateBeneficiaryResponse.stream;
 
   ///get profile photo
-  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
-  Stream<String> get uploadProfilePhotoStream =>
-      _uploadProfilePhotoResponse.stream;
+  Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
   /// show save button visibility
   BehaviorSubject<bool> _showSaveButtonSubject = BehaviorSubject.seeded(false);
@@ -71,20 +64,17 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get showSaveButtonStream => _showSaveButtonSubject.stream;
 
   ///delete beneficiary
-  PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest =
-      PublishSubject();
+  PublishSubject<DeleteBeneficiaryUseCaseParams> _deleteBeneficiaryRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _deleteBeneficiaryResponse = PublishSubject();
 
-  Stream<Resource<bool>> get deleteBeneficiaryStream =>
-      _deleteBeneficiaryResponse.stream;
+  Stream<Resource<bool>> get deleteBeneficiaryStream => _deleteBeneficiaryResponse.stream;
 
   ///upload beneficiary profile image
-  PublishSubject<UploadBeneficiaryProfileImageUseCaseParams>
-      _uploadBeneficiaryProfileImageRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _uploadBeneficiaryProfileImageResponse =
+  PublishSubject<UploadBeneficiaryProfileImageUseCaseParams> _uploadBeneficiaryProfileImageRequest =
       PublishSubject();
+
+  PublishSubject<Resource<bool>> _uploadBeneficiaryProfileImageResponse = PublishSubject();
 
   Stream<Resource<bool>> get uploadBeneficiaryProfileImageStream =>
       _uploadBeneficiaryProfileImageResponse.stream;
@@ -94,11 +84,9 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   ///get purpose
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
-  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-      PublishSubject();
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
 
-  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
-      _getPurposeResponse.stream;
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
   List<Purpose> purposeList = [];
 
@@ -116,8 +104,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
       this._uploadBeneficiaryProfileImageUseCase,
       this._getPurposeUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -126,9 +113,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     });
 
     _updateBeneficiaryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _updateBeneficiaryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _updateBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -141,9 +126,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     });
 
     _deleteBeneficiaryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _deleteBeneficiaryUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _deleteBeneficiaryUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -156,9 +139,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     });
 
     _uploadBeneficiaryProfileImageRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _uploadBeneficiaryProfileImageUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadBeneficiaryProfileImageUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -171,8 +152,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     });
 
     _getPurposeRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPurposeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -182,8 +162,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
-          purposeList
-              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
         }
       });
     });
@@ -191,10 +170,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   void getPurpose(String toAccount, String transferType) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: toAccount,
-        transferType: transferType,
-        detCustomerType: "",
-        type: ""));
+        toAccount: toAccount, transferType: transferType, detCustomerType: "", type: ""));
   }
 
   void updatePurpose(Purpose value) {
@@ -214,8 +190,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void updateBeneficiary() {
@@ -223,9 +198,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
       _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
           beneficiaryId: beneficiary.id!,
           nickName: nickNameController.text,
-          purposeDetails: purposeDetail != null
-              ? purposeDetail!.strCode!
-              : purposeDetailsController.text,
+          purposeDetails: purposeDetail != null ? purposeDetail!.strCode! : purposeDetailsController.text,
           purpose: purpose != null ? purpose!.code! : purposeController.text));
     } else {
       uploadBeneficiaryImageProfile();
@@ -239,8 +212,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void uploadBeneficiaryImageProfile() {
-    _uploadBeneficiaryProfileImageRequest
-        .safeAdd(UploadBeneficiaryProfileImageUseCaseParams(
+    _uploadBeneficiaryProfileImageRequest.safeAdd(UploadBeneficiaryProfileImageUseCaseParams(
       beneficiaryId: beneficiary.id!,
       filePath: selectedProfile,
     ));
@@ -251,20 +223,14 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void setData() {
-    nickNameController.text = Validator.isNotEmptyNull(beneficiary.nickName)
-        ? beneficiary.nickName!
-        : '';
+    nickNameController.text = Validator.isNotEmptyNull(beneficiary.nickName) ? beneficiary.nickName! : '';
     ibanController.text = beneficiary.iban ?? "";
     accountHolderNameController.text = beneficiary.fullName!;
     bankNameController.text = beneficiary.bankName!;
     purposeController.text =
-        Validator.isNotEmptyNull(beneficiary.purposeParentDetails)
-            ? beneficiary.purposeParentDetails!
-            : '';
+        Validator.isNotEmptyNull(beneficiary.purposeParentDetails) ? beneficiary.purposeParentDetails! : '';
     purposeDetailsController.text =
-        Validator.isNotEmptyNull(beneficiary.purposeDetails)
-            ? beneficiary.purposeDetails!
-            : '';
+        Validator.isNotEmptyNull(beneficiary.purposeDetails) ? beneficiary.purposeDetails! : '';
   }
 
   void showSaveButton() {

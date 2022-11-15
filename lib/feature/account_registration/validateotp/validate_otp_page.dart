@@ -12,8 +12,7 @@ class ValidateOtpPage extends BasePage<ValidateOtpViewModel> {
   ValidateOtpPageState createState() => ValidateOtpPageState();
 }
 
-class ValidateOtpPageState
-    extends BaseStatefulPage<ValidateOtpViewModel, ValidateOtpPage>
+class ValidateOtpPageState extends BaseStatefulPage<ValidateOtpViewModel, ValidateOtpPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
   ValidateOtpPageState() : super(subscribeVisibilityEvents: true);
 
@@ -30,8 +29,7 @@ class ValidateOtpPageState
 
   @override
   void onModelReady(ValidateOtpViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override

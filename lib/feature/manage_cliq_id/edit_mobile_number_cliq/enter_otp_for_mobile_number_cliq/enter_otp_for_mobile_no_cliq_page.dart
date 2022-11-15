@@ -7,19 +7,15 @@ import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_ot
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/enter_otp_for_mobile_number_cliq/enter_otp_for_mobile_no_cliq_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class EnterOtpForMobileNumberCliqPage
-    extends BasePage<EnterOtpForMobileNumberCliqPageViewModel> {
+class EnterOtpForMobileNumberCliqPage extends BasePage<EnterOtpForMobileNumberCliqPageViewModel> {
   @override
-  EnterOtpForMobileNumberCliqPageState createState() =>
-      EnterOtpForMobileNumberCliqPageState();
+  EnterOtpForMobileNumberCliqPageState createState() => EnterOtpForMobileNumberCliqPageState();
 }
 
-class EnterOtpForMobileNumberCliqPageState extends BaseStatefulPage<
-        EnterOtpForMobileNumberCliqPageViewModel,
-        EnterOtpForMobileNumberCliqPage>
+class EnterOtpForMobileNumberCliqPageState
+    extends BaseStatefulPage<EnterOtpForMobileNumberCliqPageViewModel, EnterOtpForMobileNumberCliqPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin, CodeAutoFill {
-  EnterOtpForMobileNumberCliqPageState()
-      : super(subscribeVisibilityEvents: true);
+  EnterOtpForMobileNumberCliqPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -34,8 +30,7 @@ class EnterOtpForMobileNumberCliqPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(EnterOtpForMobileNumberCliqPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -44,8 +39,7 @@ class EnterOtpForMobileNumberCliqPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterOtpForMobileNumberCliqPageViewModel model) {
+  Widget buildView(BuildContext context, EnterOtpForMobileNumberCliqPageViewModel model) {
     return EnterOtpForMobileNumberCliqPageView(provideBase());
   }
 

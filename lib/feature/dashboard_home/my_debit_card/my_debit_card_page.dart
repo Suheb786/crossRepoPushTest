@@ -8,7 +8,9 @@ import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view
 
 class MyDebitCardPage extends BasePage<MyDebitCardViewModel> {
   final GetDashboardDataContent cardData;
+
   MyDebitCardPage({required this.cardData});
+
   @override
   MyDebitCardPageState createState() => MyDebitCardPageState();
 }

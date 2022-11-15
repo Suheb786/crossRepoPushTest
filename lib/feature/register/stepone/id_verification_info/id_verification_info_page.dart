@@ -10,9 +10,8 @@ class IdVerificationInfoPage extends BasePage<IdVerificationInfoViewModel> {
   IdVerificationInfoPageState createState() => IdVerificationInfoPageState();
 }
 
-class IdVerificationInfoPageState extends BaseStatefulPage<
-    IdVerificationInfoViewModel,
-    IdVerificationInfoPage> {
+class IdVerificationInfoPageState
+    extends BaseStatefulPage<IdVerificationInfoViewModel, IdVerificationInfoPage> {
   @override
   ProviderBase provideBase() {
     return idVerificationInfoViewModelProvider;
@@ -20,9 +19,7 @@ class IdVerificationInfoPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

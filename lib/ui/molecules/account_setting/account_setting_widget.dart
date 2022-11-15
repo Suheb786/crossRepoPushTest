@@ -23,7 +23,7 @@ class AccountSettingWidget extends StatelessWidget {
       },
       child: Row(
         children: [
-          AppSvg.asset(image!,height: 24.h,width: 24.w),
+          AppSvg.asset(image!, height: 24.h, width: 24.w),
           SizedBox(
             width: 16.w,
           ),

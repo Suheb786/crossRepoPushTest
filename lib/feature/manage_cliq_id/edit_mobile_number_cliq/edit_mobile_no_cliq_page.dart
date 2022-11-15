@@ -10,8 +10,8 @@ class EditMobileNoCliqPage extends BasePage<EditMobileNoCliqPageViewModel> {
   EditMobileNoCliqPageState createState() => EditMobileNoCliqPageState();
 }
 
-class EditMobileNoCliqPageState extends BaseStatefulPage<
-    EditMobileNoCliqPageViewModel, EditMobileNoCliqPage> {
+class EditMobileNoCliqPageState
+    extends BaseStatefulPage<EditMobileNoCliqPageViewModel, EditMobileNoCliqPage> {
   @override
   ProviderBase provideBase() {
     return editMobileNoViewModelProvider;

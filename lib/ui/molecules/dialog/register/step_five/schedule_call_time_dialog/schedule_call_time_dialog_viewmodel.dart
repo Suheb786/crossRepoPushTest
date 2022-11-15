@@ -8,8 +8,7 @@ import 'package:rxdart/rxdart.dart';
 class ScheduleCallTimeViewModel extends BasePageViewModel {
   AvailableTimeSlots? selectedOptionData = AvailableTimeSlots();
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   ///current selected index subject holder
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -18,12 +17,10 @@ class ScheduleCallTimeViewModel extends BasePageViewModel {
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   ///get country list response holder
-  BehaviorSubject<Resource<List<AvailableTimeSlots>>> _optionDataSubject =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<AvailableTimeSlots>>> _optionDataSubject = BehaviorSubject();
 
   ///get country list response
-  Stream<Resource<List<AvailableTimeSlots>>> get optionalDataStream =>
-      _optionDataSubject.stream;
+  Stream<Resource<List<AvailableTimeSlots>>> get optionalDataStream => _optionDataSubject.stream;
 
   List<AvailableTimeSlots>? allOptionalDataList = [];
 
@@ -38,8 +35,7 @@ class ScheduleCallTimeViewModel extends BasePageViewModel {
         element.isSelected = false;
       });
       countryList.elementAt(index).isSelected = true;
-      selectedOptionData =
-          countryList.firstWhere((element) => element.isSelected);
+      selectedOptionData = countryList.firstWhere((element) => element.isSelected);
       _optionDataSubject.safeAdd(Resource.success(data: countryList));
     }
   }

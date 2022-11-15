@@ -7,8 +7,7 @@ import 'package:rxdart/rxdart.dart';
 class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController payFromController = TextEditingController();
-  final GlobalKey<AppTextFieldState> payFromKey =
-      GlobalKey(debugLabel: "payFrom");
+  final GlobalKey<AppTextFieldState> payFromKey = GlobalKey(debugLabel: "payFrom");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);

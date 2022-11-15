@@ -5,15 +5,13 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 
-class SendMoneyViaQrSuccessPage
-    extends BasePage<SendMoneyViaQrSuccessPageViewModel> {
+class SendMoneyViaQrSuccessPage extends BasePage<SendMoneyViaQrSuccessPageViewModel> {
   @override
-  SendMoneyViaQrSuccessPageState createState() =>
-      SendMoneyViaQrSuccessPageState();
+  SendMoneyViaQrSuccessPageState createState() => SendMoneyViaQrSuccessPageState();
 }
 
-class SendMoneyViaQrSuccessPageState extends BaseStatefulPage<
-    SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQrSuccessPage> {
+class SendMoneyViaQrSuccessPageState
+    extends BaseStatefulPage<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQrSuccessPage> {
   @override
   ProviderBase provideBase() {
     return sendMoneyQrSuccessViewModelProvider;
@@ -25,8 +23,7 @@ class SendMoneyViaQrSuccessPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, SendMoneyViaQrSuccessPageViewModel model) {
+  Widget buildView(BuildContext context, SendMoneyViaQrSuccessPageViewModel model) {
     return SendMoneyViaQrSuccessPageView(provideBase());
   }
 }

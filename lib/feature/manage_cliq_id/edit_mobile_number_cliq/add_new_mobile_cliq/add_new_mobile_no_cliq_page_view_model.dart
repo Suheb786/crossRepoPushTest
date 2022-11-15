@@ -20,20 +20,16 @@ class AddNewMobileNumberCliqPageViewModel extends BasePageViewModel {
   /// controller
   final TextEditingController mobileController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> mobileKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  final GlobalKey<AppTextFieldState> mobileKey = GlobalKey(debugLabel: "mobileNumber");
 
   ///add new mobile number request subject holder
-  PublishSubject<AddNewMobileNumberCliqUseCaseParams>
-      _addNewMobileNumberCliqRequest = PublishSubject();
+  PublishSubject<AddNewMobileNumberCliqUseCaseParams> _addNewMobileNumberCliqRequest = PublishSubject();
 
   ///add new mobile number response holder
-  PublishSubject<Resource<bool>> _addNewMobileNumberCliqResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _addNewMobileNumberCliqResponse = PublishSubject();
 
   ///add new mobile number stream
-  Stream<Resource<bool>> get addNewMobileNumberCliqStream =>
-      _addNewMobileNumberCliqResponse.stream;
+  Stream<Resource<bool>> get addNewMobileNumberCliqStream => _addNewMobileNumberCliqResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -46,31 +42,25 @@ class AddNewMobileNumberCliqPageViewModel extends BasePageViewModel {
   String mobileNumberWithCode = '';
 
   ///get allowed code country request holder
-  PublishSubject<GetAllowedCodeCountryListUseCaseParams>
-      _getAllowedCountryRequest = PublishSubject();
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams> _getAllowedCountryRequest = PublishSubject();
 
   ///get allowed code country response holder
-  PublishSubject<Resource<AllowedCountryListResponse>>
-      _getAllowedCountryResponse = PublishSubject();
+  PublishSubject<Resource<AllowedCountryListResponse>> _getAllowedCountryResponse = PublishSubject();
 
   ///get allowed code country response stream
   Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
       _getAllowedCountryResponse.stream;
 
   ///selected country response holder
-  BehaviorSubject<CountryData> _selectedCountryResponse =
-      BehaviorSubject.seeded(CountryData());
+  BehaviorSubject<CountryData> _selectedCountryResponse = BehaviorSubject.seeded(CountryData());
 
   ///get allowed code country response stream
-  Stream<CountryData> get getSelectedCountryStream =>
-      _selectedCountryResponse.stream;
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
-  AddNewMobileNumberCliqPageViewModel(this._addNewMobileNumberCliqUseCase,
-      this._allowedCodeCountryListUseCase) {
+  AddNewMobileNumberCliqPageViewModel(
+      this._addNewMobileNumberCliqUseCase, this._allowedCodeCountryListUseCase) {
     _addNewMobileNumberCliqRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _addNewMobileNumberCliqUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _addNewMobileNumberCliqUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -83,9 +73,7 @@ class AddNewMobileNumberCliqPageViewModel extends BasePageViewModel {
     });
 
     _getAllowedCountryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _allowedCodeCountryListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _allowedCodeCountryListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAllowedCountryResponse.safeAdd(event);
@@ -109,8 +97,7 @@ class AddNewMobileNumberCliqPageViewModel extends BasePageViewModel {
     mobileNumberWithCode = '+${countryData.phoneCode} ${mobileController.text}';
     mobileNumber = mobileController.text;
     _addNewMobileNumberCliqRequest.safeAdd(AddNewMobileNumberCliqUseCaseParams(
-        mobileCode: '00${countryData.phoneCode}',
-        mobileNumber: mobileController.text));
+        mobileCode: '00${countryData.phoneCode}', mobileNumber: mobileController.text));
   }
 
   void validate() {

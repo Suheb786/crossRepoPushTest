@@ -6,8 +6,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepTwoViewModel extends BasePageViewModel {
-  final SwiperController registrationStepTwoPageController =
-      new SwiperController();
+  final SwiperController registrationStepTwoPageController = new SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 
@@ -15,19 +14,16 @@ class RegisterStepTwoViewModel extends BasePageViewModel {
 
   PublishSubject<List<Widget>> _registrationStepTwoPage = PublishSubject();
 
-  Stream<List<Widget>> get registrationStepTwoPage =>
-      _registrationStepTwoPage.stream;
+  Stream<List<Widget>> get registrationStepTwoPage => _registrationStepTwoPage.stream;
 
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void updatePage(int index) {

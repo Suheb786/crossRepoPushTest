@@ -13,9 +13,6 @@ class ScheduleCallTimeDialog {
       String? title}) {
     AppDialog.show(mContext,
         builder: (context) => ScheduleCallTimeDialogView(
-            onDismissed: onDismissed,
-            data: data!,
-            onSelected: onSelected,
-            title: title));
+            onDismissed: onDismissed, data: data!, onSelected: onSelected, title: title));
   }
 }

@@ -6,8 +6,7 @@ import 'nature_special_needs_dialog_view.dart';
 class NatureSpecialNeedsDialog {
   NatureSpecialNeedsDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed, Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => NatureSpecialNeedsDialogView(

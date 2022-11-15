@@ -11,21 +11,17 @@ class ChangeDeviceSuccessPageViewModel extends BasePageViewModel {
   final CheckKYCStatusUseCase _kycStatusUseCase;
 
   ///kyc status request
-  PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest =
-      PublishSubject();
+  PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest = PublishSubject();
 
   ///kyc status response
-  PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse =
-      PublishSubject();
+  PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse = PublishSubject();
 
   ///kyc status response stream
-  Stream<Resource<CheckKycResponse>> get kycStatusStream =>
-      _kycStatusResponse.stream;
+  Stream<Resource<CheckKycResponse>> get kycStatusStream => _kycStatusResponse.stream;
 
   ChangeDeviceSuccessPageViewModel(this._kycStatusUseCase) {
     _kycStatusRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _kycStatusUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _kycStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

@@ -12,18 +12,14 @@ import 'package:rxdart/subjects.dart';
 class SplashViewModel extends BasePageViewModel {
   final CheckDeviceCompatibilityUsecase _checkDeviceCompatibilityUsecase;
 
-  PublishSubject<CheckDeviceCompatibilityUsecaseParams>
-      _checkDeviceCompatibilityRequest = PublishSubject();
+  PublishSubject<CheckDeviceCompatibilityUsecaseParams> _checkDeviceCompatibilityRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _checkDeviceCompatibilityResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _checkDeviceCompatibilityResponse = PublishSubject();
 
-  Stream<Resource<bool>> get isDeviceCompatible =>
-      _checkDeviceCompatibilityResponse.stream;
+  Stream<Resource<bool>> get isDeviceCompatible => _checkDeviceCompatibilityResponse.stream;
 
   ///linear progress bar progress holder subject
-  final BehaviorSubject<double> _splashProgressSubject =
-      BehaviorSubject.seeded(0.0);
+  final BehaviorSubject<double> _splashProgressSubject = BehaviorSubject.seeded(0.0);
 
   Stream<double> get splashProgressStream => _splashProgressSubject.stream;
 
@@ -36,9 +32,7 @@ class SplashViewModel extends BasePageViewModel {
 
   SplashViewModel(this._checkDeviceCompatibilityUsecase) {
     _checkDeviceCompatibilityRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _checkDeviceCompatibilityUsecase.execute(params: value))
+      RequestManager(value, createCall: () => _checkDeviceCompatibilityUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         _checkDeviceCompatibilityResponse.safeAdd(event);
@@ -64,8 +58,7 @@ class SplashViewModel extends BasePageViewModel {
 
   /// Check device compatibility
   void checkDeviceCompatibility() {
-    _checkDeviceCompatibilityRequest
-        .safeAdd(CheckDeviceCompatibilityUsecaseParams());
+    _checkDeviceCompatibilityRequest.safeAdd(CheckDeviceCompatibilityUsecaseParams());
   }
 
   @override

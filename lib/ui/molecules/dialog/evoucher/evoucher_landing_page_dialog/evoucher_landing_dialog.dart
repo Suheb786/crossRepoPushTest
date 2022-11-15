@@ -3,7 +3,6 @@ import 'package:neo_bank/ui/molecules/app_dialog.dart';
 
 import 'evoucher_landing_dialog_view.dart';
 
-
 class EvoucherDialog {
   EvoucherDialog._();
 

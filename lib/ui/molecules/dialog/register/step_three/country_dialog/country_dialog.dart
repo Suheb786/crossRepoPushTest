@@ -7,12 +7,10 @@ class CountryDialog {
   CountryDialog._();
 
   static show(BuildContext mContext,
-      {Function? onDismissed,
-      Function(CountryData)? onSelected,
-      String? title}) {
+      {Function? onDismissed, Function(CountryData)? onSelected, String? title}) {
     AppDialog.show(mContext,
         isDismissible: false,
-        builder: (context) => CountryDialogView(
-            onDismissed: onDismissed, onSelected: onSelected, title: title));
+        builder: (context) =>
+            CountryDialogView(onDismissed: onDismissed, onSelected: onSelected, title: title));
   }
 }

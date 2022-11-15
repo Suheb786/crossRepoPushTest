@@ -14,8 +14,7 @@ class CalendarDialogViewModel extends BasePageViewModel {
   Stream<DateParameters> get dateParamsStream => _dateParamsSubject.stream;
 
   void updateSelectedDate(DateTime selectedDate, DateTime focusedDate) {
-    _dateParamsSubject.safeAdd(
-        DateParameters(focusedDay: focusedDate, selectedDay: selectedDate));
+    _dateParamsSubject.safeAdd(DateParameters(focusedDay: focusedDate, selectedDay: selectedDate));
   }
 
   @override

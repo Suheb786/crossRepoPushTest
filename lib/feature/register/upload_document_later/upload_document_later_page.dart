@@ -7,12 +7,11 @@ import 'package:neo_bank/feature/register/upload_document_later/upload_document_
 
 class UploadDocumentsLaterPage extends BasePage<UploadDocumentsLaterViewModel> {
   @override
-  UploadDocumentsLaterPageState createState() =>
-      UploadDocumentsLaterPageState();
+  UploadDocumentsLaterPageState createState() => UploadDocumentsLaterPageState();
 }
 
-class UploadDocumentsLaterPageState extends BaseStatefulPage<
-    UploadDocumentsLaterViewModel, UploadDocumentsLaterPage> {
+class UploadDocumentsLaterPageState
+    extends BaseStatefulPage<UploadDocumentsLaterViewModel, UploadDocumentsLaterPage> {
   @override
   ProviderBase provideBase() {
     return uploadDocumentsLaterPageViewModelProvider;

@@ -8,8 +8,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepFourViewModel extends BasePageViewModel {
-  final SwiperController registrationStepFourPageController =
-      SwiperController();
+  final SwiperController registrationStepFourPageController = SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 
@@ -28,8 +27,7 @@ class RegisterStepFourViewModel extends BasePageViewModel {
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void moveToPage(int index) {
@@ -39,8 +37,7 @@ class RegisterStepFourViewModel extends BasePageViewModel {
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void setTaxPayerTypeEnum(TaxPayerTypeEnum taxPayerTypeEnum) {

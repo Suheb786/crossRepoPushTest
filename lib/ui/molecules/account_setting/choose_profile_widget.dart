@@ -8,7 +8,8 @@ import 'package:neo_bank/ui/molecules/bottom_sheet/upload_profile/upload_profile
 class ChooseProfileWidget {
   ChooseProfileWidget._();
 
-  static Future show(BuildContext context, {
+  static Future show(
+    BuildContext context, {
     required Function()? onCameraTap,
     required Function()? onGalleryTap,
     required Function()? onRemoveTap,
@@ -17,21 +18,21 @@ class ChooseProfileWidget {
   }) async {
     return Platform.isAndroid
         ? showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return UploadProfileBottomSheetWidget(
-            title: title,
-            onCameraTap: onCameraTap,
-            onCancelTap: onCancelled,
-            onRemoveTap: onRemoveTap,
-            onPhotoLibraryTap: onGalleryTap,
-          );
-        })
+            context: context,
+            builder: (context) {
+              return UploadProfileBottomSheetWidget(
+                title: title,
+                onCameraTap: onCameraTap,
+                onCancelTap: onCancelled,
+                onRemoveTap: onRemoveTap,
+                onPhotoLibraryTap: onGalleryTap,
+              );
+            })
         : UploadProfileBottomSheet.show(context,
-        onCancel: onCancelled,
-        onTakePhoto: onCameraTap,
-        onGalleryTap: onGalleryTap,
-        onRemoveTap: onRemoveTap,
-        title: title);
+            onCancel: onCancelled,
+            onTakePhoto: onCameraTap,
+            onGalleryTap: onGalleryTap,
+            onRemoveTap: onRemoveTap,
+            title: title);
   }
 }

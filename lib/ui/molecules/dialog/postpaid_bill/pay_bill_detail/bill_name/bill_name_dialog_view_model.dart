@@ -19,10 +19,12 @@ class PayBillDialogViewModel extends BasePageViewModel {
   }
 
   PublishSubject<List<String>> _searchBillNameSubject = PublishSubject();
+
   Stream<List<String>> get searchBillNameStream => _searchBillNameSubject.stream;
 
   List<String> searchList = [];
   List<String> billNameList = [];
+
   void searchBillName(String searchText) {
     searchList.clear();
     if (searchText.isNotEmpty) {

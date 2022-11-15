@@ -12,23 +12,20 @@ import 'package:rxdart/rxdart.dart';
 
 class RelationshipWithCardholderPageViewModel extends BasePageViewModel {
   final RelationshipWithCardholderUseCase _relationshipWithCardHolderUseCase;
-  final GetCreditCardRelationshipListUseCase
-      _getCreditCardRelationshipListUseCase;
+  final GetCreditCardRelationshipListUseCase _getCreditCardRelationshipListUseCase;
 
   TextEditingController relationshipController = TextEditingController();
 
-  final GlobalKey<AppTextFieldState> relationshipKey =
-      GlobalKey(debugLabel: "relationship");
+  final GlobalKey<AppTextFieldState> relationshipKey = GlobalKey(debugLabel: "relationship");
 
   List<String> relationship = [];
 
   /// relationship with card holder request subject holder
-  PublishSubject<RelationshipWithCardholderUseCaseParams>
-      _relationshipWithCardHolderRequest = PublishSubject();
+  PublishSubject<RelationshipWithCardholderUseCaseParams> _relationshipWithCardHolderRequest =
+      PublishSubject();
 
   /// relationship with card holder response subject holder
-  PublishSubject<Resource<bool>> _relationshipWithCardHolderResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _relationshipWithCardHolderResponse = PublishSubject();
 
   Stream<Resource<bool>> get relationshipWithCardHolderResponseStream =>
       _relationshipWithCardHolderResponse.stream;
@@ -39,24 +36,20 @@ class RelationshipWithCardholderPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   /// get relationship list holder request subject holder
-  PublishSubject<GetCreditCardRelationshipListUseCaseParams>
-      _getCreditCardRelationshipListRequest = PublishSubject();
+  PublishSubject<GetCreditCardRelationshipListUseCaseParams> _getCreditCardRelationshipListRequest =
+      PublishSubject();
 
   /// get relationship list response subject holder
-  PublishSubject<Resource<CreditCardRelationshipResponse>>
-      _getCreditCardRelationshipListResponse = PublishSubject();
+  PublishSubject<Resource<CreditCardRelationshipResponse>> _getCreditCardRelationshipListResponse =
+      PublishSubject();
 
-  Stream<Resource<CreditCardRelationshipResponse>>
-      get getCreditCardRelationshipListResponseStream =>
-          _getCreditCardRelationshipListResponse.stream;
+  Stream<Resource<CreditCardRelationshipResponse>> get getCreditCardRelationshipListResponseStream =>
+      _getCreditCardRelationshipListResponse.stream;
 
   RelationshipWithCardholderPageViewModel(
-      this._relationshipWithCardHolderUseCase,
-      this._getCreditCardRelationshipListUseCase) {
+      this._relationshipWithCardHolderUseCase, this._getCreditCardRelationshipListUseCase) {
     _relationshipWithCardHolderRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _relationshipWithCardHolderUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _relationshipWithCardHolderUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -68,9 +61,7 @@ class RelationshipWithCardholderPageViewModel extends BasePageViewModel {
     });
 
     _getCreditCardRelationshipListRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getCreditCardRelationshipListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getCreditCardRelationshipListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -88,9 +79,8 @@ class RelationshipWithCardholderPageViewModel extends BasePageViewModel {
   }
 
   void relationshipWithCardHolder() {
-    _relationshipWithCardHolderRequest.safeAdd(
-        RelationshipWithCardholderUseCaseParams(
-            relationship: relationshipController.text));
+    _relationshipWithCardHolderRequest
+        .safeAdd(RelationshipWithCardholderUseCaseParams(relationship: relationshipController.text));
   }
 
   void validate() {
@@ -102,8 +92,7 @@ class RelationshipWithCardholderPageViewModel extends BasePageViewModel {
   }
 
   void getCreditCardRelationship({required String cardId}) {
-    _getCreditCardRelationshipListRequest
-        .safeAdd(GetCreditCardRelationshipListUseCaseParams(cardId: cardId));
+    _getCreditCardRelationshipListRequest.safeAdd(GetCreditCardRelationshipListUseCaseParams(cardId: cardId));
   }
 
   @override

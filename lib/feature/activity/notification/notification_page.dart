@@ -10,8 +10,7 @@ class NotificationPage extends BasePage<NotificationViewModel> {
   NotificationPageState createState() => NotificationPageState();
 }
 
-class NotificationPageState
-    extends BaseStatefulPage<NotificationViewModel, NotificationPage>
+class NotificationPageState extends BaseStatefulPage<NotificationViewModel, NotificationPage>
     with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {

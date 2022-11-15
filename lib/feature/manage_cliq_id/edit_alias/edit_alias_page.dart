@@ -10,8 +10,7 @@ class EditAliasPage extends BasePage<EditAliasPageViewModel> {
   EditAliasPageState createState() => EditAliasPageState();
 }
 
-class EditAliasPageState
-    extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
+class EditAliasPageState extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
   @override
   ProviderBase provideBase() {
     return editAliasViewModelProvider;
@@ -21,6 +20,16 @@ class EditAliasPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
+
+  /* @override
+  PreferredSizeWidget? buildAppbar() {
+    return PreferredSize(preferredSize: Size(double.maxFinite, 96), child: Container());
+  }
+
+  @override
+  bool extendBodyBehindAppBar() {
+    return true;
+  }*/
 
   @override
   Widget buildView(BuildContext context, EditAliasPageViewModel model) {
