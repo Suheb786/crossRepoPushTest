@@ -48,7 +48,7 @@ Provider.autoDispose<ValidatePrePaidUseCase>(
     ref.read(billPaymentRepoProvider),
   ),
 );
-final postPaidBillEnquiryUseCaseProvide =
+final postPaidBillEnquiryUseCaseProvider =
 Provider.autoDispose<PostPaidBillInquiryUseCase>(
       (ref) => PostPaidBillInquiryUseCase(
     ref.read(billPaymentRepoProvider),

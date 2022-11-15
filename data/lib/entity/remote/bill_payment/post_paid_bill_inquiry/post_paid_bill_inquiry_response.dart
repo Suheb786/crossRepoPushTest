@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/bill_payment/post_paid_bill_inquiry/post_paid_bill_inquiry_list_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/bill_payments/post_paid_bill_inquiry/post_paid_bill_inquiry.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -8,23 +9,11 @@ part 'post_paid_bill_inquiry_response.g.dart';
 @JsonSerializable()
 class PostPaidBillInquiryResponse extends BaseLayerDataTransformer<
     PostPaidBillInquiryResponse, PostPaidBillInquiry> {
-  @JsonKey(name: "content")
-  final Map<String, dynamic>? content;
+  @JsonKey(name: "response")
+  final ResponseEntity? response;
 
- /* @JsonKey(name: "status")
-  final Map<String, dynamic>? status;
-
-  @JsonKey(name: "requestDateTime")
-  final String? requestDateTime;
-
-  @JsonKey(name: "logId")
-  final String? logId;
-*/
   PostPaidBillInquiryResponse({
-    this.content,
-    /*this.status,
-    this.logId,
-    this.requestDateTime,*/
+    this.response,
   });
 
   factory PostPaidBillInquiryResponse.fromJson(Map<String, dynamic> json) =>
@@ -36,7 +25,7 @@ class PostPaidBillInquiryResponse extends BaseLayerDataTransformer<
   PostPaidBillInquiry transform() {
     return PostPaidBillInquiry(
       content: PostPaidBillInquiryListListEntity.fromJson(
-        this.content ?? Map(),
+        this.response?.content ?? Map(),
       ).transform(),
       /*statusModel: StatusEntity.fromJson(
         this.status ?? Map(),

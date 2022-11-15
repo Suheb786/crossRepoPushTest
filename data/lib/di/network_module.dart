@@ -174,7 +174,8 @@ var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>((ref) =>
 
 /// Bill payment DS provider
 final billPaymentDSProvider = Provider<BillPaymentRemoteDS>(
-      (ref) => BillPaymentRemoteDSImpl(
+  (ref) => BillPaymentRemoteDSImpl(
     ref.read(apiServiceProvider),
+    ref.read(deviceInfoHelperProvider),
   ),
 );

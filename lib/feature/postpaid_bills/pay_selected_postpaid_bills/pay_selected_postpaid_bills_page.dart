@@ -1,3 +1,5 @@
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,20 +8,24 @@ import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pay_selec
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 
-class PaySelectedBillsPostPaidBillsPage extends BasePage<PaySelectedBillsPostPaidBillsPageViewModel> {
+class PaySelectedBillsPostPaidBillsPage
+    extends BasePage<PaySelectedBillsPostPaidBillsPageViewModel> {
   final PaySelectedBillsPostPaidBillsPageArguments arguments;
 
   PaySelectedBillsPostPaidBillsPage(this.arguments);
 
   @override
-  PaySelectedBillsPostPaidBillsPageState createState() => PaySelectedBillsPostPaidBillsPageState();
+  PaySelectedBillsPostPaidBillsPageState createState() =>
+      PaySelectedBillsPostPaidBillsPageState();
 }
 
-class PaySelectedBillsPostPaidBillsPageState
-    extends BaseStatefulPage<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPage> {
+class PaySelectedBillsPostPaidBillsPageState extends BaseStatefulPage<
+    PaySelectedBillsPostPaidBillsPageViewModel,
+    PaySelectedBillsPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
-    return paySelectedBillsPostPaidBillsPageViewModelProvider.call(widget.arguments);
+    return paySelectedBillsPostPaidBillsPageViewModelProvider
+        .call(widget.arguments);
   }
 
   @override
@@ -28,14 +34,15 @@ class PaySelectedBillsPostPaidBillsPageState
   }
 
   @override
-  Widget buildView(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+  Widget buildView(
+      BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return PaySelectedBillsPostPaidBillsPageView(provideBase());
   }
 
   @override
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
     model.arguments.noOfSelectedBills.forEach((element) {
-      model.totalAmt.add(element.billAmtDue);
+      model.totalAmt.add(double.parse(element.dueAmount ?? "0.0"));
     });
     super.onModelReady(model);
   }
@@ -44,7 +51,9 @@ class PaySelectedBillsPostPaidBillsPageState
 class PaySelectedBillsPostPaidBillsPageArguments {
   final String nosOfBills;
   final double amt;
-  final List<PallAllPostPaidBillsData> noOfSelectedBills;
+  final List<GetPostpaidBillerListModelData> noOfSelectedBills;
+  List<PostpaidBillInquiry> postPaidRequestListJson;
 
-  PaySelectedBillsPostPaidBillsPageArguments(this.nosOfBills, this.amt, this.noOfSelectedBills);
+  PaySelectedBillsPostPaidBillsPageArguments(this.nosOfBills, this.amt,
+      this.noOfSelectedBills, this.postPaidRequestListJson);
 }

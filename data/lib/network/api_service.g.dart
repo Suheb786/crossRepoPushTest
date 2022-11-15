@@ -24,7 +24,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
                 method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(
-                _dio.options, 'https://10.6.13.1:2181/api/auth/CheckUserName',
+                _dio.options, 'https://10.6.13.1:2186/api/auth/CheckUserName',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -43,7 +43,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://10.6.13.1:2181/api/auth/CheckUserNameMobile',
+                    'https://10.6.13.1:2186/api/auth/CheckUserNameMobile',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -617,7 +617,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://10.6.13.1:2181/api/Country/GetAllowedCode',
+                    'https://10.6.13.1:2186/api/Country/GetAllowedCode',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
@@ -2548,13 +2548,15 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories() async {
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(
+      request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<GetBillCategoriesEntity>>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BillPayment/GetBillCategories',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
@@ -2565,14 +2567,15 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
-      getPostpaidBillerListData() async {
+      getPostpaidBillerListData(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<GetPostpaidBillerListEntityResponse>>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/BillPayment/GetPostpaidBillerList',
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/BillPayment/AccountInquiry',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetPostpaidBillerListEntityResponse.fromJson(_result.data!);
@@ -2582,13 +2585,14 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>>
-      getPrepaidBillerListData() async {
+      getPrepaidBillerListData(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<GetPrepaidBillerListEntityResponse>>(
-            Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BillPayment/GetPrepaidBillerList',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
@@ -2661,7 +2665,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<PostPaidBillInquiryResponse>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/BillPayment/PostpaidBillInquiry',
+                .compose(_dio.options, '/BillPayment/BillInquiryPostpaid',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PostPaidBillInquiryResponse.fromJson(_result.data!);
@@ -2769,7 +2773,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<BaseResponse>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/BillPayment/RemoveCustomerBilling',
+                .compose(_dio.options, '/BillPayment/RemoveCustomerBillingAPI',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = BaseResponse.fromJson(_result.data!);

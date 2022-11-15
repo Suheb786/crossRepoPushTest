@@ -870,16 +870,16 @@ abstract class ApiService {
 
   ///---------------- bill payment ------------------
 
-  @GET("/BillPayment/GetBillCategories")
-  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories();
+  @POST("/BillPayment/GetBillCategories")
+  Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(@Body() BaseRequest request);
 
-  @GET("/BillPayment/AccountInquiry")
+  @POST("/BillPayment/AccountInquiry")
   Future<HttpResponse<GetPostpaidBillerListEntityResponse>>
-      getPostpaidBillerListData();
+      getPostpaidBillerListData(@Body() BaseRequest request);
 
-  @GET("/BillPayment/GetPrepaidBillerList")
+  @POST("/BillPayment/GetPrepaidBillerList")
   Future<HttpResponse<GetPrepaidBillerListEntityResponse>>
-      getPrepaidBillerListData();
+      getPrepaidBillerListData(@Body() BaseRequest request);
 
   @POST("/BillPayment/PayPrepaidBill")
   Future<HttpResponse<PayPrePaidResponse>> payPrePaidBillData(
@@ -895,7 +895,7 @@ abstract class ApiService {
     @Body() ValidatePrePaidBillRequestEntity ecGetRegisterRequest,
   );
 
-  @POST("/BillPayment/PostpaidBillInquiry")
+  @POST("/BillPayment/BillInquiryPostpaid")
   Future<HttpResponse<PostPaidBillInquiryResponse>> postPaidBillInquiry(
     @Body() PostPaidBillInquiryRequestEntity postPaidBillInquiryRequestEntity,
   );
@@ -927,7 +927,7 @@ abstract class ApiService {
     @Body() RemovePrepaidBillerRequest removePrepaidBillerRequest,
   );
 
-  @POST("/BillPayment/RemoveCustomerBilling")
+  @POST("/BillPayment/RemoveCustomerBillingAPI")
   Future<HttpResponse<BaseResponse>> removeCustomerBilling(
       @Body() RemoveCustomerBillingRequest removeCustomerBillingRequest,
       );

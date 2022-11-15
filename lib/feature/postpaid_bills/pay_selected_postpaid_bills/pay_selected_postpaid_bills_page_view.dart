@@ -22,9 +22,11 @@ class PaySelectedBillsPostPaidBillsPageView
   PaySelectedBillsPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
+  Widget build(
+      BuildContext context, PaySelectedBillsPostPaidBillsPageViewModel model) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
+      padding: EdgeInsetsDirectional.only(
+          top: 96.0.h, bottom: 56.0.h, start: 24.w, end: 24.w),
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
           if (details.primaryVelocity!.isNegative) {
@@ -85,21 +87,28 @@ class PaySelectedBillsPostPaidBillsPageView
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return SelectedBillsToPaidWidget(
-                                billName: model.arguments.noOfSelectedBills[index].billName,
-                                billType: model.arguments.noOfSelectedBills[index].billType,
+                                billName: model.arguments
+                                        .noOfSelectedBills[index].nickName ??
+                                    "",
+                                billType: model.arguments
+                                    .noOfSelectedBills[index].billerNameEN ?? "",
                                 itemCount: (index + 1).toString(),
                                 onChanged: (value) {
-                                  model.newAmtEnter(index, double.parse(value));
+                                  model.newAmtEnter(index, value);
                                 },
-                                billAmtDue: model.arguments.noOfSelectedBills[index].billAmtDue.toString(),
+                                billAmtDue: model.arguments
+                                    .noOfSelectedBills[index].dueAmount ?? "0.0"
+                                    .toString(),
                               );
                             },
                             separatorBuilder: (context, index) {
                               return AppDivider();
                             },
-                            itemCount: model.arguments.noOfSelectedBills.length),
+                            itemCount:
+                                model.arguments.noOfSelectedBills.length),
                         Padding(
-                          padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
+                          padding: EdgeInsetsDirectional.only(
+                              start: 24.w, top: 32.h, bottom: 16.h),
                           child: Align(
                             alignment: AlignmentDirectional.topStart,
                             child: Text(
@@ -125,7 +134,8 @@ class PaySelectedBillsPostPaidBillsPageView
                                   height: 16.h,
                                   width: 16.w,
                                   padding: EdgeInsets.only(right: 8.w),
-                                  child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                      color: AppColor.dark_gray_1));
                             },
                           ),
                         ),
@@ -139,8 +149,10 @@ class PaySelectedBillsPostPaidBillsPageView
                             return GestureDetector(
                               onHorizontalDragEnd: (details) {
                                 if (details.primaryVelocity!.isNegative) {
-                                  Navigator.pushNamed(context, RoutePaths.PostPaidBillsSuccessPage,
-                                      arguments: PostPaidBillsSuccessPageArguments(
+                                  Navigator.pushNamed(context,
+                                      RoutePaths.PostPaidBillsSuccessPage,
+                                      arguments:
+                                          PostPaidBillsSuccessPageArguments(
                                         model.arguments.noOfSelectedBills,
                                         data.toString(),
                                       ));

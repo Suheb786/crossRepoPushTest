@@ -110,7 +110,7 @@ class GetPostpaidBillerListEntityData extends BaseLayerDataTransformer<
       serviceTypeDescEN: this.serviceTypeDescEN,
       serviceTypeAR: this.serviceTypeAR,
       dueAmount: this.dueAmount ?? "0",
-      dueDate: this.dueDate,
+      dueDate: this.dueDate ?? "0.0",
       fees: this.fees ?? "0.0",
       status: this.status,
       iconCode: this.iconCode,

@@ -1,3 +1,4 @@
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -36,7 +37,7 @@ class PostPaidBillsSuccessPageState
 class PostPaidBillsSuccessPageArguments {
   final String amt;
 
-  final List<PallAllPostPaidBillsData> noOfSelectedBills;
+  final List<GetPostpaidBillerListModelData> noOfSelectedBills;
 
   PostPaidBillsSuccessPageArguments(
     this.noOfSelectedBills,

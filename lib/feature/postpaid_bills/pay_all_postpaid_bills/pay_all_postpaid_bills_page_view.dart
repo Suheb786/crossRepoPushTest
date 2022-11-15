@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model.dart';
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -16,18 +19,20 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
+class PayAllPostPaidBillsPageView
+    extends BasePageViewWidget<PayAllPostPaidBillsPageViewModel> {
   PayAllPostPaidBillsPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
-    return AppStreamBuilder<List<PallAllPostPaidBillsData>>(
+    return AppStreamBuilder<List<GetPostpaidBillerListModelData>>(
       stream: model.itemSelectedStream,
-      initialData: model.payAllPostPaidBillsDataList,
+      initialData: model.payPostPaidBillsDataList,
       dataBuilder: (BuildContext context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
@@ -41,10 +46,12 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: AppColor.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16))),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 24.0.w, right: 24.0.w, top: 8.0.h, bottom: 56.h),
+                  padding: EdgeInsets.only(
+                      left: 24.0.w, right: 24.0.w, top: 8.0.h, bottom: 56.h),
                   child: Column(
                     children: [
                       Container(
@@ -52,7 +59,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                           height: 4.h,
                           decoration: BoxDecoration(
                               color: AppColor.whiteGrey,
-                              borderRadius: BorderRadius.all(Radius.circular(4.0)))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)))),
                       SizedBox(
                         height: 24.0.h,
                       ),
@@ -67,7 +75,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               height: 16.h,
                               width: 16.w,
                               padding: EdgeInsets.only(right: 8.w),
-                              child: AppSvg.asset(AssetUtils.search, color: AppColor.dark_gray_1));
+                              child: AppSvg.asset(AssetUtils.search,
+                                  color: AppColor.dark_gray_1));
                         },
                       ),
                       Expanded(
@@ -78,6 +87,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               itemBuilder: (context, index) {
                                 return InkWell(
                                   onTap: () {
+
                                     model.selectedItem(index);
                                   },
                                   child: Slidable(
@@ -90,23 +100,42 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
                                           onPressed: (context1) => {
                                             InformationDialog.show(context,
-                                                image: AssetUtils.deleteBlackIcon,
+                                                image:
+                                                    AssetUtils.deleteBlackIcon,
                                                 isSwipeToCancel: false,
                                                 title: S.of(context).areYouSure,
                                                 descriptionWidget: Text(
-                                                  S.of(context).doYouReallyDeleteSavedBills,
+                                                  S
+                                                      .of(context)
+                                                      .doYouReallyDeleteSavedBills,
                                                   style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
+                                                      fontFamily:
+                                                          StringUtils.appFont,
                                                       fontSize: 14.t,
-                                                      fontWeight: FontWeight.w400),
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                                 ), onDismissed: () {
                                               Navigator.pop(context);
                                             }, onSelected: () {
                                               Navigator.pop(context);
-                                              model.removeItem(index);
+                                              model.removeCustomerBilling(
+                                                  model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .billerCode,
+                                                  model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .billingNo,
+                                                  model
+                                                      .payPostPaidBillsDataList[
+                                                          index]
+                                                      .serviceType);
 
-                                              model.showSuccessToast(
-                                                  'BILL UPDATED\nYour bill has been removed.');
+                                              // model.removeItem(index);
+
+                                              // model.showSuccessToast(
+                                              //     'BILL UPDATED\nYour bill has been removed.');
                                             })
                                           },
                                           backgroundColor: AppColor.dark_brown,
@@ -116,12 +145,15 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                                       ],
                                     ),
                                     child: PayBillsMultipleListSelectionWidget(
-                                      icon: data![index].icon,
-                                      billType: data[index].billType,
-                                      billAmtDue: data[index].billAmtDue.toString(),
-                                      isSelected: data[index].isSelected,
-                                      billName: data[index].billName,
-                                      paidBillsPayTypeOptionEnum: model.arguments.paidBillsPayTypeOptionEnum,
+                                      icon: data![index].iconCode ?? "",
+                                      biller: data[index].billerNameEN ?? "",
+                                      billAmtDue:
+                                          data[index].dueAmount.toString(),
+                                      isSelected:
+                                          data[index].isChecked ?? false,
+                                      billerName: data[index].nickName ?? "",
+                                      paidBillsPayTypeOptionEnum: model
+                                          .arguments.paidBillsPayTypeOptionEnum,
                                     ),
                                   ),
                                 );
@@ -129,7 +161,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               separatorBuilder: (context, index) {
                                 return AppDivider();
                               },
-                              itemCount: model.payAllPostPaidBillsDataList.length),
+                              itemCount: model.payPostPaidBillsDataList.length),
                         ),
                       ),
                     ],
@@ -137,7 +169,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                 ),
               ),
               Visibility(
-                visible: data!.any((item) => item.isSelected == true),
+                visible: data!.any((item) => item.isChecked == true),
                 child: AppStreamBuilder<double>(
                   initialData: model.totalBillAmt,
                   stream: model.totalBillAmtDueStream,
@@ -145,21 +177,31 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                     return Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 36.0.h, left: 24.0.w, right: 24.0.w),
+                        padding: EdgeInsets.only(
+                            bottom: 36.0.h, left: 24.0.w, right: 24.0.w),
                         child: InkWell(
                           onTap: () {
                             // model.showSuccessToast(success)
-                            var noOfSelectedBills = data.where((c) => c.isSelected == true).toList();
-                            Navigator.pushNamed(context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
-                                arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                    noOfSelectedBills.length.toString(), amt!, noOfSelectedBills));
+                            var noOfSelectedBills =
+                                data.where((c) => c.isChecked == true).toList();
+                            Navigator.pushNamed(context,
+                                RoutePaths.PaySelectedBillsPostPaidBillsPage,
+                                arguments:
+                                    PaySelectedBillsPostPaidBillsPageArguments(
+                                        noOfSelectedBills.length.toString(),
+                                        amt!,
+                                        noOfSelectedBills,
+                                        model.postPaidRequestListJson));
                           },
                           child: Container(
                             width: double.maxFinite,
                             height: 56.h,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100.0),
-                              color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color!,
                             ),
                             child: Center(
                               child: Text(S.of(context).pay + amt.toString(),
@@ -194,7 +236,8 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
             child: Container(
               padding: EdgeInsetsDirectional.all(16),
               decoration: BoxDecoration(
-                  color: AppColor.darkModerateLimeGreen, borderRadius: BorderRadius.circular(16)),
+                  color: AppColor.darkModerateLimeGreen,
+                  borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
                   Expanded(
@@ -209,10 +252,13 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               fontSize: 10),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.only(top: 4.0, end: 16),
+                          padding:
+                              EdgeInsetsDirectional.only(top: 4.0, end: 16),
                           child: Text(message,
                               style: TextStyle(
-                                  color: AppColor.white, fontWeight: FontWeight.w600, fontSize: 12)),
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12)),
                         ),
                       ],
                     ),
