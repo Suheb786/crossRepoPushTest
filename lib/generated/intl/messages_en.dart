@@ -1764,6 +1764,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "payBill": MessageLookupByLibrary.simpleMessage("PAY BILL"),
         "payBills": m3,
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
+        "payViaQR": MessageLookupByLibrary.simpleMessage("Pay via QR"),
+        "payViaQRDesc": MessageLookupByLibrary.simpleMessage(
+            "Place the QR code within the frame and proceed with payment"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "paymentActivity":

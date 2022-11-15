@@ -1435,7 +1435,8 @@
   "enterBillDetails": "Enter bill details",
   "areYouSure": "Are you sure?",
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
-  "addThisBillToSaveList":"Add this bill to your saved list",
-  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
-
+  "addThisBillToSaveList": "Add this bill to your saved list",
+  "doYouReallyDeleteSavedBills": "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
+  "payViaQR": "Pay via QR",
+  "payViaQRDesc": "Place the QR code within the frame and proceed with payment"
 }

@@ -14149,6 +14149,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Pay via QR`
+  String get payViaQR {
+    return Intl.message(
+      'Pay via QR',
+      name: 'payViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the QR code within the frame and proceed with payment`
+  String get payViaQRDesc {
+    return Intl.message(
+      'Place the QR code within the frame and proceed with payment',
+      name: 'payViaQRDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
