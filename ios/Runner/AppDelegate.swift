@@ -9,6 +9,7 @@ import AntelopSDK
 @available(iOS 13.4, *)
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate, WalletProvisioningProtocol, WalletManagerProtocol, FlutterStreamHandler {
+    var cardsArr = [String: DigitalCard]()
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         print("onListen")
         eventSink = events
@@ -188,13 +189,105 @@ import AntelopSDK
         walletManager.connect()
     }
     
-    public func getCards(){
-        print("enter get cards method")
-       var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
-        print("card list \(cards) end")
-        
-        callBackMethods(event: "getCards", dic: cards)
-    }
+        public func getCards(){
+            print("enter get cards method")
+            var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+            if (cards?.values.count ?? 0) == 0 {
+                print("Don't have any cards")
+                return
+            }
+            let card = cards?.values.map({$0})[0]
+
+            guard let cardsDits = cards else { return }
+            cardsArr = cardsDits
+
+            var allCardsDetail = [[String: Any]]()
+            var cardtempDict =  [String:Any]()
+            for (index, CARD)  in cardsArr.enumerated()  {
+                let card = cardsArr.values.map({$0})[index]
+
+                let cardStatus = (card.getStatus()?.description ?? "").lowercased()
+                print("card status ---> ", cardStatus)
+
+                var isActiveCard = false
+                if cardStatus == "active" {
+                    isActiveCard = true
+                }
+                do { try  card.getApplePayService().isCardInApplePay { status in
+
+                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
+                                    "getStatus": isActiveCard,
+                                    "isCardInApplePay": status,
+                    ] as [String : Any]
+
+                    allCardsDetail.append(cardtempDict)
+                    if  index == self.cardsArr.count - 1 {
+                        print("loopEnded: ", allCardsDetail)
+                        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+                            self.pushToCard(cardId: card.getIssuerCardId() ?? "")
+                        }
+
+
+
+                    }
+                } errorHandler: { Error in
+                    print(Error)
+                }
+                } catch {
+                        print(error)
+                    }
+
+
+    //                do { try card.getApplePayService().isCardInApplePay { status in
+    //
+    //                    let isCardInApplePayStatus = stat
+    //                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
+    //                                    "getStatus": isActiveCard,
+    //                                    "isCardInApplePay": status,
+    //                    ] as [String : Any]
+    //
+    //                    allCardsDetail.append(cardtempDict)
+    //                    if  index == self.cardsArr.count - 1 {
+    //                        print("loopEnded: ", allCardsDetail)
+    //                        self.callBackMethodsCardDetails(event: "idsArrray", dic: allCardsDetail)
+    //                    }
+    //                }
+    //                }
+    //                catch {
+    //                    print(error)
+    //                }
+                }
+            print(allCardsDetail)
+            //        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
+
+            // self.callBackMethods(event: "getCards", dic: allCardsDetail)
+        }
+
+            func pushToCard(cardId:String) {
+                for (index, CARD)  in cardsArr.enumerated()  {
+                    let card = cardsArr.values.map({$0})[index]
+                    if card.getIssuerCardId() == cardId {
+
+                        do { try  card.getApplePayService().pushCard({ result in
+                            switch result {
+
+                            case .success(let status ) :
+                                print ("status_getApplePayService: -- ", status)
+                            case .failure(let error):
+                                print( "status_getApplePayService_Failure,\(error)")
+
+                            }
+                        })
+                            break
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+
+            }
     
     func enrollmentDataCard(enrollmentData: String) {
         do {
@@ -228,36 +321,20 @@ import AntelopSDK
     }
     
         public func getCheckStatus(){
-            print("Enter into getStaus method")
-            
-            let cards = wallet?.getDigitalCards(includeNotProvisionedCards: true)
-            print("card list \(cards!)")
-            
-            let issueIdList: [Int] = []
-            
-            
-           
-        
-            
-//            var cardsArray = [String: DigitalCard]()
-//          //  cardsArray = wallet?.getDigitalCards(includeNotProvisionedCards: true)
-//            var card = wallet?.getDigitalCard(cardId: "1234ByIssCrdId")
-//            var service = card?.getApplePayService()
-        //    card?.getStatus()
-        }
+                    print("Enter into getStaus method")
+
+
+
+
+                }
+
+                public func getStatus(_ completion: @escaping OperationCompletion<DigitalCardServiceStatus>){
+
+                    }
     
     
     public func cardInApplePay(){
-      
-        
-        let cards = wallet?.getDigitalCards(includeNotProvisionedCards: true)
-//         print("card list \(cards)")
-        
-//            var cardsArray = [String: DigitalCard]()
-//          //  cardsArray = wallet?.getDigitalCards(includeNotProvisionedCards: true)
-//            var card = wallet?.getDigitalCard(cardId: "1234ByIssCrdId")
-//            var service = card?.getApplePayService()
-       // card?.getStatus()
+
     }
     
     
@@ -273,7 +350,15 @@ import AntelopSDK
            //CallBack
            callJavaScript(eventName, result: strData)
        }
-    
+
+
+    private func callBackMethodsCardDetails(event eventName: String, dic: [[String: Any]], strData: String = "") {
+        let strData = strData.isEmpty ?  dic.toJSONString() : strData
+          printData(event: eventName, data: strData)
+           //CallBack
+           callJavaScript(eventName, result: strData)
+       }
+
     func convertDictionaryToString(dicData: [String: Any]) -> String {
             var text = ""
             do {
@@ -351,7 +436,12 @@ import AntelopSDK
                       let dicData = call.arguments as! [String : Any]
                       print("enter in enrollment section \(dicData["enrollmentData"] as! String)")
                       self?.enrollmentDataCard(enrollmentData:dicData["enrollmentData"] as! String)
-                
+                case "pushCard":
+                                     let dicData = call.arguments as! [String : Any]
+                                     print("enter in enrollment section \(dicData["cardId"] as! String)")
+                                     self?.pushToCard(cardId: (dicData["cardId"] as! String))
+
+
                    case "getAllCards":
                        self?.getCards()
                 
@@ -416,5 +506,16 @@ import AntelopSDK
         AntelopAppDelegate.shared.application(application, performFetchWithCompletionHandler: completionHandler)
     }
     
+}
+
+extension Collection where Iterator.Element == [String: Any] {
+  func toJSONString(options: JSONSerialization.WritingOptions = .prettyPrinted) -> String {
+    if let arr = self as? [[String: Any]],
+       let dat = try? JSONSerialization.data(withJSONObject: arr, options: options),
+       let str = String(data: dat, encoding: String.Encoding.utf8) {
+      return str
+    }
+    return "[]"
+  }
 }
 

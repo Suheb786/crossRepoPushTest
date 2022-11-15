@@ -6,10 +6,14 @@ import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
+import 'package:domain/model/apple_pay/get_all_card_data.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:eventify/eventify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rxdart/rxdart.dart';
+
+BehaviorSubject<List<GetAllCardData>> listOfCardFromAntelop = BehaviorSubject.seeded([]);
 
 class AntelopHelper {
   static const platform = const MethodChannel('com.capital.cbt');
@@ -208,8 +212,18 @@ class AntelopHelper {
 
       case "getCards":
         debugPrint("Flutter side getCards " + data.toString());
-        Map newData = jsonDecode(data);
-        debugPrint(newData.toString());
+        dynamic newData = jsonDecode(data);
+        if (newData != null) {
+          debugPrint("print 1--> ");
+          List<dynamic> newList = newData;
+          debugPrint("print 2--> ");
+          List<GetAllCardData> newDataList = [];
+          debugPrint("print 3--> ");
+          newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
+          debugPrint("print 4--> ");
+          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
+          listOfCardFromAntelop.add(newDataList);
+        }
         break;
 
       case "enrollCardSuccess":
