@@ -17,11 +17,19 @@ class AddNewPostpaidBillerEntityRequest {
   @JsonKey(name: "nickname")
   final String? nickname;
 
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
+
+
   AddNewPostpaidBillerEntityRequest({
     this.serviceType,
     this.billerCode,
     this.billingNumber,
-    this.nickname
+    this.nickname,
+    this.getToken: true,
+    required this.baseData
   });
 
   factory AddNewPostpaidBillerEntityRequest.fromJson(Map<String, dynamic> json) =>

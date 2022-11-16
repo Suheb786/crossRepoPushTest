@@ -13,11 +13,17 @@ class RemoveCustomerBillingRequest {
   @JsonKey(name: "serviceType")
   final String? serviceType;
 
-  RemoveCustomerBillingRequest({
-    required this.billerCode,
-    required this.billingNo,
-    required this.serviceType,
-  });
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
+
+  RemoveCustomerBillingRequest(
+      {required this.billerCode,
+      required this.billingNo,
+      required this.serviceType,
+      this.getToken: true,
+      required this.baseData});
 
   factory RemoveCustomerBillingRequest.fromJson(Map<String, dynamic> json) =>
       _$RemoveCustomerBillingRequestFromJson(json);

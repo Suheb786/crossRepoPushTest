@@ -26,6 +26,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billAmtDue,
       this.onChanged})
       : super(key: key);
+
   ProviderBase provideBase() {
     return SelectedBillsToPaidWidgetViewModelProvider().provide();
   }
@@ -35,7 +36,10 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
     return BaseWidget<SelectedBillsToPaidWidgetViewModel>(
       providerBase: provideBase(),
       onModelReady: (model) {
-        model.amtController.text = billAmtDue;
+        model.amtController.text =
+            this.billAmtDue != null && this.billAmtDue.isNotEmpty
+                ? this.billAmtDue
+                : "0.0";
       },
       builder: (BuildContext context, model, child) {
         return Padding(
@@ -56,7 +60,9 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsetsDirectional.all(16.0),
                         child: Text(
-                          this.itemCount,
+                          this.itemCount != null && this.itemCount.isNotEmpty
+                              ? this.itemCount
+                              : "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.white,
@@ -72,7 +78,9 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          this.billType,
+                          this.billType != null && this.billType.isNotEmpty
+                              ? this.billType
+                              : "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.black,
@@ -80,7 +88,9 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                               fontSize: 14.0.t),
                         ),
                         Text(
-                          this.billName,
+                          this.billName != null && this.billName.isNotEmpty
+                              ? this.billName
+                              : "",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.veryDarkGray2,
@@ -110,8 +120,9 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
                             onChanged: (value) {
                               this.onChanged?.call(value);
                             },
-                            decoration:
-                                InputDecoration(isDense: true, contentPadding: const EdgeInsets.all(0.0)),
+                            decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: const EdgeInsets.all(0.0)),
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 color: AppColor.brightBlue,

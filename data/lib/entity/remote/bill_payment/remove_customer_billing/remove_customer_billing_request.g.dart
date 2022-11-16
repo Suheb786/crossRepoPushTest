@@ -12,6 +12,8 @@ RemoveCustomerBillingRequest _$RemoveCustomerBillingRequestFromJson(
     billerCode: json['billerCode'] as String?,
     billingNo: json['billingNo'] as String?,
     serviceType: json['serviceType'] as String?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -21,4 +23,6 @@ Map<String, dynamic> _$RemoveCustomerBillingRequestToJson(
       'billerCode': instance.billerCode,
       'billingNo': instance.billingNo,
       'serviceType': instance.serviceType,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

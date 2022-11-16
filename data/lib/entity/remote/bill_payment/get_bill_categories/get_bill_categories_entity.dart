@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:domain/model/bill_payments/get_bill_categories/get_bill_categories.dart';
@@ -8,24 +9,14 @@ part 'get_bill_categories_entity.g.dart';
 @JsonSerializable()
 class GetBillCategoriesEntity extends BaseLayerDataTransformer<
     GetBillCategoriesEntity, GetBillCategories> {
-  @JsonKey(name: "content")
-  final Map<String, dynamic>? content;
+  @JsonKey(name: "response")
+  final ResponseEntity? response;
 
-  /*@JsonKey(name: "status")
-  final Map<String, dynamic>? status;
-
-  @JsonKey(name: "requestDateTime")
-  final String? requestDateTime;
-
-  @JsonKey(name: "logId")
-  final String? logId;
-*/
   GetBillCategoriesEntity({
-    this.content,
-    /*this.status,
-    this.logId,
-    this.requestDateTime,*/
+    this.response,
   });
+
+
 
   factory GetBillCategoriesEntity.fromJson(Map<String, dynamic> json) =>
       _$GetBillCategoriesEntityFromJson(json);
@@ -36,7 +27,7 @@ class GetBillCategoriesEntity extends BaseLayerDataTransformer<
   GetBillCategories transform() {
     return GetBillCategories(
       getBillCategoriesData: GetBillCategoriesDataEntity.fromJson(
-        this.content ?? Map<String, dynamic>(),
+        this.response?.content ?? Map<String, dynamic>(),
       ).transform(),
      /* statusModel: StatusEntity.fromJson(
         this.status ?? Map(),

@@ -62,7 +62,7 @@ class PostPaidBillsSuccessPageView
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                text: model.arguments.amt,
+                text: model.addAllBillAmt().toString(),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,
@@ -134,8 +134,8 @@ class PostPaidBillsSuccessPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.noOfSelectedBills[index]
-                                              .billerNameEN ??
+                                      model.arguments.billerList?[index]
+                                              .billerName ??
                                           "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
@@ -159,10 +159,7 @@ class PostPaidBillsSuccessPageView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  model.arguments.noOfSelectedBills[index]
-                                          .dueAmount
-                                          .toString() +
-                                      S.of(context).JOD,
+                                  '${model.arguments.billerList?[index].totalAmount} ${S.of(context).JOD} ',
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
@@ -170,7 +167,8 @@ class PostPaidBillsSuccessPageView
                                       fontSize: 12.0.t),
                                 ),
                                 Text(
-                                  '12313141245',
+                                  model.arguments.billerList?[index].refNo ??
+                                      "",
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.gray5,
@@ -186,7 +184,7 @@ class PostPaidBillsSuccessPageView
                     separatorBuilder: (context, index) {
                       return AppDivider();
                     },
-                    itemCount: model.arguments.noOfSelectedBills.length),
+                    itemCount: model.arguments.billerList!.length),
               ),
             ),
             Padding(

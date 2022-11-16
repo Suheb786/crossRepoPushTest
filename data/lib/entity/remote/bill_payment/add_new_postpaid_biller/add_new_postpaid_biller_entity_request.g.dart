@@ -13,6 +13,8 @@ AddNewPostpaidBillerEntityRequest _$AddNewPostpaidBillerEntityRequestFromJson(
     billerCode: json['billerCode'] as String?,
     billingNumber: json['billingNumber'] as String?,
     nickname: json['nickname'] as String?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -23,4 +25,6 @@ Map<String, dynamic> _$AddNewPostpaidBillerEntityRequestToJson(
       'billerCode': instance.billerCode,
       'billingNumber': instance.billingNumber,
       'nickname': instance.nickname,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

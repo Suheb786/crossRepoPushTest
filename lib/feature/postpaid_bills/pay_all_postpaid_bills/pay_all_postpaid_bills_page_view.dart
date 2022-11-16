@@ -1,8 +1,5 @@
 import 'dart:ui';
-
-import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model.dart';
 import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
-import 'package:domain/model/bill_payments/get_postpaid_biller_list/post_paid_bill_enquiry_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -19,7 +16,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -84,10 +80,10 @@ class PayAllPostPaidBillsPageView
                           padding: EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
                           child: ListView.separated(
                               shrinkWrap: true,
+                              itemCount: model.payPostPaidBillsDataList.length,
                               itemBuilder: (context, index) {
                                 return InkWell(
                                   onTap: () {
-
                                     model.selectedItem(index);
                                   },
                                   child: Slidable(
@@ -97,7 +93,6 @@ class PayAllPostPaidBillsPageView
                                       children: [
                                         SlidableAction(
                                           // An action can be bigger than the others.
-
                                           onPressed: (context1) => {
                                             InformationDialog.show(context,
                                                 image:
@@ -118,24 +113,10 @@ class PayAllPostPaidBillsPageView
                                               Navigator.pop(context);
                                             }, onSelected: () {
                                               Navigator.pop(context);
-                                              model.removeCustomerBilling(
-                                                  model
-                                                      .payPostPaidBillsDataList[
-                                                          index]
-                                                      .billerCode,
-                                                  model
-                                                      .payPostPaidBillsDataList[
-                                                          index]
-                                                      .billingNo,
-                                                  model
-                                                      .payPostPaidBillsDataList[
-                                                          index]
-                                                      .serviceType);
-
-                                              // model.removeItem(index);
-
-                                              // model.showSuccessToast(
-                                              //     'BILL UPDATED\nYour bill has been removed.');
+                                              var billerCode = model.payPostPaidBillsDataList[index].billerCode;
+                                              var billingNo = model.payPostPaidBillsDataList[index].billingNo;
+                                              var serviceType = model.payPostPaidBillsDataList[index].serviceType;
+                                              model.removeCustomerBilling(billerCode,billingNo,serviceType);
                                             })
                                           },
                                           backgroundColor: AppColor.dark_brown,
@@ -161,7 +142,7 @@ class PayAllPostPaidBillsPageView
                               separatorBuilder: (context, index) {
                                 return AppDivider();
                               },
-                              itemCount: model.payPostPaidBillsDataList.length),
+                              ),
                         ),
                       ),
                     ],
@@ -182,15 +163,15 @@ class PayAllPostPaidBillsPageView
                         child: InkWell(
                           onTap: () {
                             // model.showSuccessToast(success)
-                            var noOfSelectedBills =
-                                data.where((c) => c.isChecked == true).toList();
+
                             Navigator.pushNamed(context,
                                 RoutePaths.PaySelectedBillsPostPaidBillsPage,
                                 arguments:
                                     PaySelectedBillsPostPaidBillsPageArguments(
-                                        noOfSelectedBills.length.toString(),
+                                        model.selectedPostPaidBillsList.length
+                                            .toString(),
                                         amt!,
-                                        noOfSelectedBills,
+                                        model.selectedPostPaidBillsList,
                                         model.postPaidRequestListJson));
                           },
                           child: Container(

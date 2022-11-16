@@ -10,6 +10,8 @@ PostPaidBillInquiryRequestEntity _$PostPaidBillInquiryRequestEntityFromJson(
     Map<String, dynamic> json) {
   return PostPaidBillInquiryRequestEntity(
     postpaidBillInquiries: json['postpaidBillInquiries'],
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -17,4 +19,6 @@ Map<String, dynamic> _$PostPaidBillInquiryRequestEntityToJson(
         PostPaidBillInquiryRequestEntity instance) =>
     <String, dynamic>{
       'postpaidBillInquiries': instance.postpaidBillInquiries,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

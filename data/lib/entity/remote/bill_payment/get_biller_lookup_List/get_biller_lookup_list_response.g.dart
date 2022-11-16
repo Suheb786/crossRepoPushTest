@@ -9,12 +9,14 @@ part of 'get_biller_lookup_list_response.dart';
 GetBillerLookupListResponse _$GetBillerLookupListResponseFromJson(
     Map<String, dynamic> json) {
   return GetBillerLookupListResponse(
-    content: json['content'] as Map<String, dynamic>?,
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$GetBillerLookupListResponseToJson(
         GetBillerLookupListResponse instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'response': instance.response,
     };

@@ -41,9 +41,7 @@ class PaySelectedBillsPostPaidBillsPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(PaySelectedBillsPostPaidBillsPageViewModel model) {
-    model.arguments.noOfSelectedBills.forEach((element) {
-      model.totalAmt.add(double.parse(element.dueAmount ?? "0.0"));
-    });
+    model.postPaidBillInquiry();
     super.onModelReady(model);
   }
 }

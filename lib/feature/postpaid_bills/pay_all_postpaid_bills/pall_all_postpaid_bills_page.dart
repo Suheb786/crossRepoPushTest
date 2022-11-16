@@ -101,6 +101,7 @@ class PayAllPostPaidBillsPageState extends BaseStatefulPage<
   @override
   void onModelReady(PayAllPostPaidBillsPageViewModel model) {
     // model.totalBillAmt = 0.0;
+/*
     if (model.arguments.paidBillsPayTypeOptionEnum ==
         PostPaidBillsPayTypeOptionEnum.PAYALLBILLS) {
       model.payPostPaidBillsDataList = [
@@ -351,6 +352,7 @@ class PayAllPostPaidBillsPageState extends BaseStatefulPage<
             iconCode: AssetUtils.electricityIcon),
       ];
     }
+*/
 
     // model.addAllBillAmt();
     super.onModelReady(model);

@@ -8,11 +8,13 @@ part of 'pay_prepaid_bill_response.dart';
 
 PayPrePaidResponse _$PayPrePaidResponseFromJson(Map<String, dynamic> json) {
   return PayPrePaidResponse(
-    content: json['content'] as Map<String, dynamic>?,
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$PayPrePaidResponseToJson(PayPrePaidResponse instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'response': instance.response,
     };

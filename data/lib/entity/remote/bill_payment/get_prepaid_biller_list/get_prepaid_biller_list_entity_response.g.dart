@@ -9,12 +9,14 @@ part of 'get_prepaid_biller_list_entity_response.dart';
 GetPrepaidBillerListEntityResponse _$GetPrepaidBillerListEntityResponseFromJson(
     Map<String, dynamic> json) {
   return GetPrepaidBillerListEntityResponse(
-    content: json['content'] as Map<String, dynamic>?,
+    response: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$GetPrepaidBillerListEntityResponseToJson(
         GetPrepaidBillerListEntityResponse instance) =>
     <String, dynamic>{
-      'content': instance.content,
+      'response': instance.response,
     };
