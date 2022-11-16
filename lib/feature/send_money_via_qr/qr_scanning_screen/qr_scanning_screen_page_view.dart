@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class QrScanningScreenPageView
-    extends BasePageViewWidget<QrScanningScreenPageViewModel> {
+class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageViewModel> {
   QrScanningScreenPageView(ProviderBase model) : super(model);
 
   @override
@@ -31,7 +31,10 @@ class QrScanningScreenPageView
                 model.controller?.pauseCamera();
                 model.result = scanData;
                 if (model.result!.code != null) {
-                  Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning);
+                  ///TODO:make data dynamic based on QR value
+                  Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
+                      arguments: SendMoneyQRScanningArguments(
+                          amount: '2.0', accountHolderName: 'TAMER KATAMI', accountNo: '9313434181'));
                 }
               });
             },
@@ -65,9 +68,7 @@ class QrScanningScreenPageView
                   Text(
                     S.of(context).payViaQR,
                     style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).accentColor),
+                        fontSize: 24, fontWeight: FontWeight.w600, color: Theme.of(context).accentColor),
                   ),
                   SizedBox(height: 8),
                   Padding(
@@ -76,9 +77,7 @@ class QrScanningScreenPageView
                       S.of(context).payViaQRDesc,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).accentColor),
+                          fontSize: 14, fontWeight: FontWeight.w400, color: Theme.of(context).accentColor),
                     ),
                   ),
                   SizedBox(height: 50),
@@ -86,8 +85,7 @@ class QrScanningScreenPageView
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: AppSvg.asset(AssetUtils.close,
-                          color: Theme.of(context).accentColor)),
+                      child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).accentColor)),
                   SizedBox(height: 20),
                 ],
               ),

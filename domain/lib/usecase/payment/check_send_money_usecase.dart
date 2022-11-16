@@ -6,8 +6,8 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckSendMoneyUseCase extends BaseUseCase<NetworkError,
-    CheckSendMoneyUseCaseParams, CheckSendMoneyResponse> {
+class CheckSendMoneyUseCase
+    extends BaseUseCase<NetworkError, CheckSendMoneyUseCaseParams, CheckSendMoneyResponse> {
   final PaymentRepository _repository;
 
   CheckSendMoneyUseCase(this._repository);
@@ -23,8 +23,7 @@ class CheckSendMoneyUseCaseParams extends Params {
   final String toAccount;
   final num toAmount;
 
-  CheckSendMoneyUseCaseParams(
-      {required this.toAccount, required this.toAmount});
+  CheckSendMoneyUseCaseParams({required this.toAccount, required this.toAmount});
 
   @override
   Either<AppError, bool> verify() {
