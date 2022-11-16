@@ -581,11 +581,13 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CreditCardVideoKyc));
 
       case RoutePaths.RequestMoneyQrGeneration:
-        return CustomRoute.createRoute(RequestMoneyQrGenerationPage());
+        return CustomRoute.createRoute(
+            RequestMoneyQrGenerationPage(settings.arguments as RequestMoneyQrGenerationPageArguments));
 
       case RoutePaths.QRScreen:
         return CupertinoPageRoute(
-            builder: (context) => QrScreenPage(), settings: RouteSettings(name: RoutePaths.QRScreen));
+            builder: (context) => QrScreenPage(settings.arguments as QrScreenPageArguments),
+            settings: RouteSettings(name: RoutePaths.QRScreen));
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(

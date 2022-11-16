@@ -7,6 +7,8 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageViewModel> {
@@ -85,7 +87,12 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: AppSvg.asset(AssetUtils.close, color: Theme.of(context).accentColor)),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: AppColor.white, borderRadius: BorderRadius.all(Radius.circular(100))),
+                        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 15.w),
+                        child: AppSvg.asset(AssetUtils.close, color: AppColor.brightBlue),
+                      )),
                   SizedBox(height: 20),
                 ],
               ),
