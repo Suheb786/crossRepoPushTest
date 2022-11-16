@@ -14,13 +14,7 @@ class QrScanningScreenPageViewModel extends BasePageViewModel {
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  @override
-  void dispose() {
-    controller!.dispose();
-    super.dispose();
-  }
-
-  void extractResult(BuildContext context, Barcode result) {
+  void extractResult(BuildContext context, Barcode result) async {
     if (result.code != null && (result.code ?? '').isNotEmpty) {
       List<String> data = result.code!.split('%');
       if (data.length == 4) {
@@ -28,10 +22,14 @@ class QrScanningScreenPageViewModel extends BasePageViewModel {
         debugPrint('QR Date ---->$qrDate');
         final currentDate = DateTime.now();
         final difference = currentDate.difference(qrDate).inHours;
-        if (difference > 1) {
+        debugPrint('QR Date difference ---->$difference');
+        debugPrint('current date ---->$currentDate');
+        if (difference >= 1) {
           showToastWithError(
               AppError(type: ErrorType.QR_EXPIRED, error: ErrorInfo(message: ''), cause: Exception()));
+          await Future.delayed(const Duration(milliseconds: 300));
           controller?.resumeCamera();
+          Navigator.pop(context);
         } else {
           Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
               arguments: SendMoneyQRScanningArguments(
@@ -40,7 +38,9 @@ class QrScanningScreenPageViewModel extends BasePageViewModel {
       } else {
         showToastWithError(
             AppError(type: ErrorType.QR_INVALID, error: ErrorInfo(message: ''), cause: Exception()));
+        await Future.delayed(const Duration(milliseconds: 300));
         controller?.resumeCamera();
+        Navigator.pop(context);
       }
     }
   }

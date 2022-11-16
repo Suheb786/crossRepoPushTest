@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -66,8 +67,8 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                     Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanningSuccess,
                         arguments: SendMoneyViaQRSuccessPageArguments(
                             referenceNo: data.data?.transferSuccessContent?.referenceNo ?? '',
-                            amount: model.arguments.amount,
-                            user: model.arguments.accountHolderName));
+                            amount: '${data.data?.transferSuccessContent?.amount ?? ''}',
+                            user: data.data?.transferSuccessContent?.name ?? ''));
                   } else if (data.status == Status.ERROR) {
                     //Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
                   }
@@ -181,7 +182,14 @@ class SendMoneyQrScanningPageView extends BasePageViewWidget<SendMoneyQrScanning
                                           Navigator.pop(context);
                                           model.payFromController.text = value;
                                           model.validate();
-                                        });
+                                        }, accountsList: [
+                                          ProviderScope.containerOf(context)
+                                                  .read(appHomeViewModelProvider)
+                                                  .dashboardDataContent
+                                                  .account
+                                                  ?.accountNo ??
+                                              ''
+                                        ]);
                                       },
                                       suffixIcon: (isValid, value) {
                                         return Container(

@@ -23,11 +23,11 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
             key: model.qrKey,
             onQRViewCreated: (QRViewController controller) {
               model.controller = controller;
-              controller.scannedDataStream.distinct().listen((scanData) {
+              controller.scannedDataStream.listen((scanData) {
                 debugPrint('Scanned Data---->${scanData.code}');
-                if (model.result != null) {
-                  return;
-                }
+                // if (model.result != null) {
+                //   return;
+                // }
                 model.controller?.pauseCamera();
                 model.result = scanData;
                 if (model.result!.code != null) {

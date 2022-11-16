@@ -72,11 +72,11 @@ class AccountsDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
-                              key: ValueKey(model.accountsList!.length),
+                              key: ValueKey(accountsList!.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
-                                itemCount: model.accountsList!.length,
+                                itemCount: accountsList!.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
@@ -89,10 +89,10 @@ class AccountsDialogView extends StatelessWidget {
                                     physics: FixedExtentScrollPhysics(),
                                     perspective: 0.0000000001,
                                     childDelegate: ListWheelChildBuilderDelegate(
-                                        childCount: model.accountsList!.length,
+                                        childCount: accountsList!.length,
                                         builder: (BuildContext context, int index) {
                                           return AccountSelectionWidget(
-                                            label: model.accountsList![index],
+                                            label: accountsList![index],
                                             textColor: currentIndex == index
                                                 ? Theme.of(context).primaryColorDark
                                                 : AppColor.dark_gray_1,
@@ -106,7 +106,7 @@ class AccountsDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(model.accountsList![currentIndex!]);
+                            onSelected!.call(accountsList![currentIndex!]);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),

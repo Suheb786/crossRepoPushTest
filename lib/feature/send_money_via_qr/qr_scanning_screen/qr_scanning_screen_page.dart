@@ -12,8 +12,8 @@ class QrScanningScreenPage extends BasePage<QrScanningScreenPageViewModel> {
   QrScanningScreenPageState createState() => QrScanningScreenPageState();
 }
 
-class QrScanningScreenPageState extends BaseStatefulPage<
-    QrScanningScreenPageViewModel, QrScanningScreenPage> {
+class QrScanningScreenPageState
+    extends BaseStatefulPage<QrScanningScreenPageViewModel, QrScanningScreenPage> {
   @override
   ProviderBase provideBase() {
     return qrScanningScreenViewModelProvider;
