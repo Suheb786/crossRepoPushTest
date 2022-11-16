@@ -77,10 +77,10 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                   child: Text(
                     S.of(context).requestViaQR,
                     style: TextStyle(
-                      fontFamily: StringUtils.appFont,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 18.t,
-                    ),
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 18.t,
+                        color: AppColor.veryDarkGray2),
                   ),
                 ),
               ],
@@ -110,7 +110,7 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                                   color: AppColor.black),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.only(top: 15.h, start: 4.w),
+                              padding: EdgeInsetsDirectional.only(bottom: 2.h, start: 4.w),
                               child: Text(
                                 S.of(context).JOD,
                                 style: TextStyle(
@@ -142,16 +142,27 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                 Padding(
                   padding: EdgeInsets.only(top: 24.h),
                   child: Text(
+                    S.of(context).to,
+                    style: TextStyle(
+                        fontFamily: StringUtils.appFont,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.t,
+                        color: AppColor.gray1),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.h),
+                  child: Text(
                     model.arguments.account.accountTitle ?? '',
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
-                        fontSize: 10.t,
-                        color: AppColor.dark_gray_1),
+                        fontSize: 14.t,
+                        color: AppColor.brightBlue),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 2.h),
+                  padding: EdgeInsets.only(top: 6.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -164,7 +175,7 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.only(start: 4.0.w, top: 2.h),
+                        padding: EdgeInsetsDirectional.only(start: 4.0.w, bottom: 2.h),
                         child: Text(
                           S.of(context).JOD,
                           style: TextStyle(
@@ -191,7 +202,6 @@ class RequestMoneyQrGenerationPageView extends BasePageViewWidget<RequestMoneyQr
                               error: ErrorInfo(message: ""),
                               type: ErrorType.AMOUNT_GREATER_THAN_ZERO));
                         } else {
-                          //  Navigator.pushReplacementNamed(context, RoutePaths.QRScreen);
                           Navigator.pushNamed(context, RoutePaths.QRScreen,
                               arguments:
                                   QrScreenPageArguments(model.arguments.account, model.currentPinValue));

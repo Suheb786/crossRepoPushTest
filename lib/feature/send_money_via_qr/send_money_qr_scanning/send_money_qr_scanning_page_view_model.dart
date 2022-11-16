@@ -54,8 +54,8 @@ class SendMoneyQrScanningPageViewModel extends BasePageViewModel {
         otpCode: '576824',
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
-        limit: 2000,
-        memo: '111311110',
+        limit: 10000,
+        memo: '101',
         //Friend or family
         isFriend: false,
         nickName: "",

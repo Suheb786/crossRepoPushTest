@@ -1102,6 +1102,12 @@ class ErrorParser {
       case ErrorType.LOGIN_REGISTER_DISABLED:
         return localisedHelper.loginRegisterDisabled;
 
+      case ErrorType.QR_INVALID:
+        return localisedHelper.qrInvalid;
+
+      case ErrorType.QR_EXPIRED:
+        return localisedHelper.qrExpired;
+
       default:
         return "";
     }

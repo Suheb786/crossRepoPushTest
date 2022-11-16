@@ -1943,6 +1943,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("Purpose"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage(
+            "QR Expired. Try scanning valid QR"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage(
+            "Invalid QR. Try scanning valid QR"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("QR PAYMENTS"),
         "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
             "QR code will be valid\nfor 1 hour"),
@@ -2339,6 +2343,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
+        "to": MessageLookupByLibrary.simpleMessage("to"),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),

@@ -1853,6 +1853,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("سبب فتح الحساب"),
         "purposeSmall": MessageLookupByLibrary.simpleMessage("السبب"),
+        "qrExpired": MessageLookupByLibrary.simpleMessage(
+            "QR Expired. Try scanning valid QR"),
+        "qrInvalid": MessageLookupByLibrary.simpleMessage(
+            "Invalid QR. Try scanning valid QR"),
         "qrPayments": MessageLookupByLibrary.simpleMessage("دفعات QR"),
         "qrValidForOneHour": MessageLookupByLibrary.simpleMessage(
             "صلاحية رمز QR رح تكون لساعة فقط  "),
@@ -2239,6 +2243,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "timeForQuickVideoCall": MessageLookupByLibrary.simpleMessage(
             "صار الوقت لمكالمة فيديو  سريعة"),
         "tinNo": MessageLookupByLibrary.simpleMessage("رقم التعريف الضريبي"),
+        "to": MessageLookupByLibrary.simpleMessage("to"),
         "toDashboard": MessageLookupByLibrary.simpleMessage("إلى شاشة التحكم"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "لتتمتع بالدفع الإلكتروني بدون بطاقة، بتقدر تحصل على بطاقة الدفع المباشر الافتراضية، ورح نوصللك بطاقتك الفعلية لباب بيتك."),

@@ -81,6 +81,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                     Navigator.pop(context);
                                   }, onSelected: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(context, RoutePaths.QRScanningScreen);
                                   });
                                 },
                                 child: AppSvg.asset(AssetUtils.payViaQrIcon))
@@ -99,7 +100,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                   }, onSelected: () {
                                     Navigator.pop(context);
 
-                                    Navigator.popAndPushNamed(context, RoutePaths.RequestMoneyQrGeneration,
+                                    Navigator.pushNamed(context, RoutePaths.RequestMoneyQrGeneration,
                                         arguments: RequestMoneyQrGenerationPageArguments(
                                             ProviderScope.containerOf(context)
                                                 .read(appHomeViewModelProvider)

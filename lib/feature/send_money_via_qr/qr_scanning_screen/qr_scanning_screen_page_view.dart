@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
-import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -33,10 +31,7 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
                 model.controller?.pauseCamera();
                 model.result = scanData;
                 if (model.result!.code != null) {
-                  ///TODO:make data dynamic based on QR value
-                  Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
-                      arguments: SendMoneyQRScanningArguments(
-                          amount: '2.0', accountHolderName: 'TAMER KATAMI', accountNo: '9313434181'));
+                  model.extractResult(context, scanData);
                 }
               });
             },

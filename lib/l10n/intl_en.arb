@@ -1439,5 +1439,8 @@
   "doYouReallyDeleteSavedBills": "Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
   "payViaQR": "Pay via QR",
   "payAndRequestMoneyViaQR": "Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.",
-  "payViaQRDesc": "Place the QR code within the frame and proceed with payment"
+  "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
+  "to": "to",
+  "qrExpired": "QR Expired. Try scanning valid QR",
+  "qrInvalid": "Invalid QR. Try scanning valid QR"
 }
