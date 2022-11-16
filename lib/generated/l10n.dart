@@ -14160,6 +14160,16 @@ class S {
     );
   }
 
+  /// `Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.`
+  String get payAndRequestMoneyViaQR {
+    return Intl.message(
+      'Pay and request money via QR code is only available within Blink at the moment. We will let you know if it is ready and available for everyone.',
+      name: 'payAndRequestMoneyViaQR',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Place the QR code within the frame and proceed with payment`
   String get payViaQRDesc {
     return Intl.message(

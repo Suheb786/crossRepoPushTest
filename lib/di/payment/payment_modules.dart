@@ -40,7 +40,9 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page_view_model.dart';
+import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_view_model.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
@@ -189,19 +191,17 @@ final paymentActivityFilterDialogViewModelProvider =
         PaymentActivityFilterDialogViewModel());
 
 ///request money QR code generation view model
-final requestMoneyQrGenerationViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RequestMoneyQrGenerationPageViewModel>((
-  ref,
-) =>
-        RequestMoneyQrGenerationPageViewModel());
+final requestMoneyQrGenerationViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<RequestMoneyQrGenerationPageViewModel, RequestMoneyQrGenerationPageArguments>(
+        (ref, args) => RequestMoneyQrGenerationPageViewModel(args));
 
 ///accounts dialog view model provider
 final accountsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountsDialogViewModel>((ref) => AccountsDialogViewModel());
 
 ///qr screen view model provider
-final qrScreenViewModelProvider =
-    ChangeNotifierProvider.autoDispose<QrScreenPageViewModel>((ref) => QrScreenPageViewModel());
+final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<QrScreenPageViewModel, QrScreenPageArguments>((ref, args) => QrScreenPageViewModel(args));
 
 ///send money qr scanning view model provider
 final sendMoneyQrScanningViewModelProvider =
