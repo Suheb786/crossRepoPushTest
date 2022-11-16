@@ -1,6 +1,11 @@
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 
 class RequestMoneyQrGenerationPageViewModel extends BasePageViewModel {
+  final RequestMoneyQrGenerationPageArguments arguments;
+
+  RequestMoneyQrGenerationPageViewModel(this.arguments);
+
   List<String> myList = [];
   String currentPinValue = '0';
 
