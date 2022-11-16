@@ -9,11 +9,13 @@ import AntelopSDK
 @available(iOS 13.4, *)
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate, WalletProvisioningProtocol, WalletManagerProtocol, FlutterStreamHandler {
+    
     var cardsArr = [String: DigitalCard]()
+    
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         print("onListen")
         eventSink = events
-       // eventSink!("This is antelop request")
+        // eventSink!("This is antelop request")
         return nil
     }
     
@@ -29,9 +31,9 @@ import AntelopSDK
             "status": "onProvisioningSuccess",
         ]
         callBackMethods(event: "onInitializationSuccess", dic: initiliazeDic)
-       // provisioner.checkEligibility(forbidJailBrokenDevices: false)
+        // provisioner.checkEligibility(forbidJailBrokenDevices: false)
     }
-     
+    
     func onInitializationError(error: AntelopError) {
         print("onInitializationError : \(error.localizedDescription)")
         let initiliazeDic: [String: Any] = [
@@ -41,19 +43,17 @@ import AntelopSDK
     }
     
     func onDeviceEligible(fingerprintAllowed: Bool, eligibleProducts: [Product]) {
-       print("onDeviceEligible is called")
+        print("onDeviceEligible is called")
         let deviceEligibilityDic: [String: Any] = [
             "status": "onDeviceEligible is called",
         ]
         callBackMethods(event: "onDeviceEligible", dic: deviceEligibilityDic)
-//        launchWallet(clientId: "000009", walletId: "9012566", settingsProfileId: "piraeus", phoneNumber: "+962123456789")
-       // delegate?.onDeviceEligible(result: "onDeviceEligible is called")
+        //        launchWallet(clientId: "000009", walletId: "9012566", settingsProfileId: "piraeus", phoneNumber: "+962123456789")
+        // delegate?.onDeviceEligible(result: "onDeviceEligible is called")
     }
     
     func onCheckEligibilityError(error: AntelopError) {
-        print("Error while check eligibility of this device : \(error.description)")
         print("Error while check eligibility of this device : \(error.localizedDescription)")
-        print("Error while check eligibility of this device : \(error.rawValue)")
         let deviceEligibilityDic: [String: Any] = [
             "status": error.localizedDescription,
         ]
@@ -70,7 +70,7 @@ import AntelopSDK
     }
     
     func onProvisioningSuccess() {
-       print("onProvisioningSuccess is called")
+        print("onProvisioningSuccess is called")
         let provisioningDic: [String: Any] = [
             "status": "onProvisioningSuccess",
         ]
@@ -95,7 +95,7 @@ import AntelopSDK
     
     func onProvisioningRequired() {
         print("onProvisioningRequired")
-      //  provisioner.initialize()
+        //  provisioner.initialize()
         let provisioningDic: [String: Any] = [
             "status": "On Provisioning Required",
         ]
@@ -109,7 +109,7 @@ import AntelopSDK
             "status": "On Credentials Required",
         ]
         callBackMethods(event: "onProvisioningRequired", dic: walletIdDic)
-       // provisioner.initialize()
+        // provisioner.initialize()
         //you should not continue, dismiss this Controller and retry connection step
     }
     
@@ -118,7 +118,7 @@ import AntelopSDK
         print(wallet)
         self.wallet = wallet
         print(wallet.getId() ?? "")
-       // getCards()
+        // getCards()
         let walletIdDic: [String: Any] = [
             "walletId": wallet.getId(),
             "getIssuerWalletId": wallet.getIssuerWalletId(),
@@ -182,202 +182,247 @@ import AntelopSDK
         provisioner.checkEligibility(forbidJailBrokenDevices: false)
     }
     
-  
-
+    
+    
     public func walletConnect(){
         print("wallet connect method called")
         walletManager.connect()
     }
     
-        public func getCards(){
-            print("enter get cards method")
-            var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
-            if (cards?.values.count ?? 0) == 0 {
-                print("Don't have any cards")
-                return
-            }
-            let card = cards?.values.map({$0})[0]
-
-            guard let cardsDits = cards else { return }
-            cardsArr = cardsDits
-
-            var allCardsDetail = [[String: Any]]()
-            var cardtempDict =  [String:Any]()
-            for (index, CARD)  in cardsArr.enumerated()  {
-                let card = cardsArr.values.map({$0})[index]
-
-                let cardStatus = (card.getStatus()?.description ?? "").lowercased()
-                print("card status ---> ", cardStatus)
-
-                var isActiveCard = false
-                if cardStatus == "active" {
-                    isActiveCard = true
-                }
-                do { try  card.getApplePayService().isCardInApplePay { status in
-
-                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
-                                    "getStatus": isActiveCard,
-                                    "isCardInApplePay": status,
-                    ] as [String : Any]
-
-                    allCardsDetail.append(cardtempDict)
-                    if  index == self.cardsArr.count - 1 {
-                        print("loopEnded: ", allCardsDetail)
-                        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
-
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-                            self.pushToCard(cardId: card.getIssuerCardId() ?? "")
-                        }
-
-
-
-                    }
-                } errorHandler: { Error in
-                    print(Error)
-                }
-                } catch {
-                        print(error)
-                    }
-
-
-    //                do { try card.getApplePayService().isCardInApplePay { status in
-    //
-    //                    let isCardInApplePayStatus = stat
-    //                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
-    //                                    "getStatus": isActiveCard,
-    //                                    "isCardInApplePay": status,
-    //                    ] as [String : Any]
-    //
-    //                    allCardsDetail.append(cardtempDict)
-    //                    if  index == self.cardsArr.count - 1 {
-    //                        print("loopEnded: ", allCardsDetail)
-    //                        self.callBackMethodsCardDetails(event: "idsArrray", dic: allCardsDetail)
-    //                    }
-    //                }
-    //                }
-    //                catch {
-    //                    print(error)
-    //                }
-                }
-            print(allCardsDetail)
-            //        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
-
-            // self.callBackMethods(event: "getCards", dic: allCardsDetail)
-        }
-
-            func pushToCard(cardId:String) {
-                for (index, CARD)  in cardsArr.enumerated()  {
-                    let card = cardsArr.values.map({$0})[index]
-                    if card.getIssuerCardId() == cardId {
-
-                        do { try  card.getApplePayService().pushCard({ result in
-                            switch result {
-
-                            case .success(let status ) :
-                                print ("status_getApplePayService: -- ", status)
-                            case .failure(let error):
-                                print( "status_getApplePayService_Failure,\(error)")
-
-                            }
-                        })
-                            break
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-
-            }
     
-    func enrollmentDataCard(enrollmentData: String) {
-        do {
-            try wallet?.enrollDigitalCard(
-                enrollmentData: enrollmentData,
-                success: {
-                    DispatchQueue.main .async {
-                        print("Success create card")
-                        let enrollCardDic: [String: Any] = [
-                            "status": "Success create card",
-                        ]
-                        self.callBackMethods(event: "enrollCardSuccess", dic: enrollCardDic)
-                    }
-                }, error: { error in
-                    DispatchQueue.main .async {
-                        print("Error while create card : \(error)")
-                        let enrollCardDic: [String: Any] = [
-                            "status": "Error while create card : \(error)",
-                        ]
-                        self.callBackMethods(event: "enrollCardError", dic: enrollCardDic)
-                    }
-                })
+    public func getCards(){
+        print("enter get cards method")
+        var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+        print("card list \(cards) end")
+        if (cards?.values.count ?? 0) == 0 {
+            self.callBackMethodsCardDetails(event: "emptyGetCards", dic: [[:]])
+            print("Don't have any cards")
+            return
         }
-        catch  {
-            print(false, error.localizedDescription)
-            let enrollCardDic: [String: Any] = [
-                "status": error.localizedDescription,
-            ]
-            self.callBackMethods(event: "enrollCardCatch", dic: enrollCardDic)
+        let card = cards?.values.map({$0})[0]
+        
+        guard let cardsDits = cards else { return }
+        cardsArr = cardsDits
+        
+        var allCardsDetail = [[String: Any]]()
+        var cardtempDict =  [String:Any]()
+        for (index, CARD)  in cardsArr.enumerated()  {
+            let card = cardsArr.values.map({$0})[index]
+            
+            let cardStatus = (card.getStatus()?.description ?? "").lowercased()
+            print("card status ---> ", cardStatus)
+            
+            var isActiveCard = false
+            if cardStatus == "active" {
+                isActiveCard = true
+            }
+            do { try  card.getApplePayService().isCardInApplePay { status in
+                
+                cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
+                                "getStatus": isActiveCard,
+                                "isCardInApplePay": status,
+                ] as [String : Any]
+                
+                allCardsDetail.append(cardtempDict)
+                if  index == self.cardsArr.count - 1 {
+                    print("loopEnded: ", allCardsDetail)
+                    self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
+                    
+                    //                    DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+                    //                        self.pushToCard(cardId: card.getIssuerCardId() ?? "")
+                    //                    }
+                }
+            } errorHandler: { Error in
+                print(Error)
+            }
+            } catch {
+                print(error)
+            }
+            
+            
+            //                do { try card.getApplePayService().isCardInApplePay { status in
+            //
+            //                    let isCardInApplePayStatus = stat
+            //                    cardtempDict = ["getIssuerCardId": card.getIssuerCardId() ?? "",
+            //                                    "getStatus": isActiveCard,
+            //                                    "isCardInApplePay": status,
+            //                    ] as [String : Any]
+            //
+            //                    allCardsDetail.append(cardtempDict)
+            //                    if  index == self.cardsArr.count - 1 {
+            //                        print("loopEnded: ", allCardsDetail)
+            //                        self.callBackMethodsCardDetails(event: "idsArrray", dic: allCardsDetail)
+            //                    }
+            //                }
+            //                }
+            //                catch {
+            //                    print(error)
+            //                }
         }
+        print(allCardsDetail)
+        //        self.callBackMethodsCardDetails(event: "getCards", dic: allCardsDetail)
+        
+        // self.callBackMethods(event: "getCards", dic: allCardsDetail)
     }
     
-        public func getCheckStatus(){
-                    print("Enter into getStaus method")
-
-
-
-
-                }
-
-                public func getStatus(_ completion: @escaping OperationCompletion<DigitalCardServiceStatus>){
-
+    
+    //    public func getCards(){
+    //        print("enter get cards method")
+    //       var cards =  wallet?.getDigitalCards(includeNotProvisionedCards: true)
+    //
+    //        if(cards?.count != 0){
+    //
+    //        let card = cards?.values.map({$0})[0]
+    //         var cardsArr = [String: DigitalCard]()
+    //        guard let cardsDits = cards else { return }
+    //        cardsArr = cardsDits
+    //
+    //        var cardIds = [String]()
+    //        for (index, card)  in cardsArr.enumerated()  {
+    //            let card = cardsArr.values.map({$0})[index]
+    //
+    //            let cardDescrition = card.getStatus()?.description
+    //            print("card description ",cardDescrition)
+    //
+    //            cardIds.append(card.getIssuerCardId() ?? "")
+    //        }
+    //
+    //
+    //
+    //        print("cardsIDss----",cardIds)
+    //
+    //        let getAllCardIds: [String: Any] = [
+    //            "idsArrray": cardIds,
+    //        ]
+    //        self.callBackMethods(event: "getCards", dic: getAllCardIds)
+    //
+    //
+    //       // callBackMethods(event: "getCards", dic: cards)
+    //
+    //        }
+    //    }
+    func pushToCard(cardId:String) {
+        for (index, CARD)  in cardsArr.enumerated()  {
+            let card = cardsArr.values.map({$0})[index]
+            if card.getIssuerCardId() == cardId {
+                
+                do { try  card.getApplePayService().pushCard({ result in
+                    switch result {
+                        
+                    case .success(let status ) :
+                        print ("status_getApplePayService: -- ", status)
+                    case .failure(let error):
+                        print( "status_getApplePayService_Failure,\(error)")
+                        
                     }
+                })
+                    break
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        
+    }
+    
+    
+    func enrollmentDataCard(enrollmentData: [[String:Any]]) {
+        print("Before loop card array count :--- " , enrollmentData.count)
+        
+        
+        let myGroup = DispatchGroup()
+        var cardsREsponceArr = [[String:Any]]()
+        for (index, enrolmentObject) in enrollmentData.enumerated() {
+            do {
+                myGroup.enter()
+                try wallet?.enrollDigitalCard(enrollmentData: enrolmentObject["enrollmentData"] as? String ?? "", completion: { result in
+                    switch result {
+                    case .success(let status ) :
+                        let cardTemp =  ["cardId": enrolmentObject["cardId"] as? String ?? "",
+                                         "enrollmentData": enrolmentObject["enrollmentData"] as? String ?? "",
+                                         "isEnrolled":true] as! [String:Any]
+                        cardsREsponceArr.append(cardTemp)
+                        myGroup.leave()
+                        print ("enrollDigitalCard: - Successs", status)
+                    case .failure(let error):
+                        print( "status_getApplePayService_Failure,\(error)")
+                        let cardTemp =  ["cardId": enrolmentObject["cardId"] as? String ?? "",
+                                         "enrollmentData": enrolmentObject["enrollmentData"] as? String ?? "",
+                                         "isEnrolled":false] as! [String:Any]
+                        cardsREsponceArr.append(cardTemp)
+                        myGroup.leave()
+                    }
+                })
+            }  catch  {
+                print(false, error.localizedDescription)
+                myGroup.leave()
+                let enrollCardDic: [String: Any] = [
+                    "status": error.localizedDescription,
+                ]
+                //  self.callBackMethods(event: "enrollCardCatch", dic: enrollCardDic)
+            }
+        }
+        myGroup.notify(queue: .main) {
+            print("Finished all requests.")
+            print("cards array coiunt:--- " , cardsREsponceArr.count)
+            self.callBackMethodsCardDetails(event: "enrollCardCatch", dic: cardsREsponceArr)
+        }
+    }
+    public func getCheckStatus(){
+        print("Enter into getStaus method")
+    }
+    
+    public func getStatus(_ completion: @escaping OperationCompletion<DigitalCardServiceStatus>){
+        
+    }
+    
     
     
     public func cardInApplePay(){
-
+        
     }
     
     
     private func callJavaScript(_ methodName: String, result text: String) {
-           let dic: [String: String] = ["eventName": methodName, "response": text]
+        let dic: [String: String] = ["eventName": methodName, "response": text]
         eventSink!(dic)
-       }
+    }
     
     
     private func callBackMethods(event eventName: String, dic: [String: Any]?, strData: String = "") {
-           let strData = strData.isEmpty ? (dic == nil ? "" : convertDictionaryToString(dicData: dic!)) : strData
-          printData(event: eventName, data: strData)
-           //CallBack
-           callJavaScript(eventName, result: strData)
-       }
-
-
+        let strData = strData.isEmpty ? (dic == nil ? "" : convertDictionaryToString(dicData: dic!)) : strData
+        printData(event: eventName, data: strData)
+        //CallBack
+        callJavaScript(eventName, result: strData)
+    }
+    
+    
     private func callBackMethodsCardDetails(event eventName: String, dic: [[String: Any]], strData: String = "") {
         let strData = strData.isEmpty ?  dic.toJSONString() : strData
-          printData(event: eventName, data: strData)
-           //CallBack
-           callJavaScript(eventName, result: strData)
-       }
-
+        printData(event: eventName, data: strData)
+        //CallBack
+        callJavaScript(eventName, result: strData)
+    }
+    
     func convertDictionaryToString(dicData: [String: Any]) -> String {
-            var text = ""
-            do {
-                text = try dicData.stringify()
-            } catch {
-                print("Error: ", error)
-            }
-            return text
+        var text = ""
+        do {
+            text = try dicData.stringify()
+        } catch {
+            print("Error: ", error)
         }
+        return text
+    }
     
     func printData(event: String, data: String) {
-            print("\n\n**********************************")
-            print("Event Name: ", event)
-            print("**************************************")
-            print(data)
-            print("**************************************")
-            print("**********************************\n\n")
-        }
-
+        print("\n\n**********************************")
+        print("Event Name: ", event)
+        print("**************************************")
+        print(data)
+        print("**************************************")
+        print("**********************************\n\n")
+    }
+    
     var controller = FlutterViewController()
     var batteryChannel = FlutterMethodChannel()
     
@@ -387,71 +432,69 @@ import AntelopSDK
     var digicalCard: DigitalCardServiceStatus!
     var eventSink: FlutterEventSink?
     
-   // FlutterMethodChannel(name: "com.capital.cbt",
-    //                                          binaryMessenger: controller.binaryMessenger)
-    
     override func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         
         provisioner = WalletProvisioning(self)
-         walletManager = WalletManager(self)
+        walletManager = WalletManager(self)
         
         controller = window?.rootViewController as! FlutterViewController
         batteryChannel = FlutterMethodChannel(name: "com.capital.cbt", binaryMessenger: controller.binaryMessenger)
         
         let instance = AppDelegate()
-
+        
         let evenChannel = FlutterEventChannel(name: "continueListining", binaryMessenger: controller.binaryMessenger)
         evenChannel.setStreamHandler(self)
-
-            self.registerForFirebaseNotification(application: application)
-                
+        
+        self.registerForFirebaseNotification(application: application)
+        
         // ========== Code to implement ==========
-       
-      //  var walletProvisioningView = WalletProvisioningView()
+        
+        //  var walletProvisioningView = WalletProvisioningView()
         
         batteryChannel.setMethodCallHandler({
             [weak self] (call: FlutterMethodCall, result: FlutterResult) -> Void in
             switch call.method {
-                   case "initialize":
-                       self?.callInitialize()
+            case "initialize":
+                self?.callInitialize()
                 
-                   case "getWalletLaunch":
-                        let dicData = call.arguments as? [String : Any]
-                       // print(dicData["clientId"] as? String)
+            case "getWalletLaunch":
+                let dicData = call.arguments as? [String : Any]
+                // print(dicData["clientId"] as? String)
                 self?.launchWallet(clientId: dicData!["clientId"] as? String,
                                    walletId: dicData!["walletId"] as! String,
                                    settingsProfileId: dicData?["settingsProfileId"] as? String,
                                    phoneNumber: dicData!["phoneNumber"] as? String)
                 
-                   case "walletConnect":
-                       self?.walletConnect()
+            case "walletConnect":
+                self?.walletConnect()
                 
-                   case "checkEligibility":
-                       self?.callCheckEligibility()
+            case "checkEligibility":
+                self?.callCheckEligibility()
                 
-                   case "enrollCard":
-                      let dicData = call.arguments as! [String : Any]
-                      print("enter in enrollment section \(dicData["enrollmentData"] as! String)")
-                      self?.enrollmentDataCard(enrollmentData:dicData["enrollmentData"] as! String)
-                case "pushCard":
-                                     let dicData = call.arguments as! [String : Any]
-                                     print("enter in enrollment section \(dicData["cardId"] as! String)")
-                                     self?.pushToCard(cardId: (dicData["cardId"] as! String))
-
-
-                   case "getAllCards":
-                       self?.getCards()
+            case "enrollCard":
+                let dicData = call.arguments as! [[String : Any]]
+                print("enter in enrollment section \(dicData)")
+                self?.enrollmentDataCard(enrollmentData: dicData)
                 
-                   case "getStatusApplePay":
-                       self?.getCheckStatus()
+            case "pushCard":
+                let dicData = call.arguments as! [String : Any]
+                print("enter in enrollment section \(dicData["cardId"] as! String)")
+                self?.pushToCard(cardId: (dicData["cardId"] as! String))
                 
-                   default:
-                       result("iOS " + UIDevice.current.systemVersion)
+            case "getAllCards":
+                self?.getCards()
+                
+            case "getStatusApplePay":
+                self?.getCheckStatus()
+                
+            default:
+                result("iOS " + UIDevice.current.systemVersion)
             }
         })
+        
         AntelopAppDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyCuEgnAmuXOuVXT0lF2_NtqUEelRbH4F_k")
@@ -461,18 +504,18 @@ import AntelopSDK
     }
     
     func registerForFirebaseNotification(application : UIApplication){
-       //    Messaging.messaging().delegate     = self;
-           if #available(iOS 10.0, *) {
-               //UNUserNotificationCenter.current().delegate = self ;
-               let authOpt : UNAuthorizationOptions = [.alert, .badge, .sound];
-               UNUserNotificationCenter.current().requestAuthorization(options: authOpt, completionHandler: {_, _ in})
-               UNUserNotificationCenter.current().delegate = self ;
-           }else{
-               let settings : UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-               application.registerUserNotificationSettings(settings);
-           }
-           application.registerForRemoteNotifications();
-       }
+        //    Messaging.messaging().delegate     = self;
+        if #available(iOS 10.0, *) {
+            //UNUserNotificationCenter.current().delegate = self ;
+            let authOpt : UNAuthorizationOptions = [.alert, .badge, .sound];
+            UNUserNotificationCenter.current().requestAuthorization(options: authOpt, completionHandler: {_, _ in})
+            UNUserNotificationCenter.current().delegate = self ;
+        }else{
+            let settings : UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings);
+        }
+        application.registerForRemoteNotifications();
+    }
     
     override func applicationDidBecomeActive(_ application: UIApplication) {
         AntelopAppDelegate.shared.applicationDidBecomeActive(application)
@@ -509,13 +552,12 @@ import AntelopSDK
 }
 
 extension Collection where Iterator.Element == [String: Any] {
-  func toJSONString(options: JSONSerialization.WritingOptions = .prettyPrinted) -> String {
-    if let arr = self as? [[String: Any]],
-       let dat = try? JSONSerialization.data(withJSONObject: arr, options: options),
-       let str = String(data: dat, encoding: String.Encoding.utf8) {
-      return str
+    func toJSONString(options: JSONSerialization.WritingOptions = .prettyPrinted) -> String {
+        if let arr = self as? [[String: Any]],
+           let dat = try? JSONSerialization.data(withJSONObject: arr, options: options),
+           let str = String(data: dat, encoding: String.Encoding.utf8) {
+            return str
+        }
+        return "[]"
     }
-    return "[]"
-  }
 }
-

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/apple_pay/enroll_card_request_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:domain/model/apple_pay/get_all_card_data.dart';
@@ -175,55 +176,172 @@ class AntelopHelper {
         debugPrint("walletId " + walletData["walletId"].toString());
         debugPrint("getIssuerWalletId " + walletData["getIssuerWalletId"].toString());
         debugPrint("getIssuerClientId " + walletData["getIssuerClientId"].toString());
-
         antelopWalletId = walletData["walletId"].toString();
 
         ///saving wallet id
         await SecureStorageHelper.instance.saveWalletId(walletId: walletData["walletId"].toString());
 
-        if (walletData["walletId"] != '') {
-          BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-          _apiService
-              .enrollCards(EnrollCardRequestEntity(
-                  baseData: baseData.toJson(),
-                  walletId: walletData["walletId"] != null ? walletData["walletId"].toString() : "",
-                  getToken: false,
-                  cardType: "C",
-                  cardId: ""))
-              .then((value) async {
-            if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
-              var dataValue = value.data.transform().enrollCardList;
-              debugPrint("Final enroll Card length---> ${(dataValue ?? []).length}");
+        /// TODO getCards from Antelop and call API
 
-              var parameter = {"enrollmentData": dataValue?[0].enrollmentData};
-              var data = await platform.invokeMethod('enrollCard', parameter);
-            } else {
-              var cardsData = await platform.invokeMethod('getAllCards');
-            }
-          }, onError: (error) async {
-            debugPrint("MainError-----------> ${error.toString()}");
-            var cardsData = await platform.invokeMethod('getAllCards');
-          });
-        } else {
-          var cardsData = await platform.invokeMethod('getAllCards');
-        }
+        var cardsData = await platform.invokeMethod('getAllCards');
+
+        // if (walletData["walletId"] != '') {
+        //   _apiService
+        //       .getEnrollCard(
+        //     EnrollCardRequest(
+        //         cardType: "C",
+        //         //  cardId: "205897122871160",
+        //         //  cardId: "205897122871140",
+        //         cardId: "",
+        //         walletId: walletData["walletId"].toString()),
+        //   )
+        //       .then((value) async {
+        //     if (value.data.transform().status?.isSuccess ?? false) {
+        //       debugPrint("Final enroll Card length " + value.data.content!.cards!.length.toString());
+        //       debugPrint("Final  enroll Card ---> " + value.data.content!.cards![0].toString());
+        //       value.data.content!.cards![0].enrollmentData!;
+        //       var parameter = {"enrollmentData": value.data.content!.cards![0].enrollmentData!.toString()};
+        //       var data = await platform.invokeMethod('enrollCard', parameter);
+        //     } else {
+        //       var cardsData = await platform.invokeMethod('getAllCards');
+        //     }
+        //   }, onError: (error) async {
+        //     debugPrint("MainError ${error.toString()}");
+        //     var cardsData = await platform.invokeMethod('getAllCards');
+        //   });
+        // } else {
+        //   var cardsData = await platform.invokeMethod('getAllCards');
+        // }
         _eventEmitter.emit(eventName, null, result);
         break;
 
       case "getCards":
         debugPrint("Flutter side getCards " + data.toString());
         dynamic newData = jsonDecode(data);
+
         if (newData != null) {
-          debugPrint("print 1--> ");
+          print("print 1--> ");
           List<dynamic> newList = newData;
-          debugPrint("print 2--> ");
+          print("print 2--> ");
           List<GetAllCardData> newDataList = [];
-          debugPrint("print 3--> ");
+          print("print 3--> ");
           newDataList = newList.map((e) => GetAllCardData.fromJson(e)).toList();
-          debugPrint("print 4--> ");
-          debugPrint("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
+          print("print 4--> ");
+          print("newDataList getIssuerId 1--> " + newDataList.first.getIssuerCardId.toString());
           listOfCardFromAntelop.add(newDataList);
+
+          List<GetAllCardData> antelopIssuerCardList = listOfCardFromAntelop.value;
+
+          List<String> tempAntelopIssuerCardId = [];
+          for (int i = 0; i < antelopIssuerCardList.length; i++) {
+            tempAntelopIssuerCardId.add(antelopIssuerCardList[i].getIssuerCardId!);
+          }
+
+          List<String> unEnrolledDataList = [];
+          BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+          _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson())).then((value) {
+            ///TODO:uncomment after wards
+            // if (value.data.transform().status?.isSuccess ?? false) {
+            //   for (int i = 0; i < value.data.content!.creditCardList!.length; i++) {
+            //     if (!(tempAntelopIssuerCardId.contains(value.data.content!.creditCardList![i].cardId))) {
+            //       unEnrolledDataList.add(value.data.content!.creditCardList![i].cardId ?? "");
+            //     }
+            //   }
+            //
+            //   for (int i = 0; i < value.data.content!.debitCardList!.length; i++) {
+            //     if (!(tempAntelopIssuerCardId.contains(value.data.content!.debitCardList![i].cardId))) {
+            //       unEnrolledDataList.add(value.data.content!.debitCardList![i].cardId ?? "");
+            //     }
+            //   }
+            //   debugPrint("Antelop Wallet id ********** ${antelopWalletId} **********");
+            //
+            //   if (unEnrolledDataList.isNotEmpty) {
+            //     _apiService
+            //         .enrollCards(EnrollCardRequestEntity(
+            //             baseData: baseData.toJson(),
+            //             walletId: antelopWalletId,
+            //             getToken: false,
+            //             cardType: "C",
+            //             cardId: ""))
+            //         .then((value) async {
+            //       if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+            //         ///getting list from api
+            //         var cards = value.data.transform().enrollCardList;
+            //
+            //         ///map to send to native
+            //         List<Map<String, dynamic>> params = [];
+            //         for (int i = 0; i < (cards ?? []).length; i++) {
+            //           for (int j = 0; j < unEnrolledDataList.length; j++) {
+            //             if (unEnrolledDataList[j] == cards![i].cardId) {
+            //               debugPrint("Particular Card Enroll Data ---> ${cards[i].cardId!} ---> " +
+            //                   cards[i].enrollmentData.toString());
+            //               params.add({
+            //                 "cardId": cards[i].cardId,
+            //                 "enrollmentData": cards[i].enrollmentData,
+            //                 "isEnrolled": false
+            //               });
+            //               // var parameter = {
+            //               //   "enrollmentData": value.data.content!.cards![i].enrollmentData!.toString()
+            //               // };
+            //             }
+            //           }
+            //         }
+            //         var data = await platform.invokeMethod('enrollCard', params);
+            //       } else {
+            //         //  var cardsData = await platform.invokeMethod('getAllCards');
+            //       }
+            //     }, onError: (error) async {
+            //       debugPrint("MainError ${error.toString()}");
+            //       //  var cardsData = await platform.invokeMethod('getAllCards');
+            //     });
+            //   }
+            // }
+          });
         }
+        break;
+
+      case "emptyGetCards":
+        debugPrint("Flutter side Empty Get Cards ");
+        BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+        // ///Test purpose
+        // _apiService.getAllCardList(BaseRequest(baseData: baseData.toJson()));
+
+        ///Test purpose
+
+
+        Future.delayed(Duration(seconds: 4), () {
+          _apiService
+              .enrollCards(EnrollCardRequestEntity(
+                  baseData: baseData.toJson(),
+                  walletId: antelopWalletId,
+                  getToken: false,
+                  cardType: "C",
+                  cardId: ""))
+              .then((value) async {
+            if ((value.data.transform().enrollCardList ?? []).isNotEmpty) {
+              ///getting list from api
+              var cards = value.data.transform().enrollCardList;
+              List<Map<String, dynamic>> params = [];
+              for (int i = 0; i < cards!.length; i++) {
+                debugPrint("enroll card api response data card id ********** ${cards[i].cardId} **********");
+                debugPrint(
+                    "enroll card api response data enrollment data ********** ${cards[i].enrollmentData} **********");
+                //   var parameter = {"enrollmentData": value.data.content!.cards![i].enrollmentData!.toString()};
+                params.add({
+                  "cardId": cards[i].cardId,
+                  "enrollmentData": cards[i].enrollmentData,
+                  "isEnrolled": false
+                });
+              }
+              var data = await platform.invokeMethod('enrollCard', params);
+            }
+          }, onError: (error) async {
+            debugPrint("MainError ${error.toString()}");
+          });
+        });
+
         break;
 
       case "enrollCardSuccess":
