@@ -1396,5 +1396,6 @@
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
   "idVerificationFailed": "فشل التحقق من الهوية",
-  "howWouldLikeToPayYourBills": "How would you like to\npay your bills?"
+  "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
+  "swipeUpToPayNewBill": "Swipe up to pay new bill"
 }
