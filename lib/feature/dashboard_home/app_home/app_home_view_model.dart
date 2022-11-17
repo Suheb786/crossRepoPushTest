@@ -471,7 +471,7 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       }
 
-      ///TODO PostPaid Card
+     /* ///TODO PostPaid Card
       pages.add(PostPaidBillCardWidget());
       ///adding cardType
       cardTypeList
@@ -482,7 +482,7 @@ class AppHomeViewModel extends BasePageViewModel {
       pages.add(PrePaidBillCardWidget());
       ///adding cardType
       cardTypeList
-          .add(TimeLineSwipeUpArgs(cardType: CardType.POSTPAID, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+          .add(TimeLineSwipeUpArgs(cardType: CardType.POSTPAID, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));*/
 
     }
     addPages(pages);
