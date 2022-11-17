@@ -59,6 +59,9 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             Navigator.pushNamed(context, RoutePaths.CardTransaction,
                                 arguments: GetCreditCardTransactionArguments(
                                     cardId: model.timeLineListArguments[currentStep - 1].cardId));
+                          }else if (model.cardTypeList[currentStep].cardType == CardType.POSTPAID &&
+                              model.cardTypeList[currentStep].swipeUpEnum == SwipeUpEnum.SWIPE_UP_YES) {
+                            Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                           }
                         } else {
                           if (details.primaryVelocity! > 0.5) {

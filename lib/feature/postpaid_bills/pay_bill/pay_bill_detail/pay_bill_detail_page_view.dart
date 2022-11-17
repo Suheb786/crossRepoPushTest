@@ -25,7 +25,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewModel> {
+class PayBillDetailPageView
+    extends BasePageViewWidget<PayBillDetailPageViewModel> {
   PayBillDetailPageView(ProviderBase model) : super(model);
 
   @override
@@ -49,15 +50,23 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                       0.0) {
                     if (StringUtils.isDirectionRTL(context)) {
                       if (details.primaryVelocity!.isNegative) {
-                        ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
+                        ProviderScope.containerOf(context)
+                            .read(payBillPageViewModelProvider)
+                            .previousPage();
                       } else {
-                        ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
+                        ProviderScope.containerOf(context)
+                            .read(payBillPageViewModelProvider)
+                            .nextPage();
                       }
                     } else {
                       if (details.primaryVelocity!.isNegative) {
-                        ProviderScope.containerOf(context).read(payBillPageViewModelProvider).nextPage();
+                        ProviderScope.containerOf(context)
+                            .read(payBillPageViewModelProvider)
+                            .nextPage();
                       } else {
-                        ProviderScope.containerOf(context).read(payBillPageViewModelProvider).previousPage();
+                        ProviderScope.containerOf(context)
+                            .read(payBillPageViewModelProvider)
+                            .previousPage();
                       }
                     }
                   }
@@ -75,7 +84,8 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                         stream: model.totalBillAmtDueStream,
                         dataBuilder: (BuildContext context, isSwitchActive) {
                           return Container(
-                            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 32.h, horizontal: 24.w),
                             child: Column(children: [
                               Align(
                                 alignment: Alignment.topLeft,
@@ -93,9 +103,12 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                       title: ProviderScope.containerOf(context)
                                           .read(newBillsPageViewModelProvider)
                                           .title,
-                                      tileIcon: ProviderScope.containerOf(context)
-                                          .read(newBillsPageViewModelProvider)
-                                          .titleIcon,
+                                      tileIcon: ProviderScope.containerOf(
+                                                  context)
+                                              .read(
+                                                  newBillsPageViewModelProvider)
+                                              .titleIcon ??
+                                          "",
                                     ),
                                   )
                                 ],
@@ -106,7 +119,9 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                 controller: model.billNameController,
                                 readOnly: true,
                                 onPressed: () {
-                                  PayBillDialog.show(context, title: S.of(context).billName, onDismissed: () {
+                                  PayBillDialog.show(context,
+                                      title: S.of(context).billName,
+                                      onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
                                     // Navigator.pop(context);
@@ -118,18 +133,21 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                       height: 16.h,
                                       width: 16.w,
                                       padding: EdgeInsets.only(right: 8.w),
-                                      child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                      child: AppSvg.asset(AssetUtils.downArrow,
+                                          color: AppColor.dark_gray_1));
                                 },
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 16.0.h),
                                 child: AppTextField(
-                                  labelText: S.of(context).services.toUpperCase(),
+                                  labelText:
+                                      S.of(context).services.toUpperCase(),
                                   hintText: S.of(context).pleaseSelect,
                                   controller: model.serviceController,
                                   readOnly: true,
                                   onPressed: () {
-                                    SelectServiceDialog.show(context, title: S.of(context).services,
+                                    SelectServiceDialog.show(context,
+                                        title: S.of(context).services,
                                         onDismissed: () {
                                       Navigator.pop(context);
                                     }, onSelected: (value) {
@@ -142,15 +160,17 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                         height: 16.h,
                                         width: 16.w,
                                         padding: EdgeInsets.only(right: 8.w),
-                                        child:
-                                            AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                        child: AppSvg.asset(
+                                            AssetUtils.downArrow,
+                                            color: AppColor.dark_gray_1));
                                   },
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 16.0.h),
                                 child: AppTextField(
-                                  labelText: S.of(context).referenceNo.toUpperCase(),
+                                  labelText:
+                                      S.of(context).referenceNo.toUpperCase(),
                                   hintText: S.of(context).pleaseEnter,
                                   controller: model.refNoController,
                                   inputType: TextInputType.number,
@@ -172,15 +192,17 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                         height: 16.h,
                                         width: 16.w,
                                         padding: EdgeInsets.only(right: 8.w),
-                                        child:
-                                            AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
+                                        child: AppSvg.asset(
+                                            AssetUtils.downArrow,
+                                            color: AppColor.dark_gray_1));
                                   },
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 24.0.h),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(S.of(context).addThisBillToSaveList,
                                         style: TextStyle(
@@ -197,8 +219,10 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                         valueFontSize: 10.t,
                                         inactiveColor: AppColor.gray1,
                                         activeColor: AppColor.brightBlue,
-                                        activeText: S.of(context).yes.toUpperCase(),
-                                        inactiveText: S.of(context).no.toUpperCase(),
+                                        activeText:
+                                            S.of(context).yes.toUpperCase(),
+                                        inactiveText:
+                                            S.of(context).no.toUpperCase(),
                                         activeTextColor: AppColor.white,
                                         inactiveTextColor: AppColor.darkGray,
                                         value: isSwitchActive ?? false,
@@ -213,7 +237,8 @@ class PayBillDetailPageView extends BasePageViewWidget<PayBillDetailPageViewMode
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 16.0.h),
                                   child: AppTextField(
-                                    labelText: S.of(context).nickName.toUpperCase(),
+                                    labelText:
+                                        S.of(context).nickName.toUpperCase(),
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.nickNameController,
                                     onChanged: (data) {},

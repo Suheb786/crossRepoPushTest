@@ -471,11 +471,19 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       }
 
-      // ///TODO PostPaid Card
-      // pages.add(PostPaidBillCardWidget());
-      //
-      // ///TODO PrePaidPaid Card
-      // pages.add(PrePaidBillCardWidget());
+      ///TODO PostPaid Card
+      pages.add(PostPaidBillCardWidget());
+      ///adding cardType
+      cardTypeList
+          .add(TimeLineSwipeUpArgs(cardType: CardType.POSTPAID, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+
+
+      ///TODO PrePaidPaid Card
+      pages.add(PrePaidBillCardWidget());
+      ///adding cardType
+      cardTypeList
+          .add(TimeLineSwipeUpArgs(cardType: CardType.POSTPAID, swipeUpEnum: SwipeUpEnum.SWIPE_UP_YES));
+
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);

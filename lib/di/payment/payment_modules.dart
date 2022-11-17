@@ -284,7 +284,7 @@ final launcherPageViewModelProvider =
 
 final newBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<NewBillsPageViewModel>(
-  (ref) => NewBillsPageViewModel(),
+  (ref) => NewBillsPageViewModel(ref.read(getBillCategoriesUseCaseProvider)),
 );
 
 final payBillPageViewModelProvider =

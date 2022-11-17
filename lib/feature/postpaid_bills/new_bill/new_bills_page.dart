@@ -32,7 +32,7 @@ class NewBillsPageState extends BaseStatefulPage<NewBillsPageViewModel, NewBills
 
   @override
   void onModelReady(NewBillsPageViewModel model) {
-    model.newBillsPageDataList = [
+   /* model.newBillsPageDataList = [
       NewBillsPageData(AssetUtils.electricityIcon, S.of(context).waterAndElectricity,
           NewBillsTypeEnum.WATERANDELECTRICITY),
       NewBillsPageData(
@@ -45,7 +45,7 @@ class NewBillsPageState extends BaseStatefulPage<NewBillsPageViewModel, NewBills
       NewBillsPageData(AssetUtils.gasfuelIcon, S.of(context).fuelAndGas, NewBillsTypeEnum.FUELANDGAS),
       NewBillsPageData(AssetUtils.flightIcon, S.of(context).travelAndTransportation,
           NewBillsTypeEnum.TRAVELANDTRANSPORTATION),
-    ];
+    ];*/
     super.onModelReady(model);
   }
 }
