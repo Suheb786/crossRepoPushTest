@@ -182,6 +182,13 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
       imgFile.writeAsBytes(pngBytes);
       final RenderBox box = context.findRenderObject() as RenderBox;
       debugPrint('Image path----->${imgFile.path}');
+
+      // share.ShareExtend.share(imgFile.path, "file",
+      //     subject: 'QR',
+      //     sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+      //     extraText:
+      //         'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL');
+
       Share.shareFiles([imgFile.path],
           subject: 'QR',
           text: Platform.isAndroid
