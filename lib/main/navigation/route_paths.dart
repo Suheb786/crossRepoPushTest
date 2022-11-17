@@ -131,4 +131,5 @@ class RoutePaths {
   static const String PayBillDetailPage = "/payBillDetailPage";
   static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
   static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
+  static const String EditCliqIDMobileNoPage = "/editCliqIDMobileNoPage";
 }

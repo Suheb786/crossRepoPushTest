@@ -70,6 +70,7 @@ import 'package:neo_bank/feature/manage_cliq_id/cliq_id_creation_success/cliq_id
 import 'package:neo_bank/feature/manage_cliq_id/cliq_id_list/cliq_id_list_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/create_cliq_id_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page.dart';
+import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_cliq_id_mobile_no/edit_cliq_id_mobile_no_page.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/edit_mobile_no_cliq_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -773,6 +774,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaidBillsSuccessPage(settings.arguments as PaidBillsSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.PaidBillsSuccessPage));
+
+      case RoutePaths.EditCliqIDMobileNoPage:
+        return CupertinoPageRoute(
+            builder: (context) => EditCliqIDMobileNoPage(),
+            settings: RouteSettings(name: RoutePaths.EditCliqIDMobileNoPage));
 
       default:
         return CupertinoPageRoute(

@@ -5,12 +5,16 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view_model.dart';
 
-class EditAliasPage extends BasePage<EditAliasPageViewModel> {
+import 'edit_cliq_id_mobile_no_page_view.dart';
+import 'edit_cliq_id_mobile_no_page_view_model.dart';
+
+class EditCliqIDMobileNoPage extends BasePage<EditCliqIDMobileNoPageViewModel> {
   @override
-  EditAliasPageState createState() => EditAliasPageState();
+  EditCliqIDMobileNoPageState createState() => EditCliqIDMobileNoPageState();
 }
 
-class EditAliasPageState extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
+class EditCliqIDMobileNoPageState
+    extends BaseStatefulPage<EditCliqIDMobileNoPageViewModel, EditCliqIDMobileNoPage> {
   @override
   ProviderBase provideBase() {
     return editAliasViewModelProvider;
@@ -32,11 +36,11 @@ class EditAliasPageState extends BaseStatefulPage<EditAliasPageViewModel, EditAl
   }*/
 
   @override
-  Widget buildView(BuildContext context, EditAliasPageViewModel model) {
-    return EditAliasPageView(provideBase());
+  Widget buildView(BuildContext context, EditCliqIDMobileNoPageViewModel model) {
+    return EditCliqIDMobileNoPageView(provideBase());
   }
 }
 
-/*class EditAliasPageArguments {
+/*class EditCliqIDMobileNoPageArguments {
   final
 }*/

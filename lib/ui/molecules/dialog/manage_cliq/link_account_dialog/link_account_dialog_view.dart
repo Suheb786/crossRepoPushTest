@@ -99,7 +99,8 @@ class LinkAccountDialogView extends StatelessWidget {
                                         childCount: model.accountsList.length,
                                         builder: (BuildContext context, int index) {
                                           return LinkAccountSelectionWidget(
-                                            label: model.accountsList[index].accountNo,
+                                            accountNo: model.accountsList[index].accountNo,
+                                            accountType: model.accountsList[index].accountType,
                                             textColor: currentIndex == index
                                                 ? Theme.of(context).primaryColorDark
                                                 : AppColor.dark_gray_1,

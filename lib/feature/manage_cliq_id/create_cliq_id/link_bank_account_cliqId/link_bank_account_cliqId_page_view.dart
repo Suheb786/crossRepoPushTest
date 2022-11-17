@@ -99,11 +99,11 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                             child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text('Savings Account 1'),
+                                                Text(data[index].accountType),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    Text('Savings Account 1'),
+                                                    Text(data[index].accountNo),
                                                     Icon(
                                                       Icons.more_horiz_outlined,
                                                       size: 25,
@@ -133,13 +133,13 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                       },
                                       separatorBuilder: (context, index) {
                                         return SizedBox(
-                                          height: 8,
+                                          height: 8.h,
                                         );
                                       },
                                       itemCount: data.length),
                                 ),
                                 SizedBox(
-                                  height: 8,
+                                  height: 8.h,
                                 ),
                                 AddIncomeWidget(
                                   label: S.of(context).addIncome,
@@ -170,7 +170,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                   model.termAndConditionSelected(false);
                                                 },
                                                 child: Container(
-                                                  height: 40.h,
+                                                  height: 42.h,
                                                   width: 40.w,
                                                   child: Padding(
                                                     padding: EdgeInsetsDirectional.only(
@@ -191,7 +191,7 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                                 },
                                                 child: Container(
                                                   width: 40.0.w,
-                                                  height: 40.0.h,
+                                                  height: 42.0.h,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: AppColor.gray1),
                                                     borderRadius: BorderRadius.all(Radius.circular(100.0)),
@@ -203,7 +203,13 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                                             ),
                                             Expanded(
                                               child: Text(
-                                                  'When accepting the creation of your CliQ ID, you should be aware that some or all of your information (including your full name, phone number linked to the service, your account or your IBAN number and the bank that maintains your account) may be shared with the third party when receiving or sending payments through CliQ.'),
+                                                S.of(context).whenAcceptingCreationOfYourCliqId,
+                                                style: TextStyle(
+                                                  color: AppColor.veryDarkGray2,
+                                                  fontSize: 12.t,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
                                             )
 
                                             /*: Container(

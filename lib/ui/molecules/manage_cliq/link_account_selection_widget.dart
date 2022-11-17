@@ -6,12 +6,19 @@ import 'package:neo_bank/utils/string_utils.dart';
 class LinkAccountSelectionWidget extends StatelessWidget {
   final Color? textColor;
   final Color? widgetColor;
-  final String label;
+  final String accountNo;
+  final String accountType;
   final Function? onTap;
   final int currentIndex;
 
   const LinkAccountSelectionWidget(
-      {Key? key, required this.label, this.onTap, this.textColor, this.widgetColor, this.currentIndex: 0})
+      {Key? key,
+      required this.accountNo,
+      required this.accountType,
+      this.onTap,
+      this.textColor,
+      this.widgetColor,
+      this.currentIndex: 0})
       : super(key: key);
 
   @override
@@ -31,7 +38,7 @@ class LinkAccountSelectionWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              S.of(context).savingAccount('${currentIndex + 1}'),
+              accountType,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: textColor,
@@ -42,7 +49,7 @@ class LinkAccountSelectionWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-              label,
+              accountNo,
               style: TextStyle(
                   fontFamily: StringUtils.appFont,
                   color: textColor,

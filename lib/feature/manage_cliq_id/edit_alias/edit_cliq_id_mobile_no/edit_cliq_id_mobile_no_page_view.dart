@@ -12,8 +12,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class EditAliasPageView extends BasePageViewWidget<EditAliasPageViewModel> {
-  EditAliasPageView(ProviderBase model) : super(model);
+import 'edit_cliq_id_mobile_no_page_view_model.dart';
+
+class EditCliqIDMobileNoPageView extends BasePageViewWidget<EditCliqIDMobileNoPageViewModel> {
+  EditCliqIDMobileNoPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
