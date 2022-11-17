@@ -124,8 +124,8 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   void addAllBillAmt() {
+    totalBillAmt = 0.0;
     payPostPaidBillsDataList.forEach((element) {
-      totalBillAmt = 0.0;
       if (element.isChecked == true) {
         totalBillAmt = double.parse(element.dueAmount ?? "0.0") + totalBillAmt;
       }

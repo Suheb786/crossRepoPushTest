@@ -471,11 +471,11 @@ class AppHomeViewModel extends BasePageViewModel {
         }
       }
 
-      ///TODO PostPaid Card
-      pages.add(PostPaidBillCardWidget());
-
-      ///TODO PrePaidPaid Card
-      pages.add(PrePaidBillCardWidget());
+      // ///TODO PostPaid Card
+      // pages.add(PostPaidBillCardWidget());
+      //
+      // ///TODO PrePaidPaid Card
+      // pages.add(PrePaidBillCardWidget());
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);

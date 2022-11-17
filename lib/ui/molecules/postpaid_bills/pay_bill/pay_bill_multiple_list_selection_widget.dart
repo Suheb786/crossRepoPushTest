@@ -66,7 +66,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                   ? RichText(
                       text: TextSpan(
-                          text: S.of(context).due + "",
+                          text: S.of(context).due + " ",
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: AppColor.veryDarkGray2,
@@ -74,7 +74,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                               fontSize: 12.0.t),
                           children: [
                           TextSpan(
-                              text: billAmtDue,
+                              text:billAmtDue,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,
@@ -92,7 +92,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                       visible: this.isSelected,
                       child: RichText(
                           text: TextSpan(
-                              text: S.of(context).due + "",
+                              text: S.of(context).due + " ",
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,

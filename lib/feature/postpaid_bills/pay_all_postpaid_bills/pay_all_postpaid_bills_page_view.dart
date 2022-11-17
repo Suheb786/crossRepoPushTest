@@ -185,7 +185,7 @@ class PayAllPostPaidBillsPageView
                                   .color!,
                             ),
                             child: Center(
-                              child: Text(S.of(context).pay + amt.toString(),
+                              child: Text(S.of(context).pay +" "+ amt.toString(),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.t,

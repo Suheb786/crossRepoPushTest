@@ -21,17 +21,22 @@ class PayPostPaidBillRequestEntity {
   String? otpCode;
   @JsonKey(name: "CardId")
   String? CardId;
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
 
-  PayPostPaidBillRequestEntity({
-    this.billerList,
-    this.accountNo,
-    this.totalAmount,
-    this.currencyCode,
-    this.otpCode,
-    this.isCreditCardPayment,
-    this.isNewBiller,
-    this.CardId,
-  });
+  PayPostPaidBillRequestEntity(
+      {this.billerList,
+      this.accountNo,
+      this.totalAmount,
+      this.currencyCode,
+      this.otpCode,
+      this.isCreditCardPayment,
+      this.isNewBiller,
+      this.CardId,
+      this.getToken: true,
+      required this.baseData});
 
   factory PayPostPaidBillRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$PayPostPaidBillRequestEntityFromJson(json);

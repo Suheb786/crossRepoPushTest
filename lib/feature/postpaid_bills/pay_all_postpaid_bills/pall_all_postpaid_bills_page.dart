@@ -1,5 +1,4 @@
 import 'package:domain/constants/enum/postpaid_bills_pay_type_option_enum.dart';
-import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
