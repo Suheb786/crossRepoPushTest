@@ -14180,6 +14180,16 @@ class S {
     );
   }
 
+  /// `Swipe up to pay new bill`
+  String get swipeUpToPayNewBill {
+    return Intl.message(
+      'Swipe up to pay new bill',
+      name: 'swipeUpToPayNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm your payment\namount below`
   String get confirmYourPaymentAmtBelow {
     return Intl.message(

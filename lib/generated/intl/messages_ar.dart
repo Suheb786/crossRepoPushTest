@@ -2191,6 +2191,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اسحب لعرض المزيد"),
         "swipeUpToJoinOurCommunity":
             MessageLookupByLibrary.simpleMessage("اسحب لفوق لتنضم إلنا"),
+        "swipeUpToPayNewBill":
+            MessageLookupByLibrary.simpleMessage("Swipe up to pay new bill"),
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("اسحب الشاشة لفوق للتسجيل"),
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
