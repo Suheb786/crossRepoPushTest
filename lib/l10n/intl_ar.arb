@@ -1362,6 +1362,7 @@
   "errrorForPinChangeNI": "واجهتنا مشكلة عند تغيير الرمز السري للبطاقة. يرجى المحاولة مرة اخرى",
   "errorCCUnBlockNI": "واجهتنا مشكلة عند اعادة تفعيل الرمز السري للبطاقة. يرجى المحاولة مرة اخرى",
   "loginRegisterDisabled": "الخدمة غير متاحة حالياً، يرجى المحاولة لاحقاً",
+  "idVerificationFailed": "فشل التحقق من الهوية",
   "payBills": "Paying {noOfBills} bills",
   "tapToEditAmt": "Tap to edit",
   "saveBills": "Saved Bills",

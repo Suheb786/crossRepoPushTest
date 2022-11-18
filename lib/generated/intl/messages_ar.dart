@@ -1166,6 +1166,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idNumber": MessageLookupByLibrary.simpleMessage("رقم الهوية"),
         "idScanInfo":
             MessageLookupByLibrary.simpleMessage("حط بطاقتك داخل المستطيل"),
+        "idVerificationFailed":
+            MessageLookupByLibrary.simpleMessage("فشل التحقق من الهوية"),
         "idVerificationFailed177": MessageLookupByLibrary.simpleMessage(
             "فشل في التحقق من الهوية، لا يمكن الاستمرار.: 177"),
         "idVerificationFailed178": MessageLookupByLibrary.simpleMessage(
