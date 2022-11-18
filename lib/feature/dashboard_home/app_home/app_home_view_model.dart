@@ -26,6 +26,7 @@ import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
+import 'package:neo_bank/ui/molecules/card/rj_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -468,6 +469,12 @@ class AppHomeViewModel extends BasePageViewModel {
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
+
+      /// adding rj card pages
+
+      pages.add(RjCardWidget(
+        isSmallDevices: isSmallDevices,
+      ));
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);

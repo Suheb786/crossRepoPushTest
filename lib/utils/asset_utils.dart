@@ -233,14 +233,14 @@ class AssetUtils {
   static const String swipeDownAnimation = _animation + "Swipe_Down.json";
   static const String loaderAnimation1 = _animation + "BlinkLoader_50p.json";
 
-//Evoucher png
+///Evoucher png
   static const String apple_music = drawable + "apple_music.png";
   static const String buy_evoucher_banner = drawable + "buy_evoucher_banner.png";
   static const String favourite_brand = drawable + "favourite_brand.png";
   static const String top_brand_adidas = drawable + "top_brand_adidas.png";
   static const String playStationIcon = drawable + "play_station.png";
 
-//Evoucher svg
+///Evoucher svg
 
   static const String filterMenu = svg + "filter_menu.svg";
   static const String processing_voucher_icon = svg + "processing_voucher_icon.svg";
@@ -259,4 +259,18 @@ class AssetUtils {
   static const String payViaQrIcon = svg + "pay_via_qr_icon.svg";
   static const String requestViaQrIcon = svg + "request_via_qr.svg";
   static const String payRequestViaQRBlackIcon = svg + "pay_request_via_qr_black.svg";
+
+  ///Rj PNG Images
+
+  static const String flight = drawable + "flight.png";
+  static const String RjCardBg = drawable + "rj_card_bg.png";
+  static const String RjCardDescriptionLogo = drawable + "rj_card_description_logo.png";
+  static const String EconomySeat = drawable + "economy_seat.png";
+  static const String BusinessSeat = drawable + "business_icon.png";
+  static const String BigSearchIcon = drawable + "big_search_icon.png";
+
+///Rj svg
+  static const String RjCardLogo = svg + "rj_card_logo.svg";
+  static const String GoRjLogo = svg + "go_rj_logo.svg";
+  static const String cancelFlightIcon = svg + "cancel_flight.svg";
 }
