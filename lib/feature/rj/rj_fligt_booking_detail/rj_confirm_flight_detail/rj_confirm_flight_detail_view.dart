@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/rj/rj_confirm_flight_detail_depart_and_ret
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetailViewModel> {
@@ -72,7 +73,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                   child: Card(
                     margin: EdgeInsets.zero,
                     child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                         child: Column(
                           children: [
                             Text(
@@ -81,11 +82,10 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 12),
+                                  fontSize: 12.t),
                             ),
-
                             SizedBox(
-                              height: 4,
+                              height: 4.h,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -96,10 +96,10 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.veryDarkGray2,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 24),
+                                      fontSize: 24.t),
                                 ),
                                 SizedBox(
-                                  width: 4,
+                                  width: 4.h,
                                 ),
                                 Text(
                                   S.of(context).JOD,
@@ -107,20 +107,19 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.gray1,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 ),
                               ],
                             ),
                             SizedBox(
-                              height: 24,
+                              height: 24.h,
                             ),
                             Container(
                               color: AppColor.whiteGrey,
                               height: 1,
                             ),
-
                             SizedBox(
-                              height: 24,
+                              height: 24.h,
                             ),
                             RjConfirmFlightDetailDepartAndReturnWidget(
                                 title: S.of(context).depart,
@@ -129,7 +128,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 date: S.of(context).purchaseDummyDate.toUpperCase(),
                                 time: S.of(context).purchaseDummyTime),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             RjConfirmFlightDetailDepartAndReturnWidget(
                                 title: S.of(context).returnTitle,
@@ -138,7 +137,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 date: S.of(context).purchaseDummyDate.toUpperCase(),
                                 time: S.of(context).purchaseDummyTime),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Row(
                               children: [
@@ -148,7 +147,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 ),
                                 Spacer(),
                                 Text(
@@ -157,7 +156,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 ),
                                 Text(
                                   S.of(context).JOD,
@@ -165,12 +164,12 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 )
                               ],
                             ),
                             SizedBox(
-                              height: 16,
+                              height: 16.h,
                             ),
                             Row(
                               children: [
@@ -180,7 +179,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 ),
                                 Spacer(),
                                 Text(
@@ -189,7 +188,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 12),
+                                      fontSize: 12.t),
                                 )
                               ],
                             ),
@@ -198,7 +197,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               buttonText: S.of(context).swipeToProceed,
                             ),
                             SizedBox(
-                              height: 31,
+                              height: 31.h,
                             ),
                             InkWell(
                               onTap: () {
@@ -209,7 +208,7 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                       S.of(context).cancelBookingDetail,
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
-                                          fontSize: 14,
+                                          fontSize: 14.t,
                                           fontWeight: FontWeight.w400,
                                           color: AppColor.veryDarkGray1),
                                     ), onSelected: () {
@@ -224,15 +223,11 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                                 style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.brightBlue,
-                                  fontSize: 14,
+                                  fontSize: 14.t,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
-
-                            //   height:
-                            //       MediaQuery.of(context).viewInsets.bottom,
-                            // ),
                           ],
                         )),
                   ),

@@ -16,6 +16,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
 
@@ -40,382 +41,383 @@ class RjFlightBookingDialogView extends StatelessWidget {
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 48, right: 48, bottom: 36, top: 204),
-            child: GestureDetector(
-              onVerticalDragEnd: (details) {
-                if (details.primaryVelocity! > 0) {
-                  onDismissed?.call();
-                }
-              },
-              child: Column(
-                children: [
-                  Expanded(
-                    child: FadingEdgeScrollView.fromSingleChildScrollView(
-                      gradientFractionOnStart: 0.2,
-                      gradientFractionOnEnd: 0.2,
-                      child: SingleChildScrollView(
-                        controller: model!.scrollController,
-                        padding: EdgeInsets.symmetric(horizontal: 24),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 40.0, bottom: 10),
-                              child: Container(
-                                height: 33,
-                                child: ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        if (index == 0) {
-                                          /// selection of one-way tab
-                                          model.selectedTab(0);
-                                        } else {
-                                          /// selection of return tab
-                                          model.selectedTab(1);
-                                        }
-                                      },
-                                      child: Container(
-                                        width: 60,
-                                        child: Column(
-                                          children: [
-                                            AppStreamBuilder<int>(
-                                              initialData: 0,
-                                              stream: model.selectedTabStream,
-                                              dataBuilder: (BuildContext context, data) {
-                                                /// changing tab indicator color based on data variable
-                                                return data == index
-                                                    ? Column(
-                                                        children: [
-                                                          Text(
-                                                            model.rjBookingFlightTabOptionList[index].option,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: AppColor.darkBlack,
-                                                                fontSize: 14),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          Container(
-                                                            height: 2,
-                                                            color: Colors.red,
-                                                          )
-                                                        ],
-                                                      )
-                                                    : Column(
-                                                        children: [
-                                                          Text(
-                                                            model.rjBookingFlightTabOptionList[index].option,
-                                                            style: TextStyle(
-                                                                fontFamily: StringUtils.appFont,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: AppColor.gray1,
-                                                                fontSize: 14),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          Container(),
-                                                        ],
-                                                      );
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  separatorBuilder: (context, int) {
-                                    return SizedBox(
-                                      width: 20,
-                                    );
-                                  },
-                                  itemCount: model.rjBookingFlightTabOptionList.length,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            AppTextField(
-                              labelText: S.of(context).rjFrom.toUpperCase(),
-                              hintText: S.of(context).fromLabelForRJFlightBooking,
-                              readOnly: false,
-                              controller: model.fromController,
-                              key: model.fromKey,
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            AppTextField(
-                              labelText: S.of(context).to.toUpperCase(),
-                              hintText: S.of(context).pleaseSelect,
-                              readOnly: true,
-                              controller: model.toController,
-                              key: model.toKey,
-                              onPressed: () {
-                                /// to dialog for country selection
-
-                                ToDialog.show(context, title: S.of(context).to.toUpperCase(),
-                                    onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.toController.text = value.searchCountry;
-                                });
-                              },
-                              suffixIcon: (value, data) {
-                                return Container(
-                                    height: 16,
-                                    width: 16,
-                                    padding: EdgeInsetsDirectional.only(end: 8),
-                                    child: AppSvg.asset(AssetUtils.downArrow, color: AppColor.dark_gray_1));
-                              },
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            AppTextField(
-                              labelText: S.of(context).departOn.toUpperCase(),
-                              hintText: S.of(context).invalidPreferredDate,
-                              readOnly: true,
-                              controller: model.selectedDepartOnDateController,
-                              key: model.selectedDepartOnDateKey,
-                              onPressed: () {
-                                /// opening calender dialog
-                                DatePicker.show(context, initialDate: model.initialDate, onSelected: (date) {
-                                  model.selectedDepartOnDateController.text =
-                                      TimeUtils.getFormattedDOB(date.toString());
-                                  model.initialDate = date;
-                                }, onCancelled: () {
-                                  Navigator.pop(context);
-                                }, title: S.of(context).preferredDate);
-                              },
-                              suffixIcon: (value, data) {
-                                return Container(
-                                    height: 16,
-                                    width: 16,
-                                    padding: EdgeInsetsDirectional.only(end: 8),
-                                    child: AppSvg.asset(AssetUtils.calendar, color: AppColor.dark_gray_1));
-                              },
-                            ),
-                            AppStreamBuilder(
-                              initialData: 0,
-                              stream: model.selectedTabStream,
-                              dataBuilder: (BuildContext context, data) {
-                                /// based on index hiding return field in the dialog
-                                return data == 1
-                                    ? Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          AppTextField(
-                                            labelText: S.of(context).returnOn.toUpperCase(),
-                                            hintText: S.of(context).invalidPreferredDate,
-                                            readOnly: true,
-                                            controller: model.selectedReturnOnDateController,
-                                            key: model.selectedReturnOnDateKey,
-                                            onPressed: () {
-                                              /// opening date dialog
-                                              DatePicker.show(context, initialDate: model.initialDate,
-                                                  onSelected: (date) {
-                                                model.selectedReturnOnDateController.text =
-                                                    TimeUtils.getFormattedDOB(date.toString());
-                                                model.initialDate = date;
-                                              }, onCancelled: () {
-                                                Navigator.pop(context);
-                                              }, title: S.of(context).preferredDate);
-                                            },
-                                            suffixIcon: (value, data) {
-                                              return Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsetsDirectional.only(end: 8),
-                                                  child: AppSvg.asset(AssetUtils.calendar,
-                                                      color: AppColor.dark_gray_1));
-                                            },
-                                          ),
-                                        ],
-                                      )
-                                    : Container();
-                              },
-                            ),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional.topStart,
-                              child: Text(
-                                S.of(context).cabinClass,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: AppColor.gray_black),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                              height: 79,
+            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 56.h, top: 180.h),
+            child: Column(
+              children: [
+                Expanded(
+                  child: FadingEdgeScrollView.fromSingleChildScrollView(
+                    gradientFractionOnStart: 0.2,
+                    gradientFractionOnEnd: 0.2,
+                    child: SingleChildScrollView(
+                      controller: model!.scrollController,
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.only(top: 40.0.h, bottom: 10.h),
+                            child: Container(
+                              height: 33,
                               child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () {
-                                      /// selection cabin class based on index
-                                      model.selectedCabinClass(index);
+                                      if (index == 0) {
+                                        /// selection of one-way tab
+                                        model.selectedTab(0);
+                                      } else {
+                                        /// selection of return tab
+                                        model.selectedTab(1);
+                                      }
                                     },
-                                    child: AppStreamBuilder<int>(
-                                      stream: model.selectedCabinClassSubjectStream,
-                                      initialData: 0,
-                                      dataBuilder: (BuildContext context, data) {
-                                        ///based on index changing cabin class container border color
-                                        return data == index
-                                            ? Container(
-                                                width: 112,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(color: AppColor.brightBlue),
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(8),
-                                                    )),
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(model.cabinClassOptionList[index].icon),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      model.cabinClassOptionList[index].option,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w600,
-                                                          color: AppColor.veryDarkGray2),
+                                    child: Container(
+                                      width: 60.w,
+                                      child: Column(
+                                        children: [
+                                          AppStreamBuilder<int>(
+                                            initialData: 0,
+                                            stream: model.selectedTabStream,
+                                            dataBuilder: (BuildContext context, data) {
+                                              /// changing tab indicator color based on data variable
+                                              return data == index
+                                                  ? Column(
+                                                      children: [
+                                                        Text(
+                                                          model.rjBookingFlightTabOptionList[index].option,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: AppColor.darkBlack,
+                                                              fontSize: 14.t),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 5.h,
+                                                        ),
+                                                        Container(
+                                                          height: 2.h,
+                                                          color: Colors.red,
+                                                        )
+                                                      ],
                                                     )
-                                                  ],
-                                                ),
-                                              )
-                                            : Container(
-                                                width: 112,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(color: AppColor.white_gray),
-                                                    borderRadius: BorderRadius.all(
-                                                      Radius.circular(8),
-                                                    )),
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(model.cabinClassOptionList[index].icon),
-                                                    SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(
-                                                      model.cabinClassOptionList[index].option,
-                                                      style: TextStyle(
-                                                          fontFamily: StringUtils.appFont,
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w600,
-                                                          color: AppColor.veryDarkGray2),
-                                                    )
-                                                  ],
-                                                ),
-                                              );
-                                      },
+                                                  : Column(
+                                                      children: [
+                                                        Text(
+                                                          model.rjBookingFlightTabOptionList[index].option,
+                                                          style: TextStyle(
+                                                              fontFamily: StringUtils.appFont,
+                                                              fontWeight: FontWeight.w600,
+                                                              color: AppColor.gray1,
+                                                              fontSize: 14.t),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 5.h,
+                                                        ),
+                                                        Container(),
+                                                      ],
+                                                    );
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
                                 separatorBuilder: (context, int) {
                                   return SizedBox(
-                                    width: 8,
+                                    width: 20.w,
                                   );
                                 },
-                                itemCount: model.cabinClassOptionList.length,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional.topStart,
-                              child: Text(
-                                S.of(context).passengers,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                    color: AppColor.gray_black),
-                              ),
-                            ),
-                            ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemBuilder: (context, index) {
-                                  return PassengerWidget(passengerList: model.passengerList, index: index);
-                                },
-                                separatorBuilder: (context, int) {
-                                  return SizedBox(
-                                    height: 24,
-                                  );
-                                },
-                                itemCount: model.passengerList.length),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            GestureDetector(
-                              onHorizontalDragEnd: (details) {
-                                if (details.primaryVelocity!.isNegative) {
-                                  //  Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
-                                  Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                      arguments: RjBookingPageArguments('https://www.google.co.in/'));
-                                }
-                              },
-                              child: AnimatedButton(
-                                buttonText: S.of(context).swipeToProceed,
-                                borderColor: AppColor.brightBlue,
-                                textColor: AppColor.brightBlue,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Container(
-                    color: AppColor.white.withOpacity(0),
-                    child: Column(
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            onSelected?.call('');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 0.0, bottom: 32),
-                            child: Center(
-                              child: Text(
-                                S.of(context).cancel,
-                                style: TextStyle(
-                                    fontFamily: StringUtils.appFont,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.brightBlue),
+                                itemCount: model.rjBookingFlightTabOptionList.length,
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          AppTextField(
+                            labelText: S.of(context).rjFrom.toUpperCase(),
+                            hintText: S.of(context).fromLabelForRJFlightBooking,
+                            readOnly: false,
+                            controller: model.fromController,
+                            key: model.fromKey,
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          AppTextField(
+                            labelText: S.of(context).to.toUpperCase(),
+                            hintText: S.of(context).pleaseSelect,
+                            readOnly: true,
+                            controller: model.toController,
+                            key: model.toKey,
+                            onPressed: () {
+                              /// to dialog for country selection
+
+                              ToDialog.show(context, title: S.of(context).to.toUpperCase(), onDismissed: () {
+                                Navigator.pop(context);
+                              }, onSelected: (value) {
+                                Navigator.pop(context);
+                                model.toController.text = value.searchCountry;
+                              });
+                            },
+                            suffixIcon: (value, data) {
+                              return Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
+                                  child: AppSvg.asset(AssetUtils.downArrow,
+                                      width: 16.w, height: 16.h, color: AppColor.dark_gray_1));
+                            },
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          AppTextField(
+                            labelText: S.of(context).departOn.toUpperCase(),
+                            hintText: S.of(context).invalidPreferredDate,
+                            readOnly: true,
+                            controller: model.selectedDepartOnDateController,
+                            key: model.selectedDepartOnDateKey,
+                            onPressed: () {
+                              /// opening calender dialog
+                              DatePicker.show(context, initialDate: model.initialDate, onSelected: (date) {
+                                model.selectedDepartOnDateController.text =
+                                    TimeUtils.getFormattedDOB(date.toString());
+                                model.initialDate = date;
+                              }, onCancelled: () {
+                                Navigator.pop(context);
+                              }, title: S.of(context).preferredDate);
+                            },
+                            suffixIcon: (value, data) {
+                              return Container(
+                                  height: 16.h,
+                                  width: 16.w,
+                                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
+                                  child: AppSvg.asset(AssetUtils.calendar,
+                                      height: 16.h, width: 16.w, color: AppColor.dark_gray_1));
+                            },
+                          ),
+                          AppStreamBuilder(
+                            initialData: 0,
+                            stream: model.selectedTabStream,
+                            dataBuilder: (BuildContext context, data) {
+                              /// based on index hiding return field in the dialog
+                              return data == 1
+                                  ? Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 16.h,
+                                        ),
+                                        AppTextField(
+                                          labelText: S.of(context).returnOn.toUpperCase(),
+                                          hintText: S.of(context).invalidPreferredDate,
+                                          readOnly: true,
+                                          controller: model.selectedReturnOnDateController,
+                                          key: model.selectedReturnOnDateKey,
+                                          onPressed: () {
+                                            /// opening date dialog
+                                            DatePicker.show(context, initialDate: model.initialDate,
+                                                onSelected: (date) {
+                                              model.selectedReturnOnDateController.text =
+                                                  TimeUtils.getFormattedDOB(date.toString());
+                                              model.initialDate = date;
+                                            }, onCancelled: () {
+                                              Navigator.pop(context);
+                                            }, title: S.of(context).preferredDate);
+                                          },
+                                          suffixIcon: (value, data) {
+                                            return Container(
+                                                height: 16.h,
+                                                width: 16.w,
+                                                padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
+                                                child: AppSvg.asset(AssetUtils.calendar,
+                                                    color: AppColor.dark_gray_1));
+                                          },
+                                        ),
+                                      ],
+                                    )
+                                  : Container();
+                            },
+                          ),
+                          SizedBox(
+                            height: 32.h,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Text(
+                              S.of(context).cabinClass,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.t,
+                                  color: AppColor.gray_black),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 16.h,
+                          ),
+                          Container(
+                            height: 79.h,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    /// selection cabin class based on index
+                                    model.selectedCabinClass(index);
+                                  },
+                                  child: AppStreamBuilder<int>(
+                                    stream: model.selectedCabinClassSubjectStream,
+                                    initialData: 0,
+                                    dataBuilder: (BuildContext context, data) {
+                                      ///based on index changing cabin class container border color
+                                      return data == index
+                                          ? Container(
+                                              width: 112.w,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(color: AppColor.brightBlue),
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(8.w),
+                                                  )),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    model.cabinClassOptionList[index].icon,
+                                                    height: 24.h,
+                                                    width: 24.h,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10.h,
+                                                  ),
+                                                  Text(
+                                                    model.cabinClassOptionList[index].option,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        fontWeight: FontWeight.w600,
+                                                        color: AppColor.veryDarkGray2),
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          : Container(
+                                              width: 112.w,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(color: AppColor.white_gray),
+                                                  borderRadius: BorderRadius.all(
+                                                    Radius.circular(8.w),
+                                                  )),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    model.cabinClassOptionList[index].icon,
+                                                    height: 24.h,
+                                                    width: 24.h,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10.h,
+                                                  ),
+                                                  Text(
+                                                    model.cabinClassOptionList[index].option,
+                                                    style: TextStyle(
+                                                        fontFamily: StringUtils.appFont,
+                                                        fontSize: 12.t,
+                                                        fontWeight: FontWeight.w600,
+                                                        color: AppColor.veryDarkGray2),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                    },
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, int) {
+                                return SizedBox(
+                                  width: 8.w,
+                                );
+                              },
+                              itemCount: model.cabinClassOptionList.length,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Text(
+                              S.of(context).passengers,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.t,
+                                  color: AppColor.gray_black),
+                            ),
+                          ),
+                          ListView.separated(
+                              padding: EdgeInsets.symmetric(vertical: 24.h),
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return PassengerWidget(passengerList: model.passengerList, index: index);
+                              },
+                              separatorBuilder: (context, int) {
+                                return SizedBox(
+                                  height: 24.h,
+                                );
+                              },
+                              itemCount: model.passengerList.length),
+                          SizedBox(
+                            height: 32.h,
+                          ),
+                          GestureDetector(
+                            onHorizontalDragEnd: (details) {
+                              if (details.primaryVelocity!.isNegative) {
+                                //  Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
+                                Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                                    arguments: RjBookingPageArguments('https://www.google.co.in/'));
+                              }
+                            },
+                            child: AnimatedButton(
+                              buttonText: S.of(context).swipeToProceed,
+                              borderColor: AppColor.brightBlue,
+                              textColor: AppColor.brightBlue,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                SizedBox(
+                  height: 32.h,
+                ),
+                Container(
+                  color: AppColor.white.withOpacity(0),
+                  child: Column(
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          onSelected?.call('');
+                        },
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.only(top: 0.0, bottom: 32.h),
+                          child: Center(
+                            child: Text(
+                              S.of(context).cancel,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  fontSize: 14.t,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.brightBlue),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ));
       },
     );

@@ -11,15 +11,13 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDetailPageViewModel> {
   final pages = [
-    // CountrySelectionPage(),
     RjConfirmFlightDetailPage(),
-    // CreatePasswordPage(),
-    // ValidateOtpPage(),
     RjMakePaymentPage(),
     RjOtpValidatePage(),
   ];
@@ -30,11 +28,11 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
   Widget build(BuildContext context, model) {
     return Container(
       color: Theme.of(context).primaryColor,
-      padding: EdgeInsets.only(top: 56),
+      padding: EdgeInsets.only(top: 56.h),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: AppStreamBuilder<int>(
               initialData: 0,
               stream: model.currentPageStream,
@@ -57,7 +55,7 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 36),
+            padding: EdgeInsets.symmetric(vertical: 36.h),
             child: AppStreamBuilder<int>(
               stream: model.currentPageStream,
               initialData: 0,
@@ -68,13 +66,13 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                       S.of(context).bookFlight,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
-                          fontSize: 10,
+                          fontSize: 10.t,
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.only(
-                          top: 8.0, bottom: currentStep == 2 ? 0 : 32, start: 24, end: 24),
+                          top: 8.0.h, bottom: currentStep == 2 ? 0 : 32.h, start: 24.w, end: 24.w),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -93,42 +91,11 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               color: Theme.of(context).accentColor,
-                              fontSize: 20,
+                              fontSize: 20.t,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
-                    /* AppStreamBuilder<MobileNumberParams>(
-                        stream: model.mobileNumberStream,
-                        initialData: MobileNumberParams(),
-                        dataBuilder: (context, mobileNumber) {
-                          return Visibility(
-                            visible: currentStep == 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 32),
-                              child: ShowUpAnimation(
-                                delayStart: Duration(milliseconds: 500),
-                                animationDuration: Duration(milliseconds: 750),
-                                curve: Curves.bounceIn,
-                                direction: Direction.vertical,
-                                offset: 0.5,
-                                child: Directionality(
-                                  textDirection: TextDirection.ltr,
-                                  child: Text(
-                                    "${mobileNumber!.mobileCode.isNotEmpty ? (mobileNumber.mobileCode.contains('00') ? mobileNumber.mobileCode.replaceAll('00', '+') : '+${mobileNumber.mobileCode}') : '-'} "
-                                    "${mobileNumber.mobileNumber}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        color: Theme.of(context).accentColor,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),*/
                     Expanded(
                       child: AppSwiper(
                         pages: pages,
@@ -153,7 +120,9 @@ class RjFlightBookingDetailPageView extends BasePageViewWidget<RjFlightBookingDe
 
 class Pages extends StatelessWidget {
   final text;
+
   Pages({this.text});
+
   @override
   Widget build(BuildContext context) {
     return Center(

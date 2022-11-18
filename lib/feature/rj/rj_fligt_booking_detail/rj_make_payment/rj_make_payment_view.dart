@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
@@ -70,20 +71,18 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                         child: Card(
                           margin: EdgeInsets.zero,
                           child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                              padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 24.w),
                               child: Column(
                                 children: [
-                                  Container(
-                                    child: Align(
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: Text(
-                                        S.of(context).payFrom,
-                                        style: TextStyle(
-                                            fontFamily: StringUtils.appFont,
-                                            color: AppColor.veryDarkGray2,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14),
-                                      ),
+                                  Align(
+                                    alignment: AlignmentDirectional.topStart,
+                                    child: Text(
+                                      S.of(context).payFrom,
+                                      style: TextStyle(
+                                          fontFamily: StringUtils.appFont,
+                                          color: AppColor.veryDarkGray2,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14.t),
                                     ),
                                   ),
 
@@ -97,78 +96,77 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                                   model.selectedItem(index);
                                                 },
                                                 child: Container(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        start: 24, end: 24, top: 16),
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 16.w, vertical: 16.h),
                                                     decoration: BoxDecoration(
                                                         borderRadius: BorderRadius.circular(8),
                                                         border:
                                                             Border.all(width: 1, color: AppColor.white_gray)),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
-                                                        Text(
-                                                          model.makePaymentCardList[index].cardName,
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              color: AppColor.black,
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: 14),
-                                                        ),
-                                                        Row(
+                                                        Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
                                                           children: [
+                                                            Text(
+                                                              model.makePaymentCardList[index].cardName,
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  color: AppColor.black,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  fontSize: 14.t),
+                                                            ),
+                                                            SizedBox(
+                                                              height: 4.h,
+                                                            ),
                                                             Text(
                                                               model.makePaymentCardList[index].cardNo,
                                                               style: TextStyle(
                                                                   fontFamily: StringUtils.appFont,
                                                                   color: AppColor.gray5,
                                                                   fontWeight: FontWeight.w600,
-                                                                  fontSize: 12),
+                                                                  fontSize: 12.t),
                                                             ),
-                                                            Spacer(),
-                                                            data.data![index].isSelected
-                                                                ? Container(
-                                                                    height: 40,
-                                                                    width: 40,
-                                                                    child: Padding(
-                                                                      padding: EdgeInsetsDirectional.all(10),
-                                                                      child: AppSvg.asset(
-                                                                        AssetUtils.right,
-                                                                      ),
-                                                                    ),
-                                                                    decoration: BoxDecoration(
-                                                                        color: Colors.yellow,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(100),
-                                                                        border: Border.all(
-                                                                            width: 1,
-                                                                            color: AppColor.white_gray)),
-                                                                  )
-                                                                : Container(
-                                                                    height: 40,
-                                                                    width: 40,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(100),
-                                                                        border: Border.all(
-                                                                            width: 1,
-                                                                            color: AppColor.white_gray)),
-                                                                  )
+                                                            SizedBox(
+                                                              height: 16.h,
+                                                            ),
+                                                            Text(
+                                                              "${model.makePaymentCardList[index].amt}  ${model.makePaymentCardList[index].currency}",
+                                                              style: TextStyle(
+                                                                  fontFamily: StringUtils.appFont,
+                                                                  color: AppColor.black,
+                                                                  fontWeight: FontWeight.w600,
+                                                                  fontSize: 14.t),
+                                                            ),
                                                           ],
                                                         ),
-                                                        SizedBox(
-                                                          height: 16,
-                                                        ),
-                                                        Text(
-                                                          "${model.makePaymentCardList[index].amt}  ${model.makePaymentCardList[index].currency}",
-                                                          style: TextStyle(
-                                                              fontFamily: StringUtils.appFont,
-                                                              color: AppColor.black,
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: 14),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 16,
-                                                        ),
+                                                        data.data![index].isSelected
+                                                            ? Container(
+                                                                height: 40.w,
+                                                                width: 40.w,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional.all(10),
+                                                                  child: AppSvg.asset(
+                                                                    AssetUtils.right,
+                                                                  ),
+                                                                ),
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors.yellow,
+                                                                    borderRadius: BorderRadius.circular(100),
+                                                                    border: Border.all(
+                                                                        width: 1,
+                                                                        color: AppColor.white_gray)),
+                                                              )
+                                                            : Container(
+                                                                height: 40.w,
+                                                                width: 40.w,
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius: BorderRadius.circular(100),
+                                                                    border: Border.all(
+                                                                        width: 1,
+                                                                        color: AppColor.white_gray)),
+                                                              )
                                                       ],
                                                     )),
                                               )
@@ -192,7 +190,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                   ),
 
                                   SizedBox(
-                                    height: 20,
+                                    height: 20.h,
                                   ),
                                   AppStreamBuilder<bool>(
                                     initialData: false,
@@ -207,7 +205,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                     },
                                   ),
                                   SizedBox(
-                                    height: 31,
+                                    height: 31.h,
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -218,7 +216,7 @@ class RjMakePaymentView extends BasePageViewWidget<RjMakePaymentViewModel> {
                                       style: TextStyle(
                                         fontFamily: StringUtils.appFont,
                                         color: AppColor.brightBlue,
-                                        fontSize: 14,
+                                        fontSize: 14.t,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),

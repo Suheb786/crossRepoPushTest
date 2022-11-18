@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
@@ -18,6 +19,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
       required this.date,
       required this.time})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +33,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
                     fontWeight: FontWeight.w400,
-                    fontSize: 12),
+                    fontSize: 12.t),
               ),
               Spacer(),
               Text(
@@ -40,7 +42,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: 12),
+                    fontSize: 12.t),
               )
             ],
           ),
@@ -53,10 +55,10 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.gray5,
                     fontWeight: FontWeight.w400,
-                    fontSize: 12),
+                    fontSize: 12.t),
               ),
               SizedBox(
-                width: 4,
+                width: 4.w,
               ),
               Text(
                 toDescription,
@@ -64,7 +66,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: 12),
+                    fontSize: 12.t),
               )
             ],
           ),
@@ -77,7 +79,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.black,
                     fontWeight: FontWeight.w600,
-                    fontSize: 12),
+                    fontSize: 12.t),
               ),
               Text(
                 time,
@@ -85,7 +87,7 @@ class RjConfirmFlightDetailDepartAndReturnWidget extends StatelessWidget {
                     fontFamily: StringUtils.appFont,
                     color: AppColor.gray5,
                     fontWeight: FontWeight.w600,
-                    fontSize: 12),
+                    fontSize: 12.t),
               )
             ],
           ),

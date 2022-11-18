@@ -6,12 +6,14 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/passeng
 import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_dialog/rj_flight_booking_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class PassengerWidget extends StatelessWidget {
   var count = 0;
   int index;
   final List<Passenger> passengerList;
+
   PassengerWidget({Key? key, required this.passengerList, required this.index}) : super(key: key);
 
   ProviderBase provideBase() {
@@ -39,13 +41,13 @@ class PassengerWidget extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 12.t,
                               color: AppColor.veryDarkGray2)),
                       Text(passengerList[index].passengerAgeRange,
                           style: TextStyle(
                               fontFamily: StringUtils.appFont,
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 12.t,
                               color: AppColor.gray1)),
                     ],
                   ),
@@ -55,13 +57,13 @@ class PassengerWidget extends StatelessWidget {
                     passengerViewModel.decrementCounter(--count);
                   },
                   child: Container(
-                    padding: EdgeInsetsDirectional.all(16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: Text(
                       '-',
                       style: TextStyle(
                           fontFamily: StringUtils.appFont,
                           fontWeight: FontWeight.w600,
-                          fontSize: 20,
+                          fontSize: 20.t,
                           color: AppColor.brightBlue),
                     ),
                     decoration: BoxDecoration(
@@ -74,26 +76,26 @@ class PassengerWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 16,
+                  width: 16.w,
                 ),
                 Text(data.toString(),
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                        fontSize: 20.t,
                         color: AppColor.very_dark_gray_black)),
                 SizedBox(
-                  width: 16,
+                  width: 16.w,
                 ),
                 GestureDetector(
                   onTap: () {
                     passengerViewModel.incrementCounter(++count);
                   },
                   child: Container(
-                    padding: EdgeInsetsDirectional.all(16),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     child: Text(
                       '+',
-                      style: TextStyle(fontSize: 20, color: AppColor.brightBlue),
+                      style: TextStyle(fontSize: 20.t, color: AppColor.brightBlue),
                     ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,

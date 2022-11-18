@@ -436,9 +436,9 @@ class AppHomeViewModel extends BasePageViewModel {
                     isSmallDevice: isSmallDevices,
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard,
-                    isDebitCardRequestPhysicalCardEnabled: dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled??false
-
-                ));
+                    isDebitCardRequestPhysicalCardEnabled:
+                        dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                            false));
 
                 ///time line list arguments set
                 timeLineListArguments.add(TimeLineListArguments(
@@ -472,9 +472,9 @@ class AppHomeViewModel extends BasePageViewModel {
 
       /// adding rj card pages
 
-      pages.add(RjCardWidget(
-        isSmallDevices: isSmallDevices,
-      ));
+      pages.add(RjCardWidget());
+
+      cardTypeList.add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);
