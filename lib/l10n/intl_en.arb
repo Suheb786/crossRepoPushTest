@@ -1439,9 +1439,11 @@
   "areYouSure": "Are you sure?",
   "myPostPaidBill": "My Postpaid Bill",
   "viewMyBills": "View my bills",
+  "paying": "Paying",
   "myPrePaidBills": "My Prepaid Bills",
   "swipeUpToPayNewBill": "Swipe up to pay new bill",
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList":"Add this bill to your saved list",
-  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?"
+  "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
+  "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?"
 }

@@ -5,15 +5,14 @@ class PostPaidBillsSuccessPageViewModel extends BasePageViewModel {
   final PostPaidBillsSuccessPageArguments arguments;
 
   PostPaidBillsSuccessPageViewModel(this.arguments);
-    addAllBillAmt() {
-      var totalBillAmt = 0.0;
-      if (arguments.billerList == null || arguments.billerList!.isEmpty)
-        return totalBillAmt;
 
-      arguments.billerList!.forEach((element) {
-          totalBillAmt =
-              double.parse(element.totalAmount ?? "0.0") + totalBillAmt;
-      });
-      return totalBillAmt;
-    }
+  addAllBillAmt() {
+    var totalBillAmt = 0.0;
+    if (arguments.billerList == null || arguments.billerList!.isEmpty) return totalBillAmt;
+
+    arguments.billerList!.forEach((element) {
+      totalBillAmt = double.parse(element.totalAmount ?? "0.0") + totalBillAmt;
+    });
+    return totalBillAmt;
+  }
 }

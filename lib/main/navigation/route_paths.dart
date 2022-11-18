@@ -131,4 +131,12 @@ class RoutePaths {
   static const String PayBillDetailPage = "/payBillDetailPage";
   static const String ConfirmBillPaymentAmountPage = "/confirmBillPaymentAmountPage";
   static const String PaidBillsSuccessPage = "/paidBillsSuccessPage";
+  static const String PayMyPrePaidBillsPage = "/payMyPrePaidBillsPage";
+  static const String PayingPrePaidBillsPage = "/payingPrePaidBillsPage";
+  static const String PrePaidBillsSuccessPage = "/prePaidBillsSuccessPage";
+  static const String HowMuchLikeToPayPrePaidBillsPage = "/howMuchLikeToPayPrePaidBillsPage";
+  static const String ConfirmPrePaidBillPaymentAmountPage = "/confirmPrePaidBillPaymentAmountPage";
+  static const String PayPrePaidBillDetailPage = "/payPrePaidBillDetailPage";
+  static const String PayPrePaidBillPage = "/payPrePaidBillPage";
+  static const String NewPrePaidBillsPage = "/newPrePaidBillsPage";
 }

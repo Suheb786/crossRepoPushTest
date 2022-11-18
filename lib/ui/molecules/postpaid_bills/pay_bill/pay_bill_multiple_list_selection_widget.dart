@@ -15,6 +15,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String billAmtDue;
   final bool isSelected;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
+
   const PayBillsMultipleListSelectionWidget(
       {Key? key,
       required this.icon,
@@ -28,7 +29,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 24.0.w),
+      padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 0.0.w),
       child: Row(
         children: [
           Container(
@@ -42,7 +43,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
             child: AppSvg.asset(icon),
           ),
           SizedBox(
-            width: 5.w,
+            width: 8.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +75,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                               fontSize: 12.0.t),
                           children: [
                           TextSpan(
-                              text:billAmtDue,
+                              text: billAmtDue,
                               style: TextStyle(
                                   fontFamily: StringUtils.appFont,
                                   color: AppColor.veryDarkGray2,

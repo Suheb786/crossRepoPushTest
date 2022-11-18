@@ -8,6 +8,8 @@ import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.da
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -51,9 +53,13 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                       if (details.primaryVelocity!.isNegative) {
                         if (currentStep == 0) {
                           Navigator.pushNamed(context, RoutePaths.SendMoney);
-                        } else {
+                        } else if (currentStep == 1) {
                           Navigator.pushNamed(context, RoutePaths.RequestMoney);
-                        }
+                        } /*else if (currentStep == 2) {
+                          Navigator.pushNamed(context, RoutePaths.PostPaidBillCardWidget);
+                        } else if (currentStep == 3) {
+                          Navigator.pushNamed(context, RoutePaths.PrePaidBillCardWidget);
+                        }*/
                       } else {
                         Navigator.pop(context);
                       }
@@ -86,10 +92,13 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                       pages: [
                                         AddSendMoneyContactPage(beneficiaries: model.smBeneficiaries),
                                         AddRequestMoneyContactPage(beneficiaries: model.rtpBeneficiaries),
+                                        PostPaidBillCardWidget(),
+                                        PrePaidBillCardWidget(),
                                         Container()
                                       ],
                                       pageController: model.pageController,
                                       onIndexChanged: (index) {
+                                        print(index.toString());
                                         model.updatePage(index);
                                         model.updatePageControllerStream(index);
                                       },
@@ -99,7 +108,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                                 ),
                                 SmoothPageIndicator(
                                   controller: model.controller,
-                                  count: 2,
+                                  count: 4,
                                   effect: ScrollingDotsEffect(
                                     activeStrokeWidth: 2.6,
                                     activeDotScale: 1.3,

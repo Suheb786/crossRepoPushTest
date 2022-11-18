@@ -1170,6 +1170,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
+        "howMuchWouldYouLikeToPay": MessageLookupByLibrary.simpleMessage(
+            "How much would you\nlike to pay?"),
         "howWouldLikeToPay": MessageLookupByLibrary.simpleMessage(
             "How would you like to\nmake the payment"),
         "howWouldLikeToPayPrePaidYourBills":
@@ -1777,6 +1779,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payFrom": MessageLookupByLibrary.simpleMessage("Pay from"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
+        "paying": MessageLookupByLibrary.simpleMessage("Paying"),
         "paymentActivity":
             MessageLookupByLibrary.simpleMessage("Payment activity"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(

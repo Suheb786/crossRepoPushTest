@@ -32,6 +32,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
               onHorizontalDragEnd: (details) {
                 if (StringUtils.isDirectionRTL(context)) {
                   if (!details.primaryVelocity!.isNegative) {
+                    print('isNegative1');
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
@@ -39,6 +40,7 @@ class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContact
                   }
                 } else {
                   if (details.primaryVelocity!.isNegative) {
+                    print('isNegative2');
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
