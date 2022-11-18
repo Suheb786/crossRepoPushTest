@@ -25,8 +25,8 @@ import 'package:neo_bank/ui/molecules/card/credit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_error_widget.dart';
 import 'package:neo_bank/ui/molecules/card/debit_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/get_credit_card_now_widget.dart';
-import 'package:neo_bank/ui/molecules/card/post_paid_bill_card_widget.dart';
-import 'package:neo_bank/ui/molecules/card/pre_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/postpaid_bills/post_paid_bill_card_widget.dart';
+import 'package:neo_bank/ui/molecules/prepaid/pre_paid_bill_card_widget.dart';
 import 'package:neo_bank/ui/molecules/card/resume_credit_card_application_view.dart';
 import 'package:neo_bank/ui/molecules/card/verify_credit_card_videocall_widget.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -470,12 +470,6 @@ class AppHomeViewModel extends BasePageViewModel {
               .add(TimeLineSwipeUpArgs(cardType: CardType.DEBIT, swipeUpEnum: SwipeUpEnum.SWIPE_UP_NO));
         }
       }
-
-      ///TODO PostPaid Card
-      pages.add(PostPaidBillCardWidget());
-
-      ///TODO PrePaidPaid Card
-      pages.add(PrePaidBillCardWidget());
     }
     addPages(pages);
     blinkTimeLineListArguments.addAll(timeLineListArguments);

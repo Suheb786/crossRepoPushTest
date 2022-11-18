@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:domain/model/bill_payments/get_postpaid_biller_list/get_postpaid_biller_list_model_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -25,9 +26,9 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
 
   @override
   Widget build(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
-    return AppStreamBuilder<List<PallAllPostPaidBillsData>>(
+    return AppStreamBuilder<List<GetPostpaidBillerListModelData>>(
       stream: model.itemSelectedStream,
-      initialData: model.payAllPostPaidBillsDataList,
+      initialData: model.payPostPaidBillsDataList,
       dataBuilder: (BuildContext context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
@@ -74,62 +75,63 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                         child: Padding(
                           padding: EdgeInsets.only(top: 24.0.h, bottom: 24.0.h),
                           child: ListView.separated(
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    model.selectedItem(index);
-                                  },
-                                  child: Slidable(
-                                    endActionPane: ActionPane(
-                                      extentRatio: 0.25,
-                                      motion: DrawerMotion(),
-                                      children: [
-                                        SlidableAction(
-                                          // An action can be bigger than the others.
-
-                                          onPressed: (context1) => {
-                                            InformationDialog.show(context,
-                                                image: AssetUtils.deleteBlackIcon,
-                                                isSwipeToCancel: false,
-                                                title: S.of(context).areYouSure,
-                                                descriptionWidget: Text(
-                                                  S.of(context).doYouReallyDeleteSavedBills,
-                                                  style: TextStyle(
-                                                      fontFamily: StringUtils.appFont,
-                                                      fontSize: 14.t,
-                                                      fontWeight: FontWeight.w400),
-                                                ), onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: () {
-                                              Navigator.pop(context);
-                                              model.removeItem(index);
-
-                                              model.showSuccessToast(
-                                                  'BILL UPDATED\nYour bill has been removed.');
-                                            })
-                                          },
-                                          backgroundColor: AppColor.dark_brown,
-                                          foregroundColor: Colors.white,
-                                          icon: Icons.delete,
-                                        ),
-                                      ],
-                                    ),
-                                    child: PayBillsMultipleListSelectionWidget(
-                                      icon: data![index].icon,
-                                      billType: data[index].billType,
-                                      billAmtDue: data[index].billAmtDue.toString(),
-                                      isSelected: data[index].isSelected,
-                                      billName: data[index].billName,
-                                      paidBillsPayTypeOptionEnum: model.arguments.paidBillsPayTypeOptionEnum,
-                                    ),
+                            shrinkWrap: true,
+                            itemCount: model.payPostPaidBillsDataList.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  model.selectedItem(index);
+                                },
+                                child: Slidable(
+                                  endActionPane: ActionPane(
+                                    extentRatio: 0.25,
+                                    motion: DrawerMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        // An action can be bigger than the others.
+                                        onPressed: (context1) => {
+                                          InformationDialog.show(context,
+                                              image: AssetUtils.deleteBlackIcon,
+                                              isSwipeToCancel: false,
+                                              title: S.of(context).areYouSure,
+                                              descriptionWidget: Text(
+                                                S.of(context).doYouReallyDeleteSavedBills,
+                                                style: TextStyle(
+                                                    fontFamily: StringUtils.appFont,
+                                                    fontSize: 14.t,
+                                                    fontWeight: FontWeight.w400),
+                                              ), onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: () {
+                                            Navigator.pop(context);
+                                            var billerCode = model.payPostPaidBillsDataList[index].billerCode;
+                                            var billingNo = model.payPostPaidBillsDataList[index].billingNo;
+                                            var serviceType =
+                                                model.payPostPaidBillsDataList[index].serviceType;
+                                            model.removeCustomerBilling(billerCode, billingNo, serviceType);
+                                          })
+                                        },
+                                        backgroundColor: AppColor.dark_brown,
+                                        foregroundColor: Colors.white,
+                                        icon: Icons.delete,
+                                      ),
+                                    ],
                                   ),
-                                );
-                              },
-                              separatorBuilder: (context, index) {
-                                return AppDivider();
-                              },
-                              itemCount: model.payAllPostPaidBillsDataList.length),
+                                  child: PayBillsMultipleListSelectionWidget(
+                                    icon: data![index].iconCode ?? "",
+                                    biller: data[index].billerNameEN ?? "",
+                                    billAmtDue: data[index].dueAmount.toString(),
+                                    isSelected: data[index].isChecked ?? false,
+                                    billerName: data[index].nickName ?? "",
+                                    paidBillsPayTypeOptionEnum: model.arguments.paidBillsPayTypeOptionEnum,
+                                  ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return AppDivider();
+                            },
+                          ),
                         ),
                       ),
                     ],
@@ -137,7 +139,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                 ),
               ),
               Visibility(
-                visible: data!.any((item) => item.isSelected == true),
+                visible: data!.any((item) => item.isChecked == true),
                 child: AppStreamBuilder<double>(
                   initialData: model.totalBillAmt,
                   stream: model.totalBillAmtDueStream,
@@ -149,10 +151,13 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                         child: InkWell(
                           onTap: () {
                             // model.showSuccessToast(success)
-                            var noOfSelectedBills = data.where((c) => c.isSelected == true).toList();
+
                             Navigator.pushNamed(context, RoutePaths.PaySelectedBillsPostPaidBillsPage,
                                 arguments: PaySelectedBillsPostPaidBillsPageArguments(
-                                    noOfSelectedBills.length.toString(), amt!, noOfSelectedBills));
+                                    model.selectedPostPaidBillsList.length.toString(),
+                                    amt!,
+                                    model.selectedPostPaidBillsList,
+                                    model.postPaidRequestListJson));
                           },
                           child: Container(
                             width: double.maxFinite,
@@ -162,7 +167,7 @@ class PayAllPostPaidBillsPageView extends BasePageViewWidget<PayAllPostPaidBills
                               color: Theme.of(context).accentTextTheme.bodyText1!.color!,
                             ),
                             child: Center(
-                              child: Text(S.of(context).pay + amt.toString(),
+                              child: Text(S.of(context).pay + " " + amt.toString(),
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       fontSize: 14.t,

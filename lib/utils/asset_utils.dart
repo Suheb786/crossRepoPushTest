@@ -256,4 +256,6 @@ class AssetUtils {
   static const String flightIcon = svg + "flight_icon.svg";
   static const String deleteBlackIcon = svg + "delete_black_icon.svg";
   static const String deleteIconInRedBox = svg + "delete_icon_in_red_box.svg";
+  static const String logoeFawateerRed = svg + "logo_eFawateer_red.svg";
+  static const String logoeFawateerYellow = svg + "logo_eFawateer_yellow.svg";
 }

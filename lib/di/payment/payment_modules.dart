@@ -3,6 +3,7 @@ import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/bill_payments/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/credit_card_pay_back/credit_card_pay_back_page.dart';
@@ -40,6 +41,17 @@ import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_
 import 'package:neo_bank/feature/postpaid_bills/pay_selected_postpaid_bills/pay_selected_postpaid_bills_page_view_model.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/postpaid_bills_success/postpaid_bills_success_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/how_much_like__to_pay_prepaid_bills/how_much_like_to_pay_prepaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/new_prepaid_bills/new_prepaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_my_prepaid_bills/pay_my_prepaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/confirm_prepaid_bill_payment_amount/confirm_prepaid_bill_payment_amount_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_detail/pay_prepaid_bill_detail_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/pay_prepaid_bill/pay_prepaid_bill_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/paying_prepaid_bills/paying_prepaid_bills_page_view_model.dart';
+import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page.dart';
+import 'package:neo_bank/feature/prepaid_bill/prepaid_bills_success/prepaid_bills_success_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
@@ -224,12 +236,21 @@ class SelectedBillsToPaidWidgetViewModelProvider {
 
 final paySelectedBillsPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PaySelectedBillsPostPaidBillsPageViewModel, PaySelectedBillsPostPaidBillsPageArguments>(
-  (ref, args) => PaySelectedBillsPostPaidBillsPageViewModel(args),
+  (ref, args) => PaySelectedBillsPostPaidBillsPageViewModel(
+    ref.read(postPaidBillEnquiryUseCaseProvider),
+    ref.read(payPostPaidBillUseCaseProvider),
+    args,
+  ),
 );
 
 final payAllPostPaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPageArguments>(
-  (ref, args) => PayAllPostPaidBillsPageViewModel(args),
+  (ref, args) => PayAllPostPaidBillsPageViewModel(
+    ref.read(getPostpaidBillerUseCaseProvider),
+    ref.read(removeCustomerBillingUseCaseProvider),
+    ref.read(postPaidBillEnquiryUseCaseProvider),
+    args,
+  ),
 );
 
 final postPaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -269,4 +290,40 @@ final paidBillsSuccessPageViewModelProvider =
 
 final selectServiceDialogViewModelProvider = ChangeNotifierProvider.autoDispose<SelectServiceDialogViewModel>(
   (ref) => SelectServiceDialogViewModel(),
+);
+
+final payMyPrePaidBillsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
+  (ref) => PayMyPrePaidBillsPageViewModel(),
+);
+
+final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PayingPrePaidBillsPageViewModel, PayingPrePaidBillsPageArgument>(
+  (ref, args) => PayingPrePaidBillsPageViewModel(args),
+);
+
+final prePaidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PrePaidBillsSuccessPageViewModel, PrePaidBillsSuccessPageArguments>(
+  (ref, args) => PrePaidBillsSuccessPageViewModel(args),
+);
+
+final howMuchLikeToPayPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<HowMuchLikeToPayPrePaidBillsPageViewModel, HowMuchLikeToPayPrePaidBillsPageArgument>(
+  (ref, args) => HowMuchLikeToPayPrePaidBillsPageViewModel(args),
+);
+final newPrePaidBillsPageViewModelProvider = ChangeNotifierProvider.autoDispose<NewPrePaidBillsPageViewModel>(
+  (ref) => NewPrePaidBillsPageViewModel(),
+);
+final confirmPrePaidBillPaymentAmountPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ConfirmPrePaidBillPaymentAmountPageViewModel>(
+  (ref) => ConfirmPrePaidBillPaymentAmountPageViewModel(),
+);
+
+final payPrePaidBillDetailPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PayPrePaidBillDetailPageViewModel>(
+  (ref) => PayPrePaidBillDetailPageViewModel(),
+);
+
+final payPrePaidBillPageViewModelProvider = ChangeNotifierProvider.autoDispose<PayPrePaidBillPageViewModel>(
+  (ref) => PayPrePaidBillPageViewModel(),
 );

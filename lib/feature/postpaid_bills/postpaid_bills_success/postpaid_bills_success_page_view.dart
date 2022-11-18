@@ -61,7 +61,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
             RichText(
                 text: TextSpan(children: [
               TextSpan(
-                text: model.arguments.amt,
+                text: model.addAllBillAmt().toString(),
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
                     color: AppColor.white,
@@ -127,7 +127,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.noOfSelectedBills[index].billType,
+                                      model.arguments.billerList?[index].billerName ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
@@ -150,8 +150,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  model.arguments.noOfSelectedBills[index].billAmtDue.toString() +
-                                      S.of(context).JOD,
+                                  '${model.arguments.billerList?[index].totalAmount} ${S.of(context).JOD} ',
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.black,
@@ -159,7 +158,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                                       fontSize: 12.0.t),
                                 ),
                                 Text(
-                                  '12313141245',
+                                  model.arguments.billerList?[index].refNo ?? "",
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.gray5,
@@ -175,7 +174,7 @@ class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSucce
                     separatorBuilder: (context, index) {
                       return AppDivider();
                     },
-                    itemCount: model.arguments.noOfSelectedBills.length),
+                    itemCount: model.arguments.billerList!.length),
               ),
             ),
             Padding(

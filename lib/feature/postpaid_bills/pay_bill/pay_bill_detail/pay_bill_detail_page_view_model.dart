@@ -15,6 +15,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _switchStatusSubject = PublishSubject();
 
   Stream<bool> get totalBillAmtDueStream => _switchStatusSubject.stream;
+
   void switchStatus(bool isActive) {
     _switchStatusSubject.safeAdd(isActive);
   }
