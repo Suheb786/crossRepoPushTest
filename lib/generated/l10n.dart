@@ -14179,6 +14179,36 @@ class S {
       args: [],
     );
   }
+
+  /// `to`
+  String get to {
+    return Intl.message(
+      'to',
+      name: 'to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Expired. Try scanning valid QR`
+  String get qrExpired {
+    return Intl.message(
+      'QR Expired. Try scanning valid QR',
+      name: 'qrExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid QR. Try scanning valid QR`
+  String get qrInvalid {
+    return Intl.message(
+      'Invalid QR. Try scanning valid QR',
+      name: 'qrInvalid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

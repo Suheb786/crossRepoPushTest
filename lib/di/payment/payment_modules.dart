@@ -45,7 +45,9 @@ import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_v
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page.dart';
 import 'package:neo_bank/feature/request_money_via_qr/request_money_qr_generation/request_money_qr_generation_page_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page_view_model.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_via_qr_success/send_money_via_qr_success_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/accounts_dialog/accounts_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog_view_model.dart';
@@ -204,14 +206,18 @@ final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<QrScreenPageViewModel, QrScreenPageArguments>((ref, args) => QrScreenPageViewModel(args));
 
 ///send money qr scanning view model provider
-final sendMoneyQrScanningViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SendMoneyQrScanningPageViewModel>(
-        (ref) => SendMoneyQrScanningPageViewModel());
+final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SendMoneyQrScanningPageViewModel, SendMoneyQRScanningArguments>(
+        (ref, args) => SendMoneyQrScanningPageViewModel(
+              args,
+              ref.read(checkSendMoneyUseCaseProvider),
+              ref.read(transferUseCaseProvider),
+            ));
 
 ///send money qr success view model provider
-final sendMoneyQrSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SendMoneyViaQrSuccessPageViewModel>(
-        (ref) => SendMoneyViaQrSuccessPageViewModel());
+final sendMoneyQrSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SendMoneyViaQrSuccessPageViewModel, SendMoneyViaQRSuccessPageArguments>(
+        (ref, args) => SendMoneyViaQrSuccessPageViewModel(args));
 
 class SelectedBillsToPaidWidgetViewModelProvider {
   provide() {

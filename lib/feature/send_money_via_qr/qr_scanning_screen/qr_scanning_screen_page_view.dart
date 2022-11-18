@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/send_money_via_qr/qr_scanning_screen/qr_scanning_screen_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -24,15 +23,15 @@ class QrScanningScreenPageView extends BasePageViewWidget<QrScanningScreenPageVi
             key: model.qrKey,
             onQRViewCreated: (QRViewController controller) {
               model.controller = controller;
-              controller.scannedDataStream.distinct().listen((scanData) {
+              controller.scannedDataStream.listen((scanData) {
                 debugPrint('Scanned Data---->${scanData.code}');
-                if (model.result != null) {
-                  return;
-                }
+                // if (model.result != null) {
+                //   return;
+                // }
                 model.controller?.pauseCamera();
                 model.result = scanData;
                 if (model.result!.code != null) {
-                  Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning);
+                  model.extractResult(context, scanData);
                 }
               });
             },

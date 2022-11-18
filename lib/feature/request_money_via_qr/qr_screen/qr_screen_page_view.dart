@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -86,7 +87,7 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                           Padding(
                             padding: EdgeInsets.only(left: 4.0.w, top: 2.h),
                             child: Text(
-                              "JOD",
+                              S.of(context).JOD,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 14.t, color: AppColor.verLightGray4),
                             ),
@@ -96,11 +97,14 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                     ),
                     RepaintBoundary(
                       key: model.globalKey,
-                      child: QrImage(
-                        data:
-                            "${model.arguments.account.accountTitle}%${model.arguments.account.accountNo}%${model.arguments.requestAmt}",
-                        version: QrVersions.auto,
-                        size: 223.0,
+                      child: Container(
+                        color: AppColor.white,
+                        child: QrImage(
+                          data:
+                              "${model.arguments.account.accountTitle}%${model.arguments.account.accountNo}%${model.arguments.requestAmt}%${DateTime.now()}",
+                          version: QrVersions.auto,
+                          size: 223.0,
+                        ),
                       ),
                     ),
                     Text(
@@ -170,21 +174,29 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
       RenderRepaintBoundary boundary =
           model.globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
       ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-
-      ///TODO:check directory
-      final directory = (await getExternalStorageDirectory())!.path;
+      final directory = (await getTemporaryDirectory()).path;
       ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData!.buffer.asUint8List();
-      File imgFile = new File('$directory/QR.png');
+      String fileName = Random().nextDouble().toString();
+      File imgFile = new File('$directory/$fileName.png');
       imgFile.writeAsBytes(pngBytes);
       final RenderBox box = context.findRenderObject() as RenderBox;
+      debugPrint('Image path----->${imgFile.path}');
+
+      // share.ShareExtend.share(imgFile.path, "file",
+      //     subject: 'QR',
+      //     sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+      //     extraText:
+      //         'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL');
+
       Share.shareFiles([imgFile.path],
           subject: 'QR',
-          text:
-              'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL',
+          text: Platform.isAndroid
+              ? 'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL'
+              : null,
           sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
     } catch (e) {
-      print(e);
+      debugPrint('Exception while sharing ----->${e.toString()}');
     }
   }
 }

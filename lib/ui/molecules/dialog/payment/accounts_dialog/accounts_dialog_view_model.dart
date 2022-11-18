@@ -6,7 +6,7 @@ class AccountsDialogViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController =
       FixedExtentScrollController();
 
-  List<String>? accountsList = ['5669 4900 2111', '5669 4900 2111'];
+  // List<String>? accountsList = ['5669 4900 2111', '5669 4900 2111'];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();

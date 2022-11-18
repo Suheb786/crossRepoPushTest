@@ -88,7 +88,9 @@ class SelectAccountPageView extends BasePageViewWidget<SelectAccountPageViewMode
                                 controller: model.accountController,
                                 key: model.accountKey,
                                 onPressed: () {
-                                  AccountsDialog.show(context, label: S.of(context).payFrom, onDismissed: () {
+                                  AccountsDialog.show(context,
+                                      accountsList: ['5669 4900 2111', '5669 4900 2111'],
+                                      label: S.of(context).payFrom, onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (value) {
                                     Navigator.pop(context);

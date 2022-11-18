@@ -247,6 +247,7 @@ PODS:
     - MobileMessaging/Core
   - MobileMessaging/InAppChat (9.2.11):
     - MobileMessaging/Core
+  - MTBBarcodeScanner (5.0.11)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -262,6 +263,9 @@ PODS:
     - Flutter
   - PPBlinkID (5.14.0)
   - PromisesObjC (2.0.0)
+  - qr_code_scanner (0.2.0):
+    - Flutter
+    - MTBBarcodeScanner
   - r_get_ip (0.0.1):
     - Flutter
   - SDWebImage (5.12.3):
@@ -312,6 +316,7 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
@@ -346,6 +351,7 @@ SPEC REPOS:
     - IBGoogleWebRTC
     - InfobipRTC
     - MobileMessaging
+    - MTBBarcodeScanner
     - nanopb
     - PPBlinkID
     - PromisesObjC
@@ -411,6 +417,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_ios/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
+  qr_code_scanner:
+    :path: ".symlinks/plugins/qr_code_scanner/ios"
   r_get_ip:
     :path: ".symlinks/plugins/r_get_ip/ios"
   share_plus:
@@ -475,6 +483,7 @@ SPEC CHECKSUMS:
   InfobipRTC: 9ed1698add5d74133c57e30dd25117fd0c7c8d69
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
@@ -482,6 +491,7 @@ SPEC CHECKSUMS:
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
   SDWebImage: 53179a2dba77246efa8a9b85f5c5b21f8f43e38f
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68

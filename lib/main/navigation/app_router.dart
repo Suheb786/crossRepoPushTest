@@ -591,12 +591,13 @@ class AppRouter {
 
       case RoutePaths.SendMoneyQrScanning:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyQrScanningPage(),
+            builder: (context) => SendMoneyQrScanningPage(settings.arguments as SendMoneyQRScanningArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanning));
 
       case RoutePaths.SendMoneyQrScanningSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendMoneyViaQrSuccessPage(),
+            builder: (context) =>
+                SendMoneyViaQrSuccessPage(settings.arguments as SendMoneyViaQRSuccessPageArguments),
             settings: RouteSettings(name: RoutePaths.SendMoneyQrScanningSuccess));
 
       case RoutePaths.CliqIdList:

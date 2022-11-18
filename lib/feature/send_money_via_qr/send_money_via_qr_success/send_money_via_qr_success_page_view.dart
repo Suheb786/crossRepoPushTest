@@ -43,18 +43,18 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10.0),
+              padding: EdgeInsets.only(top: 24.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "20.00",
+                    model.arguments.amount,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w700,
-                        fontSize: 28),
+                        fontSize: 32),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(top: 8, start: 5.0),
@@ -83,9 +83,9 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 25.0),
+              padding: EdgeInsets.only(top: 24.0),
               child: Text(
-                "Zein Malhas",
+                model.arguments.user,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: StringUtils.appFont,
@@ -112,7 +112,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
                       ),
                     ),
                     Text(
-                      "984893922",
+                      model.arguments.referenceNo,
                       style: TextStyle(
                         fontFamily: StringUtils.appFont,
                         fontSize: 12,
@@ -153,7 +153,7 @@ class SendMoneyViaQrSuccessPageView extends BasePageViewWidget<SendMoneyViaQrSuc
               textColor: Theme.of(context).accentColor,
             ),
             Padding(
-              padding: EdgeInsets.only(top: 9, bottom: 16),
+              padding: EdgeInsets.only(top: 9, bottom: 24),
               child: Text(
                 S.of(context).toDashboard,
                 style: TextStyle(
