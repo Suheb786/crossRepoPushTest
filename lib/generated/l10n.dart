@@ -13860,6 +13860,16 @@ class S {
     );
   }
 
+  /// `ID Verification Failed`
+  String get idVerificationFailed {
+    return Intl.message(
+      'ID Verification Failed',
+      name: 'idVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Paying {noOfBills} bills`
   String payBills(Object noOfBills) {
     return Intl.message(
