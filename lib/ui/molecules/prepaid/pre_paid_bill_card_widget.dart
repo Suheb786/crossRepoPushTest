@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -20,26 +20,23 @@ class PrePaidBillCardWidget extends StatelessWidget {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (StringUtils.isDirectionRTL(context)) {
-          if (!details.primaryVelocity!.isNegative) {
-            print('isNegative1');
+          if ((details.primaryVelocity!.isNegative)) {
             ProviderScope.containerOf(context)
                 .read(paymentHomeViewModelProvider)
                 .appSwiperController
-                .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
+                .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
           }
         } else {
-          if (details.primaryVelocity!.isNegative) {
-            print('isNegative2');
+          if (!(details.primaryVelocity!.isNegative)) {
             ProviderScope.containerOf(context)
                 .read(paymentHomeViewModelProvider)
                 .appSwiperController
-                .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
+                .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
           }
         }
       },
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 15.0.h),
+      child: Stack(alignment: Alignment.center, children: [
+        Center(
           child: Card(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -111,7 +108,26 @@ class PrePaidBillCardWidget extends StatelessWidget {
             ),
           ),
         ),
-      ),
+        Positioned(
+          bottom: 0,
+          child: Column(
+            children: [
+              AppSvg.asset(AssetUtils.swipeUp),
+              Padding(
+                padding: EdgeInsets.only(top: 6.0.h),
+                child: Text(
+                  S.of(context).swipeUpToPayNewBill,
+                  style: TextStyle(
+                      fontFamily: StringUtils.appFont,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.0.t,
+                      color: AppColor.dark_gray_1),
+                ),
+              )
+            ],
+          ),
+        )
+      ]),
     );
   }
 }

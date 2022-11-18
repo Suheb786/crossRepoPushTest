@@ -32,11 +32,15 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
               onHorizontalDragEnd: (details) {
                 if (StringUtils.isDirectionRTL(context)) {
                   if (!details.primaryVelocity!.isNegative) {
-                    print('isNegative1');
                     ProviderScope.containerOf(context)
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
                         .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
+                  } else {
+                    ProviderScope.containerOf(context)
+                        .read(paymentHomeViewModelProvider)
+                        .appSwiperController
+                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
                   }
                 } else {
                   if (details.primaryVelocity!.isNegative) {
@@ -45,6 +49,11 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                         .read(paymentHomeViewModelProvider)
                         .appSwiperController
                         .nextPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
+                  } else {
+                    ProviderScope.containerOf(context)
+                        .read(paymentHomeViewModelProvider)
+                        .appSwiperController
+                        .previousPage(duration: Duration(milliseconds: 600), curve: Curves.linear);
                   }
                 }
 

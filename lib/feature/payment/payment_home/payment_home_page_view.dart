@@ -55,11 +55,11 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           Navigator.pushNamed(context, RoutePaths.SendMoney);
                         } else if (currentStep == 1) {
                           Navigator.pushNamed(context, RoutePaths.RequestMoney);
-                        } /*else if (currentStep == 2) {
-                          Navigator.pushNamed(context, RoutePaths.PostPaidBillCardWidget);
+                        } else if (currentStep == 2) {
+                          Navigator.pushNamed(context, RoutePaths.NewBillsPage);
                         } else if (currentStep == 3) {
-                          Navigator.pushNamed(context, RoutePaths.PrePaidBillCardWidget);
-                        }*/
+                          Navigator.pushNamed(context, RoutePaths.NewPrePaidBillsPage);
+                        }
                       } else {
                         Navigator.pop(context);
                       }
