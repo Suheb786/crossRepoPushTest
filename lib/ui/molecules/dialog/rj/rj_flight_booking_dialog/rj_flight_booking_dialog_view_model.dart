@@ -1,10 +1,29 @@
+import 'package:domain/usecase/rj/get_destination_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RjFlightBookingDialogViewModel extends BasePageViewModel {
+  final GetDestinationUseCase _getDestinationUseCase;
+
+  ///----------------Get Destination--------------///
+  PublishSubject<GetDestinationUseCaseParams> _getDestinationRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _getDestinationResponse = PublishSubject();
+
+  Stream<Resource<bool>> get getDestinationStream => _getDestinationResponse.stream;
+
+  void getDestination() {
+    _getDestinationRequest.safeAdd(GetDestinationUseCaseParams(language: 'EN', origin: 'AMM', service: ''));
+  }
+
+  ///----------------Get Destination--------------///
   ///Controllers and Keys
   TextEditingController fromController = new TextEditingController();
   GlobalKey<AppTextFieldState> fromKey = GlobalKey(debugLabel: "from");
@@ -30,6 +49,20 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
     Passenger('Children', '2 to 12 years'),
     Passenger('Infant', 'Below 2 years'),
   ];
+
+  RjFlightBookingDialogViewModel(this._getDestinationUseCase) {
+    _getDestinationRequest.listen((value) {
+      RequestManager(value, createCall: () => _getDestinationUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getDestinationResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
 
   /// selectedTab
 
@@ -79,6 +112,7 @@ class RjBookingFlightTabOption {
 class Passenger {
   String passengerType;
   String passengerAgeRange;
+
   Passenger(this.passengerType, this.passengerAgeRange);
 }
 

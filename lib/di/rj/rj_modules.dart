@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/rj/rj_usecase_modules.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_booking_purchase/rj_booking_purchase_page.dart';
@@ -14,7 +15,7 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_d
 ///RJ Flight Booking Dialog
 final rjFlightBookingDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<RjFlightBookingDialogViewModel>(
-        (ref) => RjFlightBookingDialogViewModel());
+        (ref) => RjFlightBookingDialogViewModel(ref.read(getDestinationUseCaseProvider)));
 
 class PassengerViewModelProvider {
   provide() {

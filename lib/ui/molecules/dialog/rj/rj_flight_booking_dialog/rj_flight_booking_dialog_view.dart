@@ -37,7 +37,9 @@ class RjFlightBookingDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<RjFlightBookingDialogViewModel>(
       providerBase: providerBase(),
-      onModelReady: (model) {},
+      onModelReady: (model) {
+        model.getDestination();
+      },
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
