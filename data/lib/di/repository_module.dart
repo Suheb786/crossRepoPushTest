@@ -22,6 +22,7 @@ import 'package:data/repository/payment/payment_repository_impl.dart';
 import 'package:data/repository/register/register_repository_impl.dart';
 import 'package:data/repository/register/register_step_four_repository_impl.dart';
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
+import 'package:data/repository/rj/rj_repository_impl.dart';
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
 import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:data/repository/utility/utility_repository_impl.dart';
@@ -47,6 +48,7 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
+import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/repository/utility/utility_repository.dart';
@@ -156,3 +158,6 @@ var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
 /// inject [ChangeDeviceRepository] provider
 var appFlyerRepositoryProvider =
     Provider<AppFlyerRepository>((ref) => AppFlyerRepositoryImpl(ref.read(appFlyerSdkDatasourceProvider)));
+
+/// inject [RJRepository] provider
+var rjRepositoryProvider = Provider<RJRepository>((ref) => RJRepositoryImpl(ref.read(rjDataSourceProvider)));

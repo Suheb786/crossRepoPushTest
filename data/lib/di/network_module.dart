@@ -35,6 +35,8 @@ import 'package:data/source/register/register_step_three_datasource.dart';
 import 'package:data/source/register/remote/register_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_four_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_three_remote_ds_impl.dart';
+import 'package:data/source/rj/remote/rj_remote_ds_impl.dart';
+import 'package:data/source/rj/rj_datasource.dart';
 import 'package:data/source/upload_document/remote/upload_document_remote_ds_impl.dart';
 import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/remote/user_remote_ds_impl.dart';
@@ -45,23 +47,24 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
 final baseOptions = Provider<BaseOptions>(
-    (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
+        (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
-  (ref) => PrettyDioLogger(
-    request: true,
-    requestBody: true,
-    requestHeader: true,
-    responseBody: true,
-    responseHeader: true,
-    logPrint: (log) {
-      return debugPrint(log as String);
-    },
-  ),
+      (ref) =>
+      PrettyDioLogger(
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+        logPrint: (log) {
+          return debugPrint(log as String);
+        },
+      ),
 );
 
 final dioProvider = Provider<Dio>(
-  (ref) {
+      (ref) {
     Dio dio = Dio(ref.read(baseOptions));
     dio.interceptors.add(
       ref.read(prettyDioLoggerProvider),
@@ -71,63 +74,71 @@ final dioProvider = Provider<Dio>(
 );
 
 final apiServiceProvider = Provider<ApiService>(
-  (ref) => ApiService(ref.read(dioProvider),
-      baseUrl: NetworkProperties.BASE_CHANNEL_URL),
+      (ref) =>
+      ApiService(ref.read(dioProvider),
+          baseUrl: NetworkProperties.BASE_CHANNEL_URL),
 );
 
 /// User remoteDS provider
-final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
+final userRemoteDSProvider = Provider<UserRemoteDS>((ref) =>
+    UserRemoteDSImpl(
       ref.read(apiServiceProvider),
       ref.read(deviceInfoHelperProvider),
       ref.read(userLocalDSProvider),
     ));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
-  (ref) => RegisterRemoteDataSourceImpl(),
+      (ref) => RegisterRemoteDataSourceImpl(),
 );
 
 final registerStepThreeRemoteDS = Provider<RegisterStepThreeRemoteDataSource>(
-  (ref) => RegisterStepThreeRemoteDataSourceImpl(),
+      (ref) => RegisterStepThreeRemoteDataSourceImpl(),
 );
 
 final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
-  (ref) => RegisterStepFourRemoteDataSourceImpl(),
+      (ref) => RegisterStepFourRemoteDataSourceImpl(),
 );
 
 ///kyc remote data source
 final kycRemoteDS = Provider<KYCRemoteDS>(
-  (ref) => KYCRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+      (ref) =>
+      KYCRemoteDSImpl(
+          ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///id card remote data source
 final idCardRemoteDS = Provider<IdCardRemoteDS>(
-  (ref) => IdCardRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+      (ref) =>
+      IdCardRemoteDSImpl(
+          ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///bank smart remote data source
 final bankSmartRemoteDS = Provider<BankSmartRemoteDS>(
-  (ref) => BankSmartRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+      (ref) =>
+      BankSmartRemoteDSImpl(
+          ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///fatca crs data source
 final fatcaCrsRemoteDS = Provider<FatcaCrsRemoteDS>(
-  (ref) => FatcaCrsRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+      (ref) =>
+      FatcaCrsRemoteDSImpl(
+          ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///account data source
 final accountRemoteDS = Provider<AccountRemoteDS>(
-  (ref) => AccountRemoteDSImpl(
-      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+      (ref) =>
+      AccountRemoteDSImpl(
+          ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
 
 ///upload document remote DS
 var uploadDocumentRemoteDataSourceProvider = Provider<UploadDocumentRemoteDS>(
-    (ref) => UploadDocumentRemoteDSImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+        (ref) =>
+        UploadDocumentRemoteDSImpl(
+            ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///country remote DS
 var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
@@ -141,8 +152,9 @@ var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
 
 ///Account Settings remote DS
 var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
-    (ref) => AccountSettingsRemoteDsImpl(
-        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+        (ref) =>
+        AccountSettingsRemoteDsImpl(
+            ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 ///Manage Contacts remote DS
 var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
@@ -168,4 +180,9 @@ var activityDataSourceProvider = Provider<ActivityRemoteDs>((ref) =>
 
 var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>((ref) =>
     ChangeDeviceRemoteDSImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///RJ remote DS
+var rjDataSourceProvider = Provider<RJRemoteDS>((ref) =>
+    RJRemoteDSImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

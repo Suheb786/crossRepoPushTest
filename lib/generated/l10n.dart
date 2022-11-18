@@ -14219,6 +14219,346 @@ class S {
       args: [],
     );
   }
+
+  /// `Book flight with us!`
+  String get bookFligtWithUs {
+    return Intl.message(
+      'Book flight with us!',
+      name: 'bookFligtWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get bookNow {
+    return Intl.message(
+      'Book Now',
+      name: 'bookNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FROM`
+  String get rjFrom {
+    return Intl.message(
+      'FROM',
+      name: 'rjFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEPART ON`
+  String get departOn {
+    return Intl.message(
+      'DEPART ON',
+      name: 'departOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RETURN ON`
+  String get returnOn {
+    return Intl.message(
+      'RETURN ON',
+      name: 'returnOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passengers`
+  String get passengers {
+    return Intl.message(
+      'Passengers',
+      name: 'passengers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cabin Class`
+  String get cabinClass {
+    return Intl.message(
+      'Cabin Class',
+      name: 'cabinClass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase for`
+  String get purchaseFor {
+    return Intl.message(
+      'Purchase for',
+      name: 'purchaseFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM`
+  String get aMM {
+    return Intl.message(
+      'AMM',
+      name: 'aMM',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NRT`
+  String get nRT {
+    return Intl.message(
+      'NRT',
+      name: 'nRT',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jordan`
+  String get jordan {
+    return Intl.message(
+      'Jordan',
+      name: 'jordan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Japan`
+  String get japan {
+    return Intl.message(
+      'Japan',
+      name: 'japan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart On`
+  String get departOnForPurchasePage {
+    return Intl.message(
+      'Depart On',
+      name: 'departOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return On`
+  String get returnOnForPurchasePage {
+    return Intl.message(
+      'Return On',
+      name: 'returnOnForPurchasePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Date`
+  String get purchaseDate {
+    return Intl.message(
+      'Purchase Date',
+      name: 'purchaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `31 Jul 2022 `
+  String get purchaseDummyDate {
+    return Intl.message(
+      '31 Jul 2022 ',
+      name: 'purchaseDummyDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `- 3:30PM`
+  String get purchaseDummyTime {
+    return Intl.message(
+      '- 3:30PM',
+      name: 'purchaseDummyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `984893922`
+  String get refNoDummyData {
+    return Intl.message(
+      '984893922',
+      name: 'refNoDummyData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Booking Summary`
+  String get toBookingSummary {
+    return Intl.message(
+      'to Booking Summary',
+      name: 'toBookingSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Amount`
+  String get totalAmount {
+    return Intl.message(
+      'Total Amount',
+      name: 'totalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `659.570`
+  String get dummyAmount {
+    return Intl.message(
+      '659.570',
+      name: 'dummyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Depart`
+  String get depart {
+    return Intl.message(
+      'Depart',
+      name: 'depart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get returnTitle {
+    return Intl.message(
+      'Return',
+      name: 'returnTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Amount`
+  String get taxAmount {
+    return Intl.message(
+      'Tax Amount',
+      name: 'taxAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\nflight details`
+  String get pleaseConfirmFlightDetail {
+    return Intl.message(
+      'Please confirm your\nflight details',
+      name: 'pleaseConfirmFlightDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How would you like to\nmake the payment`
+  String get howYouLikeToPayment {
+    return Intl.message(
+      'How would you like to\nmake the payment',
+      name: 'howYouLikeToPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Ref No.`
+  String get bookingRefNo {
+    return Intl.message(
+      'Booking Ref No.',
+      name: 'bookingRefNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BOOK FLIGHT`
+  String get bookFlight {
+    return Intl.message(
+      'BOOK FLIGHT',
+      name: 'bookFlight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Booking`
+  String get cancelBooking {
+    return Intl.message(
+      'Cancel Booking',
+      name: 'cancelBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your booking will expire after 3 days. Would you like to cancel your booking?`
+  String get cancelBookingDetail {
+    return Intl.message(
+      'Your booking will expire after 3 days. Would you like to cancel your booking?',
+      name: 'cancelBookingDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM`
+  String get departDescription {
+    return Intl.message(
+      'Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM',
+      name: 'departDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of the country. Your destination will appear\non the list.`
+  String get rjFlightBookingToDialogBoxDescription {
+    return Intl.message(
+      'Enter the name of the country. Your destination will appear\non the list.',
+      name: 'rjFlightBookingToDialogBoxDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AMM - Amman Queen..`
+  String get fromLabelForRJFlightBooking {
+    return Intl.message(
+      'AMM - Amman Queen..',
+      name: 'fromLabelForRJFlightBooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.`
+  String get bookFligtWithUsDescrption {
+    return Intl.message(
+      'Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.',
+      name: 'bookFligtWithUsDescrption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

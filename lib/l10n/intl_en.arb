@@ -1443,12 +1443,10 @@
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
   "to": "to",
   "qrExpired": "QR Expired. Try scanning valid QR",
-  "qrInvalid": "Invalid QR. Try scanning valid QR"
-  "creditCardOnDelivery": "Credit card\non delivery",
+  "qrInvalid": "Invalid QR. Try scanning valid QR",
   "bookFligtWithUs": "Book flight with us!",
   "bookNow": "Book Now",
   "rjFrom": "FROM",
-  "to": "TO",
   "departOn": "DEPART ON",
   "returnOn": "RETURN ON",
   "passengers": "Passengers",

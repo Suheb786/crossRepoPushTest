@@ -168,7 +168,8 @@ class AppRouter {
 
       case RoutePaths.NotifySuccess:
         return CupertinoPageRoute(
-            builder: (context) => NotifySuccessPage(
+            builder: (context) =>
+                NotifySuccessPage(
                   notifySuccessArguments: settings.arguments as NotifySuccessArguments,
                 ),
             settings: RouteSettings(name: RoutePaths.NotifySuccess));
@@ -198,9 +199,9 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-        // return CupertinoPageRoute(
-        //     builder: (context) => AddMoneyOptionSelectorPage(),
-        //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+      // return CupertinoPageRoute(
+      //     builder: (context) => AddMoneyOptionSelectorPage(),
+      //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
         return CustomRoute.createRoute(AddMoneyOptionSelectorPage(), reverse: true);
 
       case RoutePaths.LocateATM:
@@ -349,7 +350,8 @@ class AppRouter {
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendAmountToContactSuccessPage(
+            builder: (context) =>
+                SendAmountToContactSuccessPage(
                   arguments: settings.arguments as TransferSuccessContent,
                 ),
             settings: RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
@@ -362,7 +364,8 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => RequestAmountFromContactSuccessPage(
+            builder: (context) =>
+                RequestAmountFromContactSuccessPage(
                   successValues: settings.arguments as List<String>,
                 ),
             settings: RouteSettings(name: RoutePaths.RequestAmountFromContactSuccess));
@@ -415,8 +418,9 @@ class AppRouter {
 
       case RoutePaths.CardPinUnBlockSuccess:
         return CupertinoPageRoute(
-            builder: (context) => CardPinUnBlockSuccessPage(
-                manageCardPinArguments: settings.arguments as ManageCardPinArguments),
+            builder: (context) =>
+                CardPinUnBlockSuccessPage(
+                    manageCardPinArguments: settings.arguments as ManageCardPinArguments),
             settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
 
       case RoutePaths.DebitCardReplacement:
@@ -557,8 +561,9 @@ class AppRouter {
 
       case RoutePaths.SupplementaryCreditCardActivationStatus:
         return CupertinoPageRoute(
-            builder: (context) => SupplementaryCreditCardActivationStatusPage(
-                settings.arguments as SupplementaryCreditCardActivationArguments),
+            builder: (context) =>
+                SupplementaryCreditCardActivationStatusPage(
+                    settings.arguments as SupplementaryCreditCardActivationArguments),
             settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardActivationStatus));
 
       case RoutePaths.AllContact:
@@ -632,8 +637,9 @@ class AppRouter {
 
       case RoutePaths.ManageCreditSettlement:
         return CupertinoPageRoute(
-            builder: (context) => ManageCreditSettlementPage(
-                manageCreditSettlementArguments: settings.arguments as ManageCreditSettlementArguments),
+            builder: (context) =>
+                ManageCreditSettlementPage(
+                    manageCreditSettlementArguments: settings.arguments as ManageCreditSettlementArguments),
             settings: RouteSettings(name: RoutePaths.ManageCreditSettlement));
 
       case RoutePaths.ChangeCardPayment:
@@ -643,8 +649,9 @@ class AppRouter {
 
       case RoutePaths.ChangeCardSettlementPercentage:
         return CupertinoPageRoute(
-            builder: (context) => ChangeCardSettlementPercentagePage(
-                changeCardSettlementPercentageArguments:
+            builder: (context) =>
+                ChangeCardSettlementPercentagePage(
+                    changeCardSettlementPercentageArguments:
                     settings.arguments as ChangeCardSettlementPercentageArguments),
             settings: RouteSettings(name: RoutePaths.ChangeCardSettlementPercentage));
 
@@ -738,8 +745,9 @@ class AppRouter {
 
       case RoutePaths.PaySelectedBillsPostPaidBillsPage:
         return CupertinoPageRoute(
-            builder: (context) => PaySelectedBillsPostPaidBillsPage(
-                settings.arguments as PaySelectedBillsPostPaidBillsPageArguments),
+            builder: (context) =>
+                PaySelectedBillsPostPaidBillsPage(
+                    settings.arguments as PaySelectedBillsPostPaidBillsPageArguments),
             settings: RouteSettings(name: RoutePaths.PaySelectedBillsPostPaidBillsPage));
 
       case RoutePaths.PayAllPostPaidBillsPage:
@@ -786,13 +794,13 @@ class AppRouter {
             builder: (context) => QrScanningScreenPage(),
             settings: RouteSettings(name: RoutePaths.QRScanningScreen));
 
-      /// for web view for RJ Flight Booking
+    /// for web view for RJ Flight Booking
       case RoutePaths.RjBookingInAppWebView:
         return CupertinoPageRoute(
             builder: (context) => RjBookingPage(settings.arguments as RjBookingPageArguments),
             settings: RouteSettings(name: RoutePaths.RjBookingInAppWebView));
 
-      /// Rj Flight Booking PurchasePage
+    /// Rj Flight Booking PurchasePage
       case RoutePaths.RjFlightBookingPurchasePage:
         return CupertinoPageRoute(
             builder: (context) =>
@@ -804,7 +812,6 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RjFlightBookingDetailPage(),
             settings: RouteSettings(name: RoutePaths.RjFlightBookingDetailPage));
-
 
 
       default:

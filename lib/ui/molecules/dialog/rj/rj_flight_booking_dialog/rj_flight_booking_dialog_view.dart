@@ -158,7 +158,8 @@ class RjFlightBookingDialogView extends StatelessWidget {
                               onPressed: () {
                                 /// to dialog for country selection
 
-                                ToDialog.show(context, title: S.of(context).to, onDismissed: () {
+                                ToDialog.show(context, title: S.of(context).to.toUpperCase(),
+                                    onDismissed: () {
                                   Navigator.pop(context);
                                 }, onSelected: (value) {
                                   Navigator.pop(context);

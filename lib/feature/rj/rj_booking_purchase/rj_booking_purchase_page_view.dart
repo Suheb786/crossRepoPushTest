@@ -141,7 +141,7 @@ class RjBookingPurchasePageView extends BasePageViewWidget<RjBookingPurchasePage
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      S.of(context).to,
+                                      S.of(context).to.toUpperCase(),
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,

@@ -146,6 +146,9 @@ import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
+import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -761,4 +764,14 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+  ///RJ
+  @POST("/RJ/GetDestinations")
+  Future<HttpResponse<ResponseEntity>> getDestinations(@Body() GetDestinationRequestEntity request);
+
+  @POST("/RJ/GetOneWayLink")
+  Future<HttpResponse<ResponseEntity>> getOneWayTripLink(@Body() GetOneWayTripLinkRequestEntity request);
+
+  @POST("/RJ/GetRoundTripLink")
+  Future<HttpResponse<ResponseEntity>> getTwoWayTripLink(@Body() GetTwoWayTripLinkRequestEntity request);
 }
