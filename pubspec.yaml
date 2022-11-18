@@ -131,6 +131,8 @@ flutter:
     - assets/drawable/
     - assets/animation/
     - assets/flags/
+    - assets/images/
+    - assets/images/bill_payments_categories/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -345,7 +345,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                           }
                                                                         } else {
                                                                           Navigator.popAndPushNamed(
-                                                                              context, RoutePaths.AppHome);
+                                                                              context, RoutePaths.NewBillsPage);
                                                                         }
                                                                       }
                                                                     },

@@ -870,7 +870,7 @@ abstract class ApiService {
 
   ///---------------- bill payment ------------------
 
-  @POST("/BillPayment/GetBillCategories")
+  @POST("/BillPayment/GetBillerCategories")
   Future<HttpResponse<GetBillCategoriesEntity>> getBillCategories(@Body() BaseRequest request);
 
   @POST("/BillPayment/AccountInquiry")

@@ -17,4 +17,28 @@ class AppConstantsUtils {
   static String DECRYPTION_KEY = "Htyr3IvDoAhXLg0o";
 
   static bool isInfobipRegistered = false;
+
+
+  static String SELECTED_BILLER_CODE = "";
+  static String BILLER_NAME = "";
+  static String SELECTED_BILLER_CATEGORY_CODE = "";
+  static String SELECTED_BILLER_CATEGORY_TYPE = "";
+  static bool SELECTED_BILLING_NUMBER_REQUIRED = true;
+  static String SELECTED_SERVICE_CODE = "";
+  static String BILLER_CATEGORY = "eCommerce";
+  static String BILLER_CATEGORY_API_VALUE = "eCommerce";
+  static String BILLER_CATEGORY_ICON_CODE = "101";
+  static String LANGUAGE_KEY = "EN";
+  static String SELECTED_AMOUNT = "";
+  static String PREPAID_CATEGORY_CODE = "";
+  static String PREPAID_CATEGORY_DESCRIPTION = "";
+  static String PREPAID_CATEGORY_TYPE = "";
+  static String BILLER_TYPE = "";
+  static bool IS_NEW_PAYMENT = false;
+  static String SELECTED_BILLING_NUMBER = "";
+  static String SELECTED_SERVICE_TYPE = "";
+  static String SELECTED_SERVICE_DESCRIPTION_EN = "";
+  static String NICK_NAME = "";
+  static String PREPAID_KEY = "Prepaid";
+  static String POSTPAID_KEY = "Postpaid";
 }

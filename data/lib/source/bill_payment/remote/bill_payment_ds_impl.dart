@@ -179,9 +179,13 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
   @override
   Future<HttpResponse<GetBillerLookupListResponse>> getBillerLookuplist(
-      {required GetBillerLookupUseCaseParams params}) {
-    return _apiService.getBillerLookupList(
-        GetBillerLookupListRequest(categoryName: params.categoryName));
+      {required GetBillerLookupUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+    return _apiService.getBillerLookupList(GetBillerLookupListRequest(
+        categoryName: params.categoryName,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override

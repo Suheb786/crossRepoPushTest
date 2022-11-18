@@ -294,7 +294,8 @@ final payBillPageViewModelProvider =
 
 final payBillDetailPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayBillDetailPageViewModel>(
-  (ref) => PayBillDetailPageViewModel(),
+  (ref) =>
+      PayBillDetailPageViewModel(ref.read(addNewPostpaidBillerUseCaseProvider)),
 );
 
 final confirmBillPaymentAmountPageViewModelProvider =
@@ -304,7 +305,7 @@ final confirmBillPaymentAmountPageViewModelProvider =
 
 final payBillDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayBillDialogViewModel>(
-  (ref) => PayBillDialogViewModel(),
+  (ref) => PayBillDialogViewModel(ref.read(getBillerLookupListUseCaseProvider)),
 );
 
 final paidBillsSuccessPageViewModelProvider = ChangeNotifierProvider.autoDispose

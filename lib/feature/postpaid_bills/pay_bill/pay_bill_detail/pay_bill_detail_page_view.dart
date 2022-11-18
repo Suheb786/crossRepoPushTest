@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/bill_payments/get_biller_lookup_list/biller_service.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/bill_
 import 'package:neo_bank/ui/molecules/dialog/postpaid_bill/pay_bill_detail/service/select_service_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -100,9 +102,8 @@ class PayBillDetailPageView
                                 children: [
                                   Expanded(
                                     child: PostPaidSettingTitleWidget(
-                                      title: ProviderScope.containerOf(context)
-                                          .read(newBillsPageViewModelProvider)
-                                          .title,
+                                      title: AppConstantsUtils
+                                          .BILLER_CATEGORY_API_VALUE,
                                       tileIcon: ProviderScope.containerOf(
                                                   context)
                                               .read(
@@ -116,16 +117,31 @@ class PayBillDetailPageView
                               AppTextField(
                                 labelText: S.of(context).billName.toUpperCase(),
                                 hintText: S.of(context).pleaseSelect,
-                                controller: model.billNameController,
+                                controller: model.billerNameTextController,
                                 readOnly: true,
                                 onPressed: () {
                                   PayBillDialog.show(context,
                                       title: S.of(context).billName,
                                       onDismissed: () {
                                     Navigator.pop(context);
-                                  }, onSelected: (value) {
+                                  }, onSelected: (billerDetails) {
                                     // Navigator.pop(context);
-                                    model.billNameController.text = value;
+                                    model.billerNameTextController.text =
+                                        AppConstantsUtils.LANGUAGE_KEY == "EN"
+                                            ? billerDetails.billerNameEn!
+                                            : billerDetails.billerNameAr!;
+                                    AppConstantsUtils.BILLER_NAME =
+                                        AppConstantsUtils.LANGUAGE_KEY == "EN"
+                                            ? billerDetails.billerNameEn!
+                                            : billerDetails.billerNameAr!;
+                                    AppConstantsUtils.SELECTED_BILLER_CODE =
+                                        billerDetails.billerCode!;
+                                    model.billerCodeTextControl.text =
+                                        billerDetails.billerCode.toString();
+                                    model.billerCodeString =
+                                        billerDetails.billerCode.toString();
+                                    model.billerService =
+                                        billerDetails.billerService!;
                                   });
                                 },
                                 suffixIcon: (value, data) {
@@ -143,17 +159,87 @@ class PayBillDetailPageView
                                   labelText:
                                       S.of(context).services.toUpperCase(),
                                   hintText: S.of(context).pleaseSelect,
-                                  controller: model.serviceController,
+                                  controller: model.serviceTypeTextControl,
                                   readOnly: true,
                                   onPressed: () {
-                                    SelectServiceDialog.show(context,
-                                        title: S.of(context).services,
-                                        onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (value) {
-                                      // Navigator.pop(context);
-                                      model.serviceController.text = value;
-                                    });
+                                    model.amountTextControl.text = "";
+                                    AppConstantsUtils.SELECTED_AMOUNT = "";
+                                    AppConstantsUtils.PREPAID_CATEGORY_CODE =
+                                        "";
+                                    AppConstantsUtils
+                                        .PREPAID_CATEGORY_DESCRIPTION = "";
+                                    AppConstantsUtils.PREPAID_CATEGORY_TYPE =
+                                        "";
+                                    model.denominationTextController.text = "";
+                                    if (model.billerService != null &&
+                                        model.billerService.isNotEmpty) {
+                                      SelectServiceDialog.show(
+                                          context,
+                                          model.billerService,
+                                          model.billerCodeString.toString(),
+                                          title: S.of(context).services,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (billerServices) {
+                                        // Navigator.pop(context);
+                                        model.showAmountField = false;
+                                        model
+                                            .updateStreamForBillingNumber(true);
+                                        model.serviceTypeTextControl.text =
+                                            AppConstantsUtils.LANGUAGE_KEY ==
+                                                    "EN"
+                                                ? billerServices
+                                                    .serviceDescriptionEn!
+                                                : billerServices
+                                                    .serviceDescriptionAr!;
+                                        model.serviceTypeApiVal =
+                                            billerServices.serviceType!;
+                                        model.serviceDescriptionEn.text =
+                                            billerServices
+                                                    .serviceDescriptionEn ??
+                                                "";
+                                        AppConstantsUtils
+                                                .SELECTED_SERVICE_DESCRIPTION_EN =
+                                            billerServices
+                                                    .serviceDescriptionEn ??
+                                                "";
+                                        AppConstantsUtils
+                                                .SELECTED_SERVICE_TYPE =
+                                            billerServices.serviceType!;
+                                        AppConstantsUtils
+                                                .SELECTED_SERVICE_CODE =
+                                            billerServices.serviceCode!;
+                                        AppConstantsUtils.BILLER_TYPE =
+                                            billerServices.paymentType!;
+                                        AppConstantsUtils.IS_NEW_PAYMENT = true;
+                                        /* if (billerServices.paymentType! == AppConstantsUtils.PREPAID_KEY) {
+                                          model.updateStreamForShowAmount(billerServices.containPrepaidCat!);
+                                          model.fieldTextLabelEn = AppConstantsUtils.LANGUAGE_KEY == "EN"
+                                              ? billerServices.fieldLabelEn!
+                                              : billerServices.fieldLabelAr!;
+                                          model.updateStreamForBillingNumber(billerServices.billingNoRequired!);
+                                          Future.delayed(Duration(milliseconds: 200)).then((value) => {
+                                            model.getPrePaidCategoresList(
+                                              AppConstantsUtils.SELECTED_SERVICE_CODE,
+                                              AppConstantsUtils.SELECTED_BILLER_CODE,
+                                            )
+                                          });
+                                        }else*/
+                                        if (billerServices.paymentType! ==
+                                            AppConstantsUtils.POSTPAID_KEY) {
+                                          model.fieldTextLabelEn =
+                                              AppConstantsUtils.LANGUAGE_KEY ==
+                                                      "EN"
+                                                  ? billerServices.fieldLabelEn!
+                                                  : billerServices
+                                                      .fieldLabelAr!;
+                                          model.updateStreamForBillingNumber(
+                                              true);
+                                          model
+                                              .updateStreamForShowAmount(false);
+                                        }
+                                      });
+                                    }
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
@@ -166,6 +252,7 @@ class PayBillDetailPageView
                                   },
                                 ),
                               ),
+                              _billingNumberTypeTextField(context, model),
                               Padding(
                                 padding: EdgeInsets.only(top: 16.0.h),
                                 child: AppTextField(
@@ -240,7 +327,7 @@ class PayBillDetailPageView
                                     labelText:
                                         S.of(context).nickName.toUpperCase(),
                                     hintText: S.of(context).pleaseEnter,
-                                    controller: model.nickNameController,
+                                    controller: model.nicknameTextControl,
                                     onChanged: (data) {},
                                     onPressed: () {
                                       FocusScope.of(context).unfocus();
@@ -295,4 +382,31 @@ class PayBillDetailPageView
           }),
     );
   }
+
+  Widget _billingNumberTypeTextField(
+      context, PayBillDetailPageViewModel model) {
+    return AppStreamBuilder<bool>(
+      stream: model.isShowBillerNumberStream,
+      initialData: false,
+      dataBuilder: (_, isShowBillerNumber) {
+        return Visibility(
+            visible: isShowBillerNumber!,
+            child: Padding(
+              padding: EdgeInsets.only(top: 16.0.h),
+              child: AppTextField(
+                labelText: model.fieldTextLabelEn,
+                hintText: S.of(context).pleaseEnter,
+                controller: model.billingNumberTextControl,
+                inputType: TextInputType.number,
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                },
+              ),
+            ));
+      },
+    );
+  }
+
+
+
 }
