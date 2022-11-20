@@ -33,7 +33,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
               //  model.isSelected(false);
             },
             child: Container(
-              height: 42.h,
+              height: 40.h,
               width: 40.w,
               child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
@@ -53,7 +53,7 @@ class CliqTermConditionSelectionWidget extends StatelessWidget {
             },
             child: Container(
               width: 40.0.w,
-              height: 42.0.h,
+              height: 40.0.h,
               decoration: BoxDecoration(
                 border: Border.all(color: AppColor.gray1),
                 borderRadius: BorderRadius.all(Radius.circular(100.0)),

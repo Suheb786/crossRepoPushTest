@@ -6,8 +6,8 @@ import 'package:rxdart/rxdart.dart';
 
 class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
   ///controllers and keys
-  final TextEditingController aliasController = TextEditingController();
-  final GlobalKey<AppTextFieldState> aliasKey = GlobalKey(debugLabel: "alias");
+  final TextEditingController mobileNoController = TextEditingController();
+  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -15,9 +15,10 @@ class EditCliqIDMobileNoPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   void validate() {
-    if (aliasController.text.isNotEmpty) {
+    if (mobileNoController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
+      mobileNumberKey.currentState!.isValid = false;
       _showButtonSubject.safeAdd(false);
     }
   }

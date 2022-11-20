@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view.dart';
-import 'package:neo_bank/feature/manage_cliq_id/edit_alias/edit_alias_page_view_model.dart';
 
 import 'edit_cliq_id_mobile_no_page_view.dart';
 import 'edit_cliq_id_mobile_no_page_view_model.dart';
@@ -17,7 +15,7 @@ class EditCliqIDMobileNoPageState
     extends BaseStatefulPage<EditCliqIDMobileNoPageViewModel, EditCliqIDMobileNoPage> {
   @override
   ProviderBase provideBase() {
-    return editAliasViewModelProvider;
+    return editCliqIDMobileNoPageViewModelProvider;
   }
 
   @override

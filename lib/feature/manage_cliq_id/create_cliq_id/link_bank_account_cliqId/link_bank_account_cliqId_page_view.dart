@@ -57,217 +57,221 @@ class LinkBankAccountCliqIdPageView extends BasePageViewWidget<LinkBankAccountCl
                           : MediaQuery.of(context).viewInsets.bottom - 48),
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                    child: FadingEdgeScrollView.fromSingleChildScrollView(
-                      gradientFractionOnEnd: 0.2,
-                      gradientFractionOnStart: 0.2,
-                      child: SingleChildScrollView(
-                        controller: model.controller,
-                        child: AppStreamBuilder<List<LinkBankAccountData>>(
-                          stream: model.linkBankAccountCliqIdListStream,
-                          initialData: model.linkBankAccountCliqIdList,
-                          dataBuilder: (BuildContext context, data) {
-                            return Column(
-                              //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Expanded(
+                        child: FadingEdgeScrollView.fromSingleChildScrollView(
+                          gradientFractionOnEnd: 0.2,
+                          gradientFractionOnStart: 0.2,
+                          child: SingleChildScrollView(
+                            //   physics: ClampingScrollPhysics(),
+                            controller: model.controller,
+                            child: AppStreamBuilder<List<LinkBankAccountData>>(
+                              stream: model.linkBankAccountCliqIdListStream,
+                              initialData: model.linkBankAccountCliqIdList,
+                              dataBuilder: (BuildContext context, data) {
+                                return Column(
+                                  //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                              children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    S.of(context).linkedAccount,
-                                    style: TextStyle(
-                                        fontFamily: StringUtils.appFont,
-                                        fontSize: 14.t,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                Visibility(
-                                  visible: data!.length > 0,
-                                  child: ListView.separated(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemBuilder: (context, index) {
-                                        return Expanded(
-                                          child: Container(
-                                            padding: EdgeInsets.all(16.0),
-                                            decoration: BoxDecoration(
-                                                border: Border.all(color: AppColor.whiteGrey),
-                                                borderRadius: BorderRadius.circular(8.0)),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(data[index].accountType),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(data[index].accountNo),
-                                                    Icon(
-                                                      Icons.more_horiz_outlined,
-                                                      size: 25,
-                                                      color: Color(0xFF5F6368),
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        S.of(context).linkedAccount,
+                                        style: TextStyle(
+                                            fontFamily: StringUtils.appFont,
+                                            fontSize: 14.t,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 16.h,
+                                    ),
+                                    Visibility(
+                                      visible: data!.length > 0,
+                                      child: ListView.separated(
+                                          padding: EdgeInsets.zero,
+                                          shrinkWrap: true,
+                                          physics: NeverScrollableScrollPhysics(),
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              padding: EdgeInsets.all(16.0),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(color: AppColor.whiteGrey),
+                                                  borderRadius: BorderRadius.circular(8.0)),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(data[index].accountType),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Text(data[index].accountNo),
+                                                      Icon(
+                                                        Icons.more_horiz_outlined,
+                                                        size: 25,
+                                                        color: Color(0xFF5F6368),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal: 16.0.w, vertical: 10.0.h),
+                                                    decoration: BoxDecoration(
+                                                        color: AppColor.black,
+                                                        borderRadius: BorderRadius.circular(100.0)),
+                                                    child: Text(
+                                                      'Default',
+                                                      style: TextStyle(
+                                                          fontFamily: StringUtils.appFont,
+                                                          fontSize: 12.t,
+                                                          color: AppColor.white,
+                                                          fontWeight: FontWeight.w600),
                                                     ),
-                                                  ],
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return SizedBox(
+                                              height: 8.h,
+                                            );
+                                          },
+                                          itemCount: data.length),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    AddIncomeWidget(
+                                      label: S.of(context).addIncome,
+                                      onTap: () {
+                                        LinkAccountDialog.show(context, label: S.of(context).addLinkAccount,
+                                            onSelected: (linkBankAccountItemSelected) {
+                                          Navigator.pop(context);
+                                          model.updateLinkAccount(linkBankAccountItemSelected);
+                                        }, onDismissed: () {
+                                          Navigator.pop(context);
+                                        });
+                                      },
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                      initialData: false,
+                                      stream: model.isSelectedStream,
+                                      dataBuilder: (BuildContext context, isSelected) {
+                                        return Visibility(
+                                          visible: data.length > 0,
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(vertical: 24.0.h),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                if (isSelected!)
+                                                  InkWell(
+                                                    onTap: () {
+                                                      model.termAndConditionSelected(false);
+                                                    },
+                                                    child: Container(
+                                                      height: 40.h,
+                                                      width: 40.w,
+                                                      child: Padding(
+                                                        padding: EdgeInsetsDirectional.only(
+                                                            start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
+                                                        child: AppSvg.asset(AssetUtils.tick,
+                                                            color: AppColor.black),
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        color: AppColor.vividYellow,
+                                                        borderRadius: BorderRadius.circular(100),
+                                                      ),
+                                                    ),
+                                                  )
+                                                else
+                                                  InkWell(
+                                                    onTap: () {
+                                                      model.termAndConditionSelected(true);
+                                                    },
+                                                    child: Container(
+                                                      width: 40.0.w,
+                                                      height: 40.0.h,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: AppColor.gray1),
+                                                        borderRadius:
+                                                            BorderRadius.all(Radius.circular(100.0)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                SizedBox(
+                                                  width: 16.w,
                                                 ),
-                                                Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16.0.w, vertical: 10.0.h),
-                                                  decoration: BoxDecoration(
-                                                      color: AppColor.black,
-                                                      borderRadius: BorderRadius.circular(100.0)),
+                                                Expanded(
                                                   child: Text(
-                                                    'Default',
+                                                    S.of(context).whenAcceptingCreationOfYourCliqId,
                                                     style: TextStyle(
-                                                        fontFamily: StringUtils.appFont,
-                                                        fontSize: 12.t,
-                                                        color: AppColor.white,
-                                                        fontWeight: FontWeight.w600),
+                                                      color: AppColor.veryDarkGray2,
+                                                      fontSize: 12.t,
+                                                      fontWeight: FontWeight.w600,
+                                                    ),
                                                   ),
                                                 )
+
+                                                /*: Container(
+                                              width: 40.0.w,
+                                              height: 40.0.h,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                                                border: Border.all(color: AppColor.gray1),
+                                              ),
+                                            ),*/
                                               ],
                                             ),
                                           ),
                                         );
                                       },
-                                      separatorBuilder: (context, index) {
-                                        return SizedBox(
-                                          height: 8.h,
-                                        );
-                                      },
-                                      itemCount: data.length),
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                AddIncomeWidget(
-                                  label: S.of(context).addIncome,
-                                  onTap: () {
-                                    LinkAccountDialog.show(context, label: S.of(context).addLinkAccount,
-                                        onSelected: (linkBankAccountItemSelected) {
-                                      Navigator.pop(context);
-                                      model.updateLinkAccount(linkBankAccountItemSelected);
-                                    }, onDismissed: () {
-                                      Navigator.pop(context);
-                                    });
-                                  },
-                                ),
-                                AppStreamBuilder<bool>(
-                                  initialData: false,
-                                  stream: model.isSelectedStream,
-                                  dataBuilder: (BuildContext context, isSelected) {
-                                    return Visibility(
-                                      visible: data.length > 0,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 24.0.h),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            if (isSelected!)
-                                              InkWell(
-                                                onTap: () {
-                                                  model.termAndConditionSelected(false);
-                                                },
-                                                child: Container(
-                                                  height: 42.h,
-                                                  width: 40.w,
-                                                  child: Padding(
-                                                    padding: EdgeInsetsDirectional.only(
-                                                        start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
-                                                    child:
-                                                        AppSvg.asset(AssetUtils.tick, color: AppColor.black),
-                                                  ),
-                                                  decoration: BoxDecoration(
-                                                    color: AppColor.vividYellow,
-                                                    borderRadius: BorderRadius.circular(100),
-                                                  ),
-                                                ),
-                                              )
-                                            else
-                                              InkWell(
-                                                onTap: () {
-                                                  model.termAndConditionSelected(true);
-                                                },
-                                                child: Container(
-                                                  width: 40.0.w,
-                                                  height: 42.0.h,
-                                                  decoration: BoxDecoration(
-                                                    border: Border.all(color: AppColor.gray1),
-                                                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                                                  ),
-                                                ),
-                                              ),
-                                            SizedBox(
-                                              width: 16,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                S.of(context).whenAcceptingCreationOfYourCliqId,
-                                                style: TextStyle(
-                                                  color: AppColor.veryDarkGray2,
-                                                  fontSize: 12.t,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            )
-
-                                            /*: Container(
-                                          width: 40.0.w,
-                                          height: 40.0.h,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                                            border: Border.all(color: AppColor.gray1),
-                                          ),
-                                        ),*/
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Column(
-                                  children: [
-                                    AppStreamBuilder<bool>(
-                                      stream: model.isSelectedStream,
-                                      initialData: false,
-                                      dataBuilder: (BuildContext context, data) {
-                                        return Visibility(
-                                          visible: data!,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 0.0.h),
-                                            child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 24.h,
-                                    ),
-                                    Center(
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          S.of(context).backToManageCliq,
-                                          style: TextStyle(
-                                            color: AppColor.brightBlue,
-                                            fontSize: 14.t,
-                                            letterSpacing: 1.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                   ],
-                                )
-                              ],
-                            );
-                          },
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                      Column(
+                        children: [
+                          AppStreamBuilder<bool>(
+                            stream: model.isSelectedStream,
+                            initialData: false,
+                            dataBuilder: (BuildContext context, data) {
+                              return Visibility(
+                                visible: data!,
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 0.0.h),
+                                  child: AnimatedButton(buttonText: S.of(context).swipeToProceed),
+                                ),
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          Center(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                S.of(context).backToManageCliq,
+                                style: TextStyle(
+                                  color: AppColor.brightBlue,
+                                  fontSize: 14.t,
+                                  letterSpacing: 1.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ]),
                   )),
             ),
           ),

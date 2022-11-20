@@ -51,8 +51,8 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
               // Navigator.pushReplacementNamed(context, RoutePaths.EditAlias,
               //     arguments: EditAliasPageArguments());
-              //  Navigator.pushReplacementNamed(context, RoutePaths.CliqIdList);
-              // Navigator.pushReplacementNamed(context, RoutePaths.EditMobileNoCliq);
+              // Navigator.pushReplacementNamed(context, RoutePaths.CliqIdList);
+              //  Navigator.pushReplacementNamed(context, RoutePaths.EditCliqIDMobileNoPage);
               // Navigator.pushReplacementNamed(context, RoutePaths.RequestMoneyQrGeneration);
               // Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning);
             }
