@@ -12,8 +12,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
-class PostPaidBillsSuccessPageView
-    extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
+class PostPaidBillsSuccessPageView extends BasePageViewWidget<PostPaidBillsSuccessPageViewModel> {
   PostPaidBillsSuccessPageView(ProviderBase model) : super(model);
 
   @override
@@ -95,11 +94,8 @@ class PostPaidBillsSuccessPageView
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsetsDirectional.only(
-                            start: 15.w,
-                            end: 19.w,
-                            top: 16.0.h,
-                            bottom: 16.0.h),
+                        padding:
+                            EdgeInsetsDirectional.only(start: 15.w, end: 19.w, top: 16.0.h, bottom: 16.0.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -113,10 +109,7 @@ class PostPaidBillsSuccessPageView
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.only(
-                                        start: 16.0.w,
-                                        end: 16.0.w,
-                                        top: 16.0.h,
-                                        bottom: 16.h),
+                                        start: 16.0.w, end: 16.0.w, top: 16.0.h, bottom: 16.h),
                                     child: Text(
                                       (index + 1).toString(),
                                       style: TextStyle(
@@ -134,9 +127,7 @@ class PostPaidBillsSuccessPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.arguments.billerList?[index]
-                                              .billerName ??
-                                          "",
+                                      model.arguments.billerList?[index].billerName ?? "",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
@@ -167,8 +158,7 @@ class PostPaidBillsSuccessPageView
                                       fontSize: 12.0.t),
                                 ),
                                 Text(
-                                  model.arguments.billerList?[index].refNo ??
-                                      "",
+                                  model.arguments.billerList?[index].refNo ?? "",
                                   style: TextStyle(
                                       fontFamily: StringUtils.appFont,
                                       color: AppColor.gray5,
@@ -192,8 +182,7 @@ class PostPaidBillsSuccessPageView
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppSvg.asset(AssetUtils.share,
-                      color: AppColor.light_acccent_blue),
+                  AppSvg.asset(AssetUtils.share, color: AppColor.light_acccent_blue),
                   SizedBox(
                     width: 8.w,
                   ),

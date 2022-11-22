@@ -12,8 +12,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 
-class PayAllPostPaidBillsPage
-    extends BasePage<PayAllPostPaidBillsPageViewModel> {
+class PayAllPostPaidBillsPage extends BasePage<PayAllPostPaidBillsPageViewModel> {
   final PayAllPostPaidBillsPageArguments arguments;
 
   PayAllPostPaidBillsPage(this.arguments);
@@ -22,8 +21,8 @@ class PayAllPostPaidBillsPage
   PayAllPostPaidBillsPageState createState() => PayAllPostPaidBillsPageState();
 }
 
-class PayAllPostPaidBillsPageState extends BaseStatefulPage<
-    PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPage> {
+class PayAllPostPaidBillsPageState
+    extends BaseStatefulPage<PayAllPostPaidBillsPageViewModel, PayAllPostPaidBillsPage> {
   @override
   ProviderBase provideBase() {
     return payAllPostPaidBillsPageViewModelProvider.call(widget.arguments);
@@ -62,20 +61,16 @@ class PayAllPostPaidBillsPageState extends BaseStatefulPage<
                 ),
               ),
               Text(
-                widget.arguments.paidBillsPayTypeOptionEnum ==
-                        PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                     ? S.of(context).payAllBills
                     : S.of(context).myBills,
-                style: TextStyle(
-                    fontSize: 14.t,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.white),
+                style: TextStyle(fontSize: 14.t, fontWeight: FontWeight.w600, color: AppColor.white),
               ),
               Visibility(
-                visible: widget.arguments.paidBillsPayTypeOptionEnum ==
-                        PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
-                    ? false
-                    : true,
+                visible:
+                    widget.arguments.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+                        ? false
+                        : true,
                 child: Padding(
                   padding: EdgeInsets.only(right: 24.0.w),
                   child: AppSvg.asset(
@@ -90,11 +85,9 @@ class PayAllPostPaidBillsPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, PayAllPostPaidBillsPageViewModel model) {
+  Widget buildView(BuildContext context, PayAllPostPaidBillsPageViewModel model) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: PayAllPostPaidBillsPageView(provideBase()));
+        value: SystemUiOverlayStyle.light, child: PayAllPostPaidBillsPageView(provideBase()));
   }
 
   @override

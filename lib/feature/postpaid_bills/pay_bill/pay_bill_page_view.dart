@@ -70,8 +70,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                           fontWeight: FontWeight.w600),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.only(
-                          top: 8.0.h, bottom: 32.h),
+                      padding: EdgeInsetsDirectional.only(top: 8.0.h, bottom: 32.h),
                       child: ShowUpAnimation(
                         key: ValueKey(currentStep),
                         delayStart: Duration(milliseconds: 50),
@@ -82,7 +81,7 @@ class PayBillPageView extends BasePageViewWidget<PayBillPageViewModel> {
                         child: Text(
                           StepTextHelper.registrationTwoStepTextHelper(
                             currentStep ?? 0,
-                            S.of(context).enterBillDetails+"\n",
+                            S.of(context).enterBillDetails + "\n",
                             S.of(context).confirmYourPaymentAmtBelow,
                           ),
                           maxLines: 2,

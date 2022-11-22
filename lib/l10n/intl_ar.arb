@@ -1391,10 +1391,13 @@
   "myPostPaidBill": "My Postpaid Bill",
   "viewMyBills": "View my bills",
   "myPrePaidBills": "My Prepaid Bills",
+  "paying": "Paying",
   "howWouldLikeToPayPrePaidYourBills": "How would you like to\npay your prepaid bills?",
   "confirmYourPaymentAmtBelow": "Confirm your payment\namount below",
   "addThisBillToSaveList":"Add this bill to your saved list",
   "doYouReallyDeleteSavedBills":"Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?",
   "idVerificationFailed": "فشل التحقق من الهوية",
-  "howWouldLikeToPayYourBills": "How would you like to\npay your bills?"
+  "howWouldLikeToPayYourBills": "How would you like to\npay your bills?",
+  "swipeUpToPayNewBill": "Swipe up to pay new bill",
+  "howMuchWouldYouLikeToPay":"How much would you\nlike to pay?"
 }

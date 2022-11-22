@@ -1122,6 +1122,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddress": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
         "homeAddressHint": MessageLookupByLibrary.simpleMessage("أدخل عنوانك"),
         "homeAddressSmall": MessageLookupByLibrary.simpleMessage("عنوان البيت"),
+        "howMuchWouldYouLikeToPay": MessageLookupByLibrary.simpleMessage(
+            "How much would you\nlike to pay?"),
         "howWouldLikeToPayPrePaidYourBills":
             MessageLookupByLibrary.simpleMessage(
                 "How would you like to\npay your prepaid bills?"),
@@ -1704,6 +1706,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "payFrom": MessageLookupByLibrary.simpleMessage("الدفع من"),
         "paybackCreditCardError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),
+        "paying": MessageLookupByLibrary.simpleMessage("Paying"),
         "paymentActivity": MessageLookupByLibrary.simpleMessage("حركة دائمة"),
         "paymentActivityApiError": MessageLookupByLibrary.simpleMessage(
             "عفواً! خطأ بالاتصال. حاول كمان مرة بعدين."),

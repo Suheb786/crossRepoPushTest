@@ -14170,6 +14170,16 @@ class S {
     );
   }
 
+  /// `Paying`
+  String get paying {
+    return Intl.message(
+      'Paying',
+      name: 'paying',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `My Prepaid Bills`
   String get myPrePaidBills {
     return Intl.message(
@@ -14215,6 +14225,16 @@ class S {
     return Intl.message(
       'Do you really want to delete ‘JOCARD Prepaid’ from Saved Bills?',
       name: 'doYouReallyDeleteSavedBills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much would you\nlike to pay?`
+  String get howMuchWouldYouLikeToPay {
+    return Intl.message(
+      'How much would you\nlike to pay?',
+      name: 'howMuchWouldYouLikeToPay',
       desc: '',
       args: [],
     );
