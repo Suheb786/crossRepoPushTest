@@ -267,12 +267,16 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                               GestureDetector(
                                 onHorizontalDragEnd: (details) {
                                   if (details.primaryVelocity!.isNegative) {
+                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).addNewPostpaidBiller();
+
+/*
                                     Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                                         arguments: PaidBillsSuccessPageArguments(
                                             ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).amountTextControl.text,
                                             ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).serviceTypeTextControl.text,
                                             ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text,
                                           ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text));
+*/
                                   }
                                 },
                                 child: AnimatedButton(

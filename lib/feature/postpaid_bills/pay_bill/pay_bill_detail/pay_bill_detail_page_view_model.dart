@@ -17,17 +17,18 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
   String fieldTextLabelEn = "Enter Billing Number";
 
 
-  var denominationTextController = TextEditingController(text: '');
+  var denominationTextController = TextEditingController();
   final billerNameTextController = TextEditingController();
   final serviceTypeTextControl = TextEditingController();
   var serviceTypeApiVal = "";
   final billerCodeTextControl = TextEditingController();
-  final billingNumberTextControl = TextEditingController(text: '');
-  final nicknameTextControl = TextEditingController(text: '');
-  final amountTextControl = TextEditingController(text: '');
-  final serviceDescriptionEn = TextEditingController(text: '');
+  final billingNumberTextControl = TextEditingController();
+  final nicknameTextControl = TextEditingController();
+  final amountTextControl = TextEditingController();
+  final serviceDescriptionEn = TextEditingController();
   bool isShowBillingNumberSizeBox = false;
   bool isShowDemominationSizeBox = false;
+  var nickName = "";
 
   bool SELECTED_BILLING_NUMBER_REQUIRED = false;
 

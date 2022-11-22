@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/postpaid_bills/pay_bill/paid_bills_success/paid_bills_success_page.dart';
 import 'package:neo_bank/feature/postpaid_bills/pay_bill/pay_bill_detail/pay_bill_detail_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -50,7 +51,16 @@ class PayBillDetailPageView
               event.data!.addNewPostpaidBillerModelData!.serviceType!;
           AppConstantsUtils.NICK_NAME =
               event.data!.addNewPostpaidBillerModelData!.nickName!;
-          Navigator.pushNamed(context, RoutePaths.ConfirmBillPaymentAmountPage);
+
+          Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
+              arguments: PaidBillsSuccessPageArguments(
+                  ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).amountTextControl.text,
+                  ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).serviceTypeTextControl.text,
+                  ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text,
+                  ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text));
+
+
+          // Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage);
         } else if (event.status == Status.ERROR) {
           model.showToastWithError(event.appError!);
         }
@@ -299,6 +309,9 @@ class PayBillDetailPageView
                                       hintText: S.of(context).pleaseEnter,
                                       controller: model.refNoController,
                                       inputType: TextInputType.number,
+                                      onChanged: (data) {
+                                        // ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text = data;
+                                      },
                                       onPressed: () {
                                         FocusScope.of(context).unfocus();
                                       },
@@ -310,6 +323,9 @@ class PayBillDetailPageView
                                       labelText: S.of(context).payFrom,
                                       hintText: S.of(context).searchBill,
                                       controller: model.payFromController,
+                                      onChanged: (data) {
+                                        // ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).payFromController.text = data;
+                                      },
                                       readOnly: true,
                                       onPressed: () {
                                         AccountsDialog.show(context,
@@ -381,7 +397,9 @@ class PayBillDetailPageView
                                             .toUpperCase(),
                                         hintText: S.of(context).pleaseEnter,
                                         controller: model.nicknameTextControl,
-                                        onChanged: (data) {},
+                                        onChanged: (data) {
+                                          // ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text = data;
+                                        },
                                         onPressed: () {
                                           FocusScope.of(context).unfocus();
                                         },
@@ -456,6 +474,9 @@ class PayBillDetailPageView
                 labelText: model.fieldTextLabelEn,
                 hintText: S.of(context).pleaseEnter,
                 controller: model.billingNumberTextControl,
+                onChanged: (data) {
+                  // ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).billingNumberTextControl.text = data;
+                },
                 inputType: TextInputType.number,
                 onPressed: () {
                   FocusScope.of(context).unfocus();
