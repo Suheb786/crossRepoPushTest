@@ -152,7 +152,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                               ),
                                             ),
                                             Text(
-                                              '20.000 JOD',
+                                              '${ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).amountTextControl.text} JOD',
                                               style: TextStyle(
                                                 fontFamily: StringUtils.appFont,
                                                 color: AppColor.black,
@@ -163,36 +163,36 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 8.0.h,
-                                          left: 16.0.w,
-                                          right: 16.0.w,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              S.of(context).fees,
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.black,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            Text(
-                                              '20.000 JOD',
-                                              style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                color: AppColor.black,
-                                                fontSize: 12.0.t,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                      // Padding(
+                                      //   padding: EdgeInsets.only(
+                                      //     top: 8.0.h,
+                                      //     left: 16.0.w,
+                                      //     right: 16.0.w,
+                                      //   ),
+                                      //   child: Row(
+                                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      //     children: [
+                                      //       Text(
+                                      //         S.of(context).fees,
+                                      //         style: TextStyle(
+                                      //           fontFamily: StringUtils.appFont,
+                                      //           color: AppColor.black,
+                                      //           fontSize: 12.0.t,
+                                      //           fontWeight: FontWeight.w400,
+                                      //         ),
+                                      //       ),
+                                      //       Text(
+                                      //         '20.000 JOD',
+                                      //         style: TextStyle(
+                                      //           fontFamily: StringUtils.appFont,
+                                      //           color: AppColor.black,
+                                      //           fontSize: 12.0.t,
+                                      //           fontWeight: FontWeight.w600,
+                                      //         ),
+                                      //       )
+                                      //     ],
+                                      //   ),
+                                      // ),
                                       SizedBox(
                                         height: 24.0.h,
                                       ),
@@ -218,7 +218,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                               Column(
                                                 children: [
                                                   Text(
-                                                    'New Home Internet',
+                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryDarkGray2,
@@ -227,7 +227,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                     ),
                                                   ),
                                                   Text(
-                                                    'Orange Internet',
+                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).billerNameTextController.text,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.very_dark_gray_black,
@@ -236,7 +236,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                     ),
                                                   ),
                                                   Text(
-                                                    'Internet Bill Payment',
+                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).serviceTypeTextControl.text,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryDarkGray2,
@@ -245,7 +245,7 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                                     ),
                                                   ),
                                                   Text(
-                                                    'A121451200',
+                                                    ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text,
                                                     style: TextStyle(
                                                       fontFamily: StringUtils.appFont,
                                                       color: AppColor.veryDarkGray2,
@@ -269,10 +269,10 @@ class ConfirmBillPaymentAmountPageView extends BasePageViewWidget<ConfirmBillPay
                                   if (details.primaryVelocity!.isNegative) {
                                     Navigator.pushNamed(context, RoutePaths.PaidBillsSuccessPage,
                                         arguments: PaidBillsSuccessPageArguments(
-                                            '21000',
-                                            'Orange Mobile and Net Every..',
-                                            'New Home Internet',
-                                            '123142141213'));
+                                            ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).amountTextControl.text,
+                                            ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).serviceTypeTextControl.text,
+                                            ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).nicknameTextControl.text,
+                                          ProviderScope.containerOf(context).read(payBillDetailPageViewModelProvider).refNoController.text));
                                   }
                                 },
                                 child: AnimatedButton(

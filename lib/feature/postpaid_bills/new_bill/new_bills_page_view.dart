@@ -133,7 +133,7 @@ class NewBillsPageView extends BasePageViewWidget<NewBillsPageViewModel> {
                                       onTap: () {
                                         AppConstantsUtils.BILLER_CATEGORY = snapshot.data![index].categoryName ?? "";
                                         AppConstantsUtils.BILLER_CATEGORY_API_VALUE =
-                                        AppConstantsUtils.LANGUAGE_KEY.toString().toLowerCase() == "ar"
+                                        AppConstantsUtils.LANGUAGE_KEY.toString() == "EN"
                                             ?  snapshot.data![index].categoryName ?? ""
                                             :  snapshot.data![index].categoryNameAr ?? "";
                                         Navigator.pushNamed(
