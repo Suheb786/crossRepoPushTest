@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "NoCliqContactYet": MessageLookupByLibrary.simpleMessage(
             "You don’t have any CliQ ID.\nCreate your first one via Blink."),
+        "aMM": MessageLookupByLibrary.simpleMessage("AMM"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
         "accountActivityError": MessageLookupByLibrary.simpleMessage(
@@ -286,6 +287,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you block a country, any transaction made within that country will be declined and you will have to lift the blocked before any payments."),
         "blockedCountries":
             MessageLookupByLibrary.simpleMessage("Blocked Countries"),
+        "bookFlight": MessageLookupByLibrary.simpleMessage("BOOK FLIGHT"),
+        "bookFligtWithUs":
+            MessageLookupByLibrary.simpleMessage("Book flight with us!"),
+        "bookFligtWithUsDescrption": MessageLookupByLibrary.simpleMessage(
+            "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."),
+        "bookNow": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "bookingRefNo": MessageLookupByLibrary.simpleMessage("Booking Ref No."),
         "bornBlink":
             MessageLookupByLibrary.simpleMessage("Born blink.\nBe Blink."),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -313,6 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "buyVoucherTitle": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula"),
         "buyVouchers": MessageLookupByLibrary.simpleMessage("Buy Vouchers"),
+        "cabinClass": MessageLookupByLibrary.simpleMessage("Cabin Class"),
         "callDisconnected": MessageLookupByLibrary.simpleMessage(
             "Your call was disconnected. Please try again."),
         "callDroppedDesc": MessageLookupByLibrary.simpleMessage(
@@ -328,6 +337,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your account will be processed after the video call is completed."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelBooking": MessageLookupByLibrary.simpleMessage("Cancel Booking"),
+        "cancelBookingDetail": MessageLookupByLibrary.simpleMessage(
+            "Your booking will expire after 3 days. Would you like to cancel your booking?"),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
             "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(
@@ -647,6 +659,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "deliveryIssue":
             MessageLookupByLibrary.simpleMessage("I have delivery issue"),
+        "depart": MessageLookupByLibrary.simpleMessage("Depart"),
+        "departDescription": MessageLookupByLibrary.simpleMessage(
+            "Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM"),
+        "departOn": MessageLookupByLibrary.simpleMessage("DEPART ON"),
+        "departOnForPurchasePage":
+            MessageLookupByLibrary.simpleMessage("Depart On"),
         "depositViaATM":
             MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
         "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
@@ -694,6 +712,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Drag & move the map to adjust the location"),
         "due": MessageLookupByLibrary.simpleMessage("Due"),
         "dueAmt": MessageLookupByLibrary.simpleMessage("Due Amount"),
+        "dummyAmount": MessageLookupByLibrary.simpleMessage("659.570"),
         "eVoucherDetailDescption": MessageLookupByLibrary.simpleMessage(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo."),
         "eVoucherLandingDialogDescption": MessageLookupByLibrary.simpleMessage(
@@ -1076,6 +1095,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "freezeThisCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
+        "fromLabelForRJFlightBooking":
+            MessageLookupByLibrary.simpleMessage("AMM - Amman Queen.."),
         "fromMe": MessageLookupByLibrary.simpleMessage("From Me"),
         "fromS": MessageLookupByLibrary.simpleMessage("from "),
         "fuelAndGas": MessageLookupByLibrary.simpleMessage("Fuel and Gas"),
@@ -1171,6 +1192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
         "howWouldLikeToPay": MessageLookupByLibrary.simpleMessage(
+            "How would you like to\nmake the payment"),
+        "howYouLikeToPayment": MessageLookupByLibrary.simpleMessage(
             "How would you like to\nmake the payment"),
         "iConfirmThatAllInfoAccurateFatca":
             MessageLookupByLibrary.simpleMessage(
@@ -1468,6 +1491,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Issuing your supplementary credit card"),
         "issuingYourCreditCard":
             MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
+        "japan": MessageLookupByLibrary.simpleMessage("Japan"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobDetailsNotFound": MessageLookupByLibrary.simpleMessage(
             "It seems you missed some of the required employment information. Please check again and ensure all information is provided."),
@@ -1477,6 +1501,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "joinedBlink":
             MessageLookupByLibrary.simpleMessage("You joined \nBlink"),
+        "jordan": MessageLookupByLibrary.simpleMessage("Jordan"),
         "kycStausError": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "legalDocumentNo":
@@ -1613,6 +1638,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "myVoucherItemTitle": MessageLookupByLibrary.simpleMessage(
             "Spotify Monthly Subscription"),
         "myVouchers": MessageLookupByLibrary.simpleMessage("My Vouchers"),
+        "nRT": MessageLookupByLibrary.simpleMessage("NRT"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
@@ -1745,6 +1771,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "otpRequestedManyTime": MessageLookupByLibrary.simpleMessage(
             "You have exceed the number of times allowed to enter the code. Please try again later or contact our Engagement Team from the app or call 06-5200100."),
         "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
+        "passengers": MessageLookupByLibrary.simpleMessage("Passengers"),
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
@@ -1817,6 +1844,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseAgreeToTheTermAndCondition":
             MessageLookupByLibrary.simpleMessage(
                 "Please agree to the term and condition"),
+        "pleaseConfirmFlightDetail": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your\nflight details"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
@@ -1918,6 +1947,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "It seems there is an issue with the country code you\'ve entered. Please try another country code or contact our Engagement Team on 06-5200100."),
         "provisionClaim": MessageLookupByLibrary.simpleMessage(
             "provisions CLAIM of Article & paragraph"),
+        "purchaseDate": MessageLookupByLibrary.simpleMessage("Purchase Date"),
+        "purchaseDummyDate":
+            MessageLookupByLibrary.simpleMessage("31 Jul 2022 "),
+        "purchaseDummyTime": MessageLookupByLibrary.simpleMessage("- 3:30PM"),
+        "purchaseFor": MessageLookupByLibrary.simpleMessage("Purchase for"),
         "purchaseInstallmentsSuccessfullySet":
             MessageLookupByLibrary.simpleMessage(
                 "Purchase instalment is successfully set"),
@@ -1967,6 +2001,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiveOtpToNewNumber": MessageLookupByLibrary.simpleMessage(
             "You will receive OTP to your\nnew number for future\ntransactions."),
         "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
+        "refNoDummyData": MessageLookupByLibrary.simpleMessage("984893922"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNo": MessageLookupByLibrary.simpleMessage("Reference No."),
@@ -2096,10 +2131,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "retrieveInstructionDetails": MessageLookupByLibrary.simpleMessage(
             "An error occurred while retrieving your standing instruction details. Please try again later."),
+        "returnOn": MessageLookupByLibrary.simpleMessage("RETURN ON"),
+        "returnOnForPurchasePage":
+            MessageLookupByLibrary.simpleMessage("Return On"),
+        "returnTitle": MessageLookupByLibrary.simpleMessage("Return"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "rimNoTakenByOtherUser": MessageLookupByLibrary.simpleMessage(
             "Oops! Something went wrong. Please try again later or contact our Engagement Team from the app or call 06-5200100. (Err-054)"),
+        "rjFlightBookingToDialogBoxDescription":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter the name of the country. Your destination will appear on the list."),
+        "rjFrom": MessageLookupByLibrary.simpleMessage("FROM"),
         "saveAdditionalDocumentationError": MessageLookupByLibrary.simpleMessage(
             "Oops! There seems to be an issue with the connectivity. Please try again later."),
         "saveBills": MessageLookupByLibrary.simpleMessage("Saved Bills"),
@@ -2304,6 +2347,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tapToEditAmt": MessageLookupByLibrary.simpleMessage("Tap to edit"),
         "tapToEditPhoto":
             MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
+        "taxAmount": MessageLookupByLibrary.simpleMessage("Tax Amount"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
@@ -2346,6 +2390,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "It’s time for a quick\nvideo call"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "to": MessageLookupByLibrary.simpleMessage("to"),
+        "toBookingSummary":
+            MessageLookupByLibrary.simpleMessage("to Booking Summary"),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
             "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),
@@ -2368,6 +2414,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "totalAmount": MessageLookupByLibrary.simpleMessage("Total Amount"),
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),

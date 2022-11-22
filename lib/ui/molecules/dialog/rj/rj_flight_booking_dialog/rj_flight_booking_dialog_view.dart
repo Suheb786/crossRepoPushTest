@@ -84,7 +84,7 @@ class RjFlightBookingDialogView extends StatelessWidget {
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 36.h, top: 108.0.h),
+            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 56.h, top: 204.0.h),
             child: Column(
               children: [
                 Expanded(

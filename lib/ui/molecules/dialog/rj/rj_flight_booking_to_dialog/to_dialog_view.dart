@@ -43,7 +43,7 @@ class ToDialogView extends StatelessWidget {
           return Dialog(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                  left: 24.w, right: 24.w, bottom: 36.h, top: _keyboardVisible ? 36.h : 108.h),
+                  left: 24.w, right: 24.w, bottom: 56.h, top: _keyboardVisible ? 36.h : 204.h),
               child: GestureDetector(
                 onVerticalDragEnd: (details) {
                   if (details.primaryVelocity! > 0) {
@@ -154,27 +154,33 @@ class ToDialogView extends StatelessWidget {
                                         ))
                               : Expanded(
                                   child: Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset(AssetUtils.BigSearchIcon),
-                                        SizedBox(
-                                          height: 16.h,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.only(start: 48.w, end: 48.w),
-                                          child: Text(
-                                            S.of(context).rjFlightBookingToDialogBoxDescription,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontFamily: StringUtils.appFont,
-                                                fontSize: 14.t,
-                                                color: AppColor.gray_black,
-                                                fontWeight: FontWeight.w600),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            AssetUtils.BigSearchIcon,
+                                            height: 96.h,
+                                            width: 96.w,
                                           ),
-                                        )
-                                      ],
+                                          SizedBox(
+                                            height: 16.h,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.only(start: 48.w, end: 48.w),
+                                            child: Text(
+                                              S.of(context).rjFlightBookingToDialogBoxDescription,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontFamily: StringUtils.appFont,
+                                                  fontSize: 14.t,
+                                                  color: AppColor.gray_black,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

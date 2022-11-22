@@ -14530,10 +14530,10 @@ class S {
     );
   }
 
-  /// `Enter the name of the country. Your destination will appear\non the list.`
+  /// `Enter the name of the country. Your destination will appear on the list.`
   String get rjFlightBookingToDialogBoxDescription {
     return Intl.message(
-      'Enter the name of the country. Your destination will appear\non the list.',
+      'Enter the name of the country. Your destination will appear on the list.',
       name: 'rjFlightBookingToDialogBoxDescription',
       desc: '',
       args: [],

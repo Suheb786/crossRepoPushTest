@@ -1397,12 +1397,10 @@
   "payViaQRDesc": "Place the QR code within the frame and proceed with payment",
   "to": "to",
   "qrExpired": "QR Expired. Try scanning valid QR",
-  "qrInvalid": "Invalid QR. Try scanning valid QR"
-  "creditCardOnDelivery": "Credit card\non delivery",
+  "qrInvalid": "Invalid QR. Try scanning valid QR",
   "bookFligtWithUs": "Book flight with us!",
   "bookNow": "Book Now",
   "rjFrom": "FROM",
-  "to": "TO",
   "departOn": "DEPART ON",
   "returnOn": "RETURN ON",
   "passengers": "Passengers",
@@ -1430,7 +1428,7 @@
   "pleaseConfirmFlightDetail": "Please confirm your\nflight details",
   "howYouLikeToPayment": "How would you like to\nmake the payment",
   "departDescription": "Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM",
-  "rjFlightBookingToDialogBoxDescription": "Enter the name of the country. Your destination will appear\non the list.",
+  "rjFlightBookingToDialogBoxDescription": "Enter the name of the country. Your destination will appear on the list.",
   "fromLabelForRJFlightBooking": "AMM - Amman Queen..",
   "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."
 }
