@@ -6,9 +6,7 @@ part "transfer_success_content_entity.g.dart";
 
 @JsonSerializable()
 class TransferSuccessContentEntity
-    implements
-        BaseLayerDataTransformer<TransferSuccessContentEntity,
-            TransferSuccessContent> {
+    implements BaseLayerDataTransformer<TransferSuccessContentEntity, TransferSuccessContent> {
   @JsonKey(name: "amount")
   final num? amount;
   @JsonKey(name: "name")
@@ -20,8 +18,7 @@ class TransferSuccessContentEntity
   @JsonKey(name: "reference")
   final String? reference;
 
-  TransferSuccessContentEntity(
-      {this.amount, this.name, this.iban, this.transferDate, this.reference});
+  TransferSuccessContentEntity({this.amount, this.name, this.iban, this.transferDate, this.reference});
 
   factory TransferSuccessContentEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferSuccessContentEntityFromJson(json);

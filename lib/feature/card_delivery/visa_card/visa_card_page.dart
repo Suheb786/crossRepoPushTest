@@ -10,8 +10,7 @@ class VisaCardPage extends BasePage<VisaCardPageViewModel> {
   VisaCardPageState createState() => VisaCardPageState();
 }
 
-class VisaCardPageState
-    extends BaseStatefulPage<VisaCardPageViewModel, VisaCardPage>
+class VisaCardPageState extends BaseStatefulPage<VisaCardPageViewModel, VisaCardPage>
     with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {

@@ -5,15 +5,13 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view.dart';
 import 'package:neo_bank/feature/manage_credit_settlement/change_card_payment_account/change_card_payment_account_page_view_model.dart';
 
-class ChangeCardPaymentAccountPage
-    extends BasePage<ChangeCardPaymentAccountPageViewModel> {
+class ChangeCardPaymentAccountPage extends BasePage<ChangeCardPaymentAccountPageViewModel> {
   @override
-  ChangeCardPaymentAccountPageState createState() =>
-      ChangeCardPaymentAccountPageState();
+  ChangeCardPaymentAccountPageState createState() => ChangeCardPaymentAccountPageState();
 }
 
-class ChangeCardPaymentAccountPageState extends BaseStatefulPage<
-    ChangeCardPaymentAccountPageViewModel, ChangeCardPaymentAccountPage> {
+class ChangeCardPaymentAccountPageState
+    extends BaseStatefulPage<ChangeCardPaymentAccountPageViewModel, ChangeCardPaymentAccountPage> {
   @override
   ProviderBase provideBase() {
     return changeCardPaymentPageViewModelProvider;
@@ -25,8 +23,7 @@ class ChangeCardPaymentAccountPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ChangeCardPaymentAccountPageViewModel model) {
+  Widget buildView(BuildContext context, ChangeCardPaymentAccountPageViewModel model) {
     return ChangeCardPaymentAccountPageView(provideBase());
   }
 }

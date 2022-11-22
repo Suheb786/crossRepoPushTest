@@ -15,8 +15,8 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   final StudentJobIncomeUseCase _studentIncomeUseCase;
 
   ///additional income source list holder
-  final BehaviorSubject<List<AdditionalIncomeType>>
-  _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+  final BehaviorSubject<List<AdditionalIncomeType>> _additionalIncomeSourceSubject =
+      BehaviorSubject.seeded([]);
 
   ///additional income source response stream
   Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
@@ -31,21 +31,17 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
   ///job income subject holder
-  PublishSubject<StudentJobIncomeUseCaseParams> _jobAndIncomeRequest =
-  PublishSubject();
+  PublishSubject<StudentJobIncomeUseCaseParams> _jobAndIncomeRequest = PublishSubject();
 
   ///job income response holder
-  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
-  PublishSubject();
+  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse = PublishSubject();
 
   ///job income stream
-  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
-      _jobAndIncomeResponse.stream;
+  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream => _jobAndIncomeResponse.stream;
 
   StudentJobIncomePageViewModel(this._studentIncomeUseCase) {
     _jobAndIncomeRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _studentIncomeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _studentIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -83,12 +79,11 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
 
   void jobIncomeDetails() {
     if (additionalSourceIncome.length > 0) {
-      _jobAndIncomeRequest.safeAdd(StudentJobIncomeUseCaseParams(
-          additionalIncomeList: additionalSourceIncome));
+      _jobAndIncomeRequest
+          .safeAdd(StudentJobIncomeUseCaseParams(additionalIncomeList: additionalSourceIncome));
     } else {
-      showToastWithError(AppError(cause: Exception(), error: ErrorInfo(
-          message: ''
-      ), type: ErrorType.SELECT_ADDITIONAL_INCOME));
+      showToastWithError(AppError(
+          cause: Exception(), error: ErrorInfo(message: ''), type: ErrorType.SELECT_ADDITIONAL_INCOME));
     }
   }
 

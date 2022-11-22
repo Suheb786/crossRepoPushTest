@@ -14,8 +14,8 @@ class VideoCallScheduledPage extends BasePage<VideoCallScheduledViewModel> {
   VideoCallScheduledPageState createState() => VideoCallScheduledPageState();
 }
 
-class VideoCallScheduledPageState extends BaseStatefulPage<
-    VideoCallScheduledViewModel, VideoCallScheduledPage> {
+class VideoCallScheduledPageState
+    extends BaseStatefulPage<VideoCallScheduledViewModel, VideoCallScheduledPage> {
   @override
   ProviderBase provideBase() {
     return videoCallScheduledViewModelProvider.call(widget._arguments);
@@ -32,6 +32,5 @@ class VideoCallScheduledArguments {
   final String? date;
   final String? time;
 
-  VideoCallScheduledArguments(
-      {this.applicationId: "", this.date: "", this.time: ""});
+  VideoCallScheduledArguments({this.applicationId: "", this.date: "", this.time: ""});
 }

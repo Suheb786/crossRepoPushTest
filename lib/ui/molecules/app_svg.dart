@@ -23,9 +23,7 @@ class AppSvg {
       return Consumer(
         builder: (context, watch, child) => Image.network(
           darkAssetName != null
-              ? (watch(appViewModel).appTheme == AppTheme.dark
-                  ? "$darkAssetName"
-                  : "$assetName")
+              ? (watch(appViewModel).appTheme == AppTheme.dark ? "$darkAssetName" : "$assetName")
               : "$assetName",
           width: width,
           height: height,
@@ -39,9 +37,7 @@ class AppSvg {
     return Consumer(
       builder: (context, watch, child) => SvgPicture.asset(
           darkAssetName != null
-              ? (watch(appViewModel).appTheme == AppTheme.dark
-                  ? darkAssetName
-                  : assetName)
+              ? (watch(appViewModel).appTheme == AppTheme.dark ? darkAssetName : assetName)
               : assetName,
           width: width,
           height: height,

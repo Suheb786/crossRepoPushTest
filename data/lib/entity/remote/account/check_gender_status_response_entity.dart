@@ -7,8 +7,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'check_gender_status_response_entity.g.dart';
 
 @JsonSerializable()
-class CheckGenderResponseEntity extends BaseLayerDataTransformer<
-    CheckGenderResponseEntity, AgentGenderStatus> {
+class CheckGenderResponseEntity
+    extends BaseLayerDataTransformer<CheckGenderResponseEntity, AgentGenderStatus> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -21,8 +21,6 @@ class CheckGenderResponseEntity extends BaseLayerDataTransformer<
 
   @override
   AgentGenderStatus transform() {
-    return CheckGenderStatusEntity.fromJson(
-            response!.content['data'] as Map<String, dynamic>)
-        .transform();
+    return CheckGenderStatusEntity.fromJson(response!.content['data'] as Map<String, dynamic>).transform();
   }
 }

@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'check_kyc_data_entity.g.dart';
 
 @JsonSerializable()
-class CheckKycDataEntity
-    implements BaseLayerDataTransformer<CheckKycDataEntity, CheckKYCData> {
+class CheckKycDataEntity implements BaseLayerDataTransformer<CheckKycDataEntity, CheckKYCData> {
   @JsonKey(name: "type")
   final String? type;
   @JsonKey(name: "status")
@@ -18,8 +17,7 @@ class CheckKycDataEntity
 
   CheckKycDataEntity({this.type, this.status, this.error, this.isOptioanl});
 
-  factory CheckKycDataEntity.fromJson(Map<String, dynamic> json) =>
-      _$CheckKycDataEntityFromJson(json);
+  factory CheckKycDataEntity.fromJson(Map<String, dynamic> json) => _$CheckKycDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CheckKycDataEntityToJson(this);
 
@@ -30,10 +28,6 @@ class CheckKycDataEntity
 
   @override
   CheckKYCData transform() {
-    return CheckKYCData(
-        type: this.type,
-        status: this.status,
-        error: this.error,
-        isOptional: this.isOptioanl);
+    return CheckKYCData(type: this.type, status: this.status, error: this.error, isOptional: this.isOptioanl);
   }
 }

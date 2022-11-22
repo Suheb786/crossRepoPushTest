@@ -5,8 +5,7 @@ class SingleChildScrollBarView extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
 
-  const SingleChildScrollBarView(
-      {Key? key, required this.child, this.padding: EdgeInsets.zero})
+  const SingleChildScrollBarView({Key? key, required this.child, this.padding: EdgeInsets.zero})
       : super(key: key);
 
   @override

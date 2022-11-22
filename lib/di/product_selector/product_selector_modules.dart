@@ -3,5 +3,4 @@ import 'package:neo_bank/feature/product_selector/product_selector_page_view_mod
 
 ///product selector view model provider
 final productSelectorViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ProductSelectorViewModel>(
-        (ref) => ProductSelectorViewModel());
+    ChangeNotifierProvider.autoDispose<ProductSelectorViewModel>((ref) => ProductSelectorViewModel());

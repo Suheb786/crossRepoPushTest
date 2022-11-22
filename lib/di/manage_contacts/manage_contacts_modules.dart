@@ -8,13 +8,12 @@ import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_con
 
 final manageContactsListViewModelProvider =
     ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
-  (ref) =>
-      ManageContactListPageViewModel(ref.read(getBeneficiaryUseCaseProvider)),
+  (ref) => ManageContactListPageViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 ///manage contact details
-final manageContactDetailsViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<ManageContactDetailsPageViewModel, Beneficiary>(
+final manageContactDetailsViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<ManageContactDetailsPageViewModel, Beneficiary>(
   (ref, args) => ManageContactDetailsPageViewModel(
       ref.read(uploadDocumentUseCaseProvider),
       args,

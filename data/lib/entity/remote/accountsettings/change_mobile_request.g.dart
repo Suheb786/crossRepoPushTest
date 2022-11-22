@@ -15,9 +15,7 @@ ChangeMobileRequest _$ChangeMobileRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ChangeMobileRequestToJson(
-        ChangeMobileRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ChangeMobileRequestToJson(ChangeMobileRequest instance) => <String, dynamic>{
       'MobileNo': instance.mobile,
       'MobileCode': instance.mobileCode,
       'GetToken': instance.getToken,

@@ -13,8 +13,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
-  final ValidateOtpForNewMobileNumberUseCase
-      _validateOtpForNewMobileNumberUseCase;
+  final ValidateOtpForNewMobileNumberUseCase _validateOtpForNewMobileNumberUseCase;
 
   final AddNewMobileNumberUseCase _resendOtpUseCase;
 
@@ -27,8 +26,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
 
   TextEditingController otpController = TextEditingController();
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
-      PublishSubject();
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
 
   PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
@@ -39,20 +37,16 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   ///verify otp request subject holder
-  PublishSubject<ValidateOtpForNewMobileNumberUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<ValidateOtpForNewMobileNumberUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<ProfileChangedSuccessResponse>> _verifyOtpResponse =
-      PublishSubject();
+  PublishSubject<Resource<ProfileChangedSuccessResponse>> _verifyOtpResponse = PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<ProfileChangedSuccessResponse>> get verifyOtpStream =>
-      _verifyOtpResponse.stream;
+  Stream<Resource<ProfileChangedSuccessResponse>> get verifyOtpStream => _verifyOtpResponse.stream;
 
   ///resend otp request subject holder
-  PublishSubject<AddNewMobileNumberUseCaseParams> _resendOtpRequest =
-      PublishSubject();
+  PublishSubject<AddNewMobileNumberUseCaseParams> _resendOtpRequest = PublishSubject();
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -62,13 +56,9 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   EnterCodeForChangeMobileNumberPageViewModel(
-      this._validateOtpForNewMobileNumberUseCase,
-      this._resendOtpUseCase,
-      this._saveUserUseCase) {
+      this._validateOtpForNewMobileNumberUseCase, this._resendOtpUseCase, this._saveUserUseCase) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _validateOtpForNewMobileNumberUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _validateOtpForNewMobileNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,8 +70,7 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
     });
 
     _resendOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _resendOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _resendOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -122,8 +111,8 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   void changeOtp({required String mobileCode, required String mobileNo}) {
-    _resendOtpRequest.safeAdd(AddNewMobileNumberUseCaseParams(
-        mobileCode: '00$mobileCode', mobileNumber: mobileNo));
+    _resendOtpRequest
+        .safeAdd(AddNewMobileNumberUseCaseParams(mobileCode: '00$mobileCode', mobileNumber: mobileNo));
   }
 
   void saveUserData() {

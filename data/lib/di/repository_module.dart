@@ -10,6 +10,7 @@ import 'package:data/repository/card_processing/card_processing_repository_impl.
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/device_change/device_change_repository_impl.dart';
+import 'package:data/repository/dynamic_link/dynamic_link_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
@@ -35,6 +36,7 @@ import 'package:domain/repository/card_processing/card_processing_repository.dar
 import 'package:domain/repository/change_device/change_device_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
+import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/forget_password/forget_password_repository.dart';
@@ -156,3 +158,6 @@ var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
 /// inject [ChangeDeviceRepository] provider
 var appFlyerRepositoryProvider =
     Provider<AppFlyerRepository>((ref) => AppFlyerRepositoryImpl(ref.read(appFlyerSdkDatasourceProvider)));
+
+var dynamicLinkRepositoryProvider = Provider<DynamicLinkRepository>(
+    (ref) => DynamicLinkRepositoryImpl(ref.read(dynamicLinkDataSourceImplProvider)));

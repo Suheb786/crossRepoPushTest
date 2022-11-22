@@ -28,7 +28,4 @@ class CardPinUnBlockSuccessPageState
   }
 }
 
-enum SuccessPageRouteEnum{
-  PHYSICAL_DC,
-  UNBLOCK_DC
-}
+enum SuccessPageRouteEnum { PHYSICAL_DC, UNBLOCK_DC }

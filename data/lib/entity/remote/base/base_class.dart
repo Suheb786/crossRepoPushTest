@@ -46,8 +46,7 @@ class BaseClassEntity {
     this.channelType = "01";
   }
 
-  factory BaseClassEntity.fromJson(Map<String, dynamic> json) =>
-      _$BaseClassEntityFromJson(json);
+  factory BaseClassEntity.fromJson(Map<String, dynamic> json) => _$BaseClassEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseClassEntityToJson(this);
 }

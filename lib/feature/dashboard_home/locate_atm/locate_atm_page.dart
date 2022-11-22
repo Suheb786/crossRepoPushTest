@@ -10,8 +10,7 @@ class LocateATMPage extends BasePage<LocateATMPageViewModel> {
   LocateATMPageState createState() => LocateATMPageState();
 }
 
-class LocateATMPageState
-    extends BaseStatefulPage<LocateATMPageViewModel, LocateATMPage> {
+class LocateATMPageState extends BaseStatefulPage<LocateATMPageViewModel, LocateATMPage> {
   @override
   ProviderBase provideBase() {
     return locatePinViewModelProvider;
@@ -19,9 +18,7 @@ class LocateATMPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .accentColor;
+    return Theme.of(context).accentColor;
   }
 
   @override

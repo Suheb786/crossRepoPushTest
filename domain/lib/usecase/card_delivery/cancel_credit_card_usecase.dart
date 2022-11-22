@@ -5,15 +5,13 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CancelCreditCardUseCase
-    extends BaseUseCase<NetworkError, CancelCreditCardUseCaseParams, bool> {
+class CancelCreditCardUseCase extends BaseUseCase<NetworkError, CancelCreditCardUseCaseParams, bool> {
   final CardRepository _repository;
 
   CancelCreditCardUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CancelCreditCardUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CancelCreditCardUseCaseParams params}) {
     return _repository.cancelCreditCard(reason: params.reason);
   }
 }

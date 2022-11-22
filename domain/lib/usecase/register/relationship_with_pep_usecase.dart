@@ -5,15 +5,14 @@ import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RelationshipWithPEPUseCase extends BaseUseCase<LocalError,
-    RelationshipWithPEPUseCaseParams, List<String>> {
+class RelationshipWithPEPUseCase
+    extends BaseUseCase<LocalError, RelationshipWithPEPUseCaseParams, List<String>> {
   final RegisterStepThreeRepository _registerRepository;
 
   RelationshipWithPEPUseCase(this._registerRepository);
 
   @override
-  Future<Either<LocalError, List<String>>> execute(
-      {required RelationshipWithPEPUseCaseParams params}) {
+  Future<Either<LocalError, List<String>>> execute({required RelationshipWithPEPUseCaseParams params}) {
     return _registerRepository.getRelationshipWithPEPList();
   }
 }

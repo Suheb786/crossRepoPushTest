@@ -5,18 +5,15 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/relationship_with_cardholder_debit/relationship_with_cardholder_debit_page_view.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/relationship_with_cardholder_debit/relationship_with_cardholder_debit_page_view_model.dart';
 
-class RelationshipWithCardholderDebitPage
-    extends BasePage<RelationshipWithCardholderDebitPageViewModel> {
+class RelationshipWithCardholderDebitPage extends BasePage<RelationshipWithCardholderDebitPageViewModel> {
   @override
-  RelationshipWithCardholderDebitPageState createState() =>
-      RelationshipWithCardholderDebitPageState();
+  RelationshipWithCardholderDebitPageState createState() => RelationshipWithCardholderDebitPageState();
 }
 
 class RelationshipWithCardholderDebitPageState extends BaseStatefulPage<
     RelationshipWithCardholderDebitPageViewModel,
     RelationshipWithCardholderDebitPage> with AutomaticKeepAliveClientMixin {
-  RelationshipWithCardholderDebitPageState()
-      : super(subscribeVisibilityEvents: true);
+  RelationshipWithCardholderDebitPageState() : super(subscribeVisibilityEvents: true);
 
   @override
   ProviderBase provideBase() {
@@ -24,8 +21,7 @@ class RelationshipWithCardholderDebitPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(BuildContext context,
-      RelationshipWithCardholderDebitPageViewModel model) {
+  Widget buildView(BuildContext context, RelationshipWithCardholderDebitPageViewModel model) {
     return RelationshipWithCardholderDebitPageView(provideBase());
   }
 

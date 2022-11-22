@@ -8,12 +8,9 @@ class PrimarySecondaryCardEnum {
     return _value.toString();
   }
 
-  static const PrimarySecondaryCardEnum PRIMARY =
-      PrimarySecondaryCardEnum._("Primary Card");
-  static const PrimarySecondaryCardEnum SECONDARY =
-      PrimarySecondaryCardEnum._("Secondary Card");
-  static const PrimarySecondaryCardEnum NONE =
-      PrimarySecondaryCardEnum._("None");
+  static const PrimarySecondaryCardEnum PRIMARY = PrimarySecondaryCardEnum._("Primary Card");
+  static const PrimarySecondaryCardEnum SECONDARY = PrimarySecondaryCardEnum._("Secondary Card");
+  static const PrimarySecondaryCardEnum NONE = PrimarySecondaryCardEnum._("None");
 }
 
 extension PrimarySecondaryCardEnumExt on String {

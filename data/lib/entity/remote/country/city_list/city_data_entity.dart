@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'city_data_entity.g.dart';
 
 @JsonSerializable()
-class CityDataEntity
-    implements BaseLayerDataTransformer<CityDataEntity, CityData> {
+class CityDataEntity implements BaseLayerDataTransformer<CityDataEntity, CityData> {
   @JsonKey(name: "createTime")
   final DateTime? createTime;
   @JsonKey(name: "countryID")
@@ -18,15 +17,9 @@ class CityDataEntity
   @JsonKey(name: "name")
   final String? cityName;
 
-  CityDataEntity(
-      {this.createTime,
-      this.countryID: "",
-      this.stateID: "",
-      this.cityName: "",
-      this.cityID:""});
+  CityDataEntity({this.createTime, this.countryID: "", this.stateID: "", this.cityName: "", this.cityID: ""});
 
-  factory CityDataEntity.fromJson(Map<String, dynamic> json) =>
-      _$CityDataEntityFromJson(json);
+  factory CityDataEntity.fromJson(Map<String, dynamic> json) => _$CityDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityDataEntityToJson(this);
 

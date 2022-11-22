@@ -27,14 +27,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   PaymentRemoteDataSourceImpl(this._apiService, this.deviceInfoHelper);
 
   @override
-  Future<HttpResponse<GetAccountByAliasContentResponseEntity>>
-      getAccountByAlias(String value, String currency) async {
+  Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
+      String value, String currency) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountByAlias(GetAccountByAliasRequestEntity(
-        baseData: baseData.toJson(),
-        value: value,
-        currency: currency,
-        getToken: true));
+        baseData: baseData.toJson(), value: value, currency: currency, getToken: true));
   }
 
   @override
@@ -42,10 +39,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       {String? toAccount, num? toAmount}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.checkSendMoney(CheckSendMoneyRequestEntity(
-        baseData: baseData.toJson(),
-        toAccount: toAccount,
-        toAmount: toAmount,
-        getToken: true));
+        baseData: baseData.toJson(), toAccount: toAccount, toAmount: toAmount, getToken: true));
   }
 
   @override
@@ -68,10 +62,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         toAmount: toAmount!,
         toAccount: toAccount!,
         beneficiaryId: beneficiaryId,
-        beneficiaryImage:
-            (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
-                ? ImageUtils.convertToBase64(beneficiaryImage)
-                : '',
+        beneficiaryImage: (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
+            ? ImageUtils.convertToBase64(beneficiaryImage)
+            : '',
         otpCode: otpCode,
         isFriend: isFriend!,
         localEq: localEq!,
@@ -111,9 +104,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         dbtrAcct: dbtrAcct,
         dbtrName: dbtrName,
         isFriend: isFriend,
-        beneImage: (image!.isNotEmpty && image != null)
-            ? ImageUtils.convertToBase64(image)
-            : '',
+        beneImage: (image!.isNotEmpty && image != null) ? ImageUtils.convertToBase64(image) : '',
         detCustomerType: detCustomerType,
         type: type,
         addressCountry: addressCountry,
@@ -125,13 +116,12 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   @override
   Future<HttpResponse<ResponseEntity>> transferVerify() async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.transferVerify(
-        BaseRequest(baseData: baseData.toJson(), getToken: true));
+    return _apiService.transferVerify(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 
   @override
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(String toAccount,
-      String transferType, String detCustomerType, String type) async {
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      String toAccount, String transferType, String detCustomerType, String type) async {
     print("transfer purpose : ${detCustomerType} + ${type}");
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getPurpose(PurposeRequestEntity(
@@ -144,21 +134,16 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
-      {int? filterDays}) async {
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity({int? filterDays}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
-    return _apiService.getPaymentActivity(PaymentActivityRequestEntity(
-        baseData: baseData.toJson(), getToken: true, filterDays: filterDays));
+    return _apiService.getPaymentActivity(
+        PaymentActivityRequestEntity(baseData: baseData.toJson(), getToken: true, filterDays: filterDays));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
-      {String? secureCode, String? payBackAmount}) async {
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.payBackCreditCard(PayBackCreditCardRequestEntity(
-        baseData: baseData.toJson(),
-        getToken: true,
-        payBackAmount: payBackAmount,
-        secureCode: secureCode));
+        baseData: baseData.toJson(), getToken: true, payBackAmount: payBackAmount, secureCode: secureCode));
   }
 }

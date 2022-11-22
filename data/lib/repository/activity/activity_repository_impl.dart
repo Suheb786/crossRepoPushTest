@@ -11,8 +11,7 @@ class ActivityRepositoryImpl extends ActivityRepository {
   ActivityRepositoryImpl(this.activityRemoteDs);
 
   @override
-  Future<Either<NetworkError, ActivityResponse>> getActivity(
-      num noOfDys, String isDebit) async {
+  Future<Either<NetworkError, ActivityResponse>> getActivity(num noOfDys, String isDebit) async {
     final result = await safeApiCall(
       activityRemoteDs.getActivity(noOfDys, isDebit),
     );

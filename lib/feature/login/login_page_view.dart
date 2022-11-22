@@ -44,7 +44,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
           children: [
             Expanded(
               child: GestureDetector(
-                onHorizontalDragEnd: (details) {
+                onHorizontalDragEnd: (details) async {
                   // FirebaseCrashlytics.instance.crash();
 
                   FocusScope.of(context).unfocus();

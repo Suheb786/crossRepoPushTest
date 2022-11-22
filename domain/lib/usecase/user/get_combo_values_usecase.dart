@@ -6,9 +6,8 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetComboValuesUseCase extends BaseUseCase<NetworkError,
-    GetComboValuesUseCaseParams,
-    GetComboValuesResponse> {
+class GetComboValuesUseCase
+    extends BaseUseCase<NetworkError, GetComboValuesUseCaseParams, GetComboValuesResponse> {
   final UserRepository _repository;
 
   GetComboValuesUseCase(this._repository);

@@ -3,7 +3,6 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AddRequestMoneyContactViewModel extends BasePageViewModel {
-
   PublishSubject<bool> _addContactClickedSubject = PublishSubject();
 
   Stream<bool> get addContactClickedStream => _addContactClickedSubject.stream;

@@ -8,8 +8,8 @@ import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class UploadSignatureUseCase extends BaseUseCase<NetworkError,
-    UploadSignatureUseCaseParams, UploadSignatureResponse> {
+class UploadSignatureUseCase
+    extends BaseUseCase<NetworkError, UploadSignatureUseCaseParams, UploadSignatureResponse> {
   final FatcaCrsRepository _repository;
 
   UploadSignatureUseCase(this._repository);
@@ -31,10 +31,8 @@ class UploadSignatureUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (signature.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_SIGNATURE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_SIGNATURE, cause: Exception()));
     }
     return Right(true);
   }

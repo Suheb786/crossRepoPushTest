@@ -6,8 +6,8 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckExistingCallUseCase extends BaseUseCase<NetworkError,
-    CheckExistingCallUseCaseParams, CheckExistingCallStatus> {
+class CheckExistingCallUseCase
+    extends BaseUseCase<NetworkError, CheckExistingCallUseCaseParams, CheckExistingCallStatus> {
   final AccountRepository _accountRepository;
 
   CheckExistingCallUseCase(this._accountRepository);

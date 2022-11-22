@@ -6,13 +6,11 @@ part of 'get_account_by_alias_content_response_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetAccountByAliasContentResponseEntity
-    _$GetAccountByAliasContentResponseEntityFromJson(
-        Map<String, dynamic> json) {
+GetAccountByAliasContentResponseEntity _$GetAccountByAliasContentResponseEntityFromJson(
+    Map<String, dynamic> json) {
   return GetAccountByAliasContentResponseEntity(
-    response: json['response'] == null
-        ? null
-        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
+    response:
+        json['response'] == null ? null : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 

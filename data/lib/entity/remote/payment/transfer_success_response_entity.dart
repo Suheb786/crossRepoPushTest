@@ -8,9 +8,7 @@ part "transfer_success_response_entity.g.dart";
 
 @JsonSerializable()
 class TransferSuccessResponseEntity
-    implements
-        BaseLayerDataTransformer<TransferSuccessResponseEntity,
-            TransferSuccessResponse> {
+    implements BaseLayerDataTransformer<TransferSuccessResponseEntity, TransferSuccessResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class TransferSuccessResponseEntity
   @override
   TransferSuccessResponse transform() {
     return TransferSuccessResponse(
-        transferSuccessContent:
-            TransferSuccessContentEntity.fromJson(this.response!.content)
-                .transform());
+        transferSuccessContent: TransferSuccessContentEntity.fromJson(this.response!.content).transform());
   }
 }

@@ -11,8 +11,7 @@ import 'package:rxdart/rxdart.dart';
 class OccupationDialogViewModel extends BasePageViewModel {
   final GetOccupationUseCase _getOccupationUseCase;
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -25,23 +24,19 @@ class OccupationDialogViewModel extends BasePageViewModel {
   }
 
   ///get occupation list request holder
-  PublishSubject<GetOccupationUseCaseParams> _getOccupationRequest =
-      PublishSubject();
+  PublishSubject<GetOccupationUseCaseParams> _getOccupationRequest = PublishSubject();
 
   ///get occupation list response holder
-  PublishSubject<Resource<List<String>>> _getOccupationResponse =
-      PublishSubject();
+  PublishSubject<Resource<List<String>>> _getOccupationResponse = PublishSubject();
 
   ///get occupation list stream
-  Stream<Resource<List<String>>> get getOccupationStream =>
-      _getOccupationResponse.stream;
+  Stream<Resource<List<String>>> get getOccupationStream => _getOccupationResponse.stream;
 
   List<GetComboValuesData> businessTypeList = [];
 
   OccupationDialogViewModel(this._getOccupationUseCase) {
     _getOccupationRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getOccupationUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getOccupationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getOccupationResponse.safeAdd(event);
@@ -50,8 +45,7 @@ class OccupationDialogViewModel extends BasePageViewModel {
   }
 
   void getOccupationList(EmploymentStatusEnum employmentStatusEnum) {
-    _getOccupationRequest.safeAdd(
-        GetOccupationUseCaseParams(employmentStatusEnum: employmentStatusEnum));
+    _getOccupationRequest.safeAdd(GetOccupationUseCaseParams(employmentStatusEnum: employmentStatusEnum));
   }
 
   @override

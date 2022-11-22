@@ -7,9 +7,7 @@ part 'create_account_content_entity.g.dart';
 
 @JsonSerializable()
 class CreateAccountContentEntity
-    implements
-        BaseLayerDataTransformer<CreateAccountContentEntity,
-            CreateAccountContent> {
+    implements BaseLayerDataTransformer<CreateAccountContentEntity, CreateAccountContent> {
   @JsonKey(name: "data")
   final CreateAccountDataEntity? data;
   @JsonKey(name: "isAccountBlackListed")
@@ -30,7 +28,6 @@ class CreateAccountContentEntity
   @override
   CreateAccountContent transform() {
     return CreateAccountContent(
-        createAccountData: this.data!.transform(),
-        isAccountBlackListed: this.isAccountBlackListed);
+        createAccountData: this.data!.transform(), isAccountBlackListed: this.isAccountBlackListed);
   }
 }

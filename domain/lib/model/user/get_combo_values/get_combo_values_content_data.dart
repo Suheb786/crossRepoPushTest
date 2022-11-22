@@ -5,6 +5,5 @@ class GetComboValuesContentData {
   final List<GetComboValuesData>? natureOfSpecialNeed;
   final List<GetComboValuesData>? businessType;
 
-  GetComboValuesContentData(
-      {this.employmentStatus, this.natureOfSpecialNeed, this.businessType});
+  GetComboValuesContentData({this.employmentStatus, this.natureOfSpecialNeed, this.businessType});
 }

@@ -6,8 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part "get_credit_card_relationship_content_entity.g.dart";
 
 @JsonSerializable()
-class GetCreditCardRelationshipContentEntity extends BaseLayerDataTransformer<
-    GetCreditCardRelationshipContentEntity, CreditCardRelationship> {
+class GetCreditCardRelationshipContentEntity
+    extends BaseLayerDataTransformer<GetCreditCardRelationshipContentEntity, CreditCardRelationship> {
   @JsonKey(name: "relationship")
   final List<GetComboValuesDataEntity>? relationshipList;
   @JsonKey(name: "minLimit")
@@ -15,22 +15,18 @@ class GetCreditCardRelationshipContentEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "maxLimit")
   final num? maxLimit;
 
-  GetCreditCardRelationshipContentEntity(
-      {this.relationshipList, this.minLimit: 0.0, this.maxLimit: 0.0});
+  GetCreditCardRelationshipContentEntity({this.relationshipList, this.minLimit: 0.0, this.maxLimit: 0.0});
 
-  factory GetCreditCardRelationshipContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCreditCardRelationshipContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCreditCardRelationshipContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCreditCardRelationshipContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCreditCardRelationshipContentEntityToJson(this);
 
   @override
   CreditCardRelationship transform() {
     return CreditCardRelationship(
         maxLimit: this.maxLimit ?? 0.0,
         minLimit: this.minLimit ?? 0.0,
-        relationShip:
-            this.relationshipList!.map((e) => e.transform()).toList());
+        relationShip: this.relationshipList!.map((e) => e.transform()).toList());
   }
 }

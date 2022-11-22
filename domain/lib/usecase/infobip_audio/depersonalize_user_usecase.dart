@@ -5,15 +5,13 @@ import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DepersonalizeUserUseCase
-    extends BaseUseCase<BaseError, DepersonalizeUserUseCaseParams, bool> {
+class DepersonalizeUserUseCase extends BaseUseCase<BaseError, DepersonalizeUserUseCaseParams, bool> {
   final InfobipMessageRepository _infobipMessageRepository;
 
   DepersonalizeUserUseCase(this._infobipMessageRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required DepersonalizeUserUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required DepersonalizeUserUseCaseParams params}) async {
     return _infobipMessageRepository.depersonalizeUser();
   }
 }

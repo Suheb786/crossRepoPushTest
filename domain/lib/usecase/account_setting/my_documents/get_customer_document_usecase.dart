@@ -6,8 +6,8 @@ import 'package:domain/repository/account_settings/account_settings_repository.d
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCustomerDocumentUseCase extends BaseUseCase<NetworkError,
-    GetCustomerDocumentUseCaseParams, GetCustomerDocumentResponse> {
+class GetCustomerDocumentUseCase
+    extends BaseUseCase<NetworkError, GetCustomerDocumentUseCaseParams, GetCustomerDocumentResponse> {
   final AccountSettingsRepository _accountSettingsRepository;
 
   GetCustomerDocumentUseCase(this._accountSettingsRepository);

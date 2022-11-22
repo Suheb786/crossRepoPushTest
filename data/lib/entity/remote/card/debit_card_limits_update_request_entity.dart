@@ -40,10 +40,8 @@ class DebitCardSLimitsUpdateRequestEntity {
       this.isContactLessPayments: false,
       this.baseData});
 
-  factory DebitCardSLimitsUpdateRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory DebitCardSLimitsUpdateRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DebitCardSLimitsUpdateRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$DebitCardSLimitsUpdateRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$DebitCardSLimitsUpdateRequestEntityToJson(this);
 }

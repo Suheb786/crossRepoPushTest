@@ -14,15 +14,13 @@ final accountRegistrationViewModelProvider =
   (ref) => AccountRegistrationPageViewModel(),
 );
 
-final countrySelectionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CountrySelectionViewModel>(
+final countrySelectionViewModelProvider = ChangeNotifierProvider.autoDispose<CountrySelectionViewModel>(
   (ref) => CountrySelectionViewModel(
     ref.read(fetchCountriesUseCaseProvider),
   ),
 );
 
-final addNumberViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
+final addNumberViewModelProvider = ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
   (ref) => AddNumberViewModel(
       ref.read(registerNumberUseCaseProvider),
       ref.read(fetchCountryByCodeUseCaseProvider),
@@ -32,16 +30,12 @@ final addNumberViewModelProvider =
 );
 
 ///[ValidateOtpViewModel] provider
-final validateOtpViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(
-      ref.read(verifyOtpUseCaseProvider),
-      ref.read(getTokenUseCaseProvider),
+final validateOtpViewModelProvider = ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
+  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider),
       ref.read(changeMyNumberUseCaseProvider)),
 );
 
 ///[CreatePasswordViewModel] provider
-final createPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
-        CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider),
-            ref.read(registerProspectUseCaseProvider)));
+final createPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
+    CreatePasswordViewModel(
+        ref.read(createPasswordUseCaseProvider), ref.read(registerProspectUseCaseProvider)));

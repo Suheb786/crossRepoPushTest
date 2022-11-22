@@ -4,11 +4,9 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ManageDebitCardLimitUseCase
-    extends BaseUseCase<NetworkError, ManageDebitCardLimitUseCaseParams, bool> {
+class ManageDebitCardLimitUseCase extends BaseUseCase<NetworkError, ManageDebitCardLimitUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ManageDebitCardLimitUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ManageDebitCardLimitUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

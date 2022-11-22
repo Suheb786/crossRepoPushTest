@@ -10,32 +10,24 @@ abstract class AccountSettingsRepository {
   Future<Either<NetworkError, ProfileInfoResponse>> getAccountDetails();
 
   ///update profile image
-  Future<Either<NetworkError, bool>> updateProfileImage(
-      {required String filePath});
+  Future<Either<NetworkError, bool>> updateProfileImage({required String filePath});
 
   ///change email
   Future<Either<NetworkError, bool>> changeEmail({required String email});
 
   ///verify change email
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeEmail(
-      {required String otp});
+  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeEmail({required String otp});
 
   ///change mobile
-  Future<Either<NetworkError, bool>> changeMobile(
-      {required String mobile, required String mobileCode});
+  Future<Either<NetworkError, bool>> changeMobile({required String mobile, required String mobileCode});
 
   ///verify chane mobile
-  Future<Either<NetworkError, ProfileChangedSuccessResponse>>
-      verifyChangeMobile(
-          {required String otp,
-          required String mobileNo,
-          required String mobileCode});
+  Future<Either<NetworkError, ProfileChangedSuccessResponse>> verifyChangeMobile(
+      {required String otp, required String mobileNo, required String mobileCode});
 
   ///change password
   Future<Either<NetworkError, bool>> changePassword(
-      {required String oldPassword,
-      required String newPassword,
-      required String confirmNewPassword});
+      {required String oldPassword, required String newPassword, required String confirmNewPassword});
 
   ///delete profile image
   Future<Either<NetworkError, bool>> deleteProfileImage();
@@ -43,6 +35,5 @@ abstract class AccountSettingsRepository {
   ///get customer doc ids
   Future<Either<NetworkError, GetCustomerDocIdResponse>> getCustomerDocId();
 
-  Future<Either<NetworkError, GetCustomerDocumentResponse>> getCustomerDocument(
-      {required String docId});
+  Future<Either<NetworkError, GetCustomerDocumentResponse>> getCustomerDocument({required String docId});
 }

@@ -6,16 +6,14 @@ import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetAhwalDetailsUseCase extends BaseUseCase<NetworkError,
-    GetAhwalDetailsUseCaseParams,
-    AhwalDetailResponse> {
+class GetAhwalDetailsUseCase
+    extends BaseUseCase<NetworkError, GetAhwalDetailsUseCaseParams, AhwalDetailResponse> {
   final IdCardRepository _repository;
 
   GetAhwalDetailsUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, AhwalDetailResponse>> execute(
-      {required GetAhwalDetailsUseCaseParams params}) {
+  Future<Either<NetworkError, AhwalDetailResponse>> execute({required GetAhwalDetailsUseCaseParams params}) {
     return _repository.getAhwalDetails(idNo: params.idNo);
   }
 }

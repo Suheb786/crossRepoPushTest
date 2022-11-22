@@ -46,8 +46,7 @@ class DeviceChangeRepositoryImpl extends ChangeDeviceRepository {
   Future<Either<NetworkError, bool>> verifyChangeDeviceOtp(
       {required String otp, required String firebaseToken}) async {
     final result = await safeApiCall(
-      _changeDeviceRemoteDS.verifyChangeDeviceOtp(
-          otp: otp, firebaseToken: firebaseToken),
+      _changeDeviceRemoteDS.verifyChangeDeviceOtp(otp: otp, firebaseToken: firebaseToken),
     );
     return result!.fold(
       (l) => Left(l),

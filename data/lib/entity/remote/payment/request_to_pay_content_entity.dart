@@ -6,9 +6,7 @@ part "request_to_pay_content_entity.g.dart";
 
 @JsonSerializable()
 class RequestToPayContentEntity
-    implements
-        BaseLayerDataTransformer<RequestToPayContentEntity,
-            RequestToPayContent> {
+    implements BaseLayerDataTransformer<RequestToPayContentEntity, RequestToPayContent> {
   @JsonKey(name: "custID")
   final String? custID;
   @JsonKey(name: "senderName")

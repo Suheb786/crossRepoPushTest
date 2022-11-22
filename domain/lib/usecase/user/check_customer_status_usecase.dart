@@ -6,15 +6,14 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckCustomerStatusUseCase extends BaseUseCase<NetworkError,
-    CheckCustomerStatusUseCaseParams, CustomerStatus> {
+class CheckCustomerStatusUseCase
+    extends BaseUseCase<NetworkError, CheckCustomerStatusUseCaseParams, CustomerStatus> {
   final UserRepository _repository;
 
   CheckCustomerStatusUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, CustomerStatus>> execute(
-      {required CheckCustomerStatusUseCaseParams params}) {
+  Future<Either<NetworkError, CustomerStatus>> execute({required CheckCustomerStatusUseCaseParams params}) {
     return _repository.checkCustomerStatus();
   }
 }

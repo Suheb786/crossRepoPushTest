@@ -10,8 +10,8 @@ class AccountTransactionPage extends BasePage<AccountTransactionViewModel> {
   AccountTransactionPageState createState() => AccountTransactionPageState();
 }
 
-class AccountTransactionPageState extends BaseStatefulPage<
-    AccountTransactionViewModel, AccountTransactionPage> {
+class AccountTransactionPageState
+    extends BaseStatefulPage<AccountTransactionViewModel, AccountTransactionPage> {
   @override
   ProviderBase provideBase() {
     return accountTransactionViewModelProvider;

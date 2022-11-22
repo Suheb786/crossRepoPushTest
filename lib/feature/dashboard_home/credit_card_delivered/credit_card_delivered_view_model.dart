@@ -12,23 +12,17 @@ class CreditCardDeliveredViewModel extends BasePageViewModel {
   final ConfirmCreditCardDeliveryUseCase _confirmCreditDeliveryUsecase;
 
   ///confirm credit card delivery request
-  PublishSubject<ConfirmCreditCardDeliveryUseCaseParams>
-      _confirmCreditCardDeliveryRequest = PublishSubject();
+  PublishSubject<ConfirmCreditCardDeliveryUseCaseParams> _confirmCreditCardDeliveryRequest = PublishSubject();
 
   ///confirm credit card delivery response
-  PublishSubject<Resource<bool>> _confirmCreditCardDeliveryResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _confirmCreditCardDeliveryResponse = PublishSubject();
 
   ///confirm credit card delivery response stream
-  Stream<Resource<bool>> get confirmCreditCardDeliveryStream =>
-      _confirmCreditCardDeliveryResponse.stream;
+  Stream<Resource<bool>> get confirmCreditCardDeliveryStream => _confirmCreditCardDeliveryResponse.stream;
 
-  CreditCardDeliveredViewModel(
-      this._confirmCreditDeliveryUsecase, this.creditCard) {
+  CreditCardDeliveredViewModel(this._confirmCreditDeliveryUsecase, this.creditCard) {
     _confirmCreditCardDeliveryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _confirmCreditDeliveryUsecase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmCreditDeliveryUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -41,10 +35,8 @@ class CreditCardDeliveredViewModel extends BasePageViewModel {
     });
   }
 
-  void confirmCreditCardDelivery(
-      {required String cardId, required String cardDigit}) {
-    _confirmCreditCardDeliveryRequest.safeAdd(
-        ConfirmCreditCardDeliveryUseCaseParams(
-            cardId: cardId, cardDigit: cardDigit));
+  void confirmCreditCardDelivery({required String cardId, required String cardDigit}) {
+    _confirmCreditCardDeliveryRequest
+        .safeAdd(ConfirmCreditCardDeliveryUseCaseParams(cardId: cardId, cardDigit: cardDigit));
   }
 }

@@ -7,9 +7,7 @@ part 'get_allowed_country_content_entity.g.dart';
 
 @JsonSerializable()
 class GetAllowedCountryContentEntity
-    implements
-        BaseLayerDataTransformer<GetAllowedCountryContentEntity,
-            CountryContent> {
+    implements BaseLayerDataTransformer<GetAllowedCountryContentEntity, CountryContent> {
   @JsonKey(name: "countries")
   final List<CountryDataEntity>? data;
 
@@ -27,7 +25,6 @@ class GetAllowedCountryContentEntity
 
   @override
   CountryContent transform() {
-    return CountryContent(
-        countryData: this.data!.map((e) => e.transform()).toList());
+    return CountryContent(countryData: this.data!.map((e) => e.transform()).toList());
   }
 }

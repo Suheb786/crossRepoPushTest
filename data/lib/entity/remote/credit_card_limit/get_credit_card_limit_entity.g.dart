@@ -6,8 +6,7 @@ part of 'get_credit_card_limit_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(
-    Map<String, dynamic> json) {
+GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(Map<String, dynamic> json) {
   return GetCreditCardLimitEntity(
     isATM: json['isATM'] as bool?,
     atmCurrentLimit: json['atmCurrentLimit'] as String?,
@@ -22,9 +21,7 @@ GetCreditCardLimitEntity _$GetCreditCardLimitEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$GetCreditCardLimitEntityToJson(
-        GetCreditCardLimitEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GetCreditCardLimitEntityToJson(GetCreditCardLimitEntity instance) => <String, dynamic>{
       'isATM': instance.isATM,
       'atmCurrentLimit': instance.atmCurrentLimit,
       'atmmaxLimit': instance.atmMaxLimit,

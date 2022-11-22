@@ -5,15 +5,13 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_information/video_call_information_page_view.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_information/video_call_information_page_view_model.dart';
 
-class VideoCallInformationPage
-    extends BasePage<VideoCallInformationPageViewModel> {
+class VideoCallInformationPage extends BasePage<VideoCallInformationPageViewModel> {
   @override
-  VideoCallInformationPageState createState() =>
-      VideoCallInformationPageState();
+  VideoCallInformationPageState createState() => VideoCallInformationPageState();
 }
 
-class VideoCallInformationPageState extends BaseStatefulPage<
-    VideoCallInformationPageViewModel, VideoCallInformationPage> {
+class VideoCallInformationPageState
+    extends BaseStatefulPage<VideoCallInformationPageViewModel, VideoCallInformationPage> {
   @override
   ProviderBase provideBase() {
     return videoCallInformationPageViewModelProvider;
@@ -25,8 +23,7 @@ class VideoCallInformationPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, VideoCallInformationPageViewModel model) {
+  Widget buildView(BuildContext context, VideoCallInformationPageViewModel model) {
     return VideoCallInformationPageView(provideBase());
   }
 }

@@ -203,7 +203,8 @@ final accountsDialogViewModelProvider =
 
 ///qr screen view model provider
 final qrScreenViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<QrScreenPageViewModel, QrScreenPageArguments>((ref, args) => QrScreenPageViewModel(args));
+    .family<QrScreenPageViewModel, QrScreenPageArguments>(
+        (ref, args) => QrScreenPageViewModel(args, ref.read(createDynamicLinkUseCaseProvider)));
 
 ///send money qr scanning view model provider
 final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose

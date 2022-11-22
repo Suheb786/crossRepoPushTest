@@ -7,8 +7,7 @@ part of 'get_supplementary_credit_card_application_request_entity.dart';
 // **************************************************************************
 
 GetSupplementaryCreditCardApplicationRequestEntity
-    _$GetSupplementaryCreditCardApplicationRequestEntityFromJson(
-        Map<String, dynamic> json) {
+    _$GetSupplementaryCreditCardApplicationRequestEntityFromJson(Map<String, dynamic> json) {
   return GetSupplementaryCreditCardApplicationRequestEntity(
     primaryCard: json['PrimaryCard'] as String?,
     getToken: json['GetToken'] as bool?,

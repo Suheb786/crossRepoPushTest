@@ -6,9 +6,7 @@ part 'check_agent_status_content_entity.g.dart';
 
 @JsonSerializable()
 class CheckAgentStatusContentEntity
-    implements
-        BaseLayerDataTransformer<CheckAgentStatusContentEntity,
-            CheckAgentStatusContent> {
+    implements BaseLayerDataTransformer<CheckAgentStatusContentEntity, CheckAgentStatusContent> {
   @JsonKey(name: "status")
   final bool? status;
 

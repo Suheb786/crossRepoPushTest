@@ -27,8 +27,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   ///verify otp request subject holder
-  PublishSubject<VerifyDeviceChangeOtpUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<VerifyDeviceChangeOtpUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
   PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
@@ -44,8 +43,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   ///resend otp request subject holder
-  PublishSubject<ResendOtpDeviceChangeUseCaseParams> _resendOtpRequest =
-      PublishSubject();
+  PublishSubject<ResendOtpDeviceChangeUseCaseParams> _resendOtpRequest = PublishSubject();
 
   ///resend otp response holder
   PublishSubject<Resource<bool>> _resendOtpResponse = PublishSubject();
@@ -53,14 +51,12 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   ///resend otp stream
   Stream<Resource<bool>> get resendOtpStream => _resendOtpResponse.stream;
 
-  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
-      PublishSubject();
-  PublishSubject<DepersonalizeUserUseCaseParams>
-      _depersonalizeUserRequestSubject = PublishSubject();
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject = PublishSubject();
+  PublishSubject<DepersonalizeUserUseCaseParams> _depersonalizeUserRequestSubject = PublishSubject();
 
   PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
-  PublishSubject<Resource<bool>> _depersonalizeUserResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _depersonalizeUserResponseSubject = PublishSubject();
+
   OtpForChangeDeviceConfirmationPageViewModel(
     this._verifyDeviceChangeOtpUseCase,
     this._resendOtpDeviceChangeUseCase,
@@ -68,9 +64,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
     this._saveUserUseCase,
   ) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _verifyDeviceChangeOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _verifyDeviceChangeOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -82,9 +76,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
     });
 
     _resendOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _resendOtpDeviceChangeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _resendOtpDeviceChangeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -117,8 +109,7 @@ class OtpForChangeDeviceConfirmationPageViewModel extends BasePageViewModel {
   }
 
   void validateOtp() {
-    _verifyOtpRequest.safeAdd(VerifyDeviceChangeOtpUseCaseParams(
-        otp: _otpSubject.value, firebaseToken: ''));
+    _verifyOtpRequest.safeAdd(VerifyDeviceChangeOtpUseCaseParams(otp: _otpSubject.value, firebaseToken: ''));
   }
 
   void resendOtp() {

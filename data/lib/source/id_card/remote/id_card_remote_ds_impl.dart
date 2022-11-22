@@ -13,10 +13,8 @@ class IdCardRemoteDSImpl extends IdCardRemoteDS {
   IdCardRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
-      {String? idNo}) async {
+  Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails({String? idNo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getAhwalDetails(
-        GetAhwalDetailsRequest(baseData: baseData.toJson(), idNo: idNo));
+    return _apiService.getAhwalDetails(GetAhwalDetailsRequest(baseData: baseData.toJson(), idNo: idNo));
   }
 }

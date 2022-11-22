@@ -6,6 +6,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
   final PayAllPostPaidBillsPageArguments arguments;
+
   PayAllPostPaidBillsPageViewModel(this.arguments);
 
   final TextEditingController searchBillController = TextEditingController();

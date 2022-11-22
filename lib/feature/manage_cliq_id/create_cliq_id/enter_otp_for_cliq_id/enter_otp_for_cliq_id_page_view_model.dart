@@ -33,21 +33,17 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   /// otp request subject holder
-  PublishSubject<EnterOtpForCliqIdUseCaseParams> _enterOtpForCliqIdRequest =
-      PublishSubject();
+  PublishSubject<EnterOtpForCliqIdUseCaseParams> _enterOtpForCliqIdRequest = PublishSubject();
 
   /// otp response holder
   PublishSubject<Resource<bool>> _enterOtpForCliqIdResponse = PublishSubject();
 
   /// otp stream
-  Stream<Resource<bool>> get enterOtpForCliqIdStream =>
-      _enterOtpForCliqIdResponse.stream;
+  Stream<Resource<bool>> get enterOtpForCliqIdStream => _enterOtpForCliqIdResponse.stream;
 
   EnterOtpForCliqIdPageViewModel(this._enterOtpForCliqIdUseCase) {
     _enterOtpForCliqIdRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _enterOtpForCliqIdUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enterOtpForCliqIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -62,8 +58,7 @@ class EnterOtpForCliqIdPageViewModel extends BasePageViewModel {
   }
 
   void validateOtp() {
-    _enterOtpForCliqIdRequest
-        .safeAdd(EnterOtpForCliqIdUseCaseParams(otp: _otpSubject.value));
+    _enterOtpForCliqIdRequest.safeAdd(EnterOtpForCliqIdUseCaseParams(otp: _otpSubject.value));
   }
 
   void validate(String value) {

@@ -14,8 +14,7 @@ class NotifySuccessPage extends BasePage<NotifySuccessPageViewModel> {
   NotifySuccessPageState createState() => NotifySuccessPageState();
 }
 
-class NotifySuccessPageState
-    extends BaseStatefulPage<NotifySuccessPageViewModel, NotifySuccessPage> {
+class NotifySuccessPageState extends BaseStatefulPage<NotifySuccessPageViewModel, NotifySuccessPage> {
   @override
   ProviderBase provideBase() {
     return notifySuccessViewModelProvider.call(widget.notifySuccessArguments!);

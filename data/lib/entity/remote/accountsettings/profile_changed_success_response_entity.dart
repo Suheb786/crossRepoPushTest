@@ -7,30 +7,26 @@ import 'package:json_annotation/json_annotation.dart';
 part 'profile_changed_success_response_entity.g.dart';
 
 @JsonSerializable()
-class ProfileChangedSuccessResponseEntity extends BaseLayerDataTransformer<
-    ProfileChangedSuccessResponseEntity, ProfileChangedSuccessResponse> {
+class ProfileChangedSuccessResponseEntity
+    extends BaseLayerDataTransformer<ProfileChangedSuccessResponseEntity, ProfileChangedSuccessResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 
   ProfileChangedSuccessResponseEntity({this.responseEntity});
 
-  factory ProfileChangedSuccessResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory ProfileChangedSuccessResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$ProfileChangedSuccessResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ProfileChangedSuccessResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ProfileChangedSuccessResponseEntityToJson(this);
 
   @override
-  ProfileChangedSuccessResponseEntity restore(
-      ProfileChangedSuccessResponse response) {
+  ProfileChangedSuccessResponseEntity restore(ProfileChangedSuccessResponse response) {
     return ProfileChangedSuccessResponseEntity();
   }
 
   @override
   ProfileChangedSuccessResponse transform() {
     return ProfileChangedSuccessResponse(
-        data: ProfileChangedSuccessEntity.fromJson(responseEntity!.content)
-            .transform());
+        data: ProfileChangedSuccessEntity.fromJson(responseEntity!.content).transform());
   }
 }

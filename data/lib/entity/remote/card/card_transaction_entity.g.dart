@@ -6,8 +6,7 @@ part of 'card_transaction_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-CardTransactionEntity _$CardTransactionEntityFromJson(
-    Map<String, dynamic> json) {
+CardTransactionEntity _$CardTransactionEntityFromJson(Map<String, dynamic> json) {
   return CardTransactionEntity(
     date: json['label'] as String?,
     transactions: (json['transactions'] as List<dynamic>?)
@@ -16,9 +15,7 @@ CardTransactionEntity _$CardTransactionEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$CardTransactionEntityToJson(
-        CardTransactionEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CardTransactionEntityToJson(CardTransactionEntity instance) => <String, dynamic>{
       'label': instance.date,
       'transactions': instance.transactions,
     };

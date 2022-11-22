@@ -1,6 +1,7 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
 import 'package:data/helper/app_flyer_helper.dart';
+import 'package:data/helper/dynamic_link.dart';
 import 'package:data/helper/secure_storage_helper.dart';
 import 'package:data/infobip_audio/infobip_audio_service.dart';
 import 'package:data/infobip_audio/infobip_message_service.dart';
@@ -11,6 +12,8 @@ import 'package:data/source/card_processing/card_processing_data_source.dart';
 import 'package:data/source/card_processing/local/card_processing_local_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
+import 'package:data/source/dynamic_link/dynamic_link_datasource.dart';
+import 'package:data/source/dynamic_link/remote/dynamic_link_datasource_impl.dart';
 import 'package:data/source/enter_address/home_address_dialog_ds.dart';
 import 'package:data/source/enter_address/local/home_address_dialog_data_source_impl.dart';
 import 'package:data/source/infobip_audio/infobip_audio_datasource.dart';
@@ -107,3 +110,10 @@ final appFlyerHelper = Provider<AppFlyerHelper>(
 
 final appFlyerSdkDatasourceProvider =
     Provider<AppFlyerDataSource>((ref) => AppFlyerDataSourceImpl(ref.read(appFlyerHelper)));
+
+final dynamicLinksService = Provider<DynamicLinksService>(
+  (ref) => DynamicLinksService(),
+);
+
+final dynamicLinkDataSourceImplProvider =
+    Provider<DynamicLinkDataSource>((ref) => DynamicLinkDataSourceImpl(ref.read(dynamicLinksService)));

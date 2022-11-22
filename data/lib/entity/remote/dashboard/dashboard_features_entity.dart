@@ -51,7 +51,6 @@ class DashboardFeaturesEntity
         isRegisterFeatureEnabled: isRegisterEnabled ?? true,
         isRJFeatureEnabled: isGoRJEnabled ?? true,
         isPinChangeEnabled: this.isCreditCardPinChangeEnabled ?? false,
-        isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false
-    );
+        isDebitCardRequestPhysicalCardEnabled: this.isDebitCardPhysicalCardRequestEnabled ?? false);
   }
 }

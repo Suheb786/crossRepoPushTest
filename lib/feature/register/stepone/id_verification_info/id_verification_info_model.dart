@@ -25,15 +25,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   final FetchAllowedIssuersUseCase _fetchAllowedIssuersUseCase;
 
   /// retrieve condition check subject holder
-  BehaviorSubject<bool> _isRetrievedConditionSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject<bool> _isRetrievedConditionSubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get isRetrievedConditionStream =>
-      _isRetrievedConditionSubject.stream;
+  Stream<bool> get isRetrievedConditionStream => _isRetrievedConditionSubject.stream;
 
   /// id verification info request subject holder
-  PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest =
-      PublishSubject();
+  PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest = PublishSubject();
 
   Stream<IdVerificationInfoUseCaseParams> get idVerificationRequestStream =>
       _idVerificationInfoRequest.stream;
@@ -41,69 +38,50 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   /// id verification info response subject holder
   PublishSubject<Resource<bool>> _idVerificationInfoResponse = PublishSubject();
 
-  Stream<Resource<bool>> get idVerificationResponseStream =>
-      _idVerificationInfoResponse.stream;
+  Stream<Resource<bool>> get idVerificationResponseStream => _idVerificationInfoResponse.stream;
 
   void updateIsRetrievedConditionStream(bool value) {
     _isRetrievedConditionSubject.safeAdd(value);
   }
 
   ///scan document request holder
-  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-      PublishSubject();
+  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest = PublishSubject();
 
   ///scan document response holder
-  final PublishSubject<Resource<ScannedDocumentInformation>>
-      _scanUserDocumentResponse = PublishSubject();
+  final PublishSubject<Resource<ScannedDocumentInformation>> _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
-  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
-      _scanUserDocumentResponse.stream;
+  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream => _scanUserDocumentResponse.stream;
 
   ///get ahwal details subject holder
-  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
-      PublishSubject();
+  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest = PublishSubject();
 
   ///get ahwal details subject response holder
-  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
-      PublishSubject();
+  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse = PublishSubject();
 
   ///get ahwal details response stream
-  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
-      _getAhwalDetailsResponse.stream;
+  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream => _getAhwalDetailsResponse.stream;
 
   /// confirm detail request subject holder
-  PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
-      PublishSubject();
+  PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest = PublishSubject();
 
   /// confirm detail response subject holder
-  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
-      PublishSubject();
+  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse = PublishSubject();
 
-  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
-      _confirmDetailResponse.stream;
+  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream => _confirmDetailResponse.stream;
 
   ///get allowed issuers subject
-  final PublishSubject<FetchAllowedIssuersUseCaseParams>
-      _getAllowedIssuersRequest = PublishSubject();
+  final PublishSubject<FetchAllowedIssuersUseCaseParams> _getAllowedIssuersRequest = PublishSubject();
 
   ///get allowed issuers subject response
-  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
-      _getAllowedIssuersResponse = BehaviorSubject();
+  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>> _getAllowedIssuersResponse = BehaviorSubject();
 
-  ScannedDocumentInformation scannedDocumentInformation =
-      ScannedDocumentInformation();
+  ScannedDocumentInformation scannedDocumentInformation = ScannedDocumentInformation();
 
-  IdVerificationInfoViewModel(
-      this._idVerificationInfoUseCase,
-      this._scanUserDocumentUseCase,
-      this._getAhwalDetailsUseCase,
-      this._confirmDetailUseCase,
-      this._fetchAllowedIssuersUseCase) {
+  IdVerificationInfoViewModel(this._idVerificationInfoUseCase, this._scanUserDocumentUseCase,
+      this._getAhwalDetailsUseCase, this._confirmDetailUseCase, this._fetchAllowedIssuersUseCase) {
     _idVerificationInfoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _idVerificationInfoUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _idVerificationInfoUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _idVerificationInfoResponse.safeAdd(event);
@@ -113,12 +91,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
       });
     });
 
-    _scanUserDocumentRequest
-        .debounceTime(Duration(milliseconds: 800))
-        .distinct()
-        .listen((value) {
-      RequestManager(value,
-              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+    _scanUserDocumentRequest.debounceTime(Duration(milliseconds: 800)).distinct().listen((value) {
+      RequestManager(value, createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.SUCCESS) {
@@ -131,8 +105,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     });
 
     _getAhwalDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -144,8 +117,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     });
 
     _confirmDetailRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _confirmDetailUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -157,9 +129,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     });
 
     _getAllowedIssuersRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _fetchAllowedIssuersUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fetchAllowedIssuersUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -175,8 +145,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   }
 
   void idVerificationInfo() {
-    _idVerificationInfoRequest.safeAdd(IdVerificationInfoUseCaseParams(
-        isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
+    _idVerificationInfoRequest.safeAdd(
+        IdVerificationInfoUseCaseParams(isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
   }
 
   void fetchAllowedIssuers() {
@@ -188,15 +158,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   }
 
   void getAhwalResponse(String id) {
-    if (_getAllowedIssuersResponse.value.data!.any((element) =>
-        element.countryIsoCode3 ==
-        scannedDocumentInformation.issuingPlaceISo3)) {
+    if (_getAllowedIssuersResponse.value.data!
+        .any((element) => element.countryIsoCode3 == scannedDocumentInformation.issuingPlaceISo3)) {
       _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
     } else {
-      showToastWithError(AppError(
-          error: ErrorInfo(message: ''),
-          cause: Exception(""),
-          type: ErrorType.NOT_ALLOWED_COUNTRY));
+      showToastWithError(
+          AppError(error: ErrorInfo(message: ''), cause: Exception(""), type: ErrorType.NOT_ALLOWED_COUNTRY));
       // _getAhwalDetailsResponse.safeAdd(Resource.error(
       //     error: AppError(
       //         error: ErrorInfo(message: ''),
@@ -209,13 +176,11 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: scannedDocumentInformation.fullName,
         idNumber: scannedDocumentInformation.idNumber,
-        dateOfBirth: scannedDocumentInformation.dob!.year == 0
-            ? ""
-            : scannedDocumentInformation.dob.toString(),
+        dateOfBirth:
+            scannedDocumentInformation.dob!.year == 0 ? "" : scannedDocumentInformation.dob.toString(),
         nationality: scannedDocumentInformation.placeOfBirth,
-        expiryDate: scannedDocumentInformation.doe!.year == 0
-            ? ""
-            : scannedDocumentInformation.doe!.toString(),
+        expiryDate:
+            scannedDocumentInformation.doe!.year == 0 ? "" : scannedDocumentInformation.doe!.toString(),
         gender: scannedDocumentInformation.gender,
         motherName: scannedDocumentInformation.motherName,
         legalDocumentNo: scannedDocumentInformation.documentNumber,

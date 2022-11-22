@@ -8,11 +8,10 @@ import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/model/purpose/purpose_response.dart';
 
 abstract class PaymentRepository {
-  Future<Either<NetworkError, GetAccountByAliasContentResponse>>
-      getAccountByAlias(String value, String currency);
+  Future<Either<NetworkError, GetAccountByAliasContentResponse>> getAccountByAlias(
+      String value, String currency);
 
-  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
-      String toAccount, num toAmount);
+  Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(String toAccount, num toAmount);
 
   Future<Either<NetworkError, TransferSuccessResponse>> transfer(
       {String beneficiaryId,
@@ -47,12 +46,10 @@ abstract class PaymentRepository {
       String? addressCity,
       String? addressCountry);
 
-  Future<Either<NetworkError, PurposeResponse>> getPurpose(String toAccount,
-      String transferType, String detCustomerType, String type);
+  Future<Either<NetworkError, PurposeResponse>> getPurpose(
+      String toAccount, String transferType, String detCustomerType, String type);
 
-  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity(
-      {int? filterDays});
+  Future<Either<NetworkError, PaymentActivityResponse>> getPaymentActivity({int? filterDays});
 
-  Future<Either<NetworkError, bool>> payBackCreditCard(
-      {String? secureCode, String? payBackAmount});
+  Future<Either<NetworkError, bool>> payBackCreditCard({String? secureCode, String? payBackAmount});
 }

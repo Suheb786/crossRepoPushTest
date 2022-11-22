@@ -38,8 +38,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> deleteBeneficiary(
-      {String? beneficiaryId}) async {
+  Future<Either<NetworkError, bool>> deleteBeneficiary({String? beneficiaryId}) async {
     final result = await safeApiCall(
       _contactRemoteDS.deleteBeneficiary(beneficiaryId: beneficiaryId!),
     );
@@ -50,8 +49,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, GetBeneficiaryListResponse>>
-      getBeneficiaries() async {
+  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries() async {
     final result = await safeApiCall(
       _contactRemoteDS.getBeneficiaries(),
     );
@@ -74,10 +72,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
 
   @override
   Future<Either<NetworkError, bool>> updateBeneficiary(
-      {String? beneficiaryId,
-      String? nickName,
-      String? purpose,
-      String? purposeDetails}) async {
+      {String? beneficiaryId, String? nickName, String? purpose, String? purposeDetails}) async {
     final result = await safeApiCall(
       _contactRemoteDS.updateBeneficiary(
           nickName: nickName!,
@@ -92,11 +87,9 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> uploadBeneficiaryImage(
-      {String? filePath, String? beneficiaryId}) async {
+  Future<Either<NetworkError, bool>> uploadBeneficiaryImage({String? filePath, String? beneficiaryId}) async {
     final result = await safeApiCall(
-      _contactRemoteDS.uploadBeneficiaryImage(
-          beneficiaryId: beneficiaryId!, filePath: filePath!),
+      _contactRemoteDS.uploadBeneficiaryImage(beneficiaryId: beneficiaryId!, filePath: filePath!),
     );
     return result!.fold(
       (l) => Left(l),
@@ -105,8 +98,7 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp(
-      {String? type, String? otpCode}) async {
+  Future<Either<NetworkError, bool>> verifyBeneficiaryOtp({String? type, String? otpCode}) async {
     final result = await safeApiCall(
       _contactRemoteDS.verifyBeneficiaryOtp(type: type!, otpCode: otpCode!),
     );

@@ -6,9 +6,8 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckVideoCallStatusUseCase extends BaseUseCase<NetworkError,
-    CheckVideoCallStatusUseCaseParams,
-    CheckVideoCallResponse> {
+class CheckVideoCallStatusUseCase
+    extends BaseUseCase<NetworkError, CheckVideoCallStatusUseCaseParams, CheckVideoCallResponse> {
   final AccountRepository _accountRepository;
 
   CheckVideoCallStatusUseCase(this._accountRepository);

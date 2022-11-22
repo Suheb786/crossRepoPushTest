@@ -9,15 +9,13 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class EnterNewPinForCardUseCase
-    extends BaseUseCase<BaseError, EnterNewPinForCardUseCaseParams, bool> {
+class EnterNewPinForCardUseCase extends BaseUseCase<BaseError, EnterNewPinForCardUseCaseParams, bool> {
   final CardRepository _repository;
 
   EnterNewPinForCardUseCase(this._repository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required EnterNewPinForCardUseCaseParams params}) {
+  Future<Either<BaseError, bool>> execute({required EnterNewPinForCardUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -27,26 +25,17 @@ class EnterNewPinForCardUseCaseParams extends Params {
   final String confirmPin;
   final CardType cardType;
 
-  EnterNewPinForCardUseCaseParams(
-      {required this.pin, required this.confirmPin, required this.cardType});
+  EnterNewPinForCardUseCaseParams({required this.pin, required this.confirmPin, required this.cardType});
 
   @override
   Either<AppError, bool> verify() {
     if (pin.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PIN,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PIN, cause: Exception()));
     } else if (confirmPin.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_CONFIRM_PIN,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_CONFIRM_PIN, cause: Exception()));
     } else if (!Validator.isEqual(pin, confirmPin)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.PIN_NOT_MATCH,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.PIN_NOT_MATCH, cause: Exception()));
     }
     return Right(true);
   }

@@ -41,8 +41,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   Stream<bool> get switchValue => _switchSubject.stream;
 
   ///selected image subject
-  final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
@@ -51,98 +50,77 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   String mobile = '';
 
   ///upload profile
-  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
-  Stream<String> get uploadProfilePhotoStream =>
-      _uploadProfilePhotoResponse.stream;
+  Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
   /// check whether biometric is supported or not request
-  PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
-      PublishSubject();
+  PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest = PublishSubject();
 
   /// check whether biometric is supported or not response
   BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
 
   /// check whether biometric is supported or not response stream
-  Stream<Resource<bool>> get checkBioMetricStream =>
-      _checkBioMetricResponse.stream;
+  Stream<Resource<bool>> get checkBioMetricStream => _checkBioMetricResponse.stream;
 
   /// authenticate using biometric request
-  PublishSubject<AuthenticateBioMetricUseCaseParams>
-      _authenticateBioMetricRequest = PublishSubject();
+  PublishSubject<AuthenticateBioMetricUseCaseParams> _authenticateBioMetricRequest = PublishSubject();
 
   /// authenticate using biometric response
-  PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _authenticateBioMetricResponse = PublishSubject();
 
   /// authenticate using biometric response stream
-  Stream<Resource<bool>> get authenticateBioMetricStream =>
-      _authenticateBioMetricResponse.stream;
+  Stream<Resource<bool>> get authenticateBioMetricStream => _authenticateBioMetricResponse.stream;
 
   /// get profile info  request
-  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest =
-      PublishSubject();
+  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest = PublishSubject();
 
   /// get profile info response
-  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse =
-      PublishSubject();
+  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse = PublishSubject();
 
   /// get profile info response stream
-  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream =>
-      _getProfileInfoResponse.stream;
+  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream => _getProfileInfoResponse.stream;
 
   /// generate key pair request
-  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
-      PublishSubject();
+  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest = PublishSubject();
 
   /// generate key pair response
-  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
-      PublishSubject();
+  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse = PublishSubject();
 
   /// generate key pair response stream
-  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
-      _generateKeyPairResponse.stream;
+  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream => _generateKeyPairResponse.stream;
 
   /// enable biometric request
-  PublishSubject<EnableBiometricUseCaseParams> _enableBiometricRequest =
-      PublishSubject();
+  PublishSubject<EnableBiometricUseCaseParams> _enableBiometricRequest = PublishSubject();
 
   /// enable biometric response
   PublishSubject<Resource<bool>> _enableBiometricResponse = PublishSubject();
 
   /// enable biometric response stream
-  Stream<Resource<bool>> get enableBiometricStream =>
-      _enableBiometricResponse.stream;
+  Stream<Resource<bool>> get enableBiometricStream => _enableBiometricResponse.stream;
 
   ///upload profile image
-  PublishSubject<UploadProfileImageUseCaseParams> _uploadProfileImageRequest =
-      PublishSubject();
+  PublishSubject<UploadProfileImageUseCaseParams> _uploadProfileImageRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _uploadProfileImageResponse = PublishSubject();
 
-  Stream<Resource<bool>> get uploadProfileImageStream =>
-      _uploadProfileImageResponse.stream;
+  Stream<Resource<bool>> get uploadProfileImageStream => _uploadProfileImageResponse.stream;
 
   ///disable finger print
-  PublishSubject<DisableFingerPrintUseCaseParams> _disableFingerPrintRequest =
-      PublishSubject();
+  PublishSubject<DisableFingerPrintUseCaseParams> _disableFingerPrintRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _disableFingerPrintResponse = PublishSubject();
 
-  Stream<Resource<bool>> get disableFingerPrintStream =>
-      _disableFingerPrintResponse.stream;
+  Stream<Resource<bool>> get disableFingerPrintStream => _disableFingerPrintResponse.stream;
 
   ///delete profile image usecase
-  PublishSubject<DeleteProfileImageUseCaseParams> _deleteProfileImageRequest =
-      PublishSubject();
+  PublishSubject<DeleteProfileImageUseCaseParams> _deleteProfileImageRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _deleteProfileImageResponse = PublishSubject();
 
-  Stream<Resource<bool>> get deleteProfileImageStream =>
-      _deleteProfileImageResponse.stream;
+  Stream<Resource<bool>> get deleteProfileImageStream => _deleteProfileImageResponse.stream;
 
   AccountSettingPageViewModel(
       this._uploadDocumentUseCase,
@@ -155,8 +133,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       this._disableFingerPrintUseCase,
       this._deleteProfileImageUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);
@@ -196,8 +173,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     });
 
     _generateKeyPairRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _generateKeyPairUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _generateKeyPairUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -210,8 +186,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     });
 
     _enableBiometricRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _enableBiometricUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enableBiometricUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -224,9 +199,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     });
 
     _uploadProfileImageRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _uploadProfileImageUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadProfileImageUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -239,9 +212,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     });
 
     _disableFingerPrintRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _disableFingerPrintUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _disableFingerPrintUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -254,9 +225,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     });
 
     _deleteProfileImageRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _deleteProfileImageUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _deleteProfileImageUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -277,8 +246,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void addImage(String image) {
@@ -299,8 +267,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   /// Authenticate before set the biometric
   void authenticateBioMetric({String title: "", String localisedReason: ""}) {
     _authenticateBioMetricRequest.safeAdd(
-      AuthenticateBioMetricUseCaseParams(
-          title: title, localisedReason: localisedReason),
+      AuthenticateBioMetricUseCaseParams(title: title, localisedReason: localisedReason),
     );
   }
 
@@ -318,8 +285,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   }
 
   void uploadProfileImage() {
-    _uploadProfileImageRequest
-        .safeAdd(UploadProfileImageUseCaseParams(imagePath: selectedProfile));
+    _uploadProfileImageRequest.safeAdd(UploadProfileImageUseCaseParams(imagePath: selectedProfile));
   }
 
   void disableFingerPrint() {

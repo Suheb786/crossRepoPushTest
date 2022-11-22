@@ -4,10 +4,8 @@ import 'package:neo_bank/feature/credit_card_application_failure/credit_card_app
 
 class CreditCardApplicationFailureViewModel extends BasePageViewModel {
   CreditCardApplicationFailureUseCase _creditCardApplicationFailureUseCase;
-  final CreditCardApplicationFailureArguments
-      creditCardApplicationFailureArguments;
+  final CreditCardApplicationFailureArguments creditCardApplicationFailureArguments;
 
   CreditCardApplicationFailureViewModel(
-      this._creditCardApplicationFailureUseCase,
-      this.creditCardApplicationFailureArguments);
+      this._creditCardApplicationFailureUseCase, this.creditCardApplicationFailureArguments);
 }

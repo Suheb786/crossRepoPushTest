@@ -14,10 +14,7 @@ class ManageCliqBottomSheet {
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return ManageCliqBottomSheetView(
-          setAsDefault: setAsDefault,
-          unlinkAccount: unlinkAccount,
-          onCancel: onCancel,
-          title: title);
+          setAsDefault: setAsDefault, unlinkAccount: unlinkAccount, onCancel: onCancel, title: title);
     });
   }
 }

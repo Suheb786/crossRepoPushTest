@@ -11,8 +11,7 @@ class GetCallStatusRequest {
 
   GetCallStatusRequest({this.session: "", required this.baseData});
 
-  factory GetCallStatusRequest.fromJson(Map<String, dynamic> json) =>
-      _$GetCallStatusRequestFromJson(json);
+  factory GetCallStatusRequest.fromJson(Map<String, dynamic> json) => _$GetCallStatusRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$GetCallStatusRequestToJson(this);
 }

@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SendToNewRecipientUseCase
-    extends BaseUseCase<NetworkError, SendToNewRecipientUseCaseParams, bool> {
+class SendToNewRecipientUseCase extends BaseUseCase<NetworkError, SendToNewRecipientUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required SendToNewRecipientUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required SendToNewRecipientUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -36,30 +34,19 @@ class SendToNewRecipientUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (ibanOrMobile!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_IBAN_MOBILE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_IBAN_MOBILE, cause: Exception()));
     } else if (purpose!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PURPOSE,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE, cause: Exception()));
     } else if (purposeDetail!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PURPOSE_DETAIL,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PURPOSE_DETAIL, cause: Exception()));
     } else if (limit! < amount!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.LIMIT_EXCEEDED,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.LIMIT_EXCEEDED, cause: Exception()));
     } else if (this.nickName!.isEmpty && this.isFriend!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_NICKNAME_VALUE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_NICKNAME_VALUE, cause: Exception()));
     }
     return Right(true);
   }

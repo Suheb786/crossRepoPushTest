@@ -6,8 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'upload_signature_response_entity.g.dart';
 
 @JsonSerializable()
-class UploadSignatureResponseEntity extends BaseLayerDataTransformer<
-    UploadSignatureResponseEntity, UploadSignatureResponse> {
+class UploadSignatureResponseEntity
+    extends BaseLayerDataTransformer<UploadSignatureResponseEntity, UploadSignatureResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 

@@ -6,8 +6,7 @@ part of 'review_application_data_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReviewApplicationDataEntity _$ReviewApplicationDataEntityFromJson(
-    Map<String, dynamic> json) {
+ReviewApplicationDataEntity _$ReviewApplicationDataEntityFromJson(Map<String, dynamic> json) {
   return ReviewApplicationDataEntity(
     countryResidence: json['countryResidence'] as Map<String, dynamic>?,
     accountPurpose: json['accountPurpose'] as Map<String, dynamic>?,
@@ -17,8 +16,7 @@ ReviewApplicationDataEntity _$ReviewApplicationDataEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$ReviewApplicationDataEntityToJson(
-        ReviewApplicationDataEntity instance) =>
+Map<String, dynamic> _$ReviewApplicationDataEntityToJson(ReviewApplicationDataEntity instance) =>
     <String, dynamic>{
       'countryResidence': instance.countryResidence,
       'profileStatus': instance.profileStatus,

@@ -43,35 +43,27 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   ScrollController scrollController = ScrollController();
 
-  BehaviorSubject<String> _uploadProfilePhotoResponse =
-      BehaviorSubject.seeded("");
+  BehaviorSubject<String> _uploadProfilePhotoResponse = BehaviorSubject.seeded("");
 
-  Stream<String> get uploadProfilePhotoStream =>
-      _uploadProfilePhotoResponse.stream;
+  Stream<String> get uploadProfilePhotoStream => _uploadProfilePhotoResponse.stream;
 
   ///selected image subject
-  final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  final BehaviorSubject<String> _selectedImageSubject = BehaviorSubject.seeded('');
 
   ///upload profile
-  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest = PublishSubject();
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
-  PublishSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest =
-      PublishSubject();
+  PublishSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest = PublishSubject();
 
-  final GlobalKey<AppTextFieldState> ibanOrMobileKey =
-      GlobalKey(debugLabel: "ibanOrMobileNo");
+  final GlobalKey<AppTextFieldState> ibanOrMobileKey = GlobalKey(debugLabel: "ibanOrMobileNo");
 
-  final GlobalKey<AppTextFieldState> purposeKey =
-      GlobalKey(debugLabel: "purpose");
+  final GlobalKey<AppTextFieldState> purposeKey = GlobalKey(debugLabel: "purpose");
 
-  final GlobalKey<AppTextFieldState> purposeDetailKey =
-      GlobalKey(debugLabel: "purposeDetails");
+  final GlobalKey<AppTextFieldState> purposeDetailKey = GlobalKey(debugLabel: "purposeDetails");
 
   bool addContact = false;
 
@@ -83,38 +75,31 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   PurposeDetail? purposeDetail;
 
-  PublishSubject<RequestFromNewRecipientUseCaseParams>
-      _requestFromNewRecipientRequest = PublishSubject();
+  PublishSubject<RequestFromNewRecipientUseCaseParams> _requestFromNewRecipientRequest = PublishSubject();
 
-  PublishSubject<Resource<RequestToPayContentResponse>>
-      _requestFromNewRecipientResponse = PublishSubject();
+  PublishSubject<Resource<RequestToPayContentResponse>> _requestFromNewRecipientResponse = PublishSubject();
 
-  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-      PublishSubject();
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse = PublishSubject();
 
-  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
-      _getPurposeResponse.stream;
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream => _getPurposeResponse.stream;
 
-  BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
-      _getAccountByAliasResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetAccountByAliasContentResponse>> _getAccountByAliasResponse = BehaviorSubject();
 
-  Stream<Resource<GetAccountByAliasContentResponse>>
-      get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
+  Stream<Resource<GetAccountByAliasContentResponse>> get getAccountByAliasResponseStream =>
+      _getAccountByAliasResponse.stream;
 
   BehaviorSubject<bool> _addNickNameSubject = BehaviorSubject();
 
   Stream<bool> get addNickNameStream => _addNickNameSubject.stream;
 
-  Stream<Resource<RequestToPayContentResponse>>
-      get requestFromNewRecipientResponseStream =>
-          _requestFromNewRecipientResponse.stream;
+  Stream<Resource<RequestToPayContentResponse>> get requestFromNewRecipientResponseStream =>
+      _requestFromNewRecipientResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   PublishSubject<String> _showAccountDetailSubject = PublishSubject();
 
-  Stream<String> get showAccountDetailStream =>
-      _showAccountDetailSubject.stream;
+  Stream<String> get showAccountDetailStream => _showAccountDetailSubject.stream;
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
@@ -127,12 +112,10 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   String? addressCity;
   String? addressCountry;
 
-  RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
-      this._getAccountByAliasUseCase, this._getPurposeUseCase) {
+  RequestFromNewRecipientViewModel(
+      this._useCase, this._uploadDocumentUseCase, this._getAccountByAliasUseCase, this._getPurposeUseCase) {
     _requestFromNewRecipientRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _useCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _requestFromNewRecipientResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
@@ -143,8 +126,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     });
 
     _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);
@@ -152,9 +134,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     });
 
     _getAccountByAliasRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getAccountByAliasUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountByAliasUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -172,26 +152,20 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           dbtrName = event.data!.getAccountByAliasContent!.name;
           dbtrAcct = event.data!.getAccountByAliasContent!.acciban;
           type = event.data!.getAccountByAliasContent!.type;
-          detCustomerType =
-              event.data!.getAccountByAliasContent!.detCustomerType;
+          detCustomerType = event.data!.getAccountByAliasContent!.detCustomerType;
           print("got value: ${event.data!.getAccountByAliasContent!.bic}");
           dbtrSurname = event.data!.getAccountByAliasContent!.surname;
           addressCity = event.data!.getAccountByAliasContent!.addressCity;
           addressCountry = event.data!.getAccountByAliasContent!.addressCountry;
-          _showAccountDetailSubject
-              .safeAdd(event.data!.getAccountByAliasContent!.name);
-          getPurpose(
-              dbtrAcct!,
-              "RTP",
-              event.data!.getAccountByAliasContent!.detCustomerType!,
+          _showAccountDetailSubject.safeAdd(event.data!.getAccountByAliasContent!.name);
+          getPurpose(dbtrAcct!, "RTP", event.data!.getAccountByAliasContent!.detCustomerType!,
               event.data!.getAccountByAliasContent!.type!);
         }
       });
     });
 
     _getPurposeRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPurposeUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPurposeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -201,8 +175,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           purposeList.clear();
-          purposeList
-              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          purposeList.addAll(event.data!.content!.transferPurposeResponse!.purposes!);
         }
       });
     });
@@ -212,48 +185,39 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     _addNickNameSubject.safeAdd(value);
   }
 
-  void getPurpose(String toAccount, String transferType, String detCustomerType,
-      String type) {
+  void getPurpose(String toAccount, String transferType, String detCustomerType, String type) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: toAccount,
-        transferType: transferType,
-        type: type,
-        detCustomerType: detCustomerType));
+        toAccount: toAccount, transferType: transferType, type: type, detCustomerType: detCustomerType));
   }
 
   void getAccountByAlias(String value, String currency) {
-    _getAccountByAliasRequest.safeAdd(
-        GetAccountByAliasUseCaseParams(value: value, currency: currency));
+    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(value: value, currency: currency));
   }
 
   void requestFromNewRecipient(BuildContext context) {
     print("got the limit : $limit");
 
-    _requestFromNewRecipientRequest.safeAdd(
-        RequestFromNewRecipientUseCaseParams(
-            ibanOrMobile: ibanOrMobileController.text,
-            purpose: purposeController.text,
-            purposeDetail: purposeDetailController.text,
-            amount: double.parse(ProviderScope.containerOf(context)
-                .read(requestMoneyViewModelProvider)
-                .currentPinValue),
-            limit: limit,
-            dbtrBic: dbtrBic ?? "",
-            dbtrAcct: dbtrAcct ?? "",
-            dbtrName: dbtrName ?? "",
-            isFriend: addContact,
-            image: selectedProfile,
-            purposeCode: purpose!.code ?? "",
-            purposeDetailCode: purposeDetail!.strCode ?? "",
-            nickName: addNickNameController.text.isEmpty
-                ? ""
-                : addNickNameController.text,
-            type: type,
-            detCustomerType: detCustomerType,
-            alias: ibanOrMobileController.text,
-            dbtrSurname: dbtrSurname,
-            addressCity: addressCity,
-            addressCountry: addressCountry));
+    _requestFromNewRecipientRequest.safeAdd(RequestFromNewRecipientUseCaseParams(
+        ibanOrMobile: ibanOrMobileController.text,
+        purpose: purposeController.text,
+        purposeDetail: purposeDetailController.text,
+        amount: double.parse(
+            ProviderScope.containerOf(context).read(requestMoneyViewModelProvider).currentPinValue),
+        limit: limit,
+        dbtrBic: dbtrBic ?? "",
+        dbtrAcct: dbtrAcct ?? "",
+        dbtrName: dbtrName ?? "",
+        isFriend: addContact,
+        image: selectedProfile,
+        purposeCode: purpose!.code ?? "",
+        purposeDetailCode: purposeDetail!.strCode ?? "",
+        nickName: addNickNameController.text.isEmpty ? "" : addNickNameController.text,
+        type: type,
+        detCustomerType: detCustomerType,
+        alias: ibanOrMobileController.text,
+        dbtrSurname: dbtrSurname,
+        addressCity: addressCity,
+        addressCountry: addressCountry));
   }
 
   validateField() {
@@ -290,8 +254,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+    _uploadProfilePhotoRequest.safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void removeImage() {

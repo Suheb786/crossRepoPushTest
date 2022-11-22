@@ -7,8 +7,7 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class CheckOtherNationalityStatusUseCase extends BaseUseCase<NetworkError,
-    CheckOtherNationalityStatusUseCaseParams,
-    CheckOtherNationalityResponse> {
+    CheckOtherNationalityStatusUseCaseParams, CheckOtherNationalityResponse> {
   final AccountRepository _accountRepository;
 
   CheckOtherNationalityStatusUseCase(this._accountRepository);

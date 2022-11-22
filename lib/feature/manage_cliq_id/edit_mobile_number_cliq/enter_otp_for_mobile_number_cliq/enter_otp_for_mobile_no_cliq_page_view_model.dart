@@ -26,16 +26,13 @@ class EnterOtpForMobileNumberCliqPageViewModel extends BasePageViewModel {
   }
 
   ///verify otp request subject holder
-  PublishSubject<EnterOtpForMobileNumberCliqUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject<EnterOtpForMobileNumberCliqUseCaseParams> _verifyOtpRequest = PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<bool>> _verifyOtpResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<bool>> get verifyOtpStream =>
-      _verifyOtpResponse.stream;
+  Stream<Resource<bool>> get verifyOtpStream => _verifyOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -44,12 +41,9 @@ class EnterOtpForMobileNumberCliqPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  EnterOtpForMobileNumberCliqPageViewModel(
-      this._enterOtpForMobileNumberCliqUseCase) {
+  EnterOtpForMobileNumberCliqPageViewModel(this._enterOtpForMobileNumberCliqUseCase) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _enterOtpForMobileNumberCliqUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _enterOtpForMobileNumberCliqUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

@@ -4,10 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[BlinkCreditCardUseCase] provider
 final blinkCreditCardUseCaseProvider =
-    Provider.autoDispose<BlinkCreditCardUseCase>(
-        (ref) => BlinkCreditCardUseCase());
+    Provider.autoDispose<BlinkCreditCardUseCase>((ref) => BlinkCreditCardUseCase());
 
 ///[CreditCardApplicationFailureUseCase] provider
 final creditCardApplicationFailureUseCaseProvider =
-    Provider.autoDispose<CreditCardApplicationFailureUseCase>(
-        (ref) => CreditCardApplicationFailureUseCase());
+    Provider.autoDispose<CreditCardApplicationFailureUseCase>((ref) => CreditCardApplicationFailureUseCase());

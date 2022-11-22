@@ -21,13 +21,11 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
   }
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void changeCurrentPage(int index) {
@@ -40,8 +38,7 @@ class DebitCardReplacementPageViewModel extends BasePageViewModel {
     );
   }
 
-  DebitCardReplacementArguments debitCardReplacementArguments =
-      DebitCardReplacementArguments();
+  DebitCardReplacementArguments debitCardReplacementArguments = DebitCardReplacementArguments();
 
   @override
   void dispose() {

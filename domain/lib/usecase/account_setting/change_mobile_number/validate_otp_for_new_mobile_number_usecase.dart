@@ -14,25 +14,20 @@ class ValidateOtpForNewMobileNumberUseCase extends BaseUseCase<BaseError,
   final AccountSettingsRepository _accountSettingsRepository;
   final UserRepository _userRepository;
 
-  ValidateOtpForNewMobileNumberUseCase(
-      this._accountSettingsRepository, this._userRepository);
+  ValidateOtpForNewMobileNumberUseCase(this._accountSettingsRepository, this._userRepository);
 
   @override
   Future<Either<BaseError, ProfileChangedSuccessResponse>> execute(
       {required ValidateOtpForNewMobileNumberUseCaseParams params}) async {
     return Future.value(
       (await _accountSettingsRepository.verifyChangeMobile(
-              otp: params.otp,
-              mobileCode: params.mobileCode,
-              mobileNo: params.mobileNo))
+              otp: params.otp, mobileCode: params.mobileCode, mobileNo: params.mobileNo))
           .fold((l) => Left(l), (response) async {
-        return (await _userRepository.getCurrentUser()).fold((l) => Left(l),
-            (currentUser) async {
+        return (await _userRepository.getCurrentUser()).fold((l) => Left(l), (currentUser) async {
           print('mobileno from ui:---${params.mobileNo}');
           currentUser.mobile = params.mobileNo;
           currentUser.mobileCode = params.mobileCode;
-          return (await _userRepository.saveUser(currentUser))
-              .fold((l) => Left(l), (user) async {
+          return (await _userRepository.saveUser(currentUser)).fold((l) => Left(l), (user) async {
             print('savedUser--->${user.mobile}');
             return Right(response);
           });
@@ -53,10 +48,7 @@ class ValidateOtpForNewMobileNumberUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (otp.isEmpty || otp.length < 6) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OTP,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception()));
     }
     return Right(true);
   }

@@ -5,15 +5,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AndroidLoginUseCase
-    extends BaseUseCase<BaseError, AndroidLoginUseCaseParams, bool> {
+class AndroidLoginUseCase extends BaseUseCase<BaseError, AndroidLoginUseCaseParams, bool> {
   final UserRepository userRepository;
 
   AndroidLoginUseCase(this.userRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required AndroidLoginUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required AndroidLoginUseCaseParams params}) async {
     return userRepository.androidLogin(cipher: params.cipher);
 
     // return Future.value(

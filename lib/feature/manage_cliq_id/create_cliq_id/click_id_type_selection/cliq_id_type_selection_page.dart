@@ -5,15 +5,14 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/create_cliq_id/click_id_type_selection/cliq_id_type_selection_page_view_model.dart';
 
-class CliqIdTypeSelectionPage
-    extends BasePage<CliqIdTypeSelectionPageViewModel> {
+class CliqIdTypeSelectionPage extends BasePage<CliqIdTypeSelectionPageViewModel> {
   @override
   CliqIdTypeSelectionPageState createState() => CliqIdTypeSelectionPageState();
 }
 
-class CliqIdTypeSelectionPageState extends BaseStatefulPage<
-    CliqIdTypeSelectionPageViewModel,
-    CliqIdTypeSelectionPage> with AutomaticKeepAliveClientMixin {
+class CliqIdTypeSelectionPageState
+    extends BaseStatefulPage<CliqIdTypeSelectionPageViewModel, CliqIdTypeSelectionPage>
+    with AutomaticKeepAliveClientMixin {
   CliqIdTypeSelectionPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -27,8 +26,7 @@ class CliqIdTypeSelectionPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CliqIdTypeSelectionPageViewModel model) {
+  Widget buildView(BuildContext context, CliqIdTypeSelectionPageViewModel model) {
     return CliqIdTypeSelectionPageView(provideBase());
   }
 

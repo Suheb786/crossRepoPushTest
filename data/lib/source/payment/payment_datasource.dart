@@ -8,11 +8,10 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class PaymentRemoteDs {
-  Future<HttpResponse<GetAccountByAliasContentResponseEntity>>
-      getAccountByAlias(String value, String currency);
+  Future<HttpResponse<GetAccountByAliasContentResponseEntity>> getAccountByAlias(
+      String value, String currency);
 
-  Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
-      {String toAccount, num toAmount});
+  Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney({String toAccount, num toAmount});
 
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String beneficiaryId,
@@ -47,12 +46,10 @@ abstract class PaymentRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> transferVerify();
 
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(String toAccount,
-      String transferType, String detCustomerType, String type);
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      String toAccount, String transferType, String detCustomerType, String type);
 
-  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
-      {int? filterDays});
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity({int? filterDays});
 
-  Future<HttpResponse<ResponseEntity>> payBackCreditCard(
-      {String? secureCode, String? payBackAmount});
+  Future<HttpResponse<ResponseEntity>> payBackCreditCard({String? secureCode, String? payBackAmount});
 }

@@ -13,20 +13,16 @@ class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
 
   ScrollController scrollController = ScrollController();
 
-  final TextEditingController totalAnnualIncomeController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> totalAnnualIncomeKey =
-      GlobalKey(debugLabel: "totalAnnualIncome");
+  final TextEditingController totalAnnualIncomeController = TextEditingController();
+  final GlobalKey<AppTextFieldState> totalAnnualIncomeKey = GlobalKey(debugLabel: "totalAnnualIncome");
 
   AdditionalIncome? selectedAdditionalIncome = AdditionalIncome();
 
   ///get additional income source request subject
-  PublishSubject<GetAdditionalIncomeSourceUseCaseParams>
-      _getAdditionIncomeSourceRequest = PublishSubject();
+  PublishSubject<GetAdditionalIncomeSourceUseCaseParams> _getAdditionIncomeSourceRequest = PublishSubject();
 
   ///get additional income source response holder
-  BehaviorSubject<Resource<List<AdditionalIncome>>>
-      _getAdditionIncomeSourceResponse = BehaviorSubject();
+  BehaviorSubject<Resource<List<AdditionalIncome>>> _getAdditionIncomeSourceResponse = BehaviorSubject();
 
   ///get additional income source stream
   Stream<Resource<List<AdditionalIncome>>> get getAdditionIncomeSourceStream =>
@@ -34,9 +30,7 @@ class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
 
   AdditionIncomeSourceDialogViewModel(this._getAdditionIncomeSourceUseCase) {
     _getAdditionIncomeSourceRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _getAdditionIncomeSourceUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAdditionIncomeSourceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAdditionIncomeSourceResponse.safeAdd(event);
@@ -46,21 +40,17 @@ class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
   }
 
   void getAdditionIncomeSourceList() {
-    _getAdditionIncomeSourceRequest
-        .safeAdd(GetAdditionalIncomeSourceUseCaseParams());
+    _getAdditionIncomeSourceRequest.safeAdd(GetAdditionalIncomeSourceUseCaseParams());
   }
 
   void selectAdditionalIncome(int index) {
-    List<AdditionalIncome>? additionalIncomeList =
-        _getAdditionIncomeSourceResponse.value.data;
+    List<AdditionalIncome>? additionalIncomeList = _getAdditionIncomeSourceResponse.value.data;
     additionalIncomeList?.forEach((element) {
       element.isSelected = false;
     });
     additionalIncomeList?.elementAt(index).isSelected = true;
-    selectedAdditionalIncome =
-        additionalIncomeList?.firstWhere((element) => element.isSelected);
-    _getAdditionIncomeSourceResponse
-        .safeAdd(Resource.success(data: additionalIncomeList));
+    selectedAdditionalIncome = additionalIncomeList?.firstWhere((element) => element.isSelected);
+    _getAdditionIncomeSourceResponse.safeAdd(Resource.success(data: additionalIncomeList));
     if (scrollController.hasClients) {
       scrollController.animateTo(
         scrollController.position.maxScrollExtent,

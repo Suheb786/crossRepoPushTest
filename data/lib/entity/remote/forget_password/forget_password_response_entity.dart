@@ -8,9 +8,7 @@ part "forget_password_response_entity.g.dart";
 
 @JsonSerializable()
 class ForgetPasswordResponseEntity
-    implements
-        BaseLayerDataTransformer<ForgetPasswordResponseEntity,
-            ForgetPasswordResponse> {
+    implements BaseLayerDataTransformer<ForgetPasswordResponseEntity, ForgetPasswordResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class ForgetPasswordResponseEntity
   @override
   ForgetPasswordResponse transform() {
     return ForgetPasswordResponse(
-        forgetPasswordContent:
-            ForgetPasswordContentEntity.fromJson(this.response!.content)
-                .transform());
+        forgetPasswordContent: ForgetPasswordContentEntity.fromJson(this.response!.content).transform());
   }
 }

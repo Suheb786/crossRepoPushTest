@@ -6,20 +6,18 @@ import 'package:neo_bank/di/dc_change_linked_mobile_number/dc_change_linked_mobi
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_page_view.dart';
 import 'package:neo_bank/feature/dc_change_linked_mobile_number/dc_change_linked_mobile_number_view_model.dart';
 
-class DcChangeLinkedMobileNumberPage
-    extends BasePage<DcChangeLinkedMobileNumberViewModel> {
+class DcChangeLinkedMobileNumberPage extends BasePage<DcChangeLinkedMobileNumberViewModel> {
   final DCChangeLinkedMobileNumberArguments _arguments;
 
   DcChangeLinkedMobileNumberPage(this._arguments);
 
   @override
-  DcChangeLinkedMobileNumberPageState createState() =>
-      DcChangeLinkedMobileNumberPageState();
+  DcChangeLinkedMobileNumberPageState createState() => DcChangeLinkedMobileNumberPageState();
 }
 
-class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
-    DcChangeLinkedMobileNumberViewModel,
-    DcChangeLinkedMobileNumberPage> with AutomaticKeepAliveClientMixin {
+class DcChangeLinkedMobileNumberPageState
+    extends BaseStatefulPage<DcChangeLinkedMobileNumberViewModel, DcChangeLinkedMobileNumberPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return dcChangeLinkedMobileNumberViewModelProvider;
@@ -45,8 +43,7 @@ class DcChangeLinkedMobileNumberPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, DcChangeLinkedMobileNumberViewModel model) {
+  Widget buildView(BuildContext context, DcChangeLinkedMobileNumberViewModel model) {
     return DcChangeLinkedMobileNumberPageView(provideBase(), widget._arguments);
   }
 
@@ -58,6 +55,5 @@ class DCChangeLinkedMobileNumberArguments {
   final CardType cardType;
   final String? tokenizedPan;
 
-  DCChangeLinkedMobileNumberArguments(
-      {this.cardType: CardType.DEBIT, this.tokenizedPan});
+  DCChangeLinkedMobileNumberArguments({this.cardType: CardType.DEBIT, this.tokenizedPan});
 }

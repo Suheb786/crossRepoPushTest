@@ -45,7 +45,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
         return AppStreamBuilder<double>(
           stream: model.splashProgressStream,
           initialData: 0,
-          onData: (data) {
+          onData: (data) async {
             if (data == 1) {
               //model.checkDeviceCompatibility();
               Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);

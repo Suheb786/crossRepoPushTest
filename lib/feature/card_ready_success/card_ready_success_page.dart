@@ -10,9 +10,8 @@ class CardReadySuccessPage extends BasePage<CardReadySuccessPageViewModel> {
   CardReadySuccessPageState createState() => CardReadySuccessPageState();
 }
 
-class CardReadySuccessPageState extends BaseStatefulPage<
-    CardReadySuccessPageViewModel,
-    CardReadySuccessPage> {
+class CardReadySuccessPageState
+    extends BaseStatefulPage<CardReadySuccessPageViewModel, CardReadySuccessPage> {
   @override
   ProviderBase provideBase() {
     return cardReadySuccessViewModelProvider;

@@ -15,11 +15,7 @@ class CreditCardStatementRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CreditCardStatementRequest(
-      {required this.baseData,
-      this.getToken: true,
-      this.date: '',
-      this.cardId: ""});
+  CreditCardStatementRequest({required this.baseData, this.getToken: true, this.date: '', this.cardId: ""});
 
   factory CreditCardStatementRequest.fromJson(Map<String, dynamic> json) =>
       _$CreditCardStatementRequestFromJson(json);

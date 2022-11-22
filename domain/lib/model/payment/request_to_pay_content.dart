@@ -53,8 +53,7 @@ class RequestToPayContent {
   String? amount;
   String? payRefNo;
 
-  factory RequestToPayContent.fromJson(Map<String, dynamic> json) =>
-      RequestToPayContent(
+  factory RequestToPayContent.fromJson(Map<String, dynamic> json) => RequestToPayContent(
         custId: json["custID"],
         senderName: json["senderName"],
         senderPstlAdr: json["senderPstlAdr"],

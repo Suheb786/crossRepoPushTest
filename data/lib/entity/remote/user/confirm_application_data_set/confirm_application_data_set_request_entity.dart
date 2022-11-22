@@ -11,13 +11,10 @@ class ConfirmApplicationDataSetRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic>? baseData;
 
-  ConfirmApplicationDataSetRequestEntity(
-      {this.reviewDocumentResponse, this.getToken, this.baseData});
+  ConfirmApplicationDataSetRequestEntity({this.reviewDocumentResponse, this.getToken, this.baseData});
 
-  factory ConfirmApplicationDataSetRequestEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory ConfirmApplicationDataSetRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$ConfirmApplicationDataSetRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ConfirmApplicationDataSetRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ConfirmApplicationDataSetRequestEntityToJson(this);
 }

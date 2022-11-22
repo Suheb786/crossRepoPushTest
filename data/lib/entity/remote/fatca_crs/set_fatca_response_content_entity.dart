@@ -6,8 +6,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'set_fatca_response_content_entity.g.dart';
 
 @JsonSerializable()
-class SetFatcaResponseContentEntity extends BaseLayerDataTransformer<
-    SetFatcaResponseContentEntity, SetFatcaResponseContent> {
+class SetFatcaResponseContentEntity
+    extends BaseLayerDataTransformer<SetFatcaResponseContentEntity, SetFatcaResponseContent> {
   @JsonKey(name: "data")
   final String? data;
   @JsonKey(name: "requestResponse")
@@ -22,7 +22,6 @@ class SetFatcaResponseContentEntity extends BaseLayerDataTransformer<
 
   @override
   SetFatcaResponseContent transform() {
-    return SetFatcaResponseContent(
-        data: this.data, requestResponse: this.requestResponse!.fromValue());
+    return SetFatcaResponseContent(data: this.data, requestResponse: this.requestResponse!.fromValue());
   }
 }

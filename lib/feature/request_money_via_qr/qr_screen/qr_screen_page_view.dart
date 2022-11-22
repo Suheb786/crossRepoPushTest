@@ -1,8 +1,3 @@
-import 'dart:io';
-import 'dart:math';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,10 +6,12 @@ import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page_v
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -115,31 +112,44 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
                         fontSize: 14.t,
                       ),
                     ),
-                    InkWell(
-                      onTap: () async {
-                        _shareImage(model, context);
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
-                        child: Container(
-                          height: 50.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
-                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                S.of(context).shareQr,
-                                style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
+                    AppStreamBuilder<Resource<String>>(
+                        initialData: Resource.none(),
+                        stream: model.createDynamicLinkStream,
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            if (data.data != null) {
+                              _shareImage(model, data.data ?? '');
+                            }
+                          }
+                        },
+                        dataBuilder: (context, snapshot) {
+                          return InkWell(
+                            onTap: () {
+                              model.createDynamicLink();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 34.h, left: 24.w, right: 24.w),
+                              child: Container(
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                        color: Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).shareQr,
+                                      style: TextStyle(fontSize: 12.t, fontWeight: FontWeight.w600),
+                                    ),
+                                    AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
+                                  ],
+                                ),
                               ),
-                              AppSvg.asset(AssetUtils.share, color: Theme.of(context).primaryColorDark)
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                            ),
+                          );
+                        }),
                     Padding(
                       padding: EdgeInsets.only(top: 29.h, bottom: 16.h),
                       child: InkWell(
@@ -169,34 +179,8 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
     );
   }
 
-  void _shareImage(QrScreenPageViewModel model, BuildContext context) async {
-    try {
-      RenderRepaintBoundary boundary =
-          model.globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
-      final directory = (await getTemporaryDirectory()).path;
-      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      var pngBytes = byteData!.buffer.asUint8List();
-      String fileName = Random().nextDouble().toString();
-      File imgFile = new File('$directory/$fileName.png');
-      imgFile.writeAsBytes(pngBytes);
-      final RenderBox box = context.findRenderObject() as RenderBox;
-      debugPrint('Image path----->${imgFile.path}');
-
-      // share.ShareExtend.share(imgFile.path, "file",
-      //     subject: 'QR',
-      //     sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
-      //     extraText:
-      //         'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL');
-
-      Share.shareFiles([imgFile.path],
-          subject: 'QR',
-          text: Platform.isAndroid
-              ? 'Scan QR or click on link below to pay JOD ${model.arguments.requestAmt} to ${model.arguments.account.accountTitle}\n\n blinkURL'
-              : null,
-          sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
-    } catch (e) {
-      debugPrint('Exception while sharing ----->${e.toString()}');
-    }
+  void _shareImage(QrScreenPageViewModel model, String paymentLink) async {
+    Share.share(
+        '${model.arguments.account.accountTitle} has requested JOD ${model.arguments.requestAmt} from you. To complete the payment:\n $paymentLink');
   }
 }

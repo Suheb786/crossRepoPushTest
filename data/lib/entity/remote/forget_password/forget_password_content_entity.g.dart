@@ -6,15 +6,13 @@ part of 'forget_password_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ForgetPasswordContentEntity _$ForgetPasswordContentEntityFromJson(
-    Map<String, dynamic> json) {
+ForgetPasswordContentEntity _$ForgetPasswordContentEntityFromJson(Map<String, dynamic> json) {
   return ForgetPasswordContentEntity(
     mobileNumber: json['mobileNumber'] as String?,
   );
 }
 
-Map<String, dynamic> _$ForgetPasswordContentEntityToJson(
-        ForgetPasswordContentEntity instance) =>
+Map<String, dynamic> _$ForgetPasswordContentEntityToJson(ForgetPasswordContentEntity instance) =>
     <String, dynamic>{
       'mobileNumber': instance.mobileNumber,
     };

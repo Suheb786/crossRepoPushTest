@@ -6,10 +6,8 @@ import 'package:rxdart/rxdart.dart';
 
 class ChangeCardPaymentAccountPageViewModel extends BasePageViewModel {
   ///controllers and keys
-  final TextEditingController settlementAccountController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> settlementAccountKey =
-      GlobalKey(debugLabel: "settlementAccount");
+  final TextEditingController settlementAccountController = TextEditingController();
+  final GlobalKey<AppTextFieldState> settlementAccountKey = GlobalKey(debugLabel: "settlementAccount");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);

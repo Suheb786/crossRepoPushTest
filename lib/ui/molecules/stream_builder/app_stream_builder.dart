@@ -25,12 +25,10 @@ class AppStreamBuilder<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }) : super(key: key, stream: stream);
 
   @override
-  AsyncSnapshot<T> initial() =>
-      AsyncSnapshot<T>.withData(ConnectionState.none, initialData);
+  AsyncSnapshot<T> initial() => AsyncSnapshot<T>.withData(ConnectionState.none, initialData);
 
   @override
-  AsyncSnapshot<T> afterConnected(AsyncSnapshot<T> current) =>
-      current.inState(ConnectionState.waiting);
+  AsyncSnapshot<T> afterConnected(AsyncSnapshot<T> current) => current.inState(ConnectionState.waiting);
 
   @override
   AsyncSnapshot<T> afterData(AsyncSnapshot<T> current, T data) {
@@ -43,8 +41,7 @@ class AppStreamBuilder<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   @override
-  AsyncSnapshot<T> afterError(
-      AsyncSnapshot<T> current, Object error, StackTrace stackTrace) {
+  AsyncSnapshot<T> afterError(AsyncSnapshot<T> current, Object error, StackTrace stackTrace) {
     if (onError != null) onError!(error as Exception);
     return AsyncSnapshot<T>.withError(ConnectionState.active, error);
   }
@@ -56,8 +53,7 @@ class AppStreamBuilder<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   @override
-  AsyncSnapshot<T> afterDisconnected(AsyncSnapshot<T> current) =>
-      current.inState(ConnectionState.none);
+  AsyncSnapshot<T> afterDisconnected(AsyncSnapshot<T> current) => current.inState(ConnectionState.none);
 
   @override
   Widget build(BuildContext context, AsyncSnapshot<T> snapshot) {

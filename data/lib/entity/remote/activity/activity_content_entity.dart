@@ -6,16 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part "activity_content_entity.g.dart";
 
 @JsonSerializable()
-class ActivityContentEntity
-    implements
-        BaseLayerDataTransformer<ActivityContentEntity, ActivityContent> {
+class ActivityContentEntity implements BaseLayerDataTransformer<ActivityContentEntity, ActivityContent> {
   @JsonKey(name: "activities")
   final List<ActivityEntity>? activityContent;
 
   ActivityContentEntity({this.activityContent});
 
-  factory ActivityContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$ActivityContentEntityFromJson(json);
+  factory ActivityContentEntity.fromJson(Map<String, dynamic> json) => _$ActivityContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ActivityContentEntityToJson(this);
 
@@ -27,12 +24,7 @@ class ActivityContentEntity
   @override
   ActivityContent transform() {
     return ActivityContent(
-      activities: this
-          .activityContent!
-          .map((e) => e.transform())
-          .toList()
-          .reversed
-          .toList(),
+      activities: this.activityContent!.map((e) => e.transform()).toList().reversed.toList(),
     );
   }
 }

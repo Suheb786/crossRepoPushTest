@@ -5,6 +5,5 @@ class CreditCardRelationship {
   final num? minLimit;
   final num? maxLimit;
 
-  CreditCardRelationship(
-      {this.relationShip, this.maxLimit: 0.0, this.minLimit: 0.0});
+  CreditCardRelationship({this.relationShip, this.maxLimit: 0.0, this.minLimit: 0.0});
 }

@@ -9,8 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class EnterAddressUseCase extends BaseUseCase<NetworkError,
-    EnterAddressUseCaseParams, SaveCountryResidenceInfoResponse> {
+class EnterAddressUseCase
+    extends BaseUseCase<NetworkError, EnterAddressUseCaseParams, SaveCountryResidenceInfoResponse> {
   final UserRepository _repository;
 
   EnterAddressUseCase(this._repository);
@@ -64,24 +64,15 @@ class EnterAddressUseCaseParams extends Params {
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(residentCountry!)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_RESIDENT_COUNTRY,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_RESIDENT_COUNTRY, cause: Exception()));
     } else if (Validator.isEmpty(buildingNameOrNo!)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER, cause: Exception()));
     } else if (Validator.isEmpty(streetAddress!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_STREET_ADDRESS,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_STREET_ADDRESS, cause: Exception()));
     } else if (Validator.isEmpty(city!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_CITY,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_CITY, cause: Exception()));
     } else if (jordanianLivesAbroad) {
       if (Validator.isEmpty(permanentResidentCountry!)) {
         return Left(AppError(
@@ -90,9 +81,7 @@ class EnterAddressUseCaseParams extends Params {
             cause: Exception()));
       } else if (Validator.isEmpty(permanentCity!)) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.PERMANENT_EMPTY_CITY,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.PERMANENT_EMPTY_CITY, cause: Exception()));
       }
     }
     return Right(true);

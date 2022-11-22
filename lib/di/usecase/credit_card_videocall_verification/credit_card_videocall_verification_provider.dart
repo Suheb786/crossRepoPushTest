@@ -3,6 +3,5 @@ import 'package:domain/usecase/credit_card_videocall_verification/credit_card_ca
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CreditCardCallStatusUpdateUseCaseProvider] provider
-final creditCardCallStatusUpdateUseCaseProvider =
-    Provider.autoDispose<CreditCardCallStatusUpdateUseCase>((ref) =>
-        CreditCardCallStatusUpdateUseCase(ref.read(cardRepositoryProvider)));
+final creditCardCallStatusUpdateUseCaseProvider = Provider.autoDispose<CreditCardCallStatusUpdateUseCase>(
+    (ref) => CreditCardCallStatusUpdateUseCase(ref.read(cardRepositoryProvider)));

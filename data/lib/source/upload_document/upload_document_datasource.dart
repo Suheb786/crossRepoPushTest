@@ -11,11 +11,8 @@ abstract class UploadDocumentLocalDS {
 }
 
 abstract class UploadDocumentRemoteDS {
-  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
-      {String path});
+  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument({String path});
 
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
-      {String? proofOfIncomeId,
-        String? proofOfAddressId,
-        String? proofOfNationalityId});
+      {String? proofOfIncomeId, String? proofOfAddressId, String? proofOfNationalityId});
 }

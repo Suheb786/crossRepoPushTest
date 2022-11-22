@@ -5,8 +5,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ReasonOfUnavailabilityDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   ///reason list
   List<ReasonOfUnavailability> reasonOfUnavailabilityList = [
@@ -17,8 +16,7 @@ class ReasonOfUnavailabilityDialogViewModel extends BasePageViewModel {
         reasonUnavailabilityEnum: ReasonUnavailabilityEnum.REASON_A),
     ReasonOfUnavailability(
         type: 'Reason B',
-        reasonDescription:
-            'The Account Holder is otherwise unable to obtain a TIN.',
+        reasonDescription: 'The Account Holder is otherwise unable to obtain a TIN.',
         reasonUnavailabilityEnum: ReasonUnavailabilityEnum.REASON_B),
     ReasonOfUnavailability(
         type: 'Reason C',

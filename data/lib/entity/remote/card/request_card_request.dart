@@ -17,8 +17,7 @@ class RequestCardRequest {
     this.cardId: "",
   });
 
-  factory RequestCardRequest.fromJson(Map<String, dynamic> json) =>
-      _$RequestCardRequestFromJson(json);
+  factory RequestCardRequest.fromJson(Map<String, dynamic> json) => _$RequestCardRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestCardRequestToJson(this);
 }

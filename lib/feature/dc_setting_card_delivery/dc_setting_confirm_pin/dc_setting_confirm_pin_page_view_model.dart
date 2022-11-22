@@ -33,8 +33,7 @@ class DcSettingConfirmPinPageViewModel extends BasePageViewModel {
 
   DcSettingConfirmPinPageViewModel(this._confirmPinUseCase) {
     _confirmPinRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _confirmPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -51,9 +50,8 @@ class DcSettingConfirmPinPageViewModel extends BasePageViewModel {
     _confirmPinRequest.safeAdd(ConfirmPinUseCaseParams(
         currentPin: _pinSubject.value,
         previousPin: previousPin,
-        cardNumber: ProviderScope.containerOf(context)
-            .read(dcSettingCardDeliveryViewModelProvider)
-            .cardNumber));
+        cardNumber:
+            ProviderScope.containerOf(context).read(dcSettingCardDeliveryViewModelProvider).cardNumber));
   }
 
   void validate(String value) {

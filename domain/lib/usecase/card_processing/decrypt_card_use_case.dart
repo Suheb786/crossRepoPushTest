@@ -5,15 +5,13 @@ import 'package:domain/repository/card_processing/card_processing_repository.dar
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DecryptCardUseCase
-    extends BaseUseCase<LocalError, DecryptCardUseCaseParams, String> {
+class DecryptCardUseCase extends BaseUseCase<LocalError, DecryptCardUseCaseParams, String> {
   final CardProcessingRepository _repository;
 
   DecryptCardUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, String>> execute(
-      {required DecryptCardUseCaseParams params}) {
+  Future<Either<LocalError, String>> execute({required DecryptCardUseCaseParams params}) {
     return _repository.decryptCard(cardNo: params.cardNumber);
   }
 }

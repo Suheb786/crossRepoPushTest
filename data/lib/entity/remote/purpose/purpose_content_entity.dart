@@ -6,15 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part "purpose_content_entity.g.dart";
 
 @JsonSerializable()
-class PurposeContentEntity
-    implements BaseLayerDataTransformer<PurposeContentEntity, PurposeContent> {
+class PurposeContentEntity implements BaseLayerDataTransformer<PurposeContentEntity, PurposeContent> {
   @JsonKey(name: "transferPurposeResponse")
   final TransferPurposeResponseEntity? transferPurposeResponse;
 
   PurposeContentEntity({this.transferPurposeResponse});
 
-  factory PurposeContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$PurposeContentEntityFromJson(json);
+  factory PurposeContentEntity.fromJson(Map<String, dynamic> json) => _$PurposeContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$PurposeContentEntityToJson(this);
 

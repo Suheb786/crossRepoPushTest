@@ -435,9 +435,9 @@ class AppHomeViewModel extends BasePageViewModel {
                     isSmallDevice: isSmallDevices,
                     key: ValueKey('debit${debitCard.code}${debitCard.cvv}'),
                     debitCard: debitCard,
-                    isDebitCardRequestPhysicalCardEnabled: dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled??false
-
-                ));
+                    isDebitCardRequestPhysicalCardEnabled:
+                        dashboardDataContent.dashboardFeatures?.isDebitCardRequestPhysicalCardEnabled ??
+                            false));
 
                 ///time line list arguments set
                 timeLineListArguments.add(TimeLineListArguments(

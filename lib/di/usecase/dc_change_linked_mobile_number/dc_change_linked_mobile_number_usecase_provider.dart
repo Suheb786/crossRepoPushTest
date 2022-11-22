@@ -5,8 +5,7 @@ import 'package:domain/usecase/update_settlement/update_settlement_usecase.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[DcEnterNewMobileNumberUseCase] provider
-final dcEnterNewMobileNumberUseCaseProvider =
-    Provider.autoDispose<DcEnterNewMobileNumberUseCase>(
+final dcEnterNewMobileNumberUseCaseProvider = Provider.autoDispose<DcEnterNewMobileNumberUseCase>(
   (ref) => DcEnterNewMobileNumberUseCase(ref.read(cardRepositoryProvider)),
 );
 
@@ -16,7 +15,6 @@ final dcEnterOtpUseCaseProvider = Provider.autoDispose<DcEnterOtpUseCase>(
 );
 
 ///[UpdateSettlementUseCase] provider
-final updateSettlementUseCaseProvider =
-    Provider.autoDispose<UpdateSettlementUseCase>(
+final updateSettlementUseCaseProvider = Provider.autoDispose<UpdateSettlementUseCase>(
   (ref) => UpdateSettlementUseCase(ref.read(cardRepositoryProvider)),
 );

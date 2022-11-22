@@ -7,22 +7,19 @@ import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[FetchCountriesUseCase] provider
-final fetchCountriesUseCaseProvider =
-    Provider.autoDispose<FetchCountriesUseCase>(
+final fetchCountriesUseCaseProvider = Provider.autoDispose<FetchCountriesUseCase>(
   (ref) => FetchCountriesUseCase(ref.read(countryRepoProvider)),
 );
 
 ///[FetchCountryByCodeUseCase] provider
-final fetchCountryByCodeUseCaseProvider =
-    Provider.autoDispose<FetchCountryByCodeUseCase>(
+final fetchCountryByCodeUseCaseProvider = Provider.autoDispose<FetchCountryByCodeUseCase>(
   (ref) => FetchCountryByCodeUseCase(
     ref.read(countryRepoProvider),
   ),
 );
 
 ///[RegisterNumberUseCase] provider
-final registerNumberUseCaseProvider =
-    Provider.autoDispose<RegisterNumberUseCase>(
+final registerNumberUseCaseProvider = Provider.autoDispose<RegisterNumberUseCase>(
   (ref) => RegisterNumberUseCase(),
 );
 
@@ -32,7 +29,6 @@ final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
 );
 
 ///[CreatePasswordUseCase] provider
-final createPasswordUseCaseProvider =
-    Provider.autoDispose<CreatePasswordUseCase>(
+final createPasswordUseCaseProvider = Provider.autoDispose<CreatePasswordUseCase>(
   (ref) => CreatePasswordUseCase(),
 );

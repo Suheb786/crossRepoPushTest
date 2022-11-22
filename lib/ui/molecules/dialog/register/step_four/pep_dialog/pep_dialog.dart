@@ -10,7 +10,6 @@ class PEPDialog {
     Function()? onSelected,
   }) {
     AppDialog.show(mContext,
-        isDismissible: true,
-        builder: (context) => PEPDialogView(onSelected: onSelected));
+        isDismissible: true, builder: (context) => PEPDialogView(onSelected: onSelected));
   }
 }

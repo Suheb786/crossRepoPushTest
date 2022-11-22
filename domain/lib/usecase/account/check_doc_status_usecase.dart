@@ -6,16 +6,14 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CheckDocStatusUseCase extends BaseUseCase<NetworkError,
-    CheckDocStatusUseCaseParams,
-    DocStatusResponse> {
+class CheckDocStatusUseCase
+    extends BaseUseCase<NetworkError, CheckDocStatusUseCaseParams, DocStatusResponse> {
   final AccountRepository _accountRepository;
 
   CheckDocStatusUseCase(this._accountRepository);
 
   @override
-  Future<Either<NetworkError, DocStatusResponse>> execute(
-      {required CheckDocStatusUseCaseParams params}) {
+  Future<Either<NetworkError, DocStatusResponse>> execute({required CheckDocStatusUseCaseParams params}) {
     return _accountRepository.docStatus();
   }
 }

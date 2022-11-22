@@ -6,8 +6,8 @@ part of 'send_otp_token_device_change_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SendOtpTokenDeviceChangeRequestEntity
-    _$SendOtpTokenDeviceChangeRequestEntityFromJson(Map<String, dynamic> json) {
+SendOtpTokenDeviceChangeRequestEntity _$SendOtpTokenDeviceChangeRequestEntityFromJson(
+    Map<String, dynamic> json) {
   return SendOtpTokenDeviceChangeRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,

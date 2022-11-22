@@ -12,8 +12,7 @@ class JobAndIncomePage extends BasePage<JobAndIncomePageViewModel> {
   JobAndIncomePageState createState() => JobAndIncomePageState();
 }
 
-class JobAndIncomePageState
-    extends BaseStatefulPage<JobAndIncomePageViewModel, JobAndIncomePage> {
+class JobAndIncomePageState extends BaseStatefulPage<JobAndIncomePageViewModel, JobAndIncomePage> {
   @override
   ProviderBase provideBase() {
     return jobAndIncomePageViewModelProvider;
@@ -26,9 +25,8 @@ class JobAndIncomePageState
 
   @override
   void onModelReady(JobAndIncomePageViewModel model) {
-     model.employmentStatusEnum = ProviderScope.containerOf(context)
-        .read(registerStepTwoViewModelProvider)
-        .employmentStatusEnum;
+    model.employmentStatusEnum =
+        ProviderScope.containerOf(context).read(registerStepTwoViewModelProvider).employmentStatusEnum;
   }
 
   @override

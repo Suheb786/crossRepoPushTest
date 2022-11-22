@@ -7,11 +7,9 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class CreatePasswordUseCase
-    extends BaseUseCase<LocalError, CreatePasswordUseCaseParams, bool> {
+class CreatePasswordUseCase extends BaseUseCase<LocalError, CreatePasswordUseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required CreatePasswordUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required CreatePasswordUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -35,28 +33,17 @@ class CreatePasswordUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (Validator.isEmpty(createPassword)) {
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_PASSWORD, cause: Exception()));
+    } else if (!minimumEightCharacters || !hasUpperCase || !hasSymbol || !containsDigit) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_PASSWORD,
-          cause: Exception()));
-    } else if (!minimumEightCharacters ||
-        !hasUpperCase ||
-        !hasSymbol ||
-        !containsDigit) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.PASSWORD_NOT_MEET_CRITERIA,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.PASSWORD_NOT_MEET_CRITERIA, cause: Exception()));
     } else if (Validator.isEmpty(confirmPassword)) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_CONFIRM_PASSWORD,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.EMPTY_CONFIRM_PASSWORD, cause: Exception()));
     } else if (!Validator.isEqual(confirmPassword, createPassword)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.PASSWORD_MISMATCH,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.PASSWORD_MISMATCH, cause: Exception()));
     }
     return Right(true);
   }
