@@ -1,9 +1,11 @@
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RjBookingPageViewModel extends BasePageViewModel {
   final RjBookingPageArguments rjBookingPageArguments;
+  InAppWebViewController? webViewController;
 
   RjBookingPageViewModel(this.rjBookingPageArguments);
 

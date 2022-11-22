@@ -153,6 +153,13 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
   - Flutter (1.0.0)
+  - flutter_inappwebview (0.0.1):
+    - Flutter
+    - flutter_inappwebview/Core (= 0.0.1)
+    - OrderedSet (~> 5.0)
+  - flutter_inappwebview/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 5.0)
   - flutter_jailbreak_detection (1.0.0):
     - DTTJailbreakDetection
     - Flutter
@@ -253,6 +260,7 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
+  - OrderedSet (5.0.0)
   - package_info (0.0.1):
     - Flutter
   - package_info_plus (0.4.5):
@@ -299,6 +307,7 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
+  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
@@ -353,6 +362,7 @@ SPEC REPOS:
     - MobileMessaging
     - MTBBarcodeScanner
     - nanopb
+    - OrderedSet
     - PPBlinkID
     - PromisesObjC
     - SDWebImage
@@ -383,6 +393,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
     :path: Flutter
+  flutter_inappwebview:
+    :path: ".symlinks/plugins/flutter_inappwebview/ios"
   flutter_jailbreak_detection:
     :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_secure_storage:
@@ -463,6 +475,7 @@ SPEC CHECKSUMS:
   FirebasePerformance: c40a3bfe5ed9e91f2ab4851d1aa8e0f2f3ca19cf
   FirebaseRemoteConfig: 39462033ba6fe7979eb49499f40f07feaa016b0a
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
@@ -485,6 +498,7 @@ SPEC CHECKSUMS:
   MobileMessaging: ed0eae932e4e0ae3fee07d21871b1c99d679dc77
   MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5

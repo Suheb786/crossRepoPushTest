@@ -1,7 +1,9 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_one_way_trip_link_request_entity.dart';
+import 'package:data/entity/remote/rj/trip/get_trip_response_entity.dart';
 import 'package:data/entity/remote/rj/trip/get_two_way_trip_link_request_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -18,7 +20,8 @@ class RJRemoteDSImpl extends RJRemoteDS {
   RJRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<ResponseEntity>> getDestinations({required GetDestinationUseCaseParams params}) async {
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
+      {required GetDestinationUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDestinations(GetDestinationRequestEntity(
         baseData: baseData.toJson(),
@@ -29,7 +32,7 @@ class RJRemoteDSImpl extends RJRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getOneWayTripLink(
+  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(
       {required GetOneWayTripLinkUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getOneWayTripLink(GetOneWayTripLinkRequestEntity(
@@ -49,7 +52,7 @@ class RJRemoteDSImpl extends RJRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getTwoWayTripLink(
+  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(
       {required GetTwoWayTripLinkUseCaseParams params}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getTwoWayTripLink(GetTwoWayTripLinkRequestEntity(

@@ -11,9 +11,9 @@ class GetTwoWayTripLinkRequestEntity {
   @JsonKey(name: "Des")
   final String? des;
   @JsonKey(name: "Date1")
-  final String? fromDate;
-  @JsonKey(name: "Date2")
   final String? toDate;
+  @JsonKey(name: "Date2")
+  final String? fromDate;
   @JsonKey(name: "Adults")
   final String? adults;
   @JsonKey(name: "Childs")

@@ -19,7 +19,6 @@ class RjCardWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
-          // color: Theme.of(context).primaryColor,
           margin: EdgeInsets.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Container(
@@ -69,10 +68,12 @@ class RjCardWidget extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         /// opening Rj Flight Booking Dialog
-                        RjFlightBookingDialog.show(context, onSelected: (value) {
-                          Navigator.pop(context);
-                        }, onDismissed: () {
-                          Navigator.pop(context);
+                        Future.delayed(Duration(milliseconds: 200), () {
+                          RjFlightBookingDialog.show(context, onSelected: (value) {
+                            Navigator.pop(context);
+                          }, onDismissed: () {
+                            Navigator.pop(context);
+                          });
                         });
                       },
                       child: Container(

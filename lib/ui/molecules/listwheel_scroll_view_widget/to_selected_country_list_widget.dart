@@ -1,9 +1,10 @@
+import 'package:domain/model/rj/destinations.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_dialog_view_model.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ToSelectedCountryListWidget extends StatelessWidget {
-  final ToSearchCountry item;
+  final Destinations item;
 
   const ToSelectedCountryListWidget({Key? key, required this.item}) : super(key: key);
 
@@ -19,15 +20,14 @@ class ToSelectedCountryListWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                item.searchCountry,
+                item.name ?? '',
                 softWrap: true,
                 maxLines: 2,
                 style: TextStyle(
-                  fontFamily: StringUtils.appFont,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  // color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.very_dark_violet
-                ),
+                    fontFamily: StringUtils.appFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: item.isSelected ? Theme.of(context).primaryColorDark : AppColor.gray),
               ),
             ),
           ),

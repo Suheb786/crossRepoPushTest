@@ -1,17 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetOneWayTripLinkUseCase extends BaseUseCase<NetworkError, GetOneWayTripLinkUseCaseParams, bool> {
+class GetOneWayTripLinkUseCase
+    extends BaseUseCase<NetworkError, GetOneWayTripLinkUseCaseParams, GetTripResponse> {
   final RJRepository _repository;
 
   GetOneWayTripLinkUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required GetOneWayTripLinkUseCaseParams params}) {
+  Future<Either<NetworkError, GetTripResponse>> execute({required GetOneWayTripLinkUseCaseParams params}) {
     return _repository.getOneWayTripLink(params: params);
   }
 }

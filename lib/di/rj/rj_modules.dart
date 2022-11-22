@@ -14,8 +14,9 @@ import 'package:neo_bank/ui/molecules/dialog/rj/rj_flight_booking_to_dialog/to_d
 
 ///RJ Flight Booking Dialog
 final rjFlightBookingDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RjFlightBookingDialogViewModel>(
-        (ref) => RjFlightBookingDialogViewModel(ref.read(getDestinationUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<RjFlightBookingDialogViewModel>((ref) =>
+        RjFlightBookingDialogViewModel(ref.read(getDestinationUseCaseProvider),
+            ref.read(getOneWayTripLinkUseCaseProvider), ref.read(getTwoWayTripLinkUseCaseProvider)));
 
 class PassengerViewModelProvider {
   provide() {

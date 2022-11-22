@@ -1,4 +1,9 @@
+import 'package:domain/model/rj/destination_response.dart';
+import 'package:domain/model/rj/destinations.dart';
+import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:domain/usecase/rj/get_destination_usecase.dart';
+import 'package:domain/usecase/rj/get_one_way_trip_link_usecase.dart';
+import 'package:domain/usecase/rj/get_two_way_trip_link_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -7,23 +12,76 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RjFlightBookingDialogViewModel extends BasePageViewModel {
   final GetDestinationUseCase _getDestinationUseCase;
+  final GetOneWayTripLinkUseCase _getOneWayTripLinkUseCase;
+  final GetTwoWayTripLinkUseCase _getTwoWayTripLinkUseCase;
 
   ///----------------Get Destination--------------///
   PublishSubject<GetDestinationUseCaseParams> _getDestinationRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _getDestinationResponse = PublishSubject();
+  PublishSubject<Resource<DestinationResponse>> _getDestinationResponse = PublishSubject();
 
-  Stream<Resource<bool>> get getDestinationStream => _getDestinationResponse.stream;
+  Stream<Resource<DestinationResponse>> get getDestinationStream => _getDestinationResponse.stream;
 
   void getDestination() {
     _getDestinationRequest.safeAdd(GetDestinationUseCaseParams(language: 'EN', origin: 'AMM', service: ''));
   }
 
   ///----------------Get Destination--------------///
+
+  ///----------------Get One Way Link--------------///
+  PublishSubject<GetOneWayTripLinkUseCaseParams> _getOneWayLinkRequest = PublishSubject();
+
+  PublishSubject<Resource<GetTripResponse>> _getOneWayLinkResponse = PublishSubject();
+
+  Stream<Resource<GetTripResponse>> get getOneWayLinkStream => _getOneWayLinkResponse.stream;
+
+  void getOneWayLink(BuildContext context) {
+    _getOneWayLinkRequest.safeAdd(GetOneWayTripLinkUseCaseParams(
+        language: 'EN',
+        org: "AMM",
+        des: selectedDestination.code,
+        date1: TimeUtils.getFormattedDateForRJ(departOnDate),
+        adults: '${passengerList[0].count}',
+        youths: '${passengerList[1].count}',
+        infants: '${passengerList[3].count}',
+        childs: '${passengerList[2].count}',
+        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        customerRef: 'CUST12345678901234567890',
+        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+  }
+
+  ///----------------Get One Way Link--------------///
+
+  ///----------------Get Two Way Link--------------///
+  PublishSubject<GetTwoWayTripLinkUseCaseParams> _getTwoWayLinkRequest = PublishSubject();
+
+  PublishSubject<Resource<GetTripResponse>> _getTwoWayLinkResponse = PublishSubject();
+
+  Stream<Resource<GetTripResponse>> get getTwoWayLinkStream => _getTwoWayLinkResponse.stream;
+
+  void getTwoWayLink(BuildContext context) {
+    _getTwoWayLinkRequest.safeAdd(GetTwoWayTripLinkUseCaseParams(
+        language: 'EN',
+        org: "AMM",
+        des: selectedDestination.code,
+        toDate: TimeUtils.getFormattedDateForRJ(departOnDate),
+        fromDate: TimeUtils.getFormattedDateForRJ(returnOnDate),
+        adults: '${passengerList[0].count}',
+        youths: '${passengerList[1].count}',
+        infants: '${passengerList[3].count}',
+        childs: '${passengerList[2].count}',
+        promoCode: 'BLINK-ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        customerRef: 'CUST12345678901234567890',
+        cabin: _selectedCabinClassSubject == 0 ? 'E' : 'B'));
+  }
+
+  ///----------------Get Two Way Link--------------///
+
   ///Controllers and Keys
   TextEditingController fromController = new TextEditingController();
   GlobalKey<AppTextFieldState> fromKey = GlobalKey(debugLabel: "from");
@@ -41,8 +99,10 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
 
   ScrollController scrollController = new ScrollController();
 
-  DateTime initialDate = DateTime.now();
+  DateTime departOnDate = DateTime.now();
+  DateTime returnOnDate = DateTime.now();
 
+  DateTime initialDate = DateTime.now();
   List<Passenger> passengerList = [
     Passenger('Adult', '16 years +'),
     Passenger('Youth', '13 to 16 years'),
@@ -50,13 +110,38 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
     Passenger('Infant', 'Below 2 years'),
   ];
 
-  RjFlightBookingDialogViewModel(this._getDestinationUseCase) {
+  RjFlightBookingDialogViewModel(
+      this._getDestinationUseCase, this._getOneWayTripLinkUseCase, this._getTwoWayTripLinkUseCase) {
     _getDestinationRequest.listen((value) {
       RequestManager(value, createCall: () => _getDestinationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _getDestinationResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getOneWayLinkRequest.listen((value) {
+      RequestManager(value, createCall: () => _getOneWayTripLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getOneWayLinkResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getTwoWayLinkRequest.listen((value) {
+      RequestManager(value, createCall: () => _getTwoWayTripLinkUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getTwoWayLinkResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -72,10 +157,11 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
 
   /// selection of tab based on index
   void selectedTab(int selectedTabIndex) {
+    selectedReturnOnDateController.clear();
     _selectedTabSubject.add(selectedTabIndex);
   }
 
-  PublishSubject<int> _selectedCabinClassSubject = PublishSubject();
+  BehaviorSubject<int> _selectedCabinClassSubject = BehaviorSubject();
 
   Stream<int> get selectedCabinClassSubjectStream => _selectedCabinClassSubject.stream;
 
@@ -83,6 +169,31 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
   void selectedCabinClass(int index) {
     _selectedCabinClassSubject.add(index);
   }
+
+  Destinations selectedDestination = Destinations();
+
+  ///-------------Field validation-------------///
+
+  PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
+
+  Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
+
+  bool isValid() {
+    bool valid = false;
+    if (_selectedTabSubject.value == 0) {
+      if (toController.text.isNotEmpty && selectedDepartOnDateController.text.isNotEmpty) {
+        valid = true;
+      }
+    } else if (toController.text.isNotEmpty &&
+        selectedDepartOnDateController.text.isNotEmpty &&
+        selectedReturnOnDateController.text.isNotEmpty) {
+      valid = true;
+    }
+    _allFieldValidatorSubject.safeAdd(valid);
+    return valid;
+  }
+
+  ///-------------Field validation-------------///
 
   @override
   void dispose() {
@@ -99,6 +210,14 @@ class RjFlightBookingDialogViewModel extends BasePageViewModel {
     CabinClassOption('Economy', AssetUtils.EconomySeat),
     CabinClassOption('Business', AssetUtils.BusinessSeat)
   ];
+
+  void getTripLink(BuildContext context) {
+    if (_selectedTabSubject.value == 0) {
+      getOneWayLink(context);
+    } else {
+      getTwoWayLink(context);
+    }
+  }
 }
 
 class RjBookingFlightTabOption {
@@ -112,8 +231,9 @@ class RjBookingFlightTabOption {
 class Passenger {
   String passengerType;
   String passengerAgeRange;
+  int count;
 
-  Passenger(this.passengerType, this.passengerAgeRange);
+  Passenger(this.passengerType, this.passengerAgeRange, {this.count = 0});
 }
 
 class CabinClassOption {

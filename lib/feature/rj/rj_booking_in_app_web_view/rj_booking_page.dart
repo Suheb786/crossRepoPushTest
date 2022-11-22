@@ -30,6 +30,29 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
   }
 
   @override
+  PreferredSizeWidget? buildAppbar() {
+    return PreferredSize(
+        preferredSize: Size(double.maxFinite, 85),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 56.0, bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 24.0),
+                  child: Icon(Icons.clear, color: Theme.of(context).primaryColorDark),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+
+  @override
   Widget buildView(BuildContext context, RjBookingPageViewModel model) {
     return RjBookingPageView(provideBase());
   }
@@ -38,7 +61,7 @@ class RjBookingPageState extends BaseStatefulPage<RjBookingPageViewModel, RjBook
 class RjBookingPageArguments {
   final String? url;
 
-  RjBookingPageArguments(
+  RjBookingPageArguments({
     this.url,
-  );
+  });
 }

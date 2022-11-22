@@ -13,8 +13,10 @@ class PassengerWidget extends StatelessWidget {
   var count = 0;
   int index;
   final List<Passenger> passengerList;
+  Function(List<Passenger>) onTap;
 
-  PassengerWidget({Key? key, required this.passengerList, required this.index}) : super(key: key);
+  PassengerWidget({Key? key, required this.passengerList, required this.index, required this.onTap})
+      : super(key: key);
 
   ProviderBase provideBase() {
     return PassengerViewModelProvider().provide();
@@ -23,8 +25,10 @@ class PassengerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<PassengerViewModel>(
-      // key: ValueKey(data.orderNo),
       providerBase: provideBase(),
+      onModelReady: (model) {
+        model.passengerList = passengerList;
+      },
       builder: (context, passengerViewModel, widget) {
         return AppStreamBuilder<int>(
           stream: passengerViewModel!.incrementDecrementSubjectStream,
@@ -54,7 +58,8 @@ class PassengerWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    passengerViewModel.decrementCounter(--count);
+                    passengerViewModel.decrementCounter(--count, index);
+                    onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -89,7 +94,8 @@ class PassengerWidget extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    passengerViewModel.incrementCounter(++count);
+                    passengerViewModel.incrementCounter(++count, index);
+                    onTap.call(passengerViewModel.passengerList);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),

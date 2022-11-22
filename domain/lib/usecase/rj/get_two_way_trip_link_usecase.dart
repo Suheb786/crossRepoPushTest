@@ -1,17 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:domain/repository/rj/rj_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetTwoWayTripLinkUseCase extends BaseUseCase<NetworkError, GetTwoWayTripLinkUseCaseParams, bool> {
+class GetTwoWayTripLinkUseCase
+    extends BaseUseCase<NetworkError, GetTwoWayTripLinkUseCaseParams, GetTripResponse> {
   final RJRepository _repository;
 
   GetTwoWayTripLinkUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute({required GetTwoWayTripLinkUseCaseParams params}) {
+  Future<Either<NetworkError, GetTripResponse>> execute({required GetTwoWayTripLinkUseCaseParams params}) {
     return _repository.getTwoWayTripLink(params: params);
   }
 }

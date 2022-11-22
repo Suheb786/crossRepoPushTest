@@ -1,3 +1,5 @@
+import 'package:domain/model/rj/destination_response.dart';
+import 'package:domain/model/rj/get_trip_response.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +8,7 @@ import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_booking_in_app_web_view/rj_booking_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
@@ -16,9 +19,13 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 import 'package:neo_bank/utils/time_utils.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class RjFlightBookingDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -39,11 +46,45 @@ class RjFlightBookingDialogView extends StatelessWidget {
       providerBase: providerBase(),
       onModelReady: (model) {
         model.getDestination();
+
+        model.loadingStream.listen((value) {
+          if (value) {
+            AppProgress(context);
+          } else {
+            Navigator.pop(context);
+          }
+        });
+
+        model.error.listen((event) {
+          _showTopError(
+              ErrorParser.getLocalisedStringError(
+                error: event,
+                localisedHelper: S.of(context),
+              ),
+              context);
+          // if (event.type == ErrorType.UNAUTHORIZED_USER) {
+          //   _showTopError(
+          //       ErrorParser.getLocalisedStringError(
+          //         error: event,
+          //         localisedHelper: S.of(context),
+          //       ),
+          //       context);
+          //   Navigator.pushNamedAndRemoveUntil(
+          //       context, RoutePaths.OnBoarding, ModalRoute.withName(RoutePaths.Splash));
+          // } else {
+          //   _showTopError(
+          //       ErrorParser.getLocalisedStringError(
+          //         error: event,
+          //         localisedHelper: S.of(context),
+          //       ),
+          //       context);
+          // }
+        });
       },
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 56.h, top: 180.h),
+            insetPadding: EdgeInsets.only(left: 48.w, right: 48.w, bottom: 36.h, top: 108.0.h),
             child: Column(
               children: [
                 Expanded(
@@ -67,9 +108,11 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                       if (index == 0) {
                                         /// selection of one-way tab
                                         model.selectedTab(0);
+                                        model.isValid();
                                       } else {
                                         /// selection of return tab
                                         model.selectedTab(1);
+                                        model.isValid();
                                       }
                                     },
                                     child: Container(
@@ -139,36 +182,47 @@ class RjFlightBookingDialogView extends StatelessWidget {
                           AppTextField(
                             labelText: S.of(context).rjFrom.toUpperCase(),
                             hintText: S.of(context).fromLabelForRJFlightBooking,
-                            readOnly: false,
+                            readOnly: true,
                             controller: model.fromController,
                             key: model.fromKey,
                           ),
                           SizedBox(
                             height: 16.h,
                           ),
-                          AppTextField(
-                            labelText: S.of(context).to.toUpperCase(),
-                            hintText: S.of(context).pleaseSelect,
-                            readOnly: true,
-                            controller: model.toController,
-                            key: model.toKey,
-                            onPressed: () {
-                              /// to dialog for country selection
-
-                              ToDialog.show(context, title: S.of(context).to.toUpperCase(), onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value) {
-                                Navigator.pop(context);
-                                model.toController.text = value.searchCountry;
-                              });
-                            },
-                            suffixIcon: (value, data) {
-                              return Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
-                                  child: AppSvg.asset(AssetUtils.downArrow,
-                                      width: 16.w, height: 16.h, color: AppColor.dark_gray_1));
-                            },
-                          ),
+                          AppStreamBuilder<Resource<DestinationResponse>>(
+                              stream: model.getDestinationStream,
+                              initialData: Resource.none(),
+                              dataBuilder: (context, destinationResponse) {
+                                return AppTextField(
+                                  labelText: S.of(context).to.toUpperCase(),
+                                  hintText: S.of(context).pleaseSelect,
+                                  readOnly: true,
+                                  controller: model.toController,
+                                  key: model.toKey,
+                                  onPressed: () {
+                                    /// to dialog for country selection
+                                    if (destinationResponse?.status == Status.SUCCESS) {
+                                      ToDialog.show(context,
+                                          title: S.of(context).to.toUpperCase(),
+                                          destinationList: destinationResponse
+                                              ?.data?.destinationContent?.destinationList, onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.selectedDestination = value;
+                                        model.toController.text = value.airportName ?? '';
+                                        model.isValid();
+                                      });
+                                    }
+                                  },
+                                  suffixIcon: (value, data) {
+                                    return Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.w),
+                                        child: AppSvg.asset(AssetUtils.downArrow,
+                                            width: 16.w, height: 16.h, color: AppColor.dark_gray_1));
+                                  },
+                                );
+                              }),
                           SizedBox(
                             height: 16.h,
                           ),
@@ -180,10 +234,11 @@ class RjFlightBookingDialogView extends StatelessWidget {
                             key: model.selectedDepartOnDateKey,
                             onPressed: () {
                               /// opening calender dialog
-                              DatePicker.show(context, initialDate: model.initialDate, onSelected: (date) {
+                              DatePicker.show(context, initialDate: model.departOnDate, onSelected: (date) {
                                 model.selectedDepartOnDateController.text =
                                     TimeUtils.getFormattedDOB(date.toString());
-                                model.initialDate = date;
+                                model.departOnDate = date;
+                                model.isValid();
                               }, onCancelled: () {
                                 Navigator.pop(context);
                               }, title: S.of(context).preferredDate);
@@ -216,11 +271,12 @@ class RjFlightBookingDialogView extends StatelessWidget {
                                           key: model.selectedReturnOnDateKey,
                                           onPressed: () {
                                             /// opening date dialog
-                                            DatePicker.show(context, initialDate: model.initialDate,
+                                            DatePicker.show(context, initialDate: model.returnOnDate,
                                                 onSelected: (date) {
                                               model.selectedReturnOnDateController.text =
                                                   TimeUtils.getFormattedDOB(date.toString());
-                                              model.initialDate = date;
+                                              model.returnOnDate = date;
+                                              model.isValid();
                                             }, onCancelled: () {
                                               Navigator.pop(context);
                                             }, title: S.of(context).preferredDate);
@@ -361,7 +417,12 @@ class RjFlightBookingDialogView extends StatelessWidget {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
-                                return PassengerWidget(passengerList: model.passengerList, index: index);
+                                return PassengerWidget(
+                                    onTap: (data) {
+                                      model.passengerList = data;
+                                    },
+                                    passengerList: model.passengerList,
+                                    index: index);
                               },
                               separatorBuilder: (context, int) {
                                 return SizedBox(
@@ -375,16 +436,45 @@ class RjFlightBookingDialogView extends StatelessWidget {
                           GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                //  Navigator.pushNamed(context, RoutePaths.RjFlightBookingDetailPage);
-                                Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
-                                    arguments: RjBookingPageArguments('https://www.google.co.in/'));
+                                model.getTripLink(context);
                               }
                             },
-                            child: AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
-                              borderColor: AppColor.brightBlue,
-                              textColor: AppColor.brightBlue,
-                            ),
+                            child: AppStreamBuilder<Resource<GetTripResponse>>(
+                                stream: model.getTwoWayLinkStream,
+                                initialData: Resource.none(),
+                                onData: (data) {
+                                  if (data.status == Status.SUCCESS) {
+                                    Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                                        arguments:
+                                            RjBookingPageArguments(url: data.data?.content?.content?.link));
+                                  }
+                                },
+                                dataBuilder: (context, getOneWayTripLinkResponse) {
+                                  return AppStreamBuilder<Resource<GetTripResponse>>(
+                                      stream: model.getOneWayLinkStream,
+                                      initialData: Resource.none(),
+                                      onData: (data) {
+                                        if (data.status == Status.SUCCESS) {
+                                          Navigator.pushNamed(context, RoutePaths.RjBookingInAppWebView,
+                                              arguments: RjBookingPageArguments(
+                                                  url: data.data?.content?.content?.link));
+                                        }
+                                      },
+                                      dataBuilder: (context, getOneWayTripLinkResponse) {
+                                        return AppStreamBuilder<bool>(
+                                            stream: model.allFieldValidatorStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return (isValid!)
+                                                  ? AnimatedButton(
+                                                      buttonText: S.of(context).swipeToProceed,
+                                                      borderColor: AppColor.brightBlue,
+                                                      textColor: AppColor.brightBlue,
+                                                    )
+                                                  : Container();
+                                            });
+                                      });
+                                }),
                           ),
                         ],
                       ),
@@ -423,5 +513,56 @@ class RjFlightBookingDialogView extends StatelessWidget {
             ));
       },
     );
+  }
+
+  _showTopError(String message, BuildContext context) {
+    showTopSnackBar(
+        context,
+        Material(
+          color: AppColor.white.withOpacity(0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
+              decoration: BoxDecoration(color: AppColor.dark_brown, borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).error,
+                          style: TextStyle(
+                              fontFamily: StringUtils.appFont,
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10.0.t),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.0.h, right: 16.0.w),
+                          child: Text(message,
+                              style: TextStyle(
+                                  fontFamily: StringUtils.appFont,
+                                  // fontFamily: "Montserrat",
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12.0.t)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        displayDuration: Duration(milliseconds: 1500),
+        hideOutAnimationDuration: Duration(milliseconds: 500),
+        showOutAnimationDuration: Duration(milliseconds: 700));
   }
 }

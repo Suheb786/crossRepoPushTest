@@ -47,8 +47,8 @@ class LoginViewModel extends BasePageViewModel {
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
   final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
 
-  final TextEditingController emailController = TextEditingController(/*text: 'testrob146@g.com'*/);
-  final TextEditingController passwordController = TextEditingController(/*text: 'Asdf@12345'*/);
+  final TextEditingController emailController = TextEditingController(text: 'amta99@g.com');
+  final TextEditingController passwordController = TextEditingController(text: 'Amta@123');
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey = GlobalKey(debugLabel: "login_password");

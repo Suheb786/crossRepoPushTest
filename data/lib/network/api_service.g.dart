@@ -24,7 +24,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(Options(
                 method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(
-                _dio.options, 'https://10.6.13.1:2181/api/auth/CheckUserName',
+                _dio.options, 'https://10.6.13.1:2186/api/auth/CheckUserName',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -43,7 +43,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://10.6.13.1:2181/api/auth/CheckUserNameMobile',
+                    'https://10.6.13.1:2186/api/auth/CheckUserNameMobile',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -617,7 +617,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://10.6.13.1:2181/api/Country/GetAllowedCode',
+                    'https://10.6.13.1:2186/api/Country/GetAllowedCode',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
@@ -2548,52 +2548,53 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getDestinations(request) async {
+  Future<HttpResponse<DestinationResponseEntity>> getDestinations(
+      request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<DestinationResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/RJ/GetDestinations',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = DestinationResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getOneWayTripLink(request) async {
+  Future<HttpResponse<GetTripResponseEntity>> getOneWayTripLink(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<GetTripResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/RJ/GetOneWayLink',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = GetTripResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getTwoWayTripLink(request) async {
+  Future<HttpResponse<GetTripResponseEntity>> getTwoWayTripLink(request) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<GetTripResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/RJ/GetRoundTripLink',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = GetTripResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
