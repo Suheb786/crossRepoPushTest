@@ -15,4 +15,9 @@ abstract class RJRepository {
 
   Future<Either<NetworkError, GetTripResponse>> getTwoWayTripLink(
       {required GetTwoWayTripLinkUseCaseParams params});
+
+  Future<Either<NetworkError, bool>> getFlightDetails({required String referenceNumber});
+
+  Future<Either<NetworkError, bool>> makeTicketPayment(
+      {required String referenceNumber, required String accountNo, required String amount});
 }

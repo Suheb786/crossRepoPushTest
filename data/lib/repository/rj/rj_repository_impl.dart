@@ -49,4 +49,27 @@ class RJRepositoryImpl extends RJRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> getFlightDetails({required String referenceNumber}) async {
+    final result = await safeApiCall(
+      _rjRemoteDS.getFlightDetails(referenceNumber: referenceNumber),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> makeTicketPayment(
+      {required String referenceNumber, required String accountNo, required String amount}) async {
+    final result = await safeApiCall(
+      _rjRemoteDS.makeTicketPayment(referenceNumber: referenceNumber, accountNo: accountNo, amount: amount),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }
