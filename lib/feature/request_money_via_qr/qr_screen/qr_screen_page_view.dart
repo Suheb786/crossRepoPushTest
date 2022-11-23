@@ -181,6 +181,6 @@ class QrScreenPageView extends BasePageViewWidget<QrScreenPageViewModel> {
 
   void _shareImage(QrScreenPageViewModel model, String paymentLink) async {
     Share.share(
-        '${model.arguments.account.accountTitle} has requested JOD ${model.arguments.requestAmt} from you. To complete the payment:\n $paymentLink');
+        '${model.arguments.account.accountTitle} has requested JOD ${model.arguments.requestAmt} from you. To complete the payment click on the below link:\n $paymentLink');
   }
 }

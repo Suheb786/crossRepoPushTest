@@ -11,6 +11,7 @@ import 'package:data/entity/remote/payment/payment_activity_request_entity.dart'
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
@@ -145,5 +146,37 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.payBackCreditCard(PayBackCreditCardRequestEntity(
         baseData: baseData.toJson(), getToken: true, payBackAmount: payBackAmount, secureCode: secureCode));
+  }
+
+  @override
+  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
+      {String? beneficiaryId,
+      String? transferType,
+      String? beneficiaryImage,
+      bool? isFriend,
+      num? toAmount,
+      num? localEq,
+      String? memo,
+      String? toAccount,
+      String? nickName,
+      String? detCustomerType,
+      String? type}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.transferAPINoOtp(TransferApiNoOtpRequestEntity(
+        baseData: baseData.toJson(),
+        toAmount: toAmount!,
+        toAccount: toAccount!,
+        beneficiaryId: beneficiaryId,
+        beneficiaryImage: (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
+            ? ImageUtils.convertToBase64(beneficiaryImage)
+            : '',
+        isFriend: isFriend!,
+        localEq: localEq!,
+        memo: memo!,
+        nickName: nickName,
+        transferType: transferType!,
+        getToken: true,
+        detCustomerType: detCustomerType,
+        type: type));
   }
 }

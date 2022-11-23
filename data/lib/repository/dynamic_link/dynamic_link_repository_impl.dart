@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/dynamic_link/dynamic_link_datasource.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
@@ -26,12 +25,12 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
 
   @override
   Future<Either<BaseError, Uri>> initDynamicLinks() async {
-    final result = await safeApiCall(
-      _dynamicLinkDataSource.initDynamicLinks(),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r),
-    );
+    final result = await _dynamicLinkDataSource.initDynamicLinks();
+
+    if (result.toString().isNotEmpty) {
+      return Right(result);
+    } else {
+      throw Exception();
+    }
   }
 }

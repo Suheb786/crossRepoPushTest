@@ -27,13 +27,11 @@ class DynamicLinksService {
         appStoreId: '1607969058',
       ),
     );
+    /* final ShortDynamicLink shortDynamicLink = await parameters.buildShortLink();
+    final Uri shortUrl = shortDynamicLink.shortUrl;*/
+    final Uri longUrl = await parameters.buildUrl();
 
-    //  final Uri dynamicUrl = await parameters.buildUrl();
-    final ShortDynamicLink shortLink = await parameters.buildShortLink();
-    final Uri shortUrl = shortLink.shortUrl;
-    //  final Uri shortUrl = shortDynamicLink.shortUrl;
-    print('shortUrl----->${shortUrl.toString()}');
-    return shortUrl.toString();
+    return longUrl.toString();
   }
 
   Future<Uri> initDynamicLinks() async {
@@ -47,7 +45,7 @@ class DynamicLinksService {
       }
     }, onError: (OnLinkErrorException e) async {
       throw AppLocalException(
-        appLocalExceptionType: AppLocalExceptionType.FAILED_TO_LOG_EVENT,
+        appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
       );
     });
 

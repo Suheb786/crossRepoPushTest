@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/base_error.dart';
-import 'package:domain/error/database_error.dart';
 
 abstract class DynamicLinkRepository {
   /// init sdk

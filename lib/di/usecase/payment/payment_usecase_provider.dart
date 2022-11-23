@@ -1,5 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/dynamic_link/create_dynamic_link_usecases.dart';
+import 'package:domain/usecase/dynamic_link/init_dynamic_link_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
@@ -18,6 +19,7 @@ import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
+import 'package:domain/usecase/payment/transfer_api_no_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -108,6 +110,11 @@ final transferUseCaseProvider = Provider.autoDispose<TransferUseCase>(
   (ref) => TransferUseCase(ref.read(paymentRepositoryProvider)),
 );
 
+///[TransferApiNoOtpUseCase] provider
+final transferApiNoOtpUseCaseProvider = Provider.autoDispose<TransferApiNoOtpUseCase>(
+  (ref) => TransferApiNoOtpUseCase(ref.read(paymentRepositoryProvider)),
+);
+
 ///[TransferVerifyUseCase] provider
 final transferVerifyUseCaseProvider = Provider.autoDispose<TransferVerifyUseCase>(
   (ref) => TransferVerifyUseCase(ref.read(paymentRepositoryProvider)),
@@ -125,4 +132,8 @@ final payBackCreditCardUseCaseProvider = Provider.autoDispose<PayBackCreditCardU
 
 final createDynamicLinkUseCaseProvider = Provider.autoDispose<CreateDynamicLinkUseCase>(
   (ref) => CreateDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
+);
+
+final initDynamicLinkUseCaseProvider = Provider.autoDispose<InitDynamicLinkUseCase>(
+  (ref) => InitDynamicLinkUseCase(ref.read(dynamicLinkRepositoryProvider)),
 );

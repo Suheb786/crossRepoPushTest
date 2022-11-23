@@ -1,7 +1,7 @@
+import 'package:domain/usecase/dynamic_link/create_dynamic_link_usecases.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/request_money_via_qr/qr_screen/qr_screen_page.dart';
-import 'package:domain/usecase/dynamic_link/create_dynamic_link_usecases.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';

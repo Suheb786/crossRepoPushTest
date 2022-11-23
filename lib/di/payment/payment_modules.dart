@@ -212,7 +212,7 @@ final sendMoneyQrScanningViewModelProvider = ChangeNotifierProvider.autoDispose
         (ref, args) => SendMoneyQrScanningPageViewModel(
               args,
               ref.read(checkSendMoneyUseCaseProvider),
-              ref.read(transferUseCaseProvider),
+              ref.read(transferApiNoOtpUseCaseProvider),
             ));
 
 ///send money qr success view model provider
