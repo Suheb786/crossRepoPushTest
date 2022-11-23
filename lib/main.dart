@@ -26,7 +26,7 @@ void main() async {
 
     // Pass all uncaught errors from the framework to Crashlytics.
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
     FirebaseAnalytics analytics = FirebaseAnalytics.instance;
     analytics.setCurrentScreen(screenName: "Main Screen");
     await analytics.logEvent(

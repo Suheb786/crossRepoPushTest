@@ -30,7 +30,7 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           },
           initialOptions: InAppWebViewGroupOptions(
             android: AndroidInAppWebViewOptions(
-              useHybridComposition: false,
+              useHybridComposition: true,
               // clearSessionCache: true,
               cacheMode: AndroidCacheMode.LOAD_DEFAULT,
             ),

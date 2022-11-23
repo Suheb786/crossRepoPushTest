@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/source/dynamic_link/dynamic_link_datasource.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
+import 'package:flutter/material.dart';
 
 class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
   final DynamicLinkDataSource _dynamicLinkDataSource;
@@ -26,11 +28,16 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
   @override
   Future<Either<BaseError, Uri>> initDynamicLinks() async {
     final result = await _dynamicLinkDataSource.initDynamicLinks();
+    debugPrint('--Result---->$result');
+    debugPrint('--Result data---->${result.queryParameters}');
+    debugPrint('--Result empty path---->${result.hasEmptyPath}');
 
-    if (result.toString().isNotEmpty) {
+    if (result.queryParameters.isNotEmpty) {
       return Right(result);
     } else {
-      throw Exception();
+      throw AppLocalException(
+        appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
+      );
     }
   }
 }

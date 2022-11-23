@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:data/helper/dynamic_link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -8,8 +9,8 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
+import 'package:neo_bank/main/app_viewmodel.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/utils/status.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
@@ -42,20 +43,36 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
 
   @override
   void onModelReady(AppHomeViewModel model) {
-    model.initDynamicLinkRequestStream.listen((event) {
-      if (event.status == Status.SUCCESS) {
-        if ((event.data?.path ?? '').isNotEmpty) {
-          var accountTitle = event.data?.queryParameters['accountTitle'];
-          var accountNo = event.data?.queryParameters['accountNo'];
-          var requestAmt = event.data?.queryParameters['requestAmt'];
-          var dateTime = event.data?.queryParameters['dateTime'];
-          if ((accountNo ?? '').isNotEmpty) {
-            Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
-                arguments: SendMoneyQRScanningArguments(
-                    amount: requestAmt ?? '',
-                    accountHolderName: accountTitle ?? '',
-                    accountNo: accountNo ?? ''));
-          }
+    // model.initDynamicLinkRequestStream.listen((event) {
+    //   if (event.status == Status.SUCCESS) {
+    //     debugPrint('------>${event?.path}');
+    //     if (event != null ? event!.queryParameters.isNotEmpty : false) {
+    //       var accountTitle = event?.queryParameters['accountTitle'];
+    //       var accountNo = event?.queryParameters['accountNo'];
+    //       var requestAmt = event?.queryParameters['requestAmt'];
+    //       var dateTime = event?.queryParameters['dateTime'];
+    //       if ((accountNo ?? '').isNotEmpty) {
+    //         Navigator.pushNamed(context, RoutePaths.SendMoneyQrScanning,
+    //             arguments: SendMoneyQRScanningArguments(
+    //                 amount: requestAmt ?? '',
+    //                 accountHolderName: accountTitle ?? '',
+    //                 accountNo: accountNo ?? ''));
+    //       }
+    //     }
+    //   }
+    // });
+    DynamicLinksService().initDynamicLinkRequestStream.listen((event) {
+      if (event != null ? event.queryParameters.isNotEmpty : false) {
+        var accountTitle = event.queryParameters['accountTitle'];
+        var accountNo = event.queryParameters['accountNo'];
+        var requestAmt = event.queryParameters['requestAmt'];
+        var dateTime = event.queryParameters['dateTime'];
+        if ((accountNo ?? '').isNotEmpty) {
+          Navigator.pushNamed(appLevelKey.currentContext!, RoutePaths.SendMoneyQrScanning,
+              arguments: SendMoneyQRScanningArguments(
+                  amount: requestAmt ?? '',
+                  accountHolderName: accountTitle ?? '',
+                  accountNo: accountNo ?? ''));
         }
       }
     });

@@ -1,8 +1,22 @@
 import 'package:data/db/exception/app_local_exception.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter/material.dart';
 import 'package:package_info/package_info.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DynamicLinksService {
+  PublishSubject<Uri> _initDynamicLinkRequestResponse = PublishSubject();
+
+  Stream<Uri> get initDynamicLinkRequestStream => _initDynamicLinkRequestResponse.stream;
+
+  static DynamicLinksService _instance = DynamicLinksService._();
+
+  DynamicLinksService._();
+
+  factory DynamicLinksService() {
+    return _instance;
+  }
+
   Future<String> createDynamicLink({
     required String accountTitle,
     required String accountNo,
@@ -41,7 +55,8 @@ class DynamicLinksService {
 
       if (link != null) {
         deepLink = link;
-        print(link.queryParameters['accountTitle']);
+        _initDynamicLinkRequestResponse.add(link);
+        debugPrint("----------Account Title${link.queryParameters['accountTitle']}");
       }
     }, onError: (OnLinkErrorException e) async {
       throw AppLocalException(
@@ -49,12 +64,16 @@ class DynamicLinksService {
       );
     });
 
+    debugPrint('-----Anything----');
+
     final PendingDynamicLinkData? data = await FirebaseDynamicLinks.instance.getInitialLink();
     Uri? deepPendingLink = data?.link;
 
     if (deepPendingLink != null) {
       deepLink = deepPendingLink;
-      print(deepPendingLink.queryParameters['accountNo']);
+      _initDynamicLinkRequestResponse.add(deepPendingLink);
+      debugPrint("==========>Get Initial Path${deepPendingLink.path}");
+      debugPrint("==========>Get Initial${deepPendingLink.queryParameters['accountNo']}");
     }
     return deepLink ?? Uri();
   }
