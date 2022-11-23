@@ -323,7 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cancelBooking": MessageLookupByLibrary.simpleMessage("Cancel Booking"),
         "cancelBookingDetail": MessageLookupByLibrary.simpleMessage(
-            "Your booking will expire after 3 days. Would you like to cancel your booking?"),
+            "Are you sure you want to cancel your booking? You’ll have to start over again if you cancel."),
         "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
             "إلغاء البطاقة رح يعطلها بشكل دائم ورح يتم شطبها من قائمة بطاقاتك. إذا بدك تستمر، رح توصلك بطاقة جديدة على عنوانك."),
         "cancelDebitCardError": MessageLookupByLibrary.simpleMessage(

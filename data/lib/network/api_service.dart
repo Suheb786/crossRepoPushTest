@@ -787,4 +787,6 @@ abstract class ApiService {
 
   @POST("/RJ/GetFlightDetails")
   Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
+
+  ///MakeTicketPaymentOtp
 }

@@ -14510,10 +14510,10 @@ class S {
     );
   }
 
-  /// `Your booking will expire after 3 days. Would you like to cancel your booking?`
+  /// `Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.`
   String get cancelBookingDetail {
     return Intl.message(
-      'Your booking will expire after 3 days. Would you like to cancel your booking?',
+      'Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.',
       name: 'cancelBookingDetail',
       desc: '',
       args: [],

@@ -1473,7 +1473,7 @@
   "bookingRefNo": "Booking Ref No.",
   "bookFlight": "BOOK FLIGHT",
   "cancelBooking": "Cancel Booking",
-  "cancelBookingDetail": "Your booking will expire after 3 days. Would you like to cancel your booking?",
+  "cancelBookingDetail": "Are you sure you want to cancel your booking? You’ll have to start over again if you cancel.",
   "departDescription": "Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM",
   "rjFlightBookingToDialogBoxDescription": "Enter the name of the country. Your destination will appear on the list.",
   "fromLabelForRJFlightBooking": "AMM - Amman Queen..",

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_fligt_booking_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 
+import '../../../main/navigation/route_paths.dart';
 import 'rj_booking_page_view_model.dart';
 
 class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
@@ -28,9 +30,10 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           },
           initialOptions: InAppWebViewGroupOptions(
             android: AndroidInAppWebViewOptions(
-                clearSessionCache: true,
-                cacheMode: AndroidCacheMode.LOAD_NO_CACHE,
-                useHybridComposition: true),
+              useHybridComposition: false,
+              // clearSessionCache: true,
+              cacheMode: AndroidCacheMode.LOAD_DEFAULT,
+            ),
             ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
             crossPlatform: InAppWebViewOptions(
               useShouldOverrideUrlLoading: true,
@@ -47,6 +50,14 @@ class RjBookingPageView extends BasePageViewWidget<RjBookingPageViewModel> {
           onLoadStop: (controller, url) {
             debugPrint('-----onload stop ---->${url}');
             debugPrint('-----onload path ---->${url?.path}');
+            if ((url?.path ?? '').contains('http://10.6.13.2:2186/RJFlightConfirmation/Index')) {
+              debugPrint('------RJ DETAILS----');
+              debugPrint('-----onload path ---->${url}');
+              String referenceNumber = url?.queryParameters['referenceNumber'] ?? '';
+              Navigator.pushReplacementNamed(context, RoutePaths.RjFlightBookingDetailPage,
+                  arguments: RJFlightDetailsPageArguments(referenceNumber: referenceNumber));
+              debugPrint('------RJ DETAILS----');
+            }
           },
         ),
         AppStreamBuilder<double>(

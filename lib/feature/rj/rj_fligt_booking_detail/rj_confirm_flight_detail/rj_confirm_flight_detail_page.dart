@@ -21,6 +21,17 @@ class RjConfirmFlightDetailPageState
   }
 
   @override
+  void onModelReady(RjConfirmFlightDetailViewModel model) {
+    model.getFlightDetails(
+        referenceNumber: ProviderScope.containerOf(context)
+                .read(rjFlightBookingDetailViewModelProvider)
+                .arguments
+                ?.referenceNumber ??
+            '');
+    super.onModelReady(model);
+  }
+
+  @override
   Color? scaffoldBackgroundColor() {
     return Colors.transparent;
   }

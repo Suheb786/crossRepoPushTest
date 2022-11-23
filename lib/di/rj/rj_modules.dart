@@ -47,7 +47,7 @@ final rjFlightBookingDetailViewModelProvider =
 
 final rjConfirmFlightBookingViewModelProvider =
     ChangeNotifierProvider.autoDispose<RjConfirmFlightDetailViewModel>(
-  (ref) => RjConfirmFlightDetailViewModel(),
+  (ref) => RjConfirmFlightDetailViewModel(ref.read(getFlightDetailUseCaseProvider)),
 );
 
 final rjMakePaymentViewModelProvider = ChangeNotifierProvider.autoDispose<RjMakePaymentViewModel>(
@@ -56,5 +56,5 @@ final rjMakePaymentViewModelProvider = ChangeNotifierProvider.autoDispose<RjMake
 
 ///[RjOtpValidateViewModel] provider
 final rjOtpValidateViewModelProvider = ChangeNotifierProvider.autoDispose<RjOtpValidateViewModel>(
-  (ref) => RjOtpValidateViewModel(),
+  (ref) => RjOtpValidateViewModel(ref.read(makeTicketPaymentUseCaseProvider)),
 );

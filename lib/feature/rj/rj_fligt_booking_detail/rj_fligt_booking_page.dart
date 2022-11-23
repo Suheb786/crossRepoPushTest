@@ -6,7 +6,9 @@ import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_booking_de
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_flight_detail_page_view.dart';
 
 class RjFlightBookingDetailPage extends BasePage<RjFlightBookingDetailPageViewModel> {
-  RjFlightBookingDetailPage();
+  final RJFlightDetailsPageArguments arguments;
+
+  RjFlightBookingDetailPage(this.arguments);
 
   @override
   RjFlightBookingDetailPageState createState() => RjFlightBookingDetailPageState();
@@ -21,6 +23,7 @@ class RjFlightBookingDetailPageState
 
   @override
   void onModelReady(RjFlightBookingDetailPageViewModel model) {
+    model.arguments = widget.arguments;
     super.onModelReady(model);
   }
 
@@ -28,4 +31,10 @@ class RjFlightBookingDetailPageState
   Widget buildView(BuildContext context, RjFlightBookingDetailPageViewModel model) {
     return RjFlightBookingDetailPageView(provideBase());
   }
+}
+
+class RJFlightDetailsPageArguments {
+  final String referenceNumber;
+
+  RJFlightDetailsPageArguments({required this.referenceNumber});
 }
