@@ -16,7 +16,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     ..text = 'Savings Account';
   String fieldTextLabelEn = "Enter Billing Number";
 
-
   var denominationTextController = TextEditingController();
   final billerNameTextController = TextEditingController();
   final serviceTypeTextControl = TextEditingController();
@@ -34,7 +33,6 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
   List<BillerService> billerService = [];
 
-
   final BehaviorSubject<bool> isShowBillerNumber =
       BehaviorSubject<bool>.seeded(false);
 
@@ -51,7 +49,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
 //////////////////
   final BehaviorSubject<bool> isShowAmount =
-  BehaviorSubject<bool>.seeded(false);
+      BehaviorSubject<bool>.seeded(false);
 
   Stream<bool> get isShowAmountStream => isShowAmount.stream;
   bool showAmountField = false;
@@ -71,6 +69,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
 
     notifyListeners();
   }
+
 //////////////////
 
   void updateStreamForBillingNumber(bool value) {
@@ -88,8 +87,7 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
     _switchStatusSubject.safeAdd(isActive);
   }
 
-  PayBillDetailPageViewModel(
-      this.addNewPostpaidBillerUseCase) {
+  PayBillDetailPageViewModel(this.addNewPostpaidBillerUseCase) {
     _addNewPostpaidBillerListener();
   }
 
@@ -123,13 +121,12 @@ class PayBillDetailPageViewModel extends BasePageViewModel {
                     addNewPostpaidBillerUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
+          updateLoader();
           _addNewPostpaidBillerResponce.safeAdd(event);
         });
       },
     );
   }
-
-
 
   @override
   void dispose() {

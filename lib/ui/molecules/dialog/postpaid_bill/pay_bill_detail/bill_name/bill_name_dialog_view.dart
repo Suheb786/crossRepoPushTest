@@ -151,21 +151,18 @@ class PayBillDialogView extends StatelessWidget {
                                                 ),
                                               ),
                                               AppScrollableListViewWidget(
-                                                key: ValueKey(model
-                                                    .billerDetailsList.length),
+                                                key: ValueKey(billList.length),
                                                 child:
                                                     ClickableListWheelScrollView(
                                                   scrollController:
                                                       model.scrollController,
                                                   itemHeight: 72,
-                                                  itemCount: model
-                                                      .billerDetailsList.length,
+                                                  itemCount: billList.length,
                                                   //   itemCount: data.data!.length,
                                                   onItemTapCallback: (index) {
                                                     print(
                                                         'onItemTapCallback----->$index');
                                                   },
-
                                                   child: ListWheelScrollView
                                                       .useDelegate(
                                                           controller: model

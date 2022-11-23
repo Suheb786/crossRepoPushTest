@@ -102,21 +102,21 @@ class PaySelectedBillsPostPaidBillsPageView
                                 itemBuilder: (context, index) {
                                   return SelectedBillsToPaidWidget(
                                     billName: model.getValidBillerNickName(
-                                        model.arguments.noOfSelectedBills[index].billingNo),
+                                        model.arguments.postPaidBillInquiryData?[index].billNo),
                                     billType: model.getValidBillerNameEN(
-                                        model.arguments.noOfSelectedBills[index].billingNo),
+                                        model.arguments.postPaidBillInquiryData?[index].billNo),
                                     itemCount: (index + 1).toString(),
                                     onChanged: (value) {
                                       model.newAmtEnter(index, value);
                                     },
                                     billAmtDue: model.getValidBillerDueAmount(
-                                        model.arguments.noOfSelectedBills[index].billingNo),
+                                        model.arguments.postPaidBillInquiryData?[index].billingNo),
                                   );
                                 },
                                 separatorBuilder: (context, index) {
                                   return AppDivider();
                                 },
-                                itemCount: model.arguments.noOfSelectedBills.length),
+                                itemCount: model.arguments.postPaidBillInquiryData!.length),
                             Padding(
                               padding: EdgeInsetsDirectional.only(start: 24.w, top: 32.h, bottom: 16.h),
                               child: Align(

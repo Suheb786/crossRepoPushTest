@@ -29,18 +29,18 @@ class PayBillDialogViewModel extends BasePageViewModel {
   PublishSubject<List<BillerDetailsList>> _searchBillNameSubject = PublishSubject();
   Stream<List<BillerDetailsList>> get searchBillNameStream => _searchBillNameSubject.stream;
 
-  List<String> searchList = [];
+  List<BillerDetailsList> searchList = [];
   void searchBillName(String searchText) {
     searchList.clear();
     if (searchText.isNotEmpty) {
       billerDetailsList.forEach((element) {
-        if (element.billerNameEn!.toLowerCase().contains(searchText)) {
-          searchList.add(element.billerNameEn!);
+        if (element.billerNameEn!.toLowerCase().contains(searchText.toLowerCase())) {
+          searchList.add(element);
         }
       });
       _searchBillNameSubject.safeAdd(searchList);
     } else {
-      _searchBillNameSubject.safeAdd(searchList);
+      _searchBillNameSubject.safeAdd(billerDetailsList);
     }
   }
 

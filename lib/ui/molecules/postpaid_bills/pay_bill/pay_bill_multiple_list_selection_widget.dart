@@ -5,6 +5,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/get_bill_payments_categories.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
@@ -32,7 +33,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 24.0.h, horizontal: 0.0.w),
       child: Row(
         children: [
-          Container(
+/*          Container(
             width: 40.w,
             height: 40.w,
             alignment: Alignment.center,
@@ -41,6 +42,19 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
               color: AppColor.vividYellow,
             ),
             child: AppSvg.asset(icon),
+          )*/
+          Container(
+            width: 40.w,
+            height: 40.w,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColor.vividYellow,
+            ),
+            child: Image.asset(
+              GetBillPaymentsCategories.path(icon),
+              matchTextDirection: false,
+            ),
           ),
           SizedBox(
             width: 8.w,
@@ -64,7 +78,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 12.0.t),
               ),
-              this.paidBillsPayTypeOptionEnum == PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
+              this.paidBillsPayTypeOptionEnum ==
+                      PostPaidBillsPayTypeOptionEnum.PAYALLBILLS
                   ? RichText(
                       text: TextSpan(
                           text: S.of(context).due + " ",
@@ -124,7 +139,8 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
                   height: 40.h,
                   width: 40.w,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.only(start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
+                    padding: EdgeInsetsDirectional.only(
+                        start: 10.w, end: 10.w, bottom: 10.h, top: 10.h),
                     child: AppSvg.asset(AssetUtils.tick, color: AppColor.black),
                   ),
                   decoration: BoxDecoration(

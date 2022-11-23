@@ -31,8 +31,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
 
   List<PostpaidBillInquiry>? tempPostpaidBillInquiryRequestList = [];
 
-  PaySelectedBillsPostPaidBillsPageViewModel(
-      this.postPaidBillInquiryUseCase, this.payPostPaidBillUseCase, this.arguments) {
+  PaySelectedBillsPostPaidBillsPageViewModel(this.postPaidBillInquiryUseCase,
+      this.payPostPaidBillUseCase, this.arguments) {
     postPaidBillInquiryListener();
     payPostPaidBillListener();
   }
@@ -48,21 +48,26 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- post paid bill enquiry -------------------------------- ///
-  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest = PublishSubject();
+  PublishSubject<PostPaidBillInquiryUseCaseParams> _postPaidBillEnquiryRequest =
+      PublishSubject();
 
-  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse = BehaviorSubject();
+  BehaviorSubject<Resource<PostPaidBillInquiry>> _postPaidBillEnquiryResponse =
+      BehaviorSubject();
 
-  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream => _postPaidBillEnquiryResponse.stream;
+  Stream<Resource<PostPaidBillInquiry>> get postPaidBillEnquiryStream =>
+      _postPaidBillEnquiryResponse.stream;
 
   void postPaidBillInquiry() {
-    _postPaidBillEnquiryRequest
-        .safeAdd(PostPaidBillInquiryUseCaseParams(postpaidBillInquiries: arguments.postPaidRequestListJson));
+    _postPaidBillEnquiryRequest.safeAdd(PostPaidBillInquiryUseCaseParams(
+        postpaidBillInquiries: arguments.postPaidRequestListJson));
   }
 
   void postPaidBillInquiryListener() {
     _postPaidBillEnquiryRequest.listen(
       (params) {
-        RequestManager(params, createCall: () => postPaidBillInquiryUseCase.execute(params: params))
+        RequestManager(params,
+                createCall: () =>
+                    postPaidBillInquiryUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           updateLoader();
@@ -71,7 +76,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             showErrorState();
             showToastWithError(event.appError!);
           } else if (event.status == Status.SUCCESS) {
-            postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
+            postPaidBillInquiryData =
+                event.data?.content?.postPaidBillInquiryData;
           }
         });
       },
@@ -79,11 +85,14 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   /// ---------------- pay prepaid bill -------------------------------- ///
-  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest = PublishSubject();
+  PublishSubject<PayPostPaidBillUseCaseParams> _payPostPaidRequest =
+      PublishSubject();
 
-  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse = BehaviorSubject();
+  BehaviorSubject<Resource<PayPostPaidBill>> _payPostPaidResponse =
+      BehaviorSubject();
 
-  Stream<Resource<PayPostPaidBill>> get payPostPaidStream => _payPostPaidResponse.stream;
+  Stream<Resource<PayPostPaidBill>> get payPostPaidStream =>
+      _payPostPaidResponse.stream;
 
   void payPostPaidBill() {
     tempPostpaidBillInquiryRequestList = [];
@@ -100,7 +109,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
             fees: item.feesAmt ?? "0.0"));
       }
     }
-    tempPostpaidBillInquiryRequestList = tempPostpaidBillInquiryRequestList?.toSet().toList();
+    tempPostpaidBillInquiryRequestList =
+        tempPostpaidBillInquiryRequestList?.toSet().toList();
     _payPostPaidRequest.safeAdd(PayPostPaidBillUseCaseParams(
         billerList: tempPostpaidBillInquiryRequestList,
         accountNo: "accountNumber",
@@ -126,7 +136,9 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void payPostPaidBillListener() {
     _payPostPaidRequest.listen(
       (params) {
-        RequestManager(params, createCall: () => payPostPaidBillUseCase.execute(params: params))
+        RequestManager(params,
+                createCall: () =>
+                    payPostPaidBillUseCase.execute(params: params))
             .asFlow()
             .listen((event) {
           //to do
@@ -143,7 +155,6 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   void newAmtEnter(int index, String value) {
     totalAmt[index] = double.parse(value);
     arguments.noOfSelectedBills[index].dueAmount = value;
-
     _totalBillAmtDueSubject.safeAdd(totalAmt.sum);
   }
 
@@ -153,7 +164,8 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
     double totalAmount = 0.0;
     isTotalAmountZero = true;
     for (var item in list!) {
-      totalAmount = totalAmount + double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
+      totalAmount = totalAmount +
+          double.parse(getTotalAmountItemWise(item.dueAmount, item.feesAmt));
     }
     if (totalAmount > 0) isTotalAmountZero = false;
     // showButton();
@@ -169,19 +181,25 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   getValidBillerIcon(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills) if (item.billingNo == billingNumber) return item.iconCode;
+    for (var item in arguments.noOfSelectedBills)
+      if (item.billingNo == billingNumber) return item.iconCode;
   }
 
   getValidBillerNameEN(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
       if (item.billingNo == billingNumber)
-        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty ? item.billerNameEN : null;
+        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
+            ? item.billerNameEN
+            : "null";
   }
 
   getValidBillerNickName(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills)
+    for (var item in arguments.noOfSelectedBills) {
       if (item.billingNo == billingNumber)
-        return item.nickName != null && item.nickName!.isNotEmpty ? item.nickName : null;
+        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
+            ? item.billerNameEN
+            : "null";
+    }
   }
 
   /* getValidBillerServiceTypeDescEN(String? billingNumber) {
@@ -194,15 +212,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }*/
 
   getValidBillerDueAmount(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills)
+    for (var item in arguments.postPaidBillInquiryData!)
       if (item.billingNo == billingNumber)
-        return item.dueAmount != null && item.dueAmount!.isNotEmpty ? item.dueAmount : null;
+        return item.dueAmount != null && item.dueAmount!.isNotEmpty
+            ? item.dueAmount
+            : "0.0";
   }
 
   getValidBillerBillingNumber(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills)
       if (item.billingNo == billingNumber)
-        return item.billingNo != null && item.billingNo!.isNotEmpty ? item.billingNo : null;
+        return item.billingNo != null && item.billingNo!.isNotEmpty
+            ? item.billingNo
+            : "null";
   }
 
   @override

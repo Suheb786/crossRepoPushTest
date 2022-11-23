@@ -194,8 +194,10 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           } else if (event.status == Status.SUCCESS) {
             if (selectedIndex < 0) {
               postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
+              totalBillAmt = 0.0;
 
               for (int i = 0; i < postPaidBillInquiryData!.length; i++) {
+                totalBillAmt = totalBillAmt + double.parse(postPaidBillInquiryData![i].dueAmount.toString());
                 PostPaidBillInquiryData element = postPaidBillInquiryData![i];
                 for (int j = 0; j < payPostPaidBillsDataList.length; j++) {
                   GetPostpaidBillerListModelData item = payPostPaidBillsDataList[j];
@@ -204,10 +206,14 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
                   }
                 }
               }
+
+              _totalBillAmtDueSubject.safeAdd(totalBillAmt);
+
             } else {
+              postPaidBillInquiryData = event.data?.content?.postPaidBillInquiryData;
+
               payPostPaidBillsDataList[selectedIndex].dueAmount =
                   event.data?.content?.postPaidBillInquiryData?[0].dueAmount;
-              print("dueAmount123:${payPostPaidBillsDataList[selectedIndex].dueAmount}");
             }
 
             addAllBillAmt();
