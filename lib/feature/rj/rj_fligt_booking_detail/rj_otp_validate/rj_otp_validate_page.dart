@@ -53,19 +53,16 @@ class RjOtpValidatePageState extends BaseStatefulPage<RjOtpValidateViewModel, Rj
 
   @override
   void initState() {
-    print('inside init');
     super.initState();
     listenForCode();
 
     SmsAutoFill().getAppSignature.then((signature) {
-      print('inside signature---->$signature');
+      debugPrint('inside signature---->$signature');
     });
-    print('inside init end');
   }
 
   @override
   void codeUpdated() {
-    print('code updated');
     getViewModel().otpController.text = code!;
   }
 

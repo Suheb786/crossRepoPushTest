@@ -12,7 +12,8 @@ class MakeTicketPaymentUseCase extends BaseUseCase<NetworkError, MakeTicketPayme
 
   @override
   Future<Either<NetworkError, bool>> execute({required MakeTicketPaymentUseCaseParams params}) {
-    return _repository.makeTicketPayment(referenceNumber: params.referenceNumber, amount: '', accountNo: '');
+    return _repository.makeTicketPayment(
+        referenceNumber: params.referenceNumber, amount: '', accountNo: '', otpCode: params.otpCode);
   }
 }
 
@@ -20,9 +21,10 @@ class MakeTicketPaymentUseCaseParams extends Params {
   final String referenceNumber;
   final String accountNo;
   final String amount;
+  final String otpCode;
 
   MakeTicketPaymentUseCaseParams(
-      {required this.referenceNumber, required this.amount, required this.accountNo});
+      {required this.referenceNumber, required this.amount, required this.accountNo, required this.otpCode});
 
   @override
   Either<AppError, bool> verify() {

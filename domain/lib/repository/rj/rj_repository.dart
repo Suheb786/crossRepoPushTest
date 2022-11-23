@@ -18,6 +18,12 @@ abstract class RJRepository {
 
   Future<Either<NetworkError, bool>> getFlightDetails({required String referenceNumber});
 
-  Future<Either<NetworkError, bool>> makeTicketPayment(
-      {required String referenceNumber, required String accountNo, required String amount});
+  Future<Either<NetworkError, bool>> makeTicketPayment({
+    required String referenceNumber,
+    required String accountNo,
+    required String amount,
+    required String otpCode,
+  });
+
+  Future<Either<NetworkError, bool>> rjOtpValidate();
 }

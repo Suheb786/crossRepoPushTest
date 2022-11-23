@@ -18,6 +18,12 @@ abstract class RJRemoteDS {
 
   Future<HttpResponse<ResponseEntity>> getFlightDetails({required String referenceNumber});
 
-  Future<HttpResponse<ResponseEntity>> makeTicketPayment(
-      {required String referenceNumber, required String accountNo, required String amount});
+  Future<HttpResponse<ResponseEntity>> makeTicketPayment({
+    required String referenceNumber,
+    required String accountNo,
+    required String amount,
+    required String otpCode,
+  });
+
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate();
 }

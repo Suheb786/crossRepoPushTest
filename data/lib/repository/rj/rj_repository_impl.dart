@@ -63,9 +63,24 @@ class RJRepositoryImpl extends RJRepository {
 
   @override
   Future<Either<NetworkError, bool>> makeTicketPayment(
-      {required String referenceNumber, required String accountNo, required String amount}) async {
+      {required String referenceNumber,
+      required String accountNo,
+      required String amount,
+      required String otpCode}) async {
     final result = await safeApiCall(
-      _rjRemoteDS.makeTicketPayment(referenceNumber: referenceNumber, accountNo: accountNo, amount: amount),
+      _rjRemoteDS.makeTicketPayment(
+          referenceNumber: referenceNumber, accountNo: accountNo, amount: amount, otpCode: otpCode),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> rjOtpValidate() async {
+    final result = await safeApiCall(
+      _rjRemoteDS.rjOtpValidate(),
     );
     return result!.fold(
       (l) => Left(l),

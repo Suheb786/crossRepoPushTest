@@ -1477,5 +1477,6 @@
   "departDescription": "Amman, Jordan (AMM)\nto Tokyo, Japan (NRT) \n31 Jul 2022 - 3:30PM",
   "rjFlightBookingToDialogBoxDescription": "Enter the name of the country. Your destination will appear on the list.",
   "fromLabelForRJFlightBooking": "AMM - Amman Queen..",
-  "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure."
+  "bookFligtWithUsDescrption": "Travelling soon? You can now book your Royal Jordanian flight within Blink! It is seamless and yet secure.",
+  "accountCard": "Account Card"
 }

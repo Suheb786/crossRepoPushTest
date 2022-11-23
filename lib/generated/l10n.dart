@@ -14558,6 +14558,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Account Card`
+  String get accountCard {
+    return Intl.message(
+      'Account Card',
+      name: 'accountCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -14572,10 +14582,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

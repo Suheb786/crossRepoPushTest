@@ -1,5 +1,6 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/rj/get_destination/destination_response_entity.dart';
 import 'package:data/entity/remote/rj/get_destination/get_destination_request_entity.dart';
 import 'package:data/entity/remote/rj/get_flight_details/get_flight_details_request_entity.dart';
@@ -82,14 +83,25 @@ class RJRemoteDSImpl extends RJRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> makeTicketPayment(
-      {required String referenceNumber, required String accountNo, required String amount}) async {
+  Future<HttpResponse<ResponseEntity>> makeTicketPayment({
+    required String referenceNumber,
+    required String accountNo,
+    required String amount,
+    required String otpCode,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.makeTicketPayment(MakeTicketPaymentRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         referenceNumber: referenceNumber,
         accountNo: accountNo,
-        amount: amount));
+        amount: amount,
+        otpCode: otpCode));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.rjOtpValidate(BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

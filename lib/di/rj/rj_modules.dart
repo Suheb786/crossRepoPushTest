@@ -51,10 +51,11 @@ final rjConfirmFlightBookingViewModelProvider =
 );
 
 final rjMakePaymentViewModelProvider = ChangeNotifierProvider.autoDispose<RjMakePaymentViewModel>(
-  (ref) => RjMakePaymentViewModel(),
+  (ref) => RjMakePaymentViewModel(ref.read(rjOtpValidateUseCaseProvider)),
 );
 
 ///[RjOtpValidateViewModel] provider
 final rjOtpValidateViewModelProvider = ChangeNotifierProvider.autoDispose<RjOtpValidateViewModel>(
-  (ref) => RjOtpValidateViewModel(ref.read(makeTicketPaymentUseCaseProvider)),
+  (ref) => RjOtpValidateViewModel(
+      ref.read(makeTicketPaymentUseCaseProvider), ref.read(rjOtpValidateUseCaseProvider)),
 );

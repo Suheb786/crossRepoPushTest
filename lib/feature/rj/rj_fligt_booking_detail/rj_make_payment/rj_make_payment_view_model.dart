@@ -1,23 +1,46 @@
+import 'package:domain/usecase/rj/rj_otp_validate.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RjMakePaymentViewModel extends BasePageViewModel {
-  RjMakePaymentViewModel() {
-    // _itemSelectedSubject.safeAdd(Resource.success(data:makePaymentCardList ));
+  final RJOtpValidateUseCase _rjOtpValidateUseCase;
+
+  ///---------------Rj OTP Validate Details----------------------///
+  PublishSubject<RJOtpValidateUseCaseParams> _rjOtpValidateRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _rjOtpValidateResponse = PublishSubject();
+
+  Stream<Resource<bool>> get rjOtpValidateStream => _rjOtpValidateResponse.stream;
+
+  void rjOtpValidate() {
+    _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());
   }
 
-  List<MakePaymentCard> makePaymentCardList = [
-    MakePaymentCard('My Credit Card', '•••• •••• •••• 2111', '7,896.320', 'JOD', false),
-    MakePaymentCard('My Credit Card', '•••• •••• •••• 2111', '7,896.320', 'JOD', false),
-    MakePaymentCard('My Credit Card', '•••• •••• •••• 2111', '7,896.320', 'JOD', false),
-    MakePaymentCard('My Credit Card', '•••• •••• •••• 2111', '7,896.320', 'JOD', false),
-    MakePaymentCard('My Credit Card', '•••• •••• •••• 2111', '7,896.320', 'JOD', false),
-  ];
-  PublishSubject<Resource<List<MakePaymentCard>>> _itemSelectedSubject = PublishSubject();
+  ///---------------Rj OTP Validate Details----------------------///
 
-  Stream<Resource<List<MakePaymentCard>>> get itemSelectedStream => _itemSelectedSubject.stream;
+  RjMakePaymentViewModel(this._rjOtpValidateUseCase) {
+    _rjOtpValidateRequest.listen((value) {
+      RequestManager(value, createCall: () => _rjOtpValidateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _rjOtpValidateResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
+  List<MakePaymentCard> makePaymentCardList = [];
+  PublishSubject<List<MakePaymentCard>> _itemSelectedSubject = PublishSubject();
+
+  Stream<List<MakePaymentCard>> get itemSelectedStream => _itemSelectedSubject.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject();
 
@@ -28,8 +51,11 @@ class RjMakePaymentViewModel extends BasePageViewModel {
     super.dispose();
   }
 
-  void addMakePaymentItem() {
-    _itemSelectedSubject.safeAdd(Resource.success(data: makePaymentCardList));
+  MakePaymentCard? selectedCard;
+
+  void addMakePaymentItem({required List<MakePaymentCard> cardList}) {
+    makePaymentCardList = cardList;
+    _itemSelectedSubject.safeAdd(cardList);
   }
 
   void selectedItem(int index) {
@@ -39,7 +65,8 @@ class RjMakePaymentViewModel extends BasePageViewModel {
       });
       makePaymentCardList[index].isSelected = true;
     }
-    _itemSelectedSubject.safeAdd(Resource.success(data: makePaymentCardList));
+    _itemSelectedSubject.safeAdd(makePaymentCardList);
+    selectedCard = makePaymentCardList.firstWhere((element) => element.isSelected);
     _showButtonSubject.safeAdd(true);
   }
 }

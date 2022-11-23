@@ -1,35 +1,52 @@
-import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:domain/usecase/rj/make_ticket_payment_usecase.dart';
-import 'package:domain/usecase/user/change_my_number_usecase.dart';
-import 'package:domain/usecase/user/get_token_usecase.dart';
-import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/rj/rj_otp_validate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class RjOtpValidateViewModel extends BasePageViewModel {
   final MakeTicketPaymentUseCase _makeTicketPaymentUseCase;
 
-  ///---------------Get Flight Details----------------------///
+  final RJOtpValidateUseCase _rjOtpValidateUseCase;
+
+  ///---------------Rj OTP Validate Details----------------------///
+  PublishSubject<RJOtpValidateUseCaseParams> _rjOtpValidateRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _rjOtpValidateResponse = PublishSubject();
+
+  Stream<Resource<bool>> get rjOtpValidateStream => _rjOtpValidateResponse.stream;
+
+  void rjOtpValidate() {
+    _rjOtpValidateRequest.safeAdd(RJOtpValidateUseCaseParams());
+  }
+
+  ///---------------Rj OTP Validate Details----------------------///
+
+  ///---------------Make Ticket Payment Details----------------------///
   PublishSubject<MakeTicketPaymentUseCaseParams> _makeTicketPaymentRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _makeTicketPaymentResponse = PublishSubject();
 
   Stream<Resource<bool>> get makeTicketPaymentStream => _makeTicketPaymentResponse.stream;
 
-  void makeTicketPayment() {
-    _makeTicketPaymentRequest
-        .safeAdd(MakeTicketPaymentUseCaseParams(referenceNumber: '', amount: '', accountNo: ''));
+  void makeTicketPayment(
+      {required String referenceNumber,
+      required String amount,
+      required String accountNo,
+      required String otpCode}) {
+    _makeTicketPaymentRequest.safeAdd(MakeTicketPaymentUseCaseParams(
+        referenceNumber: referenceNumber, amount: amount, accountNo: accountNo, otpCode: otpCode));
   }
 
-  ///---------------Get Flight Details----------------------///
+  ///---------------Make Ticket Payment Details----------------------///
 
-  RjOtpValidateViewModel(this._makeTicketPaymentUseCase) {
+  RjOtpValidateViewModel(this._makeTicketPaymentUseCase, this._rjOtpValidateUseCase) {
     _makeTicketPaymentRequest.listen((value) {
       RequestManager(value, createCall: () => _makeTicketPaymentUseCase.execute(params: value))
           .asFlow()
@@ -39,6 +56,23 @@ class RjOtpValidateViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _rjOtpValidateRequest.listen((value) {
+      RequestManager(value, createCall: () => _rjOtpValidateUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _rjOtpValidateResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
+          listenForSmsCode();
         }
       });
     });
@@ -52,60 +86,11 @@ class RjOtpValidateViewModel extends BasePageViewModel {
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
-  void updateTime() {
-    otpController.clear();
-    resendOtp();
-  }
-
-  ///verify otp request subject holder
-  PublishSubject<VerifyOtpUseCaseParams> _verifyOtpRequest = PublishSubject();
-
-  ///verify otp response holder
-  PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
-
-  ///verify otp stream
-  Stream<Resource<bool>> get verifyOtpStream => _verifyOtpResponse.stream;
-
-  ///error detector subject
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  ///error detector stream
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
   BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
-
-  ///resend otp
-  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
-
-  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
-
-  ///change my number request subject holder
-  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest = PublishSubject();
-
-  ///change my number response holder
-  PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
-
-  ///change my number stream
-  Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
-
-  void validateOtp() {
-    _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: _otpSubject.value));
-  }
-
-  void resendOtp() {
-    _getTokenRequest.safeAdd(GetTokenUseCaseParams());
-  }
-
-  void changeMyNumber(String mobileNo, String countryCode) {
-    _changeMyNumberRequest
-        .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
-  }
 
   void validate(String value) {
     if (value.isNotEmpty && value.length == 6) {
@@ -116,22 +101,13 @@ class RjOtpValidateViewModel extends BasePageViewModel {
     }
   }
 
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 800), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
-  }
-
   listenForSmsCode() async {
+    otpController.clear();
     SmsAutoFill().listenForCode();
   }
 
   @override
   void dispose() {
-    _verifyOtpRequest.close();
-    _verifyOtpResponse.close();
-    _errorDetectorSubject.close();
     countDownController.disposeTimer();
     _showButtonSubject.close();
     _otpSubject.close();

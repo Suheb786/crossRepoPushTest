@@ -770,11 +770,9 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
 
-
   @POST("/transfer/TransferAPINoOtp")
   Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
       @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
-
 
   ///RJ
   @POST("/RJ/GetDestinations")
@@ -795,5 +793,6 @@ abstract class ApiService {
   @POST("/RJ/GetFlightDetails")
   Future<HttpResponse<ResponseEntity>> getFlightDetails(@Body() GetFlightDetailsRequestEntity request);
 
-  ///MakeTicketPaymentOtp
+  @POST("/RJ/MakeTicketPaymentOtp")
+  Future<HttpResponse<ResponseEntity>> rjOtpValidate(@Body() BaseRequest request);
 }

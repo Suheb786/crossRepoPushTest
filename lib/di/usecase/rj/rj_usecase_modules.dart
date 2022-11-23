@@ -4,6 +4,7 @@ import 'package:domain/usecase/rj/get_flight_details_usecase.dart';
 import 'package:domain/usecase/rj/get_one_way_trip_link_usecase.dart';
 import 'package:domain/usecase/rj/get_two_way_trip_link_usecase.dart';
 import 'package:domain/usecase/rj/make_ticket_payment_usecase.dart';
+import 'package:domain/usecase/rj/rj_otp_validate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetDestinationUseCase] provider
@@ -23,10 +24,15 @@ final getTwoWayTripLinkUseCaseProvider = Provider.autoDispose<GetTwoWayTripLinkU
 
 ///[GetFlightDetailsUseCase] provider
 final getFlightDetailUseCaseProvider = Provider.autoDispose<GetFlightDetailsUseCase>(
-      (ref) => GetFlightDetailsUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => GetFlightDetailsUseCase(ref.read(rjRepositoryProvider)),
 );
 
 ///[MakeTicketPaymentUseCase] provider
 final makeTicketPaymentUseCaseProvider = Provider.autoDispose<MakeTicketPaymentUseCase>(
-      (ref) => MakeTicketPaymentUseCase(ref.read(rjRepositoryProvider)),
+  (ref) => MakeTicketPaymentUseCase(ref.read(rjRepositoryProvider)),
+);
+
+///[RJOtpValidateUseCase] provider
+final rjOtpValidateUseCaseProvider = Provider.autoDispose<RJOtpValidateUseCase>(
+  (ref) => RJOtpValidateUseCase(ref.read(rjRepositoryProvider)),
 );

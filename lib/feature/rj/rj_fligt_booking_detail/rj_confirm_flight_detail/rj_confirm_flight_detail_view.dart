@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/rj/rj_modules.dart';
 import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_confirm_flight_detail/rj_confirm_fight_detail_view_model.dart';
+import 'package:neo_bank/feature/rj/rj_fligt_booking_detail/rj_make_payment/rj_make_payment_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -52,7 +54,22 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               .nextPage();
                           ProviderScope.containerOf(context)
                               .read(rjMakePaymentViewModelProvider)
-                              .addMakePaymentItem();
+                              .addMakePaymentItem(cardList: [
+                            MakePaymentCard(
+                                S.of(context).accountCard,
+                                ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .account
+                                        ?.accountNo ??
+                                    '',
+                                '1000',
+                                'JOD',
+                                true)
+                          ]);
+                          ProviderScope.containerOf(context)
+                              .read(rjMakePaymentViewModelProvider)
+                              .selectedItem(0);
                         }
                       } else {
                         if (details.primaryVelocity!.isNegative) {
@@ -61,7 +78,22 @@ class RjConfirmFlightDetailView extends BasePageViewWidget<RjConfirmFlightDetail
                               .nextPage();
                           ProviderScope.containerOf(context)
                               .read(rjMakePaymentViewModelProvider)
-                              .addMakePaymentItem();
+                              .addMakePaymentItem(cardList: [
+                            MakePaymentCard(
+                                S.of(context).accountCard,
+                                ProviderScope.containerOf(context)
+                                        .read(appHomeViewModelProvider)
+                                        .dashboardDataContent
+                                        .account
+                                        ?.accountNo ??
+                                    '',
+                                '1000',
+                                'JOD',
+                                true)
+                          ]);
+                          ProviderScope.containerOf(context)
+                              .read(rjMakePaymentViewModelProvider)
+                              .selectedItem(0);
                         } else {
                           ProviderScope.containerOf(context)
                               .read(rjFlightBookingDetailViewModelProvider)

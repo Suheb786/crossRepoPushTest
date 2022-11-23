@@ -10,13 +10,20 @@ class MakeTicketPaymentRequestEntity {
   final String? amount;
   @JsonKey(name: "ReferenceNumber")
   final String? referenceNumber;
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
   MakeTicketPaymentRequestEntity(
-      {required this.baseData, this.getToken: true, this.referenceNumber, this.amount, this.accountNo});
+      {required this.baseData,
+      this.getToken: true,
+      this.referenceNumber,
+      this.amount,
+      this.accountNo,
+      this.otpCode});
 
   factory MakeTicketPaymentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$MakeTicketPaymentRequestEntityFromJson(json);
