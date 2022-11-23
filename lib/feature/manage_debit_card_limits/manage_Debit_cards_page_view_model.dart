@@ -19,28 +19,23 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   final CreditCardLimitsUpdateUseCase _creditCardLimitsUpdateUseCase;
 
   ///debit card limits update request
-  PublishSubject<DebitCardLimitsUpdateUseCaseParams>
-      _updateDebitCardLimitsRequestSubject = PublishSubject();
+  PublishSubject<DebitCardLimitsUpdateUseCaseParams> _updateDebitCardLimitsRequestSubject = PublishSubject();
 
   ///debit card get limits request
-  PublishSubject<DebitCardLimitUseCaseParams> _debitCardLimitRequest =
-      PublishSubject();
+  PublishSubject<DebitCardLimitUseCaseParams> _debitCardLimitRequest = PublishSubject();
 
   ///credit card limits update request
-  PublishSubject<CreditCardLimitsUpdateUseCaseParams>
-      _updateCreditCardLimitsRequestSubject = PublishSubject();
-
-  ///card limits update response
-  PublishSubject<Resource<bool>> _updateCardLimitsResponseSubject =
+  PublishSubject<CreditCardLimitsUpdateUseCaseParams> _updateCreditCardLimitsRequestSubject =
       PublishSubject();
 
+  ///card limits update response
+  PublishSubject<Resource<bool>> _updateCardLimitsResponseSubject = PublishSubject();
+
   ///card limits update response stream
-  Stream<Resource<bool>> get updateCardLimitsStream =>
-      _updateCardLimitsResponseSubject.stream;
+  Stream<Resource<bool>> get updateCardLimitsStream => _updateCardLimitsResponseSubject.stream;
 
   ///debit card limits response
-  PublishSubject<Resource<DebitCardLimitResponse>>
-      _debitCardLimitResponseSubject = PublishSubject();
+  PublishSubject<Resource<DebitCardLimitResponse>> _debitCardLimitResponseSubject = PublishSubject();
 
   ///debit card limits response stream
   Stream<Resource<DebitCardLimitResponse>> get debitCardLimitResponseStream =>
@@ -66,14 +61,10 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   bool isOnlinePurchase = true;
   bool isContactLessPayments = false;
 
-  ManageDebitCardLimitsPageViewModel(
-      this.cardLimitsArguments,
-      this._debitCardLimitsUpdateUseCase,
-      this._creditCardLimitsUpdateUseCase,
-      this._debitCardLimitUseCase) {
+  ManageDebitCardLimitsPageViewModel(this.cardLimitsArguments, this._debitCardLimitsUpdateUseCase,
+      this._creditCardLimitsUpdateUseCase, this._debitCardLimitUseCase) {
     _debitCardLimitRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _debitCardLimitUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _debitCardLimitUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -87,9 +78,7 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
     getDebitCardLimit();
 
     _updateCreditCardLimitsRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _creditCardLimitsUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _creditCardLimitsUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -101,9 +90,7 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
     });
 
     _updateDebitCardLimitsRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _debitCardLimitsUpdateUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _debitCardLimitsUpdateUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -116,8 +103,8 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void getDebitCardLimit() {
-    _debitCardLimitRequest.safeAdd(DebitCardLimitUseCaseParams(
-        tokenizedPan: cardLimitsArguments.tokenizedPan));
+    _debitCardLimitRequest
+        .safeAdd(DebitCardLimitUseCaseParams(tokenizedPan: cardLimitsArguments.tokenizedPan));
   }
 
   void updateCardLimits(
@@ -147,15 +134,14 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
       required num merchantPayment,
       required num onlinePurchase,
       required num contactlessPayments}) {
-    _updateCreditCardLimitsRequestSubject.safeAdd(
-        CreditCardLimitsUpdateUseCaseParams(
-            onlinePurchase: onlinePurchase,
-            merchantsPayments: merchantPayment,
-            isOnlinePurchase: isOnlinePurchase,
-            isMerchantsPayments: isMerchantPayments,
-            isContactLessPayments: isContactLessPayments,
-            isAtmWithdrawal: isAtmWithdrawal,
-            atmWithdrawal: atmWithdrawalValue));
+    _updateCreditCardLimitsRequestSubject.safeAdd(CreditCardLimitsUpdateUseCaseParams(
+        onlinePurchase: onlinePurchase,
+        merchantsPayments: merchantPayment,
+        isOnlinePurchase: isOnlinePurchase,
+        isMerchantsPayments: isMerchantPayments,
+        isContactLessPayments: isContactLessPayments,
+        isAtmWithdrawal: isAtmWithdrawal,
+        atmWithdrawal: atmWithdrawalValue));
   }
 
   void updateDebitCardLimits(
@@ -164,17 +150,16 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
       required num onlinePurchase,
       required num contactlessPayments,
       required BuildContext context}) {
-    _updateDebitCardLimitsRequestSubject.safeAdd(
-        DebitCardLimitsUpdateUseCaseParams(
-            onlinePurchase: onlinePurchase,
-            merchantsPayments: merchantPayment,
-            isOnlinePurchase: isOnlinePurchase,
-            isMerchantsPayments: isMerchantPayments,
-            isContactLessPayments: isContactLessPayments,
-            isAtmWithdrawal: isAtmWithdrawal,
-            contactLessPayments: contactlessPayments,
-            atmWithdrawal: atmWithdrawalValue,
-            tokenizedPan: cardLimitsArguments.tokenizedPan));
+    _updateDebitCardLimitsRequestSubject.safeAdd(DebitCardLimitsUpdateUseCaseParams(
+        onlinePurchase: onlinePurchase,
+        merchantsPayments: merchantPayment,
+        isOnlinePurchase: isOnlinePurchase,
+        isMerchantsPayments: isMerchantPayments,
+        isContactLessPayments: isContactLessPayments,
+        isAtmWithdrawal: isAtmWithdrawal,
+        contactLessPayments: contactlessPayments,
+        atmWithdrawal: atmWithdrawalValue,
+        tokenizedPan: cardLimitsArguments.tokenizedPan));
   }
 
   void showSaveButton() {

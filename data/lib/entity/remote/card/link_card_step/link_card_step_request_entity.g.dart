@@ -6,8 +6,7 @@ part of 'link_card_step_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LinkCardStepRequestEntity _$LinkCardStepRequestEntityFromJson(
-    Map<String, dynamic> json) {
+LinkCardStepRequestEntity _$LinkCardStepRequestEntityFromJson(Map<String, dynamic> json) {
   return LinkCardStepRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
@@ -16,8 +15,7 @@ LinkCardStepRequestEntity _$LinkCardStepRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$LinkCardStepRequestEntityToJson(
-        LinkCardStepRequestEntity instance) =>
+Map<String, dynamic> _$LinkCardStepRequestEntityToJson(LinkCardStepRequestEntity instance) =>
     <String, dynamic>{
       'CardId': instance.cardId,
       'AccountNumber': instance.accountNumber,

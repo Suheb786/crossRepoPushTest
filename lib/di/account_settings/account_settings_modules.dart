@@ -18,8 +18,7 @@ import 'package:neo_bank/feature/account_settings/change_password/enter_new_pass
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page_view_model.dart';
 
 ///account setting view model provider
-final accountSettingViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountSettingPageViewModel>(
+final accountSettingViewModelProvider = ChangeNotifierProvider.autoDispose<AccountSettingPageViewModel>(
   (ref) => AccountSettingPageViewModel(
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkBioMetricSupportUseCaseProvider),
@@ -41,13 +40,12 @@ final changeEmailAddressViewModelProvider =
 ///add new email address view model provider
 final addNewEmailAddressViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNewEmailAddressPageViewModel>(
-  (ref) => AddNewEmailAddressPageViewModel(
-      ref.read(addNewEmailAddressUseCaseProvider)),
+  (ref) => AddNewEmailAddressPageViewModel(ref.read(addNewEmailAddressUseCaseProvider)),
 );
 
 ///enter otp view model provider
-final enterOtpForNewEmailAddressViewModelProvider = ChangeNotifierProvider
-    .autoDispose<EnterCodeForChangeEmailAddressPageViewModel>(
+final enterOtpForNewEmailAddressViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterCodeForChangeEmailAddressPageViewModel>(
   (ref) => EnterCodeForChangeEmailAddressPageViewModel(
     ref.read(validateOtpNewEmailAddressUseCaseProvider),
     ref.read(addNewEmailAddressUseCaseProvider),
@@ -65,13 +63,12 @@ final changeMobileNumberViewModelProvider =
 final addNewMobileNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNewMobileNumberPageViewModel>(
   (ref) => AddNewMobileNumberPageViewModel(
-      ref.read(addNewNumberUseCaseProvider),
-      ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+      ref.read(addNewNumberUseCaseProvider), ref.read(getAllowedCodeCountriesListUseCaseProvider)),
 );
 
 ///enter otp for mobile no change view model provider
-final enterOtpForNewMobileNumberViewModelProvider = ChangeNotifierProvider
-    .autoDispose<EnterCodeForChangeMobileNumberPageViewModel>(
+final enterOtpForNewMobileNumberViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterCodeForChangeMobileNumberPageViewModel>(
         (ref) => EnterCodeForChangeMobileNumberPageViewModel(
               ref.read(validateOtpNewMobileNumberUseCaseProvider),
               ref.read(addNewNumberUseCaseProvider),
@@ -79,21 +76,17 @@ final enterOtpForNewMobileNumberViewModelProvider = ChangeNotifierProvider
             ));
 
 ///change password view model provider
-final changePasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ChangePasswordPageViewModel>(
+final changePasswordViewModelProvider = ChangeNotifierProvider.autoDispose<ChangePasswordPageViewModel>(
   (ref) => ChangePasswordPageViewModel(),
 );
 
 ///enter new password view model provider
-final enterNewPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterNewPasswordPageViewModel>(
-  (ref) =>
-      EnterNewPasswordPageViewModel(ref.read(enterNewPasswordUseCaseProvider)),
+final enterNewPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<EnterNewPasswordPageViewModel>(
+  (ref) => EnterNewPasswordPageViewModel(ref.read(enterNewPasswordUseCaseProvider)),
 );
 
 ///my documents page
-final myDocumentsPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<MyDocumentsPageViewModel>(
+final myDocumentsPageViewModelProvider = ChangeNotifierProvider.autoDispose<MyDocumentsPageViewModel>(
   (ref) => MyDocumentsPageViewModel(
       ref.read(myDocumentUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
@@ -104,7 +97,6 @@ final myDocumentsPageViewModelProvider =
 );
 
 ///base card view model provider
-final baseCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<BaseCardPageViewModel>(
+final baseCardViewModelProvider = ChangeNotifierProvider.autoDispose<BaseCardPageViewModel>(
   (ref) => BaseCardPageViewModel(),
 );

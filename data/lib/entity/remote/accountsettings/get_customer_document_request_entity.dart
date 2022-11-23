@@ -11,13 +11,10 @@ class GetCustomerDocumentRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  GetCustomerDocumentRequestEntity(
-      {this.docId: "", this.getToken: true, required this.baseData});
+  GetCustomerDocumentRequestEntity({this.docId: "", this.getToken: true, required this.baseData});
 
-  factory GetCustomerDocumentRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCustomerDocumentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocumentRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCustomerDocumentRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCustomerDocumentRequestEntityToJson(this);
 }

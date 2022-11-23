@@ -6,11 +6,10 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class FatcaUSW8TaxPayerDetailsUseCase extends BaseUseCase<LocalError,
-    FatcaUSW8TaxPayerDetailsUseCaseParams, bool> {
+class FatcaUSW8TaxPayerDetailsUseCase
+    extends BaseUseCase<LocalError, FatcaUSW8TaxPayerDetailsUseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required FatcaUSW8TaxPayerDetailsUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute({required FatcaUSW8TaxPayerDetailsUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -46,10 +45,8 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (taxPayerType!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_TAX_PAYER,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_TAX_PAYER, cause: Exception()));
     } else if (isUSTaxPayer) {
       if (identificationNumber!.isEmpty) {
         return Left(AppError(
@@ -58,9 +55,7 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
             cause: Exception()));
       } else if (referenceNumber!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REFERENCE_NO,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REFERENCE_NO, cause: Exception()));
       }
     } else if (isForeignTaxPayer) {
       if (foreignIdentificationNumber!.isEmpty) {
@@ -70,36 +65,24 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
             cause: Exception()));
       } else if (referenceNumber!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_REFERENCE_NO,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_REFERENCE_NO, cause: Exception()));
       }
     } else if (wantToClaimTaxTreatyBenefits) {
       if (beneficialAddress!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_BENEFICIAL_ADDRESS,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_BENEFICIAL_ADDRESS, cause: Exception()));
       } else if (provisionClaimArticle!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_PROVISION_CLAIM,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_PROVISION_CLAIM, cause: Exception()));
       } else if (treatyClaimRate!.isEmpty) {
         return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_TREATY_CLAIM_RATE,
-            cause: Exception()));
+            error: ErrorInfo(message: ''), type: ErrorType.INVALID_TREATY_CLAIM_RATE, cause: Exception()));
       } else if (typeOfIncome!.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_INCOME_TYPE,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_INCOME_TYPE, cause: Exception()));
       } else if (explanation!.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_EXPLANATION,
-            cause: Exception()));
+        return Left(
+            AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_EXPLANATION, cause: Exception()));
       }
     }
     return Right(true);

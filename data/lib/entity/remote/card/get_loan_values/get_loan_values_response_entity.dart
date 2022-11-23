@@ -8,9 +8,7 @@ part "get_loan_values_response_entity.g.dart";
 
 @JsonSerializable()
 class GetLoanValuesResponseEntity
-    implements
-        BaseLayerDataTransformer<GetLoanValuesResponseEntity,
-            GetLoanValuesResponse> {
+    implements BaseLayerDataTransformer<GetLoanValuesResponseEntity, GetLoanValuesResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,6 @@ class GetLoanValuesResponseEntity
   @override
   GetLoanValuesResponse transform() {
     return GetLoanValuesResponse(
-        getLoanValuesContent:
-            GetLoanValuesContentEntity.fromJson(this.response!.content)
-                .transform());
+        getLoanValuesContent: GetLoanValuesContentEntity.fromJson(this.response!.content).transform());
   }
 }

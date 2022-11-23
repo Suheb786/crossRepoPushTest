@@ -37,6 +37,5 @@ class SaveResidenceInformationRequest {
   factory SaveResidenceInformationRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveResidenceInformationRequestFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveResidenceInformationRequestToJson(this);
+  Map<String, dynamic> toJson() => _$SaveResidenceInformationRequestToJson(this);
 }

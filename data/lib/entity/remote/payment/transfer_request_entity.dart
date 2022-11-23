@@ -51,8 +51,7 @@ class TransferRequestEntity {
     print("this constructor called");
   }
 
-  factory TransferRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$TransferRequestEntityFromJson(json);
+  factory TransferRequestEntity.fromJson(Map<String, dynamic> json) => _$TransferRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$TransferRequestEntityToJson(this);
 }

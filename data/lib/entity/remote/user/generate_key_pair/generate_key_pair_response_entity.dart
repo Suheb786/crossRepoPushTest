@@ -8,9 +8,7 @@ part 'generate_key_pair_response_entity.g.dart';
 
 @JsonSerializable()
 class GenerateKeyPairResponseEntity
-    implements
-        BaseLayerDataTransformer<GenerateKeyPairResponseEntity,
-            GenerateKeyPairResponse> {
+    implements BaseLayerDataTransformer<GenerateKeyPairResponseEntity, GenerateKeyPairResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -29,8 +27,7 @@ class GenerateKeyPairResponseEntity
   @override
   GenerateKeyPairResponse transform() {
     return GenerateKeyPairResponse(
-        content: GenerateKeyPairContentEntity.fromJson(
-            response!.content as Map<String, dynamic>)
-            .transform());
+        content:
+            GenerateKeyPairContentEntity.fromJson(response!.content as Map<String, dynamic>).transform());
   }
 }

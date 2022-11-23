@@ -10,8 +10,8 @@ class ChangeCreditLimitPage extends BasePage<ChangeCreditLimitPageViewModel> {
   ChangeCreditLimitPageState createState() => ChangeCreditLimitPageState();
 }
 
-class ChangeCreditLimitPageState extends BaseStatefulPage<
-    ChangeCreditLimitPageViewModel, ChangeCreditLimitPage> {
+class ChangeCreditLimitPageState
+    extends BaseStatefulPage<ChangeCreditLimitPageViewModel, ChangeCreditLimitPage> {
   @override
   ProviderBase provideBase() {
     return changeCreditLimitPageViewModelProvider;
@@ -24,8 +24,7 @@ class ChangeCreditLimitPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(ChangeCreditLimitPageViewModel model) {
-    model.updateSliderValue(
-        SliderLimitValues(divisions: 100, minValue: 200.0, maxValue: 1200.0));
+    model.updateSliderValue(SliderLimitValues(divisions: 100, minValue: 200.0, maxValue: 1200.0));
     model.updateValue(1200);
     super.onModelReady(model);
   }

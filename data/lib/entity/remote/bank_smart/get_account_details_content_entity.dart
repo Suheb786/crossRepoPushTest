@@ -7,9 +7,7 @@ part 'get_account_details_content_entity.g.dart';
 
 @JsonSerializable()
 class GetAccountDetailsContentEntity
-    implements
-        BaseLayerDataTransformer<GetAccountDetailsContentEntity,
-            GetAccountDetailsContent> {
+    implements BaseLayerDataTransformer<GetAccountDetailsContentEntity, GetAccountDetailsContent> {
   @JsonKey(name: "data")
   final CreateAccountDataEntity? data;
   @JsonKey(name: "openDate")
@@ -29,7 +27,6 @@ class GetAccountDetailsContentEntity
 
   @override
   GetAccountDetailsContent transform() {
-    return GetAccountDetailsContent(
-        data: this.data!.transform(), openDate: this.openDate);
+    return GetAccountDetailsContent(data: this.data!.transform(), openDate: this.openDate);
   }
 }

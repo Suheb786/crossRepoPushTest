@@ -6,15 +6,13 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view_model.dart';
 
-class SupplementaryCreditCardPage
-    extends BasePage<SupplementaryCreditCardPageViewModel> {
+class SupplementaryCreditCardPage extends BasePage<SupplementaryCreditCardPageViewModel> {
   @override
-  SupplementaryCreditCardPageState createState() =>
-      SupplementaryCreditCardPageState();
+  SupplementaryCreditCardPageState createState() => SupplementaryCreditCardPageState();
 }
 
-class SupplementaryCreditCardPageState extends BaseStatefulPage<
-    SupplementaryCreditCardPageViewModel, SupplementaryCreditCardPage> {
+class SupplementaryCreditCardPageState
+    extends BaseStatefulPage<SupplementaryCreditCardPageViewModel, SupplementaryCreditCardPage> {
   @override
   ProviderBase provideBase() {
     return supplementaryCreditCardViewModelProvider;
@@ -22,14 +20,11 @@ class SupplementaryCreditCardPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(SupplementaryCreditCardPageViewModel model) {
-    model.creditCard = ProviderScope.containerOf(context)
-        .read(appHomeViewModelProvider)
-        .currentCreditCard;
+    model.creditCard = ProviderScope.containerOf(context).read(appHomeViewModelProvider).currentCreditCard;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, SupplementaryCreditCardPageViewModel model) {
+  Widget buildView(BuildContext context, SupplementaryCreditCardPageViewModel model) {
     return SupplementaryCreditCardPageView(provideBase());
   }
 }

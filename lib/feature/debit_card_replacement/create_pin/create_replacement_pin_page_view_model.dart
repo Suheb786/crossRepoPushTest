@@ -31,8 +31,7 @@ class CreateReplacementPinPageViewModel extends BasePageViewModel {
 
   CreateReplacementPinPageViewModel(this._createPinUseCase) {
     _createPinRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _createPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _createPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createPinResponse.safeAdd(event);

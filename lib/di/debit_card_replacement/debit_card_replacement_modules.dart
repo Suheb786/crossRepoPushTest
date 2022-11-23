@@ -27,46 +27,38 @@ final replacementVisaCardViewModelProvider =
 ///create replacement pin view model provider
 final createReplacementPinViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreateReplacementPinPageViewModel>(
-  (ref) =>
-      CreateReplacementPinPageViewModel(ref.read(createPinUseCaseProvider)),
+  (ref) => CreateReplacementPinPageViewModel(ref.read(createPinUseCaseProvider)),
 );
 
 ///confirm replacement pin view model provider
 final confirmReplacementPinViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmReplacementPinPageViewModel>(
-  (ref) => ConfirmReplacementPinPageViewModel(
-      ref.read(confirmReplacementPinUseCaseProvider)),
+  (ref) => ConfirmReplacementPinPageViewModel(ref.read(confirmReplacementPinUseCaseProvider)),
 );
 
 ///card replacement success view model provider
-final cardReplacementSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose.family<
-        DebitCardReplacementSuccessPageViewModel,
-        DebitCardReplacementSuccessPageArgs>(
+final cardReplacementSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<DebitCardReplacementSuccessPageViewModel, DebitCardReplacementSuccessPageArgs>(
   (ref, args) => DebitCardReplacementSuccessPageViewModel(args),
 );
 
 ///supp debit card set pin view model provider
-final suppDebitCardPinSetViewModelProvider = ChangeNotifierProvider.autoDispose<
-    SupplementaryDebitCardPinSetPageViewModel>(
+final suppDebitCardPinSetViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryDebitCardPinSetPageViewModel>(
   (ref) => SupplementaryDebitCardPinSetPageViewModel(),
 );
 
 ///supp pin set view model provider
-final suppPinSetVisaCardModelProvider =
-    ChangeNotifierProvider.autoDispose<SuppPinSetVisaCardPageViewModel>(
+final suppPinSetVisaCardModelProvider = ChangeNotifierProvider.autoDispose<SuppPinSetVisaCardPageViewModel>(
   (ref) => SuppPinSetVisaCardPageViewModel(),
 );
 
 ///supp create pin  view model provider
-final suppCreatePinModelProvider =
-    ChangeNotifierProvider.autoDispose<SuppCreatePinPageViewModel>(
+final suppCreatePinModelProvider = ChangeNotifierProvider.autoDispose<SuppCreatePinPageViewModel>(
   (ref) => SuppCreatePinPageViewModel(ref.read(createPinUseCaseProvider)),
 );
 
 ///supp confirm pin  view model provider
-final suppConfirmPinModelProvider =
-    ChangeNotifierProvider.autoDispose<SuppConfirmPinPageViewModel>(
-  (ref) => SuppConfirmPinPageViewModel(
-      ref.read(confirmReplacementPinUseCaseProvider)),
+final suppConfirmPinModelProvider = ChangeNotifierProvider.autoDispose<SuppConfirmPinPageViewModel>(
+  (ref) => SuppConfirmPinPageViewModel(ref.read(confirmReplacementPinUseCaseProvider)),
 );

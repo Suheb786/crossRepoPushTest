@@ -86,10 +86,8 @@ class ApplyDebitSupplementaryCardRequest {
       this.nickName,
       this.relation});
 
-  factory ApplyDebitSupplementaryCardRequest.fromJson(
-          Map<String, dynamic> json) =>
+  factory ApplyDebitSupplementaryCardRequest.fromJson(Map<String, dynamic> json) =>
       _$ApplyDebitSupplementaryCardRequestFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$ApplyDebitSupplementaryCardRequestToJson(this);
+  Map<String, dynamic> toJson() => _$ApplyDebitSupplementaryCardRequestToJson(this);
 }

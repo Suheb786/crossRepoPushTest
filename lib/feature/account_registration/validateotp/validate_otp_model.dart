@@ -70,23 +70,19 @@ class ValidateOtpViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
   ///change my number request subject holder
-  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest =
-      PublishSubject();
+  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest = PublishSubject();
 
   ///change my number response holder
   PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
 
   ///change my number stream
-  Stream<Resource<bool>> get changeMyNumberStream =>
-      _changeMyNumberResponse.stream;
+  Stream<Resource<bool>> get changeMyNumberStream => _changeMyNumberResponse.stream;
 
   String _incomingSms = 'Message';
 
-  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase,
-      this._changeMyNumberUseCase) {
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase, this._changeMyNumberUseCase) {
     _verifyOtpRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _verifyOtpUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _verifyOtpUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -98,8 +94,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
     });
 
     _getTokenRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getTokenUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -115,8 +110,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
     });
 
     _changeMyNumberRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _changeMyNumberUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _changeMyNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -137,8 +131,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
   }
 
   void changeMyNumber(String mobileNo, String countryCode) {
-    _changeMyNumberRequest.safeAdd(ChangeMyNumberUseCaseParams(
-        mobileNumber: mobileNo, countryCode: '00$countryCode'));
+    _changeMyNumberRequest
+        .safeAdd(ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: '00$countryCode'));
   }
 
   void validate(String value) {

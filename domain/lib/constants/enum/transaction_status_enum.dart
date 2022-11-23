@@ -8,14 +8,10 @@ class TransactionStatusEnum {
     return _value.toString();
   }
 
-  static const TransactionStatusEnum CATEGORY_PENDING =
-      TransactionStatusEnum._("Pending");
-  static const TransactionStatusEnum CATEGORY_REJECTED =
-      TransactionStatusEnum._("Rejected");
-  static const TransactionStatusEnum CATEGORY_ACCEPTED =
-      TransactionStatusEnum._("Accepted");
-  static const TransactionStatusEnum CATEGORY_NONE =
-      TransactionStatusEnum._("None");
+  static const TransactionStatusEnum CATEGORY_PENDING = TransactionStatusEnum._("Pending");
+  static const TransactionStatusEnum CATEGORY_REJECTED = TransactionStatusEnum._("Rejected");
+  static const TransactionStatusEnum CATEGORY_ACCEPTED = TransactionStatusEnum._("Accepted");
+  static const TransactionStatusEnum CATEGORY_NONE = TransactionStatusEnum._("None");
 }
 
 extension TransactionStatusEnumExt on String {

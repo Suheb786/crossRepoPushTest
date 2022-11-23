@@ -21,8 +21,7 @@ class StringConverter {
   }
 
   /// get full name
-  static String getFullName(
-      {String? primaryId, String? secondaryId, String? fullName}) {
+  static String getFullName({String? primaryId, String? secondaryId, String? fullName}) {
     try {
       if (primaryId!.isEmpty || secondaryId!.isEmpty) {
         return fullName ?? '';
@@ -35,5 +34,4 @@ class StringConverter {
       return fullName ?? '';
     }
   }
-
 }

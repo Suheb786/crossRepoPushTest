@@ -14,8 +14,7 @@ ChangeEmailRequest _$ChangeEmailRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ChangeEmailRequestToJson(ChangeEmailRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ChangeEmailRequestToJson(ChangeEmailRequest instance) => <String, dynamic>{
       'EmailId': instance.email,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

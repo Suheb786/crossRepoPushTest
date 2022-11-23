@@ -13,13 +13,9 @@ class ActivityRemoteDsImpl extends ActivityRemoteDs {
   ActivityRemoteDsImpl(this._apiService, this.deviceInfoHelper);
 
   @override
-  Future<HttpResponse<ActivityResponseEntity>> getActivity(
-      num noOfDays, String isDebit) async {
+  Future<HttpResponse<ActivityResponseEntity>> getActivity(num noOfDays, String isDebit) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getActivity(ActivityRequestEntity(
-        baseData: baseData.toJson(),
-        getToken: true,
-        isDebit: isDebit,
-        noOfDays: noOfDays));
+        baseData: baseData.toJson(), getToken: true, isDebit: isDebit, noOfDays: noOfDays));
   }
 }

@@ -14,8 +14,7 @@ class VideoCallPageViewModel extends BasePageViewModel {
   PageController appSwiperController = PageController(viewportFraction: 0.90);
 
   void nextPage() {
-    appSwiperController.nextPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.nextPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void moveToPage(int index) {
@@ -25,8 +24,7 @@ class VideoCallPageViewModel extends BasePageViewModel {
   }
 
   void previousPage() {
-    appSwiperController.previousPage(
-        duration: Duration(seconds: 1), curve: Curves.linear);
+    appSwiperController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
   }
 
   void updatePage(int index) {

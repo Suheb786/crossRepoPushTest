@@ -21,8 +21,7 @@ BaseClassEntity _$BaseClassEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$BaseClassEntityToJson(BaseClassEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BaseClassEntityToJson(BaseClassEntity instance) => <String, dynamic>{
       'IP': instance.ip,
       'DeviceID': instance.deviceID,
       'ChannelType': instance.channelType,

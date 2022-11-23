@@ -8,9 +8,7 @@ part 'set_fatca_questions_response_entity.g.dart';
 
 @JsonSerializable()
 class SetFatcaQuestionsResponseEntity
-    implements
-        BaseLayerDataTransformer<SetFatcaQuestionsResponseEntity,
-            SetFatcResponse> {
+    implements BaseLayerDataTransformer<SetFatcaQuestionsResponseEntity, SetFatcResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -19,8 +17,7 @@ class SetFatcaQuestionsResponseEntity
   factory SetFatcaQuestionsResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$SetFatcaQuestionsResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SetFatcaQuestionsResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SetFatcaQuestionsResponseEntityToJson(this);
 
   @override
   SetFatcaQuestionsResponseEntity restore(SetFatcResponse response) {
@@ -30,8 +27,6 @@ class SetFatcaQuestionsResponseEntity
   @override
   SetFatcResponse transform() {
     return SetFatcResponse(
-        setFatcaResponseContent:
-            SetFatcaResponseContentEntity.fromJson(response!.content)
-                .transform());
+        setFatcaResponseContent: SetFatcaResponseContentEntity.fromJson(response!.content).transform());
   }
 }

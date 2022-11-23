@@ -6,8 +6,7 @@ part of 'delete_beneficiary_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DeleteBeneficiaryRequest _$DeleteBeneficiaryRequestFromJson(
-    Map<String, dynamic> json) {
+DeleteBeneficiaryRequest _$DeleteBeneficiaryRequestFromJson(Map<String, dynamic> json) {
   return DeleteBeneficiaryRequest(
     beneficiaryId: json['BeneficiaryID'] as String,
     getToken: json['GetToken'] as bool,
@@ -15,9 +14,7 @@ DeleteBeneficiaryRequest _$DeleteBeneficiaryRequestFromJson(
   );
 }
 
-Map<String, dynamic> _$DeleteBeneficiaryRequestToJson(
-        DeleteBeneficiaryRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DeleteBeneficiaryRequestToJson(DeleteBeneficiaryRequest instance) => <String, dynamic>{
       'BeneficiaryID': instance.beneficiaryId,
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

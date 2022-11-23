@@ -14,6 +14,5 @@ class CountryListRequestEntity {
   factory CountryListRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryListRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CountryListRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CountryListRequestEntityToJson(this);
 }

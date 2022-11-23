@@ -10,8 +10,7 @@ class FatcaSignaturePage extends BasePage<FatcaSignaturePageViewModel> {
   FatcaSignaturePageState createState() => FatcaSignaturePageState();
 }
 
-class FatcaSignaturePageState
-    extends BaseStatefulPage<FatcaSignaturePageViewModel, FatcaSignaturePage>
+class FatcaSignaturePageState extends BaseStatefulPage<FatcaSignaturePageViewModel, FatcaSignaturePage>
     with AutomaticKeepAliveClientMixin {
   FatcaSignaturePageState() : super(subscribeVisibilityEvents: true);
 
@@ -22,9 +21,7 @@ class FatcaSignaturePageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override

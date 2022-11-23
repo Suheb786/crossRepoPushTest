@@ -10,8 +10,7 @@ class PlaceholderPage extends BasePage<PlaceholderViewModel> {
   PlaceholderPageState createState() => PlaceholderPageState();
 }
 
-class PlaceholderPageState
-    extends BaseStatefulPage<PlaceholderViewModel, PlaceholderPage> {
+class PlaceholderPageState extends BaseStatefulPage<PlaceholderViewModel, PlaceholderPage> {
   @override
   ProviderBase provideBase() {
     return placeholderViewModelProvider;
@@ -19,9 +18,7 @@ class PlaceholderPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .accentColor;
+    return Theme.of(context).accentColor;
   }
 
   @override

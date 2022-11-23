@@ -10,8 +10,7 @@ class ProductSelectorPage extends BasePage<ProductSelectorViewModel> {
   ProductSelectorPageState createState() => ProductSelectorPageState();
 }
 
-class ProductSelectorPageState
-    extends BaseStatefulPage<ProductSelectorViewModel, ProductSelectorPage> {
+class ProductSelectorPageState extends BaseStatefulPage<ProductSelectorViewModel, ProductSelectorPage> {
   @override
   ProviderBase provideBase() {
     return productSelectorViewModelProvider;

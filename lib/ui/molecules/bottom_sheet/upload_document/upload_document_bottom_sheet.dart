@@ -14,10 +14,7 @@ class UploadDocumentBottomSheet {
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return UploadDocumentBottomSheetView(
-          onTakePhoto: onTakePhoto,
-          uploadDocument: uploadDocument,
-          onCancel: onCancel,
-          title: title);
+          onTakePhoto: onTakePhoto, uploadDocument: uploadDocument, onCancel: onCancel, title: title);
     });
   }
 }

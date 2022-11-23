@@ -14,19 +14,16 @@ import 'package:rxdart/rxdart.dart';
 class TaxReportInformationPageViewModel extends BasePageViewModel {
   final TaxReportInformationUseCase _taxReportInformationUseCase;
   TextEditingController countrySelectorController = TextEditingController();
-  final GlobalKey<AppTextFieldState> countrySelectorKey =
-      GlobalKey(debugLabel: "countrySelector");
+  final GlobalKey<AppTextFieldState> countrySelectorKey = GlobalKey(debugLabel: "countrySelector");
 
   TextEditingController tinController = TextEditingController();
   final GlobalKey<AppTextFieldState> tinKey = GlobalKey(debugLabel: "tin");
 
   TextEditingController reasonController = TextEditingController();
-  final GlobalKey<AppTextFieldState> reasonSelectorKey =
-      GlobalKey(debugLabel: "reasonSelector");
+  final GlobalKey<AppTextFieldState> reasonSelectorKey = GlobalKey(debugLabel: "reasonSelector");
 
   TextEditingController explainReasonController = TextEditingController();
-  final GlobalKey<AppTextFieldState> explainReasonKey =
-      GlobalKey(debugLabel: "explainReason");
+  final GlobalKey<AppTextFieldState> explainReasonKey = GlobalKey(debugLabel: "explainReason");
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(true);
@@ -40,26 +37,21 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
   ///validate  fields
   PublishSubject<bool> _taxReportFieldValidateSubject = PublishSubject();
 
-  Stream<bool> get taxReportFieldValidateStream =>
-      _taxReportFieldValidateSubject.stream;
+  Stream<bool> get taxReportFieldValidateStream => _taxReportFieldValidateSubject.stream;
 
   ///tax report information request subject holder
-  PublishSubject<TaxReportInformationUseCaseParams>
-      _taxReportInformationRequest = PublishSubject();
+  PublishSubject<TaxReportInformationUseCaseParams> _taxReportInformationRequest = PublishSubject();
 
   ///tax report information response holder
-  PublishSubject<Resource<bool>> _taxReportInformationResponse =
-      PublishSubject();
+  PublishSubject<Resource<bool>> _taxReportInformationResponse = PublishSubject();
 
   ///tax report information stream
-  Stream<Resource<bool>> get taxReportInformationStream =>
-      _taxReportInformationResponse.stream;
+  Stream<Resource<bool>> get taxReportInformationStream => _taxReportInformationResponse.stream;
 
   ///update reasonControllerText text field
   void updateReasonControllerField(String value) {
     reasonController.text = value;
-    if (reasonController.text.fromValue() ==
-        ReasonUnavailabilityEnum.REASON_B) {
+    if (reasonController.text.fromValue() == ReasonUnavailabilityEnum.REASON_B) {
       updateExplainReasonVisibility(true);
     } else {
       updateExplainReasonVisibility(false);
@@ -78,21 +70,18 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
   void validateFields() {
     bool isValid = false;
     if (_switchSubject.value) {
-      if (!Validator.isEmpty(countrySelectorController.text) &&
-          !Validator.isEmpty(tinController.text)) {
+      if (!Validator.isEmpty(countrySelectorController.text) && !Validator.isEmpty(tinController.text)) {
         isValid = true;
       }
     } else {
-      if (reasonController.text.fromValue() ==
-          ReasonUnavailabilityEnum.REASON_B) {
+      if (reasonController.text.fromValue() == ReasonUnavailabilityEnum.REASON_B) {
         if (!Validator.isEmpty(countrySelectorController.text) &&
             !Validator.isEmpty(reasonController.text) &&
             !Validator.isEmpty(explainReasonController.text)) {
           isValid = true;
         }
       } else {
-        if (!Validator.isEmpty(reasonController.text) &&
-            !Validator.isEmpty(countrySelectorController.text)) {
+        if (!Validator.isEmpty(reasonController.text) && !Validator.isEmpty(countrySelectorController.text)) {
           isValid = true;
         }
       }
@@ -102,9 +91,7 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
 
   TaxReportInformationPageViewModel(this._taxReportInformationUseCase) {
     _taxReportInformationRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _taxReportInformationUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _taxReportInformationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _taxReportInformationResponse.safeAdd(event);
@@ -143,8 +130,7 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
           reasonOfUnavailability: 'no',
           taxCountry: countrySelectorController.text));
     } else {
-      if (reasonController.text.fromValue() ==
-          ReasonUnavailabilityEnum.REASON_B) {
+      if (reasonController.text.fromValue() == ReasonUnavailabilityEnum.REASON_B) {
         _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
             tinNumber: 'text',
             explainReason: explainReasonController.text,

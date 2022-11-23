@@ -10,8 +10,7 @@ class RegisterSelectionPage extends BasePage<RegisterSelectionViewModel> {
   RegisterSelectionPageState createState() => RegisterSelectionPageState();
 }
 
-class RegisterSelectionPageState extends BaseStatefulPage<
-    RegisterSelectionViewModel, RegisterSelectionPage> {
+class RegisterSelectionPageState extends BaseStatefulPage<RegisterSelectionViewModel, RegisterSelectionPage> {
   @override
   ProviderBase provideBase() {
     return registerSelectionViewModelProvider;

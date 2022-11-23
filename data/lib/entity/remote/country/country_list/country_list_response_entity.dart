@@ -8,9 +8,7 @@ part 'country_list_response_entity.g.dart';
 
 @JsonSerializable()
 class CountryListResponseEntity
-    implements
-        BaseLayerDataTransformer<CountryListResponseEntity,
-            CountryListContentData> {
+    implements BaseLayerDataTransformer<CountryListResponseEntity, CountryListContentData> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -28,8 +26,6 @@ class CountryListResponseEntity
 
   @override
   CountryListContentData transform() {
-    return CountryListContentData(
-        content:
-        CountryContentEntity.fromJson(this.response!.content).transform());
+    return CountryListContentData(content: CountryContentEntity.fromJson(this.response!.content).transform());
   }
 }

@@ -11,11 +11,10 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class AccountRemoteDS {
-  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
-      {bool getToken});
+  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus({bool getToken});
 
-  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus({bool getToken});
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>> checkOtherNationalityStatus(
+      {bool getToken});
 
   Future<HttpResponse<DocStatusResponseEntity>> docStatus();
 
@@ -30,11 +29,9 @@ abstract class AccountRemoteDS {
 
   Future<HttpResponse<RequestCallResponseEntity>> requestCall(String? type);
 
-  Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(
-      String callDate);
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(String callDate);
 
-  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(
-      String session);
+  Future<HttpResponse<VideoCallStatusResponseEntity>> getCallStatus(String session);
 }
 
 abstract class AccountLocalDS {}

@@ -7,8 +7,7 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StateCityDialogViewModel extends BasePageViewModel {
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
 
   final TextEditingController controller = TextEditingController();
 
@@ -29,12 +28,10 @@ class StateCityDialogViewModel extends BasePageViewModel {
   StateCityData selectedState = StateCityData();
 
   ///state city response holder
-  BehaviorSubject<Resource<List<StateCityData>>> _stateCityResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<StateCityData>>> _stateCityResponse = BehaviorSubject();
 
   ///state city response stream
-  Stream<Resource<List<StateCityData>>> get stateCityResponseStream =>
-      _stateCityResponse.stream;
+  Stream<Resource<List<StateCityData>>> get stateCityResponseStream => _stateCityResponse.stream;
 
   void selectCountry(int index) {
     List<StateCityData>? stateCityList = _stateCityResponse.value.data;
@@ -48,23 +45,18 @@ class StateCityDialogViewModel extends BasePageViewModel {
     }
   }
 
-  void searchStateCity(
-      String? searchText, StateCityTypeEnum stateCityTypeEnum) {
+  void searchStateCity(String? searchText, StateCityTypeEnum stateCityTypeEnum) {
     searchResult!.clear();
     List<StateCityData>? stateCityList = stateCityDataList;
     if (searchText!.isNotEmpty) {
       for (int i = 0; i < stateCityList.length; i++) {
         StateCityData stateCityData = stateCityList[i];
         if (stateCityTypeEnum == StateCityTypeEnum.CITY) {
-          if (stateCityData.cityName!
-              .toLowerCase()
-              .contains(searchText.toLowerCase())) {
+          if (stateCityData.cityName!.toLowerCase().contains(searchText.toLowerCase())) {
             searchResult!.add(stateCityData);
           }
         } else {
-          if (stateCityData.stateName!
-              .toLowerCase()
-              .contains(searchText.toLowerCase())) {
+          if (stateCityData.stateName!.toLowerCase().contains(searchText.toLowerCase())) {
             searchResult!.add(stateCityData);
           }
         }

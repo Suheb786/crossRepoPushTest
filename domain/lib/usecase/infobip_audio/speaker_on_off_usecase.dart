@@ -5,15 +5,13 @@ import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class SpeakerOnOffUseCase
-    extends BaseUseCase<BaseError, SpeakerOnOffUseCaseParams, bool> {
+class SpeakerOnOffUseCase extends BaseUseCase<BaseError, SpeakerOnOffUseCaseParams, bool> {
   final HelpCenterRepository _helpCenterRepository;
 
   SpeakerOnOffUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required SpeakerOnOffUseCaseParams params}) {
+  Future<Either<BaseError, bool>> execute({required SpeakerOnOffUseCaseParams params}) {
     return _helpCenterRepository.toggleSpeaker();
   }
 }

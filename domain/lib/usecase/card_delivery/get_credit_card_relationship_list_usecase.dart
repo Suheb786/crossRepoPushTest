@@ -6,10 +6,8 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCreditCardRelationshipListUseCase extends BaseUseCase<
-    NetworkError,
-    GetCreditCardRelationshipListUseCaseParams,
-    CreditCardRelationshipResponse> {
+class GetCreditCardRelationshipListUseCase extends BaseUseCase<NetworkError,
+    GetCreditCardRelationshipListUseCaseParams, CreditCardRelationshipResponse> {
   final CardRepository _repository;
 
   GetCreditCardRelationshipListUseCase(this._repository);

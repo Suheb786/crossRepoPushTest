@@ -10,9 +10,7 @@ class EnterNewPasswordPage extends BasePage<EnterNewPasswordPageViewModel> {
   EnterNewPasswordPageState createState() => EnterNewPasswordPageState();
 }
 
-class EnterNewPasswordPageState extends BaseStatefulPage<
-    EnterNewPasswordPageViewModel,
-    EnterNewPasswordPage>
+class EnterNewPasswordPageState extends BaseStatefulPage<EnterNewPasswordPageViewModel, EnterNewPasswordPage>
     with AutomaticKeepAliveClientMixin {
   EnterNewPasswordPageState() : super(subscribeVisibilityEvents: true);
 

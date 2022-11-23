@@ -7,18 +7,15 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ScheduleVideoCallUseCase
-    extends BaseUseCase<NetworkError, ScheduleVideoCallUseCaseParams, bool> {
+class ScheduleVideoCallUseCase extends BaseUseCase<NetworkError, ScheduleVideoCallUseCaseParams, bool> {
   final AccountRepository _accountRepository;
 
   ScheduleVideoCallUseCase(this._accountRepository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ScheduleVideoCallUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ScheduleVideoCallUseCaseParams params}) {
     return _accountRepository.saveCustomerVideoCallScheduleTime(
-        scheduleDate: params.preferredDate!,
-        scheduleTime: params.preferredTime!);
+        scheduleDate: params.preferredDate!, scheduleTime: params.preferredTime!);
   }
 }
 
@@ -35,14 +32,10 @@ class ScheduleVideoCallUseCaseParams extends Params {
   Either<AppError, bool> verify() {
     if (preferredDate!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_PREFERRED_DATE,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_PREFERRED_DATE, cause: Exception()));
     } else if (preferredTime!.isEmpty) {
       return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_PREFERRED_TIME,
-          cause: Exception()));
+          error: ErrorInfo(message: ''), type: ErrorType.INVALID_PREFERRED_TIME, cause: Exception()));
     }
     return Right(true);
   }

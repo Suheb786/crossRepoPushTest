@@ -142,6 +142,7 @@ import 'package:data/entity/remote/payment/payment_activity_request_entity.dart'
 import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_api_no_otp_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
@@ -768,6 +769,12 @@ abstract class ApiService {
   @POST("/CardTracking/UnblockCreditCardPin")
   Future<HttpResponse<ResponseEntity>> unblockCreditCardPin(
       @Body() UnblockCreditCardPinRequestEntity request);
+
+
+  @POST("/transfer/TransferAPINoOtp")
+  Future<HttpResponse<TransferSuccessResponseEntity>> transferAPINoOtp(
+      @Body() TransferApiNoOtpRequestEntity transferApiNoOtpRequestEntity);
+
 
   ///RJ
   @POST("/RJ/GetDestinations")

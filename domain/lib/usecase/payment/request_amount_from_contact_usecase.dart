@@ -8,8 +8,8 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class RequestAmountFromContactUseCase extends BaseUseCase<NetworkError,
-    RequestAmountFromContactUseCaseParams, RequestToPayContentResponse> {
+class RequestAmountFromContactUseCase
+    extends BaseUseCase<NetworkError, RequestAmountFromContactUseCaseParams, RequestToPayContentResponse> {
   final PaymentRepository _repository;
 
   RequestAmountFromContactUseCase(this._repository);
@@ -75,20 +75,12 @@ class RequestAmountFromContactUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (amount! == 0) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.ZERO_AMOUNT,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.ZERO_AMOUNT, cause: Exception()));
     } else if (limit == null) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.NETWORK,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.NETWORK, cause: Exception()));
     } else if (limit! < amount!) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.LIMIT_EXCEEDED,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.LIMIT_EXCEEDED, cause: Exception()));
     }
     return Right(true);
   }

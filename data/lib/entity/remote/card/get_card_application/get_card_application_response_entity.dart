@@ -8,24 +8,19 @@ part "get_card_application_response_entity.g.dart";
 
 @JsonSerializable()
 class GetCardApplicationResponseEntity
-    implements
-        BaseLayerDataTransformer<GetCardApplicationResponseEntity,
-            GetCardApplicationResponse> {
+    implements BaseLayerDataTransformer<GetCardApplicationResponseEntity, GetCardApplicationResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   GetCardApplicationResponseEntity({this.response});
 
-  factory GetCardApplicationResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCardApplicationResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCardApplicationResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCardApplicationResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCardApplicationResponseEntityToJson(this);
 
   @override
-  GetCardApplicationResponseEntity restore(
-      GetCardApplicationResponse response) {
+  GetCardApplicationResponseEntity restore(GetCardApplicationResponse response) {
     return GetCardApplicationResponseEntity();
   }
 

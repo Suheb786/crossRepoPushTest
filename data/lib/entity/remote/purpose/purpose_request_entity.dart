@@ -25,8 +25,7 @@ class PurposeRequestEntity {
       this.type,
       this.detCustomerType});
 
-  factory PurposeRequestEntity.fromJson(Map<String, dynamic> json) =>
-      _$PurposeRequestEntityFromJson(json);
+  factory PurposeRequestEntity.fromJson(Map<String, dynamic> json) => _$PurposeRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$PurposeRequestEntityToJson(this);
 }

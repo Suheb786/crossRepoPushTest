@@ -6,15 +6,13 @@ import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ObtainTokenUseCase
-    extends BaseUseCase<BaseError, ObtainTokenUseCaseParams, String> {
+class ObtainTokenUseCase extends BaseUseCase<BaseError, ObtainTokenUseCaseParams, String> {
   final HelpCenterRepository _helpCenterRepository;
 
   ObtainTokenUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, String>> execute(
-      {required ObtainTokenUseCaseParams params}) {
+  Future<Either<BaseError, String>> execute({required ObtainTokenUseCaseParams params}) {
     return _helpCenterRepository.obtainToken(params.parameter);
   }
 }

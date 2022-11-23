@@ -8,13 +8,14 @@ import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_
 
 class GetCreditCardPage extends BasePage<GetCreditCardViewModel> {
   final GetDashboardDataContent cardData;
+
   GetCreditCardPage({required this.cardData});
+
   @override
   GetCreditCardPageState createState() => GetCreditCardPageState();
 }
 
-class GetCreditCardPageState
-    extends BaseStatefulPage<GetCreditCardViewModel, GetCreditCardPage>
+class GetCreditCardPageState extends BaseStatefulPage<GetCreditCardViewModel, GetCreditCardPage>
     with AutomaticKeepAliveClientMixin {
   GetCreditCardPageState() : super(subscribeVisibilityEvents: true);
 

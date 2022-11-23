@@ -16,15 +16,13 @@ class RegisterRepositoryImpl with RegisterRepository {
   }
 
   @override
-  Future<Either<LocalError, List<String>>>
-      getPurposeOfAccountOpeningList() async {
+  Future<Either<LocalError, List<String>>> getPurposeOfAccountOpeningList() async {
     final result = await _registerRemoteDS.getPurposeOfAccountOpeningList();
     return Right(result);
   }
 
   @override
-  Future<Either<LocalError, List<AdditionalIncome>>>
-      getAdditionalIncomeSourceList() async {
+  Future<Either<LocalError, List<AdditionalIncome>>> getAdditionalIncomeSourceList() async {
     final result = await _registerRemoteDS.getAdditionalIncomeSourceList();
     return Right(result);
   }

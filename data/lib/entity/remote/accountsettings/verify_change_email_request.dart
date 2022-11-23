@@ -13,11 +13,7 @@ class VerifyChangeEmailRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  VerifyChangeEmailRequest(
-      {this.uniqueId: "",
-      this.otp: "",
-      this.getToken: true,
-      required this.baseData});
+  VerifyChangeEmailRequest({this.uniqueId: "", this.otp: "", this.getToken: true, required this.baseData});
 
   factory VerifyChangeEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$VerifyChangeEmailRequestFromJson(json);

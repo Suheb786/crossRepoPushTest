@@ -5,23 +5,18 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class DisableFingerPrintUseCase
-    extends BaseUseCase<BaseError, DisableFingerPrintUseCaseParams, bool> {
+class DisableFingerPrintUseCase extends BaseUseCase<BaseError, DisableFingerPrintUseCaseParams, bool> {
   final UserRepository _repository;
 
   DisableFingerPrintUseCase(this._repository);
 
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required DisableFingerPrintUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required DisableFingerPrintUseCaseParams params}) async {
     return Future.value(
-      (await _repository.disableFingerPrint()).fold((l) => Left(l),
-          (response) async {
-        return (await _repository.getCurrentUser()).fold((l) => Left(l),
-            (currentUser) async {
+      (await _repository.disableFingerPrint()).fold((l) => Left(l), (response) async {
+        return (await _repository.getCurrentUser()).fold((l) => Left(l), (currentUser) async {
           currentUser.isBiometricEnabled = false;
-          return (await _repository.saveUser(currentUser)).fold((l) => Left(l),
-              (user) async {
+          return (await _repository.saveUser(currentUser)).fold((l) => Left(l), (user) async {
             print('savedUser--->${user.isBiometricEnabled}');
             return Right(response);
           });

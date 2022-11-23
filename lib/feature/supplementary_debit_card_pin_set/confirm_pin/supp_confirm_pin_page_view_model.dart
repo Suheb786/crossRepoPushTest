@@ -14,8 +14,7 @@ class SuppConfirmPinPageViewModel extends BasePageViewModel {
   TextEditingController confirmPinController = TextEditingController();
 
   ///Confirm pin request subject holder
-  PublishSubject<ConfirmReplacementPinUseCaseParams> _confirmPinRequest =
-      PublishSubject();
+  PublishSubject<ConfirmReplacementPinUseCaseParams> _confirmPinRequest = PublishSubject();
 
   ///Confirm pin response holder
   PublishSubject<Resource<bool>> _confirmPinResponse = PublishSubject();
@@ -32,8 +31,7 @@ class SuppConfirmPinPageViewModel extends BasePageViewModel {
 
   SuppConfirmPinPageViewModel(this._confirmPinUseCase) {
     _confirmPinRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _confirmPinUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _confirmPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -48,9 +46,7 @@ class SuppConfirmPinPageViewModel extends BasePageViewModel {
 
   void validatePin(String previousPin, String cardNumber) {
     _confirmPinRequest.safeAdd(ConfirmReplacementPinUseCaseParams(
-        currentPin: _pinSubject.value,
-        previousPin: previousPin,
-        cardNumber: cardNumber));
+        currentPin: _pinSubject.value, previousPin: previousPin, cardNumber: cardNumber));
   }
 
   void validate(String value) {

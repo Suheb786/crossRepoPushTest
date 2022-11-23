@@ -10,8 +10,7 @@ class PaymentActivityPage extends BasePage<PaymentActivityViewModel> {
   PaymentActivityPageState createState() => PaymentActivityPageState();
 }
 
-class PaymentActivityPageState
-    extends BaseStatefulPage<PaymentActivityViewModel, PaymentActivityPage>
+class PaymentActivityPageState extends BaseStatefulPage<PaymentActivityViewModel, PaymentActivityPage>
     with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {

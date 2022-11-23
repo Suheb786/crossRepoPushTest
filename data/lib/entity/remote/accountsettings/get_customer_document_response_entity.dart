@@ -7,23 +7,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_customer_document_response_entity.g.dart';
 
 @JsonSerializable()
-class GetCustomerDocumentResponseEntity extends BaseLayerDataTransformer<
-    GetCustomerDocumentResponseEntity, GetCustomerDocumentResponse> {
+class GetCustomerDocumentResponseEntity
+    extends BaseLayerDataTransformer<GetCustomerDocumentResponseEntity, GetCustomerDocumentResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 
   GetCustomerDocumentResponseEntity({this.responseEntity});
 
-  factory GetCustomerDocumentResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetCustomerDocumentResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCustomerDocumentResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetCustomerDocumentResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetCustomerDocumentResponseEntityToJson(this);
 
   @override
-  GetCustomerDocumentResponseEntity restore(
-      GetCustomerDocumentResponse response) {
+  GetCustomerDocumentResponseEntity restore(GetCustomerDocumentResponse response) {
     return GetCustomerDocumentResponseEntity();
   }
 
@@ -31,7 +28,6 @@ class GetCustomerDocumentResponseEntity extends BaseLayerDataTransformer<
   GetCustomerDocumentResponse transform() {
     return GetCustomerDocumentResponse(
         getCustomerDocumentContent:
-            GetCustomerDocumentContentEntity.fromJson(responseEntity!.content)
-                .transform());
+            GetCustomerDocumentContentEntity.fromJson(responseEntity!.content).transform());
   }
 }

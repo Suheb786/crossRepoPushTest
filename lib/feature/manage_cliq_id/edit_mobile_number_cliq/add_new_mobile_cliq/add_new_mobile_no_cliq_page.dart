@@ -5,15 +5,13 @@ import 'package:neo_bank/di/manage_cliq/manage_cliq_modules.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view.dart';
 import 'package:neo_bank/feature/manage_cliq_id/edit_mobile_number_cliq/add_new_mobile_cliq/add_new_mobile_no_cliq_page_view_model.dart';
 
-class AddNewMobileNumberCliqPage
-    extends BasePage<AddNewMobileNumberCliqPageViewModel> {
+class AddNewMobileNumberCliqPage extends BasePage<AddNewMobileNumberCliqPageViewModel> {
   @override
-  AddNewMobileNumberCliqPageState createState() =>
-      AddNewMobileNumberCliqPageState();
+  AddNewMobileNumberCliqPageState createState() => AddNewMobileNumberCliqPageState();
 }
 
-class AddNewMobileNumberCliqPageState extends BaseStatefulPage<
-        AddNewMobileNumberCliqPageViewModel, AddNewMobileNumberCliqPage>
+class AddNewMobileNumberCliqPageState
+    extends BaseStatefulPage<AddNewMobileNumberCliqPageViewModel, AddNewMobileNumberCliqPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AddNewMobileNumberCliqPageState() : super(subscribeVisibilityEvents: true);
 
@@ -34,8 +32,7 @@ class AddNewMobileNumberCliqPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, AddNewMobileNumberCliqPageViewModel model) {
+  Widget buildView(BuildContext context, AddNewMobileNumberCliqPageViewModel model) {
     return AddNewMobileNumberCliqPageView(provideBase());
   }
 

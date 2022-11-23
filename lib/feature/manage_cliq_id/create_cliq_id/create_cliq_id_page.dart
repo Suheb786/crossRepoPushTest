@@ -10,8 +10,7 @@ class CreateCliqIdPage extends BasePage<CreateCliqIdPageViewModel> {
   CreateCliqIdPageState createState() => CreateCliqIdPageState();
 }
 
-class CreateCliqIdPageState
-    extends BaseStatefulPage<CreateCliqIdPageViewModel, CreateCliqIdPage> {
+class CreateCliqIdPageState extends BaseStatefulPage<CreateCliqIdPageViewModel, CreateCliqIdPage> {
   @override
   ProviderBase provideBase() {
     return createCliqIdViewModelProvider;

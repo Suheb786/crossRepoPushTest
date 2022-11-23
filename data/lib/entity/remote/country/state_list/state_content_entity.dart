@@ -6,15 +6,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'state_content_entity.g.dart';
 
 @JsonSerializable()
-class StateContentEntity
-    implements BaseLayerDataTransformer<StateContentEntity, StateContent> {
+class StateContentEntity implements BaseLayerDataTransformer<StateContentEntity, StateContent> {
   @JsonKey(name: "getStates")
   final List<StateCityDataEntity>? getStates;
 
   StateContentEntity({this.getStates});
 
-  factory StateContentEntity.fromJson(Map<String, dynamic> json) =>
-      _$StateContentEntityFromJson(json);
+  factory StateContentEntity.fromJson(Map<String, dynamic> json) => _$StateContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$StateContentEntityToJson(this);
 
@@ -25,7 +23,6 @@ class StateContentEntity
 
   @override
   StateContent transform() {
-    return StateContent(
-        stateData: this.getStates!.map((e) => e.transform()).toList());
+    return StateContent(stateData: this.getStates!.map((e) => e.transform()).toList());
   }
 }

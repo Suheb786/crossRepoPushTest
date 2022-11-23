@@ -7,5 +7,5 @@ final uploadDocumentUseCaseProvider = Provider<UploadDocumentUseCase>(
     (ref) => UploadDocumentUseCase(ref.read(uploadDocumentRepositoryProvider)));
 
 ///upload doc usecase
-final fileUploadUseCaseProvider = Provider<FileUploadUseCase>(
-    (ref) => FileUploadUseCase(ref.read(uploadDocumentRepositoryProvider)));
+final fileUploadUseCaseProvider =
+    Provider<FileUploadUseCase>((ref) => FileUploadUseCase(ref.read(uploadDocumentRepositoryProvider)));

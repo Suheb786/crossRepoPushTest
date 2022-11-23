@@ -26,6 +26,7 @@ class SelectedBillsToPaidWidget extends StatelessWidget {
       required this.billAmtDue,
       this.onChanged})
       : super(key: key);
+
   ProviderBase provideBase() {
     return SelectedBillsToPaidWidgetViewModelProvider().provide();
   }

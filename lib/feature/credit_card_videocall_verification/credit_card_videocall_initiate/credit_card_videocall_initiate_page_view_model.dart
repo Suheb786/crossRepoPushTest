@@ -16,27 +16,20 @@ class CreditCardVideoCallInitiatePageViewModel extends BasePageViewModel {
   final CheckGenderStatusUseCase _checkAgentAvailabilityStatusUseCase;
 
   ///request call
-  PublishSubject<RequestCallUseCaseParams> _requestCallRequest =
-      PublishSubject();
+  PublishSubject<RequestCallUseCaseParams> _requestCallRequest = PublishSubject();
 
-  PublishSubject<Resource<RequestCallStatus>> _requestCallResponse =
-      PublishSubject();
+  PublishSubject<Resource<RequestCallStatus>> _requestCallResponse = PublishSubject();
 
-  Stream<Resource<RequestCallStatus>> get requestCallStream =>
-      _requestCallResponse.stream;
+  Stream<Resource<RequestCallStatus>> get requestCallStream => _requestCallResponse.stream;
 
   ///check agent availability
-  PublishSubject<CheckGenderStatusUseCaseParams>
-      _checkAgentAvailabilityStatusRequest = PublishSubject();
-  PublishSubject<Resource<AgentGenderStatus>>
-      _checkAgentAvailabilityStatusResponse = PublishSubject();
+  PublishSubject<CheckGenderStatusUseCaseParams> _checkAgentAvailabilityStatusRequest = PublishSubject();
+  PublishSubject<Resource<AgentGenderStatus>> _checkAgentAvailabilityStatusResponse = PublishSubject();
 
   Stream<Resource<AgentGenderStatus>> get getAgentAvailabilityStream =>
       _checkAgentAvailabilityStatusResponse.stream;
 
-  CreditCardVideoCallInitiatePageViewModel(
-      this._requestCallUseCase,
-      this.creditCardVideoCallInitiateArgs,
+  CreditCardVideoCallInitiatePageViewModel(this._requestCallUseCase, this.creditCardVideoCallInitiateArgs,
       this._checkAgentAvailabilityStatusUseCase) {
     _requestCallRequest.listen((value) {
       RequestManager(
@@ -51,8 +44,7 @@ class CreditCardVideoCallInitiatePageViewModel extends BasePageViewModel {
     _checkAgentAvailabilityStatusRequest.listen((value) {
       RequestManager(
         value,
-        createCall: () =>
-            _checkAgentAvailabilityStatusUseCase.execute(params: value),
+        createCall: () => _checkAgentAvailabilityStatusUseCase.execute(params: value),
       ).asFlow().listen((event) {
         //updateLoader();
         _checkAgentAvailabilityStatusResponse.safeAdd(event);
@@ -64,13 +56,11 @@ class CreditCardVideoCallInitiatePageViewModel extends BasePageViewModel {
   }
 
   void getAgoraCredentials() {
-    _requestCallRequest
-        .safeAdd(RequestCallUseCaseParams(type: "CREDITCARDREQ"));
+    _requestCallRequest.safeAdd(RequestCallUseCaseParams(type: "CREDITCARDREQ"));
   }
 
   void checkAvailableAgent() {
-    _checkAgentAvailabilityStatusRequest
-        .safeAdd(CheckGenderStatusUseCaseParams());
+    _checkAgentAvailabilityStatusRequest.safeAdd(CheckGenderStatusUseCaseParams());
   }
 
   @override

@@ -12,9 +12,7 @@ class DcEnterOtpPage extends BasePage<DcEnterOtpViewModel> {
   DcEnterOtpPageState createState() => DcEnterOtpPageState();
 }
 
-class DcEnterOtpPageState
-    extends BaseStatefulPage<DcEnterOtpViewModel, DcEnterOtpPage>
-    with CodeAutoFill {
+class DcEnterOtpPageState extends BaseStatefulPage<DcEnterOtpViewModel, DcEnterOtpPage> with CodeAutoFill {
   @override
   ProviderBase provideBase() {
     return dcEnterOtpViewModelProvider;
@@ -27,8 +25,7 @@ class DcEnterOtpPageState
 
   @override
   void onModelReady(DcEnterOtpViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override

@@ -14,8 +14,7 @@ RequestCardRequest _$RequestCardRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$RequestCardRequestToJson(RequestCardRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RequestCardRequestToJson(RequestCardRequest instance) => <String, dynamic>{
       'CardId': instance.cardId,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

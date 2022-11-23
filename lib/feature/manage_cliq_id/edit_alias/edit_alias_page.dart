@@ -10,8 +10,7 @@ class EditAliasPage extends BasePage<EditAliasPageViewModel> {
   EditAliasPageState createState() => EditAliasPageState();
 }
 
-class EditAliasPageState
-    extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
+class EditAliasPageState extends BaseStatefulPage<EditAliasPageViewModel, EditAliasPage> {
   @override
   ProviderBase provideBase() {
     return editAliasViewModelProvider;

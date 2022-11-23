@@ -17,16 +17,9 @@ class ResponseEntity {
   @JsonKey(name: "id")
   final String? id;
 
-  ResponseEntity(
-      {this.code,
-      this.content,
-      this.exceptionMessage,
-      this.message,
-      this.token,
-      this.id});
+  ResponseEntity({this.code, this.content, this.exceptionMessage, this.message, this.token, this.id});
 
-  factory ResponseEntity.fromJson(Map<String, dynamic> json) =>
-      _$ResponseEntityFromJson(json);
+  factory ResponseEntity.fromJson(Map<String, dynamic> json) => _$ResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResponseEntityToJson(this);
 }

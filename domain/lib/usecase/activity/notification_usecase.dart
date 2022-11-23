@@ -6,17 +6,14 @@ import 'package:domain/repository/activity/activity_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class NotificationUseCase extends BaseUseCase<NetworkError,
-    NotificationUseCaseParams, ActivityResponse> {
+class NotificationUseCase extends BaseUseCase<NetworkError, NotificationUseCaseParams, ActivityResponse> {
   final ActivityRepository _repository;
 
   NotificationUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, ActivityResponse>> execute(
-      {required NotificationUseCaseParams params}) {
-    return Future.value(
-        _repository.getActivity(params.noOfDays!, params.isDebit!));
+  Future<Either<NetworkError, ActivityResponse>> execute({required NotificationUseCaseParams params}) {
+    return Future.value(_repository.getActivity(params.noOfDays!, params.isDebit!));
   }
 }
 

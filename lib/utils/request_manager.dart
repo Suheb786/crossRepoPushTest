@@ -6,11 +6,9 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:neo_bank/utils/resource.dart';
 
 class RequestManager<T> {
-  final StreamController<Resource<T>> _resource =
-      StreamController<Resource<T>>();
+  final StreamController<Resource<T>> _resource = StreamController<Resource<T>>();
 
-  RequestManager(Params params,
-      {required Future<Either<BaseError, T>> Function() createCall}) {
+  RequestManager(Params params, {required Future<Either<BaseError, T>> Function() createCall}) {
     _resource.sink.add(Resource.loading<T>(data: null));
     params.verify().fold(
       (l) async {

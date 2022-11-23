@@ -7,20 +7,16 @@ part 'save_profile_status_response_entity.g.dart';
 
 @JsonSerializable()
 class SaveProfileStatusResponseEntity
-    implements
-        BaseLayerDataTransformer<SaveProfileStatusResponseEntity,
-            SaveProfileStatusResponse> {
+    implements BaseLayerDataTransformer<SaveProfileStatusResponseEntity, SaveProfileStatusResponse> {
   @JsonKey(name: "response")
-  final SaveProfileStatusResponseDataEntity?
-      saveProfileStatusResponseDataEntity;
+  final SaveProfileStatusResponseDataEntity? saveProfileStatusResponseDataEntity;
 
   SaveProfileStatusResponseEntity({this.saveProfileStatusResponseDataEntity});
 
   factory SaveProfileStatusResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveProfileStatusResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$SaveProfileStatusResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$SaveProfileStatusResponseEntityToJson(this);
 
   @override
   SaveProfileStatusResponseEntity restore(SaveProfileStatusResponse response) {
@@ -30,7 +26,6 @@ class SaveProfileStatusResponseEntity
   @override
   SaveProfileStatusResponse transform() {
     return SaveProfileStatusResponse(
-        profileStatusResponseData:
-            this.saveProfileStatusResponseDataEntity!.transform());
+        profileStatusResponseData: this.saveProfileStatusResponseDataEntity!.transform());
   }
 }

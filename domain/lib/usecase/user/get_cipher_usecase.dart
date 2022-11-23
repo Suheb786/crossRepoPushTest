@@ -6,15 +6,13 @@ import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetCipherUseCase extends BaseUseCase<NetworkError, GetCipherUseCaseParams,
-    GetCipherResponse> {
+class GetCipherUseCase extends BaseUseCase<NetworkError, GetCipherUseCaseParams, GetCipherResponse> {
   final UserRepository userRepository;
 
   GetCipherUseCase(this.userRepository);
 
   @override
-  Future<Either<NetworkError, GetCipherResponse>> execute(
-      {required GetCipherUseCaseParams params}) {
+  Future<Either<NetworkError, GetCipherResponse>> execute({required GetCipherUseCaseParams params}) {
     return userRepository.getCipher();
   }
 }

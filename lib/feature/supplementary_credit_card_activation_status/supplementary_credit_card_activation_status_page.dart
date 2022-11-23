@@ -17,17 +17,14 @@ class SupplementaryCreditCardActivationStatusPage
 }
 
 class SupplementaryCreditCardActivationStatusPageState extends BaseStatefulPage<
-    SupplementaryCreditCardActivationStatusPageViewModel,
-    SupplementaryCreditCardActivationStatusPage> {
+    SupplementaryCreditCardActivationStatusPageViewModel, SupplementaryCreditCardActivationStatusPage> {
   @override
   ProviderBase provideBase() {
-    return supplementaryCreditCardActivationViewModelProvider
-        .call(widget._arguments);
+    return supplementaryCreditCardActivationViewModelProvider.call(widget._arguments);
   }
 
   @override
-  Widget buildView(BuildContext context,
-      SupplementaryCreditCardActivationStatusPageViewModel model) {
+  Widget buildView(BuildContext context, SupplementaryCreditCardActivationStatusPageViewModel model) {
     return SupplementaryCreditCardActivationStatusPageView(provideBase());
   }
 }

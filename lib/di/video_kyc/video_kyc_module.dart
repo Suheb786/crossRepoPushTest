@@ -4,8 +4,8 @@ import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_model.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 
-final videoKycViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<VideoKycViewModel, VideKycCredentials>(
+final videoKycViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<VideoKycViewModel, VideKycCredentials>(
   (ref, args) =>
-      VideoKycViewModel(ref.read(getCallStatusUsecaseProvider), args,ref.read(logoutUseCaseProvider)),
+      VideoKycViewModel(ref.read(getCallStatusUsecaseProvider), args, ref.read(logoutUseCaseProvider)),
 );

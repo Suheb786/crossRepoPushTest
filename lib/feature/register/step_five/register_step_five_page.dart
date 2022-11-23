@@ -10,8 +10,7 @@ class RegisterStepFivePage extends BasePage<RegisterStepFiveViewModel> {
   RegisterStepFivePageState createState() => RegisterStepFivePageState();
 }
 
-class RegisterStepFivePageState
-    extends BaseStatefulPage<RegisterStepFiveViewModel, RegisterStepFivePage> {
+class RegisterStepFivePageState extends BaseStatefulPage<RegisterStepFiveViewModel, RegisterStepFivePage> {
   @override
   ProviderBase provideBase() {
     return registerStepFiveViewModelProvider;

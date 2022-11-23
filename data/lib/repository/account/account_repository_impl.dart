@@ -19,8 +19,7 @@ class AccountRepositoryImpl extends AccountRepository {
   AccountRepositoryImpl(this._accountRemoteDS);
 
   @override
-  Future<Either<NetworkError, CheckVideoCallResponse>> checkVideoCallStatus(
-      {required bool getToken}) async {
+  Future<Either<NetworkError, CheckVideoCallResponse>> checkVideoCallStatus({required bool getToken}) async {
     final result = await safeApiCall(
       _accountRemoteDS.checkVideoCallStatus(getToken: getToken),
     );
@@ -31,8 +30,8 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckOtherNationalityResponse>>
-      checkOtherNationalityStatus({required bool getToken}) async {
+  Future<Either<NetworkError, CheckOtherNationalityResponse>> checkOtherNationalityStatus(
+      {required bool getToken}) async {
     final result = await safeApiCall(
       _accountRemoteDS.checkOtherNationalityStatus(getToken: getToken),
     );
@@ -54,8 +53,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckAgentStatusResponse>>
-      checkAgentStatus() async {
+  Future<Either<NetworkError, CheckAgentStatusResponse>> checkAgentStatus() async {
     final result = await safeApiCall(
       _accountRemoteDS.checkAgentStatus(),
     );
@@ -79,8 +77,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckExistingCallStatus>>
-      checkExistingCall() async {
+  Future<Either<NetworkError, CheckExistingCallStatus>> checkExistingCall() async {
     final result = await safeApiCall(
       _accountRemoteDS.checkExistingCall(),
     );
@@ -102,8 +99,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, RequestCallStatus>> requestCall(
-      String? type) async {
+  Future<Either<NetworkError, RequestCallStatus>> requestCall(String? type) async {
     final result = await safeApiCall(
       _accountRemoteDS.requestCall(type),
     );
@@ -114,8 +110,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(
-      String callDate) async {
+  Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(String callDate) async {
     final result = await safeApiCall(
       _accountRemoteDS.getCallTimeSlots(callDate),
     );
@@ -126,8 +121,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<Either<NetworkError, VideoKycStatus>> getCallStatus(
-      String session) async {
+  Future<Either<NetworkError, VideoKycStatus>> getCallStatus(String session) async {
     final result = await safeApiCall(
       _accountRemoteDS.getCallStatus(session),
     );

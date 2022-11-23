@@ -7,34 +7,25 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SupplementaryIdScanVerificationInfoDebitPageViewModel
-    extends BasePageViewModel {
+class SupplementaryIdScanVerificationInfoDebitPageViewModel extends BasePageViewModel {
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
 
   ///scan document request holder
-  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-      PublishSubject();
+  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest = PublishSubject();
 
   ///scan document response holder
-  final PublishSubject<Resource<ScannedDocumentInformation>>
-      _scanUserDocumentResponse = PublishSubject();
+  final PublishSubject<Resource<ScannedDocumentInformation>> _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
-  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
-      _scanUserDocumentResponse.stream;
+  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream => _scanUserDocumentResponse.stream;
 
-  ScannedDocumentInformation scannedDocumentInformation =
-      ScannedDocumentInformation();
+  ScannedDocumentInformation scannedDocumentInformation = ScannedDocumentInformation();
 
   SupplementaryIdScanVerificationInfoDebitPageViewModel(
     this._scanUserDocumentUseCase,
   ) {
-    _scanUserDocumentRequest
-        .debounceTime(Duration(milliseconds: 800))
-        .distinct()
-        .listen((value) {
-      RequestManager(value,
-              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+    _scanUserDocumentRequest.debounceTime(Duration(milliseconds: 800)).distinct().listen((value) {
+      RequestManager(value, createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.SUCCESS) {

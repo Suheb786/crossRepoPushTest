@@ -6,8 +6,7 @@ part of 'save_fatca_information_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SaveFatcaInformationRequestEntity _$SaveFatcaInformationRequestEntityFromJson(
-    Map<String, dynamic> json) {
+SaveFatcaInformationRequestEntity _$SaveFatcaInformationRequestEntityFromJson(Map<String, dynamic> json) {
   return SaveFatcaInformationRequestEntity(
     response1: json['Response1'] as bool?,
     response2: json['Response2'] as bool?,
@@ -23,8 +22,7 @@ SaveFatcaInformationRequestEntity _$SaveFatcaInformationRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$SaveFatcaInformationRequestEntityToJson(
-        SaveFatcaInformationRequestEntity instance) =>
+Map<String, dynamic> _$SaveFatcaInformationRequestEntityToJson(SaveFatcaInformationRequestEntity instance) =>
     <String, dynamic>{
       'Response1': instance.response1,
       'Response2': instance.response2,

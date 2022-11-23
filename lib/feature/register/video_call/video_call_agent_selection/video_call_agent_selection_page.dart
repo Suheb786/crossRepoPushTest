@@ -6,15 +6,13 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_agent_selection/video_call_agent_selection_page_view.dart';
 import 'package:neo_bank/feature/register/video_call/video_call_agent_selection/video_call_agent_selection_page_view_model.dart';
 
-class VideoCallAgentSelectionPage
-    extends BasePage<VideoCallAgentSelectionPageViewModel> {
+class VideoCallAgentSelectionPage extends BasePage<VideoCallAgentSelectionPageViewModel> {
   @override
-  VideoCallAgentSelectionPageState createState() =>
-      VideoCallAgentSelectionPageState();
+  VideoCallAgentSelectionPageState createState() => VideoCallAgentSelectionPageState();
 }
 
-class VideoCallAgentSelectionPageState extends BaseStatefulPage<
-    VideoCallAgentSelectionPageViewModel, VideoCallAgentSelectionPage> {
+class VideoCallAgentSelectionPageState
+    extends BaseStatefulPage<VideoCallAgentSelectionPageViewModel, VideoCallAgentSelectionPage> {
   @override
   ProviderBase provideBase() {
     return videoCallAgentSelectionViewModelProvider;
@@ -27,13 +25,11 @@ class VideoCallAgentSelectionPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(VideoCallAgentSelectionPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
-  Widget buildView(
-      BuildContext context, VideoCallAgentSelectionPageViewModel model) {
+  Widget buildView(BuildContext context, VideoCallAgentSelectionPageViewModel model) {
     return VideoCallAgentSelectionPageView(provideBase());
   }
 }

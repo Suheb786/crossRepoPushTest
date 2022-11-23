@@ -8,9 +8,7 @@ part 'ahwal_detail_response_entity.g.dart';
 
 @JsonSerializable()
 class AhwalDetailResponseEntity
-    implements
-        BaseLayerDataTransformer<AhwalDetailResponseEntity,
-            AhwalDetailResponse> {
+    implements BaseLayerDataTransformer<AhwalDetailResponseEntity, AhwalDetailResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? responseEntity;
 
@@ -28,7 +26,6 @@ class AhwalDetailResponseEntity
 
   @override
   AhwalDetailResponse transform() {
-    return AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
-        .transform();
+    return AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content).transform();
   }
 }

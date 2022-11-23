@@ -16,26 +16,20 @@ class VisaCardPageViewModel extends BasePageViewModel {
   final CardIssuanceUseCase _cardIssuanceUseCase;
   final GetPlaceholderUseCase _getPlaceholderUseCase;
 
-  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
-      PublishSubject();
+  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest = PublishSubject();
 
-  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse = BehaviorSubject();
 
   String? cardNumber;
 
-  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
-      _cardIssuanceResponse.stream;
+  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream => _cardIssuanceResponse.stream;
 
   /// get placeholder request
-  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest =
-      PublishSubject();
+  PublishSubject<GetPlaceholderUseCaseParams> _getPlaceHolderRequest = PublishSubject();
 
-  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<GetPlaceholderResponse>> _getPlaceHolderResponse = BehaviorSubject();
 
-  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream =>
-      _getPlaceHolderResponse.stream;
+  Stream<Resource<GetPlaceholderResponse>> get getPlaceHolderStream => _getPlaceHolderResponse.stream;
 
   PlaceholderData onBoardingPlaceholderData = PlaceholderData();
 
@@ -46,18 +40,15 @@ class VisaCardPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _cardDeliveryRequest = PublishSubject();
 
   /// card delivery pop up stream
-  Stream<bool> get cardDeliveryPopUpDataStream =>
-      _cardDeliveryPopUpResponse.stream;
+  Stream<bool> get cardDeliveryPopUpDataStream => _cardDeliveryPopUpResponse.stream;
 
   void triggerPopup() {
     _cardDeliveryRequest.safeAdd(true);
   }
 
-  VisaCardPageViewModel(
-      this._cardIssuanceUseCase, this._getPlaceholderUseCase) {
+  VisaCardPageViewModel(this._cardIssuanceUseCase, this._getPlaceholderUseCase) {
     _cardIssuanceRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardIssuanceUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardIssuanceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -72,8 +63,7 @@ class VisaCardPageViewModel extends BasePageViewModel {
     });
 
     _getPlaceHolderRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getPlaceholderUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getPlaceholderUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -100,8 +90,7 @@ class VisaCardPageViewModel extends BasePageViewModel {
 
   ///on boarding placeholder
   void getPlaceholder() {
-    _getPlaceHolderRequest
-        .safeAdd(GetPlaceholderUseCaseParams(placeholderId: 1));
+    _getPlaceHolderRequest.safeAdd(GetPlaceholderUseCaseParams(placeholderId: 1));
   }
 
   @override

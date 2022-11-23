@@ -24,8 +24,7 @@ CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) => <String, dynamic>{
       'isoCode3': instance.isoCode3,
       'isoCode': instance.isoCode,
       'phoneCode': instance.phoneCode,

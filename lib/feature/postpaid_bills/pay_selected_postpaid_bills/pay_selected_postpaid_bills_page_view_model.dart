@@ -17,6 +17,7 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   Stream<double> get totalBillAmtDueStream => _totalBillAmtDueSubject.stream;
 
   PaySelectedBillsPostPaidBillsPageViewModel(this.arguments);
+
   void newAmtEnter(int index, double value) {
     totalAmt[index] = value;
     arguments.noOfSelectedBills[index].billAmtDue = value;

@@ -13,9 +13,7 @@ GetCallStatusRequest _$GetCallStatusRequestFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$GetCallStatusRequestToJson(
-        GetCallStatusRequest instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$GetCallStatusRequestToJson(GetCallStatusRequest instance) => <String, dynamic>{
       'session': instance.session,
       'BaseClass': instance.baseData,
     };

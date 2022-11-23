@@ -1,9 +1,15 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
+import 'package:neo_bank/feature/send_money_via_qr/send_money_qr_scanning/send_money_qr_scanning_page.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
@@ -11,56 +17,57 @@ class AppHomePage extends BasePage<AppHomeViewModel> {
 }
 
 class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
   }
 
-  // @override
-  // Widget? buildBottomNavigationBar() {
-  //   return Padding(
-  //     padding: EdgeInsets.only(bottom: 24),
-  //     child: ConvexAppBar(
-  //       elevation: 0,
-  //       style: TabStyle.fixedCircle,
-  //       backgroundColor: Theme.of(context).accentColor,
-  //       items: [
-  //         TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
-  //         TabItem(
-  //           icon: Container(
-  //             height: 80,
-  //             width: 80,
-  //             decoration: BoxDecoration(
-  //                 color: Theme.of(context).primaryColorDark,
-  //                 shape: BoxShape.circle),
-  //             child: Center(
-  //               child: AppSvg.asset(AssetUtils.logoWhite),
-  //             ),
-  //           ),
-  //         ),
-  //         TabItem(
-  //             icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
-  //             title: " "),
-  //       ],
-  //       initialActiveIndex: 1,
-  //       onTap: (i) => print("got index $i"),
-  //     ),
-  //   );
-  // }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      if (Platform.isIOS) {
+        getViewModel().timer = new Timer(
+          const Duration(milliseconds: 800),
+          () {
+            getViewModel().initDynamicLink();
+          },
+        );
+      } else {
+        getViewModel().initDynamicLink();
+      }
+    }
+    super.didChangeAppLifecycleState(state);
+  }
 
-  // @override
-  // Widget? buildFloatingActionButton() {
-  //   return Container(
-  //     height: 80,
-  //     width: 80,
-  //     decoration: BoxDecoration(
-  //         color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
-  //     child: Center(
-  //       child: Image.asset(AssetUtils.logoWhite),
-  //     ),
-  //   );
-  // }
+  @override
+  void onModelReady(AppHomeViewModel model) {
+    model.initDynamicLinkRequestStream.listen((event) {
+      if (event.status == Status.SUCCESS) {
+        if ((event.data?.path ?? '').isNotEmpty) {
+          var accountTitle = event.data?.queryParameters['accountTitle'];
+          var accountNo = event.data?.queryParameters['accountNo'];
+          var requestAmt = event.data?.queryParameters['requestAmt'];
+          var dateTime = event.data?.queryParameters['dateTime'];
+          if ((accountNo ?? '').isNotEmpty) {
+            Navigator.pushReplacementNamed(context, RoutePaths.SendMoneyQrScanning,
+                arguments: SendMoneyQRScanningArguments(
+                    amount: requestAmt ?? '',
+                    accountHolderName: accountTitle ?? '',
+                    accountNo: accountNo ?? ''));
+          }
+        }
+      }
+    });
+
+    super.onModelReady(model);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   Color? scaffoldBackgroundColor() {

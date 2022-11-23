@@ -6,8 +6,7 @@ part of 'forget_password_request_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ForgetPasswordRequestEntity _$ForgetPasswordRequestEntityFromJson(
-    Map<String, dynamic> json) {
+ForgetPasswordRequestEntity _$ForgetPasswordRequestEntityFromJson(Map<String, dynamic> json) {
   return ForgetPasswordRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
@@ -20,8 +19,7 @@ ForgetPasswordRequestEntity _$ForgetPasswordRequestEntityFromJson(
   );
 }
 
-Map<String, dynamic> _$ForgetPasswordRequestEntityToJson(
-        ForgetPasswordRequestEntity instance) =>
+Map<String, dynamic> _$ForgetPasswordRequestEntityToJson(ForgetPasswordRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'getToken': instance.getToken,

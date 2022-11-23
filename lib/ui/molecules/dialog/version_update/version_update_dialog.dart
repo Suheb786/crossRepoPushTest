@@ -6,16 +6,10 @@ class VersionUpdateDialog {
   VersionUpdateDialog._();
 
   static show(BuildContext mContext,
-      {Function? onSelected,
-      String? image,
-      required String title,
-      required Widget descriptionWidget}) {
+      {Function? onSelected, String? image, required String title, required Widget descriptionWidget}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => VersionUpdateDialogView(
-            onSelected: onSelected,
-            image: image,
-            title: title,
-            descriptionWidget: descriptionWidget));
+            onSelected: onSelected, image: image, title: title, descriptionWidget: descriptionWidget));
   }
 }

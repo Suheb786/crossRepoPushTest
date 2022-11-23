@@ -22,8 +22,7 @@ class BioMetricService {
     return _localAuthentication.authenticate(
         localizedReason: localisedReason,
         biometricOnly: true,
-        androidAuthStrings:
-            AndroidAuthMessages(biometricHint: "", signInTitle: title),
+        androidAuthStrings: AndroidAuthMessages(biometricHint: "", signInTitle: title),
         useErrorDialogs: useErrorDialogs,
         stickyAuth: stickyAuth);
   }

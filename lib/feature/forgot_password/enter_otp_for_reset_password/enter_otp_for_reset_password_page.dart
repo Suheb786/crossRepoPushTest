@@ -7,16 +7,14 @@ import 'package:neo_bank/feature/forgot_password/enter_otp_for_reset_password/en
 import 'package:neo_bank/feature/forgot_password/enter_otp_for_reset_password/enter_otp_for_reset_password_page_view_model.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class EnterOTPForResetPasswordPage
-    extends BasePage<EnterOTPForResetPasswordPageViewModel> {
+class EnterOTPForResetPasswordPage extends BasePage<EnterOTPForResetPasswordPageViewModel> {
   @override
-  EnterOTPForResetPasswordPageState createState() =>
-      EnterOTPForResetPasswordPageState();
+  EnterOTPForResetPasswordPageState createState() => EnterOTPForResetPasswordPageState();
 }
 
-class EnterOTPForResetPasswordPageState extends BaseStatefulPage<
-    EnterOTPForResetPasswordPageViewModel,
-    EnterOTPForResetPasswordPage> with TickerProviderStateMixin, CodeAutoFill {
+class EnterOTPForResetPasswordPageState
+    extends BaseStatefulPage<EnterOTPForResetPasswordPageViewModel, EnterOTPForResetPasswordPage>
+    with TickerProviderStateMixin, CodeAutoFill {
   @override
   ProviderBase provideBase() {
     return enterOtpForResetPasswordViewModelProvider;
@@ -24,8 +22,7 @@ class EnterOTPForResetPasswordPageState extends BaseStatefulPage<
 
   @override
   void onModelReady(EnterOTPForResetPasswordPageViewModel model) {
-    model.countDownController =
-        CountdownTimerController(endTime: model.endTime);
+    model.countDownController = CountdownTimerController(endTime: model.endTime);
   }
 
   @override
@@ -34,8 +31,7 @@ class EnterOTPForResetPasswordPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterOTPForResetPasswordPageViewModel model) {
+  Widget buildView(BuildContext context, EnterOTPForResetPasswordPageViewModel model) {
     return EnterOTPForResetPasswordPageView(provideBase());
   }
 

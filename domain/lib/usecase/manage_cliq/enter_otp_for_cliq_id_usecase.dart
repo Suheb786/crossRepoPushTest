@@ -6,11 +6,9 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EnterOtpForCliqIdUseCase
-    extends BaseUseCase<BaseError, EnterOtpForCliqIdUseCaseParams, bool> {
+class EnterOtpForCliqIdUseCase extends BaseUseCase<BaseError, EnterOtpForCliqIdUseCaseParams, bool> {
   @override
-  Future<Either<BaseError, bool>> execute(
-      {required EnterOtpForCliqIdUseCaseParams params}) async {
+  Future<Either<BaseError, bool>> execute({required EnterOtpForCliqIdUseCaseParams params}) async {
     return Future.value(Right(true));
   }
 }
@@ -23,10 +21,7 @@ class EnterOtpForCliqIdUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (otp.isEmpty || otp.length < 6) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_OTP,
-          cause: Exception()));
+      return Left(AppError(error: ErrorInfo(message: ''), type: ErrorType.INVALID_OTP, cause: Exception()));
     }
     return Right(true);
   }

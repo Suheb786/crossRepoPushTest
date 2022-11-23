@@ -6,8 +6,7 @@ part "get_allowed_issuer_entity.g.dart";
 
 @JsonSerializable()
 class GetAllowedIssuerEntity
-    implements
-        BaseLayerDataTransformer<GetAllowedIssuerEntity, AllowedIssuerCountry> {
+    implements BaseLayerDataTransformer<GetAllowedIssuerEntity, AllowedIssuerCountry> {
   @JsonKey(name: "countryISOCode3")
   final String? countryISOCode3;
   @JsonKey(name: "regex")
@@ -30,7 +29,6 @@ class GetAllowedIssuerEntity
 
   @override
   AllowedIssuerCountry transform() {
-    return AllowedIssuerCountry(
-        countryIsoCode3: this.countryISOCode3, idRegEx: this.regex);
+    return AllowedIssuerCountry(countryIsoCode3: this.countryISOCode3, idRegEx: this.regex);
   }
 }

@@ -6,6 +6,5 @@ class TransactionItem {
   String? amount;
   String? type;
 
-  TransactionItem(
-      {this.createdAt, this.id, this.to, this.time, this.amount, this.type});
+  TransactionItem({this.createdAt, this.id, this.to, this.time, this.amount, this.type});
 }

@@ -15,8 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 
-class CountrySelectionPageView
-    extends BasePageViewWidget<CountrySelectionViewModel> {
+class CountrySelectionPageView extends BasePageViewWidget<CountrySelectionViewModel> {
   CountrySelectionPageView(ProviderBase model) : super(model);
 
   @override
@@ -29,12 +28,8 @@ class CountrySelectionPageView
       child: GestureDetector(
         onHorizontalDragUpdate: (details) {
           if (details.primaryDelta!.isNegative) {
-            ProviderScope.containerOf(context)
-                .read(addNumberViewModelProvider)
-                .notify();
-            ProviderScope.containerOf(context)
-                .read(accountRegistrationViewModelProvider)
-                .nextPage();
+            ProviderScope.containerOf(context).read(addNumberViewModelProvider).notify();
+            ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).nextPage();
             // .next();
             // .nextPage(
             //     duration: Duration(milliseconds: 500),
@@ -42,8 +37,7 @@ class CountrySelectionPageView
           }
         },
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 2,
           margin: EdgeInsets.zero,
@@ -52,10 +46,10 @@ class CountrySelectionPageView
               padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
               decoration: BoxDecoration(
                   color: AppColor.very_soft_violet,
-                  gradient: LinearGradient(colors: [
-                    AppColor.dark_violet,
-                    AppColor.dark_moderate_blue
-                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
+                  gradient: LinearGradient(
+                      colors: [AppColor.dark_violet, AppColor.dark_moderate_blue],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter)),
               child: AppStreamBuilder<Resource<List<Country>>>(
                 stream: model.countries,
                 initialData: Resource.none(),
@@ -66,8 +60,7 @@ class CountrySelectionPageView
                         children: [
                           NotifyMeWidget(
                             onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, RoutePaths.NonJordanianRegister);
+                              Navigator.pushReplacementNamed(context, RoutePaths.NonJordanianRegister);
                             },
                             title: S.of(context).accountOpeningDescription,
                             labelText: S.of(context).notifyMe,

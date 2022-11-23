@@ -15,6 +15,7 @@ class PayBillsMultipleListSelectionWidget extends StatelessWidget {
   final String billAmtDue;
   final bool isSelected;
   final PostPaidBillsPayTypeOptionEnum paidBillsPayTypeOptionEnum;
+
   const PayBillsMultipleListSelectionWidget(
       {Key? key,
       required this.icon,

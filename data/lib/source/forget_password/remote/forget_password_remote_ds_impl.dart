@@ -18,9 +18,7 @@ class ForgetPasswordRemoteDsImpl extends ForgetPasswordRemoteDs {
 
   @override
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
-      {required String? email,
-      required String? expiryDate,
-      required String? nationalId}) async {
+      {required String? email, required String? expiryDate, required String? nationalId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkForgetPassword(CheckForgetPasswordRequestEntity(
         uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -49,24 +47,22 @@ class ForgetPasswordRemoteDsImpl extends ForgetPasswordRemoteDs {
   }
 
   @override
-  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
-      verifyForgetPasswordOtp(
-          {required String? email,
-          required String? expiryDate,
-          required String? nationalId,
-          required String? createPassword,
-          required String? confirmPassword,
-          required String? otp}) async {
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>> verifyForgetPasswordOtp(
+      {required String? email,
+      required String? expiryDate,
+      required String? nationalId,
+      required String? createPassword,
+      required String? confirmPassword,
+      required String? otp}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.verifyForgetPasswordOtp(
-        VerifyForgetPasswordOtpRequestEntity(
-            uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
-            email: email,
-            idNo: nationalId,
-            idExpiry: expiryDate,
-            password: createPassword,
-            reEnterPassword: confirmPassword,
-            otp: otp,
-            baseData: baseData.toJson()));
+    return _apiService.verifyForgetPasswordOtp(VerifyForgetPasswordOtpRequestEntity(
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+        email: email,
+        idNo: nationalId,
+        idExpiry: expiryDate,
+        password: createPassword,
+        reEnterPassword: confirmPassword,
+        otp: otp,
+        baseData: baseData.toJson()));
   }
 }

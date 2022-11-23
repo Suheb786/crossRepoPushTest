@@ -6,8 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "beneficiary_entity.g.dart";
 
 @JsonSerializable()
-class BeneficiaryEntity
-    extends BaseLayerDataTransformer<BeneficiaryEntity, Beneficiary> {
+class BeneficiaryEntity extends BaseLayerDataTransformer<BeneficiaryEntity, Beneficiary> {
   @JsonKey(name: "nickName")
   final String? nickName;
   @JsonKey(name: "fullName")
@@ -62,8 +61,7 @@ class BeneficiaryEntity
       this.purposeParent: "",
       this.purposeParentDetails: ""});
 
-  factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) =>
-      _$BeneficiaryEntityFromJson(json);
+  factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) => _$BeneficiaryEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$BeneficiaryEntityToJson(this);
 
@@ -79,9 +77,7 @@ class BeneficiaryEntity
         bankName: this.bankName ?? '',
         nickName: this.nickName,
         fullName: this.fullName,
-        imageUrl: this.profileImage != null
-            ? ImageUtils.dataFromBase64String(this.profileImage!)
-            : '',
+        imageUrl: this.profileImage != null ? ImageUtils.dataFromBase64String(this.profileImage!) : '',
         purpose: this.purpose,
         purposeDetails: this.purposeDetails,
         mobileNumber: this.mobileNumber,

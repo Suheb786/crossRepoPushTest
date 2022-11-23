@@ -4,11 +4,10 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class CreditCardVerificationSuccessUseCase extends BaseUseCase<NetworkError,
-    CreditCardVerificationSuccessUseCaseParams, bool> {
+class CreditCardVerificationSuccessUseCase
+    extends BaseUseCase<NetworkError, CreditCardVerificationSuccessUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required CreditCardVerificationSuccessUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required CreditCardVerificationSuccessUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

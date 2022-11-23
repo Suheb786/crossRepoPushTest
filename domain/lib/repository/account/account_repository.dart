@@ -12,12 +12,11 @@ import 'package:domain/model/account/video_kyc_status.dart';
 
 abstract class AccountRepository {
   /// check Video call status
-  Future<Either<NetworkError, CheckVideoCallResponse>> checkVideoCallStatus(
-      {required bool getToken});
+  Future<Either<NetworkError, CheckVideoCallResponse>> checkVideoCallStatus({required bool getToken});
 
   /// check other nationality status
-  Future<Either<NetworkError, CheckOtherNationalityResponse>>
-      checkOtherNationalityStatus({required bool getToken});
+  Future<Either<NetworkError, CheckOtherNationalityResponse>> checkOtherNationalityStatus(
+      {required bool getToken});
 
   /// check document status
   Future<Either<NetworkError, DocStatusResponse>> docStatus();
@@ -38,8 +37,7 @@ abstract class AccountRepository {
   /// Request New Call
   Future<Either<NetworkError, RequestCallStatus>> requestCall(String? type);
 
-  Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(
-      String callDate);
+  Future<Either<NetworkError, List<AvailableTimeSlots>>> getCallTimeSlots(String callDate);
 
   Future<Either<NetworkError, VideoKycStatus>> getCallStatus(String session);
 }

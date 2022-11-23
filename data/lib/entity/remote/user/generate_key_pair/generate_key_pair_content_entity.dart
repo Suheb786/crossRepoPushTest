@@ -6,9 +6,7 @@ part 'generate_key_pair_content_entity.g.dart';
 
 @JsonSerializable()
 class GenerateKeyPairContentEntity
-    implements
-        BaseLayerDataTransformer<GenerateKeyPairContentEntity,
-            GenerateKeyPairContent> {
+    implements BaseLayerDataTransformer<GenerateKeyPairContentEntity, GenerateKeyPairContent> {
   @JsonKey(name: "privatePEM")
   final String? privatePEM;
   @JsonKey(name: "publicPEM")
@@ -28,7 +26,6 @@ class GenerateKeyPairContentEntity
 
   @override
   GenerateKeyPairContent transform() {
-    return GenerateKeyPairContent(
-        privatePEM: this.privatePEM, publicPEM: this.publicPEM);
+    return GenerateKeyPairContent(privatePEM: this.privatePEM, publicPEM: this.publicPEM);
   }
 }

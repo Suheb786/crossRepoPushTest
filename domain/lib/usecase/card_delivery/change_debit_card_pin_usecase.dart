@@ -5,20 +5,15 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ChangeDebitCardPinUseCase
-    extends BaseUseCase<NetworkError, ChangeDebitCardPinUseCaseParams, bool> {
+class ChangeDebitCardPinUseCase extends BaseUseCase<NetworkError, ChangeDebitCardPinUseCaseParams, bool> {
   final CardRepository _repository;
 
   ChangeDebitCardPinUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required ChangeDebitCardPinUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required ChangeDebitCardPinUseCaseParams params}) {
     return _repository.changeDebitCardPin(
-        pin: params.pin,
-        tokenizedPan: params.tokenizedPan,
-        otp: params.otp,
-        cardNumber: params.cardNumber);
+        pin: params.pin, tokenizedPan: params.tokenizedPan, otp: params.otp, cardNumber: params.cardNumber);
   }
 }
 
@@ -29,10 +24,7 @@ class ChangeDebitCardPinUseCaseParams extends Params {
   final String cardNumber;
 
   ChangeDebitCardPinUseCaseParams(
-      {this.pin: "",
-      this.tokenizedPan: "",
-      this.otp: "",
-      required this.cardNumber});
+      {this.pin: "", this.tokenizedPan: "", this.otp: "", required this.cardNumber});
 
   @override
   Either<AppError, bool> verify() {

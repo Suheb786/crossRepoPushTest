@@ -28,20 +28,20 @@ class SaveJobInfoRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveJobInfoRequest({this.employeeName,
-    this.occupation,
-    this.annualIncome,
-    this.employerCountries,
-    this.employerCity,
-    this.employerContact,
-    this.additionalIncomes,
-    this.mainSource,
-    this.businessType,
-    this.additionalIncome,
-    required this.baseData});
+  SaveJobInfoRequest(
+      {this.employeeName,
+      this.occupation,
+      this.annualIncome,
+      this.employerCountries,
+      this.employerCity,
+      this.employerContact,
+      this.additionalIncomes,
+      this.mainSource,
+      this.businessType,
+      this.additionalIncome,
+      required this.baseData});
 
-  factory SaveJobInfoRequest.fromJson(Map<String, dynamic> json) =>
-      _$SaveJobInfoRequestFromJson(json);
+  factory SaveJobInfoRequest.fromJson(Map<String, dynamic> json) => _$SaveJobInfoRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SaveJobInfoRequestToJson(this);
 }

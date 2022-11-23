@@ -10,8 +10,8 @@ class ReviewApplicationPage extends BasePage<ReviewApplicationPageViewModel> {
   ReviewApplicationPageState createState() => ReviewApplicationPageState();
 }
 
-class ReviewApplicationPageState extends BaseStatefulPage<
-    ReviewApplicationPageViewModel, ReviewApplicationPage> {
+class ReviewApplicationPageState
+    extends BaseStatefulPage<ReviewApplicationPageViewModel, ReviewApplicationPage> {
   @override
   ProviderBase provideBase() {
     return reviewApplicationPageViewModelProvider;

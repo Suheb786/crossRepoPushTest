@@ -21,8 +21,7 @@ class ImageUtils {
   }
 
   ///decode base64 pdf string
-  static Future<File> pdfFileFromBase64String(
-      String base64PdfString, String title) async {
+  static Future<File> pdfFileFromBase64String(String base64PdfString, String title) async {
     var bytes = base64Decode(base64PdfString.replaceAll('\n', ''));
 
     ///TODO:write on output directory

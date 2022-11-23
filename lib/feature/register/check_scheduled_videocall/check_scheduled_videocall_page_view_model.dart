@@ -18,13 +18,9 @@ class CheckScheduledVideoCallPageViewModel extends BasePageViewModel {
 
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
-  CheckScheduledVideoCallPageViewModel(
-      this._logoutUseCase, this.callScheduledArguments) {
+  CheckScheduledVideoCallPageViewModel(this._logoutUseCase, this.callScheduledArguments) {
     _logoutRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
+      RequestManager(value, createCall: () => _logoutUseCase.execute(params: value)).asFlow().listen((event) {
         updateLoader();
         _logoutResponse.safeAdd(event);
         if (event.status == Status.ERROR) {

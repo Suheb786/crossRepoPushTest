@@ -9,21 +9,17 @@ import 'package:rxdart/rxdart.dart';
 
 class CountrySelectionViewModel extends BasePageViewModel {
   final FetchCountriesUseCase _fetchCountriesUseCase;
-  PublishSubject<FetchCountriesUseParams> _fetchCountriesRequest =
-      PublishSubject();
+  PublishSubject<FetchCountriesUseParams> _fetchCountriesRequest = PublishSubject();
 
-  BehaviorSubject<Resource<List<Country>>> _fetchCountriesResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<List<Country>>> _fetchCountriesResponse = BehaviorSubject();
 
-  Stream<Resource<List<Country>>> get countries =>
-      _fetchCountriesResponse.stream;
+  Stream<Resource<List<Country>>> get countries => _fetchCountriesResponse.stream;
 
   Country? selectedCountry = Country();
 
   CountrySelectionViewModel(this._fetchCountriesUseCase) {
     _fetchCountriesRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _fetchCountriesUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _fetchCountriesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _fetchCountriesResponse.safeAdd(event);
@@ -38,8 +34,7 @@ class CountrySelectionViewModel extends BasePageViewModel {
 
   Country getSpecifiedCountry() {
     List<Country>? countryList = _fetchCountriesResponse.value.data;
-    Country? country =
-        countryList?.firstWhere((element) => element.countryName == 'Jordan');
+    Country? country = countryList?.firstWhere((element) => element.countryName == 'Jordan');
     selectedCountry = country;
     country!.isSelected = true;
     return country;

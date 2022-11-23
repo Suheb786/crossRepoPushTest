@@ -28,30 +28,25 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   Beneficiary? beneficiary;
 
-  PublishSubject<RequestAmountFromContactUseCaseParams>
-      _requestFromContactRequest = PublishSubject();
+  PublishSubject<RequestAmountFromContactUseCaseParams> _requestFromContactRequest = PublishSubject();
 
-  PublishSubject<Resource<RequestToPayContentResponse>>
-      _requestFromContactResponse = PublishSubject();
+  PublishSubject<Resource<RequestToPayContentResponse>> _requestFromContactResponse = PublishSubject();
 
-  BehaviorSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest =
-      BehaviorSubject();
+  BehaviorSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest = BehaviorSubject();
 
   Purpose? purpose;
 
   PurposeDetail? purposeDetail;
 
-  BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
-      _getAccountByAliasResponse = BehaviorSubject();
+  BehaviorSubject<Resource<GetAccountByAliasContentResponse>> _getAccountByAliasResponse = BehaviorSubject();
 
-  Stream<Resource<GetAccountByAliasContentResponse>>
-      get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
+  Stream<Resource<GetAccountByAliasContentResponse>> get getAccountByAliasResponseStream =>
+      _getAccountByAliasResponse.stream;
 
   GetAccountByAliasContentResponse? getAccountByAliasResult;
 
-  Stream<Resource<RequestToPayContentResponse>>
-      get requestFromContactResponseStream =>
-          _requestFromContactResponse.stream;
+  Stream<Resource<RequestToPayContentResponse>> get requestFromContactResponseStream =>
+      _requestFromContactResponse.stream;
 
   void updatePurposeDetail(PurposeDetail value) {
     purposeDetail = value;
@@ -63,13 +58,11 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     _purposeSubject.safeAdd(value.labelEn!);
   }
 
-  RequestAmountFromContactViewModel(this._requestAmountFromContactUseCase,
-      this._getAccountByAliasUseCase, this.beneficiary) {
+  RequestAmountFromContactViewModel(
+      this._requestAmountFromContactUseCase, this._getAccountByAliasUseCase, this.beneficiary) {
     _getAccountByAliasRequest.listen((value) {
       print("got beneficiary iban: ${beneficiary!.iban}");
-      RequestManager(value,
-              createCall: () =>
-                  _getAccountByAliasUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _getAccountByAliasUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -86,9 +79,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     });
 
     _requestFromContactRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _requestAmountFromContactUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _requestAmountFromContactUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -104,8 +95,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   }
 
   void getAccountByAlias() {
-    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(
-        value: beneficiary!.iban, currency: "JOD"));
+    _getAccountByAliasRequest
+        .safeAdd(GetAccountByAliasUseCaseParams(value: beneficiary!.iban, currency: "JOD"));
   }
 
   List<String> myList = [];
@@ -157,24 +148,16 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   void requestFromNewRecipient(BuildContext context) {
     _requestFromContactRequest.safeAdd(RequestAmountFromContactUseCaseParams(
         alias: beneficiary!.iban,
-        addressCity:
-            getAccountByAliasResult!.getAccountByAliasContent!.addressCity ??
-                "",
-        addressCountry:
-            getAccountByAliasResult!.getAccountByAliasContent!.addressCountry ??
-                "",
-        dbtrSurname:
-            getAccountByAliasResult!.getAccountByAliasContent!.surname ?? "",
+        addressCity: getAccountByAliasResult!.getAccountByAliasContent!.addressCity ?? "",
+        addressCountry: getAccountByAliasResult!.getAccountByAliasContent!.addressCountry ?? "",
+        dbtrSurname: getAccountByAliasResult!.getAccountByAliasContent!.surname ?? "",
         purpose: purpose == null
-            ? (beneficiary!.purposeParent == null ||
-                    beneficiary!.purposeParent!.isEmpty
+            ? (beneficiary!.purposeParent == null || beneficiary!.purposeParent!.isEmpty
                 ? ''
                 : beneficiary!.purposeParent)
             : purpose!.code!,
         purposeDetail: purposeDetail == null
-            ? (beneficiary!.purpose == null || beneficiary!.purpose!.isEmpty
-                ? ''
-                : beneficiary!.purpose!)
+            ? (beneficiary!.purpose == null || beneficiary!.purpose!.isEmpty ? '' : beneficiary!.purpose!)
             : purposeDetail!.strCode!,
         amount: double.parse(currentPinValue),
         dbtrBic: getAccountByAliasResult != null
@@ -183,8 +166,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
         dbtrAcct: beneficiary!.accountNo ?? "",
         dbtrName: beneficiary!.fullName ?? "",
         type: beneficiary!.purposeType ?? "",
-        limit:
-            purposeDetail == null ? beneficiary!.limit : purposeDetail!.limit,
+        limit: purposeDetail == null ? beneficiary!.limit : purposeDetail!.limit,
         detCustomerType: beneficiary!.detCustomerType ?? ""));
   }
 

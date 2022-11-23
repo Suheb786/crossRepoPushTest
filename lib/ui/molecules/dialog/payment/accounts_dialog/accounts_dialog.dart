@@ -13,9 +13,6 @@ class AccountsDialog {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => AccountsDialogView(
-            onDismissed: onDismissed,
-            label: label,
-            onSelected: onSelected,
-            accountsList: accountsList));
+            onDismissed: onDismissed, label: label, onSelected: onSelected, accountsList: accountsList));
   }
 }

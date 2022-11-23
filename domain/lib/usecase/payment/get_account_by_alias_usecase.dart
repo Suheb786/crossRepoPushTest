@@ -8,8 +8,8 @@ import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetAccountByAliasUseCase extends BaseUseCase<NetworkError,
-    GetAccountByAliasUseCaseParams, GetAccountByAliasContentResponse> {
+class GetAccountByAliasUseCase
+    extends BaseUseCase<NetworkError, GetAccountByAliasUseCaseParams, GetAccountByAliasContentResponse> {
   final PaymentRepository _repository;
 
   GetAccountByAliasUseCase(this._repository);
@@ -30,10 +30,8 @@ class GetAccountByAliasUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     if (value == null || value!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_IBAN_MOBILE,
-          cause: Exception()));
+      return Left(
+          AppError(error: ErrorInfo(message: ''), type: ErrorType.EMPTY_IBAN_MOBILE, cause: Exception()));
     }
     return Right(true);
   }

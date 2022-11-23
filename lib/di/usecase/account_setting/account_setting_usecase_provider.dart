@@ -13,36 +13,29 @@ import 'package:domain/usecase/account_setting/upload_profile_image/upload_profi
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddNewEmailAddressUseCase] provider
-final addNewEmailAddressUseCaseProvider =
-    Provider.autoDispose<AddNewEmailAddressUseCase>(
-  (ref) =>
-      AddNewEmailAddressUseCase(ref.read(accountSettingRepositoryProvider)),
+final addNewEmailAddressUseCaseProvider = Provider.autoDispose<AddNewEmailAddressUseCase>(
+  (ref) => AddNewEmailAddressUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[ValidateOtpForNewEmailAddressUseCase] provider
-final validateOtpNewEmailAddressUseCaseProvider =
-    Provider.autoDispose<ValidateOtpForNewEmailAddressUseCase>(
+final validateOtpNewEmailAddressUseCaseProvider = Provider.autoDispose<ValidateOtpForNewEmailAddressUseCase>(
   (ref) => ValidateOtpForNewEmailAddressUseCase(
       ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[AddNewMobileNumberUseCase] provider
-final addNewNumberUseCaseProvider =
-    Provider.autoDispose<AddNewMobileNumberUseCase>(
-  (ref) =>
-      AddNewMobileNumberUseCase(ref.read(accountSettingRepositoryProvider)),
+final addNewNumberUseCaseProvider = Provider.autoDispose<AddNewMobileNumberUseCase>(
+  (ref) => AddNewMobileNumberUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[ValidateOtpForNewMobileNumberUseCase] provider
-final validateOtpNewMobileNumberUseCaseProvider =
-    Provider.autoDispose<ValidateOtpForNewMobileNumberUseCase>(
+final validateOtpNewMobileNumberUseCaseProvider = Provider.autoDispose<ValidateOtpForNewMobileNumberUseCase>(
   (ref) => ValidateOtpForNewMobileNumberUseCase(
       ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[EnterNewPasswordUseCase] provider
-final enterNewPasswordUseCaseProvider =
-    Provider.autoDispose<EnterNewPasswordUseCase>(
+final enterNewPasswordUseCaseProvider = Provider.autoDispose<EnterNewPasswordUseCase>(
   (ref) => EnterNewPasswordUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
@@ -52,34 +45,26 @@ final myDocumentUseCaseProvider = Provider.autoDispose<MyDocumentsUseCase>(
 );
 
 ///[GetProfileInfoUseCase] provider
-final getProfileInfoUseCaseProvider =
-    Provider.autoDispose<GetProfileInfoUseCase>(
+final getProfileInfoUseCaseProvider = Provider.autoDispose<GetProfileInfoUseCase>(
   (ref) => GetProfileInfoUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[UploadProfileImageUseCase] provider
-final uploadProfileImageUseCaseProvider =
-    Provider.autoDispose<UploadProfileImageUseCase>(
-  (ref) =>
-      UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+final uploadProfileImageUseCaseProvider = Provider.autoDispose<UploadProfileImageUseCase>(
+  (ref) => UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[DeleteProfileImageUseCase] provider
-final deleteProfileImageUseCaseProvider =
-    Provider.autoDispose<DeleteProfileImageUseCase>(
-  (ref) =>
-      DeleteProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+final deleteProfileImageUseCaseProvider = Provider.autoDispose<DeleteProfileImageUseCase>(
+  (ref) => DeleteProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[GetCustomerDocIdUseCase] provider
-final getCustomerDocIdUseCaseProvider =
-    Provider.autoDispose<GetCustomerDocIdUseCase>(
+final getCustomerDocIdUseCaseProvider = Provider.autoDispose<GetCustomerDocIdUseCase>(
   (ref) => GetCustomerDocIdUseCase(ref.read(accountSettingRepositoryProvider)),
 );
 
 ///[GetCustomerDocumentUseCase] provider
-final getCustomerDocUseCaseProvider =
-    Provider.autoDispose<GetCustomerDocumentUseCase>(
-  (ref) =>
-      GetCustomerDocumentUseCase(ref.read(accountSettingRepositoryProvider)),
+final getCustomerDocUseCaseProvider = Provider.autoDispose<GetCustomerDocumentUseCase>(
+  (ref) => GetCustomerDocumentUseCase(ref.read(accountSettingRepositoryProvider)),
 );

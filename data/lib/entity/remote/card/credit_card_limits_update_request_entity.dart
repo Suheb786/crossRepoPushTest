@@ -37,10 +37,8 @@ class CreditCardSLimitsUpdateRequestEntity {
       this.baseData,
       this.secureCode: ""});
 
-  factory CreditCardSLimitsUpdateRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory CreditCardSLimitsUpdateRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CreditCardSLimitsUpdateRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CreditCardSLimitsUpdateRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$CreditCardSLimitsUpdateRequestEntityToJson(this);
 }

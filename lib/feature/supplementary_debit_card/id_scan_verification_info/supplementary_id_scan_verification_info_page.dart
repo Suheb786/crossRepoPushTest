@@ -12,10 +12,8 @@ class SupplementaryIdScanVerificationInfoDebitPage
       SupplementaryIdScanVerificationInfoDebitPageState();
 }
 
-class SupplementaryIdScanVerificationInfoDebitPageState
-    extends BaseStatefulPage<
-        SupplementaryIdScanVerificationInfoDebitPageViewModel,
-        SupplementaryIdScanVerificationInfoDebitPage> {
+class SupplementaryIdScanVerificationInfoDebitPageState extends BaseStatefulPage<
+    SupplementaryIdScanVerificationInfoDebitPageViewModel, SupplementaryIdScanVerificationInfoDebitPage> {
   @override
   ProviderBase provideBase() {
     return supplementaryDebitIdScanInfoViewModelProvider;
@@ -27,8 +25,7 @@ class SupplementaryIdScanVerificationInfoDebitPageState
   }
 
   @override
-  Widget buildView(BuildContext context,
-      SupplementaryIdScanVerificationInfoDebitPageViewModel model) {
+  Widget buildView(BuildContext context, SupplementaryIdScanVerificationInfoDebitPageViewModel model) {
     return SupplementaryIdScanVerificationInfoDebitPageView(provideBase());
   }
 }

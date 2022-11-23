@@ -8,15 +8,11 @@ class CreditCardCallStatusEnum {
     return _value.toString();
   }
 
-  static const CreditCardCallStatusEnum APPROVED =
-      CreditCardCallStatusEnum._("A");
+  static const CreditCardCallStatusEnum APPROVED = CreditCardCallStatusEnum._("A");
   static const CreditCardCallStatusEnum DROP = CreditCardCallStatusEnum._("D");
-  static const CreditCardCallStatusEnum REJECTED =
-      CreditCardCallStatusEnum._("R");
-  static const CreditCardCallStatusEnum CALL_NOT_RECEIVED =
-      CreditCardCallStatusEnum._("");
-  static const CreditCardCallStatusEnum NONE =
-      CreditCardCallStatusEnum._("None");
+  static const CreditCardCallStatusEnum REJECTED = CreditCardCallStatusEnum._("R");
+  static const CreditCardCallStatusEnum CALL_NOT_RECEIVED = CreditCardCallStatusEnum._("");
+  static const CreditCardCallStatusEnum NONE = CreditCardCallStatusEnum._("None");
 }
 
 extension CreditCardCallStatusEnumExt on String {

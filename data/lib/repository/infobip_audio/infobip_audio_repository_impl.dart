@@ -13,33 +13,27 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   InfobipAudioRepositoryImpl(this._infobipAudioDS, this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> initInfobip(
-      Function(InfobipCallStatusEnum) callback) async {
+  Future<Either<NetworkError, bool>> initInfobip(Function(InfobipCallStatusEnum) callback) async {
     var infobipResult = await _infobipAudioDS.initInfobipAudio(callback);
 
     if (!infobipResult) {
-      return Left(
-          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1501, cause: Exception(), message: ''));
     } else {
       return Right(true);
     }
   }
 
   @override
-  Future<Either<NetworkError, String>> obtainToken(
-      ObtainToken parameter) async {
+  Future<Either<NetworkError, String>> obtainToken(ObtainToken parameter) async {
     var tokenDetails;
-    return (await _repository.getCurrentUser()).fold(
-        (l) => Left(
-            NetworkError(httpError: 1502, cause: Exception(), message: '')),
-        (user) async {
+    return (await _repository.getCurrentUser())
+        .fold((l) => Left(NetworkError(httpError: 1502, cause: Exception(), message: '')), (user) async {
       parameter.displayName = user.firstName! + ' ' + user.lastName!;
       parameter.identity = user.firstName!;
       print("DISPLAY NAME ::: " + parameter.displayName!);
       tokenDetails = await _infobipAudioDS.obtainToken(parameter);
       if (tokenDetails == null) {
-        return Left(
-            NetworkError(httpError: 1502, cause: Exception(), message: ''));
+        return Left(NetworkError(httpError: 1502, cause: Exception(), message: ''));
       } else {
         return Right(tokenDetails);
       }
@@ -50,8 +44,7 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   Future<Either<NetworkError, bool>> establishCall() async {
     var result = await _infobipAudioDS.establishCall();
     if (!result) {
-      return Left(
-          NetworkError(httpError: 1503, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1503, cause: Exception(), message: ''));
     } else {
       return Right(true);
     }
@@ -73,8 +66,7 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   Future<Either<NetworkError, bool>> callHangUp() async {
     var result = await _infobipAudioDS.callHangUp();
     if (!result) {
-      return Left(
-          NetworkError(httpError: 1500, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1500, cause: Exception(), message: ''));
     } else {
       return Right(true);
     }
@@ -84,8 +76,7 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   Future<Either<NetworkError, int>> getCallDuration() async {
     var result = await _infobipAudioDS.getCallDuration();
     if (result == null) {
-      return Left(
-          NetworkError(httpError: 1504, cause: Exception(), message: ''));
+      return Left(NetworkError(httpError: 1504, cause: Exception(), message: ''));
     } else {
       return Right(result);
     }

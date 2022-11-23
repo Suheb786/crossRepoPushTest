@@ -14,10 +14,8 @@ class GetSupplementaryCreditCardApplicationRequestEntity {
   GetSupplementaryCreditCardApplicationRequestEntity(
       {this.primaryCard, this.getToken: false, required this.baseData});
 
-  factory GetSupplementaryCreditCardApplicationRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory GetSupplementaryCreditCardApplicationRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetSupplementaryCreditCardApplicationRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetSupplementaryCreditCardApplicationRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetSupplementaryCreditCardApplicationRequestEntityToJson(this);
 }

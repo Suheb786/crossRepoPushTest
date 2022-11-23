@@ -10,10 +10,8 @@ final notificationUseCaseProvider = Provider.autoDispose<NotificationUseCase>(
 
 ///[PaymentActivityUseCase] provider
 final paymentActivityUseCaseProvider =
-    Provider.autoDispose<PaymentActivityUseCase>(
-        (ref) => PaymentActivityUseCase());
+    Provider.autoDispose<PaymentActivityUseCase>((ref) => PaymentActivityUseCase());
 
 ///[PaymentActivityTransactionUseCase] provider
-final paymentActivityTransactionUseCaseProvider =
-    Provider.autoDispose<PaymentActivityTransactionUseCase>((ref) =>
-        PaymentActivityTransactionUseCase(ref.read(paymentRepositoryProvider)));
+final paymentActivityTransactionUseCaseProvider = Provider.autoDispose<PaymentActivityTransactionUseCase>(
+    (ref) => PaymentActivityTransactionUseCase(ref.read(paymentRepositoryProvider)));

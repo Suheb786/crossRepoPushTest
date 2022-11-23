@@ -5,8 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 part "debit_card_limit_entity.g.dart";
 
 @JsonSerializable()
-class DebitCardLimitEntity
-    implements BaseLayerDataTransformer<DebitCardLimitEntity, DebitCardLimit> {
+class DebitCardLimitEntity implements BaseLayerDataTransformer<DebitCardLimitEntity, DebitCardLimit> {
   @JsonKey(name: "description")
   String? description;
   @JsonKey(name: "minLimit")
@@ -16,11 +15,9 @@ class DebitCardLimitEntity
   @JsonKey(name: "maxLimit")
   String? maxLimit;
 
-  DebitCardLimitEntity(
-      {this.description, this.minLimit, this.maxLimit, this.currentLimit});
+  DebitCardLimitEntity({this.description, this.minLimit, this.maxLimit, this.currentLimit});
 
-  factory DebitCardLimitEntity.fromJson(Map<String, dynamic> json) =>
-      _$DebitCardLimitEntityFromJson(json);
+  factory DebitCardLimitEntity.fromJson(Map<String, dynamic> json) => _$DebitCardLimitEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$DebitCardLimitEntityToJson(this);
 

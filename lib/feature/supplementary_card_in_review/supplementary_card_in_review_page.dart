@@ -6,27 +6,24 @@ import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page_view.dart';
 import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page_view_model.dart';
 
-class SupplementaryCardInReviewPage
-    extends BasePage<SupplementaryCardInReviewPageViewModel> {
+class SupplementaryCardInReviewPage extends BasePage<SupplementaryCardInReviewPageViewModel> {
   final SupplementaryCardInReviewArguments _arguments;
 
   SupplementaryCardInReviewPage(this._arguments);
 
   @override
-  SupplementaryCardInReviewPageState createState() =>
-      SupplementaryCardInReviewPageState();
+  SupplementaryCardInReviewPageState createState() => SupplementaryCardInReviewPageState();
 }
 
-class SupplementaryCardInReviewPageState extends BaseStatefulPage<
-    SupplementaryCardInReviewPageViewModel, SupplementaryCardInReviewPage> {
+class SupplementaryCardInReviewPageState
+    extends BaseStatefulPage<SupplementaryCardInReviewPageViewModel, SupplementaryCardInReviewPage> {
   @override
   ProviderBase provideBase() {
     return supplementaryCardInReviewViewModelProvider.call(widget._arguments);
   }
 
   @override
-  Widget buildView(
-      BuildContext context, SupplementaryCardInReviewPageViewModel model) {
+  Widget buildView(BuildContext context, SupplementaryCardInReviewPageViewModel model) {
     return SupplementaryCardInReviewPageView(provideBase());
   }
 

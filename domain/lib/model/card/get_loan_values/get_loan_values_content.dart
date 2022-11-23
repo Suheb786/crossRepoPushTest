@@ -4,6 +4,5 @@ class GetLoanValuesContent {
   final String? step;
   final num? maxLimit;
 
-  GetLoanValuesContent(
-      {this.loanValueId, this.minimumLimit, this.step, this.maxLimit});
+  GetLoanValuesContent({this.loanValueId, this.minimumLimit, this.step, this.maxLimit});
 }

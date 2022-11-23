@@ -28,8 +28,7 @@ class LoginUserRequest {
       this.uniqueId: "",
       this.fireBaseToken: ""});
 
-  factory LoginUserRequest.fromJson(Map<String, dynamic> json) =>
-      _$LoginUserRequestFromJson(json);
+  factory LoginUserRequest.fromJson(Map<String, dynamic> json) => _$LoginUserRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginUserRequestToJson(this);
 }

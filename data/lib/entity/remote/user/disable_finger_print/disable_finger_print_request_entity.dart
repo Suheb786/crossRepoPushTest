@@ -11,12 +11,10 @@ class DisableFingerPrintRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  DisableFingerPrintRequestEntity(
-      {this.getToken, required this.baseData, this.uniqueId});
+  DisableFingerPrintRequestEntity({this.getToken, required this.baseData, this.uniqueId});
 
   factory DisableFingerPrintRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$DisableFingerPrintRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$DisableFingerPrintRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$DisableFingerPrintRequestEntityToJson(this);
 }

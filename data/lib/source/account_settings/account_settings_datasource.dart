@@ -8,31 +8,23 @@ import 'package:retrofit/retrofit.dart';
 abstract class AccountSettingsRemoteDs {
   Future<HttpResponse<ProfileDetailsResponseEntity>> getAccountDetails();
 
-  Future<HttpResponse<ResponseEntity>> updateProfileImage(
-      {required String filePath});
+  Future<HttpResponse<ResponseEntity>> updateProfileImage({required String filePath});
 
   Future<HttpResponse<ResponseEntity>> changeEmail({required String email});
 
-  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
-      {required String otp});
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail({required String otp});
 
-  Future<HttpResponse<ResponseEntity>> changeMobile(
-      {required String mobile, required String mobileCode});
+  Future<HttpResponse<ResponseEntity>> changeMobile({required String mobile, required String mobileCode});
 
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
-      {required String otp,
-      required String mobileNo,
-      required String mobileCode});
+      {required String otp, required String mobileNo, required String mobileCode});
 
   Future<HttpResponse<ResponseEntity>> changePassword(
-      {required String oldPassword,
-      required String newPassword,
-      required String confirmNewPassword});
+      {required String oldPassword, required String newPassword, required String confirmNewPassword});
 
   Future<HttpResponse<ResponseEntity>> deleteProfileImage();
 
   Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId();
 
-  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
-      {String docId});
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument({String docId});
 }

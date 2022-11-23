@@ -8,8 +8,7 @@ part 'get_account_response_entity.g.dart';
 
 @JsonSerializable()
 class GetAccountResponseEntity
-    implements
-        BaseLayerDataTransformer<GetAccountResponseEntity, GetAccountResponse> {
+    implements BaseLayerDataTransformer<GetAccountResponseEntity, GetAccountResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -27,8 +26,6 @@ class GetAccountResponseEntity
 
   @override
   GetAccountResponse transform() {
-    return GetAccountResponse(
-        content: GetAccountContentEntity.fromJson(this.response!.content)
-            .transform());
+    return GetAccountResponse(content: GetAccountContentEntity.fromJson(this.response!.content).transform());
   }
 }

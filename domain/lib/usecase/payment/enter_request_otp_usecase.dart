@@ -4,11 +4,9 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class EnterRequestOtpUseCase
-    extends BaseUseCase<NetworkError, EnterRequestOtpUseCaseParams, bool> {
+class EnterRequestOtpUseCase extends BaseUseCase<NetworkError, EnterRequestOtpUseCaseParams, bool> {
   @override
-  Future<Either<NetworkError, bool>> execute(
-      {required EnterRequestOtpUseCaseParams params}) {
+  Future<Either<NetworkError, bool>> execute({required EnterRequestOtpUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }

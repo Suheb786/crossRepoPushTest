@@ -5,23 +5,20 @@ import 'package:neo_bank/di/non_jordanian_register/non_jordanian_register_module
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page_view.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page_view_model.dart';
 
-class NonJordanianRegistrationPage
-    extends BasePage<NonJordanianRegisterPageViewModel> {
+class NonJordanianRegistrationPage extends BasePage<NonJordanianRegisterPageViewModel> {
   @override
-  NonJordanianRegistrationPageState createState() =>
-      NonJordanianRegistrationPageState();
+  NonJordanianRegistrationPageState createState() => NonJordanianRegistrationPageState();
 }
 
-class NonJordanianRegistrationPageState extends BaseStatefulPage<
-    NonJordanianRegisterPageViewModel, NonJordanianRegistrationPage> {
+class NonJordanianRegistrationPageState
+    extends BaseStatefulPage<NonJordanianRegisterPageViewModel, NonJordanianRegistrationPage> {
   @override
   ProviderBase provideBase() {
     return nonJordanianRegistrationViewModelProvider;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, NonJordanianRegisterPageViewModel model) {
+  Widget buildView(BuildContext context, NonJordanianRegisterPageViewModel model) {
     return NonJordanianRegisterPageView(provideBase());
   }
 

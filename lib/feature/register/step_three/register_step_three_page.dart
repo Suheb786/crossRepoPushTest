@@ -10,8 +10,7 @@ class RegisterStepThreePage extends BasePage<RegisterStepThreeViewModel> {
   RegisterStepThreePageState createState() => RegisterStepThreePageState();
 }
 
-class RegisterStepThreePageState extends BaseStatefulPage<
-    RegisterStepThreeViewModel, RegisterStepThreePage> {
+class RegisterStepThreePageState extends BaseStatefulPage<RegisterStepThreeViewModel, RegisterStepThreePage> {
   @override
   ProviderBase provideBase() {
     return registerStepThreeViewModelProvider;

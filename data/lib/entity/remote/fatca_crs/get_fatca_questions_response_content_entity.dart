@@ -8,33 +8,25 @@ part 'get_fatca_questions_response_content_entity.g.dart';
 @JsonSerializable()
 class FatcaQuestionsResponseContentEntity
     implements
-        BaseLayerDataTransformer<FatcaQuestionsResponseContentEntity,
-            GetFatcaQuestionsResponseContent> {
+        BaseLayerDataTransformer<FatcaQuestionsResponseContentEntity, GetFatcaQuestionsResponseContent> {
   @JsonKey(name: "data")
-  final List<FatcaQuestionsResponseContentDataEntity>?
-  fatcaQuestionResponseDataContent;
+  final List<FatcaQuestionsResponseContentDataEntity>? fatcaQuestionResponseDataContent;
 
   FatcaQuestionsResponseContentEntity({this.fatcaQuestionResponseDataContent});
 
-  factory FatcaQuestionsResponseContentEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory FatcaQuestionsResponseContentEntity.fromJson(Map<String, dynamic> json) =>
       _$FatcaQuestionsResponseContentEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$FatcaQuestionsResponseContentEntityToJson(this);
+  Map<String, dynamic> toJson() => _$FatcaQuestionsResponseContentEntityToJson(this);
 
   @override
-  FatcaQuestionsResponseContentEntity restore(
-      GetFatcaQuestionsResponseContent response) {
+  FatcaQuestionsResponseContentEntity restore(GetFatcaQuestionsResponseContent response) {
     return FatcaQuestionsResponseContentEntity();
   }
 
   @override
   GetFatcaQuestionsResponseContent transform() {
     return GetFatcaQuestionsResponseContent(
-        fatcaQuestionsList: this
-            .fatcaQuestionResponseDataContent!
-            .map((data) => data.transform())
-            .toList());
+        fatcaQuestionsList: this.fatcaQuestionResponseDataContent!.map((data) => data.transform()).toList());
   }
 }

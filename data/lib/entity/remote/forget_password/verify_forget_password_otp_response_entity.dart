@@ -8,29 +8,24 @@ part "verify_forget_password_otp_response_entity.g.dart";
 @JsonSerializable()
 class VerifyForgetPasswordOtpResponseEntity
     implements
-        BaseLayerDataTransformer<VerifyForgetPasswordOtpResponseEntity,
-            VerifyForgetPasswordOtpResponse> {
+        BaseLayerDataTransformer<VerifyForgetPasswordOtpResponseEntity, VerifyForgetPasswordOtpResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   VerifyForgetPasswordOtpResponseEntity({this.response});
 
-  factory VerifyForgetPasswordOtpResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+  factory VerifyForgetPasswordOtpResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$VerifyForgetPasswordOtpResponseEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$VerifyForgetPasswordOtpResponseEntityToJson(this);
+  Map<String, dynamic> toJson() => _$VerifyForgetPasswordOtpResponseEntityToJson(this);
 
   @override
-  VerifyForgetPasswordOtpResponseEntity restore(
-      VerifyForgetPasswordOtpResponse response) {
+  VerifyForgetPasswordOtpResponseEntity restore(VerifyForgetPasswordOtpResponse response) {
     return VerifyForgetPasswordOtpResponseEntity();
   }
 
   @override
   VerifyForgetPasswordOtpResponse transform() {
-    return VerifyForgetPasswordOtpResponse(
-        verifyForgetPasswordOtpContent: this.response!.content);
+    return VerifyForgetPasswordOtpResponse(verifyForgetPasswordOtpContent: this.response!.content);
   }
 }

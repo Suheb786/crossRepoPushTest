@@ -8,10 +8,7 @@ class NatureOfSpecialNeedsEnum {
     return _value.toString();
   }
 
-  static const NatureOfSpecialNeedsEnum PHYSICAL =
-      NatureOfSpecialNeedsEnum._("Physical");
-  static const NatureOfSpecialNeedsEnum SENSORY =
-      NatureOfSpecialNeedsEnum._("Sensory");
-  static const NatureOfSpecialNeedsEnum MOTION =
-      NatureOfSpecialNeedsEnum._("Motion");
+  static const NatureOfSpecialNeedsEnum PHYSICAL = NatureOfSpecialNeedsEnum._("Physical");
+  static const NatureOfSpecialNeedsEnum SENSORY = NatureOfSpecialNeedsEnum._("Sensory");
+  static const NatureOfSpecialNeedsEnum MOTION = NatureOfSpecialNeedsEnum._("Motion");
 }

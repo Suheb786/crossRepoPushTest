@@ -7,9 +7,7 @@ part 'get_confirm_application_data_entity.g.dart';
 
 @JsonSerializable()
 class GetConfirmApplicationDataEntity
-    implements
-        BaseLayerDataTransformer<GetConfirmApplicationDataEntity,
-            GetConfirmApplicationData> {
+    implements BaseLayerDataTransformer<GetConfirmApplicationDataEntity, GetConfirmApplicationData> {
   @JsonKey(name: "data")
   final GetConfirmApplicationDataContentEntity? data;
 
@@ -18,13 +16,11 @@ class GetConfirmApplicationDataEntity
   factory GetConfirmApplicationDataEntity.fromJson(Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$GetConfirmApplicationDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$GetConfirmApplicationDataEntityToJson(this);
 
   @override
   GetConfirmApplicationData transform() {
-    return GetConfirmApplicationData(
-        getConfirmApplicationDataContent: this.data!.transform());
+    return GetConfirmApplicationData(getConfirmApplicationDataContent: this.data!.transform());
   }
 
   @override

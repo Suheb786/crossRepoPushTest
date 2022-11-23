@@ -6,9 +6,8 @@ part of 'supplementary_credit_card_req_response_content_entity.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SupplementaryCreditCardReqResponseContentEntity
-    _$SupplementaryCreditCardReqResponseContentEntityFromJson(
-        Map<String, dynamic> json) {
+SupplementaryCreditCardReqResponseContentEntity _$SupplementaryCreditCardReqResponseContentEntityFromJson(
+    Map<String, dynamic> json) {
   return SupplementaryCreditCardReqResponseContentEntity(
     primaryId: json['primaryId'] as String?,
     suppId: json['suppId'] as String?,

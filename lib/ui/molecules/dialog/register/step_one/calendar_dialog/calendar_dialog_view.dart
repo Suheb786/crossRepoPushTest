@@ -25,11 +25,7 @@ class CalendarDialogView extends StatelessWidget {
   final Function(String)? onHeaderTapped;
 
   const CalendarDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.title,
-      this.onHeaderTapped,
-      this.initialDateTime});
+      {this.onDismissed, this.onSelected, this.title, this.onHeaderTapped, this.initialDateTime});
 
   ProviderBase providerBase() {
     return calendarDialogViewModelProvider;
@@ -40,14 +36,11 @@ class CalendarDialogView extends StatelessWidget {
     return BaseWidget<CalendarDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<DateParameters>(
                 stream: model!.dateParamsStream,
-                initialData: DateParameters(
-                    selectedDay: initialDateTime, focusedDay: initialDateTime),
+                initialData: DateParameters(selectedDay: initialDateTime, focusedDay: initialDateTime),
                 dataBuilder: (context, dateParams) {
                   return GestureDetector(
                     onVerticalDragEnd: (details) {
@@ -64,14 +57,11 @@ class CalendarDialogView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 32.0, bottom: 24),
+                                padding: const EdgeInsets.only(top: 32.0, bottom: 24),
                                 child: Center(
                                   child: Text(
                                     title!,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600),
+                                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ),
@@ -83,8 +73,7 @@ class CalendarDialogView extends StatelessWidget {
                                 calendarFormat: CalendarFormat.month,
                                 pageJumpingEnabled: false,
                                 onHeaderTapped: (time) {
-                                  YearMonthDialog.show(context,
-                                      calendarEnum: CalendarEnum.MONTH,
+                                  YearMonthDialog.show(context, calendarEnum: CalendarEnum.MONTH,
                                       onDismissed: () {
                                     Navigator.pop(context);
                                   }, onSelected: (month) {
@@ -92,16 +81,13 @@ class CalendarDialogView extends StatelessWidget {
                                     model.month = TimeUtils.getMonth(month);
                                     YearMonthDialog.show(context,
                                         title: S.of(context).dateOfBirthSmall,
-                                        calendarEnum: CalendarEnum.YEAR,
-                                        onDismissed: () {
+                                        calendarEnum: CalendarEnum.YEAR, onDismissed: () {
                                       Navigator.pop(context);
                                     }, onSelected: (year) {
                                       Navigator.pop(context);
                                       model.year = int.parse(year);
-                                      model.updateSelectedDate(
-                                          dateParams.selectedDay!,
-                                          DateTime(model.year, model.month,
-                                              model.date));
+                                      model.updateSelectedDate(dateParams.selectedDay!,
+                                          DateTime(model.year, model.month, model.date));
                                     });
                                   }, title: S.of(context).dateOfBirthSmall);
                                 },
@@ -112,29 +98,23 @@ class CalendarDialogView extends StatelessWidget {
                                   return date.isBefore(DateTime.now());
                                 },
                                 onDaySelected: (selectedDay, focusedDay) {
-                                  if (!isSameDay(
-                                      dateParams.selectedDay, selectedDay)) {
-                                    model.updateSelectedDate(
-                                        selectedDay, focusedDay);
+                                  if (!isSameDay(dateParams.selectedDay, selectedDay)) {
+                                    model.updateSelectedDate(selectedDay, focusedDay);
                                   }
                                 },
                                 onFormatChanged: (format) {},
                                 onPageChanged: (focusedDay) {
-                                  model.updateSelectedDate(
-                                      dateParams.selectedDay!, focusedDay);
+                                  model.updateSelectedDate(dateParams.selectedDay!, focusedDay);
                                 },
                                 calendarStyle: CalendarStyle(
                                   outsideTextStyle: TextStyle(
                                       color: AppColor.grayish_violet,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600),
-                                  todayDecoration: BoxDecoration(
-                                      color: AppColor.vivid_orange,
-                                      shape: BoxShape.circle),
+                                  todayDecoration:
+                                      BoxDecoration(color: AppColor.vivid_orange, shape: BoxShape.circle),
                                   todayTextStyle: TextStyle(
-                                      color: AppColor.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                      color: AppColor.white, fontSize: 14, fontWeight: FontWeight.w600),
                                   disabledTextStyle: TextStyle(
                                       color: AppColor.grayish_violet,
                                       fontSize: 14,
@@ -147,13 +127,10 @@ class CalendarDialogView extends StatelessWidget {
                                       color: AppColor.dark_violet2,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600),
-                                  selectedDecoration: BoxDecoration(
-                                      color: AppColor.vivid_orange,
-                                      shape: BoxShape.circle),
+                                  selectedDecoration:
+                                      BoxDecoration(color: AppColor.vivid_orange, shape: BoxShape.circle),
                                   selectedTextStyle: TextStyle(
-                                      color: AppColor.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                      color: AppColor.white, fontSize: 14, fontWeight: FontWeight.w600),
                                 ),
                                 startingDayOfWeek: StartingDayOfWeek.monday,
                                 headerStyle: HeaderStyle(
@@ -172,8 +149,7 @@ class CalendarDialogView extends StatelessWidget {
                                         border: Border.all(
                                           color: AppColor.whiteGray,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8))),
+                                        borderRadius: BorderRadius.circular(8))),
                                 daysOfWeekHeight: 32,
                                 daysOfWeekStyle: DaysOfWeekStyle(
                                     weekdayStyle: TextStyle(
@@ -184,8 +160,7 @@ class CalendarDialogView extends StatelessWidget {
                                         color: AppColor.gray_black,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
-                                    dowTextFormatter: (date, locale) =>
-                                        DateFormat.E(locale).format(date)[0]),
+                                    dowTextFormatter: (date, locale) => DateFormat.E(locale).format(date)[0]),
                               )),
                               InkWell(
                                 onTap: () {
@@ -196,15 +171,13 @@ class CalendarDialogView extends StatelessWidget {
                                   margin: EdgeInsets.only(top: 30),
                                   height: 57,
                                   width: 57,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColor.dark_violet_4),
+                                  decoration:
+                                      BoxDecoration(shape: BoxShape.circle, color: AppColor.dark_violet_4),
                                   child: AppSvg.asset(AssetUtils.tick),
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, bottom: 16),
+                                padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                                 child: Center(
                                   child: InkWell(
                                     onTap: () {

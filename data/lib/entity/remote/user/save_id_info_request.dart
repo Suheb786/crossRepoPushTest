@@ -92,8 +92,7 @@ class SaveIdInfoRequest {
       required this.baseData,
       this.placeOfBirth});
 
-  factory SaveIdInfoRequest.fromJson(Map<String, dynamic> json) =>
-      _$SaveIdInfoRequestFromJson(json);
+  factory SaveIdInfoRequest.fromJson(Map<String, dynamic> json) => _$SaveIdInfoRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$SaveIdInfoRequestToJson(this);
 }

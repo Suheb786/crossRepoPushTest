@@ -30,29 +30,24 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
   LatLng currentLocation = LatLng(31.8360368, 35.6674278);
 
   ///current Address request subject
-  PublishSubject<HomeAddressDialogUseCaseParams> _currentAddressRequestSubject =
-      PublishSubject();
+  PublishSubject<HomeAddressDialogUseCaseParams> _currentAddressRequestSubject = PublishSubject();
 
   ///current Address response subject
-  PublishSubject<Resource<HomeAddress>> _currentAddressResponseSubject =
-      PublishSubject();
+  PublishSubject<Resource<HomeAddress>> _currentAddressResponseSubject = PublishSubject();
 
   /// current User Address response stream holder
-  Stream<Resource<HomeAddress>> get currentAddressValidatorStream =>
-      _currentAddressResponseSubject.stream;
+  Stream<Resource<HomeAddress>> get currentAddressValidatorStream => _currentAddressResponseSubject.stream;
 
   void getAddress(LatLng latLng) {
-    _currentAddressRequestSubject.safeAdd(HomeAddressDialogUseCaseParams(
-        latitude: latLng.latitude, longitude: latLng.longitude));
+    _currentAddressRequestSubject
+        .safeAdd(HomeAddressDialogUseCaseParams(latitude: latLng.latitude, longitude: latLng.longitude));
   }
 
   ///current User location response subject
-  PublishSubject<LatLng> _currentUserLocationValidatorSubject =
-      PublishSubject();
+  PublishSubject<LatLng> _currentUserLocationValidatorSubject = PublishSubject();
 
   /// current User location response stream holder
-  Stream<LatLng> get currentUserLocationValidatorStream =>
-      _currentUserLocationValidatorSubject.stream;
+  Stream<LatLng> get currentUserLocationValidatorStream => _currentUserLocationValidatorSubject.stream;
 
   /// get current location
   determineCurrentPosition() async {
@@ -68,19 +63,16 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
           ),
           cause: Exception()));
     }
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
+    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
+      if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
         showToastWithError(AppError(
             type: ErrorType.LOCATION_SERVICE_NOT_ENABLED,
             error: ErrorInfo(
               message: '',
             ),
             cause: Exception()));
-      } else if (permission == LocationPermission.always ||
-          permission == LocationPermission.whileInUse) {
+      } else if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
         await setCurrentUserLocation();
       }
     } else {
@@ -89,12 +81,10 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
   }
 
   Future setCurrentUserLocation() async {
-    var userCurrentPosition = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
-    _currentUserLocationValidatorSubject.add(
-        LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
-    getAddress(
-        LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
+    var userCurrentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    _currentUserLocationValidatorSubject
+        .add(LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
+    getAddress(LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
   }
 
   void setUseCurrentSelectedLocation(LatLng latLng) {
@@ -103,17 +93,14 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
   }
 
   void setPinPointMarker() async {
-    final Uint8List markerIcon =
-        await MapMarkerUtils.getCustomMarker(AssetUtils.marker, 80);
+    final Uint8List markerIcon = await MapMarkerUtils.getCustomMarker(AssetUtils.marker, 80);
     pinPointMarker = markerIcon;
     notifyListeners();
   }
 
   HomeAddressDialogViewModel(this._homeAddressDialogUseCase) {
     _currentAddressRequestSubject.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _homeAddressDialogUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _homeAddressDialogUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.SUCCESS) {

@@ -6,15 +6,14 @@ import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetLoanValueUseCase extends BaseUseCase<NetworkError,
-    GetLoanValueUseCaseParams, GetLoanValuesResponse> {
+class GetLoanValueUseCase
+    extends BaseUseCase<NetworkError, GetLoanValueUseCaseParams, GetLoanValuesResponse> {
   final CardRepository _cardRepository;
 
   GetLoanValueUseCase(this._cardRepository);
 
   @override
-  Future<Either<NetworkError, GetLoanValuesResponse>> execute(
-      {required GetLoanValueUseCaseParams params}) {
+  Future<Either<NetworkError, GetLoanValuesResponse>> execute({required GetLoanValueUseCaseParams params}) {
     return _cardRepository.getLoanValues();
   }
 }

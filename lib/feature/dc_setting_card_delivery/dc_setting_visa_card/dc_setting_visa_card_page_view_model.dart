@@ -12,16 +12,13 @@ class DcSettingVisaCardPageViewModel extends BasePageViewModel {
   final FlipCardController cardController = FlipCardController();
   final CardIssuanceUseCase _cardIssuanceUseCase;
 
-  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
-      PublishSubject();
+  PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest = PublishSubject();
 
-  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      BehaviorSubject();
+  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse = BehaviorSubject();
 
   String? cardNumber;
 
-  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
-      _cardIssuanceResponse.stream;
+  Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream => _cardIssuanceResponse.stream;
 
   /// card delivery pop up request
   PublishSubject<bool> _cardDeliveryPopUpResponse = PublishSubject();
@@ -30,8 +27,7 @@ class DcSettingVisaCardPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _cardDeliveryRequest = PublishSubject();
 
   /// card delivery pop up stream
-  Stream<bool> get cardDeliveryPopUpDataStream =>
-      _cardDeliveryPopUpResponse.stream;
+  Stream<bool> get cardDeliveryPopUpDataStream => _cardDeliveryPopUpResponse.stream;
 
   void triggerPopup() {
     _cardDeliveryRequest.safeAdd(true);
@@ -39,8 +35,7 @@ class DcSettingVisaCardPageViewModel extends BasePageViewModel {
 
   DcSettingVisaCardPageViewModel(this._cardIssuanceUseCase) {
     _cardIssuanceRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _cardIssuanceUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _cardIssuanceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

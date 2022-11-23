@@ -6,8 +6,8 @@ import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class GetAdditionalIncomeSourceUseCase extends BaseUseCase<LocalError,
-    GetAdditionalIncomeSourceUseCaseParams, List<AdditionalIncome>> {
+class GetAdditionalIncomeSourceUseCase
+    extends BaseUseCase<LocalError, GetAdditionalIncomeSourceUseCaseParams, List<AdditionalIncome>> {
   final RegisterRepository _registerRepository;
 
   GetAdditionalIncomeSourceUseCase(this._registerRepository);

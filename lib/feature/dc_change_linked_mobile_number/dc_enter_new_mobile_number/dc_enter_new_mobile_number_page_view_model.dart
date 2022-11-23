@@ -19,8 +19,7 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
   final DcEnterNewMobileNumberUseCase _dcEnterNewMobileNumberUseCase;
 
   /// enter mobile usecase
-  PublishSubject<DcEnterNewMobileNumberUseCaseParams> _enterMobileRequest =
-      PublishSubject();
+  PublishSubject<DcEnterNewMobileNumberUseCaseParams> _enterMobileRequest = PublishSubject();
 
   PublishSubject<Resource<bool>> _enterMobileResponse = PublishSubject();
 
@@ -28,8 +27,7 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
-  final GlobalKey<AppTextFieldState> mobileNumberKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  final GlobalKey<AppTextFieldState> mobileNumberKey = GlobalKey(debugLabel: "mobileNumber");
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -41,12 +39,10 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
   CountryData countryData = CountryData(isoCode3: 'JOR', phoneCode: '962');
 
   ///get allowed code country request holder
-  PublishSubject<GetAllowedCodeCountryListUseCaseParams>
-      _getAllowedCountryRequest = PublishSubject();
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams> _getAllowedCountryRequest = PublishSubject();
 
   ///get allowed code country response holder
-  PublishSubject<Resource<AllowedCountryListResponse>>
-      _getAllowedCountryResponse = PublishSubject();
+  PublishSubject<Resource<AllowedCountryListResponse>> _getAllowedCountryResponse = PublishSubject();
 
   ///get allowed code country response stream
   Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
@@ -57,17 +53,14 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
       BehaviorSubject.seeded(CountryData(isoCode3: 'JOR', phoneCode: '962'));
 
   ///get allowed code country response stream
-  Stream<CountryData> get getSelectedCountryStream =>
-      _selectedCountryResponse.stream;
+  Stream<CountryData> get getSelectedCountryStream => _selectedCountryResponse.stream;
 
   String mobileNumberWithCode = '';
 
-  DcEnterNewMobileNumberPageViewModel(this._allowedCodeCountryListUseCase,
-      this._dcEnterNewMobileNumberUseCase) {
+  DcEnterNewMobileNumberPageViewModel(
+      this._allowedCodeCountryListUseCase, this._dcEnterNewMobileNumberUseCase) {
     _enterMobileRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _dcEnterNewMobileNumberUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _dcEnterNewMobileNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -80,9 +73,7 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
     });
 
     _getAllowedCountryRequest.listen((value) {
-      RequestManager(value,
-              createCall: () =>
-                  _allowedCodeCountryListUseCase.execute(params: value))
+      RequestManager(value, createCall: () => _allowedCodeCountryListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAllowedCountryResponse.safeAdd(event);
@@ -122,8 +113,7 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   void validateMobile(String? tokenizedPan, CardType cardType) {
-    mobileNumberWithCode =
-        '+${countryData.phoneCode} ${mobileNumberController.text}';
+    mobileNumberWithCode = '+${countryData.phoneCode} ${mobileNumberController.text}';
     _enterMobileRequest.safeAdd(DcEnterNewMobileNumberUseCaseParams(
         mobileNumber: mobileNumberController.text,
         mobileCode: "00${_selectedCountryResponse.value.phoneCode}",
@@ -132,8 +122,7 @@ class DcEnterNewMobileNumberPageViewModel extends BasePageViewModel {
   }
 
   void validate() {
-    if (mobileNumberController.text.isNotEmpty &&
-        mobileNumberController.text.length > 8) {
+    if (mobileNumberController.text.isNotEmpty && mobileNumberController.text.length > 8) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
