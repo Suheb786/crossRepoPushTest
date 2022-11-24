@@ -7,6 +7,7 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -84,6 +85,7 @@ class PrePaidBillCardWidget extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         //
+                        AppConstantsUtils.IS_NEW_PAYMENT = false;
                         Navigator.pushNamed(context, RoutePaths.PayMyPrePaidBillsPage);
                       },
                       child: Container(
@@ -92,7 +94,8 @@ class PrePaidBillCardWidget extends StatelessWidget {
                             color: AppColor.brightBlue, borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            S.of(context).payAllBills,
+                            // S.of(context).payAllBills,
+                            "Pay My Bills",
                             style: TextStyle(
                                 fontFamily: StringUtils.appFont,
                                 fontSize: 14.0.t,

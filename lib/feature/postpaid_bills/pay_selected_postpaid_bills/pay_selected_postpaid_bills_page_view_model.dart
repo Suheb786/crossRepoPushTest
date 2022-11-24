@@ -186,18 +186,19 @@ class PaySelectedBillsPostPaidBillsPageViewModel extends BasePageViewModel {
   }
 
   getValidBillerNameEN(String? billingNumber) {
-    for (var item in arguments.noOfSelectedBills)
-      if (item.billingNo == billingNumber)
-        return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
-            ? item.billerNameEN
-            : "null";
-  }
-
-  getValidBillerNickName(String? billingNumber) {
     for (var item in arguments.noOfSelectedBills) {
       if (item.billingNo == billingNumber)
         return item.billerNameEN != null && item.billerNameEN!.isNotEmpty
             ? item.billerNameEN
+            : "null";
+    }
+  }
+
+  getValidBillerNickName(String? billingNumber, {String? nickName}) {
+    for (var item in arguments.noOfSelectedBills) {
+      if (item.billingNo == billingNumber)
+        return nickName != null && nickName!.isNotEmpty
+            ? nickName
             : "null";
     }
   }

@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part "add_new_prepaid_biller_entity_request.g.dart";
 
-
 @JsonSerializable()
 class AddNewPrepaidBillerEntityRequest {
   @JsonKey(name: "prepaidCategoryType")
@@ -26,14 +25,19 @@ class AddNewPrepaidBillerEntityRequest {
   @JsonKey(name: "billingNumber")
   final String? billingNumber;
 
-    @JsonKey(name: "nickname")
+  @JsonKey(name: "nickname")
   final String? nickname;
 
-    @JsonKey(name: "amount")
+  @JsonKey(name: "amount")
   final String? amount;
 
-    @JsonKey(name: "billingNumberRequired")
+  @JsonKey(name: "billingNumberRequired")
   final bool? billingNumberRequired;
+
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
 
   AddNewPrepaidBillerEntityRequest({
     this.prepaidCategoryType,
@@ -45,11 +49,15 @@ class AddNewPrepaidBillerEntityRequest {
     this.billingNumber,
     this.nickname,
     this.amount,
-    this.billingNumberRequired
+    this.billingNumberRequired,
+    this.getToken,
+    required this.baseData,
   });
 
-  factory AddNewPrepaidBillerEntityRequest.fromJson(Map<String, dynamic> json) =>
+  factory AddNewPrepaidBillerEntityRequest.fromJson(
+          Map<String, dynamic> json) =>
       _$AddNewPrepaidBillerEntityRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AddNewPrepaidBillerEntityRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$AddNewPrepaidBillerEntityRequestToJson(this);
 }

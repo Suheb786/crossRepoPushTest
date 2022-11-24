@@ -96,7 +96,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      model.argument.payMyPrePaidBillsPageDataList[index].billType,
+                                      model.argument.payMyPrePaidBillsPageDataList[index].serviceType ??"",
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.black,
@@ -104,7 +104,7 @@ class HowMuchLikeToPayPrePaidBillsPageView
                                           fontSize: 14.0.t),
                                     ),
                                     Text(
-                                      model.argument.payMyPrePaidBillsPageDataList[index].billName,
+                                      model.argument.payMyPrePaidBillsPageDataList[index].billerName ?? '',
                                       style: TextStyle(
                                           fontFamily: StringUtils.appFont,
                                           color: AppColor.veryDarkGray2,

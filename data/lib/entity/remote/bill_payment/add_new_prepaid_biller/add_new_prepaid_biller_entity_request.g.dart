@@ -19,6 +19,8 @@ AddNewPrepaidBillerEntityRequest _$AddNewPrepaidBillerEntityRequestFromJson(
     nickname: json['nickname'] as String?,
     amount: json['amount'] as String?,
     billingNumberRequired: json['billingNumberRequired'] as bool?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -35,4 +37,6 @@ Map<String, dynamic> _$AddNewPrepaidBillerEntityRequestToJson(
       'nickname': instance.nickname,
       'amount': instance.amount,
       'billingNumberRequired': instance.billingNumberRequired,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

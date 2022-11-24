@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/postpaid_bills/pay_all_postpaid_bills/pall_all_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/app_constants.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/sizer_helper_util.dart';
@@ -102,6 +103,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           //
+                          AppConstantsUtils.IS_NEW_PAYMENT = false;
                           Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage,
                               arguments: PayAllPostPaidBillsPageArguments(
                                   PostPaidBillsPayTypeOptionEnum.VIEWMYBILLS));
@@ -129,6 +131,7 @@ class PostPaidBillCardWidget extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           //
+                          AppConstantsUtils.IS_NEW_PAYMENT = false;
                           Navigator.pushNamed(context, RoutePaths.PayAllPostPaidBillsPage,
                               arguments: PayAllPostPaidBillsPageArguments(
                                   PostPaidBillsPayTypeOptionEnum.PAYALLBILLS));

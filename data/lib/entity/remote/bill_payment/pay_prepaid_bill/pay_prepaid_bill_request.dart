@@ -33,6 +33,11 @@ class PayPrePaidRequest {
   @JsonKey(name: "CardId")
   final String? CardId;
 
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
+
   PayPrePaidRequest(
       {this.billerCode,
       this.billerName,
@@ -48,7 +53,9 @@ class PayPrePaidRequest {
       this.prepaidCategoryCode,
       this.prepaidCategoryType,
       this.billingNumberRequired,
-      this.isCreditCardPayment});
+      this.isCreditCardPayment,
+      this.getToken,
+      required this.baseData});
 
   factory PayPrePaidRequest.fromJson(Map<String, dynamic> json) =>
       _$PayPrePaidRequestFromJson(json);

@@ -9,7 +9,13 @@ class GetPrePaidCategoriesRequestEntity {
   @JsonKey(name: "serviceCode")
   String? serviceCode;
 
-  GetPrePaidCategoriesRequestEntity({this.billerCode, this.serviceCode});
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
+
+  GetPrePaidCategoriesRequestEntity(
+      {this.billerCode, this.serviceCode, this.getToken, required this.baseData});
 
   factory GetPrePaidCategoriesRequestEntity.fromJson(
           Map<String, dynamic> json) =>

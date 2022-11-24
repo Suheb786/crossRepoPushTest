@@ -11,6 +11,8 @@ GetPrePaidCategoriesRequestEntity _$GetPrePaidCategoriesRequestEntityFromJson(
   return GetPrePaidCategoriesRequestEntity(
     billerCode: json['billerCode'] as String?,
     serviceCode: json['serviceCode'] as String?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -19,4 +21,6 @@ Map<String, dynamic> _$GetPrePaidCategoriesRequestEntityToJson(
     <String, dynamic>{
       'billerCode': instance.billerCode,
       'serviceCode': instance.serviceCode,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

@@ -7,8 +7,15 @@ class RemovePrepaidBillerRequest {
   @JsonKey(name: "registrationID")
   final String? registrationID;
 
+  @JsonKey(name: "GetToken")
+  final bool? getToken;
+  @JsonKey(name: "BaseClass")
+  final Map<String, dynamic> baseData;
+
   RemovePrepaidBillerRequest({
     required this.registrationID,
+    this.getToken,
+    required this.baseData,
   });
 
   factory RemovePrepaidBillerRequest.fromJson(Map<String, dynamic> json) =>

@@ -62,11 +62,6 @@ class PayMyPrePaidBillsPageState
 
   @override
   void onModelReady(PayMyPrePaidBillsPageViewModel model) {
-    model.payMyPrePaidBillsPageDataList = [
-      PayMyPrePaidBillsPageData(AssetUtils.mobile, 'Prepaid Tariq', 'Orange Mobile and Net Everywhere'),
-      PayMyPrePaidBillsPageData(AssetUtils.mobile, 'JOCARD Prepaid', 'JOCARD Recharge'),
-      PayMyPrePaidBillsPageData(AssetUtils.mobile, 'Games', 'Playstation UAE'),
-    ];
     super.onModelReady(model);
   }
 

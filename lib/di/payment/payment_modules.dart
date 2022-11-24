@@ -331,7 +331,10 @@ final selectServiceDialogViewModelProvider =
 
 final payMyPrePaidBillsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<PayMyPrePaidBillsPageViewModel>(
-  (ref) => PayMyPrePaidBillsPageViewModel(),
+  (ref) => PayMyPrePaidBillsPageViewModel(
+      ref.read(getPrepaidBillerUseCaseProvider),
+      ref.read(getPrePaidCategoriesListUseCaseProvider),
+      ref.read(removePrepaidBillerUseCaseProvider)),
 );
 
 final payingPrePaidBillsPageViewModelProvider = ChangeNotifierProvider

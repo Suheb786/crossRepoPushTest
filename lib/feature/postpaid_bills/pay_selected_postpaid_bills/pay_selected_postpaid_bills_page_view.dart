@@ -102,7 +102,7 @@ class PaySelectedBillsPostPaidBillsPageView
                                 itemBuilder: (context, index) {
                                   return SelectedBillsToPaidWidget(
                                     billName: model.getValidBillerNickName(
-                                        model.arguments.postPaidBillInquiryData?[index].billNo),
+                                        model.arguments.postPaidBillInquiryData?[index].billNo,nickName: model.arguments.noOfSelectedBills?[index].nickName),
                                     billType: model.getValidBillerNameEN(
                                         model.arguments.postPaidBillInquiryData?[index].billNo),
                                     itemCount: (index + 1).toString(),

@@ -69,6 +69,7 @@ class PayAllPostPaidBillsPageViewModel extends BasePageViewModel {
           serviceType: payPostPaidBillsDataList[index].serviceType,
           billingNumber: payPostPaidBillsDataList[index].billingNo,
         ));
+        print("payPOstPaidBillDataList.billingNo:${payPostPaidBillsDataList[index].billingNo}");
         selectedPostPaidBillsList.add(payPostPaidBillsDataList[index]);
         selectedPostPaidBillsList = selectedPostPaidBillsList.toSet().toList();
         postPaidRequestListJson = postPaidRequestListJson.toSet().toList();

@@ -16,6 +16,8 @@ ValidatePrePaidBillRequestEntity _$ValidatePrePaidBillRequestEntityFromJson(
     prepaidCategoryCode: json['prepaidCategoryCode'] as String?,
     prepaidCategoryType: json['prepaidCategoryType'] as String?,
     billingNumberRequired: json['billingNumberRequired'] as bool?,
+    getToken: json['GetToken'] as bool?,
+    baseData: json['BaseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -29,4 +31,6 @@ Map<String, dynamic> _$ValidatePrePaidBillRequestEntityToJson(
       'prepaidCategoryCode': instance.prepaidCategoryCode,
       'prepaidCategoryType': instance.prepaidCategoryType,
       'billingNumberRequired': instance.billingNumberRequired,
+      'GetToken': instance.getToken,
+      'BaseClass': instance.baseData,
     };

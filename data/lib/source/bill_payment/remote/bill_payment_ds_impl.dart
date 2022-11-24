@@ -35,6 +35,7 @@ import 'package:domain/usecase/bill_payment/pay_prepaid_bill_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_customer_billing_usecase.dart';
 import 'package:domain/usecase/bill_payment/remove_prepaid_biller_usecase.dart';
 import 'package:domain/usecase/bill_payment/validate_prepaid_bill_usecase.dart';
+import 'package:infobip_plugin/Utils/method_keys.dart';
 import 'package:retrofit/retrofit.dart';
 
 class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
@@ -83,7 +84,9 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
   @override
   Future<HttpResponse<PayPrePaidResponse>> payPrepaidBillDs(
-      {PayPrePaidUseCaseParams? params}) {
+      {PayPrePaidUseCaseParams? params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.payPrePaidBillData(PayPrePaidRequest(
         billerCode: params?.billerCode,
         billerName: params?.billerName,
@@ -98,7 +101,9 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         prepaidCategoryCode: params?.prepaidCategoryCode,
         prepaidCategoryType: params?.prepaidCategoryType,
         billingNumberRequired: params?.billingNumberRequired,
-        isCreditCardPayment: params?.isCreditCardPayment));
+        isCreditCardPayment: params?.isCreditCardPayment,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override
@@ -137,7 +142,9 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
   @override
   Future<HttpResponse<ValidatePrePaidBillResponse>> validatePrePaidBill(
-      {required ValidatePrePaidUseCaseParams params}) {
+      {required ValidatePrePaidUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.validatePrePaidBill(ValidatePrePaidBillRequestEntity(
         billerCode: params.billerCode,
         amount: params.amount,
@@ -145,7 +152,9 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
         billingNumber: params.billingNumber,
         prepaidCategoryCode: params.prepaidCategoryCode,
         prepaidCategoryType: params.prepaidCategoryType,
-        billingNumberRequired: params.billingNumberRequired));
+        billingNumberRequired: params.billingNumberRequired,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override
@@ -160,20 +169,23 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
   @override
   Future<HttpResponse<AddNewPrepaidBillerEntityResponse>> addNewPrepaidBiller(
-      {required AddNewPrepaidBillerUseCaseParams params}) {
+      {required AddNewPrepaidBillerUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.addNewPrepaidBillerData(
       AddNewPrepaidBillerEntityRequest(
-        prepaidCategoryType: params.prepaidCategoryType,
-        prepaidCategoryCode: params.prepaidCategoryCode,
-        serviceType: params.serviceType,
-        serviceCode: params.serviceCode,
-        billerCode: params.billerCode,
-        billerName: params.billerName,
-        billingNumber: params.billingNumber,
-        nickname: params.nickname,
-        amount: params.amount,
-        billingNumberRequired: params.billingNumberRequired,
-      ),
+          prepaidCategoryType: params.prepaidCategoryType,
+          prepaidCategoryCode: params.prepaidCategoryCode,
+          serviceType: params.serviceType,
+          serviceCode: params.serviceCode,
+          billerCode: params.billerCode,
+          billerName: params.billerName,
+          billingNumber: params.billingNumber,
+          nickname: params.nickname,
+          amount: params.amount,
+          billingNumberRequired: params.billingNumberRequired,
+          getToken: true,
+          baseData: baseData.toJson()),
     );
   }
 
@@ -190,9 +202,14 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
 
   @override
   Future<HttpResponse<GetPrePaidCategoriesResponse>> getPrePaidCategories(
-      {required GetPrePaidCategoriesListUseCaseParams params}) {
+      {required GetPrePaidCategoriesListUseCaseParams params}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.getPrePaidCategory(GetPrePaidCategoriesRequestEntity(
-        billerCode: params.billerCode, serviceCode: params.serviceCode));
+        billerCode: params.billerCode,
+        serviceCode: params.serviceCode,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 
   @override
@@ -214,11 +231,14 @@ class BillPaymentRemoteDSImpl extends BillPaymentRemoteDS {
   @override
   Future<HttpResponse<BaseResponse>> removePrepaidBiller({
     required RemovePrepaidBillerUseCaseParams params,
-  }) {
+  }) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
     return _apiService.removePrepaidBiller(
       RemovePrepaidBillerRequest(
-        registrationID: params.registrationID,
-      ),
+          registrationID: params.registrationID,
+          getToken: true,
+          baseData: baseData.toJson()),
     );
   }
 }
