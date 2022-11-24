@@ -28,9 +28,11 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       if (Platform.isIOS) {
+        debugPrint('-----Inside here------');
         getViewModel().timer = new Timer(
-          const Duration(milliseconds: 800),
+          const Duration(milliseconds: 1000),
           () {
+            debugPrint('-----Inside here tooo------');
             getViewModel().initDynamicLink();
           },
         );
@@ -78,6 +80,12 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
     });
 
     super.onModelReady(model);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   @override

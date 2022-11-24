@@ -33,11 +33,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>FirebaseDynamicLinksCustomDomains</key>
-	<array>
-		<string>https://blinkcbt.page.link/promos</string>
-		<string>https://blinkcbt.page.link/links/share</string>
-	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>https</string>

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/source/dynamic_link/dynamic_link_datasource.dart';
 import 'package:domain/error/base_error.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/repository/dynamic_link/dynamic_link_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,13 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
     if (result.isNotEmpty) {
       return Right(result);
     } else {
-      throw Exception();
+      return Left(
+        LocalError(
+          cause: Exception(),
+          localError: 3,
+          message: '',
+        ),
+      );
     }
   }
 
@@ -35,8 +41,12 @@ class DynamicLinkRepositoryImpl extends DynamicLinkRepository {
     if (result.queryParameters.isNotEmpty) {
       return Right(result);
     } else {
-      throw AppLocalException(
-        appLocalExceptionType: AppLocalExceptionType.NO_DATA_FOUND,
+      return Left(
+        LocalError(
+          cause: Exception(),
+          localError: 3,
+          message: '',
+        ),
       );
     }
   }
